@@ -26,7 +26,7 @@ export default function(sweetConfig: Object = {}): Object{
       libraryTarget: 'var'
     },
     devtool: isDevelopment ? 'module-source-map' : 'none',
-    modules: {
+    module: {
       rules: [
         {
           test: /^.*\.js$/,
