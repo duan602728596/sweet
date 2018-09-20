@@ -57,7 +57,7 @@ export default function(options: Object = {}): Object{
   return {
     loader: 'babel-loader',
     options: {
-      cacheDirectory: path.join(process.cwd(), './.babelCache'),
+      cacheDirectory: path.join(process.cwd(), '.babelCache'),
       presets: otherPresets ? otherPresets : presetsList(presets, debug),
       plugins: otherPlugins ? otherPlugins : pluginsList(plugins)
     }

@@ -4,11 +4,11 @@ import babelConfig from '../config/babel';
 export default function(sweetConfig: Object = {}): Object{
   /**
    * mode { string } 开发模式还是生产模式
-   * babel { Object } loader里面js的配置
+   * js { Object } loader里面js的配置
    */
-  const { mode, babel }: {
+  const { mode, js }: {
     mode: string,
-    babel: {
+    js: {
       presets: Array,
       plugins: Array,
       otherPresets: Array,
@@ -22,7 +22,7 @@ export default function(sweetConfig: Object = {}): Object{
     otherPresets: Array,
     otherPlugins: Array,
     exclude: RegExp
-  } = babel || {};
+  } = js || {};
 
   return {
     test: /^.*\.js$/,

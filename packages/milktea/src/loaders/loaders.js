@@ -8,6 +8,10 @@ import imageLoader from './image';
 import svgLoader from './svg';
 
 export default function(sweetConfig: Object = {}): Object{
+  /**
+   * rules { Array } 自定义规则
+   * loaders { Object } 覆盖默认规则
+   */
   const { rules, loaders }: {
     rules: Array,
     loaders: Object
