@@ -10,8 +10,8 @@ import mime from 'mime-types';
 import koaWebpack from 'koa-webpack';
 import { readFile } from './utils/file';
 
-const app: Object = new Koa();
-const router: Object = new Router();
+const app: Koa = new Koa();
+const router: Router = new Router();
 
 /**
  * compiler { Object }: webpack的compiler
@@ -25,6 +25,8 @@ type devServerType = {
 };
 
 async function devServer({ compiler, httpPort = 5050, httpsPort = 5051 }: devServerType): Promise<void>{
+  const cwd: string = process.cwd();
+
   /* router */
   app.use(router.routes())
     .use(router.allowedMethods());
@@ -59,7 +61,6 @@ async function devServer({ compiler, httpPort = 5050, httpsPort = 5051 }: devSer
     .listen(httpPort);
 
   /* https服务 */
-  const cwd: string = process.cwd();
   const key: string = path.join(cwd, './dev.key');
   const crt: string = path.join(cwd, './dev.crt');
 
