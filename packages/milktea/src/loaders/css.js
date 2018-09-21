@@ -36,18 +36,40 @@ export default function(sweetConfig: Object = {}): Object{
     ? (frame === 'vue' ? 'vue-style-loader' : 'style-loader')
     : miniCssExtractPluginLoader;
 
-  return {
+  // config
+  const cssLoaderConfig: Object = {
     test: /^.*\.s(a|c)ss$/,
-    use: [
+    exclude
+  };
+
+  const basicConfig: [] = [
+    endLoader,
+    cssConfig({
+      isDevelopment,
+      modules
+    }),
+    sassConfig({
+      isDevelopment
+    })
+  ];
+
+  // vue
+  if(frame === 'vue'){
+    const scopedConfig: [] = [
       endLoader,
-      cssConfig({
-        isDevelopment,
-        modules
-      }),
+      'css-loader',
       sassConfig({
         isDevelopment
       })
-    ],
-    exclude
-  };
+    ];
+
+    cssLoaderConfig.oneOf = [
+      { resourceQuery: /scoped/, use: scopedConfig },
+      { use: basicConfig }
+    ];
+  }else{
+    cssLoaderConfig.use = basicConfig;
+  }
+
+  return cssLoaderConfig;
 }
