@@ -2,9 +2,6 @@
   "name": "@sweet/milktea",
   "version": "0.0.0-alpha.1",
   "main": "lib/milktea.js",
-  "bin": {
-    "milktea": "lib/cli.js"
-  },
   "scripts": {
     "start": "cross-env NODE_ENV=development npm run clean && babel ./src --watch --out-dir=\"./lib\" --config-file=\"../../.babelrc\"",
     "build": "cross-env NODE_ENV=production npm run clean && babel ./src --out-dir=\"./lib\" --config-file=\"../../.babelrc\"",
