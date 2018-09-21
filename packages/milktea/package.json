@@ -18,7 +18,7 @@
     "@babel/polyfill": "^7.0.0",
     "@babel/preset-env": "^7.1.0",
     "@babel/preset-flow": "^7.0.0",
-    "@sweet/milktea": "github:duan602728596/sweet#build-milktea-cli",
+    "@sweet/milktea-cli": "github:duan602728596/sweet#build-milktea-cli",
     "babel-loader": "^8.0.2",
     "core-js": "^2.5.7",
     "css-loader": "^1.0.0",
