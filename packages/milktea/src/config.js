@@ -4,8 +4,8 @@ import HtmlWebpackPlugin from 'html-webpack-plugin';
 import TerserPlugin from 'terser-webpack-plugin';
 import VueLoaderPlugin from 'vue-loader/lib/plugin';
 import loaders from './loaders/loaders';
-import devPlugins from './plugins/dev.plugins';
-import proPlugins from './plugins/pro.plugins';
+import devPlugins from './plugins/devPlugins';
+import proPlugins from './plugins/proPlugins';
 
 export default function(sweetConfig: Object = {}): Object{
   /**

@@ -18,10 +18,10 @@ export default function(sweetConfig: Object = {}): Object{
   const cwd: string = process.cwd();
 
   // 配置dll的babel config
-  const dllotherPresetsConfig: [] = [];
+  const dllResetPresetsConfig: [] = [];
 
   if(!ecmascript){
-    dllotherPresetsConfig.push([
+    dllResetPresetsConfig.push([
       '@babel/preset-env',
       {
         targets: {
@@ -52,7 +52,7 @@ export default function(sweetConfig: Object = {}): Object{
         {
           test: /^.*\.js$/,
           use: [babelConfig({
-            otherPresets: dllotherPresetsConfig
+            resetPresets: dllResetPresetsConfig
           })]
         }
       ]

@@ -10,21 +10,23 @@ export default function(sweetConfig: Object = {}): Object{
   const { mode, js, frame }: {
     mode: string,
     js: {
-      presets: Array,
-      plugins: Array,
-      otherPresets: Array,
-      otherPlugins: Array
+      ecmascript: boolean,
+      presets: ?Array,
+      plugins: ?Array,
+      resetPresets: ?Array,
+      resetPlugins: ?Array,
+      exclude: ?RegExp
     },
     frame: ?string
   } = sweetConfig;
   const isDevelopment: boolean = mode === 'development';
-  const { ecmascript, presets, plugins, otherPresets, otherPlugins, exclude }: {
+  const { ecmascript, presets, plugins, resetPresets, resetPlugins, exclude }: {
     ecmascript: boolean,
-    presets: Array,
-    plugins: Array,
-    otherPresets: Array,
-    otherPlugins: Array,
-    exclude: RegExp
+    presets: ?Array,
+    plugins: ?Array,
+    resetPresets: ?Array,
+    resetPlugins: ?Array,
+    exclude: ?RegExp
   } = js || {};
 
   return {
@@ -34,8 +36,8 @@ export default function(sweetConfig: Object = {}): Object{
       ecmascript,
       presets,
       plugins,
-      otherPresets,
-      otherPlugins,
+      resetPresets,
+      resetPlugins,
       isReact: frame === 'react'
     })],
     exclude: exclude || /(dll\.js|node_modules)/

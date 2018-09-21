@@ -61,23 +61,23 @@ export default function(options: Object = {}): Object{
    * ecmascript { boolean }: 是否编译到ecmascript的最新语法
    * presets { ?Array }: 插件列表
    * plugins { ?Array }: 插件列表
-   * otherPresets { ?Array }: 插件覆盖列表
-   * otherPlugins { ?Array }: 插件覆盖列表
+   * resetPresets { ?Array }: 插件覆盖列表
+   * resetPlugins { ?Array }: 插件覆盖列表
    * reactHotLoader { boolean }: 开启react-hot-loader
    */
-  const { isDevelopment, ecmascript, presets, plugins, otherPresets, otherPlugins, isReact }: {
+  const { isDevelopment, ecmascript, presets, plugins, resetPresets, resetPlugins, isReact }: {
     isDevelopment: boolean,
-    presets: ?[],
-    plugins: ?[],
-    otherPresets: ?[],
-    otherPlugins: ?[],
+    presets: ?Array,
+    plugins: ?Array,
+    resetPresets: ?Array,
+    resetPlugins: ?Array,
     isReact: boolean
   } = options;
   const debug: boolean = isDevelopment === undefined ? true : isDevelopment;
   const babelLoaderOptions: Object = {
     cacheDirectory: path.join(process.cwd(), '.babelCache'),
-    presets: otherPresets ? otherPresets : presetsList(presets, debug, isReact, ecmascript),
-    plugins: otherPlugins ? otherPlugins : pluginsList(plugins, isReact, ecmascript)
+    presets: resetPresets ? resetPresets : presetsList(presets, debug, isReact, ecmascript),
+    plugins: resetPlugins ? resetPlugins : pluginsList(plugins, isReact, ecmascript)
   };
 
   return {
