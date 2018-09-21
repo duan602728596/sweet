@@ -1,7 +1,6 @@
 {
   "name": "@sweet/server",
   "version": "0.0.0-alpha.1",
-  "description": "",
   "scripts": {
     "start": "cross-env NODE_ENV=development npm run clean && babel ./src --watch --out-dir=\"./lib\" --config-file=\"../../.babelrc\"",
     "build": "cross-env NODE_ENV=production npm run clean && babel ./src --out-dir=\"./lib\" --config-file=\"../../.babelrc\"",
