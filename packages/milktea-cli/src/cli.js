@@ -27,7 +27,7 @@ const argv: Object = yargs
       type: 'number'
     },
     serverRoot: {
-      describe: '生产环境下的服务器静态文件入口',
+      describe: '服务器静态文件入口',
       type: 'string'
     }
   }).argv;

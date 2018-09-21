@@ -1,4 +1,4 @@
-# @sweet/milkteaModule
+# @sweet/milktea
 
 ## 使用
 
@@ -8,13 +8,13 @@
 
 ```javascript
 import webpack from 'webpack';
-import milkteaModule from '@sweet/milkteaModule';
+import milktea from '@sweet/milktea';
 
 // mode`{ string }`: 开发模式`development`还是生产模式`production`
 const mode: string = 'development';
 
-const compiler: Object = webpack(milkteaModule.config(mode));
-compiler.run(milkteaModule.callback);
+const compiler: Object = webpack(milktea.config(mode));
+compiler.run(milktea.callback);
 ```
 
 ## 配置文件`.sweet.config.js`说明
@@ -49,3 +49,7 @@ compiler.run(milkteaModule.callback);
 * file: 文件配置
   * emitFile`{ boolean }`: 是否生成文件
 * frame`{ ?string }`: 值为`null`或`react`或`vue`，是否为react或vue模式，并自动注入loader和plugin
+
+## 关于node-sass
+
+node-sass如果安装失败，可以先到[https://github.com/sass/node-sass/releases](https://github.com/sass/node-sass/releases)下载**binding.node**文件，然后将该文件添加到**SASS_BINARY_PATH**环境变量内。
