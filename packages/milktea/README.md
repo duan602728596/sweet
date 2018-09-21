@@ -14,7 +14,7 @@ import milktea from '@sweet/milktea';
 const mode: string = 'development';
 
 const compiler: Object = webpack(milktea.config(mode));
-compiler.run(milktea.callback); 
+compiler.run(milktea.callback);
 ```
 
 ## 配置文件`.sweet.config.js`说明
@@ -46,4 +46,6 @@ compiler.run(milktea.callback);
   * exclude`{ RegExp }`: 重写exclude规则
 * html: html配置
   * template`{ string }`: html模板，默认为pug
+* file: 文件配置
+  * emitFile`{ boolean }`: 是否生成文件
 * frame`{ ?string }`: 值为`null`或`react`或`vue`，是否为react或vue模式，并自动注入loader和plugin

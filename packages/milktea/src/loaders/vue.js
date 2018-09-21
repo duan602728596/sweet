@@ -1,6 +1,6 @@
 /* vue 配置 */
 
-export default function(){
+export default function(): Object{
   return  {
     test: /^.*\.vue$/,
     use: ['vue-loader']

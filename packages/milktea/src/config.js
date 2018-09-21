@@ -54,12 +54,12 @@ export default function(sweetConfig: Object = {}): Object{
         template,
         mode
       })
-    )
+    );
   }
 
   // vue
   if(frame === 'vue'){
-    config.plugins.push(new VueLoaderPlugin())
+    config.plugins.push(new VueLoaderPlugin());
   }
 
   if(!isDevelopment){

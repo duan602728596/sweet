@@ -3,8 +3,12 @@
 export default function(options: Object = {}): Object{
   /**
    * isDevelopment { boolean }: 是否为开发环境
+   * emitFile { boolean }: 是否生成文件
    */
-  const { isDevelopment }: { isDevelopment: boolean } = options;
+  const { isDevelopment, emitFile }: {
+    isDevelopment: boolean,
+    emitFile: boolean
+  } = options;
   const fileName: string = isDevelopment ? '[name].[ext]' : '[hash:5].[ext]';
 
   return {
@@ -15,7 +19,8 @@ export default function(options: Object = {}): Object{
         loader: 'file-loader',
         options: {
           name: fileName,
-          outputPath: 'image/'
+          outputPath: 'image/',
+          emitFile
         }
       }
     }
