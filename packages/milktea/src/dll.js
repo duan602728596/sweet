@@ -13,8 +13,29 @@ export default function(sweetConfig: Object = {}): Object{
     mode: string,
     dll: Array
   } = sweetConfig;
+  const ecmascript: boolean = sweetConfig?.js?.ecmascript || false;
   const isDevelopment: boolean = mode === 'development';
   const cwd: string = process.cwd();
+
+  // 配置dll的babel config
+  const dllotherPresetsConfig: [] = [];
+
+  if(!ecmascript){
+    dllotherPresetsConfig.push([
+      '@babel/preset-env',
+      {
+        targets: {
+          ie: 11,
+          edge: 16,
+          chrome: 62,
+          firefox: 56
+        },
+        debug: false,
+        modules: false,
+        useBuiltIns: false
+      }
+    ]);
+  }
 
   return {
     mode: 'development',
@@ -31,22 +52,7 @@ export default function(sweetConfig: Object = {}): Object{
         {
           test: /^.*\.js$/,
           use: [babelConfig({
-            otherPresets: [
-              [
-                '@babel/preset-env',
-                {
-                  targets: {
-                    ie: 11,
-                    edge: 16,
-                    chrome: 62,
-                    firefox: 56
-                  },
-                  debug: false,
-                  modules: false,
-                  useBuiltIns: false
-                }
-              ]
-            ]
+            otherPresets: dllotherPresetsConfig
           })]
         }
       ]

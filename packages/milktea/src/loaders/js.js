@@ -34,7 +34,7 @@ export default function(sweetConfig: Object = {}): Object{
       plugins,
       otherPresets,
       otherPlugins,
-      reactHotLoader: frame === 'react'
+      isReact: frame === 'react'
     })],
     exclude: exclude || /(dll\.js|node_modules)/
   };
