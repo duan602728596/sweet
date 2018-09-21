@@ -18,7 +18,8 @@ export default function(sweetConfig: Object = {}): Object{
     frame: ?string
   } = sweetConfig;
   const isDevelopment: boolean = mode === 'development';
-  const { presets, plugins, otherPresets, otherPlugins, exclude }: {
+  const { ecmascript, presets, plugins, otherPresets, otherPlugins, exclude }: {
+    ecmascript: boolean,
     presets: Array,
     plugins: Array,
     otherPresets: Array,
@@ -30,6 +31,7 @@ export default function(sweetConfig: Object = {}): Object{
     test: /^.*\.js$/,
     use: [babelConfig({
       isDevelopment,
+      ecmascript,
       presets,
       plugins,
       otherPresets,
