@@ -5,7 +5,7 @@ import webpack from 'webpack';
 
 export default function(sweetConfig: Object = {}): Array{
   /**
-   * dll { Array } dll配置
+   * dll { Array }: dll配置
    */
   const { dll }: { dll: Array } = sweetConfig;
   const plugins: [] = [];

@@ -15,6 +15,13 @@ function getSweetConfig(): Object{
   }
 }
 
+// 回调函数
+export function callback(err: any, stats: Object): void{
+  console.log(stats.toString({
+    colors: true
+  }));
+}
+
 // webpack配置
 export function config(): Object{
   const sweetConfig: Object = getSweetConfig();

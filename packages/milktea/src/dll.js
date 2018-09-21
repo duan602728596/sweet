@@ -6,8 +6,8 @@ import babelConfig from './config/babel';
 
 export default function(sweetConfig: Object = {}): Object{
   /**
-   * mode { string } 开发模式还是生产模式
-   * dll { Array } dll配置
+   * mode { string }: 开发模式还是生产模式
+   * dll { Array }: dll配置
    */
   const { mode, dll }: {
     mode: string,
@@ -17,7 +17,7 @@ export default function(sweetConfig: Object = {}): Object{
   const cwd: string = process.cwd();
 
   return {
-    mode,
+    mode: 'development',
     entry: { dll },
     output: {
       path: path.join(cwd, '.dll'),

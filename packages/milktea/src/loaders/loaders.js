@@ -6,16 +6,19 @@ import fontFileLoader from './fontFile';
 import htmlLoader from './html';
 import imageLoader from './image';
 import svgLoader from './svg';
+import vueLoader from './vue';
 
 export default function(sweetConfig: Object = {}): Object{
   /**
-   * rules { Array } 自定义规则
-   * loaders { Object } 覆盖默认规则
+   * rules { Array }: 自定义规则
+   * loaders { Object }: 覆盖默认规则
+   * frame { ?string }: 是否为react或vue模式
    */
-  const { rules, loaders }: {
+  const { rules, frame }: {
     rules: Array,
-    loaders: Object
+    frame: ?string
   } = sweetConfig;
+  const loaders: Object = sweetConfig?.loaders || {};
 
   // 合并rules
   const loadersObj: Object = {
@@ -27,6 +30,12 @@ export default function(sweetConfig: Object = {}): Object{
     image: loaders.image || imageLoader(sweetConfig),
     svg: loaders.svg || svgLoader(sweetConfig)
   };
+
+  // vue
+  if(frame === 'vue'){
+    loadersObj.vue = loaders.vue || vueLoader();
+  }
+
   const loadersArr: [] = Object.values(loadersObj);
 
   // 添加其他的rules

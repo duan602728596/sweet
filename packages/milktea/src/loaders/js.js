@@ -5,15 +5,17 @@ export default function(sweetConfig: Object = {}): Object{
   /**
    * mode { string } 开发模式还是生产模式
    * js { Object } loader里面js的配置
+   * frame { ?string } 是否为react或vue模式
    */
-  const { mode, js }: {
+  const { mode, js, frame }: {
     mode: string,
     js: {
       presets: Array,
       plugins: Array,
       otherPresets: Array,
       otherPlugins: Array
-    }
+    },
+    frame: ?string
   } = sweetConfig;
   const isDevelopment: boolean = mode === 'development';
   const { presets, plugins, otherPresets, otherPlugins, exclude }: {
@@ -31,7 +33,8 @@ export default function(sweetConfig: Object = {}): Object{
       presets,
       plugins,
       otherPresets,
-      otherPlugins
+      otherPlugins,
+      reactHotLoader: frame === 'react'
     })],
     exclude: exclude || /(dll\.js|node_modules)/
   };

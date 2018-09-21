@@ -44,8 +44,9 @@ export default function(options: Object = {}): Object{
    * plugins { ?Array }: 插件列表
    * otherPresets { ?Array }: 插件覆盖列表
    * otherPlugins { ?Array }: 插件覆盖列表
+   * reactHotLoader { boolean }: 开启react-hot-loader
    */
-  const { isDevelopment, presets, plugins, otherPresets, otherPlugins }: {
+  const { isDevelopment, presets, plugins, otherPresets, otherPlugins, reactHotLoader }: {
     isDevelopment: boolean,
     presets: ?[],
     plugins: ?[],
@@ -53,13 +54,19 @@ export default function(options: Object = {}): Object{
     otherPlugins: ?[]
   } = options;
   const debug: boolean = isDevelopment === undefined ? true : isDevelopment;
+  const babelLoaderOptions: Object = {
+    cacheDirectory: path.join(process.cwd(), '.babelCache'),
+    presets: otherPresets ? otherPresets : presetsList(presets, debug),
+    plugins: otherPlugins ? otherPlugins : pluginsList(plugins)
+  };
+
+  if(reactHotLoader){
+    if(!babelLoaderOptions.plugins) babelLoaderOptions.plugins = [];
+    babelLoaderOptions.plugins.push('react-hot-loader/babel');
+  }
 
   return {
     loader: 'babel-loader',
-    options: {
-      cacheDirectory: path.join(process.cwd(), '.babelCache'),
-      presets: otherPresets ? otherPresets : presetsList(presets, debug),
-      plugins: otherPlugins ? otherPlugins : pluginsList(plugins)
-    }
+    options: babelLoaderOptions
   };
 }
