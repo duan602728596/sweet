@@ -2,5 +2,5 @@
 
 ## packages
 
-* [@sweet/milktea](packages/milktea/README.md)
-* [@sweet/milktea-cli](packages/milktea-cli/README.md)
+* [@sweet/milkteaModule](packages/milkteaModule/README.md)
+* [@sweet/milkteaModule-cli](packages/milkteaModule-cli/README.md)

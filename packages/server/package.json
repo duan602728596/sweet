@@ -1,0 +1,26 @@
+{
+  "name": "@sweet/server",
+  "version": "0.0.0-alpha.1",
+  "description": "",
+  "scripts": {
+    "start": "cross-env NODE_ENV=development npm run clean && babel ./src --watch --out-dir=\"./lib\" --config-file=\"../../.babelrc\"",
+    "build": "cross-env NODE_ENV=production npm run clean && babel ./src --out-dir=\"./lib\" --config-file=\"../../.babelrc\"",
+    "clean": "rimraf ./lib"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.1.0",
+    "cross-env": "^5.2.0",
+    "rimraf": "^2.6.2"
+  },
+  "dependencies": {
+    "@babel/polyfill": "^7.0.0",
+    "koa": "^2.5.3",
+    "koa-compress": "^3.0.0",
+    "koa-convert": "^1.2.0",
+    "koa-router": "^7.4.0",
+    "koa-static-cache": "^5.1.2",
+    "koa-webpack": "^5.1.0",
+    "mime-types": "^2.1.20",
+    "webpack": "^4.19.1"
+  }
+}

@@ -1,4 +1,4 @@
-# @sweet/milktea
+# @sweet/milkteaModule
 
 ## 使用
 
@@ -8,13 +8,13 @@
 
 ```javascript
 import webpack from 'webpack';
-import milktea from '@sweet/milktea';
+import milkteaModule from '@sweet/milkteaModule';
 
 // mode`{ string }`: 开发模式`development`还是生产模式`production`
 const mode: string = 'development';
 
-const compiler: Object = webpack(milktea.config(mode));
-compiler.run(milktea.callback);
+const compiler: Object = webpack(milkteaModule.config(mode));
+compiler.run(milkteaModule.callback);
 ```
 
 ## 配置文件`.sweet.config.js`说明

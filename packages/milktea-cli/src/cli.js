@@ -16,5 +16,13 @@ const argv: Object = yargs
       alias: 's',
       describe: '是否开启一个服务器。',
       type: 'boolean'
+    },
+    httpPort: {
+      describe: 'http服务的端口号。',
+      type: 'number'
+    },
+    httpsPort: {
+      describe: 'https服务的端口号。',
+      type: 'number'
     }
   }).argv;

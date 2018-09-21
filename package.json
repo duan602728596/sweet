@@ -11,6 +11,12 @@
     "@babel/preset-flow": "^7.0.0",
     "babel-eslint": "^9.0.0",
     "eslint": "^5.6.0",
-    "eslint-plugin-flowtype": "^2.50.1"
+    "eslint-plugin-flowtype": "^2.50.1",
+    "pre-commit": "^1.2.2"
+  },
+  "pre-commit": {
+    "run": [
+      "eslint"
+    ]
   }
 }

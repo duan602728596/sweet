@@ -4,11 +4,11 @@
       "@babel/preset-env",
       {
         "targets": {
-          "browsers": ["node 4"]
+          "browsers": ["node 6"]
         },
         "debug": false,
         "modules": "commonjs",
-        "useBuiltIns": false
+        "useBuiltIns": "usage"
       }
     ],
     "@babel/preset-flow"

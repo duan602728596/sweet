@@ -1,5 +1,5 @@
 import webpack from 'webpack';
-import { milktea } from './milktea';
+import { milktea } from './milkteaModule';
 
 /* dll命令 */
 function argvDll(argv: Object): void{

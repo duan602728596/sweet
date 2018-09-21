@@ -1,5 +1,5 @@
-# @sweet/milktea-cli
+# @sweet/milkteaModule-cli
 
 ## 命令
 
-* `milktea dll`: 编译dll文件
+* `milkteaModule dll`: 编译dll文件
