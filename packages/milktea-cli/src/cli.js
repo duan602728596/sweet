@@ -4,15 +4,16 @@
 import yargs from 'yargs';
 import argvDll from './argvDll';
 import argvStart from './argvStart';
+import argvBuild from './argvBuild';
 
 /* 获取参数 */
 const argv: Object = yargs
-  .command('dll', '编译dll', (): void => null, argvDll)
+  .command('dll', '编译dll文件', (): void => null, argvDll)
   .command('start', '开发环境', (): void => null, argvStart)
+  .command('build', '编译代码', (): void => null, argvBuild)
   .options({
     server: {
       alias: 's',
-      demand: false,
       describe: '是否开启一个服务器。',
       type: 'boolean'
     }
