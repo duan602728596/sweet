@@ -10,13 +10,15 @@
 import webpack from 'webpack';
 import milktea from '@sweet/milktea';
 
-const compiler: Object = webpack(milktea.config());
+// mode`{ string }`: 开发模式`development`还是生产模式`production`
+const mode: string = 'development';
+
+const compiler: Object = webpack(milktea.config(mode));
 compiler.run(milktea.callback); 
 ```
 
 ## 配置文件`.sweet.config.js`说明
 
-* mode`{ string }`: 开发模式`development`还是生产模式`production`
 * entry`{ any }`: 文件入口（参考webpack）
 * output`{ any }`: 文件出口，参考webpack
 * externals`{ any }`: 外部扩展，参考webpack

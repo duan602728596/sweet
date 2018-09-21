@@ -17,7 +17,7 @@ export default function(sweetConfig: Object = {}): Object{
    * plugins { Array }: 自定义扩展插件
    * frame { ?string }: 是否为react或vue模式
    */
-  const { mode, entry, output, externals, html, plugins, frame }: {
+  const { mode = 'development', entry, output, externals, html, plugins, frame }: {
     mode: string,
     entry: any,
     output: any,

@@ -4,12 +4,15 @@ import process from 'process';
 import webpackConfig from './config';
 import webpackDll from './dll';
 
-function getSweetConfig(): Object{
+function getSweetConfig(mode: string = 'development'): Object{
   const cwd: string = process.cwd();
   const sweetConfig: string = path.join(cwd, '.sweet.config.js');
 
   if(fs.existsSync(sweetConfig)){
-    return require(sweetConfig);
+    const config: Object = require(sweetConfig);
+
+    config.mode = mode;
+    return config;
   }else{
     throw new Error('Please configure the .sweet.config.js file first.');
   }
@@ -23,8 +26,8 @@ export function callback(err: any, stats: Object): void{
 }
 
 // webpack配置
-export function config(): Object{
-  const sweetConfig: Object = getSweetConfig();
+export function config(mode: string): Object{
+  const sweetConfig: Object = getSweetConfig(mode);
   return webpackConfig(sweetConfig);
 }
 
