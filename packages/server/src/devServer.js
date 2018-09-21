@@ -60,8 +60,8 @@ async function devServer({ compiler, httpPort = 5050, httpsPort = 5051 }: devSer
 
   /* https服务 */
   const cwd: string = process.cwd();
-  const key: string = path.join(cwd, '../dev.key');
-  const crt: string = path.join(cwd, '../dev.crt');
+  const key: string = path.join(cwd, './dev.key');
+  const crt: string = path.join(cwd, './dev.crt');
 
   // 判断是否有证书
   if(fs.existsSync(key) && fs.existsSync(crt)){
