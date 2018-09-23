@@ -29,6 +29,7 @@ export default function(sweetConfig: Object = {}): Object{
   const miniCssExtractPluginLoader: Object = publicPath ? {
     loader: MiniCssExtractPlugin.loader,
     options: {
+      outputPath: 'style/',
       publicPath
     }
   } : MiniCssExtractPlugin.loader;

@@ -5,8 +5,8 @@ import OptimizeCssAssets from 'optimize-css-assets-webpack-plugin';
 export default function(): Array{
   return [
     new MiniCssExtractPlugin({
-      filename: 'style/[chunkhash:5].css',
-      chunkFilename: 'style/[chunkhash:5].css'
+      filename: '[chunkhash:5].css',
+      chunkFilename: '[chunkhash:5].css'
     }),
     new OptimizeCssAssets()
   ];
