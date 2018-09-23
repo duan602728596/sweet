@@ -11,7 +11,8 @@ function getSweetConfig(mode: string = 'development'): Object{
   if(fs.existsSync(sweetConfig)){
     const config: Object = require(sweetConfig);
 
-    config.mode = mode;
+    if(!('mode' in config)) config.mode = mode;
+
     return config;
   }else{
     throw new Error('Please configure the .sweet.config.js file first.');

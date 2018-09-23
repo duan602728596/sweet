@@ -41,30 +41,22 @@ export default function(sweetConfig: Object = {}): Object{
     test: /^.*\.s(a|c)ss$/,
     exclude
   };
-
+  const sassConfig2: Object = sassConfig({
+    isDevelopment
+  });
   const basicConfig: [] = [
     endLoader,
     cssConfig({
       isDevelopment,
       modules
     }),
-    sassConfig({
-      isDevelopment
-    })
+    sassConfig2
   ];
 
   // vue
   if(frame === 'vue'){
-    const scopedConfig: [] = [
-      endLoader,
-      'css-loader',
-      sassConfig({
-        isDevelopment
-      })
-    ];
-
     cssLoaderConfig.oneOf = [
-      { resourceQuery: /scoped/, use: scopedConfig },
+      { resourceQuery: /scoped/, use: [endLoader, 'css-loader', sassConfig2] },
       { use: basicConfig }
     ];
   }else{

@@ -9,20 +9,17 @@ const presetsList: Function = (presets: Array = [], debug: boolean, isReact: boo
     ...presets
   ];
 
+  // 判断是否加载react相关插件
   if(isReact){
     list.unshift('@babel/preset-react');
   }
 
+  // 判断是否为es6+
   if(!ecmascript){
     list.unshift([
       '@babel/preset-env',
       {
-        targets: {
-          ie: 11,
-          edge: 16,
-          chrome: 62,
-          firefox: 56
-        },
+        targets: { ie: 11, edge: 16, chrome: 62, firefox: 56 },
         debug,
         modules: false,
         useBuiltIns: 'usage'
@@ -44,12 +41,13 @@ const pluginsList: Function = (plugins: Array = [], isReact: boolean, ecmascript
     ...plugins
   ];
 
+  // 判断是否加载react相关插件，热替换
   if(isReact){
     list.push('react-hot-loader/babel');
   }
 
   if(ecmascript){
-    lish.unshift('@babel/plugin-proposal-object-rest-spread');
+    list.unshift('@babel/plugin-proposal-object-rest-spread');
   }
 
   return list;
