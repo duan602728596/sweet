@@ -2,6 +2,7 @@
 import webpack from 'webpack';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import VueLoaderPlugin from 'vue-loader/lib/plugin';
+import { isArray } from '../utils';
 
 export default function(sweetConfig: Object = {}): Array{
   /**
@@ -34,7 +35,7 @@ export default function(sweetConfig: Object = {}): Array{
   ];
 
   // html模板
-  if(html && typeof html === 'object' && Object.prototype.toString.call(html) === '[object Array]'){
+  if(html && typeof isArray(html)){
     for(const item: Object of html){
       pluginArr.push(
         new HtmlWebpackPlugin({

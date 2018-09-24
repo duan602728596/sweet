@@ -2,7 +2,7 @@
 
 ## 使用
 
-1. 创建`.sweet.config.js`文件
+1. 创建`sweet.config.js`文件
 
 2. node调用
 
