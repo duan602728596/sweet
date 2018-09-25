@@ -18,3 +18,4 @@
   * `--serverRender`: 开启服务器端渲染
   * `--serverRenderFile`: 服务器端渲染的主模块文件
 * `milktea update`: 更新
+  * `--registry`: Npm包信息地址。0：Npm，1：Yarn，2：CNpm。

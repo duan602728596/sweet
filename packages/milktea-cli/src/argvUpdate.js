@@ -49,7 +49,9 @@ async function argvUpdate(argv: Object): Promise<void>{
     }
   }
 
-  await update(folders);
+  const registry: number = isNone(argv.registry) ? 0 : argv.registry;
+
+  await update(folders, registry);
 }
 
 export default argvUpdate;

@@ -6,6 +6,7 @@ import argvDll from './argvDll';
 import argvStart from './argvStart';
 import argvBuild from './argvBuild';
 import argvServer from './argvServer';
+import argvUpdate from './argvUpdate';
 
 /* 获取参数 */
 const argv: Object = yargs
@@ -13,7 +14,7 @@ const argv: Object = yargs
   .command('start', '开发环境', (): void => null, argvStart)
   .command('build', '编译代码', (): void => null, argvBuild)
   .command('server', '启动服务器', (): void => null, argvServer)
-  .command('update', '工具：检查当前目录是否有依赖需要更新', (): void => null, argvServer)
+  .command('update', '工具：检查当前目录是否有依赖需要更新', (): void => null, argvUpdate)
   .options({
     server: {
       alias: 's',
@@ -39,6 +40,10 @@ const argv: Object = yargs
     serverRenderFile: {
       describe: '服务器端渲染的主模块文件',
       type: 'string'
+    },
+    registry: {
+      describe: 'Npm包信息地址。0：Npm，1：Yarn，2：CNpm',
+      type: 'number'
     },
     __DEV__: {
       describe: '__DEV__',

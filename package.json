@@ -1,6 +1,7 @@
 {
   "name": "sweet",
   "scripts": {
+    "update": "milktea update",
     "eslint": "eslint ./packages"
   },
   "devDependencies": {
