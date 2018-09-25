@@ -30,7 +30,8 @@ function requestPackageInformation(packageName: string, registry: number): Promi
     'https://r.cnpmjs.org'          // cnpm
   ];
 
-  return axios.get({
+  return axios({
+    method: 'GET',
     url: `${ packageHost[registry] }/${ packageName }`,
     headers: {
       Accept: 'application/vnd.npm.install-v1+json; q=1.0, application/json; q=0.8, */*'
