@@ -34,7 +34,7 @@ function stat(filePath: string): Promise{
 }
 
 async function argvUpdate(argv: Object): Promise<void>{
-  const update: Function = require('@sweet/util-tools').default;
+  const update: Function = require('@sweet/util-tools/lib/update').default;
   let folders: ?[] = [];
 
   if(isNone(argv.__DEV__)){
