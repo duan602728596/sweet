@@ -1,13 +1,21 @@
 import fs from 'fs';
-import { replaceTemplate, defaultInterfacePath, cleanRequireCache } from './utils';
+import path from 'path';
+import { replaceTemplate, defaultInterfacePath, cleanRequireCache, pathAnalyze } from './utils';
 
 // 渲染新的html
 async function preRender(file: string, ctx: Object, serverRenderFile: string): Promise<Object>{
-  cleanRequireCache(defaultInterfacePath);
   cleanRequireCache(serverRenderFile);
 
+  const formatFile: string = path.join(defaultInterfacePath, pathAnalyze(file));
+  let data: Object = {};
+
+  if(fs.existsSync(formatFile)){
+    cleanRequireCache(formatFile);
+    data = await require(formatFile)(ctx);
+  }
+
   const html: ArrayBuffer = ctx.body;
-  const data: Object = fs.existsSync(defaultInterfacePath) ? await require(defaultInterfacePath)(file, ctx) : {};
+
   const server: Function = require(serverRenderFile).default;
   const render: string = server(file, {}, data.initialState);
 
