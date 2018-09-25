@@ -20,7 +20,7 @@ export default function(options: Object = {}): Object{
       ? '[path][name]__[local]___[hash:base64:5]'
       : '_[hash:base64:5]';
 
-    cssLoader.option = {
+    cssLoader.options = {
       modules: true,
       localIdentName
     };
