@@ -3,7 +3,7 @@ import webpack from 'webpack';
 import { isNone } from './utils';
 
 function argvStart(argv: Object): void{
-  const milktea: Object = require('@sweet/milktea').default;
+  const milktea: Object = require('@sweet/milktea');
   const compiler: Object = webpack(milktea.config(null, 'development'));
 
   if(!isNone(argv.serverRender)){
