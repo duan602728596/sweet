@@ -1,0 +1,17 @@
+{
+  "name": "@sweet/util-tools",
+  "version": "0.0.0-alpha.1",
+  "scripts": {
+    "start": "cross-env NODE_ENV=development npm run clean && babel ./src --watch --out-dir=\"./lib\" --config-file=\"../../.babelrc\"",
+    "build": "cross-env NODE_ENV=production npm run clean && babel ./src --out-dir=\"./lib\" --config-file=\"../../.babelrc\"",
+    "clean": "rimraf ./lib"
+  },
+  "dependencies": {
+    "axios": "^0.18.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.1.0",
+    "cross-env": "^5.2.0",
+    "rimraf": "^2.6.2"
+  }
+}

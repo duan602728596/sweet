@@ -9,3 +9,4 @@ sweet是一个webpack的开箱解决方案，支持react、vue、开发环境服
 * [@sweet/milktea](packages/milktea/README.md)
 * [@sweet/milktea-cli](packages/milktea-cli/README.md)
 * [@sweet/server](packages/server/README.md)
+* [@sweet/util-tools](packages/util-tools/README.md)

@@ -13,6 +13,7 @@ const argv: Object = yargs
   .command('start', '开发环境', (): void => null, argvStart)
   .command('build', '编译代码', (): void => null, argvBuild)
   .command('server', '启动服务器', (): void => null, argvServer)
+  .command('update', '工具：检查当前目录是否有依赖需要更新', (): void => null, argvServer)
   .options({
     server: {
       alias: 's',
@@ -38,5 +39,9 @@ const argv: Object = yargs
     serverRenderFile: {
       describe: '服务器端渲染的主模块文件',
       type: 'string'
+    },
+    __DEV__: {
+      describe: '__DEV__',
+      type: 'boolean'
     }
   }).argv;
