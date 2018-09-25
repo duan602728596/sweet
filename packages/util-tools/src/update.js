@@ -35,7 +35,8 @@ function requestPackageInformation(packageName: string, registry: number): Promi
     url: `${ packageHost[registry] }/${ packageName }`,
     headers: {
       Accept: 'application/vnd.npm.install-v1+json; q=1.0, application/json; q=0.8, */*'
-    }
+    },
+    validateStatus: (): boolean => true
   }).then((res: Object): string => res.data);
 }
 
@@ -109,7 +110,7 @@ function consoleLogText(packageArray: []): string{
     const isRcNew: boolean = isVersionEqual(item.version, item.rc);
     const isCanaryNew: boolean = isVersionEqual(item.version, item.canary);
 
-    consoleText += `${ isLatestNew || isNextNew || isRcNew || isCanaryNew ? '  ' : '* ' }${ item.name }:\n`;
+    consoleText += `  ${ isLatestNew || isNextNew || isRcNew || isCanaryNew ? '  ' : '* ' }${ item.name }:\n`;
     consoleText += `      version: ${ item.version }\n`;
 
     if(item.latest){
