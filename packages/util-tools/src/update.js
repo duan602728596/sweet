@@ -130,7 +130,7 @@ function consoleLogText(packageArray: []): string{
 async function start(folder: string, registry: number): Promise<void>{
   try{
     // 依赖
-    const packageJson: Object = require(path.join(folder), 'package.json');
+    const packageJson: Object = require(path.join(folder, 'package.json'));
     const dependencies: ?[] = 'dependencies' in packageJson ? objectToArray(packageJson.dependencies) : null;
     const devDependencies: ?[] = 'devDependencies' in packageJson ? objectToArray(packageJson.devDependencies) : null;
 
