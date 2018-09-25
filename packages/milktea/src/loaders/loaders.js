@@ -1,6 +1,7 @@
 /* loaders */
 import jsLoader from './js';
 import sassLoader from './sass';
+import lessLoader from './less';
 import faviconLoader from './favicon';
 import fontFileLoader from './fontFile';
 import htmlLoader from './html';
@@ -24,7 +25,7 @@ export default function(sweetConfig: Object = {}): Object{
   const loadersObj: Object = {
     js: loaders.js || jsLoader(sweetConfig),
     sass: loaders.sass || sassLoader(sweetConfig),
-    css: loaders.css || sassLoader(sweetConfig),
+    css: loaders.css || lessLoader(sweetConfig),
     favicon: loaders.favicon || faviconLoader(),
     fontFile: loaders.fontFile || fontFileLoader(sweetConfig),
     html: loaders.html || htmlLoader(sweetConfig),

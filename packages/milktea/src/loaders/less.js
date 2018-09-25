@@ -23,7 +23,7 @@ export default function(sweetConfig: Object = {}): Object{
     serverRender: boolean
   } = sweetConfig;
   const isDevelopment: boolean = mode === 'development';
-  const { publicPath, modules, exclude, include, modifyVars }: {
+  const { publicPath, modules = true, exclude, include, modifyVars }: {
     publicPath: string,
     modules: boolean,
     exclude: ?RegExp,
