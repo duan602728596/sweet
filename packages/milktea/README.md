@@ -17,11 +17,11 @@ const compiler: Object = webpack(milktea.config(mode));
 compiler.run(milktea.callback);
 ```
 
-## 配置文件`.sweet.config.js`说明
+## 配置文件`sweet.config.js`说明
 
 ### 使用方法
 
-根目录下创建`.sweet.config.js`文件。代码如下所示：
+根目录下创建`sweet.config.js`文件。代码如下所示：
 
 ```javascript
 module.exports = {
@@ -76,6 +76,32 @@ module.exports = {
 * serverRender`{ boolean }`: 是否开启服务器端渲染
 * severEntry`{ any }`: 服务器端的文件入口（参考webpack）
 * serverOutput`{ any }`: 服务器端文件出口（参考webpack）
+
+## routers
+
+创建一个`service/routers.js`文件，代码如下
+```javascript
+module.exports = function(router){
+  // 在这里面创建你的函数
+  router.get('/path', ...function);
+};
+```
+
+## 服务器端渲染
+
+服务器端渲染需要你创建`service/interface/`文件夹，文件夹里面的规则为：你的路由中的**“/”**替换为**“.”**，且采用小驼峰命名法。比如`Path/PathFile`，则需要创建`path.pathFile.js`文件。   
+在文件内，需要创建如下代码：
+
+```javascript
+module.exports = async function(ctx){
+  return {
+    initialState, // 返回初始化的state
+    ...           // 你要返回的其他数据
+  };
+}
+```
+
+在pug或html模板中，使用`{% key %}`来标记占位的数据。其中`{% render %}`表示服务器端渲染的数据，`{% initialState %}`表示初始化数据，其他的占位数据同理。
 
 ## 关于node-sass
 

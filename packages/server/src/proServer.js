@@ -37,7 +37,7 @@ async function proServer({
   httpsPort = 5053,
   serverRoot = 'build',
   serverRender,
-  serverRenderFile = defaultServerRenderFile
+  serverRenderFile
 }: proServerType): Promise<void>{
   const cwd: string = process.cwd();
   const formatServerRoot: string = path.isAbsolute(serverRoot) ? serverRoot : path.join(cwd, serverRoot);

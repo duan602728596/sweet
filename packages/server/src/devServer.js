@@ -8,7 +8,7 @@ import Koa from 'koa';
 import Router from 'koa-router';
 import mime from 'mime-types';
 import koaWebpack from 'koa-webpack';
-import { readFile, defaultServerRenderFile, defaultRoutersPath, cleanRequireCache } from './utils/utils';
+import { readFile, defaultRoutersPath, cleanRequireCache } from './utils/utils';
 import preRender from './utils/preDevRender';
 
 const app: Koa = new Koa();
@@ -34,7 +34,7 @@ async function devServer({
   httpPort = 5050,
   httpsPort = 5051,
   serverRender,
-  serverRenderFile = defaultServerRenderFile
+  serverRenderFile
 }: devServerType): Promise<void>{
   const cwd: string = process.cwd();
   const formatServerRenderFile: string = path.isAbsolute(serverRenderFile) ? serverRenderFile : path.join(cwd, serverRenderFile);

@@ -60,4 +60,3 @@ export function pathAnalyze(file: string): string{
 const cwd: string = process.cwd();
 export const defaultInterfacePath: string = path.join(cwd, 'service/interface');
 export const defaultRoutersPath: string = path.join(cwd, 'service/routers');
-export const defaultServerRenderFile: string = path.join(cwd, 'build/server');
