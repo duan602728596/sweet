@@ -2,6 +2,7 @@
   "name": "sweet",
   "scripts": {
     "update": "milktea update",
+    "update-dev": "milktea update --__DEV__",
     "eslint": "eslint ./packages"
   },
   "devDependencies": {
