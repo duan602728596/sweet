@@ -8,7 +8,8 @@ import Koa from 'koa';
 import Router from 'koa-router';
 import mime from 'mime-types';
 import koaWebpack from 'koa-webpack';
-import { readFile } from './utils/file';
+import { readFile, defaultServerRenderFile, defaultRoutersPath, cleanRequireCache } from './utils/utils';
+import preRender from './utils/preDevRender';
 
 const app: Koa = new Koa();
 const router: Router = new Router();
@@ -17,15 +18,26 @@ const router: Router = new Router();
  * compiler { Object }: webpack的compiler
  * httpPort { number }: http端口号
  * httpsPort { number }: https端口号
+ * serverRender { boolean }: 开启服务器端渲染
+ * serverRenderFile { string }: 服务器端渲染的主模块文件
  */
 type devServerType = {
   compiler: Object,
   httpPort: number,
-  httpsPort: number
+  httpsPort: number,
+  serverRender: boolean,
+  serverRenderFile: string
 };
 
-async function devServer({ compiler, httpPort = 5050, httpsPort = 5051 }: devServerType): Promise<void>{
+async function devServer({
+  compiler,
+  httpPort = 5050,
+  httpsPort = 5051,
+  serverRender,
+  serverRenderFile = defaultServerRenderFile
+}: devServerType): Promise<void>{
   const cwd: string = process.cwd();
+  const formatServerRenderFile: string = path.isAbsolute(serverRenderFile) ? serverRenderFile : path.join(cwd, serverRenderFile);
 
   /* router */
   app.use(router.routes())
@@ -54,7 +66,16 @@ async function devServer({ compiler, httpPort = 5050, httpsPort = 5051 }: devSer
       ctx._path = file;
     }
     await next();
+
+    // 服务器端渲染
+    if(serverRender && ctx.type === 'text/html'){
+      ctx.body = await preRender(file, ctx, formatServerRenderFile);
+    }
   });
+
+  /* 本地服务 */
+  cleanRequireCache(defaultRoutersPath);
+  require(defaultRoutersPath)(router);
 
   /* http服务 */
   http.createServer(app.callback())

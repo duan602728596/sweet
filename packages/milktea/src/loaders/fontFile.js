@@ -4,9 +4,13 @@ import fontFileConfig from '../config/fontFile';
 export default function(sweetConfig: Object = {}): Object{
   /**
    * mode { string }: 开发模式还是生产模式
+   * serverRender { boolean }: 开启服务器端渲染
    */
-  const { mode }: { mode: string } = sweetConfig;
-  const emitFile: boolean = sweetConfig.file.emitFile || true;
+  const { mode, serverRender }: {
+    mode: string,
+    serverRender: boolean
+  } = sweetConfig;
+  const emitFile: boolean = !serverRender;
   const isDevelopment: boolean = mode === 'development';
 
   return {

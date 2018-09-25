@@ -11,7 +11,8 @@ import convert from 'koa-convert';
 import compress from 'koa-compress';
 import staticCache from 'koa-static-cache';
 import mime from 'mime-types';
-import { readFile } from './utils/file';
+import { readFile, defaultRoutersPath } from './utils/utils';
+import preRender from './utils/preProRender';
 
 const app: Koa = new Koa();
 const router: Router = new Router();
@@ -20,16 +21,27 @@ const router: Router = new Router();
  * httpPort { number }: http端口号
  * httpsPort { number }: https端口号
  * serverRoot { ?string }: 生产环境下的服务器静态文件入口
+ * serverRender { boolean }: 开启服务器端渲染
+ * serverRenderFile { string }: 服务器端渲染的主模块文件
  */
 type proServerType = {
   httpPort: number,
   httpsPort: number,
-  serverRoot: string
+  serverRoot: string,
+  serverRender: boolean,
+  serverRenderFile: string
 };
 
-async function proServer({ httpPort = 5052, httpsPort = 5053, serverRoot = 'build' }: proServerType): Promise<void>{
+async function proServer({
+  httpPort = 5052,
+  httpsPort = 5053,
+  serverRoot = 'build',
+  serverRender,
+  serverRenderFile = defaultServerRenderFile
+}: proServerType): Promise<void>{
   const cwd: string = process.cwd();
   const formatServerRoot: string = path.isAbsolute(serverRoot) ? serverRoot : path.join(cwd, serverRoot);
+  const formatServerRenderFile: string = path.isAbsolute(serverRenderFile) ? serverRenderFile : path.join(cwd, serverRenderFile);
 
   /* gzip压缩 */
   app.use(compress({
@@ -57,7 +69,7 @@ async function proServer({ httpPort = 5052, httpsPort = 5053, serverRoot = 'buil
 
     ctx.status = 200;
     ctx.type = 'text/html';
-    ctx.body = body;
+    ctx.body = serverRender ? await preRender(ctx.path, ctx, formatServerRenderFile) : body;
 
     await next();
   });
@@ -77,6 +89,9 @@ async function proServer({ httpPort = 5052, httpsPort = 5053, serverRoot = 'buil
 
     await next();
   });
+
+  /* 本地服务 */
+  require(defaultRoutersPath)(router);
 
   /* http服务 */
   http.createServer(app.callback())

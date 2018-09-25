@@ -2,17 +2,16 @@ import fs from 'fs';
 import path from 'path';
 import process from 'process';
 import webpackConfig from './config';
+import serverConfig from './server';
 import webpackDll from './dll';
 import { isObject } from './utils';
 
-function getSweetConfig(mode: string = 'development'): Object{
+function getSweetConfig(): Object{
   const cwd: string = process.cwd();
   const sweetConfig: string = path.join(cwd, 'sweet.config.js');
 
   if(fs.existsSync(sweetConfig)){
     const config: Object = require(sweetConfig);
-
-    if(!('mode' in config)) config.mode = mode;
 
     return config;
   }else{
@@ -28,46 +27,48 @@ export function callback(err: any, stats: Object): void{
 }
 
 // webpack配置
-export function config(modeOrSweetConfig: string | Object): Object{
-  const sweetConfig: Object = do{
-    if(isObject(modeOrSweetConfig)){
-      modeOrSweetConfig;
-    }else if(typeof modeOrSweetConfig === 'string'){
-      getSweetConfig(modeOrSweetConfig);
+export function config(sweetConfig: ?Object, mode: string): Object{
+  const sweetConfig2: Object = do{
+    if(isObject(sweetConfig)){
+      sweetConfig;
     }else{
-      throw new Error('Please configure the sweet.config.js file first.');
+      getSweetConfig();
     }
   };
 
-  return webpackConfig(sweetConfig);
+  if(mode){
+    sweetConfig2.mode = mode;
+  }
+
+  return webpackConfig(sweetConfig2);
 }
 
 // 服务器端渲染
-export function serverRenderConfig(modeOrSweetConfig: string | Object): Object{
-  const sweetConfig: Object = do{
-    if(isObject(modeOrSweetConfig)){
-      modeOrSweetConfig;
-    }else if(typeof modeOrSweetConfig === 'string'){
-      getSweetConfig(modeOrSweetConfig);
+export function serverRenderConfig(sweetConfig: ?Object, mode: string): Object{
+  const sweetConfig2: Object = do{
+    if(isObject(sweetConfig)){
+      sweetConfig;
     }else{
-      throw new Error('Please configure the sweet.config.js file first.');
+      getSweetConfig();
     }
   };
 
-  return webpackConfig(sweetConfig);
+  if(mode){
+    sweetConfig2.mode = mode;
+  }
+
+  return serverConfig(sweetConfig2);
 }
 
 // dll配置
-export function dll(modeOrSweetConfig: string | Object): void{
-  const sweetConfig: Object = do{
-    if(isObject(modeOrSweetConfig)){
-      modeOrSweetConfig;
-    }else if(typeof modeOrSweetConfig === 'string'){
-      getSweetConfig(modeOrSweetConfig);
+export function dll(sweetConfig: ?Object): void{
+  const sweetConfig2: Object = do{
+    if(isObject(sweetConfig)){
+      sweetConfig;
     }else{
-      throw new Error('Please configure the sweet.config.js file first.');
+      getSweetConfig();
     }
   };
 
-  return webpackDll(sweetConfig);
+  return webpackDll(sweetConfig2);
 }

@@ -1,7 +1,8 @@
-/* webpack 配置 */
+/* webpack 服务器端渲染配置 */
 import TerserPlugin from 'terser-webpack-plugin';
 import loaders from './loaders/loaders';
 import plugins from './plugins/plugins';
+import { isObject } from './utils';
 
 export default function(sweetConfig: Object = {}): Object{
   /**
@@ -11,28 +12,46 @@ export default function(sweetConfig: Object = {}): Object{
    * externals { any }
    */
   const sweetConfig2: Object = { ...sweetConfig };
-  const { mode = 'development', entry, output, externals }: {
+  const { mode = 'development', serverEntry, serverOutput, externals }: {
     mode: string,
-    entry: any,
-    output: any,
+    serverEntry: any,
+    serverOutput: any,
     externals: any
   } = sweetConfig2;
   const isDevelopment: boolean = mode === 'development';
 
   // format
-  if('serverRender' in sweetConfig2){
-    delete sweetConfig2.serverRender;
+  if(!('file' in sweetConfig2)){
+    sweetConfig2.file = {
+      emitFile: false
+    };
+  }
+
+  if(!('dll' in sweetConfig2)){
+    delete sweetConfig2.dll;
+  }
+
+  if(isObject(sweetConfig2.loaders)){
+    if('js' in sweetConfig2.loaders) sweetConfig2.loaders.js.ecmascript = true;
+    else sweetConfig2.loaders.js = { ecmascript: true };
+  }else{
+    sweetConfig2.loaders = { js: { ecmascript: true } };
   }
 
   // webpack配置
   const config: Object = {
     mode,
-    entry,
-    output,
+    entry: serverEntry,
+    output: serverOutput,
     externals,
     devtool: isDevelopment ? 'module-source-map' : 'none',
     module: { rules: loaders(sweetConfig2) },
-    plugins: plugins(sweetConfig2)
+    plugins: plugins(sweetConfig2),
+    target: 'node',
+    node: {
+      __filename: true,
+      __dirname: true
+    }
   };
 
   if(!isDevelopment){

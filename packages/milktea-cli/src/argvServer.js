@@ -5,11 +5,15 @@ function argvServer(argv: Object): void{
   const httpPort: ?number = argv.httpPort;
   const httpsPort: ?number = argv.httpsPort;
   const serverRoot: ?string = argv.serverRoot;
+  const serverRender: boolean = argv.serverRender;
+  const serverRenderFile: ?string = argv.serverRenderFile;
 
   proServer({
     httpPort,
     httpsPort,
-    serverRoot
+    serverRoot,
+    serverRender,
+    serverRenderFile
   });
 }
 

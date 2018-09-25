@@ -1,6 +1,6 @@
-/* css 配置 */
+/* less 配置 */
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
-import sassConfig from '../config/sass';
+import lessConfig from '../config/less';
 import cssConfig from '../config/css';
 
 export default function(sweetConfig: Object = {}): Object{
@@ -8,21 +8,27 @@ export default function(sweetConfig: Object = {}): Object{
    * mode { string }: 开发模式还是生产模式
    * css { Object }: loader里面css的配置
    * frame { ?string }: 是否为react或vue模式
+   * serverRender { boolean }: 开启服务器端渲染
    */
-  const { mode, css, frame }: {
+  const { mode, css, frame, serverRender }: {
     mode: string,
     css: {
       publicPath: string,
       modules: boolean,
-      exclude: RegExp
+      exclude: ?RegExp,
+      include: ?RegExp,
+      modifyVars: Object
     },
-    frame: ?string
+    frame: ?string,
+    serverRender: boolean
   } = sweetConfig;
   const isDevelopment: boolean = mode === 'development';
-  const { publicPath, modules, exclude }: {
+  const { publicPath, modules, exclude, include, modifyVars }: {
     publicPath: string,
     modules: boolean,
-    exclude: RegExp
+    exclude: ?RegExp,
+    include: ?RegExp,
+    modifyVars: Object
   } = css || {};
 
   // style-loader配置
@@ -39,25 +45,25 @@ export default function(sweetConfig: Object = {}): Object{
 
   // config
   const cssLoaderConfig: Object = {
-    test: /^.*\.s(a|c)ss$/,
-    exclude
+    test: /^.*\.(le|c)ss$/,
+    exclude,
+    include
   };
-  const sassConfig2: Object = sassConfig({
-    isDevelopment
-  });
+  const lessConfig2: Object = lessConfig({ modifyVars });
   const basicConfig: [] = [
     endLoader,
     cssConfig({
       isDevelopment,
-      modules
+      modules,
+      isLocals: serverRender
     }),
-    sassConfig2
+    lessConfig2
   ];
 
   // vue
   if(frame === 'vue'){
     cssLoaderConfig.oneOf = [
-      { resourceQuery: /scoped/, use: [endLoader, 'css-loader', sassConfig2] },
+      { resourceQuery: /scoped/, use: [endLoader, 'css-loader', lessConfig2] },
       { use: basicConfig }
     ];
   }else{

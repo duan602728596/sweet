@@ -15,18 +15,20 @@ export default function(sweetConfig: Object = {}): Object{
       plugins: ?Array,
       resetPresets: ?Array,
       resetPlugins: ?Array,
-      exclude: ?RegExp
+      exclude: ?RegExp,
+      include: ?RegExp
     },
     frame: ?string
   } = sweetConfig;
   const isDevelopment: boolean = mode === 'development';
-  const { ecmascript, presets, plugins, resetPresets, resetPlugins, exclude }: {
+  const { ecmascript, presets, plugins, resetPresets, resetPlugins, exclude, include }: {
     ecmascript: boolean,
     presets: ?Array,
     plugins: ?Array,
     resetPresets: ?Array,
     resetPlugins: ?Array,
-    exclude: ?RegExp
+    exclude: ?RegExp,
+    include: ?RegExp
   } = js || {};
 
   return {
@@ -40,6 +42,7 @@ export default function(sweetConfig: Object = {}): Object{
       resetPlugins,
       isReact: frame === 'react'
     })],
-    exclude: exclude || /(dll\.js|node_modules)/
+    exclude,
+    include
   };
 }

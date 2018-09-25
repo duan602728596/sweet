@@ -4,13 +4,15 @@ export default function(options: Object = {}): Object{
   /**
    * isDevelopment { boolean }: 是否为开发环境
    * modules { boolean }: 是否开启css-modules
+   * isLocals { boolean }: 是否使用css-loader/locals
    */
-  const { isDevelopment, modules }: {
+  const { isDevelopment, modules, isLocals }: {
     isDevelopment: boolean,
-    modules: boolean
+    modules: boolean,
+    isLocals: boolean
   } = options;
   const cssLoader: Object = {
-    loader: 'css-loader'
+    loader: isLocals ? 'css-loader/locals' : 'css-loader'
   };
 
   if(modules){

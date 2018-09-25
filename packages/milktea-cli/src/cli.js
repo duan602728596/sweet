@@ -30,5 +30,13 @@ const argv: Object = yargs
     serverRoot: {
       describe: '服务器静态文件入口',
       type: 'string'
+    },
+    serverRender: {
+      describe: '开启服务器端渲染',
+      type: 'boolean'
+    },
+    serverRenderFile: {
+      describe: '服务器端渲染的主模块文件',
+      type: 'string'
     }
   }).argv;
