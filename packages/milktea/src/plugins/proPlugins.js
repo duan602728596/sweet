@@ -1,13 +1,16 @@
 /* 生产环境插件 */
+import webpack from 'webpack';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import OptimizeCssAssets from 'optimize-css-assets-webpack-plugin';
+import { handleWebpackProgress } from '../utils';
 
 export default function(): Array{
   return [
     new MiniCssExtractPlugin({
-      filename: '[chunkhash:5].css',
-      chunkFilename: '[chunkhash:5].css'
+      filename: 'style/[chunkhash:5].css',
+      chunkFilename: 'style/[chunkhash:5].css'
     }),
-    new OptimizeCssAssets()
+    new OptimizeCssAssets(),
+    new webpack.ProgressPlugin(handleWebpackProgress)
   ];
 }

@@ -3,6 +3,7 @@ import path from 'path';
 import process from 'process';
 import webpack from 'webpack';
 import babelConfig from './config/babel';
+import { handleWebpackProgress } from './utils';
 
 export default function(sweetConfig: Object = {}): Object{
   /**
@@ -70,7 +71,8 @@ export default function(sweetConfig: Object = {}): Object{
         name: '[name]_[hash:5]',
         context: cwd
       }),
-      new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/)
+      new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
+      new webpack.ProgressPlugin(handleWebpackProgress)
     ]
   };
 }
