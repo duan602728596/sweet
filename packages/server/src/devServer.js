@@ -37,7 +37,11 @@ async function devServer({
   serverRenderFile
 }: devServerType): Promise<void>{
   const cwd: string = process.cwd();
-  const formatServerRenderFile: string = path.isAbsolute(serverRenderFile) ? serverRenderFile : path.join(cwd, serverRenderFile);
+  let formatServerRenderFile: ?string = null;
+
+  if(serverRender){
+    formatServerRenderFile = path.isAbsolute(serverRenderFile) ? serverRenderFile : path.join(cwd, serverRenderFile);
+  }
 
   /* router */
   app.use(router.routes())

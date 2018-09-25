@@ -41,7 +41,11 @@ async function proServer({
 }: proServerType): Promise<void>{
   const cwd: string = process.cwd();
   const formatServerRoot: string = path.isAbsolute(serverRoot) ? serverRoot : path.join(cwd, serverRoot);
-  const formatServerRenderFile: string = path.isAbsolute(serverRenderFile) ? serverRenderFile : path.join(cwd, serverRenderFile);
+  let formatServerRenderFile: ?string = null;
+
+  if(serverRender){
+    formatServerRenderFile = path.isAbsolute(serverRenderFile) ? serverRenderFile : path.join(cwd, serverRenderFile);
+  }
 
   /* gzip压缩 */
   app.use(compress({
