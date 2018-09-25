@@ -8,7 +8,7 @@ export default function(sweetConfig: Object = {}): Object{
    * mode { string }: 开发模式还是生产模式
    * entry { any }: 文件入口
    * output { any }: 文件出口
-   * externals { any }
+   * externals { any }: 外部扩展
    */
   const sweetConfig2: Object = { ...sweetConfig };
   const { mode = 'development', entry, output, externals }: {

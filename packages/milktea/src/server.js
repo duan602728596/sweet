@@ -9,14 +9,12 @@ export default function(sweetConfig: Object = {}): Object{
    * mode { string }: 开发模式还是生产模式
    * entry { any }: 文件入口
    * output { any }: 文件出口
-   * externals { any }
    */
   const sweetConfig2: Object = { ...sweetConfig };
-  const { mode = 'development', serverEntry, serverOutput, externals }: {
+  const { mode = 'development', serverEntry, serverOutput }: {
     mode: string,
     serverEntry: any,
-    serverOutput: any,
-    externals: any
+    serverOutput: any
   } = sweetConfig2;
   const isDevelopment: boolean = mode === 'development';
 
