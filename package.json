@@ -1,0 +1,51 @@
+{
+  "name": "@sweet/react-demo",
+  "scripts": {
+    "dll": "milktea dll",
+    "start": "cross-env NODE_ENV=development milktea start --server --serverRoot=build",
+    "build": "npm run clean && cross-env NODE_ENV=production milktea build",
+    "clean": "rimraf ./build",
+    "server": "milktea server --serverRoot=build",
+    "eslint": "eslint ./src",
+    "update": "milktea update"
+  },
+  "dependencies": {
+    "@sweet/milktea-cli": "github:duan602728596/sweet#build-milktea-cli",
+    "@sweet/server": "github:duan602728596/sweet#build-server"
+  },
+  "devDependencies": {
+    "@svgr/webpack": "^2.3.0",
+    "@sweet/milktea": "github:duan602728596/sweet#build-milktea",
+    "@sweet/util-tools": "github:duan602728596/sweet#build-util-tools",
+    "antd": "^3.9.3",
+    "axios": "^0.18.0",
+    "babel-eslint": "^9.0.0",
+    "babel-plugin-import": "^1.9.1",
+    "classnames": "^2.2.6",
+    "cross-env": "^5.2.0",
+    "eslint": "^5.6.0",
+    "eslint-plugin-flowtype": "^2.50.1",
+    "eslint-plugin-react": "^7.11.1",
+    "immutable": "^4.0.0-rc.10",
+    "pre-commit": "^1.2.2",
+    "prop-types": "^15.6.2",
+    "rc-queue-anim": "^1.6.6",
+    "react": "^16.5.2",
+    "react-dom": "^16.5.2",
+    "react-helmet": "^5.2.0",
+    "react-loadable": "^5.5.0",
+    "react-redux": "^5.0.7",
+    "react-router-dom": "^4.3.1",
+    "redux": "^4.0.0",
+    "redux-actions": "^2.6.1",
+    "redux-immutable": "^4.0.0",
+    "redux-thunk": "^2.3.0",
+    "reselect": "^3.0.1",
+    "rimraf": "^2.6.2"
+  },
+  "pre-commit": {
+    "run": [
+      "eslint"
+    ]
+  }
+}
