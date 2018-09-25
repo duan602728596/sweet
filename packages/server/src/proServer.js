@@ -95,7 +95,9 @@ async function proServer({
   });
 
   /* 本地服务 */
-  require(defaultRoutersPath)(router);
+  if(fs.existsSync(defaultRoutersPath)){
+    require(defaultRoutersPath)(router);
+  }
 
   /* http服务 */
   http.createServer(app.callback())

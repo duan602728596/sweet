@@ -78,8 +78,10 @@ async function devServer({
   });
 
   /* 本地服务 */
-  cleanRequireCache(defaultRoutersPath);
-  require(defaultRoutersPath)(router);
+  if(fs.existsSync(defaultRoutersPath)){
+    cleanRequireCache(defaultRoutersPath);
+    require(defaultRoutersPath)(router);
+  }
 
   /* http服务 */
   http.createServer(app.callback())
