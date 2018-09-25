@@ -35,10 +35,10 @@ function stat(filePath: string): Promise{
 
 async function argvUpdate(argv: Object): Promise<void>{
   const update: Function = require('@sweet/util-tools/lib/update').default;
-  let folders: ?[] = [];
+  const folders: ?[] = [];
 
   if(isNone(argv.__DEV__)){
-    folders = path.join(process.cwd());
+    folders.push(process.cwd());
   }else{
     const f: [] = await readdir(process.cwd(), 'packages');
 
