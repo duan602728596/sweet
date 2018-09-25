@@ -35,7 +35,7 @@ function requestPackageInformation(packageName: string, registry: number): Promi
     headers: {
       Accept: 'application/vnd.npm.install-v1+json; q=1.0, application/json; q=0.8, */*'
     }
-  });
+  }).then((res: Object): string => res.data);
 }
 
 /**
@@ -73,7 +73,7 @@ async function getVersionFromNpm(packageArray: [], registry: number): Promise<vo
   try{
     const depQueue: [] = [];
     for(let i: number = 0, j: number = packageArray.length; i < j; i++){
-      depQueue.push(requestPackageInformation(packageArray[i].name), registry);
+      depQueue.push(requestPackageInformation(packageArray[i].name, registry));
     }
     const version: string[] = await Promise.all(depQueue);
     for(let i: number = 0, j: number = packageArray.length; i < j; i++){
