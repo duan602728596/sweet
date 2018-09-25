@@ -40,12 +40,13 @@ async function argvUpdate(argv: Object): Promise<void>{
   if(isNone(argv.__DEV__)){
     folders.push(process.cwd());
   }else{
-    const f: [] = await readdir(path.join(process.cwd(), 'packages'));
+    const packages: string = path.join(process.cwd(), 'packages');
+    const f: [] = await readdir(packages);
 
     for(let i: number = 0, j: number = f.length; i < j; i++){
       const isDirectory: boolean = await stat(f[i]);
 
-      if(isDirectory) folders.push(f[i]);
+      if(isDirectory) folders.push(path.join(packages, f[i]));
     }
   }
 
