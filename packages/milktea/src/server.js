@@ -29,11 +29,10 @@ export default function(sweetConfig: Object = {}): Object{
     delete sweetConfig2.dll;
   }
 
-  if(isObject(sweetConfig2.loaders)){
-    if('js' in sweetConfig2.loaders) sweetConfig2.loaders.js.ecmascript = true;
-    else sweetConfig2.loaders.js = { ecmascript: true };
+  if(isObject(sweetConfig2.js)){
+    sweetConfig2.js.ecmascript = true;
   }else{
-    sweetConfig2.loaders = { js: { ecmascript: true } };
+    sweetConfig2.js = { ecmascript: true };
   }
 
   // webpack配置

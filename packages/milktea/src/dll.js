@@ -27,6 +27,7 @@ export default function(sweetConfig: Object = {}): Object{
   // 配置dll的babel config
   const dllResetPresetsConfig: [] = [];
 
+  // 是否编译到ecmascript
   if(!ecmascript){
     dllResetPresetsConfig.push([
       '@babel/preset-env',
