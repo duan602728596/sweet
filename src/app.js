@@ -12,7 +12,7 @@ Vue.component('helmet-provider', HelmetProvider);
 
 /* app */
 const app: Vue = new Vue({
-  el: '#vue-app',
+  el: '#app',
   store: storeFactory(window.__INITIAL_STATE__ || {}),
   router: routers,
   components: {
