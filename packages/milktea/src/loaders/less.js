@@ -54,7 +54,6 @@ export default function(sweetConfig: Object = {}): Object{
 
   // loader配置
   const basicConfig: [] = [
-    endLoader,
     cssConfig({
       isDevelopment,
       modules,
@@ -63,10 +62,29 @@ export default function(sweetConfig: Object = {}): Object{
     lessConfig2
   ];
 
+  // 服务器端渲染
+  if(!serverRender){
+    basicConfig.unshift(endLoader);
+  }
+
   // vue
   if(frame === 'vue'){
+    const use: [] = [
+      cssConfig({
+        isDevelopment,
+        modules: false,
+        isLocals: serverRender
+      }),
+      lessConfig2
+    ];
+
+    // 服务器端渲染
+    if(!serverRender){
+      use.unshift(endLoader);
+    }
+
     cssLoaderConfig.oneOf = [
-      { resourceQuery: /scoped/, use: [endLoader, 'css-loader', lessConfig2] },
+      { resourceQuery: /scoped/, use },
       { use: basicConfig }
     ];
   }else{
