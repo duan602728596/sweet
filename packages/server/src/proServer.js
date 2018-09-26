@@ -7,6 +7,7 @@ import path from 'path';
 import zlib from 'zlib';
 import Koa from 'koa';
 import Router from 'koa-router';
+import body from 'koa-body';
 import convert from 'koa-convert';
 import compress from 'koa-compress';
 import staticCache from 'koa-static-cache';
@@ -37,7 +38,7 @@ async function proServer({
   httpsPort = 5053,
   serverRoot = 'build',
   serverRender,
-  serverRenderFile
+  serverRenderFile = 'build/server.js'
 }: proServerType): Promise<void>{
   const cwd: string = process.cwd();
   const formatServerRoot: string = path.isAbsolute(serverRoot) ? serverRoot : path.join(cwd, serverRoot);
@@ -46,6 +47,9 @@ async function proServer({
   if(serverRender){
     formatServerRenderFile = path.isAbsolute(serverRenderFile) ? serverRenderFile : path.join(cwd, serverRenderFile);
   }
+
+  /* post body */
+  app.use(body());
 
   /* gzip压缩 */
   app.use(compress({

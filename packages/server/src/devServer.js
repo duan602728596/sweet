@@ -6,6 +6,7 @@ import process from 'process';
 import path from 'path';
 import Koa from 'koa';
 import Router from 'koa-router';
+import body from 'koa-body';
 import mime from 'mime-types';
 import koaWebpack from 'koa-webpack';
 import { readFile, defaultRoutersPath, cleanRequireCache } from './utils/utils';
@@ -34,7 +35,7 @@ async function devServer({
   httpPort = 5050,
   httpsPort = 5051,
   serverRender,
-  serverRenderFile
+  serverRenderFile = 'build/server.js'
 }: devServerType): Promise<void>{
   const cwd: string = process.cwd();
   let formatServerRenderFile: ?string = null;
@@ -42,6 +43,9 @@ async function devServer({
   if(serverRender){
     formatServerRenderFile = path.isAbsolute(serverRenderFile) ? serverRenderFile : path.join(cwd, serverRenderFile);
   }
+
+  /* post body */
+  app.use(body());
 
   /* router */
   app.use(router.routes())
