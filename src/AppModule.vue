@@ -1,5 +1,5 @@
 <template>
-  <div class="vue-app" id="vue-app" style="height: 100%;">
+  <div class="app" id="app" style="height: 100%;">
     <Layout />
   </div>
 </template>
@@ -16,7 +16,7 @@
 </script>
 
 <style lang="scss">
-  body, html, .vue-app {
+  body, html, .app {
     width: 100%;
     height: 100%;
     overflow: hidden;
