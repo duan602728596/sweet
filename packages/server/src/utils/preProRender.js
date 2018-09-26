@@ -7,7 +7,7 @@ async function preRender(file: string, ctx: Object, html: ArrayBuffer, serverRen
   const formatFile: string = `${ path.join(defaultInterfacePath, pathAnalyze(file)) }.js`;
   const data: Object = fs.existsSync(formatFile) ? await require(formatFile)(ctx) : {};
   const server: Function = require(serverRenderFile).default;
-  const render: Object = server(file, ctx, data.initialState);
+  const render: Object = await server(file, ctx, data.initialState);
 
   return replaceTemplate(html.toString(), {
     render,
