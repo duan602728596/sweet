@@ -17,7 +17,7 @@ async function preRender(file: string, ctx: Object, serverRenderFile: string): P
   const html: ArrayBuffer = ctx.body;
 
   const server: Function = require(serverRenderFile).default;
-  const render: string = server(file, {}, data.initialState);
+  const render: string = server(file, ctx, data.initialState);
 
   return replaceTemplate(html.toString(), {
     render,
