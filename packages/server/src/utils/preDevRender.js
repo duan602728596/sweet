@@ -6,7 +6,7 @@ import { replaceTemplate, defaultInterfacePath, cleanRequireCache, pathAnalyze }
 async function preRender(file: string, ctx: Object, serverRenderFile: string): Promise<Object>{
   cleanRequireCache(serverRenderFile);
 
-  const formatFile: string = path.join(defaultInterfacePath, pathAnalyze(file));
+  const formatFile: string = `${ path.join(defaultInterfacePath, pathAnalyze(file)) }.js`;
   let data: Object = {};
 
   if(fs.existsSync(formatFile)){

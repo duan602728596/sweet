@@ -17,12 +17,21 @@ export function readFile(file: string): Promise{
   });
 }
 
+/* 格式化数据 */
+export function formatTemplateData(data: any): any{
+  if(typeof data === 'object'){
+    return JSON.stringify(data);
+  }
+
+  return data;
+}
+
 /* 替换模板内的占位符 */
 export function replaceTemplate(template: string, data: Object = {}): string{
   let newTp: string = template;
   for(const key: string in data){
     const reg: RegExp = new RegExp(`{%\\s*${ key }\\s*%}`);
-    newTp = newTp.replace(reg, data[key]);
+    newTp = newTp.replace(reg, formatTemplateData(data[key]));
   }
   return newTp;
 }
@@ -59,4 +68,4 @@ export function pathAnalyze(file: string): string{
 
 const cwd: string = process.cwd();
 export const defaultInterfacePath: string = path.join(cwd, 'service/interface');
-export const defaultRoutersPath: string = path.join(cwd, 'service/routers');
+export const defaultRoutersPath: string = path.join(cwd, 'service/routers.js');
