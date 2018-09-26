@@ -5,7 +5,7 @@ import App from './AppModule';
 /* app */
 ReactDOM.render(
   <App />,
-  document.getElementById('react-app')
+  document.getElementById('app')
 );
 
 if(module.hot){
