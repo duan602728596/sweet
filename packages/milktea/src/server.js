@@ -19,16 +19,6 @@ export default function(sweetConfig: Object = {}): Object{
   const isDevelopment: boolean = mode === 'development';
 
   // 格式化配置
-  if(!('file' in sweetConfig2)){
-    sweetConfig2.file = {
-      emitFile: false
-    };
-  }
-
-  if(!('dll' in sweetConfig2)){
-    delete sweetConfig2.dll;
-  }
-
   if(isObject(sweetConfig2.js)){
     sweetConfig2.js.ecmascript = true;
   }else{
@@ -39,6 +29,7 @@ export default function(sweetConfig: Object = {}): Object{
   const config: Object = {
     mode,
     entry: serverEntry,
+    output: serverOutput,
     devtool: isDevelopment ? 'module-source-map' : 'none',
     module: { rules: loaders(sweetConfig2) },
     plugins: plugins(sweetConfig2),
