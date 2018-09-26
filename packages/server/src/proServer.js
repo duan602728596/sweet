@@ -69,11 +69,11 @@ async function proServer({
 
   /* index路由 */
   router.get(/^\/[^._\-]*$/, async(ctx: Object, next: Function): Promise<void>=>{
-    const body: string | ArrayBuffer = await readFile(path.join(formatServerRoot, 'index.html'));
+    const body: ArrayBuffer = await readFile(path.join(formatServerRoot, 'index.html'));
 
     ctx.status = 200;
     ctx.type = 'text/html';
-    ctx.body = serverRender ? await preRender(ctx.path, ctx, formatServerRenderFile) : body;
+    ctx.body = serverRender ? await preRender(ctx.path, ctx, body, formatServerRenderFile) : body;
 
     await next();
   });

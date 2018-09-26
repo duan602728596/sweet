@@ -26,7 +26,7 @@ export default function(sweetConfig: Object = {}): Object{
   }
 
   // webpack配置
-  const config: Object = {
+  return {
     mode,
     entry: serverEntry,
     output: serverOutput,
@@ -39,16 +39,4 @@ export default function(sweetConfig: Object = {}): Object{
       __dirname: true
     }
   };
-
-  if(!isDevelopment){
-    config.optimization = {
-      splitChunks: {
-        chunks: 'all',
-        automaticNameDelimiter: '.'
-      },
-      minimizer: [new TerserPlugin()]
-    };
-  }
-
-  return config;
 }
