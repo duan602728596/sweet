@@ -40,8 +40,6 @@ export default function(sweetConfig: Object = {}): Object{
   const config: Object = {
     mode,
     entry: serverEntry,
-    output: serverOutput,
-    externals,
     devtool: isDevelopment ? 'module-source-map' : 'none',
     module: { rules: loaders(sweetConfig2) },
     plugins: plugins(sweetConfig2),
