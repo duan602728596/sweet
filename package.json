@@ -1,12 +1,13 @@
 {
   "name": "sweet",
   "scripts": {
+    "build": "gulp --gulpfile ./scripts/gulpfile.js",
+    "clean": "node ./scripts/clean",
     "update": "milktea update",
     "update-dev": "milktea update --__DEV__",
     "eslint": "eslint ./packages"
   },
   "devDependencies": {
-    "@babel/cli": "^7.1.0",
     "@babel/core": "^7.1.0",
     "@babel/plugin-proposal-do-expressions": "^7.0.0",
     "@babel/plugin-proposal-optional-chaining": "^7.0.0",
@@ -17,7 +18,10 @@
     "babel-eslint": "^9.0.0",
     "eslint": "^5.6.0",
     "eslint-plugin-flowtype": "^2.50.1",
-    "pre-commit": "^1.2.2"
+    "gulp": "^4.0.0",
+    "gulp-babel": "^8.0.0",
+    "pre-commit": "^1.2.2",
+    "rimraf": "^2.6.2"
   },
   "pre-commit": {
     "run": [
