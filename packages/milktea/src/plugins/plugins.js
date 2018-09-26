@@ -10,15 +10,17 @@ export default function(sweetConfig: Object = {}): Array{
    * html { Object }: html配置
    * plugins { Array }: 自定义扩展插件
    * frame { ?string }: 是否为react或vue模式
+   * serverRender { boolean }: 开启服务器端渲染
    */
-  const { mode, html, plugins, frame }: {
+  const { mode, html, plugins, frame, serverRender }: {
     mode: string,
     html: Array<{
       template: string,
       excludeChunks: Array<string>
     }>,
     plugins: Array,
-    frame: ?string
+    frame: ?string,
+    serverRender: boolean
   } = sweetConfig;
   const isDevelopment: boolean = mode === 'development';
 
@@ -35,7 +37,7 @@ export default function(sweetConfig: Object = {}): Array{
   ];
 
   // html模板
-  if(html && typeof isArray(html)){
+  if(html && typeof isArray(html) && !serverRender){
     for(const item: Object of html){
       pluginArr.push(
         new HtmlWebpackPlugin({
