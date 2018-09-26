@@ -3,7 +3,7 @@ import path from 'path';
 import process from 'process';
 import webpack from 'webpack';
 import babelConfig from './config/babel';
-import { handleWebpackProgress } from './utils';
+import { handleWebpackBuildProgress } from './utils';
 
 export default function(sweetConfig: Object = {}): Object{
   /**
@@ -19,7 +19,7 @@ export default function(sweetConfig: Object = {}): Object{
   const isDevelopment: boolean = mode === 'development';
   const cwd: string = process.cwd();
 
-  // format
+  // 格式化配置
   if('serverRender' in sweetConfig2){
     delete sweetConfig2.serverRender;
   }
@@ -44,6 +44,7 @@ export default function(sweetConfig: Object = {}): Object{
     ]);
   }
 
+  // webpack配置
   return {
     mode: 'development',
     entry: { dll },
@@ -72,7 +73,7 @@ export default function(sweetConfig: Object = {}): Object{
         context: cwd
       }),
       new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
-      new webpack.ProgressPlugin(handleWebpackProgress)
+      new webpack.ProgressPlugin(handleWebpackBuildProgress)
     ]
   };
 }

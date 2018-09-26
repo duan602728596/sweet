@@ -19,7 +19,7 @@ export default function(sweetConfig: Object = {}): Object{
   } = sweetConfig2;
   const isDevelopment: boolean = mode === 'development';
 
-  // format
+  // 格式化配置
   if('serverRender' in sweetConfig2){
     delete sweetConfig2.serverRender;
   }

@@ -48,7 +48,11 @@ export default function(sweetConfig: Object = {}): Object{
     exclude,
     include
   };
+
+  // less
   const lessConfig2: Object = lessConfig({ modifyVars });
+
+  // loader配置
   const basicConfig: [] = [
     endLoader,
     cssConfig({

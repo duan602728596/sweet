@@ -21,6 +21,8 @@ export default function(sweetConfig: Object = {}): Object{
     frame: ?string
   } = sweetConfig;
   const isDevelopment: boolean = mode === 'development';
+
+  // 获取配置
   const { ecmascript, presets, plugins, resetPresets, resetPlugins, exclude, include }: {
     ecmascript: boolean,
     presets: ?Array,

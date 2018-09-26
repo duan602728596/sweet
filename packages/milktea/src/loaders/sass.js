@@ -46,7 +46,11 @@ export default function(sweetConfig: Object = {}): Object{
     exclude,
     include
   };
+
+  // sass
   const sassConfig2: Object = sassConfig({ isDevelopment });
+
+  // loader配置
   const basicConfig: [] = [
     endLoader,
     cssConfig({

@@ -21,7 +21,7 @@ export default function(sweetConfig: Object = {}): Object{
   } = sweetConfig;
   const loaders: Object = sweetConfig?.loaders || {};
 
-  // 合并rules
+  // 重写loaders，合并rules
   const loadersObj: Object = {
     js: loaders.js || jsLoader(sweetConfig),
     sass: loaders.sass || sassLoader(sweetConfig),

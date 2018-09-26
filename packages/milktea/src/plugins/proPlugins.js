@@ -2,7 +2,7 @@
 import webpack from 'webpack';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import OptimizeCssAssets from 'optimize-css-assets-webpack-plugin';
-import { handleWebpackProgress } from '../utils';
+import { handleWebpackBuildProgress } from '../utils';
 
 export default function(): Array{
   return [
@@ -11,6 +11,6 @@ export default function(): Array{
       chunkFilename: 'style/[chunkhash:5].css'
     }),
     new OptimizeCssAssets(),
-    new webpack.ProgressPlugin(handleWebpackProgress)
+    new webpack.ProgressPlugin(handleWebpackBuildProgress)
   ];
 }

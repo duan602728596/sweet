@@ -18,7 +18,7 @@ export default function(sweetConfig: Object = {}): Object{
   } = sweetConfig2;
   const isDevelopment: boolean = mode === 'development';
 
-  // format
+  // 格式化配置
   if(!('file' in sweetConfig2)){
     sweetConfig2.file = {
       emitFile: false
