@@ -10,18 +10,18 @@ export default function(sweetConfig: Object = {}): Object{
    * output { any }: 文件出口
    * externals { any }: 外部扩展
    */
-  const sweetConfig2: Object = { ...sweetConfig };
+  const sweetConfigCopy: Object = { ...sweetConfig };
   const { mode = 'development', entry, output, externals }: {
     mode: string,
     entry: any,
     output: any,
     externals: any
-  } = sweetConfig2;
+  } = sweetConfigCopy;
   const isDevelopment: boolean = mode === 'development';
 
   // 格式化配置
-  if('serverRender' in sweetConfig2){
-    delete sweetConfig2.serverRender;
+  if('serverRender' in sweetConfigCopy){
+    delete sweetConfigCopy.serverRender;
   }
 
   // webpack配置
@@ -31,8 +31,8 @@ export default function(sweetConfig: Object = {}): Object{
     output,
     externals,
     devtool: isDevelopment ? 'module-source-map' : 'none',
-    module: { rules: loaders(sweetConfig2) },
-    plugins: plugins(sweetConfig2)
+    module: { rules: loaders(sweetConfigCopy) },
+    plugins: plugins(sweetConfigCopy)
   };
 
   if(!isDevelopment){

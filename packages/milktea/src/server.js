@@ -10,19 +10,19 @@ export default function(sweetConfig: Object = {}): Object{
    * entry { any }: 文件入口
    * output { any }: 文件出口
    */
-  const sweetConfig2: Object = { ...sweetConfig };
+  const sweetConfigCopy: Object = { ...sweetConfig };
   const { mode = 'development', serverEntry, serverOutput }: {
     mode: string,
     serverEntry: any,
     serverOutput: any
-  } = sweetConfig2;
+  } = sweetConfigCopy;
   const isDevelopment: boolean = mode === 'development';
 
   // 格式化配置
-  if(isObject(sweetConfig2.js)){
-    sweetConfig2.js.ecmascript = true;
+  if(isObject(sweetConfigCopy.js)){
+    sweetConfigCopy.js.ecmascript = true;
   }else{
-    sweetConfig2.js = { ecmascript: true };
+    sweetConfigCopy.js = { ecmascript: true };
   }
 
   // webpack配置
@@ -31,8 +31,8 @@ export default function(sweetConfig: Object = {}): Object{
     entry: serverEntry,
     output: serverOutput,
     devtool: isDevelopment ? 'module-source-map' : 'none',
-    module: { rules: loaders(sweetConfig2) },
-    plugins: plugins(sweetConfig2),
+    module: { rules: loaders(sweetConfigCopy) },
+    plugins: plugins(sweetConfigCopy),
     target: 'node',
     node: {
       __filename: true,

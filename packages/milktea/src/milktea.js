@@ -9,14 +9,14 @@ import { isObject } from './utils';
 /* 获取配置文件 */
 function getSweetConfig(): Object{
   const cwd: string = process.cwd();
-  const sweetConfig: string = path.join(cwd, 'sweet.config.js');
+  const sweetConfig: string = path.join(cwd, '.sweetrc.js');
 
   if(fs.existsSync(sweetConfig)){
     const config: Object = require(sweetConfig);
 
     return config;
   }else{
-    throw new Error('Please configure the sweet.config.js file first.');
+    throw new Error('Please configure the .sweetrc.js file first.');
   }
 }
 
@@ -29,7 +29,7 @@ export function callback(err: any, stats: Object): void{
 
 /* webpack配置 */
 export function config(sweetConfig: ?Object, mode: string): Object{
-  const sweetConfig2: Object = do{
+  const config: Object = do{
     if(isObject(sweetConfig)){
       sweetConfig;
     }else{
@@ -38,15 +38,15 @@ export function config(sweetConfig: ?Object, mode: string): Object{
   };
 
   if(mode){
-    sweetConfig2.mode = mode;
+    config.mode = mode;
   }
 
-  return webpackConfig(sweetConfig2);
+  return webpackConfig(config);
 }
 
 /* 服务器端渲染的webpack配置 */
 export function serverRenderConfig(sweetConfig: ?Object, mode: string): Object{
-  const sweetConfig2: Object = do{
+  const config: Object = do{
     if(isObject(sweetConfig)){
       sweetConfig;
     }else{
@@ -55,15 +55,15 @@ export function serverRenderConfig(sweetConfig: ?Object, mode: string): Object{
   };
 
   if(mode){
-    sweetConfig2.mode = mode;
+    config.mode = mode;
   }
 
-  return serverConfig(sweetConfig2);
+  return serverConfig(config);
 }
 
 /* webpack的dll文件配置 */
 export function dll(sweetConfig: ?Object): void{
-  const sweetConfig2: Object = do{
+  const config: Object = do{
     if(isObject(sweetConfig)){
       sweetConfig;
     }else{
@@ -71,5 +71,5 @@ export function dll(sweetConfig: ?Object): void{
     }
   };
 
-  return webpackDll(sweetConfig2);
+  return webpackDll(config);
 }

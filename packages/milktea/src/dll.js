@@ -10,18 +10,18 @@ export default function(sweetConfig: Object = {}): Object{
    * mode { string }: 开发模式还是生产模式
    * dll { Array }: dll配置
    */
-  const sweetConfig2: Object = { ...sweetConfig };
+  const sweetConfigCopy: Object = { ...sweetConfig };
   const { mode, dll }: {
     mode: string,
     dll: Array
-  } = sweetConfig2;
-  const ecmascript: boolean = sweetConfig2?.js?.ecmascript || false;
+  } = sweetConfigCopy;
+  const ecmascript: boolean = sweetConfigCopy?.js?.ecmascript || false;
   const isDevelopment: boolean = mode === 'development';
   const cwd: string = process.cwd();
 
   // 格式化配置
-  if('serverRender' in sweetConfig2){
-    delete sweetConfig2.serverRender;
+  if('serverRender' in sweetConfigCopy){
+    delete sweetConfigCopy.serverRender;
   }
 
   // 配置dll的babel config
