@@ -9,9 +9,14 @@ async function preRender(file: string, ctx: Object, serverRenderFile: string): P
   const formatFile: string = `${ path.join(defaultInterfacePath, pathAnalyze(file)) }.js`;
   let data: Object = {};
 
+  // 读取模块
   if(fs.existsSync(formatFile)){
     cleanRequireCache(formatFile);
-    data = await require(formatFile)(ctx);
+
+    const file: Object | Function = require(formatFile);
+
+    if('default' in file) data = await file.default(ctx);
+    else data = await file(ctx);
   }
 
   const html: ArrayBuffer = ctx.body;

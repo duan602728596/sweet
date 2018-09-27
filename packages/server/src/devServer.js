@@ -83,7 +83,11 @@ async function devServer({
   /* 本地服务 */
   if(fs.existsSync(defaultRoutersPath)){
     cleanRequireCache(defaultRoutersPath);
-    require(defaultRoutersPath)(router);
+
+    const routers: Object | Function = require(defaultRoutersPath);
+
+    if('default' in routers) routers.default(router);
+    else routers(router);
   }
 
   /* http服务 */
