@@ -4,17 +4,19 @@ import process from 'process';
 import webpackConfig from './config';
 import serverConfig from './server';
 import webpackDll from './dll';
-import { isObject } from './utils';
+import { isObject, registerConfig } from './utils';
 
 /* 获取配置文件 */
 function getSweetConfig(): Object{
   const cwd: string = process.cwd();
-  const sweetConfig: string = path.join(cwd, '.sweetrc.js');
+  const sweetConfigFile: string = path.join(cwd, '.sweetrc.js');
 
-  if(fs.existsSync(sweetConfig)){
-    const config: Object = require(sweetConfig);
+  if(fs.existsSync(sweetConfigFile)){
+    require('@babel/register')(registerConfig);
 
-    return config;
+    const config: Object = require(sweetConfigFile);
+
+    return 'default' in config ? config.default : config;
   }else{
     throw new Error('Please configure the .sweetrc.js file first.');
   }

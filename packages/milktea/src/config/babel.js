@@ -73,7 +73,7 @@ export default function(options: Object = {}): Object{
   } = options;
   const debug: boolean = isDevelopment === undefined ? true : isDevelopment;
   const babelLoaderOptions: Object = {
-    cacheDirectory: path.join(process.cwd(), '.babelCache'),
+    cacheDirectory: path.join(process.cwd(), '.sweet/babelCache'),
     presets: resetPresets ? resetPresets : presetsList(presets, debug, isReact, ecmascript),
     plugins: resetPlugins ? resetPlugins : pluginsList(plugins, isReact, ecmascript)
   };
