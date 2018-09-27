@@ -11,14 +11,12 @@ import style from './style.sass';
 import ErrorBoundary from '../ErrorBoundary/index';
 import HumanInformation from './HumanInformation';
 
-/* eslint-disable */
 type navOptionsItem = {
   id: string,
   name: string,
   href: string,
   icon: ?(string | React.Element)
 };
-/* eslint-enable */
 
 export const navOptions: navOptionsItem[] = [
   {
