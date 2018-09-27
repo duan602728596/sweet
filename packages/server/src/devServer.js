@@ -58,8 +58,7 @@ async function devServer({
       host: {
         client: '*',
         server: '0.0.0.0'
-      },
-      port: 65050
+      }
     }
   });
 
