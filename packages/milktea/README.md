@@ -2,7 +2,7 @@
 
 ## 使用
 
-1. 创建`sweet.config.js`文件
+1. 创建`.sweetrc.js`文件
 
 2. node调用
 
@@ -17,11 +17,11 @@ const compiler: Object = webpack(milktea.config(mode));
 compiler.run(milktea.callback);
 ```
 
-## 配置文件`sweet.config.js`说明
+## 配置文件`.sweetrc.js`说明
 
 ### 使用方法
 
-根目录下创建`sweet.config.js`文件。代码如下所示：
+根目录下创建`.sweetrc.js`文件。代码如下所示：
 
 ```javascript
 module.exports = {
