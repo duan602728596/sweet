@@ -15,7 +15,7 @@
     "@babel/preset-flow": "^7.0.0",
     "@sweet/milktea-cli": "github:duan602728596/sweet#build-milktea-cli",
     "@sweet/util-tools": "github:duan602728596/sweet#build-util-tools",
-    "babel-eslint": "^9.0.0",
+    "babel-eslint": "^10.0.0",
     "eslint": "^5.6.0",
     "eslint-plugin-flowtype": "^2.50.1",
     "gulp": "^4.0.0",
