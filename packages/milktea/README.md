@@ -24,10 +24,12 @@ compiler.run(milktea.callback);
 根目录下创建`.sweetrc.js`文件。代码如下所示：
 
 ```javascript
-module.exports = {
+export default {
   ... // 配置
 };
 ```
+
+配置文件支持`es6`、`es5`和`flow`。
 
 ### 配置
 
