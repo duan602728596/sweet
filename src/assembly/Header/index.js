@@ -11,14 +11,16 @@ import style from './style.sass';
 import ErrorBoundary from '../ErrorBoundary/index';
 import HumanInformation from './HumanInformation';
 
-type options = {
+/* eslint-disable */
+type navOptionsItem = {
   id: string,
   name: string,
   href: string,
   icon: ?(string | React.Element)
 };
+/* eslint-enable */
 
-export const navOptions: options[] = [
+export const navOptions: navOptionsItem[] = [
   {
     id: 'home',
     name: '主页',
@@ -43,7 +45,7 @@ const len: boolean = navOptions.length > 0;
 
 class Header extends Component{
   // 判断首页home
-  oddEvent(item: options, match: Object, location: Object): boolean{
+  oddEvent(item: navOptionsItem, match: Object, location: Object): boolean{
     const { pathname }: { pathname: string } = location;
     const { href }: { href: string } = item;
     const reg: RegExp = new RegExp(`^${ href }.*$`, 'ig');
@@ -52,8 +54,8 @@ class Header extends Component{
     }
     return match && reg.test(pathname);
   }
-  navList(options: options[]): React.ChildrenArray<React.Element>{
-    return options.map((item: options, index: number): Object=>{
+  navList(options: navOptionsItem[]): React.ChildrenArray<React.Element>{
+    return options.map((item: navOptionsItem, index: number): Object=>{
       return (
         <li key={ item.id }>
           <NavLink to={ item.href } activeClassName={ style.navActive } isActive={ this.oddEvent.bind(this, item) }>

@@ -1,9 +1,9 @@
-const path = require('path');
-const process = require('process');
+import path from 'path';
+import process from 'process';
 
 const isDevelopment = process.env.NODE_ENV === 'development';
 
-module.exports = {
+export default {
   frame: 'react',
   dll: [
     'react',

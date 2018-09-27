@@ -4,4 +4,4 @@ config
 bin
 .dll
 build
-sweet.config.js
+.sweetrc.js
