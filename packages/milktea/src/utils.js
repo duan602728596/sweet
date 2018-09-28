@@ -26,7 +26,7 @@ export const registerConfig: Object = {
     '@babel/plugin-proposal-optional-chaining',
     '@babel/plugin-proposal-class-properties'
   ],
-  cache: true,
+  cache: false,
   babelrc: false,
   only: [/\.sweetrc\.js/]
 };

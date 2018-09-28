@@ -83,7 +83,7 @@ export default {
 
 创建一个`service/routers.js`文件，代码如下
 ```javascript
-module.exports = function(router){
+export default function(router){
   // 在这里面创建你的函数
   router.get('/path', ...function);
 };
@@ -95,7 +95,7 @@ module.exports = function(router){
 在文件内，需要创建如下代码：
 
 ```javascript
-module.exports = async function(ctx){
+export default async function(ctx){
   return {
     initialState, // 返回初始化的state
     ...           // 你要返回的其他数据
