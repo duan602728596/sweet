@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import { replaceTemplate, defaultInterfacePath, pathAnalyze } from './utils';
+import { replaceTemplate, defaultInterfacePath, pathAnalyze, registerConfig } from './utils';
 
 // 渲染新的html
 async function preRender(file: string, ctx: Object, html: ArrayBuffer, serverRenderFile: string): Promise<Object>{
@@ -9,6 +9,11 @@ async function preRender(file: string, ctx: Object, html: ArrayBuffer, serverRen
 
   // 读取模块
   if(fs.existsSync(formatFile)){
+    // 加载es6+环境
+    const register: Function = require('@babel/register');
+
+    register(registerConfig);
+
     const file: Object | Function = require(formatFile);
 
     if('default' in file) data = await file.default(ctx);

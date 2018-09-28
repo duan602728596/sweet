@@ -12,7 +12,10 @@ function getSweetConfig(): Object{
   const sweetConfigFile: string = path.join(cwd, '.sweetrc.js');
 
   if(fs.existsSync(sweetConfigFile)){
-    require('@babel/register')(registerConfig);
+    // 加载es6+环境
+    const register: Function = require('@babel/register');
+
+    register(registerConfig);
 
     const config: Object = require(sweetConfigFile);
 

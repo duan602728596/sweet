@@ -29,19 +29,23 @@ export function formatTemplateData(data: any): any{
 /* 替换模板内的占位符 */
 export function replaceTemplate(template: string, data: Object = {}): string{
   let newTp: string = template;
+
   for(const key: string in data){
     const reg: RegExp = new RegExp(`{%\\s*${ key }\\s*%}`);
     newTp = newTp.replace(reg, formatTemplateData(data[key]));
   }
+
   return newTp;
 }
 
 /* 清除模块缓存 */
 export function cleanRequireCache(module: string): void{
   const modulePath: string = require.resolve(module);
+
   if(module.parent){
     module.parent.children.splice(module.parent.children.indexOf(module), 1);
   }
+
   require.cache[modulePath] = null;
 }
 
@@ -66,6 +70,34 @@ export function pathAnalyze(file: string): string{
   }
 }
 
+/* 设置默认文件地址 */
 const cwd: string = process.cwd();
 export const defaultInterfacePath: string = path.join(cwd, 'service/interface');
 export const defaultRoutersPath: string = path.join(cwd, 'service/routers.js');
+
+/* @babel/register配置 */
+export const registerConfig: Object = {
+  presets: [
+    [
+      '@babel/preset-env',
+      {
+        'targets': {
+          'browsers': ['node 6']
+        },
+        'debug': false,
+        'modules': 'commonjs',
+        'useBuiltIns': 'usage'
+      }
+    ],
+    '@babel/preset-flow'
+  ],
+  plugins: [
+    '@babel/plugin-proposal-export-default-from',
+    '@babel/plugin-proposal-do-expressions',
+    '@babel/plugin-proposal-optional-chaining',
+    '@babel/plugin-proposal-class-properties'
+  ],
+  cache: true,
+  babelrc: false,
+  only: [/[\\/]service[\\/]/]
+};

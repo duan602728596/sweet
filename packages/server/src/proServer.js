@@ -12,7 +12,7 @@ import convert from 'koa-convert';
 import compress from 'koa-compress';
 import staticCache from 'koa-static-cache';
 import mime from 'mime-types';
-import { readFile, defaultRoutersPath } from './utils/utils';
+import { readFile, defaultRoutersPath, registerConfig } from './utils/utils';
 import preRender from './utils/preProRender';
 
 const app: Koa = new Koa();
@@ -100,6 +100,11 @@ async function proServer({
 
   /* 本地服务 */
   if(fs.existsSync(defaultRoutersPath)){
+    // 加载es6+环境
+    const register: Function = require('@babel/register');
+
+    register(registerConfig);
+
     const routers: Object | Function = require(defaultRoutersPath);
 
     if('default' in routers) routers.default(router);

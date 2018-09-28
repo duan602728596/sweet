@@ -9,7 +9,7 @@ import Router from 'koa-router';
 import body from 'koa-body';
 import mime from 'mime-types';
 import koaWebpack from 'koa-webpack';
-import { readFile, defaultRoutersPath, cleanRequireCache } from './utils/utils';
+import { readFile, defaultRoutersPath, cleanRequireCache, registerConfig } from './utils/utils';
 import preRender from './utils/preDevRender';
 
 const app: Koa = new Koa();
@@ -82,6 +82,11 @@ async function devServer({
 
   /* 本地服务 */
   if(fs.existsSync(defaultRoutersPath)){
+    // 加载es6+环境
+    const register: Function = require('@babel/register');
+
+    register(registerConfig);
+
     cleanRequireCache(defaultRoutersPath);
 
     const routers: Object | Function = require(defaultRoutersPath);

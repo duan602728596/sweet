@@ -7,7 +7,15 @@
     "clean": "rimraf ./lib"
   },
   "dependencies": {
+    "@babel/plugin-proposal-class-properties": "^7.1.0",
+    "@babel/plugin-proposal-do-expressions": "^7.0.0",
+    "@babel/plugin-proposal-export-default-from": "^7.0.0",
+    "@babel/plugin-proposal-object-rest-spread": "^7.0.0",
+    "@babel/plugin-proposal-optional-chaining": "^7.0.0",
     "@babel/polyfill": "^7.0.0",
+    "@babel/preset-env": "^7.1.0",
+    "@babel/preset-flow": "^7.0.0",
+    "@babel/register": "^7.0.0",
     "koa": "^2.5.3",
     "koa-body": "^4.0.4",
     "koa-compress": "^3.0.0",

@@ -1,10 +1,10 @@
-// 判断是否为对象
+/* 判断是否为对象 */
 export const isObject: Function = (d: any): boolean => typeof d === 'object' && Object.prototype.toString.call(d) === '[object Object]';
 
-// 判断是否为数组
+/* 判断是否为数组 */
 export const isArray: Function = (d: any): boolean => typeof d === 'object' && Object.prototype.toString.call(d) === '[object Array]';
 
-// @babel/register配置
+/* @babel/register配置 */
 export const registerConfig: Object = {
   presets: [
     [
@@ -21,16 +21,17 @@ export const registerConfig: Object = {
     '@babel/preset-flow'
   ],
   plugins: [
+    '@babel/plugin-proposal-export-default-from',
     '@babel/plugin-proposal-do-expressions',
     '@babel/plugin-proposal-optional-chaining',
     '@babel/plugin-proposal-class-properties'
   ],
-  cache: false,
+  cache: true,
   babelrc: false,
   only: [/\.sweetrc\.js/]
 };
 
-// 格式化输出
+/* 格式化输出 */
 export function handleWebpackBuildProgress(percentage: number, message: any, ...args: any): void{
   const pNumber: number = percentage.toFixed(2);
 
