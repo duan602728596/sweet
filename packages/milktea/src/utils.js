@@ -33,7 +33,7 @@ export const registerConfig: Object = {
 
 /* 格式化输出 */
 export function handleWebpackBuildProgress(percentage: number, message: any, ...args: any): void{
-  const pNumber: number = percentage.toFixed(2);
+  const pNumber: string[] = `${ percentage.toFixed(2) * 100 }`.split('.');
 
-  console.info('\x1B[34m%s\x1B[39m', `${ pNumber * 100 }%`, message, ...args);
+  console.info('\x1B[46m%s\x1B[49m', `${ pNumber[0] }%`, message, ...args);
 }
