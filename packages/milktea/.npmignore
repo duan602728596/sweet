@@ -3,4 +3,5 @@ yarn.lock
 yarn-error.log
 package-lock.json
 npm-debug.log
+test
 .idea
