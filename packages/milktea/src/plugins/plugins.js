@@ -1,4 +1,5 @@
 /* 插件配置 */
+import path from 'path';
 import webpack from 'webpack';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import VueLoaderPlugin from 'vue-loader/lib/plugin';
@@ -39,10 +40,13 @@ export default function(sweetConfig: Object = {}): Array{
   // html模板
   if(html && typeof isArray(html) && !serverRender){
     for(const item: Object of html){
+      const info: Object = path.parse(item.template);
+
       pluginArr.push(
         new HtmlWebpackPlugin({
           inject: true,
           template: item.template,
+          filename: `${ info.name }.html`,
           excludeChunks: item.excludeChunks,
           mode
         })
