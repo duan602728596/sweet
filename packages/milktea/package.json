@@ -6,7 +6,7 @@
     "start": "cross-env NODE_ENV=development npm run clean && babel ./src --watch --out-dir=\"./lib\" --config-file=\"../../.babelrc\"",
     "build": "cross-env NODE_ENV=production npm run clean && babel ./src --out-dir=\"./lib\" --config-file=\"../../.babelrc\"",
     "clean": "rimraf ./lib",
-    "test": "mocha ./test/test.js"
+    "test": "mocha ./test/test.js --timeout 180000"
   },
   "dependencies": {
     "@babel/core": "^7.1.0",
