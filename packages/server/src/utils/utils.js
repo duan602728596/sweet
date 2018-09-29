@@ -75,6 +75,7 @@ export function pathAnalyze(file: string): string{
 /* 设置默认文件地址 */
 const cwd: string = process.cwd();
 export const defaultInterfacePath: string = path.join(cwd, 'service/interface');
+export const defaultInterfaceJsFilename: string = path.join(defaultInterfacePath, 'default.js');
 export const defaultRoutersPath: string = path.join(cwd, 'service/routers.js');
 
 /* @babel/register配置 */
