@@ -19,6 +19,7 @@ const compiler: Object = webpack(webpackConfig({
 
 function runServer(): Promise{
   devServer({ compiler });
+
   return new Promise((resolve: Function, reject: Function): void=>{
     setTimeout((): void=>{
       resolve();

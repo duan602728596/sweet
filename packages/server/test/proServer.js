@@ -19,6 +19,7 @@ const compiler: Object = webpack(webpackConfig({
 
 function runBuild(): Promise{
   compiler.run(callback);
+
   return new Promise((resolve: Function, reject: Function): void=>{
     setTimeout((): void=>{
       resolve();
@@ -30,6 +31,7 @@ function runServer(): Promise{
   proServer({
     serverRoot: 'test/build'
   });
+
   return new Promise((resolve: Function, reject: Function): void=>{
     setTimeout((): void=>{
       resolve();
@@ -44,8 +46,6 @@ describe('production server', async function(): void{
 
     const resHtml: Object = await axios.get('http://127.0.0.1:5052');
     const resJs: Object = await axios.get('http://127.0.0.1:5052/app.js');
-
-    console.log(resHtml, resJs);
 
     expect(resHtml.status).to.be.equal(200);
     expect(resJs.status).to.be.equal(200);

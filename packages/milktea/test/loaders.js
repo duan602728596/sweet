@@ -8,6 +8,7 @@ describe('loaders', function(): void{
       const use: Object = loadersArr[0].use;
       const { options }: { options: Object } = use[0];
       const { plugins, presets }: { plugins: [], presets: [] } = options;
+
       expect(use).to.be.an('array');
       expect(options).to.be.an('object');
       expect(plugins).to.be.an('array');
