@@ -22,7 +22,7 @@
     "babel-plugin-import": "^1.9.1",
     "classnames": "^2.2.6",
     "cross-env": "^5.2.0",
-    "eslint": "^5.6.0",
+    "eslint": "^5.6.1",
     "eslint-plugin-flowtype": "^2.50.3",
     "iview": "^3.1.2",
     "pre-commit": "^1.2.2",
