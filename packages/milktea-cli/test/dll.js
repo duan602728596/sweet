@@ -3,7 +3,7 @@ import fs from 'fs';
 import path from 'path';
 import { expect } from 'chai';
 
-function run(): void{
+function run(): Promise{
   return new Promise((resolve: Function, reject: Function): void=>{
     const child: Object = child_process.spawn('node', ['../lib/cli', 'dll'], {
       cwd: __dirname

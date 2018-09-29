@@ -17,3 +17,6 @@ packages/**/npm-debug.log
 packages/**/package-lock.json
 packages/**/yarn.lock
 packages/**/yarn-error.log
+packages/**/build
+packages/**/.dll
+packages/**/.babelCache

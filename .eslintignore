@@ -3,3 +3,6 @@ scripts
 node_modules
 utils
 packages/**/test/test.js
+packages/**/test/build
+packages/**/test/.dll
+packages/**/test/.babelCache

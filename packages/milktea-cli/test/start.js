@@ -5,7 +5,7 @@ import { expect } from 'chai';
 
 const app: string = path.join(__dirname, 'build/app.js');
 
-function run(): void{
+function run(): Promise{
   return new Promise((resolve: Function, reject: Function): void=>{
     const child: Object = child_process.spawn('node', ['../lib/cli', 'start'], {
       cwd: __dirname,
