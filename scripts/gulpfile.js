@@ -1,7 +1,7 @@
 const path = require('path');
 const gulp = require('gulp');
 const babel = require('gulp-babel');
-const { dir, packageNames } = require('./utils');
+const { dir, packageNames } = require('./config');
 
 const configFile = path.join(__dirname, '../.babelrc');
 
