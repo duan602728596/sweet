@@ -1,14 +1,13 @@
 import { expect } from 'chai';
 import webpack from 'webpack';
 import webpackDll from '../src/dll';
+import { expectDevtool } from './utils/expectFunction';
 
 describe('dll配置', function(): void{
   describe('dll 配置', function(): void{
     const config: Object = webpackDll({ mode: 'development' });
 
-    it('devtool', function(): void{
-      expect(config.devtool).to.equal('module-source-map');
-    });
+    it('devtool', expectDevtool('module-source-map'));
 
     it('module', function(): void{
       expect(config.module).to.be.an('object');
