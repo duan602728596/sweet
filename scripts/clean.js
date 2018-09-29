@@ -1,6 +1,6 @@
 const path = require('path');
 const rimraf = require('rimraf');
-const { dir, packageNames } = require('./utils');
+const { dir, packageNames } = require('./config');
 
 function clean(filePath){
   return new Promise((resolve, reject)=>{

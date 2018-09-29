@@ -33,13 +33,14 @@ type proServerType = {
   serverRenderFile: string
 };
 
-async function proServer({
-  httpPort = 5052,
-  httpsPort = 5053,
-  serverRoot = 'build',
-  serverRender,
-  serverRenderFile = 'build/server.js'
-}: proServerType): Promise<void>{
+async function proServer(argv: Object = {}): Promise<void>{
+  const {
+    httpPort = 5052,
+    httpsPort = 5053,
+    serverRoot = 'build',
+    serverRender,
+    serverRenderFile = 'build/server.js'
+  }: proServerType = argv;
   const cwd: string = process.cwd();
   const formatServerRoot: string = path.isAbsolute(serverRoot) ? serverRoot : path.join(cwd, serverRoot);
   let formatServerRenderFile: ?string = null;

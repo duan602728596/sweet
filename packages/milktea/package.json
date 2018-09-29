@@ -5,7 +5,8 @@
   "scripts": {
     "start": "cross-env NODE_ENV=development npm run clean && babel ./src --watch --out-dir=\"./lib\" --config-file=\"../../.babelrc\"",
     "build": "cross-env NODE_ENV=production npm run clean && babel ./src --out-dir=\"./lib\" --config-file=\"../../.babelrc\"",
-    "clean": "rimraf ./lib"
+    "clean": "rimraf ./lib",
+    "test": "mocha ./test/test.js --timeout 180000"
   },
   "dependencies": {
     "@babel/core": "^7.1.0",
@@ -44,8 +45,10 @@
     "webpack-cli": "^3.1.1"
   },
   "devDependencies": {
-    "@babel/cli": "^7.1.0",
+    "@babel/cli": "^7.1.2",
+    "chai": "^4.2.0",
     "cross-env": "^5.2.0",
+    "mocha": "^5.2.0",
     "rimraf": "^2.6.2"
   }
 }

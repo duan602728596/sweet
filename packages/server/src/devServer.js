@@ -30,13 +30,14 @@ type devServerType = {
   serverRenderFile: string
 };
 
-async function devServer({
-  compiler,
-  httpPort = 5050,
-  httpsPort = 5051,
-  serverRender,
-  serverRenderFile = 'build/server.js'
-}: devServerType): Promise<void>{
+async function devServer(argv: Object = {}): Promise<void>{
+  const {
+    compiler,
+    httpPort = 5050,
+    httpsPort = 5051,
+    serverRender,
+    serverRenderFile = 'build/server.js'
+  }: devServerType = argv;
   const cwd: string = process.cwd();
   let formatServerRenderFile: ?string = null;
 

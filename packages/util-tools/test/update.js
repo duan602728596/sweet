@@ -1,0 +1,17 @@
+import path from 'path';
+import { expect } from 'chai';
+import update from '../src/update';
+
+describe('update', function(): void{
+  it('update', async function(): Promise<void>{
+    let isErr: boolean = false;
+
+    try{
+      await update([path.join(__dirname, '..')], 2);
+    }catch(err){
+      isErr = true;
+    }
+
+    expect(isErr).to.be.false;
+  });
+});
