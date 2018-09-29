@@ -3,7 +3,7 @@ import webpack from 'webpack';
 import webpackDll from '../src/dll';
 import { expectDevtool } from './utils/expectFunction';
 
-describe('dll配置', function(): void{
+describe('dll', function(): void{
   describe('dll', function(): void{
     const config: Object = webpackDll({ mode: 'development' });
 
