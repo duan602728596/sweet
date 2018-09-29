@@ -167,7 +167,7 @@ async function start(folder: string, registry: number): Promise<void>{
 /**
  * @param folders: 目录的数组
  * @param registry: Npm包信息地址。0：Npm，1：Yarn，2：CNpm。
- * @return {Promise<void>}
+ * @return { Promise<void> }
  */
 export default async function(folders: Array<string>, registry: number): Promise<void>{
   for(let i: number = 0, j: number = folders.length; i < j; i++){
