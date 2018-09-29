@@ -19,5 +19,5 @@ module.exports = {
     '@babel/plugin-proposal-optional-chaining',
     '@babel/plugin-proposal-class-properties'
   ],
-  cache: true
+  cache: false
 };

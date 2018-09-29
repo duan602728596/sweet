@@ -9,7 +9,7 @@ import imageLoader from './image';
 import svgLoader from './svg';
 import vueLoader from './vue';
 
-export default function(sweetConfig: Object = {}): Object{
+export default function(sweetConfig: Object = {}): Array{
   /**
    * rules { Array }: 自定义规则
    * loaders { Object }: 覆盖默认规则
