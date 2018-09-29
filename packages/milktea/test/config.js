@@ -4,7 +4,7 @@ import {
   expectDevtool, expectModule, expectDevPlugins, expectProPlugins, expectDevOptimization, expectProOptimization
 } from './utils/expectFunction';
 
-describe('config配置', function(): void{
+describe('config', function(): void{
   describe('react & development', function(): void{
     const config: Object = webpackConfig({
       frame: 'react',

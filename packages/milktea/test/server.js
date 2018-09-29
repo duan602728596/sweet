@@ -4,7 +4,7 @@ import {
   expectDevtool, expectModule, expectDevPlugins, expectProPlugins, expectDevOptimization, expectProOptimization
 } from './utils/expectFunction';
 
-describe('sever config配置', function(): void{
+describe('sever-render config', function(): void{
   describe('react & development', function(): void{
     const config: Object = serverConfig({
       frame: 'react',
