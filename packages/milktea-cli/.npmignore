@@ -4,4 +4,7 @@ yarn-error.log
 package-lock.json
 npm-debug.log
 test
+test/.dll
+test/.babelCache
+test/build
 .idea

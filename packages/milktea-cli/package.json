@@ -8,7 +8,12 @@
   "scripts": {
     "start": "cross-env NODE_ENV=development npm run clean && babel ./src --watch --out-dir=\"./lib\" --config-file=\"../../.babelrc\"",
     "build": "cross-env NODE_ENV=production npm run clean && babel ./src --out-dir=\"./lib\" --config-file=\"../../.babelrc\"",
-    "clean": "rimraf ./lib"
+    "clean": "rimraf ./lib",
+    "test": "mocha ./test/test.js --timeout 180000",
+    "cleantest": "npm run cleandll && npm run cleanbabelcache && npm run cleanbuild",
+    "cleandll": "rimraf ./test/.dll",
+    "cleanbabelcache": "rimraf ./test/.babelCache",
+    "cleanbuild": "rimraf ./test/build"
   },
   "dependencies": {
     "webpack": "^4.20.2",
@@ -16,7 +21,23 @@
   },
   "devDependencies": {
     "@babel/cli": "^7.1.0",
+    "@babel/core": "^7.1.0",
+    "@babel/plugin-proposal-class-properties": "^7.1.0",
+    "@babel/plugin-proposal-do-expressions": "^7.0.0",
+    "@babel/plugin-proposal-export-default-from": "^7.0.0",
+    "@babel/plugin-proposal-optional-chaining": "^7.0.0",
+    "@babel/polyfill": "^7.0.0",
+    "@babel/preset-env": "^7.1.0",
+    "@babel/preset-flow": "^7.0.0",
+    "@babel/preset-react": "^7.0.0",
+    "@babel/register": "^7.0.0",
+    "@sweet/milktea": "github:duan602728596/sweet#build-milktea",
+    "@sweet/server": "github:duan602728596/sweet#build-server",
+    "@sweet/util-tools": "github:duan602728596/sweet#build-util-tools",
+    "chai": "^4.2.0",
     "cross-env": "^5.2.0",
+    "mocha": "^5.2.0",
+    "react": "^16.5.2",
     "rimraf": "^2.6.2"
   }
 }
