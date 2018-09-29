@@ -7,6 +7,7 @@ async function preRender(file: string, ctx: Object, serverRenderFile: string): P
   cleanRequireCache(serverRenderFile);
 
   const formatFile: string = `${ path.join(defaultInterfacePath, pathAnalyze(file)) }.js`;
+  const defaultFile: string = path.join(defaultInterfacePath, 'default.js');
   let data: Object = {};
 
   // 读取模块
@@ -19,6 +20,19 @@ async function preRender(file: string, ctx: Object, serverRenderFile: string): P
     cleanRequireCache(formatFile);
 
     const file: Object | Function = require(formatFile);
+
+    if('default' in file) data = await file.default(ctx);
+    else data = await file(ctx);
+  }else if(fs.existsSync(defaultFile)){
+    // 读取默认模块
+    // 加载es6+环境
+    const register: Function = require('@babel/register');
+
+    register(registerConfig);
+
+    cleanRequireCache(defaultFile);
+
+    const file: Object | Function = require(defaultFile);
 
     if('default' in file) data = await file.default(ctx);
     else data = await file(ctx);
