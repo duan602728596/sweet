@@ -18,6 +18,9 @@ build
 # babel
 .babelCache
 
+# terser
+.terserCache
+
 # https
 *.crt
 *.key
