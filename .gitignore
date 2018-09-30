@@ -20,3 +20,4 @@ packages/**/yarn-error.log
 packages/**/build
 packages/**/.dll
 packages/**/.babelCache
+packages/**/.terserCache
