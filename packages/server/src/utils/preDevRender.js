@@ -1,14 +1,14 @@
 import fs from 'fs';
 import path from 'path';
 import {
-  replaceTemplate, defaultInterfacePath, cleanRequireCache, pathAnalyze, registerConfig, defaultInterfaceJsFilename
+  replaceTemplate, cleanRequireCache, pathAnalyze, registerConfig, defaultInterfacePath, defaultInterfaceJsFilename
 } from './utils';
 
 // 渲染新的html
-async function preRender(file: string, ctx: Object, serverRenderFile: string): Promise<Object>{
+async function preRender(file: string, ctx: Object, serverRenderFile: string, sweetOptions: Object): Promise<Object>{
   cleanRequireCache(serverRenderFile);
 
-  const formatFile: string = `${ path.join(defaultInterfacePath, pathAnalyze(file)) }.js`;
+  const formatFile: string = `${ path.join(defaultInterfacePath(sweetOptions), pathAnalyze(file)) }.js`;
   let data: Object = {};
 
   // 读取模块
@@ -24,16 +24,17 @@ async function preRender(file: string, ctx: Object, serverRenderFile: string): P
 
     if('default' in file) data = await file.default(ctx);
     else data = await file(ctx);
-  }else if(fs.existsSync(defaultInterfaceJsFilename)){
+  }else if(fs.existsSync(defaultInterfaceJsFilename(sweetOptions))){
     // 读取默认模块
     // 加载es6+环境
     const register: Function = require('@babel/register');
 
     register(registerConfig);
 
-    cleanRequireCache(defaultInterfaceJsFilename);
+    cleanRequireCache(p);
 
-    const file: Object | Function = require(defaultInterfaceJsFilename);
+    const p: string = defaultInterfaceJsFilename(sweetOptions);
+    const file: Object | Function = require(p);
 
     if('default' in file) data = await file.default(ctx);
     else data = await file(ctx);

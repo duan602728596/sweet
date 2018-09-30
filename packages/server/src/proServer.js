@@ -18,6 +18,13 @@ import preRender from './utils/preProRender';
 const app: Koa = new Koa();
 const router: Router = new Router();
 
+/* 基础配置 */
+const sweetOptions: {
+  basicPath: string
+} = {
+  basicPath: process.cwd() // 主目录
+};
+
 /**
  * httpPort { number }: http端口号
  * httpsPort { number }: https端口号
@@ -78,7 +85,7 @@ async function proServer(argv: Object = {}): Promise<void>{
 
     ctx.status = 200;
     ctx.type = 'text/html';
-    ctx.body = serverRender ? await preRender(ctx.path, ctx, body, formatServerRenderFile) : body;
+    ctx.body = serverRender ? await preRender(ctx.path, ctx, body, formatServerRenderFile, sweetOptions) : body;
 
     await next();
   });
@@ -100,16 +107,17 @@ async function proServer(argv: Object = {}): Promise<void>{
   });
 
   /* 本地服务 */
-  if(fs.existsSync(defaultRoutersPath)){
+  if(fs.existsSync(defaultRoutersPath(sweetOptions))){
     // 加载es6+环境
     const register: Function = require('@babel/register');
 
     register(registerConfig);
 
-    const routers: Object | Function = require(defaultRoutersPath);
+    const p: string = defaultRoutersPath(sweetOptions);
+    const routers: Object | Function = require(p);
 
-    if('default' in routers) routers.default(router);
-    else routers(router);
+    if('default' in routers) routers.default(router, sweetOptions);
+    else routers(router, sweetOptions);
   }
 
   /* http服务 */

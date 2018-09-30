@@ -15,6 +15,13 @@ import preRender from './utils/preDevRender';
 const app: Koa = new Koa();
 const router: Router = new Router();
 
+/* 基础配置 */
+const sweetOptions: {
+  basicPath: string
+} = {
+  basicPath: process.cwd() // 主目录
+};
+
 /**
  * compiler { Object }: webpack的compiler
  * httpPort { number }: http端口号
@@ -38,11 +45,16 @@ async function devServer(argv: Object = {}): Promise<void>{
     serverRender,
     serverRenderFile = 'build/server.js'
   }: devServerType = argv;
-  const cwd: string = process.cwd();
   let formatServerRenderFile: ?string = null;
 
+  // 将端口加入到服务端
+  sweetOptions.httpPort = argv.httpPort;
+  sweetOptions.httpsPort = argv.httpsPort;
+
   if(serverRender){
-    formatServerRenderFile = path.isAbsolute(serverRenderFile) ? serverRenderFile : path.join(cwd, serverRenderFile);
+    formatServerRenderFile = path.isAbsolute(serverRenderFile)
+      ? serverRenderFile
+      : path.join(sweetOptions.basicPath, serverRenderFile);
   }
 
   /* post body */
@@ -77,23 +89,24 @@ async function devServer(argv: Object = {}): Promise<void>{
 
     // 服务器端渲染
     if(serverRender && ctx.type === 'text/html'){
-      ctx.body = await preRender(file, ctx, formatServerRenderFile);
+      ctx.body = await preRender(file, ctx, formatServerRenderFile, sweetOptions);
     }
   });
 
   /* 本地服务 */
-  if(fs.existsSync(defaultRoutersPath)){
+  if(fs.existsSync(defaultRoutersPath(sweetOptions))){
     // 加载es6+环境
     const register: Function = require('@babel/register');
 
     register(registerConfig);
 
-    cleanRequireCache(defaultRoutersPath);
+    cleanRequireCache(p);
 
-    const routers: Object | Function = require(defaultRoutersPath);
+    const p: string = defaultRoutersPath(sweetOptions);
+    const routers: Object | Function = require(p);
 
-    if('default' in routers) routers.default(router);
-    else routers(router);
+    if('default' in routers) routers.default(router, sweetOptions);
+    else routers(router, sweetOptions);
   }
 
   /* http服务 */
@@ -101,8 +114,8 @@ async function devServer(argv: Object = {}): Promise<void>{
     .listen(httpPort);
 
   /* https服务 */
-  const key: string = path.join(cwd, './dev.key');
-  const crt: string = path.join(cwd, './dev.crt');
+  const key: string = path.join(sweetOptions.basicPath, './dev.key');
+  const crt: string = path.join(sweetOptions.basicPath, './dev.crt');
 
   // 判断是否有证书
   if(fs.existsSync(key) && fs.existsSync(crt)){

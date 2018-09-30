@@ -3,8 +3,8 @@ import path from 'path';
 import { replaceTemplate, defaultInterfacePath, pathAnalyze, registerConfig, defaultInterfaceJsFilename } from './utils';
 
 // 渲染新的html
-async function preRender(file: string, ctx: Object, html: ArrayBuffer, serverRenderFile: string): Promise<Object>{
-  const formatFile: string = `${ path.join(defaultInterfacePath, pathAnalyze(file)) }.js`;
+async function preRender(file: string, ctx: Object, html: ArrayBuffer, serverRenderFile: string, sweetOptions: Object): Promise<Object>{
+  const formatFile: string = `${ path.join(defaultInterfacePath(sweetOptions), pathAnalyze(file)) }.js`;
   let data: Object = {};
 
   // 读取模块
@@ -18,14 +18,14 @@ async function preRender(file: string, ctx: Object, html: ArrayBuffer, serverRen
 
     if('default' in file) data = await file.default(ctx);
     else data = await file(ctx);
-  }else if(fs.existsSync(defaultInterfaceJsFilename)){
+  }else if(fs.existsSync(defaultInterfaceJsFilename(sweetOptions))){
     // 读取默认模块
     // 加载es6+环境
     const register: Function = require('@babel/register');
 
     register(registerConfig);
 
-    const file: Object | Function = require(defaultInterfaceJsFilename);
+    const file: Object | Function = require(defaultInterfaceJsFilename(sweetOptions));
 
     if('default' in file) data = await file.default(ctx);
     else data = await file(ctx);
