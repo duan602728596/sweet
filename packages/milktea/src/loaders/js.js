@@ -1,7 +1,7 @@
 /* js 配置 */
 import babelConfig from '../config/babel';
 
-export default function(sweetConfig: Object = {}): Object{
+export default function(sweetConfig: Object = {}, sweetOptions: Object): Object{
   /**
    * mode { string } 开发模式还是生产模式
    * js { Object } loader里面js的配置
@@ -43,7 +43,7 @@ export default function(sweetConfig: Object = {}): Object{
       resetPresets,
       resetPlugins,
       isReact: frame === 'react'
-    })],
+    }, sweetOptions)],
     exclude,
     include
   };

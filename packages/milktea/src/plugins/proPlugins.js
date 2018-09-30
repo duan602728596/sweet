@@ -4,7 +4,7 @@ import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import OptimizeCssAssets from 'optimize-css-assets-webpack-plugin';
 import { handleWebpackBuildProgress } from '../utils';
 
-export default function(): Array{
+export default function(sweetConfig: Object, sweetOptions: Object): Array{
   return [
     new MiniCssExtractPlugin({
       filename: 'style/[chunkhash:5].css',

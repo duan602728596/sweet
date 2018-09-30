@@ -1,23 +1,21 @@
 /* webpack dll扩展配置 */
 import path from 'path';
-import process from 'process';
 import webpack from 'webpack';
 import babelConfig from './config/babel';
-import { handleWebpackBuildProgress } from './utils';
+import { handleWebpackBuildProgress, isObject } from './utils';
 
-export default function(sweetConfig: Object = {}): Object{
+export default function(sweetConfig: Object = {}, sweetOptions: Object): Object{
   /**
    * mode { string }: 开发模式还是生产模式
    * dll { Array }: dll配置
    */
-  const sweetConfigCopy: Object = { ...sweetConfig };
+  const sweetConfigCopy: Object = isObject(sweetConfig) ? { ...sweetConfig } : {};
   const { mode, dll }: {
     mode: string,
     dll: Array
   } = sweetConfigCopy;
   const ecmascript: boolean = sweetConfigCopy?.js?.ecmascript || false;
   const isDevelopment: boolean = mode === 'development';
-  const cwd: string = process.cwd();
 
   // 格式化配置
   if('serverRender' in sweetConfigCopy){
@@ -50,7 +48,7 @@ export default function(sweetConfig: Object = {}): Object{
     mode: 'development',
     entry: { dll },
     output: {
-      path: path.join(cwd, '.dll'),
+      path: path.join(sweetOptions.basicPath, '.dll'),
       filename: '[name].js',
       library: '[name]_[hash:5]',
       libraryTarget: 'var'
@@ -62,7 +60,7 @@ export default function(sweetConfig: Object = {}): Object{
           test: /^.*\.js$/,
           use: [babelConfig({
             resetPresets: dllResetPresetsConfig
-          })]
+          }, sweetOptions)]
         }
       ]
     },
@@ -71,7 +69,7 @@ export default function(sweetConfig: Object = {}): Object{
       new webpack.DllPlugin({
         path: '.dll/manifest.json',
         name: '[name]_[hash:5]',
-        context: cwd
+        context: sweetOptions.basicPath
       }),
       new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
       new webpack.ProgressPlugin(handleWebpackBuildProgress)

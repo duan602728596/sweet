@@ -1,9 +1,8 @@
 /* 配置optimization属性 */
 import path from 'path';
-import process from 'process';
 import TerserPlugin from 'terser-webpack-plugin';
 
-export default function(sweetConfig: Object): Object{
+export default function(sweetConfig: Object, sweetOptions: Object): Object{
   /**
    * mode { string }: 开发模式还是生产模式
    * serverRender { boolean }: 是否为服务器端渲染
@@ -36,7 +35,7 @@ export default function(sweetConfig: Object): Object{
     }
 
     optimization.minimizer = [new TerserPlugin({
-      cache: path.join(process.cwd(), '.terserCache'),
+      cache: path.join(sweetOptions.basicPath, '.terserCache'),
       terserOptions
     })];
   }

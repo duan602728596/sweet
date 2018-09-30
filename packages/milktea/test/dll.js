@@ -1,11 +1,16 @@
+import process from 'process';
 import { expect } from 'chai';
 import webpack from 'webpack';
 import webpackDll from '../src/dll';
 import { expectDevtool } from './utils/expectFunction';
 
+const sweetOptions: Object = {
+  basicPath: process.cwd()
+};
+
 describe('dll', function(): void{
   describe('dll', function(): void{
-    const config: Object = webpackDll({ mode: 'development' });
+    const config: Object = webpackDll({ mode: 'development' }, sweetOptions);
 
     it('devtool', expectDevtool('module-source-map'));
 

@@ -1,8 +1,13 @@
+import process from 'process';
 import { expect } from 'chai';
 import webpackConfig from '../src/config';
 import {
   expectDevtool, expectModule, expectDevPlugins, expectProPlugins, expectDevOptimization, expectProOptimization
 } from './utils/expectFunction';
+
+const sweetOptions: Object = {
+  basicPath: process.cwd()
+};
 
 describe('config', function(): void{
   describe('react & development', function(): void{
@@ -10,7 +15,7 @@ describe('config', function(): void{
       frame: 'react',
       mode: 'development',
       html: [{ template: 'index.pug' }]
-    });
+    }, sweetOptions);
 
     it('devtool', expectDevtool(config, 'module-source-map'));
 
@@ -26,7 +31,7 @@ describe('config', function(): void{
       frame: 'vue',
       mode: 'production',
       html: [{ template: 'index.pug' }]
-    });
+    }, sweetOptions);
 
     it('devtool', expectDevtool(config, 'none'));
 

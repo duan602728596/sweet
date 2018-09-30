@@ -1,6 +1,5 @@
 /* babel-loader 配置 */
 import path from 'path';
-import process from 'process';
 
 // 默认插件
 const presetsList: Function = (presets: Array = [], debug: boolean, isReact: boolean, ecmascript: boolean): Array=>{
@@ -53,7 +52,7 @@ const pluginsList: Function = (plugins: Array = [], isReact: boolean, ecmascript
   return list;
 };
 
-export default function(options: Object = {}): Object{
+export default function(options: Object = {}, sweetOptions: Object): Object{
   /**
    * isDevelopment { boolean }: 是否为开发环境
    * ecmascript { boolean }: 是否编译到ecmascript的最新语法
@@ -73,7 +72,7 @@ export default function(options: Object = {}): Object{
   } = options;
   const debug: boolean = isDevelopment === undefined ? true : isDevelopment;
   const babelLoaderOptions: Object = {
-    cacheDirectory: path.join(process.cwd(), '.babelCache'),
+    cacheDirectory: path.join(sweetOptions.basicPath, '.babelCache'),
     presets: resetPresets ? resetPresets : presetsList(presets, debug, isReact, ecmascript),
     plugins: resetPlugins ? resetPlugins : pluginsList(plugins, isReact, ecmascript)
   };

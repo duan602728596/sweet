@@ -6,10 +6,16 @@ import serverConfig from './server';
 import webpackDll from './dll';
 import { isObject, registerConfig } from './utils';
 
+/* 基础配置 */
+const sweetOptions: {
+  basicPath: string
+} = {
+  basicPath: process.cwd() // 主目录
+};
+
 /* 获取配置文件 */
 function getSweetConfig(): Object{
-  const cwd: string = process.cwd();
-  const sweetConfigFile: string = path.join(cwd, '.sweetrc.js');
+  const sweetConfigFile: string = path.join(sweetOptions.basicPath, '.sweetrc.js');
 
   if(fs.existsSync(sweetConfigFile)){
     // 加载es6+环境
@@ -46,7 +52,7 @@ export function config(sweetConfig: ?Object, mode: string): Object{
     config.mode = mode;
   }
 
-  return webpackConfig(config);
+  return webpackConfig(config, sweetOptions);
 }
 
 /* 服务器端渲染的webpack配置 */
@@ -63,7 +69,7 @@ export function serverRenderConfig(sweetConfig: ?Object, mode: string): Object{
     config.mode = mode;
   }
 
-  return serverConfig(config);
+  return serverConfig(config, sweetOptions);
 }
 
 /* webpack的dll文件配置 */
@@ -76,5 +82,5 @@ export function dll(sweetConfig: ?Object): void{
     }
   };
 
-  return webpackDll(config);
+  return webpackDll(config, sweetOptions);
 }

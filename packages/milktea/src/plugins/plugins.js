@@ -5,7 +5,7 @@ import HtmlWebpackPlugin from 'html-webpack-plugin';
 import VueLoaderPlugin from 'vue-loader/lib/plugin';
 import { isArray } from '../utils';
 
-export default function(sweetConfig: Object = {}): Array{
+export default function(sweetConfig: Object, sweetOptions: Object): Array{
   /**
    * mode { string }: 开发模式还是生产模式
    * html { Object }: html配置
@@ -33,7 +33,7 @@ export default function(sweetConfig: Object = {}): Array{
   // 合并插件
   const pluginArr: [] = [
     new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
-    ...envPlugins(sweetConfig),
+    ...envPlugins(sweetConfig, sweetOptions),
     ...plugins ? plugins : []
   ];
 

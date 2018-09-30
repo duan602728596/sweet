@@ -9,7 +9,7 @@ import imageLoader from './image';
 import svgLoader from './svg';
 import vueLoader from './vue';
 
-export default function(sweetConfig: Object = {}): Array{
+export default function(sweetConfig: Object, sweetOptions: Object): Array{
   /**
    * rules { Array }: 自定义规则
    * loaders { Object }: 覆盖默认规则
@@ -23,7 +23,7 @@ export default function(sweetConfig: Object = {}): Array{
 
   // 重写loaders，合并rules
   const loadersObj: Object = {
-    js: loaders.js || jsLoader(sweetConfig),
+    js: loaders.js || jsLoader(sweetConfig, sweetOptions),
     sass: loaders.sass || sassLoader(sweetConfig),
     css: loaders.css || lessLoader(sweetConfig),
     favicon: loaders.favicon || faviconLoader(),

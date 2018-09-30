@@ -1,8 +1,13 @@
+import process from 'process';
 import { expect } from 'chai';
 import serverConfig from '../src/server';
 import {
   expectDevtool, expectModule, expectDevServerPlugins, expectProServerPlugins, expectDevOptimization, expectProOptimization
 } from './utils/expectFunction';
+
+const sweetOptions: Object = {
+  basicPath: process.cwd()
+};
 
 describe('sever-render config', function(): void{
   describe('react & development', function(): void{
@@ -11,7 +16,7 @@ describe('sever-render config', function(): void{
       frame: 'react',
       mode: 'development',
       html: [{ template: 'index.pug' }]
-    });
+    }, sweetOptions);
 
     it('target & node', function(): void{
       expect(config.target).to.equal('node');
@@ -33,7 +38,7 @@ describe('sever-render config', function(): void{
       frame: 'vue',
       mode: 'production',
       html: [{ template: 'index.pug' }]
-    });
+    }, sweetOptions);
 
     it('target & node', function(): void{
       expect(config.target).to.equal('node');
