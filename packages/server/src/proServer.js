@@ -28,7 +28,7 @@ const sweetOptions: {
 /**
  * httpPort { number }: http端口号
  * httpsPort { number }: https端口号
- * serverRoot { ?string }: 生产环境下的服务器静态文件入口
+ * serverRoot { string }: 生产环境下的服务器静态文件入口
  * serverRender { boolean }: 开启服务器端渲染
  * serverRenderFile { string }: 服务器端渲染的主模块文件
  */
