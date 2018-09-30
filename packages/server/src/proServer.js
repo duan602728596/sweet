@@ -53,7 +53,6 @@ async function proServer(argv: Object = {}): Promise<void>{
   sweetOptions.httpPort = httpPort;
   sweetOptions.httpsPort = httpsPort;
 
-  const cwd: string = process.cwd();
   const formatServerRoot: string = path.isAbsolute(serverRoot) ? serverRoot : path.join(sweetOptions.basicPath, serverRoot);
   let formatServerRenderFile: ?string = null;
 
