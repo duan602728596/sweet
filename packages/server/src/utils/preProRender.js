@@ -16,8 +16,8 @@ async function preRender(file: string, ctx: Object, html: ArrayBuffer, serverRen
 
     const file: Object | Function = require(formatFile);
 
-    if('default' in file) data = await file.default(ctx);
-    else data = await file(ctx);
+    if('default' in file) data = await file.default(ctx, sweetOptions);
+    else data = await file(ctx, sweetOptions);
   }else if(fs.existsSync(defaultInterfaceJsFilename(sweetOptions))){
     // 读取默认模块
     // 加载es6+环境
@@ -27,8 +27,8 @@ async function preRender(file: string, ctx: Object, html: ArrayBuffer, serverRen
 
     const file: Object | Function = require(defaultInterfaceJsFilename(sweetOptions));
 
-    if('default' in file) data = await file.default(ctx);
-    else data = await file(ctx);
+    if('default' in file) data = await file.default(ctx, sweetOptions);
+    else data = await file(ctx, sweetOptions);
   }
 
   const server: Function = require(serverRenderFile).default;
