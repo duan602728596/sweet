@@ -21,6 +21,7 @@ function run(): Promise{
 describe('args: build', function(): void{
   it('build', async function(): Promise<void>{
     await run();
+  
     expect(fs.existsSync(path.join(__dirname, 'build/app.build.js'))).to.be.true;
   });
 });
