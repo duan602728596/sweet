@@ -1,12 +1,13 @@
 import { expect } from 'chai';
 import serverConfig from '../src/server';
 import {
-  expectDevtool, expectModule, expectDevPlugins, expectProPlugins, expectDevOptimization, expectProOptimization
+  expectDevtool, expectModule, expectDevServerPlugins, expectProServerPlugins, expectDevOptimization, expectProOptimization
 } from './utils/expectFunction';
 
 describe('sever-render config', function(): void{
   describe('react & development', function(): void{
     const config: Object = serverConfig({
+      serverRender: true,
       frame: 'react',
       mode: 'development',
       html: [{ template: 'index.pug' }]
@@ -21,13 +22,14 @@ describe('sever-render config', function(): void{
 
     it('module', expectModule(config, 8));
 
-    it('plugins', expectDevPlugins(config));
+    it('plugins', expectDevServerPlugins(config));
 
     it('optimization', expectDevOptimization(config));
   });
 
   describe('vue & production', function(): void{
     const config: Object = serverConfig({
+      serverRender: true,
       frame: 'vue',
       mode: 'production',
       html: [{ template: 'index.pug' }]
@@ -42,7 +44,7 @@ describe('sever-render config', function(): void{
 
     it('module', expectModule(config, 9));
 
-    it('plugins', expectProPlugins(config));
+    it('plugins', expectProServerPlugins(config));
 
     it('optimization', expectProOptimization(config, true));
   });

@@ -32,6 +32,15 @@ export function expectDevPlugins(config: Object): Function{
   }
 }
 
+/* 服务器端渲染的开发环境 plugins属性 */
+export function expectDevServerPlugins(config: Object): Function{
+  return function(): void{
+    expect(config.plugins).to.be.an('array');
+    expect(config.plugins).to.have.lengthOf(1);
+    expect(config.plugins[0] instanceof webpack.IgnorePlugin).to.be.true;
+  }
+}
+
 /* 生产环境 plugins属性（含vue插件） */
 export function expectProPlugins(config: Object): Function{
   return function(): void{
@@ -46,10 +55,23 @@ export function expectProPlugins(config: Object): Function{
   }
 }
 
+/* 服务器端渲染的生产环境 plugins属性（含vue插件） */
+export function expectProServerPlugins(config: Object): Function{
+  return function(): void{
+    expect(config.plugins).to.be.an('array');
+    expect(config.plugins).to.have.lengthOf(5);
+    expect(config.plugins[0] instanceof webpack.IgnorePlugin).to.be.true;
+    expect(config.plugins[1] instanceof MiniCssExtractPlugin).to.be.true;
+    expect(config.plugins[2] instanceof OptimizeCssAssets).to.be.true;
+    expect(config.plugins[3] instanceof webpack.ProgressPlugin).to.be.true;
+    expect(config.plugins[4] instanceof VueLoaderPlugin).to.be.true;
+  }
+}
+
 /* 开发环境 optimization属性 */
 export function expectDevOptimization(config: Object): Function{
   return function(): void{
-    expect(config.optimization).to.be.an('undefined');
+    expect(config.optimization).to.be.eql({});
   }
 }
 

@@ -1,4 +1,6 @@
 /* 配置optimization属性 */
+import path from 'path';
+import process from 'process';
 import TerserPlugin from 'terser-webpack-plugin';
 
 export default function(sweetConfig: Object): Object{
@@ -25,15 +27,18 @@ export default function(sweetConfig: Object): Object{
 
   // 设置minimizer的压缩插件
   if(!isDevelopment){
-    const terserOption: Object = {};
+    const terserOptions: Object = {};
 
     if(js && js.ecmascript){
-      terserOption.ecma = 8;
+      terserOptions.ecma = 8;
     }else{
-      terserOption.ecma = 5;
+      terserOptions.ecma = 5;
     }
 
-    optimization.minimizer = [new TerserPlugin(terserOption)];
+    optimization.minimizer = [new TerserPlugin({
+      cache: path.join(process.cwd(), '.terserCache'),
+      terserOptions
+    })];
   }
 
   return optimization;
