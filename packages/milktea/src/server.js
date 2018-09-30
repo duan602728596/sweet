@@ -1,7 +1,7 @@
 /* webpack 服务器端渲染配置 */
-import TerserPlugin from 'terser-webpack-plugin';
 import loaders from './loaders/loaders';
 import plugins from './plugins/plugins';
+import optimization from './optimization/optimization';
 import { isObject } from './utils';
 
 export default function(sweetConfig: Object = {}): Object{
@@ -26,25 +26,19 @@ export default function(sweetConfig: Object = {}): Object{
   }
 
   // webpack配置
-  const config: Object = {
+  return {
     mode,
     entry: serverEntry,
     output: serverOutput,
     devtool: isDevelopment ? 'module-source-map' : 'none',
     module: { rules: loaders(sweetConfigCopy) },
     plugins: plugins(sweetConfigCopy),
+    optimization: optimization(sweetConfigCopy),
+    // webpack服务器端编辑属性
     target: 'node',
     node: {
       __filename: true,
       __dirname: true
     }
   };
-
-  if(!isDevelopment){
-    config.optimization = {
-      minimizer: [new TerserPlugin()]
-    };
-  }
-
-  return config;
 }

@@ -2,6 +2,7 @@
 import TerserPlugin from 'terser-webpack-plugin';
 import loaders from './loaders/loaders';
 import plugins from './plugins/plugins';
+import optimization from './optimization/optimization';
 
 export default function(sweetConfig: Object = {}): Object{
   /**
@@ -25,25 +26,14 @@ export default function(sweetConfig: Object = {}): Object{
   }
 
   // webpack配置
-  const config: Object = {
+  return {
     mode,
     entry,
     output,
     externals,
     devtool: isDevelopment ? 'module-source-map' : 'none',
     module: { rules: loaders(sweetConfigCopy) },
-    plugins: plugins(sweetConfigCopy)
+    plugins: plugins(sweetConfigCopy),
+    optimization: optimization(sweetConfigCopy)
   };
-
-  if(!isDevelopment){
-    config.optimization = {
-      splitChunks: {
-        chunks: 'all',
-        automaticNameDelimiter: '.'
-      },
-      minimizer: [new TerserPlugin()]
-    };
-  }
-
-  return config;
 }
