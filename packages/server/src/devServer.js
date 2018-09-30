@@ -45,11 +45,12 @@ async function devServer(argv: Object = {}): Promise<void>{
     serverRender,
     serverRenderFile = 'build/server.js'
   }: devServerType = argv;
-  let formatServerRenderFile: ?string = null;
 
-  // 将端口加入到服务端
-  sweetOptions.httpPort = argv.httpPort;
-  sweetOptions.httpsPort = argv.httpsPort;
+  /* 将端口加入到服务端 */
+  sweetOptions.httpPort = httpPort;
+  sweetOptions.httpsPort = httpsPort;
+
+  let formatServerRenderFile: ?string = null;
 
   if(serverRender){
     formatServerRenderFile = path.isAbsolute(serverRenderFile)

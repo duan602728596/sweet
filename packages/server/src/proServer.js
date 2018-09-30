@@ -48,12 +48,17 @@ async function proServer(argv: Object = {}): Promise<void>{
     serverRender,
     serverRenderFile = 'build/server.js'
   }: proServerType = argv;
+
+  /* 将端口加入到服务端 */
+  sweetOptions.httpPort = httpPort;
+  sweetOptions.httpsPort = httpsPort;
+
   const cwd: string = process.cwd();
-  const formatServerRoot: string = path.isAbsolute(serverRoot) ? serverRoot : path.join(cwd, serverRoot);
+  const formatServerRoot: string = path.isAbsolute(serverRoot) ? serverRoot : path.join(sweetOptions.basicPath, serverRoot);
   let formatServerRenderFile: ?string = null;
 
   if(serverRender){
-    formatServerRenderFile = path.isAbsolute(serverRenderFile) ? serverRenderFile : path.join(cwd, serverRenderFile);
+    formatServerRenderFile = path.isAbsolute(serverRenderFile) ? serverRenderFile : path.join(sweetOptions.basicPath, serverRenderFile);
   }
 
   /* post body */
@@ -125,8 +130,8 @@ async function proServer(argv: Object = {}): Promise<void>{
     .listen(httpPort);
 
   /* https服务 */
-  const key: string = path.join(cwd, './server.key');
-  const crt: string = path.join(cwd, './server.crt');
+  const key: string = path.join(sweetOptions.basicPath, './server.key');
+  const crt: string = path.join(sweetOptions.basicPath, './server.crt');
 
   if(fs.existsSync(key) && fs.existsSync(crt)){
     const keyString: string | ArrayBuffer = await readFile(key);
