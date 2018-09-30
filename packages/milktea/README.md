@@ -2,19 +2,27 @@
 
 ## 使用
 
-1. 创建`.sweetrc.js`文件
+1. 方法1：在工程目录下创建`.sweetrc.js`文件，然后通过cli工具运行。
 
-2. node调用
+2. 方法2：直接在node内运行函数。
 
 ```javascript
 import webpack from 'webpack';
-import milktea from '@sweet/milktea';
+import {
+  dll as dllConfig,        // dll编译配置
+  config as webpackConfig, // webpack配置
+  serverRenderConfig,      // webpack服务器端渲染配置
+  callback                 // webpack的回调函数
+} from '@sweet/milktea';
 
 // mode`{ string }`: 开发模式`development`还是生产模式`production`
 const mode: string = 'development';
 
-const compiler: Object = webpack(milktea.config(mode));
-compiler.run(milktea.callback);
+const compiler: Object = webpack(webpackConfig({
+  // 配置项
+}, mode));
+
+compiler.run(callback);
 ```
 
 ## 配置文件`.sweetrc.js`说明
@@ -31,7 +39,7 @@ export default {
 
 配置文件支持`es6`、`es5`和`flow`。
 
-### 配置
+### 配置项
 
 * mode`{ string }`: 开发模式还是生产模式
 * entry`{ any }`: 文件入口（参考webpack）
@@ -83,7 +91,7 @@ export default {
 
 创建一个`service/routers.js`文件，代码如下
 ```javascript
-export default function(router, sweetOptions){
+export default function(router: Object, sweetOptions: Object){
   // 在这里面创建你的函数
   router.get('/path', ...function);
 };
@@ -95,7 +103,7 @@ export default function(router, sweetOptions){
 在文件内，需要创建如下代码：
 
 ```javascript
-export default async function(ctx, sweetOptions){
+export default async function(ctx: Object, sweetOptions: Object){
   return {
     initialState, // 返回初始化的state
     ...           // 你要返回的其他数据
@@ -104,7 +112,7 @@ export default async function(ctx, sweetOptions){
 ```
 
 在pug或html模板中，使用`{% key %}`来标记占位的数据。其中`{% render %}`表示服务器端渲染的数据，`{% initialState %}`表示初始化数据，其他的占位数据同理。   
-可以创建`default.js`，如果没有其他文件，就会寻找这个文件。
+如果路由找不到对应的interface文件，会自动寻找`default.js`文件。你可以创建这个文件作为默认的interface文件。
 
 ## 关于node-sass
 
