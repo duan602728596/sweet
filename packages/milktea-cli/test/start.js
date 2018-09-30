@@ -31,6 +31,7 @@ function run(): Promise{
 describe('args: start', function(): void{
   it('start', async function(): Promise<void>{
     await run();
+  
     expect(fs.existsSync(app)).to.be.true;
   });
 });
