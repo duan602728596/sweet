@@ -22,10 +22,11 @@ async function preRender(file: string, ctx: Object, html: ArrayBuffer, serverRen
     // 读取默认模块
     // 加载es6+环境
     const register: Function = require('@babel/register');
+    const p: string = defaultInterfaceJsFilename(sweetOptions);
 
     register(registerConfig);
 
-    const file: Object | Function = require(defaultInterfaceJsFilename(sweetOptions));
+    const file: Object | Function = require(p);
 
     if('default' in file) data = await file.default(ctx, sweetOptions);
     else data = await file(ctx, sweetOptions);

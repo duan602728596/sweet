@@ -97,12 +97,12 @@ async function devServer(argv: Object = {}): Promise<void>{
   if(fs.existsSync(defaultRoutersPath(sweetOptions))){
     // 加载es6+环境
     const register: Function = require('@babel/register');
+    const p: string = defaultRoutersPath(sweetOptions);
 
     register(registerConfig);
 
     cleanRequireCache(p);
 
-    const p: string = defaultRoutersPath(sweetOptions);
     const routers: Object | Function = require(p);
 
     if('default' in routers) routers.default(router, sweetOptions);
