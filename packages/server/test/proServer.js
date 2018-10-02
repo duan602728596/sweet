@@ -39,7 +39,7 @@ function runServer(): Promise{
   });
 }
 
-describe('production server', async function(): void{
+describe('production server', function(): void{
   it('run pro server', async function(): Promise<void>{
     await runBuild();
     await runServer();

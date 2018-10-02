@@ -27,7 +27,7 @@ function runServer(): Promise{
   });
 }
 
-describe('development server', async function(): void{
+describe('development server', function(): void{
   it('run dev server', async function(): Promise<void>{
     await runServer();
 

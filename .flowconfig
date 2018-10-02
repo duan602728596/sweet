@@ -1,0 +1,17 @@
+[include]
+packages/**/src
+packages/**/test
+
+[ignore]
+.*/node_modules/.*
+.*/lib/.*
+<PROJECT_ROOT>/scripts
+
+[options]
+all=true
+emoji=true
+esproposal.decorators=ignore
+esproposal.export_star_as=enable
+esproposal.optional_chaining=enable
+module.file_ext=.js
+no_flowlib=false

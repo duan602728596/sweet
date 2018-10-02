@@ -3,7 +3,7 @@ import path from 'path';
 import { replaceTemplate, defaultInterfacePath, pathAnalyze, registerConfig, defaultInterfaceJsFilename } from './utils';
 
 // 渲染新的html
-async function preRender(file: string, ctx: Object, html: ArrayBuffer, serverRenderFile: string, sweetOptions: Object): Promise<Object>{
+async function preRender(file: string, ctx: Object, html: ArrayBuffer, serverRenderFile: string, sweetOptions: Object): Promise<string>{
   const formatFile: string = `${ path.join(defaultInterfacePath(sweetOptions), pathAnalyze(file)) }.js`;
   let data: Object = {};
 

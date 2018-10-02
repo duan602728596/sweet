@@ -5,7 +5,7 @@ import {
 } from './utils';
 
 // 渲染新的html
-async function preRender(file: string, ctx: Object, serverRenderFile: string, sweetOptions: Object): Promise<Object>{
+async function preRender(file: string, ctx: Object, serverRenderFile: string, sweetOptions: Object): Promise<string>{
   cleanRequireCache(serverRenderFile);
 
   const formatFile: string = `${ path.join(defaultInterfacePath(sweetOptions), pathAnalyze(file)) }.js`;

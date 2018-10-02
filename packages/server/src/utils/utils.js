@@ -53,7 +53,7 @@ export function cleanRequireCache(module: string): void{
 
 /* 格式化 */
 export function pathAnalyze(file: string): string{
-  const file2: [] = file.split('/');
+  const file2: [string] = file.split('/');
 
   for(let i: number = file2.length - 1; i >= 0; i--){
     const item: Object = file2[i];
