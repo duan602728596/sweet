@@ -10,10 +10,10 @@ import argvUpdate from './argvUpdate';
 
 /* 获取参数 */
 const argv: Object = yargs
-  .command('dll', '编译dll文件', (): void => null, argvDll)
-  .command('start', '开发环境', (): void => null, argvStart)
-  .command('build', '编译代码', (): void => null, argvBuild)
-  .command('server', '启动服务器', (): void => null, argvServer)
+  .command('dll', '编译dll文件', (): void => undefined, argvDll)
+  .command('start', '开发环境', (): void => undefined, argvStart)
+  .command('build', '编译代码', (): void => undefined, argvBuild)
+  .command('server', '启动服务器', (): void => undefined, argvServer)
   .command('update', '工具：检查当前目录是否有依赖需要更新', (): void => null, argvUpdate)
   .options({
     server: {

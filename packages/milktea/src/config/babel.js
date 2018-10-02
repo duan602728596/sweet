@@ -64,6 +64,7 @@ export default function(options: Object = {}, sweetOptions: Object): Object{
    */
   const { isDevelopment, ecmascript, presets, plugins, resetPresets, resetPlugins, isReact }: {
     isDevelopment: boolean,
+    ecmascript: boolan,
     presets: ?Array,
     plugins: ?Array,
     resetPresets: ?Array,

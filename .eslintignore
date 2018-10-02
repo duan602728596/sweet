@@ -1,7 +1,8 @@
-packages/**/lib
 scripts
 node_modules
 utils
+packages/**/lib
+packages/**/node_modules
 packages/**/test/test.js
 packages/**/test/build
 packages/**/test/.dll
