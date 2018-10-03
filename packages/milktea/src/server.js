@@ -9,6 +9,7 @@ export default function(sweetConfig: Object, sweetOptions: Object): Object{
    * mode { string }: 开发模式还是生产模式
    * entry { any }: 文件入口
    * output { any }: 文件出口
+   * resolve { ?Object } 解析
    */
   const sweetConfigCopy: Object = isObject(sweetConfig) ? { ...sweetConfig } : {};
   const { mode = 'development', serverEntry, serverOutput }: {

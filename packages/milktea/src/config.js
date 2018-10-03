@@ -10,13 +10,15 @@ export default function(sweetConfig: Object = {}, sweetOptions: Object): Object{
    * entry { any }: 文件入口
    * output { any }: 文件出口
    * externals { any }: 外部扩展
+   * resolve { ?Object } 解析
    */
   const sweetConfigCopy: Object = isObject(sweetConfig) ? { ...sweetConfig } : {};
-  const { mode = 'development', entry, output, externals }: {
+  const { mode = 'development', entry, output, externals, resolve }: {
     mode: string,
     entry: any,
     output: any,
-    externals: any
+    externals: any,
+    resolve: ?Object
   } = sweetConfigCopy;
   const isDevelopment: boolean = mode === 'development';
 

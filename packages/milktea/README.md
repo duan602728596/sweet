@@ -45,6 +45,7 @@ export default {
 * entry`{ any }`: 文件入口（参考webpack）
 * output`{ any }`: 文件出口（参考webpack）
 * externals`{ any }`: 外部扩展（参考webpack）
+* resolve { ?Object } 解析（参考webpack）
 * loaders: 重写loaders的默认规则
   * js`{ Object }`: 重写默认的js规则
   * sass`{ Object }`: 重写默认的sass规则
