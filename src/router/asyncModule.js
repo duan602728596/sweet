@@ -13,7 +13,7 @@ function asyncModule(loader: Function): React.Element{
     loader,
     loading: SwitchLoading,
     render(Module: Object, props: Object): React.Element{
-      const AsyncModule: Function = Module.default;
+      const AsyncModule: React.Element = Module.default;
       /* 异步注入reducer */
       if('reducer' in Module){
         injectReducers(Module.reducer);
