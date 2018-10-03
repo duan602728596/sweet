@@ -12,10 +12,11 @@ export default function(sweetConfig: Object, sweetOptions: Object): Object{
    * resolve { ?Object } 解析
    */
   const sweetConfigCopy: Object = isObject(sweetConfig) ? { ...sweetConfig } : {};
-  const { mode = 'development', serverEntry, serverOutput }: {
+  const { mode = 'development', serverEntry, serverOutput, resolve }: {
     mode: string,
     serverEntry: any,
-    serverOutput: any
+    serverOutput: any,
+    resolve: ?Object
   } = sweetConfigCopy;
   const isDevelopment: boolean = mode === 'development';
 
@@ -32,6 +33,7 @@ export default function(sweetConfig: Object, sweetOptions: Object): Object{
     entry: serverEntry,
     output: serverOutput,
     devtool: isDevelopment ? 'module-source-map' : 'none',
+    resolve,
     module: { rules: loaders(sweetConfigCopy, sweetOptions) },
     plugins: plugins(sweetConfigCopy, sweetOptions),
     optimization: optimization(sweetConfigCopy, sweetOptions),

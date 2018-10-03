@@ -33,6 +33,7 @@ export default function(sweetConfig: Object = {}, sweetOptions: Object): Object{
     entry,
     output,
     externals,
+    resolve,
     devtool: isDevelopment ? 'module-source-map' : 'none',
     module: { rules: loaders(sweetConfigCopy, sweetOptions) },
     plugins: plugins(sweetConfigCopy, sweetOptions),
