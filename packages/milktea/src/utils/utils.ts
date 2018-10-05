@@ -14,7 +14,6 @@ interface RegisterConfig{
   plugins: Array<string>;
   cache: boolean;
   babelrc: boolean;
-  only: Array<RegExp>;
 }
 
 export const registerConfig: RegisterConfig = {
@@ -39,8 +38,7 @@ export const registerConfig: RegisterConfig = {
     '@babel/plugin-proposal-class-properties'
   ],
   cache: false,
-  babelrc: false,
-  only: [/\.sweetrc\.js/]
+  babelrc: false
 };
 
 /* 格式化输出 */

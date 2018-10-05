@@ -13,5 +13,6 @@ export interface Argv{
   serverRender: boolean;
   serverRenderFile: string;
   registry: number;
+  config: string;
   __DEV__: boolean;
 }

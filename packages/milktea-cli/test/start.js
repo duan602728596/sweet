@@ -7,18 +7,19 @@ const app: string = path.join(__dirname, 'build/app.js');
 
 function run(): Promise{
   const cli: string = path.join(__dirname, '../lib/cli');
+  const config: string = path.join(__dirname, './.sweetrc.js');
 
   return new Promise((resolve: Function, reject: Function): void=>{
-    const child: Object = child_process.spawn('node', [cli, 'start'], {
-      cwd: __dirname,
-      env: {
-        NODE_ENV: 'development'
-      }
+    const child: Object = child_process.spawn('node', [cli, 'start', '--config', config], {
+      cwd: __dirname
     });
 
     child.on('close', (code: ArrayBuffer): void=>{
       resolve();
     });
+
+    child.stdout.on('data', (): void => undefined);
+    child.stderr.on('data', (): void => undefined);
 
     // 保证文件编译后结束进程
     const timer: number = setInterval((): void=>{

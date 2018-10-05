@@ -17,7 +17,6 @@ const argv: object = yargs
   .command('update', '工具：检查当前目录是否有依赖需要更新', (): void => null, argvUpdate)
   .options({
     server: {
-      alias: 's',
       describe: '是否开启一个服务器',
       type: 'boolean'
     },
@@ -44,6 +43,10 @@ const argv: object = yargs
     registry: {
       describe: 'Npm包信息地址。0：Npm，1：Yarn，2：CNpm',
       type: 'number'
+    },
+    config: {
+      describe: '配置文件的地址',
+      type: 'string'
     },
     __DEV__: {
       describe: '__DEV__',

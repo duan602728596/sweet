@@ -4,8 +4,11 @@ yarn-error.log
 package-lock.json
 npm-debug.log
 test
+.dll
+.babelCache
 test/.dll
 test/.babelCache
 test/build
+test/.sweetrc.build.js
 tsconfig.json
 .idea

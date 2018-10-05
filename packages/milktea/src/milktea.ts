@@ -13,8 +13,14 @@ const sweetOptions: SweetOptions = {
 };
 
 /* 获取配置文件 */
-function getSweetConfig(): SweetConfig{
-  const sweetConfigFile: string = path.join(sweetOptions.basicPath, '.sweetrc.js');
+function getSweetConfig(configFile: string): SweetConfig{
+  let sweetConfigFile: string;
+
+  if(path.isAbsolute(configFile)){
+    sweetConfigFile = configFile;
+  }else{
+    sweetConfigFile = path.join(sweetOptions.basicPath, configFile || '.sweetrc.js');
+  }
 
   if(fs.existsSync(sweetConfigFile)){
     // 加载es6+环境
@@ -35,14 +41,19 @@ export function callback(err: any, stats: { toString: Function }): void{
   }));
 }
 
-/* webpack配置 */
-export function config(sweetConfig: SweetConfig, mode: string): object{
+/**
+ * webpack配置
+ * @param { Object } sweetConfig: webpack配置，覆盖文件
+ * @param { string } mode: 开发环境，覆盖配置的开发环境
+ * @param { string } configFile: 新的配置文件地址
+ */
+export function config(sweetConfig: SweetConfig, mode: string, configFile: string): object{
   let config: SweetConfig;
 
   if(isObject(sweetConfig)){
     config = sweetConfig;
   }else{
-    config = getSweetConfig();
+    config = getSweetConfig(configFile);
   }
 
   if(mode){
@@ -52,14 +63,19 @@ export function config(sweetConfig: SweetConfig, mode: string): object{
   return webpackConfig(config, sweetOptions);
 }
 
-/* 服务器端渲染的webpack配置 */
-export function serverRenderConfig(sweetConfig: SweetConfig, mode: string): object{
+/**
+ * 服务器端渲染的webpack配置
+ * @param { Object } sweetConfig: webpack配置，覆盖文件
+ * @param { string } mode: 开发环境，覆盖配置的开发环境
+ * @param { string } configFile: 新的配置文件地址
+ */
+export function serverRenderConfig(sweetConfig: SweetConfig, mode: string, configFile: string): object{
   let config: SweetConfig;
 
   if(isObject(sweetConfig)){
     config = sweetConfig;
   }else{
-    config = getSweetConfig();
+    config = getSweetConfig(configFile);
   }
 
   if(mode){
@@ -69,14 +85,18 @@ export function serverRenderConfig(sweetConfig: SweetConfig, mode: string): obje
   return serverConfig(config, sweetOptions);
 }
 
-/* webpack的dll文件配置 */
-export function dll(sweetConfig: SweetConfig): object{
+/**
+ * webpack的dll文件配置
+ * @param { Object } sweetConfig: webpack配置，覆盖文件
+ * @param { string } configFile: 新的配置文件地址
+ */
+export function dll(sweetConfig: SweetConfig, configFile: string): object{
   let config: SweetConfig;
 
   if(isObject(sweetConfig)){
     config = sweetConfig;
   }else{
-    config = getSweetConfig();
+    config = getSweetConfig(configFile);
   }
 
   return webpackDll(config, sweetOptions);

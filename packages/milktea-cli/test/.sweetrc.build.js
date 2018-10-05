@@ -8,6 +8,6 @@ export default {
   },
   output: {
     path: path.join(__dirname, 'build'),
-    filename: '[name].js'
+    filename: '[name].build.js'
   }
 };

@@ -5,26 +5,19 @@ import { expect } from 'chai';
 
 function run(): Promise{
   const cli: string = path.join(__dirname, '../lib/cli');
+  const config: string = path.join(__dirname, './.sweetrc.build.js');
 
   return new Promise((resolve: Function, reject: Function): void=>{
-    const child: Object = child_process.spawn('node', [cli, 'build'], {
-      cwd: __dirname,
-      env: {
-        NODE_ENV: 'production'
-      }
+    const child: Object = child_process.spawn('node', [cli, 'build', '--config', config], {
+      cwd: __dirname
     });
 
     child.on('close', (code: ArrayBuffer): void=>{
       resolve();
     });
 
-    child.stderr.on('data', (code: ArrayBuffer): void=>{
-      console.error(code.toString());
-    });
-
-    child.on('error', (error: Error): void=>{
-      console.error(error);
-    });
+    child.stdout.on('data', (): void => undefined);
+    child.stderr.on('data', (): void => undefined);
   });
 }
 

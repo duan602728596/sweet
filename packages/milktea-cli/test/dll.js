@@ -5,15 +5,19 @@ import { expect } from 'chai';
 
 function run(): Promise{
   const cli: string = path.join(__dirname, '../lib/cli');
+  const config: string = path.join(__dirname, './.sweetrc.js');
 
   return new Promise((resolve: Function, reject: Function): void=>{
-    const child: Object = child_process.spawn('node', [cli, 'dll'], {
+    const child: Object = child_process.spawn('node', [cli, 'dll', '--config', config], {
       cwd: __dirname
     });
 
     child.on('close', (code: ArrayBuffer): void=>{
       resolve();
     });
+
+    child.stdout.on('data', (): void => undefined);
+    child.stderr.on('data', (): void => undefined);
   });
 }
 
