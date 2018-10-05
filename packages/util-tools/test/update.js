@@ -1,6 +1,6 @@
 import path from 'path';
 import { expect } from 'chai';
-import update from '../src/update';
+import update from '../lib/update';
 
 describe('update', function(): void{
   it('update', async function(): Promise<void>{

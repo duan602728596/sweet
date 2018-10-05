@@ -1,13 +1,14 @@
 /* 查看升级 */
-import path from 'path';
-import axios from 'axios';
+import * as path from 'path';
+import axios, { AxiosResponse } from 'axios';
 
 /**
  * 对象转数组
  * @param { Object } obj: 对象
  */
-function objectToArray(obj: Object): Array{
-  const resultArr: [] = [];
+function objectToArray(obj: object): Array<any>{
+  const resultArr: Array<{ name: string, version: string }> = [];
+  // @ts-ignore
   for(const key: string in obj){
     resultArr.push({
       name: key,         // 包的名称
@@ -22,7 +23,7 @@ function objectToArray(obj: Object): Array{
  * @param { string } packageName: npm包名
  * @param { number } registry
  */
-function requestPackageInformation(packageName: string, registry: number): Promise{
+function requestPackageInformation(packageName: string, registry: number): Promise<any>{
   // 用来判断当前的npm包信息地址
   const packageHost: string[] = [
     'https://registry.npmjs.org',   // npm
@@ -37,7 +38,7 @@ function requestPackageInformation(packageName: string, registry: number): Promi
       Accept: 'application/vnd.npm.install-v1+json; q=1.0, application/json; q=0.8, */*'
     },
     validateStatus: (): boolean => true
-  }).then((res: Object): string => res.data);
+  }).then((res: AxiosResponse): string => res.data);
 }
 
 /**
@@ -45,7 +46,7 @@ function requestPackageInformation(packageName: string, registry: number): Promi
  * @param { string } oldVersion: 旧版本
  * @param { string } newVersion: 新版本
  */
-function isVersionEqual(oldVersion: ?string, newVersion: ?string): boolean{
+function isVersionEqual(oldVersion: string, newVersion: string): boolean{
   if(newVersion === null || newVersion === undefined){
     return false;
   }else if(/^(>=?|<=?|~|\^).*$/.test(oldVersion)){
@@ -62,7 +63,7 @@ function isVersionEqual(oldVersion: ?string, newVersion: ?string): boolean{
  * @param { string } newVersion: 新版本
  */
 function formatVersion(oldVersion: string, newVersion: string): string{
-  const iText: string = oldVersion.match(/^(>=?|<=?|~|\^)/);
+  const iText: Array<string> = oldVersion.match(/^(>=?|<=?|~|\^)/);
   return ' '.repeat(iText ? iText[0].length : 0) + newVersion;
 }
 
@@ -71,13 +72,23 @@ function formatVersion(oldVersion: string, newVersion: string): string{
  * @param { Array } packageArray
  * @param { number } registry
  */
-async function getVersionFromNpm(packageArray: [], registry: number): Promise<void>{
+interface PackageArrayItem{
+  version: string;
+  name: string;
+  latest: string;
+  next: string;
+  rc: string;
+  canary: string;
+}
+
+async function getVersionFromNpm(packageArray: Array<PackageArrayItem>, registry: number): Promise<void>{
   try{
     const depQueue: [] = [];
     for(let i: number = 0, j: number = packageArray.length; i < j; i++){
+      // @ts-ignore
       depQueue.push(requestPackageInformation(packageArray[i].name, registry));
     }
-    const version: string[] = await Promise.all(depQueue);
+    const version: Array<any> = await Promise.all(depQueue);
     for(let i: number = 0, j: number = packageArray.length; i < j; i++){
       if('dist-tags' in version[i] && 'latest' in version[i]['dist-tags']){
         packageArray[i].latest = version[i]['dist-tags'].latest;
@@ -101,10 +112,10 @@ async function getVersionFromNpm(packageArray: [], registry: number): Promise<vo
  * 输出console.log文本
  * @param { Array } packageArray
  */
-function consoleLogText(packageArray: []): string{
+function consoleLogText(packageArray: Array<any>): string{
   let consoleText: string = '';
   for(let i: number = 0, j: number = packageArray.length; i < j; i++){
-    const item: Object = packageArray[i];
+    const item: PackageArrayItem = packageArray[i];
     const isLatestNew: boolean = isVersionEqual(item.version, item.latest);
     const isNextNew: boolean = isVersionEqual(item.version, item.next);
     const isRcNew: boolean = isVersionEqual(item.version, item.rc);
@@ -132,9 +143,9 @@ function consoleLogText(packageArray: []): string{
 async function start(folder: string, registry: number): Promise<void>{
   try{
     // 依赖
-    const packageJson: Object = require(path.join(folder, 'package.json'));
-    const dependencies: ?[] = 'dependencies' in packageJson ? objectToArray(packageJson.dependencies) : null;
-    const devDependencies: ?[] = 'devDependencies' in packageJson ? objectToArray(packageJson.devDependencies) : null;
+    const packageJson: { dependencies: object, devDependencies: object } = require(path.join(folder, 'package.json'));
+    const dependencies: Array<any> = 'dependencies' in packageJson ? objectToArray(packageJson.dependencies) : null;
+    const devDependencies: Array<any> = 'devDependencies' in packageJson ? objectToArray(packageJson.devDependencies) : null;
 
     // 获取dep和dev的最新版本号
     if(dependencies){
