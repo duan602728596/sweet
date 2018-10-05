@@ -1,27 +1,26 @@
 /* 生产环境 服务器 */
-import http from 'http';
-import http2 from 'http2';
-import fs from 'fs';
-import process from 'process';
-import path from 'path';
-import zlib from 'zlib';
-import Koa from 'koa';
-import Router from 'koa-router';
-import body from 'koa-body';
-import convert from 'koa-convert';
-import compress from 'koa-compress';
-import staticCache from 'koa-static-cache';
-import mime from 'mime-types';
-import { readFile, defaultRoutersPath, registerConfig } from './utils/utils';
+import * as http from 'http';
+import * as http2 from 'http2';
+import * as fs from 'fs';
+import * as process from 'process';
+import * as path from 'path';
+import * as zlib from 'zlib';
+import * as Koa from 'koa';
+import * as Router from 'koa-router';
+import * as body from 'koa-body';
+import * as convert from 'koa-convert';
+import * as compress from 'koa-compress';
+import * as staticCache from 'koa-static-cache';
+import * as mime from 'mime-types';
+import { readFile, defaultRoutersPath, registerConfig, requireModule } from './utils/utils';
 import preRender from './utils/preProRender';
+import { SweetOptions } from './utils/types';
 
 const app: Koa = new Koa();
 const router: Router = new Router();
 
 /* 基础配置 */
-const sweetOptions: {
-  basicPath: string
-} = {
+const sweetOptions: SweetOptions = {
   basicPath: process.cwd() // 主目录
 };
 
@@ -32,32 +31,36 @@ const sweetOptions: {
  * serverRender { boolean }: 开启服务器端渲染
  * serverRenderFile { string }: 服务器端渲染的主模块文件
  */
-type proServerType = {
-  httpPort: number,
-  httpsPort: number,
-  serverRoot: string,
-  serverRender: boolean,
-  serverRenderFile: string
-};
+interface proServerType{
+  httpPort?: number;
+  httpsPort?: number;
+  serverRoot?: string;
+  serverRender?: boolean;
+  serverRenderFile?: string;
+}
 
-async function proServer(argv: Object = {}): Promise<void>{
+async function proServer(argv: proServerType = {}): Promise<void>{
   const {
     httpPort = 5052,
     httpsPort = 5053,
     serverRoot = 'build',
     serverRender,
     serverRenderFile = 'build/server.js'
-  }: proServerType = argv;
+  } = argv;
 
   /* 将端口加入到服务端 */
   sweetOptions.httpPort = httpPort;
   sweetOptions.httpsPort = httpsPort;
 
-  const formatServerRoot: string = path.isAbsolute(serverRoot) ? serverRoot : path.join(sweetOptions.basicPath, serverRoot);
-  let formatServerRenderFile: ?string = null;
+  const formatServerRoot: string = path.isAbsolute(serverRoot)
+    ? serverRoot
+    : path.join(sweetOptions.basicPath, serverRoot);
+  let formatServerRenderFile: string;
 
   if(serverRender){
-    formatServerRenderFile = path.isAbsolute(serverRenderFile) ? serverRenderFile : path.join(sweetOptions.basicPath, serverRenderFile);
+    formatServerRenderFile = path.isAbsolute(serverRenderFile)
+      ? serverRenderFile
+      : path.join(sweetOptions.basicPath, serverRenderFile);
   }
 
   /* post body */
@@ -84,8 +87,8 @@ async function proServer(argv: Object = {}): Promise<void>{
     .use(router.allowedMethods());
 
   /* index路由 */
-  router.get(/^\/[^._\-]*$/, async(ctx: Object, next: Function): Promise<void>=>{
-    const body: ArrayBuffer = await readFile(path.join(formatServerRoot, 'index.html'));
+  router.get(/^\/[^._\-]*$/, async(ctx: Koa.Context, next: Function): Promise<void>=>{
+    const body: Buffer = await readFile(path.join(formatServerRoot, 'index.html'));
 
     ctx.status = 200;
     ctx.type = 'text/html';
@@ -95,7 +98,7 @@ async function proServer(argv: Object = {}): Promise<void>{
   });
 
   /* 静态文件 */
-  router.get(/^.*\.[a-zA-Z0-9]+$/, async(ctx: Object, next: Function): Promise<void>=>{
+  router.get(/^.*\.[a-zA-Z0-9]+$/, async(ctx: Koa.Context, next: Function): Promise<void>=>{
     const pathFile: string = ctx.path;
     const file: string = path.join(formatServerRoot, pathFile);
 
@@ -113,15 +116,14 @@ async function proServer(argv: Object = {}): Promise<void>{
   /* 本地服务 */
   if(fs.existsSync(defaultRoutersPath(sweetOptions))){
     // 加载es6+环境
-    const register: Function = require('@babel/register');
+    const register: Function = requireModule('@babel/register');
     const p: string = defaultRoutersPath(sweetOptions);
 
     register(registerConfig);
 
-    const routers: Object | Function = require(p);
+    const routers: Function = requireModule(p);
 
-    if('default' in routers) routers.default(router, sweetOptions);
-    else routers(router, sweetOptions);
+    routers(router, sweetOptions);
   }
 
   /* http服务 */
@@ -133,8 +135,8 @@ async function proServer(argv: Object = {}): Promise<void>{
   const crt: string = path.join(sweetOptions.basicPath, './server.crt');
 
   if(fs.existsSync(key) && fs.existsSync(crt)){
-    const keyString: string | ArrayBuffer = await readFile(key);
-    const crtString: string | ArrayBuffer = await readFile(crt);
+    const keyString: string | Buffer = await readFile(key);
+    const crtString: string | Buffer = await readFile(crt);
     const httpsConfig: Object = {
       allowHTTP1: true,
       key: keyString,

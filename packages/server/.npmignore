@@ -4,6 +4,7 @@ yarn-error.log
 package-lock.json
 npm-debug.log
 test
+tsconfig.json
 .idea
 .babelCache
 .terserCache

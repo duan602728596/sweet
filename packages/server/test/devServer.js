@@ -3,7 +3,7 @@ import { expect } from 'chai';
 import axios from 'axios';
 import webpack from 'webpack';
 import { config as webpackConfig } from '@sweet/milktea';
-import devServer from '../src/devServer';
+import devServer from '../lib/devServer';
 
 const compiler: Object = webpack(webpackConfig({
   entry: {

@@ -1,11 +1,12 @@
-import fs from 'fs';
-import path from 'path';
-import process from 'process';
+import * as fs from 'fs';
+import * as path from 'path';
+import * as process from 'process';
+import { SweetOptions } from './types';
 
 /* 读取文件 */
-export function readFile(file: string): Promise{
+export function readFile(file: string): Promise<any>{
   return new Promise((resolve: Function, reject: Function): void=>{
-    fs.readFile(file, (err: Error, data: ArrayBuffer): void=>{
+    fs.readFile(file, (err: Error, data: Buffer): void=>{
       if(err){
         reject(err);
       }else{
@@ -27,9 +28,10 @@ export function formatTemplateData(data: any): any{
 }
 
 /* 替换模板内的占位符 */
-export function replaceTemplate(template: string, data: Object = {}): string{
+export function replaceTemplate(template: string, data: any): string{
   let newTp: string = template;
 
+  // @ts-ignore
   for(const key: string in data){
     const reg: RegExp = new RegExp(`{%\\s*${ key }\\s*%}`, 'g');
     newTp = newTp.replace(reg, formatTemplateData(data[key]));
@@ -44,7 +46,9 @@ export function replaceTemplate(template: string, data: Object = {}): string{
 export function cleanRequireCache(module: string): void{
   const modulePath: string = require.resolve(module);
 
+  // @ts-ignore
   if(module.parent){
+    // @ts-ignore
     module.parent.children.splice(module.parent.children.indexOf(module), 1);
   }
 
@@ -53,10 +57,10 @@ export function cleanRequireCache(module: string): void{
 
 /* 格式化 */
 export function pathAnalyze(file: string): string{
-  const file2: [string] = file.split('/');
+  const file2: Array<string> = file.split('/');
 
   for(let i: number = file2.length - 1; i >= 0; i--){
-    const item: Object = file2[i];
+    const item: string = file2[i];
 
     if(item === ''){
       file2.splice(i, 1);
@@ -73,23 +77,38 @@ export function pathAnalyze(file: string): string{
 }
 
 /* 设置默认文件地址 */
-const cwd: string = process.cwd();
-export const defaultInterfacePath: Function = (sweetOptions: Object): string => path.join(sweetOptions.basicPath, 'service/interface');
-export const defaultInterfaceJsFilename: Function = (sweetOptions: Object): string => path.join(defaultInterfacePath(sweetOptions), 'default.js');
-export const defaultRoutersPath: Function = (sweetOptions: Object): string => path.join(sweetOptions.basicPath, 'service/routers.js');
+export const defaultInterfacePath: Function = (sweetOptions: SweetOptions): string=>{
+  return path.join(sweetOptions.basicPath, 'service/interface');
+};
+
+export const defaultInterfaceJsFilename: Function = (sweetOptions: SweetOptions): string=>{
+  return path.join(defaultInterfacePath(sweetOptions), 'default.js');
+};
+
+export const defaultRoutersPath: Function = (sweetOptions: SweetOptions): string=>{
+  return path.join(sweetOptions.basicPath, 'service/routers.js');
+};
 
 /* @babel/register配置 */
-export const registerConfig: Object = {
+interface RegisterConfig{
+  presets: Array<any>;
+  plugins: Array<string>;
+  cache: boolean;
+  babelrc: boolean;
+  only: Array<RegExp>;
+}
+
+export const registerConfig: RegisterConfig = {
   presets: [
     [
       '@babel/preset-env',
       {
-        'targets': {
-          'browsers': ['node 6']
+        targets: {
+          browsers: ['node 6']
         },
-        'debug': false,
-        'modules': 'commonjs',
-        'useBuiltIns': 'usage'
+        debug: false,
+        modules: 'commonjs',
+        useBuiltIns: 'usage'
       }
     ],
     '@babel/preset-flow'
@@ -104,3 +123,10 @@ export const registerConfig: Object = {
   babelrc: false,
   only: [/[\\/]service[\\/]/]
 };
+
+/* 模块导入 */
+export function requireModule(id: string): any{
+  const module: { default: any } | any = require(id);
+
+  return 'default' in module ? module.default : module;
+}

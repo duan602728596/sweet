@@ -3,7 +3,7 @@ import { expect } from 'chai';
 import axios from 'axios';
 import webpack from 'webpack';
 import { config as webpackConfig, callback } from '@sweet/milktea';
-import proServer from '../src/proServer';
+import proServer from '../lib/proServer';
 
 const compiler: Object = webpack(webpackConfig({
   entry: {

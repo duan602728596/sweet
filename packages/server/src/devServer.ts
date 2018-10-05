@@ -1,24 +1,24 @@
 /* 开发环境 服务器 */
-import http from 'http';
-import http2 from 'http2';
-import fs from 'fs';
-import process from 'process';
-import path from 'path';
-import Koa from 'koa';
-import Router from 'koa-router';
-import body from 'koa-body';
-import mime from 'mime-types';
-import koaWebpack from 'koa-webpack';
-import { readFile, defaultRoutersPath, cleanRequireCache, registerConfig } from './utils/utils';
+import * as http from 'http';
+import * as http2 from 'http2';
+import * as fs from 'fs';
+import * as process from 'process';
+import * as path from 'path';
+import * as Koa from 'koa';
+import * as Router from 'koa-router';
+import * as body from 'koa-body';
+import * as mime from 'mime-types';
+import * as koaWebpack from 'koa-webpack';
+import * as webpack from 'webpack';
+import { readFile, defaultRoutersPath, cleanRequireCache, registerConfig, requireModule } from './utils/utils';
 import preRender from './utils/preDevRender';
+import { SweetOptions } from './utils/types';
 
 const app: Koa = new Koa();
 const router: Router = new Router();
 
 /* 基础配置 */
-const sweetOptions: {
-  basicPath: string
-} = {
+const sweetOptions: SweetOptions = {
   basicPath: process.cwd() // 主目录
 };
 
@@ -29,28 +29,28 @@ const sweetOptions: {
  * serverRender { boolean }: 开启服务器端渲染
  * serverRenderFile { string }: 服务器端渲染的主模块文件
  */
-type devServerType = {
-  compiler: Object,
-  httpPort: number,
-  httpsPort: number,
-  serverRender: boolean,
-  serverRenderFile: string
-};
+interface devServerType{
+  compiler?: webpack.Completer;
+  httpPort?: number;
+  httpsPort?: number;
+  serverRender?: boolean;
+  serverRenderFile?: string;
+}
 
-async function devServer(argv: Object = {}): Promise<void>{
+async function devServer(argv: devServerType = {}): Promise<void>{
   const {
     compiler,
     httpPort = 5050,
     httpsPort = 5051,
     serverRender,
     serverRenderFile = 'build/server.js'
-  }: devServerType = argv;
+  } = argv;
 
   /* 将端口加入到服务端 */
   sweetOptions.httpPort = httpPort;
   sweetOptions.httpsPort = httpsPort;
 
-  let formatServerRenderFile: ?string = null;
+  let formatServerRenderFile: string;
 
   if(serverRender){
     formatServerRenderFile = path.isAbsolute(serverRenderFile)
@@ -66,7 +66,7 @@ async function devServer(argv: Object = {}): Promise<void>{
     .use(router.allowedMethods());
 
   /* webpack中间件 */
-  const middleware: Function = await koaWebpack({
+  const middleware: koaWebpack.Middleware<any> = await koaWebpack({
     compiler,
     hotClient: {
       host: {
@@ -79,11 +79,12 @@ async function devServer(argv: Object = {}): Promise<void>{
   app.use(middleware);
 
   /* webpack 重定向 */
-  router.get(/^\/[^._\-]*$/, async(ctx: Object, next: Function): Promise<void>=>{
+  router.get(/^\/[^._\-]*$/, async(ctx: Koa.Context, next: Function): Promise<void>=>{
     const file: string = ctx.path;
-    const mimeType: string = mime.lookup(file);
+    const mimeType: string | boolean = mime.lookup(file);
     if(file !== '/' && mimeType === false){
       ctx.path = '/';
+      // @ts-ignore: 保存path属性
       ctx._path = file;
     }
     await next();
@@ -97,17 +98,16 @@ async function devServer(argv: Object = {}): Promise<void>{
   /* 本地服务 */
   if(fs.existsSync(defaultRoutersPath(sweetOptions))){
     // 加载es6+环境
-    const register: Function = require('@babel/register');
+    const register: Function = requireModule('@babel/register');
     const p: string = defaultRoutersPath(sweetOptions);
 
     register(registerConfig);
 
     cleanRequireCache(p);
 
-    const routers: Object | Function = require(p);
+    const routers: Function = requireModule(p);
 
-    if('default' in routers) routers.default(router, sweetOptions);
-    else routers(router, sweetOptions);
+    routers(router, sweetOptions);
   }
 
   /* http服务 */
@@ -120,8 +120,8 @@ async function devServer(argv: Object = {}): Promise<void>{
 
   // 判断是否有证书
   if(fs.existsSync(key) && fs.existsSync(crt)){
-    const keyString: string | ArrayBuffer = await readFile(key);
-    const crtString: string | ArrayBuffer = await readFile(crt);
+    const keyString: string | Buffer = await readFile(key);
+    const crtString: string | Buffer = await readFile(crt);
     const httpsConfig: Object = {
       allowHTTP1: true,
       key: keyString,
