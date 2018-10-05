@@ -7,4 +7,5 @@ test
 test/.dll
 test/.babelCache
 test/build
+tsconfig.json
 .idea

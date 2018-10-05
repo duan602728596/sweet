@@ -1,6 +1,6 @@
 import process from 'process';
 import { expect } from 'chai';
-import serverConfig from '../src/server';
+import serverConfig from '../lib/server';
 import {
   expectDevtool, expectModule, expectDevServerPlugins, expectProServerPlugins, expectDevOptimization, expectProOptimization
 } from './utils/expectFunction';

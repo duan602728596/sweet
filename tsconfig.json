@@ -1,0 +1,9 @@
+{
+  "compilerOptions": {
+    "alwaysStrict": true,
+    "moduleResolution": "node",
+    "locale": "zh-CN",
+    "module": "commonjs",
+    "target": "ES6"
+  }
+}

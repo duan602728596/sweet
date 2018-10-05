@@ -1,6 +1,6 @@
 import process from 'process';
 import { expect } from 'chai';
-import loaders from '../src/loaders/loaders';
+import loaders from '../lib/loaders/loaders';
 
 const sweetOptions: Object = {
   basicPath: process.cwd()

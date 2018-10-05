@@ -4,6 +4,6 @@ const babelRegisterConfig = require('../../../utils/babelRegisterConfig');
 register(babelRegisterConfig);
 
 /* test */
-require('./dll');
+// require('./dll');
 require('./build');
-require('./start');
+// require('./start');

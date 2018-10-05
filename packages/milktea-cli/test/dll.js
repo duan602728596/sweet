@@ -4,12 +4,14 @@ import path from 'path';
 import { expect } from 'chai';
 
 function run(): Promise{
+  const cli: string = path.join(__dirname, '../lib/cli');
+
   return new Promise((resolve: Function, reject: Function): void=>{
-    const child: Object = child_process.spawn('node', ['../lib/cli', 'dll'], {
+    const child: Object = child_process.spawn('node', [cli, 'dll'], {
       cwd: __dirname
     });
 
-    child.on('close', (code: string): void=>{
+    child.on('close', (code: ArrayBuffer): void=>{
       resolve();
     });
   });

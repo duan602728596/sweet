@@ -42,9 +42,10 @@ export default {
 ### 配置项
 
 * mode`{ string }`: 开发模式还是生产模式
+* dll`{ Array<string> }`: 配置需要编译的dll模块
 * entry`{ any }`: 文件入口（参考webpack）
 * output`{ any }`: 文件出口（参考webpack）
-* externals`{ any }`: 外部扩展（参考webpack）
+* externals`{ ?Object }`: 外部扩展（参考webpack）
 * resolve { ?Object } 解析（参考webpack）
 * loaders: 重写loaders的默认规则
   * js`{ Object }`: 重写默认的js规则

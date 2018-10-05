@@ -1,7 +1,7 @@
 import process from 'process';
 import { expect } from 'chai';
 import webpack from 'webpack';
-import webpackDll from '../src/dll';
+import webpackDll from '../lib/dll';
 import { expectDevtool } from './utils/expectFunction';
 
 const sweetOptions: Object = {

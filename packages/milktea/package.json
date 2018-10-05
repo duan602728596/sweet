@@ -1,10 +1,10 @@
 {
   "name": "@sweet/milktea",
-  "version": "0.0.0-alpha.1",
+  "version": "0.0.0-alpha.2",
   "main": "lib/milktea.js",
   "scripts": {
-    "start": "cross-env NODE_ENV=development npm run clean && babel ./src --watch --out-dir=\"./lib\" --config-file=\"../../.babelrc\"",
-    "build": "cross-env NODE_ENV=production npm run clean && babel ./src --out-dir=\"./lib\" --config-file=\"../../.babelrc\"",
+    "start": "cross-env NODE_ENV=development npm run clean && tsc --watch",
+    "build": "cross-env NODE_ENV=production npm run clean && tsc",
     "clean": "rimraf ./lib",
     "test": "mocha ./test/test.js --timeout 180000"
   },
@@ -49,6 +49,7 @@
     "chai": "^4.2.0",
     "cross-env": "^5.2.0",
     "mocha": "^5.2.0",
-    "rimraf": "^2.6.2"
+    "rimraf": "^2.6.2",
+    "typescript": "^3.1.1"
   }
 }

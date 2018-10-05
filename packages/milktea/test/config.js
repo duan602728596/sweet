@@ -1,6 +1,6 @@
 import process from 'process';
 import { expect } from 'chai';
-import webpackConfig from '../src/config';
+import webpackConfig from '../lib/config';
 import {
   expectDevtool, expectModule, expectDevPlugins, expectProPlugins, expectDevOptimization, expectProOptimization
 } from './utils/expectFunction';
