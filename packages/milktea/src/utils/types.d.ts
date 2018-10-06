@@ -38,30 +38,30 @@ export interface SweetConfig{
   rules?: Array<any>;
   plugins?: Array<any>;
   js?: {
-    ecmascript?: boolean,
-    presets?: Array<any>,
-    plugins?: Array<any>,
-    resetPresets?: Array<any>,
-    resetPlugins?: Array<any>,
-    exclude?: RegExp,
-    include?: RegExp
+    ecmascript?: boolean;
+    presets?: Array<any>;
+    plugins?: Array<any>;
+    resetPresets?: Array<any>;
+    resetPlugins?: Array<any>;
+    exclude?: RegExp;
+    include?: RegExp;
   };
   sass?: {
-    publicPath?: string,
-    modules?: boolean,
-    exclude?: RegExp,
-    include?: RegExp
+    publicPath?: string;
+    modules?: boolean;
+    exclude?: RegExp;
+    include?: RegExp;
   };
   css?: {
-    publicPath?: string,
-    modules?: boolean,
-    exclude?: RegExp,
-    include?: RegExp,
-    modifyVars?: object
+    publicPath?: string;
+    modules?: boolean;
+    exclude?: RegExp;
+    include?: RegExp;
+    modifyVars?: object;
   };
   html?: Array<{
     template: string;
-    excludeChunks: Array<string>
+    excludeChunks: Array<string>;
   }>;
   serverRender?: boolean;
   serverEntry?: any;
@@ -77,13 +77,13 @@ export interface WebpackConfig{
   externals?: object;
   resolve?: object;
   module?: {
-    rules: Array<any>
+    rules: Array<any>;
   };
   plugins?: Array<any>;
   optimization?: object;
   target?: string;
   node?: {
     __filename: boolean;
-    __dirname: boolean
+    __dirname: boolean;
   };
 }

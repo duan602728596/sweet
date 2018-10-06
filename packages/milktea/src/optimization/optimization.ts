@@ -5,8 +5,8 @@ import { SweetConfig, SweetOptions } from '../utils/types';
 
 interface Optimization{
   splitChunks?: {
-    chunks: string,
-    automaticNameDelimiter: string
+    chunks: string;
+    automaticNameDelimiter: string;
   };
   minimizer?: [TerserPlugin];
 }
