@@ -5,7 +5,8 @@
     "clean": "node ./scripts/clean",
     "update": "milktea update",
     "update-dev": "milktea update --__DEV__",
-    "eslint": "eslint ./packages"
+    "eslint": "eslint ./packages",
+    "tslint": "tslint --project ./"
   },
   "devDependencies": {
     "@babel/core": "^7.1.2",
@@ -29,7 +30,8 @@
   },
   "pre-commit": {
     "run": [
-      "eslint"
+      "eslint",
+      "tslint"
     ]
   }
 }
