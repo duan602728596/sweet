@@ -16,7 +16,7 @@ const sweetOptions: SweetOptions = {
 function getSweetConfig(configFile: string): SweetConfig{
   let sweetConfigFile: string;
 
-  if(path.isAbsolute(configFile)){
+  if(typeof configFile === 'string' && path.isAbsolute(configFile)){
     sweetConfigFile = configFile;
   }else{
     sweetConfigFile = path.join(sweetOptions.basicPath, configFile || '.sweetrc.js');
