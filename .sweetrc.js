@@ -40,8 +40,7 @@ export default {
     modules: false,
     modifyVars: {
       // https://github.com/iview/iview/blob/3.x/src/styles/custom.less
-      '@primary-color': '#58b957',
-      '@layout-header-background': '#58b957'
+      '@primary-color': '#58b957'
     },
     include: /node_modules[\\/]iview/
   },
