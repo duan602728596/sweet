@@ -25,7 +25,7 @@ async function preRender(file: string, ctx: Koa.Context, serverRenderFile: strin
 
     const file: Function = requireModule(formatFile);
 
-    data = file(ctx, sweetOptions);
+    data = await file(ctx, sweetOptions);
   }else if(fs.existsSync(defaultInterfaceJsFilename(sweetOptions))){
     // 读取默认模块
     // 加载es6+环境

@@ -36,7 +36,7 @@ export function replaceTemplate(template: string, data: any): string{
     newTp = newTp.replace(reg, formatTemplateData(data[key]));
   }
 
-  newTp.replace(/{%\s*[0-9a-zA-Z_$]+\s*%}/g, '');
+  newTp = newTp.replace(/{%\s*[0-9a-zA-Z_$]+\s*%}/g, '');
 
   return newTp;
 }
