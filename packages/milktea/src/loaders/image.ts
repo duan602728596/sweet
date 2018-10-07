@@ -14,7 +14,7 @@ export default function(sweetConfig: SweetConfig): Loader{
   const isDevelopment: boolean = mode === 'development';
 
   return { // 图片
-    test: /^.*\.(jpe?g|png|gif)$/,
+    test: /^.*\.(jpe?g|png|gif|webp)$/,
     use: [imageConfig({ isDevelopment, emitFile })]
   };
 }
