@@ -10,7 +10,7 @@ export default function(options: LessOption = {}): LoaderOption{
   /**
    * modifyVars { Object }:  注入less变量
    */
-  const modifyVars: object = options.modifyVars && isObject(isObject) ? options.modifyVars : {};
+  const modifyVars: object = options.modifyVars && isObject(options.modifyVars) ? options.modifyVars : {};
 
   return {
     loader: 'less-loader',
