@@ -1,3 +1,4 @@
+/* gulp配置文件，编译packages下的所有文件 */
 const path = require('path');
 const gulp = require('gulp');
 const typescript = require('gulp-typescript');

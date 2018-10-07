@@ -1,3 +1,4 @@
+/* 清除已编译的代码 */
 const path = require('path');
 const rimraf = require('rimraf');
 const { dir, packageNames } = require('./config');
