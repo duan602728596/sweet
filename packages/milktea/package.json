@@ -35,14 +35,13 @@
     "pug-loader": "^2.4.0",
     "react-hot-loader": "^4.3.11",
     "sass-loader": "^7.1.0",
-    "style-loader": "^0.23.0",
+    "style-loader": "^0.23.1",
     "terser-webpack-plugin": "^1.1.0",
     "url-loader": "^1.1.1",
     "vue-loader": "^15.4.2",
     "vue-style-loader": "^4.1.2",
     "vue-template-compiler": "^2.5.17",
-    "webpack": "^4.20.2",
-    "webpack-cli": "^3.1.2"
+    "webpack": "^4.20.2"
   },
   "devDependencies": {
     "chai": "^4.2.0",

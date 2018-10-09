@@ -12,7 +12,7 @@
     "@sweet/milktea-cli": "github:duan602728596/sweet#build-milktea-cli",
     "@sweet/util-tools": "github:duan602728596/sweet#build-util-tools",
     "@types/koa": "^2.0.46",
-    "@types/node": "^10.11.4",
+    "@types/node": "^10.11.5",
     "babel-eslint": "^10.0.1",
     "eslint": "^5.6.1",
     "eslint-plugin-flowtype": "^2.50.3",
