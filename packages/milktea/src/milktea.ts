@@ -43,11 +43,11 @@ export function callback(err: any, stats: { toString: Function }): void{
 
 /**
  * webpack配置
- * @param { Object } sweetConfig: webpack配置，覆盖文件，优先级最高
+ * @param { ?Object } sweetConfig: webpack配置，覆盖文件，优先级最高
  * @param { string } mode: 开发环境，覆盖配置的开发环境
- * @param { string } configFile: 新的配置文件地址
+ * @param { string } configFile: 新的配置文件地址，覆盖默认的.sweetrc.js文件
  */
-export function config(sweetConfig: SweetConfig, mode: string, configFile: string): object{
+export function config(sweetConfig: SweetConfig | null | undefined, mode: string, configFile: string): object{
   let config: SweetConfig;
 
   if(isObject(sweetConfig)){
@@ -65,11 +65,11 @@ export function config(sweetConfig: SweetConfig, mode: string, configFile: strin
 
 /**
  * 服务器端渲染的webpack配置
- * @param { Object } sweetConfig: webpack配置，覆盖文件，优先级最高
+ * @param { ?Object } sweetConfig: webpack配置，覆盖文件，优先级最高
  * @param { string } mode: 开发环境，覆盖配置的开发环境
- * @param { string } configFile: 新的配置文件地址
+ * @param { string } configFile: 新的配置文件地址，覆盖默认的.sweetrc.js文件
  */
-export function serverRenderConfig(sweetConfig: SweetConfig, mode: string, configFile: string): object{
+export function serverRenderConfig(sweetConfig: SweetConfig | null | undefined, mode: string, configFile: string): object{
   let config: SweetConfig;
 
   if(isObject(sweetConfig)){
@@ -87,10 +87,10 @@ export function serverRenderConfig(sweetConfig: SweetConfig, mode: string, confi
 
 /**
  * webpack的dll文件配置
- * @param { Object } sweetConfig: webpack配置，覆盖文件，优先级最高
+ * @param { ?Object } sweetConfig: webpack配置，覆盖文件，优先级最高
  * @param { string } configFile: 新的配置文件地址
  */
-export function dll(sweetConfig: SweetConfig, configFile: string): object{
+export function dll(sweetConfig: SweetConfig | null | undefined, configFile: string): object{
   let config: SweetConfig;
 
   if(isObject(sweetConfig)){

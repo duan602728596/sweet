@@ -1,4 +1,5 @@
 /* webpack 配置 */
+import * as path from 'path';
 import loaders from './loaders/loaders';
 import plugins from './plugins/plugins';
 import optimization from './optimization/optimization';
@@ -26,7 +27,12 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions): W
   return {
     mode,
     entry,
-    output,
+    output: {
+      path: path.join(sweetOptions.basicPath, 'build'),
+      filename: isDevelopment ? 'script/[name].js' : 'script/[chunkhash:5].js',
+      chunkFilename: isDevelopment ? 'script/[name].js' : 'script/[chunkhash:5].js',
+      ...output
+    },
     externals,
     resolve,
     devtool: isDevelopment ? 'module-source-map' : 'none',

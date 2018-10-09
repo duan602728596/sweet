@@ -1,4 +1,5 @@
 /* webpack 服务器端渲染配置 */
+import * as path from 'path';
 import loaders from './loaders/loaders';
 import plugins from './plugins/plugins';
 import optimization from './optimization/optimization';
@@ -27,7 +28,15 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions): W
   return {
     mode,
     entry: serverEntry,
-    output: serverOutput,
+    output: {
+      path: path.join(sweetOptions.basicPath, 'buildServer'),
+      filename: '[name].js',
+      chunkFilename: '[name].js',
+      library: '[name]',
+      libraryTarget: 'umd',
+      publicPath: '/',
+      ...serverOutput
+    },
     devtool: isDevelopment ? 'module-source-map' : 'none',
     resolve,
     module: { rules: loaders(sweetConfigCopy, sweetOptions) },
