@@ -23,7 +23,7 @@ devServer({
 * httpPort`{ number }`: http端口号，默认为5050。
 * httpsPort`{ number }`: https端口号，默认为5051。
 * serverRender`{ boolean }`: 开启服务器端渲染
-* serverRenderFile`{ string }`: 服务器端渲染的主模块文件。默认为`build/server.js`。
+* serverRenderFile`{ string }`: 服务器端渲染的主模块文件。默认为`buildServer/server.js`。
 
 ## 生产环境下运行服务
 
@@ -48,7 +48,7 @@ proServer({
 * httpsPort`{ number }`: https端口号，默认为5053。
 * serverRoot `{ string }`: 生产环境下的服务器静态文件入口。默认为`build`。
 * serverRender`{ boolean }`: 开启服务器端渲染
-* serverRenderFile`{ string }`: 服务器端渲染的主模块文件。默认为`build/server.js`。
+* serverRenderFile`{ string }`: 服务器端渲染的主模块文件。默认为`buildServer/server.js`。
 
 ## 关于https证书
 
