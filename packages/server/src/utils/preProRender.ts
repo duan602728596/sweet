@@ -30,7 +30,7 @@ async function preRender(file: string, ctx: Koa.Context, html: Buffer, serverRen
 
     register(registerConfig);
 
-    const file: Function = require(p);
+    const file: Function = requireModule(p);
 
     data = await file(ctx, sweetOptions);
   }
