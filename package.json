@@ -2,10 +2,10 @@
   "name": "@sweet/vue-demo",
   "scripts": {
     "dll": "milktea dll",
-    "start": "cross-env NODE_ENV=development milktea start --server --serverRoot=build",
+    "start": "cross-env NODE_ENV=development milktea start --server",
     "build": "npm run clean && cross-env NODE_ENV=production milktea build",
     "clean": "rimraf ./build",
-    "server": "milktea server --serverRoot=build",
+    "server": "milktea server",
     "eslint": "eslint ./src",
     "update": "milktea update"
   },
