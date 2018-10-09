@@ -45,7 +45,7 @@ async function proServer(argv: proServerType = {}): Promise<void>{
     httpsPort = 5053,
     serverRoot = 'build',
     serverRender,
-    serverRenderFile = 'build/server.js'
+    serverRenderFile = 'buildServer/server.js'
   } = argv;
 
   /* 将端口加入到服务端 */

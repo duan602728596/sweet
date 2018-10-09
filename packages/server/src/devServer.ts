@@ -43,7 +43,7 @@ async function devServer(argv: devServerType = {}): Promise<void>{
     httpPort = 5050,
     httpsPort = 5051,
     serverRender,
-    serverRenderFile = 'build/server.js'
+    serverRenderFile = 'buildServer/server.js'
   } = argv;
 
   /* 将端口加入到服务端 */
