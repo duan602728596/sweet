@@ -42,13 +42,13 @@ export function replaceTemplate(template: string, data: any): string{
 }
 
 /* 清除模块缓存 */
-export function cleanRequireCache(module: string): void{
-  const modulePath: string = require.resolve(module);
+export function cleanRequireCache(id: string): void{
+  const modulePath: string = require.resolve(id);
 
   // @ts-ignore
   if(module.parent){
     // @ts-ignore
-    module.parent.children.splice(module.parent.children.indexOf(module), 1);
+    module.parent.children.splice(module.parent.children.indexOf(id), 1);
   }
 
   require.cache[modulePath] = null;
