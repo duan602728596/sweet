@@ -128,7 +128,8 @@ async function devServer(argv: devServerType = {}): Promise<void>{
       cert: crtString
     };
 
-    http2.createSecureServer(httpsConfig, app.callback()).listen(httpsPort);
+    http2.createSecureServer(httpsConfig, app.callback())
+      .listen(httpsPort);
   }
 }
 
