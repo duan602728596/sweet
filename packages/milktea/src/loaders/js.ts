@@ -28,7 +28,7 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions): L
   const { ecmascript, presets, plugins, resetPresets, resetPlugins, exclude, include } = _js;
 
   return {
-    test: /^.*\.js$/,
+    test: /^.*\.jsx?$/,
     use: [babelConfig({
       isDevelopment,
       ecmascript,
