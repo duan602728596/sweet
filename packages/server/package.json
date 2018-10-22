@@ -25,7 +25,7 @@
     "koa-router": "^7.4.0",
     "koa-static-cache": "^5.1.2",
     "koa-webpack": "^5.1.0",
-    "mime-types": "^2.1.20"
+    "mime-types": "^2.1.21"
   },
   "devDependencies": {
     "@sweet/milktea": "github:duan602728596/sweet#build-milktea",
