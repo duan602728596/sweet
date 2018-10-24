@@ -17,7 +17,7 @@
     "@svgr/webpack": "^3.1.0",
     "@sweet/milktea": "github:duan602728596/sweet#build-milktea",
     "@sweet/util-tools": "github:duan602728596/sweet#build-util-tools",
-    "antd": "^3.10.1",
+    "antd": "^3.10.2",
     "axios": "^0.18.0",
     "babel-eslint": "^10.0.1",
     "babel-plugin-import": "^1.10.0",
