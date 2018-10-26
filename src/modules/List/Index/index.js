@@ -39,7 +39,7 @@ class Index extends Component{
   }
   render(): React.ChildrenArray<React.Element>{
     return [
-      <Table key={ 0 }
+      <Table key="0"
         dataSource={ dataSource() }
         rowKey={ (item: Object): string => item.id }
         columns={ this.columns() }

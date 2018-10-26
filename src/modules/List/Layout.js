@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Route, Switch } from 'react-router-dom';
-import { hot } from 'react-hot-loader';
 import Helmet from 'react-helmet';
+import loadReducer from '../../store/loadReducer';
 import reducer from './store/reducer';
 import Main from '../../assembly/Main/index';
 import Sider from '../../assembly/Sider/index';
@@ -52,17 +52,8 @@ const options: {
   }
 ];
 
-@hot(module)
+@loadReducer(reducer)
 class ModuleLayout extends Component{
-  static propTypes: Object = {
-    injectReducers: PropTypes.func
-  };
-
-  constructor(): void{
-    super(...arguments);
-
-    this.props.injectReducers(reducer);
-  }
   render(): React.ChildrenArray<React.Element>{
     return [
       <Helmet key="helmet">
