@@ -65,6 +65,12 @@ interface JsOption{
   include?: RegExp;
 }
 
+interface BabelLoaderOptions{
+  cacheDirectory: string;
+  presets: Array<any>;
+  plugins: Array<any>;
+}
+
 export default function(options: JsOption = {}, sweetOptions: SweetOptions): LoaderOption{
   /**
    * isDevelopment { boolean }: 是否为开发环境
@@ -77,7 +83,7 @@ export default function(options: JsOption = {}, sweetOptions: SweetOptions): Loa
    */
   const { isDevelopment, ecmascript, presets, plugins, resetPresets, resetPlugins, isReact } = options;
   const debug: boolean = isDevelopment === undefined ? true : isDevelopment;
-  const babelLoaderOptions: Object = {
+  const babelLoaderOptions: BabelLoaderOptions = {
     cacheDirectory: path.join(sweetOptions.basicPath, '.babelCache'),
     presets: resetPresets ? resetPresets : presetsList(presets, debug, isReact, ecmascript),
     plugins: resetPlugins ? resetPlugins : pluginsList(plugins, isReact, ecmascript)
