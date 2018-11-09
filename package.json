@@ -14,7 +14,7 @@
     "@sweet/server": "github:duan602728596/sweet#build-server"
   },
   "devDependencies": {
-    "@svgr/webpack": "^4.0.0",
+    "@svgr/webpack": "^4.0.2",
     "@sweet/milktea": "github:duan602728596/sweet#build-milktea",
     "@sweet/util-tools": "github:duan602728596/sweet#build-util-tools",
     "antd": "^3.10.4",
