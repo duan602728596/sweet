@@ -1,6 +1,6 @@
 import * as webpack from 'webpack';
-import { requireModule } from './utils/utils';
-import { Milktea, Argv } from './utils/types';
+import { requireModule } from '../utils/utils';
+import { Milktea, Argv } from '../utils/types';
 
 /* dll 命令 */
 function argvDll(argv: Argv): void{

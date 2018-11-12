@@ -1,8 +1,8 @@
 import * as path from 'path';
 import * as fs from 'fs';
 import * as process from 'process';
-import { isNone, requireModule } from './utils/utils';
-import { Argv } from './utils/types';
+import { isNone, requireModule } from '../utils/utils';
+import { Argv } from '../utils/types';
 
 /* 列出目录下的所有文件 */
 function readdir(filePath: string): Promise<any>{

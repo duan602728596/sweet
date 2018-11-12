@@ -6,6 +6,7 @@ export interface Milktea{
 }
 
 export interface Argv{
+  config: string;
   server: boolean;
   httpPort: number;
   httpsPort: number;
@@ -13,6 +14,7 @@ export interface Argv{
   serverRender: boolean;
   serverRenderFile: string;
   registry: number;
-  config: string;
+  imageEntry: string;
+  imageOutput: string;
   __DEV__: boolean;
 }

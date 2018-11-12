@@ -1,7 +1,7 @@
 /* start 命令 */
 import * as webpack from 'webpack';
-import { isNone, requireModule } from './utils/utils';
-import { Milktea, Argv } from './utils/types';
+import { isNone, requireModule } from '../utils/utils';
+import { Milktea, Argv } from '../utils/types';
 
 function argvStart(argv: Argv): void{
   const milktea: Milktea = requireModule('@sweet/milktea');
