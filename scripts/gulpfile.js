@@ -26,7 +26,9 @@ for(const item of packageNames){
   Object.defineProperty(fn, 'name', {
     value: item
   });
-  queueFn.push(fn);
+
+  gulp.task(item, fn);
+  queueFn.push(item);
 }
 
-gulp.task('default', gulp.parallel(...queueFn));
+gulp.task('default', queueFn);
