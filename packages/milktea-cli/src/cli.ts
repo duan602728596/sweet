@@ -7,6 +7,7 @@ import argvStart from './argv/argvStart';
 import argvBuild from './argv/argvBuild';
 import argvServer from './argv/argvServer';
 import argvUpdate from './argv/argvUpdate';
+import argvImage2WebP from './argv/argvImage2WebP';
 
 /* 获取参数 */
 const argv: object = yargs
@@ -15,13 +16,14 @@ const argv: object = yargs
   .command('build', '编译代码', (): void => undefined, argvBuild)
   .command('server', '启动服务器', (): void => undefined, argvServer)
   .command('update', '工具：检查当前目录是否有依赖需要更新', (): void => null, argvUpdate)
-  .command('image2webp', '工具：图片批量转换成webp格式', (): void => null, argvUpdate)
+  .command('image2webp', '工具：图片批量转换成webp格式', (): void => null, argvImage2WebP)
   .options({
     // milktea
     config: {
       describe: '配置文件的地址',
       type: 'string'
     },
+    // webpack服务
     server: {
       describe: '是否开启一个服务器',
       type: 'boolean'
@@ -38,6 +40,7 @@ const argv: object = yargs
       describe: '服务器静态文件入口',
       type: 'string'
     },
+    // 服务器端渲染
     serverRender: {
       describe: '开启服务器端渲染',
       type: 'boolean'

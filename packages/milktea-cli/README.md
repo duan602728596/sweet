@@ -25,3 +25,6 @@ milktea-cli是一个快速运行环境的工具。
   * `--serverRenderFile`: 服务器端渲染的主模块文件。默认为`buildServer/server.js`。
 * `milktea update`: 查看是否有依赖包需要更新。
   * `--registry`: Npm包信息地址。可能的值为 0：Npm源，1：Yarn源，2：CNpm源。
+* `milktea image2webp`: 将图片批量转换成`*.webp`格式。
+  * `--imageEntry`: 源图片文件夹。
+  * `--imageOutput`: 输出文件夹。
