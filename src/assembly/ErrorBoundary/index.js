@@ -25,6 +25,7 @@ class ErrorBoundary extends Component{
 
   constructor(): void{
     super(...arguments);
+
     this.state = {
       hasError: false,
       error: null,

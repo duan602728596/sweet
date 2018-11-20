@@ -11,10 +11,12 @@ class Forms extends Component{
 
   handleSubmit(event: Event): void{
     event.preventDefault();
+
     const { validateFields, getFieldsValue }: {
       validateFields: Function,
       getFieldsValue: Function
     } = this.props.form;
+
     validateFields((err: ?string, value: any): void=>{
       if(!err){
         console.log(getFieldsValue());
@@ -37,9 +39,7 @@ class Forms extends Component{
                   whitespace: true
                 }
               ]
-            })(
-              <Input />
-            )
+            })(<Input />)
           }
         </Form.Item>
         <Form.Item className={ style.formGroup } label="姓别">

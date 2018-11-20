@@ -47,9 +47,11 @@ class Header extends Component{
     const { pathname }: { pathname: string } = location;
     const { href }: { href: string } = item;
     const reg: RegExp = new RegExp(`^${ href }.*$`, 'ig');
+
     if(len && pathname === '/' && href === navOptions[0].href){
       return true;
     }
+
     return match && reg.test(pathname);
   }
   navList(options: navOptionsItem[]): React.ChildrenArray<React.Element>{

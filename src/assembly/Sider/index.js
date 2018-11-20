@@ -25,8 +25,9 @@ class Sider extends Component{
 
   // 根据pathname获取默认的selectKey
   getSelectKey(arr: Array): ?string{
-    let key: ?string = null;
     const reg: RegExp = new RegExp(`^${ this.props.location.pathname }.*$`, 'ig');
+    let key: ?string = null;
+
     for(let i: number = 0, j: number = arr.length; i < j; i++){
       if('children' in arr[i] && arr[i].children.length > 0){
         const key2: ?string = this.getSelectKey(arr[i].children);
@@ -82,6 +83,7 @@ class Sider extends Component{
   render(): React.Element{
     const options: Array = this.props.options;
     const sk: string = this.getSelectKey(options);
+
     return (
       <ErrorBoundary>
         <Layout.Sider className={ style.sider } width={ 180 }>
