@@ -11,7 +11,7 @@
   "devDependencies": {
     "@sweet/milktea-cli": "github:duan602728596/sweet#build-milktea-cli",
     "@sweet/util-tools": "github:duan602728596/sweet#build-util-tools",
-    "@types/koa": "^2.0.46",
+    "@types/koa": "^2.0.47",
     "@types/node": "^10.12.9",
     "babel-eslint": "^10.0.1",
     "eslint": "^5.9.0",
