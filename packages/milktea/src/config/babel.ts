@@ -3,7 +3,12 @@ import * as path from 'path';
 import { SweetOptions, LoaderOption } from '../utils/types';
 
 // 默认插件
-const presetsList: Function = (presets: Array<any> = [], debug: boolean, isReact: boolean, ecmascript: boolean): Array<any>=>{
+const presetsList: Function = (
+  presets: Array<any> = [],
+  debug: boolean,
+  isReact: boolean,
+  ecmascript: boolean
+): Array<any>=>{
   const list: Array<any> = [
     '@babel/preset-flow',
     ...presets
@@ -19,7 +24,12 @@ const presetsList: Function = (presets: Array<any> = [], debug: boolean, isReact
     list.unshift([
       '@babel/preset-env',
       {
-        targets: { ie: 11, edge: 16, chrome: 62, firefox: 56 },
+        targets: {
+          ie: 11,
+          edge: 16,
+          chrome: 62,
+          firefox: 56
+        },
         debug,
         modules: false,
         useBuiltIns: 'usage'
@@ -30,7 +40,11 @@ const presetsList: Function = (presets: Array<any> = [], debug: boolean, isReact
   return list;
 };
 
-const pluginsList: Function = (plugins: Array<any> = [], isReact: boolean, ecmascript: boolean): Array<any>=>{
+const pluginsList: Function = (
+  plugins: Array<any> = [],
+  isReact: boolean,
+  ecmascript: boolean
+): Array<any>=>{
   const list: Array<any> = [
     ['@babel/plugin-proposal-decorators', { legacy: true }],
     '@babel/plugin-proposal-export-default-from',

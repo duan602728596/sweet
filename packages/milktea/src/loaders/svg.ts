@@ -13,6 +13,9 @@ export default function(sweetConfig: SweetConfig): Loader{
 
   return {
     test: /\.svg$/,
-    use: [svgConfig({ isDevelopment, emitFile })]
+    use: [svgConfig({
+      isDevelopment,
+      emitFile
+    })]
   };
 }

@@ -8,7 +8,13 @@ import {
 import { SweetOptions } from './types';
 
 // 渲染新的html
-async function preRender(file: string, ctx: Koa.Context, html: Buffer, serverRenderFile: string, sweetOptions: SweetOptions): Promise<string>{
+async function preRender(
+  file: string,
+  ctx: Koa.Context,
+  html: Buffer,
+  serverRenderFile: string,
+  sweetOptions: SweetOptions
+): Promise<string>{
   const formatFile: string = `${ path.join(defaultInterfacePath(sweetOptions), pathAnalyze(file)) }.js`;
   let data: any = {};
 
