@@ -10,7 +10,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "imagemin": "^6.0.0",
-    "imagemin-webp": "^4.1.0"
+    "imagemin-webp": "^5.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.1.6",
