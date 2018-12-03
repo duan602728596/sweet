@@ -36,7 +36,7 @@
     "react-hot-loader": "^4.5.1",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.1",
-    "terser": "^3.10.13",
+    "terser": "^3.11.0",
     "terser-webpack-plugin": "^1.1.0",
     "url-loader": "^1.1.2",
     "vue-loader": "^15.4.2",
