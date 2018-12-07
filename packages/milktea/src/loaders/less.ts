@@ -77,8 +77,13 @@ export default function(sweetConfig: SweetConfig): Loader{
     }
 
     cssLoaderConfig.oneOf = [
-      { resourceQuery: /scoped/, use },
-      { use: basicConfig }
+      {
+        resourceQuery: /scoped/,
+        use
+      },
+      {
+        use: basicConfig
+      }
     ];
   }else{
     cssLoaderConfig.use = basicConfig;

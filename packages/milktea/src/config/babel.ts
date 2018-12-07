@@ -28,7 +28,9 @@ const presetsList: Function = (
           ie: 11,
           edge: 16,
           chrome: 62,
-          firefox: 56
+          firefox: 56,
+          android: 40,
+          ios_saf: 9
         },
         debug,
         modules: false,
@@ -46,7 +48,12 @@ const pluginsList: Function = (
   ecmascript: boolean
 ): Array<any>=>{
   const list: Array<any> = [
-    ['@babel/plugin-proposal-decorators', { legacy: true }],
+    [
+      '@babel/plugin-proposal-decorators',
+      {
+        legacy: true
+      }
+    ],
     '@babel/plugin-proposal-export-default-from',
     '@babel/plugin-proposal-do-expressions',
     '@babel/plugin-proposal-optional-chaining',
@@ -99,8 +106,12 @@ export default function(options: JsOption = {}, sweetOptions: SweetOptions): Loa
   const debug: boolean = isDevelopment === undefined ? true : isDevelopment;
   const babelLoaderOptions: BabelLoaderOptions = {
     cacheDirectory: path.join(sweetOptions.basicPath, '.babelCache'),
-    presets: resetPresets ? resetPresets : presetsList(presets, debug, isReact, ecmascript),
-    plugins: resetPlugins ? resetPlugins : pluginsList(plugins, isReact, ecmascript)
+    presets: resetPresets
+      ? resetPresets
+      : presetsList(presets, debug, isReact, ecmascript),
+    plugins: resetPlugins
+      ? resetPlugins
+      : pluginsList(plugins, isReact, ecmascript)
   };
 
   return {

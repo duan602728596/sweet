@@ -11,6 +11,8 @@ export default function(sweetConfig: SweetConfig): Loader{
 
   return {
     test: /^.*\.pug$/,
-    use: [pugConfig({ isDevelopment })]
+    use: [pugConfig({
+      isDevelopment
+    })]
   };
 }
