@@ -13,7 +13,7 @@ import Routers from '../../router/Routers';
 class Arrangement extends Component{
   render(): React.Element{
     return (
-      <Layout className={ style.layout }>
+      <Layout className={ style.arrangement }>
         <Layout.Header className={ style.header }>
           <Header />
         </Layout.Header>
