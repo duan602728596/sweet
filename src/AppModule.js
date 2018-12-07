@@ -6,7 +6,7 @@ import zhCN from 'antd/lib/locale-provider/zh_CN';
 import { hot } from 'react-hot-loader';
 import { storeFactory } from './store/store';
 import './common.sass';
-import Layout from './assembly/Layout';
+import Arrangement from './assembly/Arrangement';
 
 /* 热替换 */
 @hot(module)
@@ -18,7 +18,7 @@ class App extends Component{
           <BrowserRouter>
             <Switch>
               <Route path="/Login" component={ (props: Object): React.Element => <div>登录</div> } exact={ true } />
-              <Route component={ Layout } exact={ true } />
+              <Route component={ Arrangement } exact={ true } />
             </Switch>
           </BrowserRouter>
         </LocaleProvider>

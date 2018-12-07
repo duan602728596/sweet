@@ -1,5 +1,4 @@
 /**
- * layout
  * 页面整体布局
  * Header 显示页面header
  * Footer 显示版权信息
@@ -11,7 +10,7 @@ import style from './style.sass';
 import Header from '../Header/index';
 import Routers from '../../router/Routers';
 
-class MyLayout extends Component{
+class Arrangement extends Component{
   render(): React.Element{
     return (
       <Layout className={ style.layout }>
@@ -25,4 +24,4 @@ class MyLayout extends Component{
   }
 }
 
-export default MyLayout;
+export default Arrangement;
