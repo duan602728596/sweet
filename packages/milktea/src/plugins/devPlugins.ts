@@ -15,7 +15,6 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions): A
   const plugins: Array<any> = [];
 
   if(dll && isArray(dll) && dll.length > 0 && !serverRender){
-
     plugins.push(new webpack.DllReferencePlugin({
       context: sweetOptions.basicPath,
       manifest: require(path.join(sweetOptions.basicPath, '.dll/manifest.json'))
