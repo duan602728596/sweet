@@ -4,4 +4,5 @@ config
 bin
 .dll
 build
+runServer.js
 .sweetrc.js
