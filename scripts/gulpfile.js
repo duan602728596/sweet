@@ -27,8 +27,7 @@ for(const item of packageNames){
     value: item
   });
 
-  gulp.task(item, fn);
-  queueFn.push(item);
+  queueFn.push(fn);
 }
 
-gulp.task('default', queueFn);
+exports.default = gulp.series(gulp.parallel(...queueFn));
