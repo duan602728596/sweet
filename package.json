@@ -14,7 +14,7 @@
     "@sweet/milktea-cli": "github:duan602728596/sweet#build-milktea-cli",
     "@sweet/server": "github:duan602728596/sweet#build-server",
     "node-cmd": "^3.0.0",
-    "pm2": "^3.2.2"
+    "pm2": "^3.2.3"
   },
   "devDependencies": {
     "@svgr/webpack": "^4.1.0",
