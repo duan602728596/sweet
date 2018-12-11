@@ -99,9 +99,6 @@ async function getVersionFromNpm(packageArray: Array<PackageArrayItem>, registry
       if('dist-tags' in version[i] && 'rc' in version[i]['dist-tags']){
         packageArray[i].rc = version[i]['dist-tags'].rc;
       }
-      if('dist-tags' in version[i] && 'canary' in version[i]['dist-tags']){
-        packageArray[i].canary = version[i]['dist-tags'].canary;
-      }
     }
   }catch(err){
     console.error(err);
@@ -132,9 +129,6 @@ function consoleLogText(packageArray: Array<any>): string{
     }
     if(item.rc){
       consoleText += `      rc     : ${ formatVersion(item.version, item.rc) }\n`;
-    }
-    if(item.canary){
-      consoleText += `      canary : ${ formatVersion(item.version, item.canary) }\n`;
     }
   }
   return consoleText;

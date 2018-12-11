@@ -3,12 +3,12 @@ module.exports = {
     [
       '@babel/preset-env',
       {
-        'targets': {
-          'browsers': ['node 6']
+        targets: {
+          browsers: ['node 9']
         },
-        'debug': false,
-        'modules': 'commonjs',
-        'useBuiltIns': false
+        debug: false,
+        modules: 'commonjs',
+        useBuiltIns: false
       }
     ],
     '@babel/preset-flow'

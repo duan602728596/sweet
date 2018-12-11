@@ -103,7 +103,7 @@ export const registerConfig: RegisterConfig = {
       '@babel/preset-env',
       {
         targets: {
-          browsers: ['node 6']
+          browsers: ['node 9']
         },
         debug: false,
         modules: 'commonjs',
