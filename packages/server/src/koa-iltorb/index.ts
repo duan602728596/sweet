@@ -10,11 +10,19 @@ function iltorb(): Function{
 
     const acceptEncoding: string = ctx.request.header['accept-encoding']; // 获取请求头的压缩参数
     const { body, type }: { body: Buffer | string, type: string } = ctx;           // 获取响应数据和文件的mime-type
-    let input: Buffer | { path: string } = typeof body === 'string' ? buffer(body) : body;
+    let input: any = body;
 
-    // 兼容staticCache缓存
-    if(!Buffer.isBuffer(input) && typeof input === 'object' && Object.prototype.toString.call(input) === '[object Object]'){
-      input = await readFile(input['path']); // 此时的input是ReadStream对象
+    if(!Buffer.isBuffer(input)){
+      // 兼容staticCache缓存
+      if(typeof input === 'object' && Object.prototype.toString.call(input) === '[object Object]' && '_readableState' in input){
+        input = await readFile(input.path); // 此时的input是ReadStream对象
+      }
+
+      // 字符串
+      if(typeof body === 'string' || typeof body === 'number') input = buffer(`${ body }`);
+
+      // 数组或对象
+      if(typeof body === 'object') input = buffer(JSON.stringify(body));
     }
 
     if(!/^image/i.test(type) && acceptEncoding && Buffer.isBuffer(input)){
