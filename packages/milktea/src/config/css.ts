@@ -15,7 +15,7 @@ export default function(options: CssOption = {}): LoaderOption{
    */
   const { isDevelopment, modules, isLocals } = options;
   const cssLoader: LoaderOption = {
-    loader: isLocals ? 'css-loader/locals' : 'css-loader'
+    loader: 'css-loader'
   };
 
   if(modules){
@@ -25,7 +25,8 @@ export default function(options: CssOption = {}): LoaderOption{
 
     cssLoader.options = {
       modules: true,
-      localIdentName
+      localIdentName,
+      exportOnlyLocals: isLocals ? true : false
     };
   }
 
