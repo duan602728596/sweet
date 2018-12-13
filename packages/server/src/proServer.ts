@@ -128,8 +128,8 @@ async function proServer(argv: proServerType = {}): Promise<void>{
   const crt: string = path.join(sweetOptions.basicPath, './server.crt');
 
   if(fs.existsSync(key) && fs.existsSync(crt)){
-    const keyString: string | Buffer = await readFile(key);
-    const crtString: string | Buffer = await readFile(crt);
+    const keyString: Buffer = await readFile(key);
+    const crtString: Buffer = await readFile(crt);
     const httpsConfig: Object = {
       allowHTTP1: true,
       key: keyString,
