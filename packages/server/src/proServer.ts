@@ -4,14 +4,13 @@ import * as http2 from 'http2';
 import * as fs from 'fs';
 import * as process from 'process';
 import * as path from 'path';
-import * as zlib from 'zlib';
 import * as Koa from 'koa';
 import * as Router from 'koa-router';
 import * as body from 'koa-body';
 import * as convert from 'koa-convert';
-import * as compress from 'koa-compress';
 import * as staticCache from 'koa-static-cache';
 import * as mime from 'mime-types';
+import iltorb from './koa-iltorb/index';
 import { readFile, defaultRoutersPath, registerConfig, requireModule } from './utils/utils';
 import preRender from './utils/preProRender';
 import { SweetOptions } from './utils/types';
@@ -66,14 +65,9 @@ async function proServer(argv: proServerType = {}): Promise<void>{
   /* post body */
   app.use(body());
 
-  /* gzip压缩 */
-  app.use(compress({
-    filter(contentType: string): boolean{
-      return true;
-    },
-    threshold: 2048,
-    flush: zlib.constants.Z_SYNC_FLUSH
-  }));
+  /* 文件压缩 */
+  // @ts-ignore
+  app.use(iltorb());
 
   /* 缓存 */
   app.use(convert(

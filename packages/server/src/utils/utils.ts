@@ -3,7 +3,7 @@ import * as path from 'path';
 import { SweetOptions } from './types';
 
 /* 读取文件 */
-export function readFile(file: string): Promise<any>{
+export function readFile(file: string): Promise<Buffer>{
   return new Promise((resolve: Function, reject: Function): void=>{
     fs.readFile(file, (err: Error, data: Buffer): void=>{
       if(err){
@@ -12,8 +12,6 @@ export function readFile(file: string): Promise<any>{
         resolve(data);
       }
     });
-  }).catch((err: any): void=>{
-    console.error(err);
   });
 }
 

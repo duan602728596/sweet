@@ -120,8 +120,8 @@ async function devServer(argv: devServerType = {}): Promise<void>{
 
   // 判断是否有证书
   if(fs.existsSync(key) && fs.existsSync(crt)){
-    const keyString: string | Buffer = await readFile(key);
-    const crtString: string | Buffer = await readFile(crt);
+    const keyString: Buffer = await readFile(key);
+    const crtString: Buffer = await readFile(crt);
     const httpsConfig: Object = {
       allowHTTP1: true,
       key: keyString,
