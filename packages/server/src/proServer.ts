@@ -99,7 +99,6 @@ async function proServer(argv: proServerType = {}): Promise<void>{
     if(fs.existsSync(file)){
       ctx.status = 200;
       ctx.type = mime.lookup(file);
-      ctx.body = await readFile(file);
     }else{
       ctx.status = 404;
     }
