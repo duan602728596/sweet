@@ -13,8 +13,8 @@ function iltorb(): Function{
     let input: Buffer | { path: string } = typeof body === 'string' ? buffer(body) : body;
 
     // 兼容staticCache缓存
-    if(!Buffer.isBuffer(input) && typeof input === 'object'){
-      input = await readFile(input['path']);
+    if(!Buffer.isBuffer(input) && typeof input === 'object' && Object.prototype.toString.call(input) === '[object Object]'){
+      input = await readFile(input['path']); // 此时的input是ReadStream对象
     }
 
     if(!/^image/i.test(type) && acceptEncoding && Buffer.isBuffer(input)){
@@ -27,7 +27,6 @@ function iltorb(): Function{
         output = await brotli.compress(input);
 
         ctx.set('Content-Encoding', 'br');
-
       }else if(acceptEncoding.includes('gzip')){
         // 使用gzip压缩
         output = await gzip(input);
