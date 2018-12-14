@@ -6,9 +6,6 @@ npm-debug.log
 test
 .dll
 .babelCache
-test/.dll
-test/.babelCache
-test/build
-test/.sweetrc.build.js
+build
 tsconfig.json
 .idea
