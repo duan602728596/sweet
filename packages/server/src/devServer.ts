@@ -84,7 +84,7 @@ async function devServer(argv: devServerType = {}): Promise<void>{
     const mimeType: string | boolean = mime.lookup(file);
     if(file !== '/' && mimeType === false){
       ctx.path = '/';
-      // @ts-ignore: 保存path属性
+      // @ts-ignore @保存path属性
       ctx._path = file;
     }
     await next();

@@ -28,8 +28,7 @@ export function formatTemplateData(data: any): any{
 export function replaceTemplate(template: string, data: any): string{
   let newTp: string = template;
 
-  // @ts-ignore
-  for(const key: string in data){
+  for(const key in data){
     const reg: RegExp = new RegExp(`{%\\s*${ key }\\s*%}`, 'g');
     newTp = newTp.replace(reg, formatTemplateData(data[key]));
   }
@@ -43,9 +42,8 @@ export function replaceTemplate(template: string, data: any): string{
 export function cleanRequireCache(id: string): void{
   const modulePath: string = require.resolve(id);
 
-  // @ts-ignore
   if(module.parent){
-    // @ts-ignore
+    // @ts-ignore @传入模块id清除缓存
     module.parent.children.splice(module.parent.children.indexOf(id), 1);
   }
 

@@ -66,7 +66,6 @@ async function proServer(argv: proServerType = {}): Promise<void>{
   app.use(body());
 
   /* 文件压缩 */
-  // @ts-ignore
   app.use(iltorb());
 
   /* 缓存 */

@@ -1,10 +1,9 @@
 import * as Koa from 'koa';
 import * as brotli from 'iltorb';
 import gzip from './gzip';
-import buffer from './buffer';
 import { readFile } from '../utils/utils';
 
-function iltorb(): Function{
+function iltorb(): Koa.Middleware{
   return async function(ctx: Koa.Context, next: () => Promise<void>): Promise<void>{
     await next();
 
@@ -18,10 +17,10 @@ function iltorb(): Function{
         input = await readFile(input.path); // 此时的input是ReadStream对象
       }else{
         // 字符串
-        if(typeof body === 'string' || typeof body === 'number') input = buffer(`${ body }`);
+        if(typeof body === 'string' || typeof body === 'number') input = Buffer.from(`${ body }`);
 
         // 数组或对象
-        if(typeof body === 'object') input = buffer(JSON.stringify(body));
+        if(typeof body === 'object') input = Buffer.from(JSON.stringify(body));
       }
     }
 

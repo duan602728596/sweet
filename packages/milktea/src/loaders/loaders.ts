@@ -39,12 +39,10 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions): A
     loadersObj.vue = loaders.vue || vueLoader();
   }
 
-  // @ts-ignore
-  const loadersArr: [] = Object.values(loadersObj);
+  const loadersArr: object[] = Object.values(loadersObj);
 
   // 添加其他的rules
   if(rules){
-    // @ts-ignore
     loadersArr.push(...rules);
   }
 

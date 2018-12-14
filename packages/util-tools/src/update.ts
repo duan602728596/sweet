@@ -8,8 +8,8 @@ import axios, { AxiosResponse } from 'axios';
  */
 function objectToArray(obj: object): Array<any>{
   const resultArr: Array<{ name: string, version: string }> = [];
-  // @ts-ignore
-  for(const key: string in obj){
+
+  for(const key in obj){
     resultArr.push({
       name: key,         // 包的名称
       version: obj[key]  // 包的当前版本号
@@ -83,12 +83,14 @@ interface PackageArrayItem{
 
 async function getVersionFromNpm(packageArray: Array<PackageArrayItem>, registry: number): Promise<void>{
   try{
-    const depQueue: [] = [];
+    const depQueue: Promise<object>[] = [];
+
     for(let i: number = 0, j: number = packageArray.length; i < j; i++){
-      // @ts-ignore
       depQueue.push(requestPackageInformation(packageArray[i].name, registry));
     }
+
     const version: Array<any> = await Promise.all(depQueue);
+
     for(let i: number = 0, j: number = packageArray.length; i < j; i++){
       if('dist-tags' in version[i] && 'latest' in version[i]['dist-tags']){
         packageArray[i].latest = version[i]['dist-tags'].latest;
