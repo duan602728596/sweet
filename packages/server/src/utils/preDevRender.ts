@@ -3,7 +3,7 @@ import * as path from 'path';
 import * as Koa from 'koa';
 import {
   replaceTemplate, cleanRequireCache, pathAnalyze, registerConfig, defaultInterfacePath, defaultInterfaceJsFilename,
-  requireModule
+  requireModule, isReadStream, readStream
 } from './utils';
 import { SweetOptions } from './types';
 
@@ -48,7 +48,8 @@ async function preRender(
 
   const html: Buffer = ctx.body;
   const server: Function = requireModule(serverRenderFile);
-  const render: string = await server(file, ctx, data.initialState);
+  const stringOrStream: any /* ReadStream | string */ = await server(file, ctx, data.initialState);
+  const render: string = isReadStream(stringOrStream) ? (await readStream(stringOrStream)).toString() : stringOrStream;
 
   return replaceTemplate(html.toString(), {
     render,

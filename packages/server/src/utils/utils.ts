@@ -1,6 +1,7 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import { SweetOptions } from './types';
+import ReadStream = NodeJS.ReadStream;
 
 /* 读取文件 */
 export function readFile(file: string): Promise<Buffer>{
@@ -29,11 +30,11 @@ export function replaceTemplate(template: string, data: any): string{
   let newTp: string = template;
 
   for(const key in data){
-    const reg: RegExp = new RegExp(`<%=\\s*${ key }\\s*%>`, 'g');
+    const reg: RegExp = new RegExp(`(<|&lt;)%=\\s*${ key }\\s*%(>|&gt;)`, 'g');
     newTp = newTp.replace(reg, formatTemplateData(data[key]));
   }
 
-  newTp = newTp.replace(/<%=\s*[0-9a-zA-Z_$]+\s*%>/g, '');
+  newTp = newTp.replace(/(<|&lt;)%=\s*[0-9a-zA-Z_$]+\s*%(>|&gt;)/g, '');
 
   return newTp;
 }
@@ -124,4 +125,28 @@ export function requireModule(id: string): any{
   const module: { default: any } | any = require(id);
 
   return 'default' in module ? module.default : module;
+}
+
+/* 判断是否为readStream */
+export function isReadStream(input: any): boolean{
+  return typeof input === 'object' && Object.prototype.toString.call(input) === '[object Object]' && '_readableState' in input;
+}
+
+/* 读取stream流 */
+export function readStream(stream: ReadStream): Promise<Buffer>{
+  let chunks: Buffer = null;
+
+  return new Promise((resolve: Function, reject: Function): void=>{
+    stream.on('data', function(chunk: any): void{
+      if(chunks === null){
+        chunks = chunk;
+      }else{
+        chunks += chunk;
+      }
+    });
+
+    stream.on('end', function(): void{
+      resolve(chunks);
+    });
+  });
 }
