@@ -29,8 +29,8 @@ const presetsList: Function = (
           edge: 16,
           chrome: 62,
           firefox: 56,
-          android: 40,
-          ios_saf: 9
+          android: 4,
+          ios: 10
         },
         debug,
         modules: false,
