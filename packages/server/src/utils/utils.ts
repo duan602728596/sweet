@@ -30,11 +30,11 @@ export function replaceTemplate(template: string, data: any): string{
   let newTp: string = template;
 
   for(const key in data){
-    const reg: RegExp = new RegExp(`(<|&lt;)%=\\s*${ key }\\s*%(>|&gt;)`, 'g');
+    const reg: RegExp = new RegExp(`<%=\\s*${ key }\\s*%>`, 'g');
     newTp = newTp.replace(reg, formatTemplateData(data[key]));
   }
 
-  newTp = newTp.replace(/(<|&lt;)%=\s*[0-9a-zA-Z_$]+\s*%(>|&gt;)/g, '');
+  newTp = newTp.replace(/<%=\s*[0-9a-zA-Z_$]+\s*%>/g, '');
 
   return newTp;
 }
