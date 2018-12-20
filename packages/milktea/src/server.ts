@@ -21,7 +21,9 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions): W
   if(isObject(sweetConfigCopy.js)){
     sweetConfigCopy.js.ecmascript = true;
   }else{
-    sweetConfigCopy.js = { ecmascript: true };
+    sweetConfigCopy.js = {
+      ecmascript: true
+    };
   }
 
   // webpack配置

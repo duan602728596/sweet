@@ -22,6 +22,7 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions): W
 
   // 配置dll的babel config
   const dllResetPresetsConfig: Array<any> = [];
+  const dllResetPluginsConfig: Array<any> = [];
 
   // 是否编译到ecmascript
   if(!ecmascript){
@@ -32,7 +33,9 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions): W
           ie: 11,
           edge: 16,
           chrome: 62,
-          firefox: 56
+          firefox: 56,
+          android: 5,
+          ios: 11
         },
         debug: false,
         modules: false,
@@ -57,7 +60,8 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions): W
         {
           test: /^.*\.js$/,
           use: [babelConfig({
-            resetPresets: dllResetPresetsConfig
+            resetPresets: dllResetPresetsConfig,
+            resetPlugins: dllResetPluginsConfig
           }, sweetOptions)]
         }
       ]
