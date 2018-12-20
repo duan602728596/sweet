@@ -29,8 +29,8 @@ const presetsList: Function = (
           edge: 16,
           chrome: 62,
           firefox: 56,
-          android: 4,
-          ios: 10
+          android: 5,
+          ios: 11
         },
         debug,
         modules: false,
@@ -67,8 +67,19 @@ const pluginsList: Function = (
     list.push('react-hot-loader/babel');
   }
 
+  // 判断是否为es6+
   if(ecmascript){
     list.unshift('@babel/plugin-proposal-object-rest-spread');
+  }else{
+    list.push([
+      '@babel/plugin-transform-runtime',
+      {
+        corejs: false,
+        helpers: true,
+        regenerator: true,
+        useESModules: true
+      }
+    ]);
   }
 
   return list;
