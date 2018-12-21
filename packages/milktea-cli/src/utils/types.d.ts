@@ -16,5 +16,6 @@ export interface Argv{
   registry: number;
   imageEntry: string;
   imageOutput: string;
+  quality: number,
   __DEV__: boolean;
 }

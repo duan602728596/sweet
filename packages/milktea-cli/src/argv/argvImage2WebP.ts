@@ -9,10 +9,12 @@ function argvImage2WebP(argv: Argv): void{
   const image2webp: Function = requireModule('@sweet/util-tools/lib/image2webp');
   const imageEntry: string = argv.imageEntry;
   const imageOutput: string = argv.imageOutput;
+  const quality: number = argv.quality;
 
   image2webp(
     path.join(cwd, imageEntry),
-    path.join(cwd, imageOutput)
+    path.join(cwd, imageOutput),
+    quality
   );
 }
 

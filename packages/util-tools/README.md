@@ -14,3 +14,18 @@ update(
   0                    // Npm包信息地址。0：Npm，1：Yarn，2：CNpm。
 );
 ```
+
+## webp图片批量转换工具
+
+使用方法：
+
+```javascript
+import image2webp from '@sweet/util-tools/lib/image2webp';
+
+image2webp(
+  './src',   // 入口文件夹
+  './build', // 输出文件夹
+  70         // 图片质量
+);
+
+```

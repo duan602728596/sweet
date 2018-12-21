@@ -58,6 +58,10 @@ const argv: object = yargs
       describe: '输出批量转换的图片的文件夹',
       type: 'string'
     },
+    quality: {
+      describe: '图片转换的质量（0~100）',
+      type: 'number'
+    },
     // update
     registry: {
       describe: 'Npm包信息地址。0：Npm，1：Yarn，2：CNpm',
