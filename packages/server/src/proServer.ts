@@ -90,21 +90,6 @@ async function proServer(argv: proServerType = {}): Promise<void>{
     await next();
   });
 
-  /* 静态文件 */
-  router.get(/^.*\.[a-zA-Z0-9]+$/, async(ctx: Koa.Context, next: Function): Promise<void>=>{
-    const pathFile: string = ctx.path;
-    const file: string = path.join(formatServerRoot, pathFile);
-
-    if(fs.existsSync(file)){
-      ctx.status = 200;
-      ctx.type = mime.lookup(file);
-    }else{
-      ctx.status = 404;
-    }
-
-    await next();
-  });
-
   /* 本地服务 */
   if(fs.existsSync(defaultRoutersPath(sweetOptions))){
     // 加载es6+环境
