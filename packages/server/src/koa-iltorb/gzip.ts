@@ -1,4 +1,3 @@
-// zlib.gzip(buffer[, options], callback)
 import * as zlib from 'zlib';
 
 function gzip(buffer: Buffer): Promise<Buffer>{

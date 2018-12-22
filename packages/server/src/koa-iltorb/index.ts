@@ -11,10 +11,13 @@ function iltorb(): Koa.Middleware{
     const { body }: { body: Buffer | string } = ctx;                      // 获取响应数据
     let input: any = body;
 
+    // 对文件进行判断
     if(!Buffer.isBuffer(input)){
       // 兼容staticCache缓存
       if(isReadStream(input)){
-        input = await readFile(input.path); // 此时的input是ReadStream对象
+        // 此时的input是ReadStream对象
+        // 当数据从网络抓取时，没有input.path，此时无法压缩
+        if(input.path) input = await readFile(input.path);
       }else{
         // 字符串
         if(typeof body === 'string' || typeof body === 'number') input = Buffer.from(`${ body }`);
@@ -24,6 +27,7 @@ function iltorb(): Koa.Middleware{
       }
     }
 
+    // 对文件进行压缩
     if(acceptEncoding && Buffer.isBuffer(input)){
       let output: Buffer = null;
 
