@@ -82,11 +82,13 @@ async function devServer(argv: devServerType = {}): Promise<void>{
   router.get(/^\/[^._\-]*$/, async(ctx: Koa.Context, next: Function): Promise<void>=>{
     const file: string = ctx.path;
     const mimeType: string | boolean = mime.lookup(file);
+
     if(file !== '/' && mimeType === false){
       ctx.path = '/';
       // @ts-ignore @保存path属性
       ctx._path = file;
     }
+
     await next();
 
     // 服务器端渲染

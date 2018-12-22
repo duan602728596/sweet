@@ -7,9 +7,7 @@ import * as path from 'path';
 import * as Koa from 'koa';
 import * as Router from 'koa-router';
 import * as body from 'koa-body';
-import * as convert from 'koa-convert';
 import * as staticCache from 'koa-static-cache';
-import * as mime from 'mime-types';
 import iltorb from './koa-iltorb/index';
 import { readFile, defaultRoutersPath, registerConfig, requireModule } from './utils/utils';
 import preRender from './utils/preProRender';
@@ -69,11 +67,9 @@ async function proServer(argv: proServerType = {}): Promise<void>{
   app.use(iltorb());
 
   /* 缓存 */
-  app.use(convert(
-    staticCache(formatServerRoot, {
-      maxAge: (60 ** 2) * 24 * 365
-    })
-  ));
+  app.use(staticCache(formatServerRoot, {
+    maxAge: (60 ** 2) * 24 * 365
+  }));
 
   /* router */
   app.use(router.routes())
