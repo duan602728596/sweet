@@ -3,7 +3,7 @@ import * as path from 'path';
 import * as gulp from 'gulp';
 import * as typescript from 'gulp-typescript';
 import { ICompileStream } from 'gulp-typescript/release/project';
-import ReadWriteStream = NodeJS.ReadWriteStream;
+import { Stream } from 'stream';
 import * as tsconfig from '../tsconfig.json';
 import { dir, packageNames } from './config';
 
@@ -11,7 +11,7 @@ function createProject(names: string): Function{
   const src: string = path.join(dir, names, 'src/**/*.ts');
   const dist: string = path.join(dir, names, 'lib');
 
-  return function(): ReadWriteStream{
+  return function(): Stream{
     const result: ICompileStream = gulp.src(src)
       .pipe(typescript(tsconfig.compilerOptions));
 
