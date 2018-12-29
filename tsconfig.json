@@ -5,7 +5,8 @@
     "locale": "zh-CN",
     "module": "commonjs",
     "target": "ES2018",
-    "newLine": "LF"
+    "newLine": "LF",
+    "resolveJsonModule": true
   },
   "exclude": [
     "node_modules"
