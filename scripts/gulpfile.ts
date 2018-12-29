@@ -3,12 +3,11 @@ import * as path from 'path';
 import * as gulp from 'gulp';
 import * as typescript from 'gulp-typescript';
 import { ICompileStream } from 'gulp-typescript/release/project';
-import { Task } from 'undertaker';
 import ReadWriteStream = NodeJS.ReadWriteStream;
 import * as tsconfig from '../tsconfig.json';
 import { dir, packageNames } from './config';
 
-function createProject(names: string): Task{
+function createProject(names: string): Function{
   const src: string = path.join(dir, names, 'src/**/*.ts');
   const dist: string = path.join(dir, names, 'lib');
 
@@ -21,10 +20,10 @@ function createProject(names: string): Task{
 }
 
 /* 创建队列函数 */
-const queueFn: Task[] = [];
+const queueFn: Function[] = [];
 
 for(const item of packageNames){
-  const fn: Task = createProject(item);
+  const fn: Function = createProject(item);
 
   Object.defineProperty(fn, 'name', {
     value: item
