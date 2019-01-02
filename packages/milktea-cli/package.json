@@ -40,6 +40,11 @@
     "rimraf": "^2.6.2",
     "typescript": "^3.2.2"
   },
+  "peerDependencies": {
+    "@sweet/milktea": "github:duan602728596/sweet#build-milktea",
+    "@sweet/server": "github:duan602728596/sweet#build-server",
+    "@sweet/util-tools": "github:duan602728596/sweet#build-util-tools"
+  },
   "engines": {
     "node": ">= 9.0.0"
   }

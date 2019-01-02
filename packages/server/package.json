@@ -38,6 +38,9 @@
     "typescript": "^3.2.2",
     "webpack": "^4.28.3"
   },
+  "peerDependencies": {
+    "@sweet/milktea": "github:duan602728596/sweet#build-milktea"
+  },
   "engines": {
     "node": ">= 9.0.0"
   }
