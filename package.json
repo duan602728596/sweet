@@ -1,7 +1,7 @@
 {
   "name": "sweet",
   "scripts": {
-    "build": "gulp --gulpfile ./scripts/gulpfile.ts",
+    "build": "gulp --gulpfile ./scripts/build.ts",
     "clean": "ts-node ./scripts/clean",
     "update": "milktea update",
     "update-dev": "milktea update --__DEV__",
