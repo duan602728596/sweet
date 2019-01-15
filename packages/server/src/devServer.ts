@@ -12,7 +12,7 @@ import * as koaWebpack from 'koa-webpack';
 import * as webpack from 'webpack';
 import { readFile, defaultRoutersPath, cleanRequireCache, registerConfig, requireModule } from './utils/utils';
 import preRender from './utils/preDevRender';
-import { SweetOptions } from './utils/types';
+import { SweetOptions, Context } from './utils/types';
 
 const app: Koa = new Koa();
 const router: Router = new Router();
@@ -79,14 +79,13 @@ async function devServer(argv: devServerType = {}): Promise<void>{
   app.use(middleware);
 
   /* webpack 重定向 */
-  router.get(/^\/[^._\-]*$/, async(ctx: Koa.Context, next: Function): Promise<void>=>{
+  router.get(/^\/[^._\-]*$/, async(ctx: Context, next: Function): Promise<void>=>{
     const file: string = ctx.path;
     const mimeType: string | boolean = mime.lookup(file);
 
     if(file !== '/' && mimeType === false){
       ctx.path = '/';
-      // @ts-ignore @保存path属性
-      ctx._path = file;
+      ctx._path = file; // 保存旧的path
     }
 
     await next();

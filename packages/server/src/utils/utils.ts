@@ -40,11 +40,10 @@ export function replaceTemplate(template: string, data: any): string{
 }
 
 /* 清除模块缓存 */
-export function cleanRequireCache(id: string): void{
+export function cleanRequireCache(id: any): void{
   const modulePath: string = require.resolve(id);
 
   if(module.parent){
-    // @ts-ignore @传入模块id清除缓存
     module.parent.children.splice(module.parent.children.indexOf(id), 1);
   }
 
