@@ -1,9 +1,9 @@
 /* gulp配置文件，编译packages下的所有文件 */
 import * as path from 'path';
+import { Stream } from 'stream';
 import * as gulp from 'gulp';
 import * as typescript from 'gulp-typescript';
 import { ICompileStream } from 'gulp-typescript/release/project';
-import { Stream } from 'stream';
 import * as tsconfig from '../tsconfig.json';
 import { dir, packageNames } from './config';
 
