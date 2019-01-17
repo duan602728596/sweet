@@ -1,7 +1,7 @@
 import * as fs from 'fs';
 import * as path from 'path';
+import { Stream } from 'stream';
 import { SweetOptions } from './types';
-import ReadStream = NodeJS.ReadStream;
 
 /* 读取文件 */
 export function readFile(file: string): Promise<Buffer>{
@@ -132,7 +132,7 @@ export function isReadStream(input: any): boolean{
 }
 
 /* 读取stream流 */
-export function readStream(stream: ReadStream): Promise<Buffer>{
+export function readStream(stream: Stream): Promise<Buffer>{
   let chunks: Buffer = null;
 
   return new Promise((resolve: Function, reject: Function): void=>{

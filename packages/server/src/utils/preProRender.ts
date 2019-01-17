@@ -42,7 +42,7 @@ async function preRender(
   }
 
   const server: Function = requireModule(serverRenderFile);
-  const stringOrStream: any /* ReadStream | string */ = await server(file, ctx, data.initialState);
+  const stringOrStream: any /* Stream | string */ = await server(file, ctx, data.initialState);
   const render: string = isReadStream(stringOrStream) ? (await readStream(stringOrStream)).toString() : stringOrStream;
 
   return replaceTemplate(html.toString(), {
