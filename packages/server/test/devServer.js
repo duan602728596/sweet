@@ -5,6 +5,7 @@ import webpack from 'webpack';
 import { config as webpackConfig } from '@sweet/milktea';
 import devServer from '../lib/devServer';
 
+// webpack配置
 const compiler: Object = webpack(webpackConfig({
   entry: {
     app: [path.join(__dirname, 'src/app.js')]
@@ -17,8 +18,12 @@ const compiler: Object = webpack(webpackConfig({
   html: [{ template: path.join(__dirname, 'src/index.pug') }]
 }, 'development'));
 
+// 运行开发环境服务
 function runServer(): Promise{
-  devServer({ compiler });
+  devServer({
+    compiler,
+    env: 'test'
+  });
 
   return new Promise((resolve: Function, reject: Function): void=>{
     setTimeout((): void=>{
@@ -31,6 +36,7 @@ describe('development server', function(): void{
   it('run dev server', async function(): Promise<void>{
     await runServer();
 
+    // 请求文件
     const resHtml: Object = await axios.get('http://127.0.0.1:5050');
     const resJs: Object = await axios.get('http://127.0.0.1:5050/app.js');
 

@@ -2,10 +2,12 @@ import path from 'path';
 import { expect } from 'chai';
 import axios from 'axios';
 import webpack from 'webpack';
-import { config as webpackConfig, callback } from '@sweet/milktea';
+import { config as webpackConfig } from '@sweet/milktea';
 import proServer from '../lib/proServer';
 
+// webpack配置
 const compiler: Object = webpack(webpackConfig({
+  frame: 'test',
   entry: {
     app: [path.join(__dirname, 'src/app.js')]
   },
@@ -17,8 +19,9 @@ const compiler: Object = webpack(webpackConfig({
   html: [{ template: path.join(__dirname, 'src/index.pug') }]
 }, 'production'));
 
+// 编译文件
 function runBuild(): Promise{
-  compiler.run(callback);
+  compiler.run((): void => undefined);
 
   return new Promise((resolve: Function, reject: Function): void=>{
     setTimeout((): void=>{
@@ -27,6 +30,7 @@ function runBuild(): Promise{
   });
 }
 
+// 运行生产环境服务
 function runServer(): Promise{
   proServer({
     serverRoot: 'test/build'
@@ -44,6 +48,7 @@ describe('production server', function(): void{
     await runBuild();
     await runServer();
 
+    // 请求文件
     const resHtml: Object = await axios.get('http://127.0.0.1:5052');
     const resJs: Object = await axios.get('http://127.0.0.1:5052/app.js');
 

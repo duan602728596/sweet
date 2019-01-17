@@ -28,6 +28,7 @@ const sweetOptions: SweetOptions = {
  * httpsPort { number }: https端口号
  * serverRender { boolean }: 开启服务器端渲染
  * serverRenderFile { string }: 服务器端渲染的主模块文件
+ * env { string }: 运行环境，可能的值为test（测试）
  */
 interface devServerType{
   compiler?: webpack.Completer;
@@ -35,6 +36,7 @@ interface devServerType{
   httpsPort?: number;
   serverRender?: boolean;
   serverRenderFile?: string;
+  env?: string;
 }
 
 async function devServer(argv: devServerType = {}): Promise<void>{
@@ -43,7 +45,8 @@ async function devServer(argv: devServerType = {}): Promise<void>{
     httpPort = 5050,
     httpsPort = 5051,
     serverRender,
-    serverRenderFile = 'buildServer/server.js'
+    serverRenderFile = 'buildServer/server.js',
+    env
   } = argv;
 
   /* 将端口加入到服务端 */
@@ -66,15 +69,30 @@ async function devServer(argv: devServerType = {}): Promise<void>{
     .use(router.allowedMethods());
 
   /* webpack中间件 */
-  const middleware: koaWebpack.Middleware<any> = await koaWebpack({
+  const middlewareConfig: {
+    compiler: webpack.Completer,
+    hotClient: { host: { client: string, server: string }, logLevel?: string },
+    devMiddleware: { serverSideRender: boolean, logLevel?: string }
+  } = {
     compiler,
     hotClient: {
       host: {
         client: '*',
         server: '0.0.0.0'
       }
+    },
+    devMiddleware: {
+      serverSideRender: true
     }
-  });
+  };
+
+  // 测试配置
+  if(env === 'test'){
+    middlewareConfig.hotClient.logLevel = 'silent';
+    middlewareConfig.devMiddleware.logLevel = 'silent';
+  }
+
+  const middleware: koaWebpack.Middleware<any> = await koaWebpack(middlewareConfig);
 
   app.use(middleware);
 

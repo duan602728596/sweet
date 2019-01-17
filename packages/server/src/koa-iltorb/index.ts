@@ -3,6 +3,7 @@ import * as brotli from 'iltorb';
 import gzip from './gzip';
 import { readFile, isReadStream } from '../utils/utils';
 
+/* brotli压缩中间件 */
 function iltorb(): Koa.Middleware{
   return async function(ctx: Koa.Context, next: () => Promise<void>): Promise<void>{
     await next();
