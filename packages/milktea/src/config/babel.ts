@@ -29,7 +29,7 @@ const presetsList: Function = (
           edge: 16,
           chrome: 62,
           firefox: 56,
-          android: 5,
+          android: 6,
           ios: 11
         },
         debug,
@@ -68,9 +68,7 @@ const pluginsList: Function = (
   }
 
   // 判断是否为es6+
-  if(ecmascript){
-    list.unshift('@babel/plugin-proposal-object-rest-spread');
-  }else{
+  if(!ecmascript){
     list.push([
       '@babel/plugin-transform-runtime',
       {
