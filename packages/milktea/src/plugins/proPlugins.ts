@@ -6,12 +6,18 @@ import { handleWebpackBuildProgress } from '../utils/utils';
 import { SweetConfig, SweetOptions } from '../utils/types';
 
 export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions): Array<any>{
-  return [
+  const proPlugins: Array<any> = [
     new MiniCssExtractPlugin({
       filename: 'style/[chunkhash:5].css',
       chunkFilename: 'style/[chunkhash:5].css'
     }),
-    new OptimizeCssAssets(),
-    new webpack.ProgressPlugin(handleWebpackBuildProgress)
+    new OptimizeCssAssets()
   ];
+
+  // 当环境为测试时，不适用输出插件
+  if(sweetConfig.frame !== 'test'){
+    proPlugins.push(new webpack.ProgressPlugin(handleWebpackBuildProgress));
+  }
+
+  return proPlugins;
 }
