@@ -42,11 +42,7 @@ const presetsList: Function = (
   return list;
 };
 
-const pluginsList: Function = (
-  plugins: Array<any> = [],
-  isReact: boolean,
-  ecmascript: boolean
-): Array<any>=>{
+const pluginsList: Function = (plugins: Array<any> = [], isReact: boolean): Array<any>=>{
   const list: Array<any> = [
     [
       '@babel/plugin-proposal-decorators',
@@ -59,17 +55,7 @@ const pluginsList: Function = (
     '@babel/plugin-proposal-optional-chaining',
     '@babel/plugin-proposal-class-properties',
     '@babel/plugin-syntax-dynamic-import',
-    ...plugins
-  ];
-
-  // 判断是否加载react相关插件，热替换
-  if(isReact){
-    list.push('react-hot-loader/babel');
-  }
-
-  // 判断是否为es6+
-  if(!ecmascript){
-    list.push([
+    [
       '@babel/plugin-transform-runtime',
       {
         corejs: false,
@@ -77,7 +63,13 @@ const pluginsList: Function = (
         regenerator: true,
         useESModules: true
       }
-    ]);
+    ],
+    ...plugins
+  ];
+
+  // 判断是否加载react相关插件，热替换
+  if(isReact){
+    list.push('react-hot-loader/babel');
   }
 
   return list;
@@ -120,7 +112,7 @@ export default function(options: JsOption = {}, sweetOptions: SweetOptions): Loa
       : presetsList(presets, debug, isReact, ecmascript),
     plugins: resetPlugins
       ? resetPlugins
-      : pluginsList(plugins, isReact, ecmascript)
+      : pluginsList(plugins, isReact)
   };
 
   return {
