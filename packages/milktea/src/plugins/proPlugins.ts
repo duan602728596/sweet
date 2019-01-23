@@ -14,7 +14,7 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions): A
     }),
     new OptimizeCssAssets(),
     new ImageMinWebpackPlugin({
-      test: /\.(jpe?g|png|gif|webp)$/i
+      test: /\.(jpe?g|png|gif)$/i
     })
   ];
 
