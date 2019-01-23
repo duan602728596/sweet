@@ -3,6 +3,7 @@ import webpack from 'webpack';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import OptimizeCssAssets from 'optimize-css-assets-webpack-plugin';
+import ImageMinWebpackPlugin from 'imagemin-webpack-plugin';
 import VueLoaderPlugin from 'vue-loader/lib/plugin';
 import TerserPlugin from 'terser-webpack-plugin';
 
@@ -45,13 +46,14 @@ export function expectDevServerPlugins(config: Object): Function{
 export function expectProPlugins(config: Object): Function{
   return function(): void{
     expect(config.plugins).to.be.an('array');
-    expect(config.plugins).to.have.lengthOf(6);
+    expect(config.plugins).to.have.lengthOf(7);
     expect(config.plugins[0] instanceof webpack.IgnorePlugin).to.be.true;
     expect(config.plugins[1] instanceof MiniCssExtractPlugin).to.be.true;
     expect(config.plugins[2] instanceof OptimizeCssAssets).to.be.true;
-    expect(config.plugins[3] instanceof webpack.ProgressPlugin).to.be.true;
-    expect(config.plugins[4] instanceof HtmlWebpackPlugin).to.be.true;
-    expect(config.plugins[5] instanceof VueLoaderPlugin).to.be.true;
+    expect(config.plugins[3] instanceof ImageMinWebpackPlugin).to.be.true;
+    expect(config.plugins[4] instanceof webpack.ProgressPlugin).to.be.true;
+    expect(config.plugins[5] instanceof HtmlWebpackPlugin).to.be.true;
+    expect(config.plugins[6] instanceof VueLoaderPlugin).to.be.true;
   }
 }
 
@@ -59,12 +61,13 @@ export function expectProPlugins(config: Object): Function{
 export function expectProServerPlugins(config: Object): Function{
   return function(): void{
     expect(config.plugins).to.be.an('array');
-    expect(config.plugins).to.have.lengthOf(5);
+    expect(config.plugins).to.have.lengthOf(6);
     expect(config.plugins[0] instanceof webpack.IgnorePlugin).to.be.true;
     expect(config.plugins[1] instanceof MiniCssExtractPlugin).to.be.true;
     expect(config.plugins[2] instanceof OptimizeCssAssets).to.be.true;
-    expect(config.plugins[3] instanceof webpack.ProgressPlugin).to.be.true;
-    expect(config.plugins[4] instanceof VueLoaderPlugin).to.be.true;
+    expect(config.plugins[3] instanceof ImageMinWebpackPlugin).to.be.true;
+    expect(config.plugins[4] instanceof webpack.ProgressPlugin).to.be.true;
+    expect(config.plugins[5] instanceof VueLoaderPlugin).to.be.true;
   }
 }
 

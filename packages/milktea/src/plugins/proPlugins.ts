@@ -2,6 +2,7 @@
 import * as webpack from 'webpack';
 import * as MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import * as OptimizeCssAssets from 'optimize-css-assets-webpack-plugin';
+import ImageMinWebpackPlugin from 'imagemin-webpack-plugin';
 import { handleWebpackBuildProgress } from '../utils/utils';
 import { SweetConfig, SweetOptions } from '../utils/types';
 
@@ -11,7 +12,10 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions): A
       filename: 'style/[chunkhash:5].css',
       chunkFilename: 'style/[chunkhash:5].css'
     }),
-    new OptimizeCssAssets()
+    new OptimizeCssAssets(),
+    new ImageMinWebpackPlugin({
+      test: /\.(jpe?g|png|gif|webp)$/i
+    })
   ];
 
   // 当环境为测试时，不适用输出插件
