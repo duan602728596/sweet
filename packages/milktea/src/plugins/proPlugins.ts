@@ -18,7 +18,7 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions): A
     })
   ];
 
-  // 当环境为测试时，不适用输出插件
+  // 当环境为测试时，不使用输出插件
   if(sweetConfig.frame !== 'test'){
     proPlugins.push(new webpack.ProgressPlugin(handleWebpackBuildProgress));
   }
