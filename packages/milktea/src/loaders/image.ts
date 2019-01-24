@@ -15,9 +15,11 @@ export default function(sweetConfig: SweetConfig): Loader{
 
   return { // 图片
     test: /^.*\.(jpe?g|png|gif|webp)$/,
-    use: [imageConfig({
-      isDevelopment,
-      emitFile
-    })]
+    use: [
+      imageConfig({
+        isDevelopment,
+        emitFile
+      })
+    ]
   };
 }

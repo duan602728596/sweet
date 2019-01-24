@@ -5,6 +5,8 @@ import { Loader } from '../utils/types';
 export default function(): Loader{
   return {
     test: /^.*\.ico$/,
-    use: [faviconConfig()]
+    use: [
+      faviconConfig()
+    ]
   };
 }

@@ -29,15 +29,17 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions): L
 
   return {
     test: /^.*\.jsx?$/,
-    use: [babelConfig({
-      isDevelopment,
-      ecmascript,
-      presets,
-      plugins,
-      resetPresets,
-      resetPlugins,
-      isReact: frame === 'react'
-    }, sweetOptions)],
+    use: [
+      babelConfig({
+        isDevelopment,
+        ecmascript,
+        presets,
+        plugins,
+        resetPresets,
+        resetPlugins,
+        isReact: frame === 'react'
+      }, sweetOptions)
+    ],
     exclude,
     include
   };

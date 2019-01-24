@@ -44,10 +44,12 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions): O
       terserOptions.ecma = 5;
     }
 
-    optimization.minimizer = [new TerserPlugin({
-      cache: path.join(sweetOptions.basicPath, '.terserCache'),
-      terserOptions
-    })];
+    optimization.minimizer = [
+      new TerserPlugin({
+        cache: path.join(sweetOptions.basicPath, '.terserCache'),
+        terserOptions
+      })
+    ];
   }
 
   return optimization;

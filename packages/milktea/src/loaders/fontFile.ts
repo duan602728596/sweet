@@ -13,9 +13,11 @@ export default function(sweetConfig: SweetConfig): Loader{
 
   return {
     test: /^.*\.(eot|ttf|woff2?)$/,
-    use: [fontFileConfig({
-      isDevelopment,
-      emitFile
-    })]
+    use: [
+      fontFileConfig({
+        isDevelopment,
+        emitFile
+      })
+    ]
   };
 }
