@@ -6,7 +6,7 @@ import { SweetOptions, LoaderOption } from '../utils/types';
 const presetsList: Function = (
   presets: Array<any> = [],
   debug: boolean,
-  isReact: boolean,
+  frame: string,
   ecmascript: boolean
 ): Array<any>=>{
   const list: Array<any> = [
@@ -15,7 +15,7 @@ const presetsList: Function = (
   ];
 
   // 判断是否加载react相关插件
-  if(isReact){
+  if(frame === 'react'){
     list.unshift('@babel/preset-react');
   }
 
@@ -42,7 +42,7 @@ const presetsList: Function = (
   return list;
 };
 
-const pluginsList: Function = (plugins: Array<any> = [], isReact: boolean): Array<any>=>{
+const pluginsList: Function = (plugins: Array<any> = [], frame: string): Array<any>=>{
   const list: Array<any> = [
     [
       '@babel/plugin-proposal-decorators',
@@ -68,8 +68,13 @@ const pluginsList: Function = (plugins: Array<any> = [], isReact: boolean): Arra
   ];
 
   // 判断是否加载react相关插件，热替换
-  if(isReact){
+  if(frame === 'react'){
     list.push('react-hot-loader/babel');
+  }
+
+  // vue使用jsx
+  if(frame === 'vue'){
+    list.push('transform-vue-jsx');
   }
 
   return list;
@@ -77,7 +82,7 @@ const pluginsList: Function = (plugins: Array<any> = [], isReact: boolean): Arra
 
 interface JsOption{
   isDevelopment?: boolean;
-  isReact?: boolean;
+  frame?: string;
   ecmascript?: boolean;
   presets?: Array<any>;
   plugins?: Array<any>;
@@ -101,18 +106,17 @@ export default function(options: JsOption = {}, sweetOptions: SweetOptions): Loa
    * plugins { ?Array }: 插件列表
    * resetPresets { ?Array }: 插件覆盖列表
    * resetPlugins { ?Array }: 插件覆盖列表
-   * reactHotLoader { boolean }: 开启react-hot-loader
    */
-  const { isDevelopment, ecmascript, presets, plugins, resetPresets, resetPlugins, isReact } = options;
+  const { isDevelopment, ecmascript, presets, plugins, resetPresets, resetPlugins, frame } = options;
   const debug: boolean = isDevelopment === undefined ? true : isDevelopment;
   const babelLoaderOptions: BabelLoaderOptions = {
     cacheDirectory: path.join(sweetOptions.basicPath, '.babelCache'),
     presets: resetPresets
       ? resetPresets
-      : presetsList(presets, debug, isReact, ecmascript),
+      : presetsList(presets, debug, frame, ecmascript),
     plugins: resetPlugins
       ? resetPlugins
-      : pluginsList(plugins, isReact)
+      : pluginsList(plugins, frame)
   };
 
   return {

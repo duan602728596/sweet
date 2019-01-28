@@ -29,14 +29,20 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions): W
     entry,
     output: {
       path: path.join(sweetOptions.basicPath, 'build'),
-      filename: isDevelopment ? 'script/[name].js' : 'script/[chunkhash:5].js',
-      chunkFilename: isDevelopment ? 'script/[name].js' : 'script/[chunkhash:5].js',
+      filename: isDevelopment
+        ? 'script/[name].js'
+        : 'script/[chunkhash:5].js',
+      chunkFilename: isDevelopment
+        ? 'script/[name].js'
+        : 'script/[chunkhash:5].js',
       ...output
     },
     externals,
     resolve,
     devtool: isDevelopment ? 'module-source-map' : 'none',
-    module: { rules: loaders(sweetConfigCopy, sweetOptions) },
+    module: {
+      rules: loaders(sweetConfigCopy, sweetOptions)
+    },
     plugins: plugins(sweetConfigCopy, sweetOptions),
     optimization: optimization(sweetConfigCopy, sweetOptions)
   };

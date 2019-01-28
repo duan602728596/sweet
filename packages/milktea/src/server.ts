@@ -41,7 +41,9 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions): W
     },
     devtool: isDevelopment ? 'module-source-map' : 'none',
     resolve,
-    module: { rules: loaders(sweetConfigCopy, sweetOptions) },
+    module: {
+      rules: loaders(sweetConfigCopy, sweetOptions)
+    },
     plugins: plugins(sweetConfigCopy, sweetOptions),
     optimization: optimization(sweetConfigCopy, sweetOptions),
     // webpack服务器端编辑属性

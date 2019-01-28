@@ -37,7 +37,7 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions): L
         plugins,
         resetPresets,
         resetPlugins,
-        isReact: frame === 'react'
+        frame
       }, sweetOptions)
     ],
     exclude,

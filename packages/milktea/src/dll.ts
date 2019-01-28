@@ -59,10 +59,12 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions): W
       rules: [
         {
           test: /^.*\.js$/,
-          use: [babelConfig({
-            resetPresets: dllResetPresetsConfig,
-            resetPlugins: dllResetPluginsConfig
-          }, sweetOptions)]
+          use: [
+            babelConfig({
+              resetPresets: dllResetPresetsConfig,
+              resetPlugins: dllResetPluginsConfig
+            }, sweetOptions)
+          ]
         }
       ]
     },
