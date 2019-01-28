@@ -37,9 +37,6 @@ export const navOptions: options[] = [
  */
 export default {
   name: 'Header',
-  components: {
-    HumanInformation
-  },
   data(): Object{
     return {
       navOptions

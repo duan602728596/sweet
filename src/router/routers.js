@@ -1,6 +1,6 @@
 import Vue from 'vue/dist/vue';
 import VueRouter from 'vue-router/dist/vue-router';
-import Index from '../modules/Index/Layout.vue';
+import Index from '../modules/Index/Layout';
 
 Vue.use(VueRouter);
 
@@ -19,7 +19,7 @@ const routers: VueRouter = new VueRouter({
     {
       path: '/Page',
       name: 'page',
-      component: (): Promise => import('../modules/Page/Layout.vue')
+      component: (): Promise => import('../modules/Page/Layout')
     }
   ]
 });

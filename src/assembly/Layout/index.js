@@ -11,10 +11,6 @@ import style from './style.sass';
  */
 export default {
   name: 'Layout',
-  components: {
-    Header,
-    Main
-  },
   render(): Vue.VNode{
     return (
       <i-layout class={ style.layout }>
