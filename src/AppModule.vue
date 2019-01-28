@@ -5,7 +5,7 @@
 </template>
 
 <script type="text/javascript">
-  import Layout from './assembly/Layout/index.vue';
+  import Layout from './assembly/Layout/index';
 
   export default {
     name: 'AppModule',

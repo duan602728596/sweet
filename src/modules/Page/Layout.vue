@@ -11,9 +11,9 @@
 </template>
 
 <script type="text/javascript">
-  import Main from '../../assembly/Main/index.vue';
+  import Main from '../../assembly/Main/index';
   import Sider from '../../assembly/Sider/index.vue';
-  import Content from '../../assembly/Content/index.vue';
+  import Content from '../../assembly/Content/index';
 
   /* 配置二、三级导航菜单 */
   const options: {

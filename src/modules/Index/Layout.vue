@@ -10,8 +10,8 @@
 </template>
 
 <script type="text/javascript">
-  import Main from '../../assembly/Main/index.vue';
-  import Content from '../../assembly/Content/index.vue';
+  import Main from '../../assembly/Main/index';
+  import Content from '../../assembly/Content/index';
   import Index from './Index/index.vue';
 
   export default {
