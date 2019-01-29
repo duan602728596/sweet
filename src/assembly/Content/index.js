@@ -8,7 +8,7 @@ import style from './style.sass';
  */
 export default {
   name: 'Content',
-  render(h: Function): Vue.VNode{
+  render(): Vue.VNode{
     return(
       <i-content class={ style.content }>
         { this.$slots.default }
