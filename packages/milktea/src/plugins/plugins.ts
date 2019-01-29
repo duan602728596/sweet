@@ -24,9 +24,9 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions): A
 
   // 合并插件
   const pluginArr: Array<any> = [
+    ...plugins ? plugins : [],
     new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
-    ...envPlugins(sweetConfig, sweetOptions),
-    ...plugins ? plugins : []
+    ...envPlugins(sweetConfig, sweetOptions)
   ];
 
   // html模板
