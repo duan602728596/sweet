@@ -108,7 +108,7 @@ export default function(options: JsOption = {}, sweetOptions: SweetOptions): Loa
    * resetPlugins { ?Array }: 插件覆盖列表
    */
   const { isDevelopment, ecmascript, presets, plugins, resetPresets, resetPlugins, frame } = options;
-  const debug: boolean = isDevelopment === undefined ? true : isDevelopment;
+  const debug: boolean = frame === 'test' ? false : (isDevelopment === undefined ? true : isDevelopment);
   const babelLoaderOptions: BabelLoaderOptions = {
     cacheDirectory: path.join(sweetOptions.basicPath, '.babelCache'),
     presets: resetPresets
