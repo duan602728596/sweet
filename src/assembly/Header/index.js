@@ -47,7 +47,7 @@ export default {
       return navOptions.map((item: Object, index: number): Vue.VNode=>{
         return (
           <li key={ index }>
-            <router-link to={ item.href } active-class={ style.navActive}>
+            <router-link to={ item.href } active-class={ style.navActive }>
               <i class={ item.icon} />
               <span>{ item.name }</span>
             </router-link>
