@@ -133,19 +133,15 @@ export function isReadStream<Input>(input: Input): boolean{
 
 /* 读取stream流 */
 export function readStream(stream: Stream): Promise<Buffer>{
-  let chunks: Buffer = null;
+  const chunks: Array<Buffer> = [];
 
   return new Promise((resolve: Function, reject: Function): void=>{
     stream.on('data', function(chunk: Buffer): void{
-      if(chunks === null){
-        chunks = chunk;
-      }else{
-        chunks = Buffer.from([...chunks, ...chunk]);
-      }
+      chunks.push(chunk);
     });
 
     stream.on('end', function(): void{
-      resolve(chunks);
+      resolve(Buffer.concat(chunks));
     });
   });
 }
