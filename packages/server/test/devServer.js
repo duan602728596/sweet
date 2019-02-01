@@ -7,6 +7,7 @@ import devServer from '../lib/devServer';
 
 // webpack配置
 const compiler: Object = webpack(webpackConfig({
+  frame: 'test',
   entry: {
     app: [path.join(__dirname, 'src/app.js')]
   },
