@@ -1,12 +1,13 @@
 /* 判断是否为对象 */
-export const isObject: Function = (d: any): boolean=>{
-  return typeof d === 'object' && Object.prototype.toString.call(d) === '[object Object]';
-};
+
+export function isObject<Data>(data: Data): boolean{
+  return typeof data === 'object' && Object.prototype.toString.call(data) === '[object Object]';
+}
 
 /* 判断是否为数组 */
-export const isArray: Function = (d: any): boolean=>{
-  return typeof d === 'object' && Object.prototype.toString.call(d) === '[object Array]';
-};
+export function isArray<Data>(data: Data): boolean{
+  return typeof data === 'object' && Object.prototype.toString.call(data) === '[object Array]';
+}
 
 /* @babel/register配置 */
 interface RegisterConfig{
@@ -42,7 +43,7 @@ export const registerConfig: RegisterConfig = {
 };
 
 /* 格式化输出 */
-export function handleWebpackBuildProgress(percentage: number, message: any, ...args: any): void{
+export function handleWebpackBuildProgress(percentage: number, message: string, ...args: Array<any>): void{
   const schedule: number = Number(percentage.toFixed(2)) * 100;
   const pNumber: string[] = `${ schedule }`.split('.');
 

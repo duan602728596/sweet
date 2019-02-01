@@ -127,7 +127,7 @@ export function requireModule(id: string): any{
 }
 
 /* 判断是否为readStream */
-export function isReadStream(input: any): boolean{
+export function isReadStream<Input>(input: Input): boolean{
   return typeof input === 'object' && Object.prototype.toString.call(input) === '[object Object]' && '_readableState' in input;
 }
 
@@ -136,11 +136,11 @@ export function readStream(stream: Stream): Promise<Buffer>{
   let chunks: Buffer = null;
 
   return new Promise((resolve: Function, reject: Function): void=>{
-    stream.on('data', function(chunk: any): void{
+    stream.on('data', function(chunk: Buffer): void{
       if(chunks === null){
         chunks = chunk;
       }else{
-        chunks += chunk;
+        chunks = Buffer.from([...chunks, ...chunk]);
       }
     });
 
