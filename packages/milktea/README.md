@@ -41,53 +41,53 @@ export default {
 
 ### 配置项
 
-* mode`{ string }`: 开发模式还是生产模式
-* dll`{ Array<string> }`: 配置需要编译的dll模块
-* entry`{ any }`: 文件入口（参考webpack）
-* output`{ any }`: 文件出口（参考webpack）
-* externals`{ ?Object }`: 外部扩展（参考webpack）
-* resolve { ?Object } 解析（参考webpack）
+* mode `{ string }`: 开发模式还是生产模式
+* dll `{ Array<string> }`: 配置需要编译的dll模块
+* entry `{ any }`: 文件入口（参考webpack）
+* output `{ any }`: 文件出口（参考webpack）
+* externals `{ ?Object }`: 外部扩展（参考webpack）
+* resolve `{ ?Object }`: 解析（参考webpack）
 * loaders: 重写loaders的默认规则
-  * js`{ Object }`: 重写默认的js规则
-  * sass`{ Object }`: 重写默认的sass规则
-  * css`{ Object }`: 重写默认的css规则
-  * favicon`{ Object }`: 重写网站图标的规则
-  * fontFile`{ Object }`: 重写字体文件的规则
-  * html`{ Object }`: 重写html的规则，默认为pug
-  * image`{ Object }`: 重写图片文件的规则
-  * svg`{ Object }`: 重写svg的规则
-  * vue`{ Object }`: 重写vue的规则
-* rules`{ Array }`: 自定义规则
-* plugins`{ Array }`: 自定义插件
-* js`{ Object }`: js配置
-  * ecmascript`{ boolean }`: 是否编译到ecmascript的最新语法（即不使用@babel/preset-env，通常适用于node、nwjs和electron）
-  * presets`{ Array }`: 自定义presets
-  * plugins`{ Array }`: 自定义plugins
-  * resetPresets`{ Array }`: 重写presets
-  * resetPlugins`{ Array }`: 重写plugins
-  * exclude`{ RegExp }`: exclude规则
-  * include`{ RegExp }`: include规则
-* sass`{ Object }`: sass配置
-  * publicPath`{ string }`
-  * modules`{ boolean }`开启css-in-modules
-  * exclude`{ RegExp }`: exclude规则
-  * include`{ RegExp }`: include规则
-* css`{ Object }`: css配置（默认使用less）
-  * publicPath`{ string }`
-  * modules`{ boolean }`开启css-in-modules
-  * exclude`{ RegExp }`: exclude规则
-  * include`{ RegExp }`: include规则
-  * modifyVars`{ Object }`: 注入less变量
-* html`{ Array<Object> }`: html配置（默认使用pug）
-  * template`{ string }`: html模板文件地址
-  * excludeChunks`{ Array<string> }`: 不包括的入口
-* frame`{ ?string }`: 值为`react`或`vue`，是否为react或vue模式，并自动注入loaders和plugins
+  * js `{ Object }`: 重写默认的js规则
+  * sass `{ Object }`: 重写默认的sass规则
+  * css `{ Object }`: 重写默认的css规则
+  * favicon `{ Object }`: 重写网站图标的规则
+  * fontFile `{ Object }`: 重写字体文件的规则
+  * html `{ Object }`: 重写html的规则，默认为pug
+  * image `{ Object }`: 重写图片文件的规则
+  * svg `{ Object }`: 重写svg的规则
+  * vue `{ Object }`: 重写vue的规则
+* rules `{ Array }`: 自定义规则
+* plugins `{ Array }`: 自定义插件
+* js `{ Object }`: js配置
+  * ecmascript `{ boolean }`: 是否编译到ecmascript的最新语法（即不使用@babel/preset-env，通常适用于node、nwjs和electron）
+  * presets `{ Array }`: 自定义presets
+  * plugins `{ Array }`: 自定义plugins
+  * resetPresets `{ Array }`: 重写presets
+  * resetPlugins `{ Array }`: 重写plugins
+  * exclude `{ RegExp }`: exclude规则
+  * include `{ RegExp }`: include规则
+* sass `{ Object }`: sass配置
+  * publicPath `{ string }`
+  * modules `{ boolean }`: 开启css-in-modules
+  * exclude `{ RegExp }`: exclude规则
+  * include `{ RegExp }`: include规则
+* css `{ Object }`: css配置（默认使用less）
+  * publicPath `{ string }`
+  * modules `{ boolean }`: 开启css-in-modules
+  * exclude `{ RegExp }`: exclude规则
+  * include `{ RegExp }`: include规则
+  * modifyVars `{ Object }`: 注入less变量
+* html `{ Array<Object> }`: html配置（默认使用pug）
+  * template `{ string }`: html模板文件地址
+  * excludeChunks `{ Array<string> }`: 不包括的入口
+* frame `{ ?string }`: 值为`react`或`vue`，是否为react或vue模式，并自动注入loaders和plugins
 
 下面的配置是关于服务器端渲染的
 
-* serverRender`{ boolean }`: 是否开启服务器端渲染
-* severEntry`{ any }`: 服务器端的文件入口（参考webpack）
-* serverOutput`{ any }`: 服务器端文件出口（参考webpack）
+* serverRender `{ boolean }`: 是否开启服务器端渲染
+* severEntry `{ any }`: 服务器端的文件入口（参考webpack）
+* serverOutput `{ any }`: 服务器端文件出口（参考webpack）
 
 ## routers
 
@@ -95,14 +95,14 @@ export default {
 ```javascript
 export default function(router: Object, sweetOptions: Object){
   // 在这里面创建你的函数
-  router.get('/path', ...function);
+  router.get('/path', /* ...your_functions */);
 };
 ```
 
 ## 服务器端渲染
 
-服务器端渲染需要你创建`service/interface/`文件夹，文件夹里面的规则为：你的路由中的 **“/”** 替换为 **“.”** ，且采用小驼峰命名法。比如`Path/PathFile`，则需要创建`path.pathFile.js`文件。   
-在文件内，需要创建如下代码：
+服务器端渲染需要你创建`service/interface/`文件夹，文件夹里面的规则为: 你的路由中的 **“/”** 替换为 **“.”** ，且采用小驼峰命名法。比如`/Path/PathFile`，则需要创建`/path.pathFile.js`文件。
+在文件内，需要创建如下代码:
 
 ```javascript
 export default async function(ctx: Object, sweetOptions: Object){
@@ -113,7 +113,7 @@ export default async function(ctx: Object, sweetOptions: Object){
 }
 ```
 
-在pug或html模板中，使用`<%= key %>`来标记占位的数据。其中`<%= render %>`表示服务器端渲染的数据，`<%= initialState %>`表示初始化数据，其他的占位数据同理。   
+在pug或html模板中，使用`<%= key %>`来标记占位的数据。其中`<%= render %>`表示服务器端渲染的数据，`<%= initialState %>`表示初始化数据，其他的占位数据同理。
 如果路由找不到对应的interface文件，会自动寻找`default.js`文件。你可以创建这个文件作为默认的interface文件。
 
 ## 关于node-sass
