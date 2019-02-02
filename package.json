@@ -15,7 +15,7 @@
     "@types/koa": "^2.0.48",
     "@types/node": "^10.12.21",
     "babel-eslint": "^10.0.1",
-    "eslint": "^5.12.1",
+    "eslint": "^5.13.0",
     "eslint-plugin-flowtype": "^3.2.1",
     "gulp": "^4.0.0",
     "gulp-typescript": "^5.0.0",
