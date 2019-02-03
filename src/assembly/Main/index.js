@@ -13,7 +13,7 @@ class Main extends Component{
     children: PropTypes.oneOfType(PropTypes.node)
   };
 
-  render(): React.ReactNode{
+  render(): React.Node{
     return (
       <Layout className={ style.main }>
         { this.props.children }

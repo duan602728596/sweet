@@ -13,13 +13,13 @@ const options: {
   id: string,
   name: string,
   url: string,
-  icon: ?(string | React.ReactNode),    // 传入一个字符串或节点
+  icon: ?(string | React.Node),    // 传入一个字符串或节点
   component: Function,
   children: ?{
     id: string,
     name: string,
     url: string,
-    icon: ?(string | React.ReactNode),  // 传入一个字符串或节点
+    icon: ?(string | React.Node),  // 传入一个字符串或节点
     component: Function
   }[]
 }[] = [
@@ -53,7 +53,7 @@ const options: {
 
 @loadReducer(reducer)
 class ModuleLayout extends Component{
-  render(): React.ChildrenArray<React.ReactNode>{
+  render(): React.ChildrenArray<React.Node>{
     return [
       <Helmet key="helmet">
         <title>列表展示</title>

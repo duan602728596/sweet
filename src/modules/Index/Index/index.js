@@ -4,7 +4,7 @@ import style from './style.sass';
 import ListDisplay from './listDisplay';
 
 class Index extends Component{
-  render(): React.ReactNode{
+  render(): React.Node{
     return (
       <Row type="flex" gutter={ 10 }>
         {/* 左侧显示列表 */}

@@ -15,7 +15,7 @@ class Content extends Component{
     children: PropTypes.oneOfType(PropTypes.node)
   };
 
-  render(): React.ReactNode{
+  render(): React.Node{
     return (
       <ErrorBoundary>
         <Layout.Content className={ style.content }>

@@ -3,7 +3,7 @@ import React, { lazy, Suspense } from 'react';
 import { injectReducers } from '../store/store';
 import SwitchLoading from '../assembly/SwitchLoading/index';
 
-const Fallback: React.ReactNode = <SwitchLoading />;
+const Fallback: React.Node = <SwitchLoading />;
 
 /**
  * 异步加载、注入模块和reducer
@@ -12,7 +12,7 @@ const Fallback: React.ReactNode = <SwitchLoading />;
 function asyncModule(loader: Function): Function{
   const Module: Function = lazy(loader);
 
-  return (): React.ReactNode => (
+  return (): React.Node => (
     <Suspense fallback={ Fallback }>
       <Module injectReducers={ injectReducers } />
     </Suspense>

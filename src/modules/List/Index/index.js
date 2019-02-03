@@ -37,7 +37,7 @@ class Index extends Component{
       }
     ];
   }
-  render(): React.ChildrenArray<React.ReactNode>{
+  render(): React.ChildrenArray<React.Node>{
     return [
       <Table key="0"
         dataSource={ dataSource() }

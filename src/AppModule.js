@@ -11,13 +11,13 @@ import Arrangement from './assembly/Arrangement';
 /* 热替换 */
 @hot(module)
 class App extends Component{
-  render(): React.ReactNode{
+  render(): React.Node{
     return (
       <Provider store={ storeFactory(window.__INITIAL_STATE__ || {}) }>
         <LocaleProvider locale={ zhCN }>
           <BrowserRouter>
             <Switch>
-              <Route path="/Login" component={ (props: Object): React.ReactNode => <div>登录</div> } exact={ true } />
+              <Route path="/Login" component={ (props: Object): React.Node => <div>登录</div> } exact={ true } />
               <Route component={ Arrangement } exact={ true } />
             </Switch>
           </BrowserRouter>
