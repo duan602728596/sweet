@@ -5,13 +5,13 @@ import PropTypes from 'prop-types';
 /**
  * @param { Object } reducer
  */
-function loadReducer(reducer: object): Function{
+function loadReducer(reducer: Object): Function{
   /**
    * @param { Function } Module: 需要修饰的模块
    */
   return function(Module: Function): void{
     return class extends Component{
-      static propTypes: object = {
+      static propTypes: Object = {
         injectReducers: PropTypes.func
       };
 

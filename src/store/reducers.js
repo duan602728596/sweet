@@ -2,12 +2,12 @@ import { combineReducers } from 'redux-immutable';
 import indexReducer from '../modules/Index/store/reducer';
 
 /* reducers */
-const reducers: object = {
+const reducers: Object = {
   ...indexReducer
 };
 
 /* 创建reducer */
-export function createReducer(asyncReducers: object): Function{
+export function createReducer(asyncReducers: Object): Function{
   return combineReducers({
     ...reducers,
     ...asyncReducers

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Table } from 'antd';
 
-function dataSource(): object[]{
-  const arr: object[] = [];
+function dataSource(): Object[]{
+  const arr: Object[] = [];
   for(let i: number = 0, j: number = 32; i < j; i++){
     arr.push({
       id: `PRO${ i }`,
@@ -15,7 +15,7 @@ function dataSource(): object[]{
 }
 
 class Index extends Component{
-  columns(): object[]{
+  columns(): Object[]{
     return [
       {
         title: '姓名',
@@ -41,7 +41,7 @@ class Index extends Component{
     return [
       <Table key="0"
         dataSource={ dataSource() }
-        rowKey={ (item: object): string => item.id }
+        rowKey={ (item: Object): string => item.id }
         columns={ this.columns() }
         pagination={{
           defaultPageSize: 20,

@@ -14,7 +14,7 @@ class ErrorBoundary extends Component{
     info: ?any
   };
 
-  static propTypes: object = {
+  static propTypes: Object = {
     children: PropTypes.oneOfType([
       PropTypes.string,
       PropTypes.number,

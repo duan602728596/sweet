@@ -11,11 +11,11 @@ const reducer: Function = createReducer({});
 const middlewares: Function = applyMiddleware(thunk);
 
 /* store */
-const store: object = {
+const store: Object = {
   asyncReducers: {}
 };
 
-export function storeFactory(initialState: ?Object): object{
+export function storeFactory(initialState: ?Object): Object{
   /* initialState */
   const $$initialState: Immutable.Map = Map(fromJS(initialState));
 
@@ -28,9 +28,9 @@ export function storeFactory(initialState: ?Object): object{
 export default store;
 
 /* 注入store */
-export function injectReducers(asyncReducer: object): void{
+export function injectReducers(asyncReducer: Object): void{
   for(const key: string in asyncReducer){
-    const item: object = asyncReducer[key];
+    const item: Object = asyncReducer[key];
 
     // 获取reducer的key值，并将reducer保存起来
     if(!(key in store.asyncReducers)){

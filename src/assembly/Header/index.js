@@ -43,7 +43,7 @@ const len: boolean = navOptions.length > 0;
 
 class Header extends Component{
   // 判断首页home
-  oddEvent(item: navOptionsItem, match: object, location: object): boolean{
+  oddEvent(item: navOptionsItem, match: Object, location: Object): boolean{
     const { pathname }: { pathname: string } = location;
     const { href }: { href: string } = item;
     const reg: RegExp = new RegExp(`^${ href }.*$`, 'ig');
@@ -55,7 +55,7 @@ class Header extends Component{
     return match && reg.test(pathname);
   }
   navList(options: navOptionsItem[]): React.ChildrenArray<React.ReactNode>{
-    return options.map((item: navOptionsItem, index: number): object=>{
+    return options.map((item: navOptionsItem, index: number): Object=>{
       return (
         <li key={ item.id }>
           <NavLink to={ item.href } activeClassName={ style.navActive } isActive={ this.oddEvent.bind(this, item) }>

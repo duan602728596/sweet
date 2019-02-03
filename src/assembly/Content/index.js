@@ -11,7 +11,7 @@ import style from './style.sass';
 import ErrorBoundary from '../ErrorBoundary/index';
 
 class Content extends Component{
-  static propTypes: object = {
+  static propTypes: Object = {
     children: PropTypes.oneOfType(PropTypes.node)
   };
 

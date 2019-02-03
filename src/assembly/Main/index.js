@@ -9,7 +9,7 @@ import { Layout } from 'antd';
 import style from './style.sass';
 
 class Main extends Component{
-  static propTypes: object = {
+  static propTypes: Object = {
     children: PropTypes.oneOfType(PropTypes.node)
   };
 

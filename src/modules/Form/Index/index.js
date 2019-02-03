@@ -5,7 +5,7 @@ import style from './style.sass';
 
 @Form.create()
 class Forms extends Component{
-  static propTypes: object = {
+  static propTypes: Object = {
     form: PropTypes.object
   };
 

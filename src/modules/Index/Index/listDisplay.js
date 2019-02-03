@@ -21,7 +21,7 @@ const state: Function = createStructuredSelector({
 });
 
 /* dispatch */
-const dispatch: Function = (dispatch: Function): object=>({
+const dispatch: Function = (dispatch: Function): Object=>({
   action: bindActionCreators({
     listDisplayChange
   }, dispatch)
@@ -45,7 +45,7 @@ class ListDisplay extends Component{
     loading: boolean
   };
 
-  static propTypes: object = {
+  static propTypes: Object = {
     listDisplay: PropTypes.array,
     action: PropTypes.objectOf(PropTypes.func)
   };
@@ -59,7 +59,7 @@ class ListDisplay extends Component{
   }
   // 显示list
   listDisplay(): React.ChildrenArray<React.ReactNode>{
-    return this.props.listDisplay.map((item: string, index: number): object=>{
+    return this.props.listDisplay.map((item: string, index: number): Object=>{
       return (
         <li key={ index }>
           <Link to="/" title={ item }>{ item }</Link>

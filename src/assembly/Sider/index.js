@@ -13,10 +13,10 @@ import ErrorBoundary from '../ErrorBoundary/index';
 
 @withRouter
 class Sider extends Component{
-  static defaultProps: object = {
+  static defaultProps: Object = {
     options: []
   };
-  static propTypes: object = {
+  static propTypes: Object = {
     options: PropTypes.array,
     history: PropTypes.object,
     location: PropTypes.object,
@@ -45,7 +45,7 @@ class Sider extends Component{
     return key;
   }
   // 判断图标的显示
-  hasIcon(item: object): ?React.ReactNode{
+  hasIcon(item: Object): ?React.ReactNode{
     if('icon' in item){
       return typeof item.icon === 'string' ? <i className={ classNames(style.icon, item.icon) } /> : item.icon;
     }else{
@@ -54,7 +54,7 @@ class Sider extends Component{
   }
   // 渲染菜单
   menu(arr: Array<Object>): React.ChildrenAray<React.ReactNode>{
-    return arr.map((item: object, index: number): object=>{
+    return arr.map((item: Object, index: number): Object=>{
       if('children' in item && item.children.length > 0){
         // 当有children时，返回Menu.SubMenu，里面包裹Menu.Item
         return (

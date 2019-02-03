@@ -12,7 +12,7 @@ export const listDisplayChange: Function = createAction('首页列表展示');
 
 /* reducer */
 const reducer: Function = handleActions({
-  [listDisplayChange]: ($$state: Immutable.Map, action: object): Immutable.Map=>{
+  [listDisplayChange]: ($$state: Immutable.Map, action: Object): Immutable.Map=>{
     return $$state.set('listDisplay', List(action.payload.listDisplay));
   }
 }, fromJS(initData));
