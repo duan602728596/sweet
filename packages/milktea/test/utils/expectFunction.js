@@ -19,7 +19,7 @@ export function expectModule(config: object, length: number): Function{
   return function(): void{
     expect(config.module).to.be.an('object');
     expect(config.module.rules).to.be.an('array');
-    expect(object.values(config.module.rules)).to.have.lengthOf(length);
+    expect(Object.values(config.module.rules)).to.have.lengthOf(length);
   }
 }
 
