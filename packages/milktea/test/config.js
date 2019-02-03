@@ -5,13 +5,13 @@ import {
   expectDevtool, expectModule, expectDevPlugins, expectProPlugins, expectDevOptimization, expectProOptimization
 } from './utils/expectFunction';
 
-const sweetOptions: object = {
+const sweetOptions: Object = {
   basicPath: process.cwd()
 };
 
 describe('config', function(): void{
   describe('react & development', function(): void{
-    const config: object = webpackConfig({
+    const config: Object = webpackConfig({
       frame: 'react',
       mode: 'development',
       html: [{ template: 'index.pug' }]
@@ -27,7 +27,7 @@ describe('config', function(): void{
   });
 
   describe('vue & production', function(): void{
-    const config: object = webpackConfig({
+    const config: Object = webpackConfig({
       frame: 'vue',
       mode: 'production',
       html: [{ template: 'index.pug' }]

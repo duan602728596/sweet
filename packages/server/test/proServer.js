@@ -49,8 +49,8 @@ describe('production server', function(): void{
     await runServer();
 
     // 请求文件
-    const resHtml: object = await axios.get('http://127.0.0.1:5052');
-    const resJs: object = await axios.get('http://127.0.0.1:5052/app.js');
+    const resHtml: Object = await axios.get('http://127.0.0.1:5052');
+    const resJs: Object = await axios.get('http://127.0.0.1:5052/app.js');
 
     expect(resHtml.status).to.be.equal(200);
     expect(resJs.status).to.be.equal(200);
