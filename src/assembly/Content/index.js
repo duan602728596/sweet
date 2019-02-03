@@ -12,12 +12,7 @@ import ErrorBoundary from '../ErrorBoundary/index';
 
 class Content extends Component{
   static propTypes: Object = {
-    children: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.number,
-      PropTypes.array,
-      PropTypes.element
-    ])
+    children: PropTypes.oneOfType(PropTypes.node)
   };
 
   render(): React.Node{
