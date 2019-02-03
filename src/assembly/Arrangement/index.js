@@ -11,7 +11,7 @@ import Header from '../Header/index';
 import Routers from '../../router/Routers';
 
 class Arrangement extends Component{
-  render(): React.Element{
+  render(): React.Node{
     return (
       <Layout className={ style.arrangement }>
         <Layout.Header className={ style.header }>

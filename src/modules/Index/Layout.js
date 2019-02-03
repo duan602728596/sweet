@@ -6,7 +6,7 @@ import Content from '../../assembly/Content/index';
 import Index from './Index/index';
 
 class ModuleLayout extends Component{
-  render(): React.ChildrenArray<React.Element>{
+  render(): React.ChildrenArray<React.Node>{
     return [
       <Helmet key="helmet">
         <title>Webpack App</title>

@@ -24,7 +24,7 @@ class Sider extends Component{
   };
 
   // 根据pathname获取默认的selectKey
-  getSelectKey(arr: Array): ?string{
+  getSelectKey(arr: Array<Object>): ?string{
     const reg: RegExp = new RegExp(`^${ this.props.location.pathname }.*$`, 'ig');
     let key: ?string = null;
 
@@ -45,7 +45,7 @@ class Sider extends Component{
     return key;
   }
   // 判断图标的显示
-  hasIcon(item: Object): ?React.Element{
+  hasIcon(item: Object): ?React.Node{
     if('icon' in item){
       return typeof item.icon === 'string' ? <i className={ classNames(style.icon, item.icon) } /> : item.icon;
     }else{
@@ -53,7 +53,7 @@ class Sider extends Component{
     }
   }
   // 渲染菜单
-  menu(arr: Array): React.ChildrenAray<React.Element>{
+  menu(arr: Array<Object>): React.ChildrenAray<React.Node>{
     return arr.map((item: Object, index: number): Object=>{
       if('children' in item && item.children.length > 0){
         // 当有children时，返回Menu.SubMenu，里面包裹Menu.Item
@@ -80,8 +80,8 @@ class Sider extends Component{
       }
     });
   }
-  render(): React.Element{
-    const options: Array = this.props.options;
+  render(): React.Node{
+    const options: Array<Object> = this.props.options;
     const sk: string = this.getSelectKey(options);
 
     return (

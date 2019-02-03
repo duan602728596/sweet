@@ -7,7 +7,7 @@ import Main from '../Main/index';
 import style from './style.sass';
 
 class SwitchLoading extends Component{
-  render(): React.Element{
+  render(): React.Node{
     return (
       <Main>
         <div className={ style.loading }>

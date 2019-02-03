@@ -25,7 +25,7 @@ function loadReducer(reducer: Object): Function{
           injectReducers(reducer);
         }
       }
-      render(): React.Element{
+      render(): React.Node{
         return <Module />;
       }
     };

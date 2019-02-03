@@ -16,7 +16,7 @@ import { listDisplayChange } from '../store/reducer';
 const state: Function = createStructuredSelector({
   listDisplay: createSelector(
     ($$state: Immutable.Map): Immutable.Map => $$state.get('index'),
-    ($$data: Immutable.Map): Array => $$data.get('listDisplay').toJS()
+    ($$data: Immutable.Map): Array<Object> => $$data.get('listDisplay').toJS()
   )
 });
 
@@ -58,7 +58,7 @@ class ListDisplay extends Component{
     };
   }
   // 显示list
-  listDisplay(): React.ChildrenArray<React.Element>{
+  listDisplay(): React.ChildrenArray<React.Node>{
     return this.props.listDisplay.map((item: string, index: number): Object=>{
       return (
         <li key={ index }>
@@ -68,7 +68,7 @@ class ListDisplay extends Component{
     });
   }
   async componentWillMount(): void{
-    const data: Array = await simulationData();
+    const data: Array<Object> = await simulationData();
 
     this.props.action.listDisplayChange({
       listDisplay: data
@@ -78,7 +78,7 @@ class ListDisplay extends Component{
       loading: false
     });
   }
-  render(): React.Element{
+  render(): React.Node{
     return (
       <Card title="数据列表展示" extra={
         <Link className={ style.more } to="/" title="更多">更多</Link>

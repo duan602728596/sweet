@@ -18,7 +18,7 @@ class Main extends Component{
     ])
   };
 
-  render(): React.Element{
+  render(): React.Node{
     return (
       <Layout className={ style.main }>
         { this.props.children }
