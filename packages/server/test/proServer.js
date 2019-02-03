@@ -1,12 +1,12 @@
 import path from 'path';
 import { expect } from 'chai';
 import axios from 'axios';
-import webpack, { Compiler } from 'webpack';
+import webpack from 'webpack';
 import { config as webpackConfig } from '@sweet/milktea';
 import proServer from '../lib/proServer';
 
 // webpack配置
-const compiler: Compiler = webpack(webpackConfig({
+const compiler: webpack.Compiler = webpack(webpackConfig({
   frame: 'test',
   entry: {
     app: [path.join(__dirname, 'src/app.js')]
