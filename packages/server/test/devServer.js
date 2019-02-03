@@ -20,7 +20,7 @@ const compiler: Object = webpack(webpackConfig({
 }, 'development'));
 
 // 运行开发环境服务
-function runServer(): Promise{
+function runServer(): Promise<void>{
   devServer({
     compiler,
     env: 'test'

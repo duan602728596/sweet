@@ -20,7 +20,7 @@ const compiler: Object = webpack(webpackConfig({
 }, 'production'));
 
 // 编译文件
-function runBuild(): Promise{
+function runBuild(): Promise<void>{
   compiler.run((): void => undefined);
 
   return new Promise((resolve: Function, reject: Function): void=>{
@@ -31,7 +31,7 @@ function runBuild(): Promise{
 }
 
 // 运行生产环境服务
-function runServer(): Promise{
+function runServer(): Promise<void>{
   proServer({
     serverRoot: 'test/build'
   });

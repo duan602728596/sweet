@@ -5,7 +5,7 @@ import { expect } from 'chai';
 
 const app: string = path.join(__dirname, 'build/app.js');
 
-function run(): Promise{
+function run(): Promise<void>{
   const cli: string = path.join(__dirname, '../lib/cli');
   const config: string = path.join(__dirname, './.sweetrc.js');
 
@@ -22,7 +22,7 @@ function run(): Promise{
     child.stderr.on('data', (): void => undefined);
 
     // 保证文件编译后结束进程
-    const timer: number = setInterval((): void=>{
+    const timer: IntervalID = setInterval((): void=>{
       if(fs.existsSync(app)){
         clearInterval(timer);
         child.kill();
@@ -34,7 +34,7 @@ function run(): Promise{
 describe('args: start', function(): void{
   it('start', async function(): Promise<void>{
     await run();
-  
+
     expect(fs.existsSync(app)).to.be.true;
   });
 });

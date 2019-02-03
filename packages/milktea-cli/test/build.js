@@ -3,7 +3,7 @@ import fs from 'fs';
 import path from 'path';
 import { expect } from 'chai';
 
-function run(): Promise{
+function run(): Promise<void>{
   const cli: string = path.join(__dirname, '../lib/cli');
   const config: string = path.join(__dirname, './.sweetrc.build.js');
 
@@ -24,7 +24,7 @@ function run(): Promise{
 describe('args: build', function(): void{
   it('build', async function(): Promise<void>{
     await run();
-  
+
     expect(fs.existsSync(path.join(__dirname, 'build/app.build.js'))).to.be.true;
   });
 });
