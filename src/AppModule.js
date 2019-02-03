@@ -17,7 +17,7 @@ class App extends Component{
         <LocaleProvider locale={ zhCN }>
           <BrowserRouter>
             <Switch>
-              <Route path="/Login" component={ (props: Object): React.ReactNode => <div>登录</div> } exact={ true } />
+              <Route path="/Login" component={ (props: object): React.ReactNode => <div>登录</div> } exact={ true } />
               <Route component={ Arrangement } exact={ true } />
             </Switch>
           </BrowserRouter>
