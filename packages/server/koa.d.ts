@@ -1,4 +1,7 @@
+import * as Koa from 'koa';
 import * as Router from 'koa-router';
 
-export * from 'koa';
-export { Router };
+export {
+  Koa,
+  Router
+};
