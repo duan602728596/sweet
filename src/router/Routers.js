@@ -7,7 +7,7 @@ const ListBundle: Function = asyncModule((): Promise => import('../modules/List/
 const FormBundle: Function = asyncModule((): Promise => import('../modules/Form/Layout'));
 
 class Routers extends Component{
-  render(): React.Node{
+  render(): React.ReactNode{
     return (
       <Switch>
         <Route path="/" component={ Index } exact={ true } />

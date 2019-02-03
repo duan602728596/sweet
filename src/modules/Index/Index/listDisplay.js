@@ -58,7 +58,7 @@ class ListDisplay extends Component{
     };
   }
   // 显示list
-  listDisplay(): React.ChildrenArray<React.Node>{
+  listDisplay(): React.ChildrenArray<React.ReactNode>{
     return this.props.listDisplay.map((item: string, index: number): Object=>{
       return (
         <li key={ index }>
@@ -78,7 +78,7 @@ class ListDisplay extends Component{
       loading: false
     });
   }
-  render(): React.Node{
+  render(): React.ReactNode{
     return (
       <Card title="数据列表展示" extra={
         <Link className={ style.more } to="/" title="更多">更多</Link>

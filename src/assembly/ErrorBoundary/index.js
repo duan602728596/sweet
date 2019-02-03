@@ -39,7 +39,7 @@ class ErrorBoundary extends Component{
       info
     });
   }
-  render(): React.Node{
+  render(): React.ReactNode{
     if(this.state.hasError){
       return (
         <Content>

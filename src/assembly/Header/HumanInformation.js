@@ -6,7 +6,7 @@ import { Icon } from 'antd';
 import style from './style.sass';
 
 class HumanInformation extends Component{
-  render(): React.Node{
+  render(): React.ReactNode{
     return (
       <div className={ style.humanInformation }>
         <Icon className={ style.human } type="user" theme="outlined" />

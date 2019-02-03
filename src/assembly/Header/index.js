@@ -15,7 +15,7 @@ type navOptionsItem = {
   id: string,
   name: string,
   href: string,
-  icon: ?(string | React.Node)
+  icon: ?(string | React.ReactNode)
 };
 
 export const navOptions: navOptionsItem[] = [
@@ -54,7 +54,7 @@ class Header extends Component{
 
     return match && reg.test(pathname);
   }
-  navList(options: navOptionsItem[]): React.ChildrenArray<React.Node>{
+  navList(options: navOptionsItem[]): React.ChildrenArray<React.ReactNode>{
     return options.map((item: navOptionsItem, index: number): Object=>{
       return (
         <li key={ item.id }>
@@ -74,7 +74,7 @@ class Header extends Component{
       );
     });
   }
-  render(): React.Node{
+  render(): React.ReactNode{
     return (
       <ErrorBoundary>
         <img className={ style.logo } src={ require('./logo.png') } alt="管理平台 demo" title="管理平台 demo" />
