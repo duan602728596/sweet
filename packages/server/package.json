@@ -19,6 +19,7 @@
     "@babel/preset-flow": "^7.0.0",
     "@babel/register": "^7.0.0",
     "@types/koa": "^2.0.48",
+    "@types/koa-router": "^7.0.39",
     "iltorb": "^2.4.1",
     "koa": "^2.7.0",
     "koa-body": "^4.0.7",
@@ -29,7 +30,6 @@
   },
   "devDependencies": {
     "@sweet/milktea": "github:duan602728596/sweet#build-milktea",
-    "@types/koa-router": "^7.0.39",
     "axios": "^0.18.0",
     "chai": "^4.2.0",
     "cross-env": "^5.2.0",
