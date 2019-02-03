@@ -4,13 +4,13 @@ import webpack from 'webpack';
 import webpackDll from '../lib/dll';
 import { expectDevtool } from './utils/expectFunction';
 
-const sweetOptions: Object = {
+const sweetOptions: object = {
   basicPath: process.cwd()
 };
 
 describe('dll', function(): void{
   describe('dll', function(): void{
-    const config: Object = webpackDll({ mode: 'development' }, sweetOptions);
+    const config: object = webpackDll({ mode: 'development' }, sweetOptions);
 
     it('devtool', expectDevtool(config, 'module-source-map'));
 

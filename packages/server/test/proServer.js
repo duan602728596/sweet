@@ -1,12 +1,12 @@
 import path from 'path';
 import { expect } from 'chai';
 import axios from 'axios';
-import webpack from 'webpack';
+import webpack, { Compiler } from 'webpack';
 import { config as webpackConfig } from '@sweet/milktea';
 import proServer from '../lib/proServer';
 
 // webpack配置
-const compiler: Object = webpack(webpackConfig({
+const compiler: Compiler = webpack(webpackConfig({
   frame: 'test',
   entry: {
     app: [path.join(__dirname, 'src/app.js')]
@@ -49,8 +49,8 @@ describe('production server', function(): void{
     await runServer();
 
     // 请求文件
-    const resHtml: Object = await axios.get('http://127.0.0.1:5052');
-    const resJs: Object = await axios.get('http://127.0.0.1:5052/app.js');
+    const resHtml: object = await axios.get('http://127.0.0.1:5052');
+    const resJs: object = await axios.get('http://127.0.0.1:5052/app.js');
 
     expect(resHtml.status).to.be.equal(200);
     expect(resJs.status).to.be.equal(200);

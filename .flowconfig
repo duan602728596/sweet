@@ -1,9 +1,0 @@
-[ignore]
-.*/\.dll/.*
-.*/lib/.*
-.*/build/.*
-.*/node_modules/.*
-.*\.tsx?
-
-[options]
-all=true

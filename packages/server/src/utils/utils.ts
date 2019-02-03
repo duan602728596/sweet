@@ -17,7 +17,7 @@ export function readFile(file: string): Promise<Buffer>{
 }
 
 /* 格式化数据 */
-export function formatTemplateData(data: any): any{
+export function formatTemplateData<T>(data: T): any{
   if(typeof data === 'object'){
     return JSON.stringify(data);
   }
@@ -26,7 +26,7 @@ export function formatTemplateData(data: any): any{
 }
 
 /* 替换模板内的占位符 */
-export function replaceTemplate(template: string, data: any): string{
+export function replaceTemplate(template: string, data: object): string{
   let newTp: string = template;
 
   for(const key in data){
