@@ -3,12 +3,12 @@
   "scripts": {
     "build": "npm run clean && gulp --gulpfile ./scripts/build.ts",
     "clean": "ts-node ./scripts/clean",
-    "update": "milktea update",
-    "update:dev": "milktea update --__DEV__",
     "eslint": "eslint ./packages",
     "tslint": "tslint --project ./",
+    "flow:check": "flow check",
     "lerna:install": "lerna bootstrap",
-    "flow:check": "flow check"
+    "update": "milktea update",
+    "update:dev": "milktea update --__DEV__"
   },
   "devDependencies": {
     "@sweet/milktea-cli": "github:duan602728596/sweet#build-milktea-cli",
