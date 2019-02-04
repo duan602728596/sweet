@@ -5,3 +5,6 @@
 
 [libs]
 utils/test.js
+
+[options]
+esproposal.optional_chaining=enable
