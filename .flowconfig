@@ -1,0 +1,7 @@
+[ignore]
+.*\.tsx?
+.*/build/.*
+.*/\.dll/.*
+
+[libs]
+utils/test.js

@@ -1,3 +1,4 @@
+// @flow
 import { expect } from 'chai';
 import webpack from 'webpack';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
@@ -79,7 +80,7 @@ export function expectDevOptimization(config: Object): Function{
 }
 
 /* 生产环境 optimization属性 */
-export function expectProOptimization(config: object, isServer: boolean): Function{
+export function expectProOptimization(config: Object, isServer: boolean): Function{
   return function(): void{
     expect(config.optimization).to.be.an('object');
     expect(config.optimization.splitChunks).to.eql(isServer ? undefined : { chunks: 'all', automaticNameDelimiter: '.' });

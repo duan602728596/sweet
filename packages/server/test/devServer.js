@@ -1,3 +1,4 @@
+// @flow
 import path from 'path';
 import { expect } from 'chai';
 import axios from 'axios';
@@ -6,7 +7,7 @@ import { config as webpackConfig } from '@sweet/milktea';
 import devServer from '../lib/devServer';
 
 // webpack配置
-const compiler: webpack.Compiler = webpack(webpackConfig({
+const compiler: Object = webpack(webpackConfig({
   frame: 'test',
   entry: {
     app: [path.join(__dirname, 'src/app.js')]

@@ -7,7 +7,8 @@
     "update:dev": "milktea update --__DEV__",
     "eslint": "eslint ./packages",
     "tslint": "tslint --project ./",
-    "lerna:install": "lerna bootstrap"
+    "lerna:install": "lerna bootstrap",
+    "flow:check": "flow check"
   },
   "devDependencies": {
     "@sweet/milktea-cli": "github:duan602728596/sweet#build-milktea-cli",
@@ -17,6 +18,7 @@
     "babel-eslint": "^10.0.1",
     "eslint": "^5.13.0",
     "eslint-plugin-flowtype": "^3.2.1",
+    "flow-bin": "^0.92.0",
     "gulp": "^4.0.0",
     "gulp-typescript": "^5.0.0",
     "lerna": "^3.10.7",
