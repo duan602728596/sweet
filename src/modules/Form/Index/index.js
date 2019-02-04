@@ -1,14 +1,11 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+// @flow
+import * as React from 'react';
+import { Component } from 'react';
 import { Form, Input, Radio, Button } from 'antd';
 import style from './style.sass';
 
 @Form.create()
-class Forms extends Component{
-  static propTypes: Object = {
-    form: PropTypes.object
-  };
-
+class Forms extends Component<{}>{
   handleSubmit(event: Event): void{
     event.preventDefault();
 
@@ -25,7 +22,8 @@ class Forms extends Component{
     });
   }
   render(): React.Node{
-    const { getFieldDecorator }: { getFieldDecorator: Function } = this.props.form;  // 包装表单控件
+    const { getFieldDecorator }: { getFieldDecorator: Function } = this.props.form; // 包装表单控件
+
     return (
       <Form onSubmit={ this.handleSubmit.bind(this) } layout="horizontal">
         <img src={ require('./image.jpg') } />

@@ -2,8 +2,11 @@
  * layout - header
  * 顶部header布局
  * 显示logo、导航、登录人信息等
+ *
+ * @flow
  */
-import React, { Component } from 'react';
+import * as React from 'react';
+import { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import classNames from 'classnames';
 import { Icon } from 'antd';
@@ -41,7 +44,7 @@ export const navOptions: navOptionsItem[] = [
 
 const len: boolean = navOptions.length > 0;
 
-class Header extends Component{
+class Header extends Component<{}>{
   // 判断首页home
   oddEvent(item: navOptionsItem, match: Object, location: Object): boolean{
     const { pathname }: { pathname: string } = location;

@@ -1,4 +1,6 @@
-import React, { Component } from 'react';
+// @flow
+import * as React from 'react';
+import { Component } from 'react';
 import { Table } from 'antd';
 
 function dataSource(): Object[]{
@@ -14,7 +16,7 @@ function dataSource(): Object[]{
   return arr;
 }
 
-class Index extends Component{
+class Index extends Component<{}>{
   columns(): Object[]{
     return [
       {

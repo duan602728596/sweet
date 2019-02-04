@@ -1,19 +1,16 @@
 /**
  * 错误捕捉模块
  * 当模块报错时，显示错误
+ *
+ * @flow
  */
-import React, { Component } from 'react';
+import * as React from 'react';
+import { Component } from 'react';
 import PropTypes from 'prop-types';
 import style from './style.sass';
 import Content from '../Content/index';
 
-class ErrorBoundary extends Component{
-  state: {
-    hasError: boolean,
-    error: ?any,
-    info: ?any
-  };
-
+class ErrorBoundary extends Component<{ children: React.Node }, { hasError: boolean, error: any, info: any }>{
   static propTypes: Object = {
     children: PropTypes.oneOfType([
       PropTypes.string,

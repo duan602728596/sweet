@@ -3,14 +3,17 @@
  * 页面内容
  * 组件用于展示页面的内容
  * 默认padding为10px
+ *
+ * @flow
  */
-import React, { Component } from 'react';
+import * as React from 'react';
+import { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Layout } from 'antd';
 import style from './style.sass';
 import ErrorBoundary from '../ErrorBoundary/index';
 
-class Content extends Component{
+class Content extends Component<{ children: React.Node }>{
   static propTypes: Object = {
     children: PropTypes.oneOfType(PropTypes.node)
   };

@@ -1,7 +1,10 @@
 /**
  * 首页数据列表展示
+ *
+ * @flow
  */
-import React, { Component } from 'react';
+import * as React from 'react';
+import { Component } from 'react';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -27,7 +30,7 @@ const dispatch: Function = (dispatch: Function): Object=>({
   }, dispatch)
 });
 
-function simulationData(): Promise{
+function simulationData(): Promise<Array<string>>{
   return new Promise((resolve: Function, reject: Function): void=>{
     const data: string[] = [];
 
@@ -40,14 +43,9 @@ function simulationData(): Promise{
 }
 
 @connect(state, dispatch)
-class ListDisplay extends Component{
-  state: {
-    loading: boolean
-  };
-
+class ListDisplay extends Component<{ listDisplay: Array<Object> }, { loading: boolean }>{
   static propTypes: Object = {
-    listDisplay: PropTypes.array,
-    action: PropTypes.objectOf(PropTypes.func)
+    listDisplay: PropTypes.array
   };
 
   constructor(): void{

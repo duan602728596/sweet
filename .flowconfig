@@ -1,0 +1,9 @@
+[ignore]
+.*/build/.*
+.*/\.dll/.*
+
+[libs]
+node_modules/immutable/dist/immutable.js.flow
+
+[options]
+esproposal.optional_chaining=enable

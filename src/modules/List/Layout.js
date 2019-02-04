@@ -1,4 +1,6 @@
-import React, { Component } from 'react';
+// @flow
+import * as React from 'react';
+import { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import Helmet from 'react-helmet';
 import loadReducer from '../../store/loadReducer';
@@ -52,7 +54,7 @@ const options: {
 ];
 
 @loadReducer(reducer)
-class ModuleLayout extends Component{
+class ModuleLayout extends Component<{}>{
   render(): React.ChildrenArray<React.Node>{
     return [
       <Helmet key="helmet">

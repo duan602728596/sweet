@@ -1,12 +1,15 @@
 /**
  * 异步加载时显示loading
+ *
+ * @flow
  */
-import React, { Component } from 'react';
+import * as React from 'react';
+import { Component } from 'react';
 import { Spin } from 'antd';
 import Main from '../Main/index';
 import style from './style.sass';
 
-class SwitchLoading extends Component{
+class SwitchLoading extends Component<{}>{
   render(): React.Node{
     return (
       <Main>

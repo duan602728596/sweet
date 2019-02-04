@@ -3,14 +3,17 @@
  * Header 显示页面header
  * Footer 显示版权信息
  * Routers 根据路由渲染页面
+ *
+ * @flow
  */
-import React, { Component } from 'react';
+import * as React from 'react';
+import { Component } from 'react';
 import { Layout } from 'antd';
 import style from './style.sass';
 import Header from '../Header/index';
 import Routers from '../../router/Routers';
 
-class Arrangement extends Component{
+class Arrangement extends Component<{}>{
   render(): React.Node{
     return (
       <Layout className={ style.arrangement }>

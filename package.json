@@ -8,6 +8,7 @@
     "server": "milktea server",
     "pm2-server": "pm2 start runServer.js",
     "eslint": "eslint ./src",
+    "flow:check": "flow check",
     "update": "milktea update"
   },
   "dependencies": {
@@ -29,6 +30,7 @@
     "eslint": "^5.13.0",
     "eslint-plugin-flowtype": "^3.2.1",
     "eslint-plugin-react": "^7.12.4",
+    "flow-bin": "^0.92.0",
     "immutable": "^4.0.0-rc.12",
     "pre-commit": "^1.2.2",
     "prop-types": "^15.6.2",

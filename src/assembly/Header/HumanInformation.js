@@ -1,11 +1,14 @@
 /**
  * 登录人信息
+ *
+ * @flow
  */
-import React, { Component } from 'react';
+import * as React from 'react';
+import { Component } from 'react';
 import { Icon } from 'antd';
 import style from './style.sass';
 
-class HumanInformation extends Component{
+class HumanInformation extends Component<{}>{
   render(): React.Node{
     return (
       <div className={ style.humanInformation }>

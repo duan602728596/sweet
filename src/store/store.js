@@ -1,4 +1,8 @@
-/* 全局的store */
+/**
+ * 全局的store
+ *
+ * @flow
+ */
 import { createStore, compose, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import { fromJS, Map } from 'immutable';
@@ -17,7 +21,7 @@ const store: Object = {
 
 export function storeFactory(initialState: ?Object): Object{
   /* initialState */
-  const $$initialState: Immutable.Map = Map(fromJS(initialState));
+  const $$initialState: RecordInstance = Map(fromJS(initialState));
 
   /* store */
   Object.assign(store, createStore(reducer, $$initialState, compose(middlewares)));

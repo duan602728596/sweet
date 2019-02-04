@@ -2,8 +2,11 @@
  * layout - Sider
  * 页面左侧菜单
  * 渲染二级和三级菜单
+ *
+ * @flow
  */
-import React, { Component } from 'react';
+import * as React from 'react';
+import { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link, withRouter } from 'react-router-dom';
 import classNames from 'classnames';
@@ -12,15 +15,12 @@ import style from './style.sass';
 import ErrorBoundary from '../ErrorBoundary/index';
 
 @withRouter
-class Sider extends Component{
+class Sider extends Component<{ options: Array<Object> }>{
   static defaultProps: Object = {
     options: []
   };
   static propTypes: Object = {
-    options: PropTypes.array,
-    history: PropTypes.object,
-    location: PropTypes.object,
-    match: PropTypes.object
+    options: PropTypes.array
   };
 
   // 根据pathname获取默认的selectKey
@@ -53,7 +53,7 @@ class Sider extends Component{
     }
   }
   // 渲染菜单
-  menu(arr: Array<Object>): React.ChildrenAray<React.Node>{
+  menu(arr: Array<Object>): React.ChildrenArray<React.Node>{
     return arr.map((item: Object, index: number): Object=>{
       if('children' in item && item.children.length > 0){
         // 当有children时，返回Menu.SubMenu，里面包裹Menu.Item
