@@ -3,8 +3,7 @@
  *
  * @flow
  */
-import * as React from 'react';
-import { Component } from 'react';
+import React, { Component } from 'react';
 import { Spin } from 'antd';
 import Main from '../Main/index';
 import style from './style.sass';

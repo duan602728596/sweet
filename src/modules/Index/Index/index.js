@@ -1,6 +1,5 @@
 // @flow
-import * as React from 'react';
-import { Component } from 'react';
+import React, { Component } from 'react';
 import { Row, Col } from 'antd';
 import style from './style.sass';
 import ListDisplay from './listDisplay';

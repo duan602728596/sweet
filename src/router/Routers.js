@@ -1,6 +1,5 @@
 // @flow
-import * as React from 'react';
-import { Component } from 'react';
+import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import asyncModule from './asyncModule';
 import Index from '../modules/Index/Layout';

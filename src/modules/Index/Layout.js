@@ -1,6 +1,5 @@
 // @flow
-import * as React from 'react';
-import { Component } from 'react';
+import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import Helmet from 'react-helmet';
 import Main from '../../assembly/Main/index';
