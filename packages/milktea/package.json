@@ -30,7 +30,7 @@
     "css-loader": "^2.1.0",
     "file-loader": "^3.0.1",
     "html-webpack-plugin": "^4.0.0-beta.5",
-    "imagemin-webpack-plugin": "^2.4.0",
+    "imagemin-webpack-plugin": "^2.4.1",
     "less": "^3.9.0",
     "less-loader": "^4.1.0",
     "mini-css-extract-plugin": "^0.5.0",
@@ -41,13 +41,13 @@
     "react-hot-loader": "^4.6.5",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.1",
-    "terser": "^3.16.0",
-    "terser-webpack-plugin": "^1.2.1",
+    "terser": "^3.16.1",
+    "terser-webpack-plugin": "^1.2.2",
     "url-loader": "^1.1.2",
     "vue-loader": "^15.6.2",
     "vue-style-loader": "^4.1.2",
-    "vue-template-compiler": "^2.5.22",
-    "webpack": "^4.29.0"
+    "vue-template-compiler": "^2.6.2",
+    "webpack": "^4.29.1"
   },
   "devDependencies": {
     "chai": "^4.2.0",
