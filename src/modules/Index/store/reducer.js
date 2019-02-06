@@ -1,9 +1,10 @@
 // @flow
 import { createAction, handleActions } from 'redux-actions';
+import * as Immutable from 'immutable';
 import { fromJS, List } from 'immutable';
 
 const initData: {
-  listDisplay: RecordInstance
+  listDisplay: Immutable.List<Array<Object>>
 } = {
   listDisplay: List([])
 };
@@ -13,7 +14,10 @@ export const listDisplayChange: Function = createAction('首页列表展示');
 
 /* reducer */
 const reducer: Function = handleActions({
-  [listDisplayChange]: ($$state: RecordInstance, action: Object): RecordInstance=>{
+  [listDisplayChange]: (
+    $$state: Immutable.Map<string, Object>,
+    action: Object
+  ): Immutable.Map<string, Object>=>{
     return $$state.set('listDisplay', List(action.payload.listDisplay));
   }
 }, fromJS(initData));

@@ -5,7 +5,8 @@
  *
  * @flow
  */
-import React, { Component } from 'react';
+import * as React from 'react';
+import { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link, withRouter } from 'react-router-dom';
 import classNames from 'classnames';
@@ -14,7 +15,7 @@ import style from './style.sass';
 import ErrorBoundary from '../ErrorBoundary/index';
 
 @withRouter
-class Sider extends Component<{ options: Array<Object> }>{
+class Sider extends Component<{ location: Object, options: Array<Object> }>{
   static defaultProps: Object = {
     options: []
   };
@@ -23,9 +24,9 @@ class Sider extends Component<{ options: Array<Object> }>{
   };
 
   // 根据pathname获取默认的selectKey
-  getSelectKey(arr: Array<Object>): ?string{
+  getSelectKey(arr: Array<Object>): string{
     const reg: RegExp = new RegExp(`^${ this.props.location.pathname }.*$`, 'ig');
-    let key: ?string = null;
+    let key: string = '';
 
     for(let i: number = 0, j: number = arr.length; i < j; i++){
       if('children' in arr[i] && arr[i].children.length > 0){
@@ -94,7 +95,5 @@ class Sider extends Component<{ options: Array<Object> }>{
     );
   }
 }
-
-Sider.__ANT_LAYOUT_SIDER = true;
 
 export default Sider;

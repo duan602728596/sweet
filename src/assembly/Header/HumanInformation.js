@@ -3,7 +3,8 @@
  *
  * @flow
  */
-import React, { Component } from 'react';
+import * as React from 'react';
+import { Component } from 'react';
 import { Icon } from 'antd';
 import style from './style.sass';
 

@@ -3,12 +3,14 @@
  *
  * @flow
  */
-import React, { Component } from 'react';
+import * as React from 'react';
+import { Component } from 'react';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { createSelector, createStructuredSelector } from 'reselect';
 import { Link } from 'react-router-dom';
+import type { RecordInstance } from 'immutable/dist/immutable.js.flow';
 import { Card, Spin } from 'antd';
 import QueueAnim from 'rc-queue-anim';
 import style from './style.sass';
@@ -17,8 +19,8 @@ import { listDisplayChange } from '../store/reducer';
 /* state */
 const state: Function = createStructuredSelector({
   listDisplay: createSelector(
-    ($$state: Immutable.Map): Immutable.Map => $$state.get('index'),
-    ($$data: Immutable.Map): Array<Object> => $$data.get('listDisplay').toJS()
+    ($$state: RecordInstance<Object>): RecordInstance<Object> => $$state.get('index'),
+    ($$data: RecordInstance<Object>): Array<Object> => $$data.get('listDisplay').toJS()
   )
 });
 
@@ -41,8 +43,7 @@ function simulationData(): Promise<Array<string>>{
   });
 }
 
-@connect(state, dispatch)
-class ListDisplay extends Component<{ listDisplay: Array<Object> }, { loading: boolean }>{
+class ListDisplay extends Component<{ listDisplay: Array<Object>, action: Object }, { loading: boolean }>{
   static propTypes: Object = {
     listDisplay: PropTypes.array
   };
@@ -64,7 +65,7 @@ class ListDisplay extends Component<{ listDisplay: Array<Object> }, { loading: b
       );
     });
   }
-  async componentWillMount(): void{
+  async componentWillMount(): Promise<void>{
     const data: Array<Object> = await simulationData();
 
     this.props.action.listDisplayChange({
@@ -90,4 +91,4 @@ class ListDisplay extends Component<{ listDisplay: Array<Object> }, { loading: b
   }
 }
 
-export default ListDisplay;
+export default connect(state, dispatch)(ListDisplay);

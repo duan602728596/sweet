@@ -5,6 +5,7 @@
  */
 import { createStore, compose, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
+import * as Immutable from 'immutable';
 import { fromJS, Map } from 'immutable';
 import { createReducer } from './reducers';
 
@@ -19,9 +20,9 @@ const store: Object = {
   asyncReducers: {}
 };
 
-export function storeFactory(initialState: ?Object): Object{
+export function storeFactory(initialState: Object = {}): Object{
   /* initialState */
-  const $$initialState: RecordInstance = Map(fromJS(initialState));
+  const $$initialState: Immutable.Map<string, any> = Map(initialState);
 
   /* store */
   Object.assign(store, createStore(reducer, $$initialState, compose(middlewares)));

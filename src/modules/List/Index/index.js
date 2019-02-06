@@ -1,5 +1,6 @@
 // @flow
-import React, { Component } from 'react';
+import * as React from 'react';
+import { Component } from 'react';
 import { Table } from 'antd';
 
 function dataSource(): Object[]{
@@ -38,7 +39,7 @@ class Index extends Component<{}>{
       }
     ];
   }
-  render(): React.ChildrenArray<React.Node>{
+  render(): Array<React.Node>{
     return [
       <Table key="0"
         dataSource={ dataSource() }

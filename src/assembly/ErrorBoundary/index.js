@@ -4,7 +4,8 @@
  *
  * @flow
  */
-import React, { Component } from 'react';
+import * as React from 'react';
+import { Component } from 'react';
 import PropTypes from 'prop-types';
 import style from './style.sass';
 import Content from '../Content/index';

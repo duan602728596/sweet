@@ -5,12 +5,13 @@
  *
  * @flow
  */
-import React, { Component } from 'react';
+import * as React from 'react';
+import { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Layout } from 'antd';
 import style from './style.sass';
 
-class Main extends Component<{}>{
+class Main extends Component<{ children: React.Node }>{
   static propTypes: Object = {
     children: PropTypes.oneOfType(PropTypes.node)
   };

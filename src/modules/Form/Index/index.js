@@ -1,10 +1,11 @@
 // @flow
-import React, { Component } from 'react';
+import * as React from 'react';
+import { Component } from 'react';
 import { Form, Input, Radio, Button } from 'antd';
 import style from './style.sass';
 
 @Form.create()
-class Forms extends Component<{}>{
+class Forms extends Component<{ form: Object }>{
   handleSubmit(event: Event): void{
     event.preventDefault();
 

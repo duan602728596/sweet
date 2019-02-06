@@ -1,8 +1,9 @@
 // @flow
-import React, { Component } from 'react';
+import * as React from 'react';
+import { Component } from 'react';
 import { Row, Col } from 'antd';
 import style from './style.sass';
-import ListDisplay from './listDisplay';
+import ListDisplay from './ListDisplay';
 
 class Index extends Component<{}>{
   render(): React.Node{

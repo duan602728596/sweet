@@ -1,5 +1,6 @@
 // @flow
-import React, { Component } from 'react';
+import * as React from 'react';
+import { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import Helmet from 'react-helmet';
 import loadReducer from '../../store/loadReducer';
@@ -13,15 +14,13 @@ import Index from './Index/index';
 const options: {
   id: string,
   name: string,
-  url: string,
-  icon: ?(string | React.Node),    // 传入一个字符串或节点
-  component: Function,
-  children: ?{
+  url?: string,
+  icon?: string | React.Node,  // 传入一个字符串或节点
+  children?: {
     id: string,
     name: string,
     url: string,
-    icon: ?(string | React.Node),  // 传入一个字符串或节点
-    component: Function
+    icon?: string | React.Node // 传入一个字符串或节点
   }[]
 }[] = [
   {
@@ -54,7 +53,7 @@ const options: {
 
 @loadReducer(reducer)
 class ModuleLayout extends Component<{}>{
-  render(): React.ChildrenArray<React.Node>{
+  render(): Array<React.Node>{
     return [
       <Helmet key="helmet">
         <title>列表展示</title>

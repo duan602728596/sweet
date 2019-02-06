@@ -5,7 +5,8 @@
  *
  * @flow
  */
-import React, { Component } from 'react';
+import * as React from 'react';
+import { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import classNames from 'classnames';
 import { Icon } from 'antd';
@@ -62,13 +63,9 @@ class Header extends Component<{}>{
         <li key={ item.id }>
           <NavLink to={ item.href } activeClassName={ style.navActive } isActive={ this.oddEvent.bind(this, item) }>
             {
-              do{
-                if(item.icon){
-                  typeof item.icon === 'string'
-                    ? <i className={ item.icon } />
-                    : item.icon;
-                }
-              }
+              typeof item.icon === 'string'
+                ? <i className={ item.icon } />
+                : item.icon
             }
             <span>{ item.name }</span>
           </NavLink>
