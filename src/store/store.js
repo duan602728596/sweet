@@ -22,7 +22,8 @@ const store: Object = {
 
 export function storeFactory(initialState: Object = {}): Object{
   /* initialState */
-  const $$initialState: Immutable.Map<string, any> = Map(initialState);
+  const state: any = fromJS(initialState);
+  const $$initialState: Immutable.Map<string, any> = Map(state);
 
   /* store */
   Object.assign(store, createStore(reducer, $$initialState, compose(middlewares)));
