@@ -1,3 +1,6 @@
+// @flow
+// @jsx this.$createElement
+import Vue from 'vue';
 import style from './style.sass';
 
 /**
@@ -9,7 +12,7 @@ export default {
   name: 'Sider',
   props: ['options'],
   methods: {
-    optionsView(options: Array, fatherIndex: number): Vue.VNode{
+    optionsView(options: Array<Object>, fatherIndex: number): Vue.VNode{
       return options.map((item: Object, index: number): Vue.VNode=>{
         if('children' in item && item.children.length > 0){
           const children: [] = this.optionsView(item.children, index);

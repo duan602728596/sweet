@@ -1,3 +1,6 @@
+// @flow
+// @jsx this.$createElement
+import Vue from 'vue';
 import Header from '../Header/index';
 import style from './style.sass';
 

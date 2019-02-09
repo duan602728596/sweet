@@ -1,3 +1,6 @@
+// @flow
+// // @jsx this.$createElement
+import Vue from 'vue';
 import HumanInformation from './HumanInformation';
 import style from './style.sass';
 import icon from '../Icon/style.sass';
@@ -34,6 +37,9 @@ export const navOptions: options[] = [
  * layout - header
  * 顶部header布局
  * 显示logo、导航、登录人信息等
+ *
+ * @flow
+ * @jsx this.$createElement
  */
 export default {
   name: 'Header',
@@ -43,7 +49,7 @@ export default {
     };
   },
   methods: {
-    listView(navOptions: ArrayBuffer): Vue.VNode{
+    listView(navOptions: Array<Object>): Vue.VNode{
       return navOptions.map((item: Object, index: number): Vue.VNode=>{
         return (
           <li key={ index }>

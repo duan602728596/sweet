@@ -6,9 +6,9 @@ const isDevelopment: boolean = process.env.NODE_ENV === 'development';
 export default {
   frame: 'vue',
   dll: [
-    'vue/dist/vue',
-    'vue-router/dist/vue-router',
-    'vuex/dist/vuex'
+    'vue',
+    'vue-router',
+    'vuex'
   ],
   entry: {
     app: [path.join(__dirname, 'src/app.js')]

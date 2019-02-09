@@ -1,3 +1,6 @@
+// @flow
+// // @jsx this.$createElement
+import Vue from 'vue';
 import classNames from 'classnames';
 import style from './style.sass';
 import icon from '../Icon/style.sass';
@@ -10,7 +13,7 @@ export default {
       icon
     };
   },
-  render(): Vue.VNode{
+  render(h: Function): Vue.VNode{
     return (
       <div class={ style.humanInformation}>
         <i class={ classNames(icon.userTie, style.human) } />
