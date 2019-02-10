@@ -1,5 +1,6 @@
 /**
  * 异步加载模块
+ *
  * @flow
  */
 import * as React from 'react';
