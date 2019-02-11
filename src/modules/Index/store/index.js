@@ -1,3 +1,5 @@
+// @flow
+// // @jsx this.$createElement
 export default {
   namespaced: true,
   state: {

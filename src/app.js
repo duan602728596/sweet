@@ -1,4 +1,6 @@
-import Vue from 'vue/dist/vue';
+// @flow
+// @jsx this.$createElement
+import Vue from 'vue';
 import { Helmet, HelmetProvider } from '@jnields/vue-helmet';
 import './iview';
 import App from './AppModule';
@@ -19,6 +21,5 @@ const app: Vue = new Vue({
   }
 });
 
-if(module.hot){
-  module.hot.accept();
-}
+// $FlowFixMe
+if(module.hot) module.hot.accept();

@@ -1,5 +1,9 @@
-/* iview按需加载 */
-import Vue from 'vue/dist/vue';
+/**
+ * iview按需加载
+ *
+ * @flow
+ */
+import Vue from 'vue';
 import { Layout, Header, Sider, Content, Footer, Menu, MenuItem, Submenu } from 'iview';
 import 'iview/src/styles/index.less';
 

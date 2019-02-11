@@ -1,12 +1,13 @@
-import Vue from 'vue/dist/vue';
-import Vuex from 'vuex/dist/vuex';
+// @flow
+import Vue from 'vue';
+import Vuex from 'vuex';
 import modules from './modules';
 
 Vue.use(Vuex);
 
 const store: Vuex.Store = {};
 
-export function storeFactory(initialState: ?Object): Object{
+export function storeFactory(initialState: Object = {}): Vuex.Store{
   /* store */
   Object.assign(store, new Vuex.Store({
     state: initialState,

@@ -1,3 +1,6 @@
+// @flow
+// @jsx this.$createElement
+import Vue from 'vue';
 import Main from '../../assembly/Main/index';
 import Sider from '../../assembly/Sider/index';
 import Content from '../../assembly/Content/index';
@@ -6,8 +9,8 @@ import Content from '../../assembly/Content/index';
 const options: {
   id: string,
   name: string,
-  url: string,
-  children: ?{
+  url?: string,
+  children?: {
     id: string,
     name: string,
     url: string
