@@ -33,7 +33,7 @@
     "flow-bin": "^0.92.1",
     "immutable": "^4.0.0-rc.12",
     "pre-commit": "^1.2.2",
-    "prop-types": "^15.6.2",
+    "prop-types": "^15.7.0",
     "rc-queue-anim": "^1.6.11",
     "react": "^16.8.1",
     "react-dom": "^16.8.1",
