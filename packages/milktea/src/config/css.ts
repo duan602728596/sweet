@@ -26,7 +26,8 @@ export default function(options: CssOption = {}): LoaderOption{
     cssLoader.options = {
       modules: true,
       localIdentName,
-      exportOnlyLocals: isLocals ? true : false
+      exportOnlyLocals: isLocals ? true : false,
+      sourceMap: isDevelopment
     };
   }
 

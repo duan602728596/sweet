@@ -3,10 +3,15 @@ import { isObject } from '../utils/utils';
 import { LoaderOption } from '../utils/types';
 
 interface LessOption{
+  isDevelopment?: boolean;
   modifyVars?: object;
 }
 
 export default function(options: LessOption = {}): LoaderOption{
+  /**
+   * isDevelopment { boolean }: 是否为开发环境
+   */
+  const { isDevelopment } = options;
   /**
    * modifyVars { Object }:  注入less变量
    */
@@ -16,7 +21,8 @@ export default function(options: LessOption = {}): LoaderOption{
     loader: 'less-loader',
     options: {
       javascriptEnabled: true,
-      modifyVars
+      modifyVars,
+      sourceMap: isDevelopment
     }
   };
 }

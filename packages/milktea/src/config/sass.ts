@@ -14,7 +14,8 @@ export default function(options: SassOption = {}): LoaderOption{
   return {
     loader: 'sass-loader',
     options: {
-      outputStyle: isDevelopment ? 'compact' : 'compressed'
+      outputStyle: isDevelopment ? 'compact' : 'compressed',
+      sourceMap: isDevelopment
     }
   };
 }
