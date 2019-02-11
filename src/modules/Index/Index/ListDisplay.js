@@ -56,8 +56,8 @@ class ListDisplay extends Component<{ listDisplay: Array<Object>, action: Object
     };
   }
   // 显示list
-  listDisplay(): React.ChildrenArray<React.Node>{
-    return this.props.listDisplay.map((item: string, index: number): Object=>{
+  listDisplay(): Array<React.Node>{
+    return this.props.listDisplay.map((item: string, index: number): React.Node=>{
       return (
         <li key={ index }>
           <Link to="/" title={ item }>{ item }</Link>
