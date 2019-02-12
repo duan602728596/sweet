@@ -39,7 +39,7 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions): W
       publicPath: '/',
       ...serverOutput
     },
-    devtool: isDevelopment ? 'module-source-map' : 'none',
+    devtool: isDevelopment ? 'cheap-module-source-map' : 'none',
     resolve,
     module: {
       rules: loaders(sweetConfigCopy, sweetOptions)
@@ -47,7 +47,7 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions): W
     plugins: plugins(sweetConfigCopy, sweetOptions),
     optimization: optimization(sweetConfigCopy, sweetOptions),
     // webpack服务器端编辑属性
-    target: 'async-node',
+    target: 'node',
     node: {
       __filename: true,
       __dirname: true
