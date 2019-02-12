@@ -47,7 +47,7 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions): W
     plugins: plugins(sweetConfigCopy, sweetOptions),
     optimization: optimization(sweetConfigCopy, sweetOptions),
     // webpack服务器端编辑属性
-    target: 'node',
+    target: 'async-node',
     node: {
       __filename: true,
       __dirname: true
