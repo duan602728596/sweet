@@ -43,7 +43,7 @@ export function callback(err: any, stats: { toString: Function }): void{
 
 /**
  * webpack配置
- * @param { ?Object } sweetConfig: webpack配置，覆盖文件，优先级最高
+ * @param { object } sweetConfig: webpack配置，覆盖文件，优先级最高
  * @param { string } mode: 开发环境，覆盖配置的开发环境
  * @param { string } configFile: 新的配置文件地址，覆盖默认的.sweetrc.js文件
  */
@@ -65,7 +65,7 @@ export function config(sweetConfig: SweetConfig | null | undefined, mode: string
 
 /**
  * 服务器端渲染的webpack配置
- * @param { ?Object } sweetConfig: webpack配置，覆盖文件，优先级最高
+ * @param { object } sweetConfig: webpack配置，覆盖文件，优先级最高
  * @param { string } mode: 开发环境，覆盖配置的开发环境
  * @param { string } configFile: 新的配置文件地址，覆盖默认的.sweetrc.js文件
  */
@@ -87,7 +87,7 @@ export function serverRenderConfig(sweetConfig: SweetConfig | null | undefined, 
 
 /**
  * webpack的dll文件配置
- * @param { ?Object } sweetConfig: webpack配置，覆盖文件，优先级最高
+ * @param { object } sweetConfig: webpack配置，覆盖文件，优先级最高
  * @param { string } configFile: 新的配置文件地址
  */
 export function dll(sweetConfig: SweetConfig | null | undefined, configFile: string): object{
