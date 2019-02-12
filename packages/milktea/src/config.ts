@@ -39,7 +39,7 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions): W
     },
     externals,
     resolve,
-    devtool: isDevelopment ? 'eval-source-map' : 'none',
+    devtool: isDevelopment ? 'module-eval-source-map' : 'source-map',
     module: {
       rules: loaders(sweetConfigCopy, sweetOptions)
     },
