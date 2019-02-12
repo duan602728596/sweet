@@ -39,7 +39,7 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions): W
       publicPath: '/',
       ...serverOutput
     },
-    devtool: isDevelopment ? 'cheap-module-source-map' : 'source-map',
+    devtool: isDevelopment ? 'cheap-module-source-map' : 'none',
     resolve,
     module: {
       rules: loaders(sweetConfigCopy, sweetOptions)
