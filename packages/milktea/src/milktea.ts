@@ -1,6 +1,7 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import * as process from 'process';
+import * as webpack from 'webpack';
 import webpackConfig from './config';
 import serverConfig from './server';
 import webpackDll from './dll';
@@ -13,7 +14,7 @@ const sweetOptions: SweetOptions = {
 };
 
 /* 获取配置文件 */
-function getSweetConfig(configFile: string): SweetConfig{
+function getSweetConfigFile(configFile: string): SweetConfig{
   let sweetConfigFile: string;
 
   if(typeof configFile === 'string' && path.isAbsolute(configFile)){
@@ -35,7 +36,7 @@ function getSweetConfig(configFile: string): SweetConfig{
 }
 
 /* webpack的回调函数 */
-export function callback(err: any, stats: { toString: Function }): void{
+export function callback(err: Error, stats: webpack.Stats): void{
   console.log(stats.toString({
     colors: true
   }));
@@ -45,15 +46,15 @@ export function callback(err: any, stats: { toString: Function }): void{
  * webpack配置
  * @param { object } sweetConfig: webpack配置，覆盖文件，优先级最高
  * @param { string } mode: 开发环境，覆盖配置的开发环境
- * @param { string } configFile: 新的配置文件地址，覆盖默认的.sweetrc.js文件
+ * @param { string } configFile: 新的配置文件地址，覆盖默认的配置
  */
-export function config(sweetConfig: SweetConfig | null | undefined, mode: string, configFile: string): object{
+export function config(sweetConfig: SweetConfig, mode: string, configFile: string): object{
   let config: SweetConfig;
 
   if(isObject(sweetConfig)){
     config = sweetConfig;
   }else{
-    config = getSweetConfig(configFile);
+    config = getSweetConfigFile(configFile);
   }
 
   if(mode){
@@ -69,13 +70,13 @@ export function config(sweetConfig: SweetConfig | null | undefined, mode: string
  * @param { string } mode: 开发环境，覆盖配置的开发环境
  * @param { string } configFile: 新的配置文件地址，覆盖默认的.sweetrc.js文件
  */
-export function serverRenderConfig(sweetConfig: SweetConfig | null | undefined, mode: string, configFile: string): object{
+export function serverRenderConfig(sweetConfig: SweetConfig, mode: string, configFile: string): object{
   let config: SweetConfig;
 
   if(isObject(sweetConfig)){
     config = sweetConfig;
   }else{
-    config = getSweetConfig(configFile);
+    config = getSweetConfigFile(configFile);
   }
 
   if(mode){
@@ -90,13 +91,13 @@ export function serverRenderConfig(sweetConfig: SweetConfig | null | undefined, 
  * @param { object } sweetConfig: webpack配置，覆盖文件，优先级最高
  * @param { string } configFile: 新的配置文件地址
  */
-export function dll(sweetConfig: SweetConfig | null | undefined, configFile: string): object{
+export function dll(sweetConfig: SweetConfig, configFile: string): object{
   let config: SweetConfig;
 
   if(isObject(sweetConfig)){
     config = sweetConfig;
   }else{
-    config = getSweetConfig(configFile);
+    config = getSweetConfigFile(configFile);
   }
 
   return webpackDll(config, sweetOptions);
