@@ -75,7 +75,10 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions): W
         name: '[name]_[hash:5]',
         context: sweetOptions.basicPath
       }),
-      new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
+      new webpack.IgnorePlugin({
+        resourceRegExp: /^\.\/locale$/,
+        contextRegExp: /moment$/
+      }),
       new webpack.ProgressPlugin(handleWebpackBuildProgress)
     ]
   };

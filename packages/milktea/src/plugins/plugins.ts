@@ -25,7 +25,10 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions): A
   // 合并插件
   const pluginArr: Array<any> = [
     ...plugins ? plugins : [],
-    new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
+    new webpack.IgnorePlugin({
+      resourceRegExp: /^\.\/locale$/,
+      contextRegExp: /moment$/
+    }),
     ...envPlugins(sweetConfig, sweetOptions)
   ];
 
