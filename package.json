@@ -6,7 +6,9 @@
     "eslint": "eslint ./packages",
     "tslint": "tslint --project ./",
     "flow:check": "flow check",
-    "lerna:install": "lerna bootstrap",
+    "lerna:install": "npm run lerna:link && npm run lerna:bootstrap",
+    "lerna:link": "lerna link --force-local",
+    "lerna:bootstrap": "lerna bootstrap --force-local",
     "update": "milktea update",
     "update:dev": "milktea update --__DEV__"
   },
