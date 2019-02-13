@@ -136,7 +136,7 @@ function consoleLogText(packageArray: Array<any>): string{
   return consoleText;
 }
 
-async function start(folder: string, registry: number): Promise<void>{
+async function start(folder: string, registry: number, test: boolean): Promise<void>{
   try{
     // 依赖
     const packageJson: { dependencies: object, devDependencies: object } = require(path.join(folder, 'package.json'));
@@ -165,7 +165,9 @@ async function start(folder: string, registry: number): Promise<void>{
       consoleText += consoleLogText(devDependencies);
     }
 
-    console.log(consoleText);
+    if(test !== true){
+      console.log(consoleText);
+    }
   }catch(err){
     console.error(err);
   }
@@ -174,10 +176,10 @@ async function start(folder: string, registry: number): Promise<void>{
 /**
  * @param folders: 目录的数组
  * @param registry: Npm包信息地址。0：Npm，1：Yarn，2：CNpm。
- * @return { Promise<void> }
+ * @param test: 是否为测试环境
  */
-export default async function(folders: Array<string>, registry: number): Promise<void>{
+export default async function(folders: Array<string>, registry: number, test: boolean): Promise<void>{
   for(let i: number = 0, j: number = folders.length; i < j; i++){
-    await start(folders[i], registry);
+    await start(folders[i], registry, test);
   }
 }

@@ -8,7 +8,7 @@ describe('update', function(): void{
     let isErr: boolean = false;
 
     try{
-      await update([path.join(__dirname, '..')], 2);
+      await update([path.join(__dirname, '..')], 2, true);
     }catch(err){
       isErr = true;
     }
