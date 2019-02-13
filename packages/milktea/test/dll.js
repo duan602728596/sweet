@@ -3,7 +3,6 @@ import process from 'process';
 import { expect } from 'chai';
 import webpack from 'webpack';
 import webpackDll from '../lib/dll';
-import { expectDevtool } from './utils/expectFunction';
 
 const sweetOptions: Object = {
   basicPath: process.cwd()
@@ -12,8 +11,6 @@ const sweetOptions: Object = {
 describe('dll', function(): void{
   describe('dll', function(): void{
     const config: Object = webpackDll({ mode: 'development' }, sweetOptions);
-
-    it('devtool', expectDevtool(config, 'module-source-map'));
 
     it('module', function(): void{
       expect(config.module).to.be.an('object');

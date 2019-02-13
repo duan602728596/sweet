@@ -2,9 +2,7 @@
 import process from 'process';
 import { expect } from 'chai';
 import serverConfig from '../lib/server';
-import {
-  expectDevtool, expectModule, expectDevServerPlugins, expectProServerPlugins, expectDevOptimization, expectProOptimization
-} from './utils/expectFunction';
+import { expectModule, expectDevServerPlugins, expectProServerPlugins, expectDevOptimization, expectProOptimization } from './utils/expectFunction';
 
 const sweetOptions: Object = {
   basicPath: process.cwd()
@@ -23,8 +21,6 @@ describe('sever-render config', function(): void{
       expect(config.target).to.equal('node');
       expect(config.node).to.eql({ __filename: true, __dirname: true });
     });
-
-    it('devtool', expectDevtool(config, 'module-source-map'));
 
     it('module', expectModule(config, 8));
 
@@ -45,8 +41,6 @@ describe('sever-render config', function(): void{
       expect(config.target).to.equal('node');
       expect(config.node).to.eql({ __filename: true, __dirname: true });
     });
-
-    it('devtool', expectDevtool(config, 'none'));
 
     it('module', expectModule(config, 9));
 

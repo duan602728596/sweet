@@ -8,13 +8,6 @@ import ImageMinWebpackPlugin from 'imagemin-webpack-plugin';
 import VueLoaderPlugin from 'vue-loader/lib/plugin';
 import TerserPlugin from 'terser-webpack-plugin';
 
-/* devtool属性 */
-export function expectDevtool(config: Object, devtool: string): Function{
-  return function(): void{
-    expect(config.devtool).to.equal(devtool);
-  }
-}
-
 /* module属性 */
 export function expectModule(config: Object, length: number): Function{
   return function(): void{
