@@ -1,6 +1,6 @@
 /* 查看升级 */
 import * as path from 'path';
-import axios, { AxiosResponse } from 'axios';
+import axios, { AxiosStatic, AxiosResponse} from 'axios';
 
 /**
  * 对象转数组
@@ -111,16 +111,19 @@ async function getVersionFromNpm(packageArray: Array<PackageArrayItem>, registry
  * 输出console.log文本
  * @param { Array } packageArray
  */
-function consoleLogText(packageArray: Array<any>): string{
+function consoleLogText(packageArray: Array<PackageArrayItem>): string{
   let consoleText: string = '';
+
   for(let i: number = 0, j: number = packageArray.length; i < j; i++){
     const item: PackageArrayItem = packageArray[i];
     const isLatestNew: boolean = isVersionEqual(item.version, item.latest);
     const isNextNew: boolean = isVersionEqual(item.version, item.next);
     const isRcNew: boolean = isVersionEqual(item.version, item.rc);
-    const isCanaryNew: boolean = isVersionEqual(item.version, item.canary);
 
-    consoleText += `  ${ isLatestNew || isNextNew || isRcNew || isCanaryNew ? '  ' : '* ' }${ item.name }:\n`;
+    // 包需要升级，使用“*”；包在npm上不存在（私有包），使用“#”
+    const symbol: string = (item.latest || item.next || item.rc) ? '*' : '#';
+
+    consoleText += `  ${ isLatestNew || isNextNew || isRcNew ? ' ' : symbol } ${ item.name }:\n`;
     consoleText += `      version: ${ item.version }\n`;
 
     if(item.latest){
