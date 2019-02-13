@@ -22,7 +22,6 @@
     "iltorb": "^2.4.1",
     "koa": "^2.7.0",
     "koa-body": "^4.0.8",
-    "koa-router": "^7.4.0",
     "koa-static-cache": "^5.1.2",
     "koa-webpack": "^5.2.1",
     "mime-types": "^2.1.21"

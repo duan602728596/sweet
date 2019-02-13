@@ -5,7 +5,7 @@ import * as fs from 'fs';
 import * as process from 'process';
 import * as path from 'path';
 import * as Koa from 'koa';
-import * as Router from 'koa-router';
+import * as Router from '@eggjs/router';
 import * as body from 'koa-body';
 import * as mime from 'mime-types';
 import * as webpack from 'webpack';
