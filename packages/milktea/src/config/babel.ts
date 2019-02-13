@@ -42,7 +42,7 @@ const presetsList: Function = (
   return list;
 };
 
-const pluginsList: Function = (plugins: Array<any> = [], frame: string): Array<any>=>{
+const pluginsList: Function = (plugins: Array<any> = [], frame: string, ecmascript: boolean): Array<any>=>{
   const list: Array<any> = [
     [
       '@babel/plugin-proposal-decorators',
@@ -60,7 +60,7 @@ const pluginsList: Function = (plugins: Array<any> = [], frame: string): Array<a
       {
         corejs: false,
         helpers: true,
-        regenerator: true,
+        regenerator: !ecmascript,
         useESModules: true
       }
     ],
@@ -116,7 +116,7 @@ export default function(options: JsOption = {}, sweetOptions: SweetOptions): Loa
       : presetsList(presets, debug, frame, ecmascript),
     plugins: resetPlugins
       ? resetPlugins
-      : pluginsList(plugins, frame)
+      : pluginsList(plugins, frame, ecmascript)
   };
 
   return {
