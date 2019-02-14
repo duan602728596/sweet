@@ -1,7 +1,8 @@
-const a: number = 5;
-const b: number = 15;
+/* eslint-disable */
+const a = 5;
+const b = 15;
 
-function add(c: number, d: number): number{
+function add(c, d){
   return c + d;
 }
 

@@ -2,7 +2,7 @@
 
 ## 使用
 
-1. 方法1：在工程目录下创建`.sweetrc.js`文件，然后通过cli工具运行。
+1. 方法1：在工程目录下创建`.sweetrc.js`或`sweet.config.js`文件，然后通过cli工具运行。
 
 2. 方法2：直接在node内运行函数。
 
@@ -37,7 +37,7 @@ export default {
 };
 ```
 
-配置文件支持`es6`、`es5`和`flow`。
+配置文件支持`es6`、`es5`和`flowjs`。
 
 ### 配置项
 

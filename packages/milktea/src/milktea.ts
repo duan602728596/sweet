@@ -1,11 +1,13 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import * as process from 'process';
+import * as cosmiconfig from 'cosmiconfig';
 import * as webpack from 'webpack';
 import webpackConfig from './config';
 import serverConfig from './server';
 import webpackDll from './dll';
-import { requireModule, isObject, registerConfig } from './utils/utils';
+import { isObject } from './utils/utils';
+import jsRegisterLoader from './utils/jsRegisterLoader';
 import { SweetConfig, SweetOptions } from './utils/types';
 
 /* 基础配置 */
@@ -13,25 +15,48 @@ const sweetOptions: SweetOptions = {
   basicPath: process.cwd() // 主目录
 };
 
+/* cosmiconfig */
+const moduleName: string = 'sweet';
+const explorer: { searchSync: Function } = cosmiconfig(moduleName, {
+  searchPlaces: [
+    `.${ moduleName }rc.js`,
+    `${ moduleName }.config.js`,
+  ],
+  loaders: {
+    '.js': jsRegisterLoader
+  },
+  stopDir: sweetOptions.basicPath
+});
+
 /* 获取配置文件 */
-function getSweetConfigFile(configFile: string): SweetConfig{
-  let sweetConfigFile: string;
+const errorMsg: string = 'Please configure the .sweetrc.js or sweet.config.js file first.';
 
-  if(typeof configFile === 'string' && path.isAbsolute(configFile)){
-    sweetConfigFile = configFile;
+function getSweetConfigFile(configFile?: string): SweetConfig{
+  if(typeof configFile === 'string'){
+    // 加载其他的配置文件
+    let sweetConfigFile: string;
+
+    if(path.isAbsolute(configFile)){
+      sweetConfigFile = configFile;
+    }else{
+      sweetConfigFile = path.join(sweetOptions.basicPath, configFile);
+    }
+
+    if(fs.existsSync(sweetConfigFile)){
+      // 加载es6+环境
+      return jsRegisterLoader(sweetConfigFile);
+    }else{
+      throw new Error(errorMsg);
+    }
   }else{
-    sweetConfigFile = path.join(sweetOptions.basicPath, configFile || '.sweetrc.js');
-  }
+    // 加载默认的配置文件
+    const searchResult: { config: SweetConfig, filepath: string } | null = explorer.searchSync();
 
-  if(fs.existsSync(sweetConfigFile)){
-    // 加载es6+环境
-    const register: Function = requireModule('@babel/register');
-
-    register(registerConfig);
-
-    return requireModule(sweetConfigFile);
-  }else{
-    throw new Error('Please configure the .sweetrc.js file first.');
+    if(searchResult === null){
+      throw new Error(errorMsg);
+    }else{
+      return searchResult.config;
+    }
   }
 }
 
@@ -44,17 +69,18 @@ export function callback(err: Error, stats: webpack.Stats): void{
 
 /**
  * webpack配置
- * @param { object } sweetConfig: webpack配置，覆盖文件，优先级最高
+ * @param { object | string | null } sweetConfig: webpack配置，覆盖文件，优先级最高
  * @param { string } mode: 开发环境，覆盖配置的开发环境
- * @param { string } configFile: 新的配置文件地址，覆盖默认的配置
  */
-export function config(sweetConfig: SweetConfig, mode: string, configFile: string): object{
+export function config(sweetConfig: SweetConfig | string | null, mode: string): object{
   let config: SweetConfig;
 
-  if(isObject(sweetConfig)){
+  if(typeof sweetConfig === 'string'){
+    config = getSweetConfigFile(sweetConfig);
+  }else if(isObject(sweetConfig)){
     config = sweetConfig;
   }else{
-    config = getSweetConfigFile(configFile);
+    config = getSweetConfigFile();
   }
 
   if(mode){
@@ -66,17 +92,18 @@ export function config(sweetConfig: SweetConfig, mode: string, configFile: strin
 
 /**
  * 服务器端渲染的webpack配置
- * @param { object } sweetConfig: webpack配置，覆盖文件，优先级最高
+ * @param { object | string | null } sweetConfig: webpack配置，覆盖文件，优先级最高
  * @param { string } mode: 开发环境，覆盖配置的开发环境
- * @param { string } configFile: 新的配置文件地址，覆盖默认的.sweetrc.js文件
  */
-export function serverRenderConfig(sweetConfig: SweetConfig, mode: string, configFile: string): object{
+export function serverRenderConfig(sweetConfig: SweetConfig | string | null, mode: string): object{
   let config: SweetConfig;
 
-  if(isObject(sweetConfig)){
+  if(typeof sweetConfig === 'string'){
+    config = getSweetConfigFile(sweetConfig);
+  }else if(isObject(sweetConfig)){
     config = sweetConfig;
   }else{
-    config = getSweetConfigFile(configFile);
+    config = getSweetConfigFile();
   }
 
   if(mode){
@@ -88,16 +115,17 @@ export function serverRenderConfig(sweetConfig: SweetConfig, mode: string, confi
 
 /**
  * webpack的dll文件配置
- * @param { object } sweetConfig: webpack配置，覆盖文件，优先级最高
- * @param { string } configFile: 新的配置文件地址
+ * @param { object | string | null } sweetConfig: webpack配置，覆盖文件，优先级最高
  */
-export function dll(sweetConfig: SweetConfig, configFile: string): object{
+export function dll(sweetConfig: SweetConfig | string | null): object{
   let config: SweetConfig;
 
-  if(isObject(sweetConfig)){
+  if(typeof sweetConfig === 'string'){
+    config = getSweetConfigFile(sweetConfig);
+  }else if(isObject(sweetConfig)){
     config = sweetConfig;
   }else{
-    config = getSweetConfigFile(configFile);
+    config = getSweetConfigFile();
   }
 
   return webpackDll(config, sweetOptions);

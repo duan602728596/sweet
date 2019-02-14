@@ -5,10 +5,14 @@ import { Milktea, Argv } from '../utils/types';
 
 function argvStart(argv: Argv): void{
   const milktea: Milktea = requireModule('@sweet/milktea');
-  const compiler: webpack.Compiler = webpack(milktea.config(null, 'development', argv.config));
+  const compiler: webpack.Compiler = webpack(
+    milktea.config(argv.config, 'development')
+  );
 
   if(!isNone(argv.serverRender)){
-    const serverRenderCompiler: webpack.Compiler = webpack(milktea.serverRenderConfig(null, 'development', argv.config));
+    const serverRenderCompiler: webpack.Compiler = webpack(
+      milktea.serverRenderConfig(argv.config, 'development')
+    );
     const serverRenderWatching: webpack.Compiler.FSWatcher = serverRenderCompiler.watch({
       aggregateTimeout: 500
     }, milktea.callback);
