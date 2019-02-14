@@ -78,10 +78,10 @@ export function config(sweetConfig: SweetConfig | string | null, mode: string): 
 
   if(typeof sweetConfig === 'string'){
     config = getSweetConfigFile(sweetConfig);
-  }else if(!sweetConfig){
-    config = getSweetConfigFile();
-  }else{
+  }else if(isObject(sweetConfig)){
     config = sweetConfig;
+  }else{
+    config = getSweetConfigFile();
   }
 
   if(mode){
@@ -101,10 +101,10 @@ export function serverRenderConfig(sweetConfig: SweetConfig | string | null, mod
 
   if(typeof sweetConfig === 'string'){
     config = getSweetConfigFile(sweetConfig);
-  }else if(!sweetConfig){
-    config = getSweetConfigFile();
-  }else{
+  }else if(isObject(sweetConfig)){
     config = sweetConfig;
+  }else{
+    config = getSweetConfigFile();
   }
 
   if(mode){
@@ -123,10 +123,10 @@ export function dll(sweetConfig: SweetConfig | string | null): object{
 
   if(typeof sweetConfig === 'string'){
     config = getSweetConfigFile(sweetConfig);
-  }else if(!sweetConfig){
-    config = getSweetConfigFile();
-  }else{
+  }else if(isObject(sweetConfig)){
     config = sweetConfig;
+  }else{
+    config = getSweetConfigFile();
   }
 
   return webpackDll(config, sweetOptions);
