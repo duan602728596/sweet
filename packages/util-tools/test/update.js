@@ -3,7 +3,7 @@ import path from 'path';
 import { expect } from 'chai';
 import update from '../lib/update';
 
-describe('update', function(): void{
+describe('update', function (): void{
   it('update', async function(): Promise<void>{
     let isErr: boolean = false;
 
