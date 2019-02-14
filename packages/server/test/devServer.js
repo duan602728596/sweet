@@ -1,24 +1,11 @@
 // @flow
-import path from 'path';
 import { expect } from 'chai';
 import axios from 'axios';
-import webpack from 'webpack';
-import { config as webpackConfig } from '@sweet/milktea';
 import devServer from '../lib/devServer';
+import createCompiler from './compiler';
 
 // webpack配置
-const compiler: Object = webpack(webpackConfig({
-  frame: 'test',
-  entry: {
-    app: [path.join(__dirname, 'src/app.js')]
-  },
-  output: {
-    path: path.join(__dirname, 'build'),
-    filename: '[name].js',
-    publicPath: '/'
-  },
-  html: [{ template: path.join(__dirname, 'src/index.pug') }]
-}, 'development'));
+const compiler: Object = createCompiler();
 
 // 运行开发环境服务
 function runServer(): Promise<void>{
