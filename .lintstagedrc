@@ -1,0 +1,6 @@
+linters:
+  packages/**/*.{js,jsx}: eslint
+  packages/**/*.{ts,tsx}: tslint
+ignore:
+  - node_modules
+  - packages/**/node_modules
