@@ -5,3 +5,4 @@ ignore:
   - node_modules
   - .dll
   - build
+  - buildServer
