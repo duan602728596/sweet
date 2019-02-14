@@ -5,7 +5,7 @@ const babelRegisterConfig = require('../../../utils/babelRegisterConfig');
 register(babelRegisterConfig);
 
 /* test */
-require('./devServer');
+// require('./devServer');
 require('./proServer');
 
 setTimeout(()=>{
