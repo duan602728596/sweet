@@ -1,6 +1,7 @@
 // @flow
 // @jsx this.$createElement
 import Vue from 'vue';
+import Component from 'vue-class-component';
 import Header from '../Header/index';
 import style from './style.sass';
 
@@ -11,8 +12,8 @@ import style from './style.sass';
  * Footer 显示版权信息
  * Routers 根据路由渲染页面
  */
-export default {
-  name: 'Arrangement',
+@Component
+class Arrangement extends Vue{
   render(): Vue.VNode{
     return (
       <i-layout class={ style.layout }>
@@ -22,4 +23,6 @@ export default {
       </i-layout>
     );
   }
-};
+}
+
+export default Arrangement;

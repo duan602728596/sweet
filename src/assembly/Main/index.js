@@ -1,6 +1,7 @@
 // @flow
 // @jsx this.$createElement
 import Vue from 'vue';
+import Component from 'vue-class-component';
 import style from './style.sass';
 
 /**
@@ -8,8 +9,8 @@ import style from './style.sass';
  * 页面中部内容布局
  * 包含左侧的菜单Sider和右侧的内容Content
  */
-export default {
-  name: 'Main',
+@Component
+class Main extends Vue{
   render(): Vue.VNode{
     return (
       <i-layout className={ style.main }>
@@ -17,4 +18,6 @@ export default {
       </i-layout>
     );
   }
-};
+}
+
+export default Main;

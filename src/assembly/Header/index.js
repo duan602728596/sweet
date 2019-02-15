@@ -1,6 +1,7 @@
 // @flow
-// // @jsx this.$createElement
+// @jsx this.$createElement
 import Vue from 'vue';
+import Component from 'vue-class-component';
 import HumanInformation from './HumanInformation';
 import style from './style.sass';
 import icon from '../Icon/style.sass';
@@ -37,31 +38,26 @@ export const navOptions: options[] = [
  * layout - header
  * 顶部header布局
  * 显示logo、导航、登录人信息等
- *
- * @flow
- * @jsx this.$createElement
  */
-export default {
-  name: 'Header',
+@Component
+class Header extends Vue{
   data(): Object{
     return {
       navOptions
     };
-  },
-  methods: {
-    listView(navOptions: Array<Object>): Vue.VNode{
-      return navOptions.map((item: Object, index: number): Vue.VNode=>{
-        return (
-          <li key={ index }>
-            <router-link to={ item.href } active-class={ style.navActive }>
-              <i class={ item.icon} />
-              <span>{ item.name }</span>
-            </router-link>
-          </li>
-        );
-      });
-    }
-  },
+  }
+  listView(navOptions: Array<Object>): Vue.VNode{
+    return navOptions.map((item: Object, index: number): Vue.VNode=>{
+      return (
+        <li key={ index }>
+          <router-link to={ item.href } active-class={ style.navActive }>
+            <i class={ item.icon} />
+            <span>{ item.name }</span>
+          </router-link>
+        </li>
+      );
+    });
+  }
   render(): Vue.VNode{
     return (
       <i-header class={ style.header }>
@@ -73,4 +69,6 @@ export default {
       </i-header>
     );
   }
-};
+}
+
+export default Header;

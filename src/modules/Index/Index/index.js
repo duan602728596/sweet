@@ -1,15 +1,13 @@
 // @flow
 // @jsx this.$createElement
 import Vue from 'vue';
-export default {
-  data(): Object{
-    return {};
-  },
-  methods: {
-    handleAddState(event: Event): void{
-      this.$store.dispatch('index/add');
-    }
-  },
+import Component from 'vue-class-component';
+
+@Component
+class Index extends Vue{
+  handleAddState(event: Event): void{
+    this.$store.dispatch('index/add');
+  }
   render(): Vue.VNode{
     return (
       <div>
@@ -19,4 +17,6 @@ export default {
       </div>
     );
   }
-};
+}
+
+export default Index;

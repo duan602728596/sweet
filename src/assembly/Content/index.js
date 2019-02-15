@@ -1,6 +1,7 @@
 // @flow
 // @jsx this.$createElement
 import Vue from 'vue';
+import Component from 'vue-class-component';
 import style from './style.sass';
 
 /**
@@ -9,8 +10,8 @@ import style from './style.sass';
  * 组件用于展示页面的内容
  * 默认padding为10px
  */
-export default {
-  name: 'Content',
+@Component
+class Content extends Vue{
   render(): Vue.VNode{
     return(
       <i-content class={ style.content }>
@@ -18,4 +19,6 @@ export default {
       </i-content>
     );
   }
-};
+}
+
+export default Content;
