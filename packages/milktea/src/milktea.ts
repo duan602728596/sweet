@@ -20,7 +20,7 @@ const moduleName: string = 'sweet';
 const explorer: { searchSync: Function } = cosmiconfig(moduleName, {
   searchPlaces: [
     `.${ moduleName }rc.js`,
-    `${ moduleName }.config.js`,
+    `${ moduleName }.config.js`
   ],
   loaders: {
     '.js': jsRegisterLoader

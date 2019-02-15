@@ -1,6 +1,6 @@
 /* 查看升级 */
 import * as path from 'path';
-import axios, { AxiosStatic, AxiosResponse} from 'axios';
+import axios, { AxiosResponse } from 'axios';
 
 /**
  * 对象转数组
