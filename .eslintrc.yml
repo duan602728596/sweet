@@ -159,6 +159,7 @@ rules:
 overrides:
   - files:
       - '*.js'
+      - '*.jsx'
     rules:
       # flow
       flowtype/boolean-style:                             # 强制布尔类型注释的特定样式
