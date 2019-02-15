@@ -1,7 +1,6 @@
 scripts
 node_modules
 utils
-*.ts
 packages/**/lib
 packages/**/node_modules
 packages/**/test/test.js

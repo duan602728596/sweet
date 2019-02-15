@@ -7,9 +7,10 @@ parser: babel-eslint
 parserOptions:
   ecmaFeatures:
     experimentalObjectRestSpread: true
-    jsx: false
+    jsx: true
   sourceType: module
 plugins:
+  - react
   - flowtype
 rules:
   # Possible Errors
@@ -120,27 +121,63 @@ rules:
   template-curly-spacing:                             # 要求或禁止模板字符串中的嵌入表达式周围空格的使用
     - error
     - always
-  # flow
-  flowtype/boolean-style:                             # 强制布尔类型注释的特定样式
-    - error
-    - boolean
-  flowtype/delimiter-dangle:                          # 强制在Object和Tuple注释中一致使用尾随逗号
-    - error
-    - never
-  flowtype/generic-spacing: error                     # 在泛型类型注释参数中强制保持一致的间距
-  flowtype/no-dupe-keys: error                        # 检查对象注释中的重复属性
-  flowtype/no-primitive-constructor-types: error      # 不允许使用基本构造函数作为类型，如Boolean，Number和String
-  flowtype/object-type-delimiter:                     # 强制Flow对象类型中的属性之间保持一致的分隔符
-    - error
-    - comma
-  flowtype/require-parameter-type: error              # 要求所有的函数参数都有类型注释
-  flowtype/require-return-type:                       # 要求该函数具有返回类型注释
+  # React
+  react/button-has-type: error                        # 禁止<button>元素没有显式的"type"属性
+  react/prefer-es6-class:                             # 使用ES5创建反应类模块或新的ES6类系统
     - error
     - always
-    - annotateUndefined: always
-  flowtype/require-variable-type: error               # 要求所有变量声明符都有类型注释
-  flowtype/semi: error                                # 在类型别名后强制使用分号
-  flowtype/space-after-type-colon: error              # 在类型注释冒号后强制一致的间距
-  flowtype/space-before-generic-bracket: error        # 在泛型类型注释参数之前强制一致的间距
-  flowtype/space-before-type-colon: error             # 在类型注释冒号之前强制一致的间距
-  flowtype/union-intersection-spacing: error          # 在联合和相交类型分隔符周围实施一致的间距
+  # JSX
+  react/jsx-boolean-value:                            # 在JSX中使用布尔属性时，可以将属性值设置为true或省略值
+    - error
+    - always
+  react/jsx-closing-tag-location: error               # 验证JSX中的结束标签位置
+  react/jsx-equals-spacing: error                     # 强制或禁止JSX属性中的等号周围的空格
+  react/jsx-first-prop-new-line:                      # 此规则检查所有JSX元素的第一个属性是否正确放置
+    - error
+    - never
+  react/jsx-indent:                                   # 验证JSX缩进
+    - error
+    - 2
+  react/jsx-indent-props:                             # 验证JSX中props的缩进
+    - error
+    - 2
+  react/jsx-key: error                                # 在数组或迭代器中验证JSX具有key属性
+  react/jsx-no-comment-textnodes: error               # 防止将注释插入为文本节点
+  react/jsx-no-duplicate-props: error                 # 在JSX中防止重复的props
+  react/jsx-curly-brace-presence:                     # 强制使用大括号或不使用不必要的大括号
+    - error
+    - never
+  react/jsx-tag-spacing:                              # 验证JSX左右括号中的空格
+    - error
+    - closingSlash: never
+      beforeSelfClosing: always
+      afterOpening: never
+      beforeClosing: never
+overrides:
+  - files:
+      - '*.js'
+    rules:
+      # flow
+      flowtype/boolean-style:                             # 强制布尔类型注释的特定样式
+        - error
+        - boolean
+      flowtype/delimiter-dangle:                          # 强制在Object和Tuple注释中一致使用尾随逗号
+        - error
+        - never
+      flowtype/generic-spacing: error                     # 在泛型类型注释参数中强制保持一致的间距
+      flowtype/no-dupe-keys: error                        # 检查对象注释中的重复属性
+      flowtype/no-primitive-constructor-types: error      # 不允许使用基本构造函数作为类型，如Boolean，Number和String
+      flowtype/object-type-delimiter:                     # 强制Flow对象类型中的属性之间保持一致的分隔符
+        - error
+        - comma
+      flowtype/require-parameter-type: error              # 要求所有的函数参数都有类型注释
+      flowtype/require-return-type:                       # 要求该函数具有返回类型注释
+        - error
+        - always
+        - annotateUndefined: always
+      flowtype/require-variable-type: error               # 要求所有变量声明符都有类型注释
+      flowtype/semi: error                                # 在类型别名后强制使用分号
+      flowtype/space-after-type-colon: error              # 在类型注释冒号后强制一致的间距
+      flowtype/space-before-generic-bracket: error        # 在泛型类型注释参数之前强制一致的间距
+      flowtype/space-before-type-colon: error             # 在类型注释冒号之前强制一致的间距
+      flowtype/union-intersection-spacing: error          # 在联合和相交类型分隔符周围实施一致的间距
