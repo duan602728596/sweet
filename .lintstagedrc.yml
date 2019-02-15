@@ -1,5 +1,5 @@
 linters:
-  packages/**/*.{js,jsx}: eslint
+  packages/**/*.{js,jsx,ts,tsx}: eslint
   packages/**/*.{ts,tsx}: tslint
   scripts/**/*.{ts,tsx}: tslint
 ignore:
