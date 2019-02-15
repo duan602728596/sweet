@@ -3,7 +3,7 @@
   "scripts": {
     "build": "npm run clean && gulp --gulpfile ./scripts/build.ts",
     "clean": "ts-node ./scripts/clean",
-    "eslint": "eslint ./packages",
+    "eslint": "eslint ./packages --ext .js,.jsx,.ts,.tsx",
     "tslint": "tslint --project ./",
     "flow:check": "flow check",
     "lerna:install": "lerna bootstrap --force-local",
