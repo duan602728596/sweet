@@ -9,8 +9,8 @@
     "clean:build": "rimraf ./test/build"
   },
   "dependencies": {
-    "@babel/core": "^7.2.2",
-    "@babel/plugin-proposal-class-properties": "^7.3.0",
+    "@babel/core": "^7.3.3",
+    "@babel/plugin-proposal-class-properties": "^7.3.3",
     "@babel/plugin-proposal-do-expressions": "^7.2.0",
     "@babel/plugin-proposal-export-default-from": "^7.2.0",
     "@babel/plugin-proposal-optional-chaining": "^7.2.0",
@@ -34,7 +34,7 @@
     "mocha": "^5.2.0",
     "rimraf": "^2.6.3",
     "typescript": "^3.3.3",
-    "webpack": "^4.29.3"
+    "webpack": "^4.29.4"
   },
   "peerDependencies": {
     "@sweet/milktea": "github:duan602728596/sweet#build-milktea"

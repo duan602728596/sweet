@@ -9,8 +9,8 @@
     "test": "mocha ./test/test.js --timeout 180000"
   },
   "dependencies": {
-    "@babel/core": "^7.2.2",
-    "@babel/plugin-proposal-class-properties": "^7.3.0",
+    "@babel/core": "^7.3.3",
+    "@babel/plugin-proposal-class-properties": "^7.3.3",
     "@babel/plugin-proposal-decorators": "^7.3.0",
     "@babel/plugin-proposal-do-expressions": "^7.2.0",
     "@babel/plugin-proposal-export-default-from": "^7.2.0",
@@ -48,7 +48,7 @@
     "vue-loader": "^15.6.2",
     "vue-style-loader": "^4.1.2",
     "vue-template-compiler": "^2.6.6",
-    "webpack": "^4.29.3"
+    "webpack": "^4.29.4"
   },
   "devDependencies": {
     "chai": "^4.2.0",
