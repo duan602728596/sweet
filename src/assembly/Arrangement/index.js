@@ -13,8 +13,8 @@ import style from './style.sass';
  * Routers 根据路由渲染页面
  */
 @Component
-class Arrangement extends Vue{
-  render(): Vue.VNode{
+class Arrangement extends Vue {
+  render(): Vue.VNode {
     return (
       <i-layout class={ style.layout }>
         <Header />

@@ -40,14 +40,15 @@ export const navOptions: options[] = [
  * 显示logo、导航、登录人信息等
  */
 @Component
-class Header extends Vue{
-  data(): Object{
+class Header extends Vue {
+  data(): Object {
     return {
       navOptions
     };
   }
-  listView(navOptions: Array<Object>): Vue.VNode{
-    return navOptions.map((item: Object, index: number): Vue.VNode=>{
+
+  listView(navOptions: Array<Object>): Vue.VNode {
+    return navOptions.map((item: Object, index: number): Vue.VNode => {
       return (
         <li key={ index }>
           <router-link to={ item.href } active-class={ style.navActive }>
@@ -58,7 +59,8 @@ class Header extends Vue{
       );
     });
   }
-  render(): Vue.VNode{
+
+  render(): Vue.VNode {
     return (
       <i-header class={ style.header }>
         <img class={ style.logo } src={ require('./logo.png') } alt="管理平台 demo" title="管理平台 demo" />

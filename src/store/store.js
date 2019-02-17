@@ -7,7 +7,7 @@ Vue.use(Vuex);
 
 const store: Vuex.Store = {};
 
-export function storeFactory(initialState: Object = {}): Vuex.Store{
+export function storeFactory(initialState: Object = {}): Vuex.Store {
   /* store */
   Object.assign(store, new Vuex.Store({
     state: initialState,

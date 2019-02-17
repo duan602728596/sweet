@@ -5,7 +5,7 @@ import Arrangement from './assembly/Arrangement/index';
 
 export default {
   name: 'App',
-  render(): Vue.VNode{
+  render(): Vue.VNode {
     return (
       <div class="app" id="app">
         <Arrangement />

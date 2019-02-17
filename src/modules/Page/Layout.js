@@ -45,12 +45,12 @@ const options: {
 ];
 
 export default {
-  data(): Object{
+  data(): Object {
     return {
       options
     };
   },
-  render(): Vue.VNode{
+  render(): Vue.VNode {
     return (
       <Main>
         <helmet-provider>

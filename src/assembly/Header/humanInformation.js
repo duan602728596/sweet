@@ -8,13 +8,14 @@ import icon from '../Icon/style.sass';
 
 /* 登录人信息 */
 @Component
-class HumanInformation extends Vue{
-  data(): Object{
+class HumanInformation extends Vue {
+  data(): Object {
     return {
       icon
     };
   }
-  render(h: Function): Vue.VNode{
+
+  render(h: Function): Vue.VNode {
     return (
       <div class={ style.humanInformation}>
         <i class={ classNames(icon.userTie, style.human) } />

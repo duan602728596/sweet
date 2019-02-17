@@ -4,11 +4,11 @@ import Vue from 'vue';
 import Component from 'vue-class-component';
 
 @Component
-class Index extends Vue{
-  handleAddState(event: Event): void{
+class Index extends Vue {
+  handleAddState(event: Event): void {
     this.$store.dispatch('index/add');
   }
-  render(): Vue.VNode{
+  render(): Vue.VNode {
     return (
       <div>
         <div>Index</div>

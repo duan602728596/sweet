@@ -11,9 +11,9 @@ import style from './style.sass';
  * 默认padding为10px
  */
 @Component
-class Content extends Vue{
-  render(): Vue.VNode{
-    return(
+class Content extends Vue {
+  render(): Vue.VNode {
+    return (
       <i-content class={ style.content }>
         { this.$slots.default }
       </i-content>

@@ -16,10 +16,10 @@ const app: Vue = new Vue({
   el: '#app',
   store: storeFactory(window.__INITIAL_STATE__ || {}),
   router: routers,
-  render(): Vue.VNode{
+  render(): Vue.VNode {
     return <App />;
   }
 });
 
 // $FlowFixMe
-if(module.hot) module.hot.accept();
+if (module.hot) module.hot.accept();

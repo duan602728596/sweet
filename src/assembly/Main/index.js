@@ -10,8 +10,8 @@ import style from './style.sass';
  * 包含左侧的菜单Sider和右侧的内容Content
  */
 @Component
-class Main extends Vue{
-  render(): Vue.VNode{
+class Main extends Vue {
+  render(): Vue.VNode {
     return (
       <i-layout className={ style.main }>
         { this.$slots.default }
