@@ -12,8 +12,8 @@ import Arrangement from './assembly/Arrangement';
 
 /* 热替换 */
 @hot(module)
-class App extends Component<{}>{
-  render(): React.Node{
+class App extends Component<{}> {
+  render(): React.Node {
     return (
       <Provider store={ storeFactory(window.__INITIAL_STATE__ || {}) }>
         <LocaleProvider locale={ zhCN }>

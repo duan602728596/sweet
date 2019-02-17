@@ -10,7 +10,7 @@ import PropTypes from 'prop-types';
 import style from './style.sass';
 import Content from '../Content/index';
 
-class ErrorBoundary extends Component<{ children: React.Node }, { hasError: boolean, error: any, info: any }>{
+class ErrorBoundary extends Component<{ children: React.Node }, { hasError: boolean, error: any, info: any }> {
   static propTypes: Object = {
     children: PropTypes.oneOfType([
       PropTypes.string,
@@ -20,7 +20,7 @@ class ErrorBoundary extends Component<{ children: React.Node }, { hasError: bool
     ])
   };
 
-  constructor(): void{
+  constructor(): void {
     super(...arguments);
 
     this.state = {
@@ -29,15 +29,17 @@ class ErrorBoundary extends Component<{ children: React.Node }, { hasError: bool
       info: null
     };
   }
-  componentDidCatch(error: any, info: any): void{
+
+  componentDidCatch(error: any, info: any): void {
     this.setState({
       hasError: true,
       error,
       info
     });
   }
-  render(): React.Node{
-    if(this.state.hasError){
+
+  render(): React.Node {
+    if (this.state.hasError) {
       return (
         <Content>
           <h1 className={ style.title }>错误警告：</h1>
@@ -47,7 +49,7 @@ class ErrorBoundary extends Component<{ children: React.Node }, { hasError: bool
           <pre className={ style.pre }>{ this.state.info.componentStack }</pre>
         </Content>
       );
-    }else{
+    } else {
       return this.props.children;
     }
   }

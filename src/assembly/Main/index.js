@@ -11,12 +11,12 @@ import PropTypes from 'prop-types';
 import { Layout } from 'antd';
 import style from './style.sass';
 
-class Main extends Component<{ children: React.Node }>{
+class Main extends Component<{ children: React.Node }> {
   static propTypes: Object = {
     children: PropTypes.oneOfType(PropTypes.node)
   };
 
-  render(): React.Node{
+  render(): React.Node {
     return (
       <Layout className={ style.main }>
         { this.props.children }

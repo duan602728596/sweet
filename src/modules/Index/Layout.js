@@ -7,8 +7,8 @@ import Main from '../../assembly/Main/index';
 import Content from '../../assembly/Content/index';
 import Index from './Index/index';
 
-class ModuleLayout extends Component<{}>{
-  render(): Array<React.Node>{
+class ModuleLayout extends Component<{}> {
+  render(): Array<React.Node> {
     return [
       <Helmet key="helmet">
         <title>Webpack App</title>

@@ -15,7 +15,7 @@ import style from './style.sass';
 import ErrorBoundary from '../ErrorBoundary/index';
 
 @withRouter
-class Sider extends Component<{ location: Object, options: Array<Object> }>{
+class Sider extends Component<{ location: Object, options: Array<Object> }> {
   static defaultProps: Object = {
     options: []
   };
@@ -24,38 +24,42 @@ class Sider extends Component<{ location: Object, options: Array<Object> }>{
   };
 
   // 根据pathname获取默认的selectKey
-  getSelectKey(arr: Array<Object>): string{
+  getSelectKey(arr: Array<Object>): string {
     const reg: RegExp = new RegExp(`^${ this.props.location.pathname }.*$`, 'ig');
     let key: string = '';
 
-    for(let i: number = 0, j: number = arr.length; i < j; i++){
-      if('children' in arr[i] && arr[i].children.length > 0){
+    for (let i: number = 0, j: number = arr.length; i < j; i++) {
+      if ('children' in arr[i] && arr[i].children.length > 0) {
         const key2: ?string = this.getSelectKey(arr[i].children);
-        if(key2){
+
+        if (key2) {
           key = key2;
           break;
         }
-      }else{
-        if(reg.test(arr[i].url)){
+      } else {
+        if (reg.test(arr[i].url)) {
           key = arr[i].id;
           break;
         }
       }
     }
+
     return key;
   }
+
   // 判断图标的显示
-  hasIcon(item: Object): ?React.Node{
-    if('icon' in item){
+  hasIcon(item: Object): ?React.Node {
+    if ('icon' in item) {
       return typeof item.icon === 'string' ? <i className={ classNames(style.icon, item.icon) } /> : item.icon;
-    }else{
+    } else {
       return null;
     }
   }
+
   // 渲染菜单
-  menu(arr: Array<Object>): React.ChildrenArray<React.Node>{
-    return arr.map((item: Object, index: number): Object=>{
-      if('children' in item && item.children.length > 0){
+  menu(arr: Array<Object>): React.ChildrenArray<React.Node> {
+    return arr.map((item: Object, index: number): Object => {
+      if ('children' in item && item.children.length > 0) {
         // 当有children时，返回Menu.SubMenu，里面包裹Menu.Item
         return (
           <Menu.SubMenu key={ item.id } title={
@@ -67,7 +71,7 @@ class Sider extends Component<{ location: Object, options: Array<Object> }>{
             { this.menu(item.children) }
           </Menu.SubMenu>
         );
-      }else{
+      } else {
         // 当没有children时，返回Menu.Item
         return (
           <Menu.Item key={ item.id }>
@@ -80,7 +84,8 @@ class Sider extends Component<{ location: Object, options: Array<Object> }>{
       }
     });
   }
-  render(): React.Node{
+
+  render(): React.Node {
     const options: Array<Object> = this.props.options;
     const sk: string = this.getSelectKey(options);
 

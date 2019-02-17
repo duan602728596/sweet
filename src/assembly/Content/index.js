@@ -13,12 +13,12 @@ import { Layout } from 'antd';
 import style from './style.sass';
 import ErrorBoundary from '../ErrorBoundary/index';
 
-class Content extends Component<{ children: React.Node }>{
+class Content extends Component<{ children: React.Node }> {
   static propTypes: Object = {
     children: PropTypes.oneOfType(PropTypes.node)
   };
 
-  render(): React.Node{
+  render(): React.Node {
     return (
       <ErrorBoundary>
         <Layout.Content className={ style.content }>

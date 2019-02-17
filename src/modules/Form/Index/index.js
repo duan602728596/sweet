@@ -5,8 +5,8 @@ import { Form, Input, Radio, Button } from 'antd';
 import style from './style.sass';
 
 @Form.create()
-class Forms extends Component<{ form: Object }>{
-  handleSubmit(event: Event): void{
+class Forms extends Component<{ form: Object }> {
+  handleSubmit(event: Event): void {
     event.preventDefault();
 
     const { validateFields, getFieldsValue }: {
@@ -14,14 +14,15 @@ class Forms extends Component<{ form: Object }>{
       getFieldsValue: Function
     } = this.props.form;
 
-    validateFields((err: ?string, value: any): void=>{
-      if(!err){
+    validateFields((err: ?string, value: any): void => {
+      if (!err) {
         console.log(getFieldsValue());
         alert('提交成功！');
       }
     });
   }
-  render(): React.Node{
+
+  render(): React.Node {
     const { getFieldDecorator }: { getFieldDecorator: Function } = this.props.form; // 包装表单控件
 
     return (

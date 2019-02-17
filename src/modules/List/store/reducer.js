@@ -15,7 +15,7 @@ const reducer: Function = handleActions({
   [combineActions(...Object.values(module1Action))]: (
     $$state: Immutable.Map<string, Object>,
     action: Object
-  ): Immutable.Map<string, Object>=>{
+  ): Immutable.Map<string, Object> => {
     return $$state.set('module1', module1Reducer($$state.get('module1'), action));
   }
 }, fromJS(initData));

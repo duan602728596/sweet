@@ -3,9 +3,10 @@ import * as React from 'react';
 import { Component } from 'react';
 import { Table } from 'antd';
 
-function dataSource(): Object[]{
+function dataSource(): Object[] {
   const arr: Object[] = [];
-  for(let i: number = 0, j: number = 32; i < j; i++){
+
+  for (let i: number = 0, j: number = 32; i < j; i++) {
     arr.push({
       id: `PRO${ i }`,
       name: `胡彦斌${ i }`,
@@ -13,11 +14,12 @@ function dataSource(): Object[]{
       address: '西湖区湖底公园1号'
     });
   }
+
   return arr;
 }
 
-class Index extends Component<{}>{
-  columns(): Object[]{
+class Index extends Component<{}> {
+  columns(): Object[] {
     return [
       {
         title: '姓名',
@@ -39,7 +41,8 @@ class Index extends Component<{}>{
       }
     ];
   }
-  render(): Array<React.Node>{
+
+  render(): Array<React.Node> {
     return [
       <Table key="0"
         dataSource={ dataSource() }

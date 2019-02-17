@@ -44,21 +44,22 @@ export const navOptions: navOptionsItem[] = [
 
 const len: boolean = navOptions.length > 0;
 
-class Header extends Component<{}>{
+class Header extends Component<{}> {
   // 判断首页home
-  oddEvent(item: navOptionsItem, match: Object, location: Object): boolean{
+  oddEvent(item: navOptionsItem, match: Object, location: Object): boolean {
     const { pathname }: { pathname: string } = location;
     const { href }: { href: string } = item;
     const reg: RegExp = new RegExp(`^${ href }.*$`, 'ig');
 
-    if(len && pathname === '/' && href === navOptions[0].href){
+    if (len && pathname === '/' && href === navOptions[0].href) {
       return true;
     }
 
     return match && reg.test(pathname);
   }
-  navList(options: navOptionsItem[]): React.ChildrenArray<React.Node>{
-    return options.map((item: navOptionsItem, index: number): Object=>{
+
+  navList(options: navOptionsItem[]): React.ChildrenArray<React.Node> {
+    return options.map((item: navOptionsItem, index: number): Object => {
       return (
         <li key={ item.id }>
           <NavLink to={ item.href } activeClassName={ style.navActive } isActive={ this.oddEvent.bind(this, item) }>
@@ -73,7 +74,8 @@ class Header extends Component<{}>{
       );
     });
   }
-  render(): React.Node{
+
+  render(): React.Node {
     return (
       <ErrorBoundary>
         <img className={ style.logo } src={ require('./logo.png') } alt="管理平台 demo" title="管理平台 demo" />

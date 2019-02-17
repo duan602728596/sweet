@@ -8,8 +8,8 @@ import { Component } from 'react';
 import { Icon } from 'antd';
 import style from './style.sass';
 
-class HumanInformation extends Component<{}>{
-  render(): React.Node{
+class HumanInformation extends Component<{}> {
+  render(): React.Node {
     return (
       <div className={ style.humanInformation }>
         <Icon className={ style.human } type="user" theme="outlined" />

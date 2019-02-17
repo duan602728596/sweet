@@ -17,7 +17,7 @@ const reducer: Function = handleActions({
   [listDisplayChange]: (
     $$state: Immutable.Map<string, Object>,
     action: Object
-  ): Immutable.Map<string, Object>=>{
+  ): Immutable.Map<string, Object> => {
     return $$state.set('listDisplay', List(action.payload.listDisplay));
   }
 }, fromJS(initData));

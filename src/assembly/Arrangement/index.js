@@ -13,8 +13,8 @@ import style from './style.sass';
 import Header from '../Header/index';
 import Routers from '../../router/Routers';
 
-class Arrangement extends Component<{}>{
-  render(): React.Node{
+class Arrangement extends Component<{}> {
+  render(): React.Node {
     return (
       <Layout className={ style.arrangement }>
         <Layout.Header className={ style.header }>

@@ -25,17 +25,17 @@ const state: Function = createStructuredSelector({
 });
 
 /* dispatch */
-const dispatch: Function = (dispatch: Function): Object=>({
+const dispatch: Function = (dispatch: Function): Object => ({
   action: bindActionCreators({
     listDisplayChange
   }, dispatch)
 });
 
-function simulationData(): Promise<Array<string>>{
-  return new Promise((resolve: Function, reject: Function): void=>{
+function simulationData(): Promise<Array<string>> {
+  return new Promise((resolve: Function, reject: Function): void => {
     const data: string[] = [];
 
-    for(let i: number = 0, j: number = 18; i < j; i++){
+    for (let i: number = 0, j: number = 18; i < j; i++) {
       data.push(`这是一条测试数据 ${ i }`);
     }
 
@@ -43,21 +43,22 @@ function simulationData(): Promise<Array<string>>{
   });
 }
 
-class ListDisplay extends Component<{ listDisplay: Array<Object>, action: Object }, { loading: boolean }>{
+class ListDisplay extends Component<{ listDisplay: Array<Object>, action: Object }, { loading: boolean }> {
   static propTypes: Object = {
     listDisplay: PropTypes.array
   };
 
-  constructor(): void{
+  constructor(): void {
     super(...arguments);
 
     this.state = {
       loading: true
     };
   }
+
   // 显示list
-  listDisplay(): Array<React.Node>{
-    return this.props.listDisplay.map((item: string, index: number): React.Node=>{
+  listDisplay(): Array<React.Node> {
+    return this.props.listDisplay.map((item: string, index: number): React.Node => {
       return (
         <li key={ index }>
           <Link to="/" title={ item }>{ item }</Link>
@@ -65,7 +66,8 @@ class ListDisplay extends Component<{ listDisplay: Array<Object>, action: Object
       );
     });
   }
-  async componentWillMount(): Promise<void>{
+
+  async componentWillMount(): Promise<void> {
     const data: Array<Object> = await simulationData();
 
     this.props.action.listDisplayChange({
@@ -76,7 +78,8 @@ class ListDisplay extends Component<{ listDisplay: Array<Object>, action: Object
       loading: false
     });
   }
-  render(): React.Node{
+
+  render(): React.Node {
     return (
       <Card title="数据列表展示" extra={
         <Link className={ style.more } to="/" title="更多">更多</Link>

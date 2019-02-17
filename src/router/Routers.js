@@ -8,8 +8,8 @@ import Index from '../modules/Index/Layout';
 const ListBundle: Function = asyncModule((): Promise<Function> => import('../modules/List/Layout'));
 const FormBundle: Function = asyncModule((): Promise<Function> => import('../modules/Form/Layout'));
 
-class Routers extends Component<{}>{
-  render(): React.Node{
+class Routers extends Component<{}> {
+  render(): React.Node {
     return (
       <Switch>
         <Route path="/" component={ Index } exact={ true } />
