@@ -7,9 +7,9 @@ const sweetOptions: Object = {
   basicPath: process.cwd()
 };
 
-describe('loaders', function(): void{
-  describe('js', function(): void{
-    it('js', function(): void{
+describe('loaders', function(): void {
+  describe('js', function(): void {
+    it('js', function(): void {
       const loadersArr: Object[] = loaders({}, sweetOptions);
       const use: Object[] = loadersArr[0].use;
       const { options }: { options: Object } = use[0];
@@ -21,7 +21,7 @@ describe('loaders', function(): void{
       expect(presets).to.be.an('array');
     });
 
-    it('ecmascript', function(): void{
+    it('ecmascript', function(): void {
       const loadersArr: Object[] = loaders({ js: { ecmascript: true } }, sweetOptions);
       const use: Object[] = loadersArr[0].use;
       const { options }: { options: Object } = use[0];
@@ -30,7 +30,7 @@ describe('loaders', function(): void{
       expect(presets[0]).to.not.be.an('array');
     });
 
-    it('react', function(): void{
+    it('react', function(): void {
       const loadersArr: Object[] = loaders({ frame: 'react', mode: 'development' }, sweetOptions);
       const use: Object[] = loadersArr[0].use;
       const { options }: { options: Object } = use[0];
@@ -40,7 +40,7 @@ describe('loaders', function(): void{
       expect(presets).to.include('@babel/preset-react');
     });
 
-    it('vue', function(): void{
+    it('vue', function(): void {
       const loadersArr: Object[] = loaders({ frame: 'vue', mode: 'development' }, sweetOptions);
       const use: Object[] = loadersArr[0].use;
       const { options }: { options: Object } = use[0];
@@ -52,8 +52,8 @@ describe('loaders', function(): void{
     });
   });
 
-  describe('sass', function(): void{
-    it('mode', function(): void{
+  describe('sass', function(): void {
+    it('mode', function(): void {
       const devUse: Object[] = loaders({ mode: 'development' }, sweetOptions)[1].use;
       const proUse: Object[] = loaders({ mode: 'production' }, sweetOptions)[1].use;
 
@@ -61,7 +61,7 @@ describe('loaders', function(): void{
       expect(proUse[2].options.outputStyle).to.equal('compressed');
     });
 
-    it('frame', function(): void{
+    it('frame', function(): void {
       const reactStyleUse: Object[] = loaders({ mode: 'development', frame: 'react' }, sweetOptions)[1].use;
       const vueStyleOneOf: Object[] = loaders({ mode: 'development', frame: 'vue' }, sweetOptions)[1].oneOf;
 
@@ -71,8 +71,8 @@ describe('loaders', function(): void{
     });
   });
 
-  describe('less', function(): void{
-    it('frame', function(): void{
+  describe('less', function(): void {
+    it('frame', function(): void {
       const reactStyleUse: Object[] = loaders({ mode: 'development', frame: 'react' }, sweetOptions)[2].use;
       const vueStyleOneOf: Object[] = loaders({ mode: 'development', frame: 'vue' }, sweetOptions)[2].oneOf;
 

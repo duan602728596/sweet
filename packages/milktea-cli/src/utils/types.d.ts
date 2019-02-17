@@ -1,11 +1,11 @@
-export interface Milktea{
+export interface Milktea {
   dll: Function;
   config: Function;
   serverRenderConfig: Function;
   callback: Function;
 }
 
-export interface Argv{
+export interface Argv {
   config: string;
   server: boolean;
   httpPort: number;

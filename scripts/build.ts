@@ -7,11 +7,11 @@ import { ICompileStream } from 'gulp-typescript/release/project';
 import * as tsconfig from '../tsconfig.json';
 import { dir, packageNames } from './config';
 
-function createProject(names: string): Function{
+function createProject(names: string): Function {
   const src: string = path.join(dir, names, 'src/**/*.ts');
   const dist: string = path.join(dir, names, 'lib');
 
-  return function(): Stream{
+  return function(): Stream {
     const result: ICompileStream = gulp.src(src)
       .pipe(typescript(tsconfig.compilerOptions));
 
@@ -22,7 +22,7 @@ function createProject(names: string): Function{
 /* 创建队列函数 */
 const queueFn: Function[] = [];
 
-for(const item of packageNames){
+for (const item of packageNames) {
   const fn: Function = createProject(item);
 
   Object.defineProperty(fn, 'name', {

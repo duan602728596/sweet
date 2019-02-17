@@ -7,18 +7,18 @@ interface CssOption {
   isLocals?: boolean;
 }
 
-export default function(options: CssOption = {}): LoaderOption{
+export default function(options: CssOption = {}): LoaderOption {
   /**
    * isDevelopment { boolean }: 是否为开发环境
    * modules { boolean }: 是否开启css-modules
    * isLocals { boolean }: 是否使用css-loader/locals
    */
-  const { isDevelopment, modules, isLocals } = options;
+  const { isDevelopment, modules, isLocals }: CssOption = options;
   const cssLoader: LoaderOption = {
     loader: 'css-loader'
   };
 
-  if(modules){
+  if (modules) {
     const localIdentName: string = isDevelopment
       ? '[path][name]__[local]___[hash:base64:5]'
       : '_[hash:base64:5]';

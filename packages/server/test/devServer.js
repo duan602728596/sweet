@@ -8,21 +8,21 @@ import createCompiler from './compiler';
 const compiler: Object = createCompiler();
 
 // 运行开发环境服务
-function runServer(): Promise<void>{
+function runServer(): Promise<void> {
   devServer({
     compiler,
     env: 'test'
   });
 
-  return new Promise((resolve: Function, reject: Function): void=>{
-    setTimeout((): void=>{
+  return new Promise((resolve: Function, reject: Function): void => {
+    setTimeout((): void => {
       resolve();
     }, 15000);
   });
 }
 
 describe('development server', function(): void{
-  it('run dev server', async function(): Promise<void>{
+  it('run dev server', async function(): Promise<void> {
     await runServer();
 
     // 请求文件

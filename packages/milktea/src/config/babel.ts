@@ -8,19 +8,19 @@ const presetsList: Function = (
   debug: boolean,
   frame: string,
   ecmascript: boolean
-): Array<any>=>{
+): Array<any> => {
   const list: Array<any> = [
     '@babel/preset-flow',
     ...presets
   ];
 
   // 判断是否加载react相关插件
-  if(frame === 'react'){
+  if (frame === 'react') {
     list.unshift('@babel/preset-react');
   }
 
   // 判断是否为es6+
-  if(!ecmascript){
+  if (!ecmascript) {
     list.unshift([
       '@babel/preset-env',
       {
@@ -42,7 +42,7 @@ const presetsList: Function = (
   return list;
 };
 
-const pluginsList: Function = (plugins: Array<any> = [], frame: string, ecmascript: boolean): Array<any>=>{
+const pluginsList: Function = (plugins: Array<any> = [], frame: string, ecmascript: boolean): Array<any> => {
   const list: Array<any> = [
     [
       '@babel/plugin-proposal-decorators',
@@ -68,19 +68,19 @@ const pluginsList: Function = (plugins: Array<any> = [], frame: string, ecmascri
   ];
 
   // 判断是否加载react相关插件，热替换
-  if(frame === 'react'){
+  if (frame === 'react') {
     list.push('react-hot-loader/babel');
   }
 
   // vue使用jsx
-  if(frame === 'vue'){
+  if (frame === 'vue') {
     list.push('transform-vue-jsx');
   }
 
   return list;
 };
 
-interface JsOption{
+interface JsOption {
   isDevelopment?: boolean;
   frame?: string;
   ecmascript?: boolean;
@@ -92,13 +92,13 @@ interface JsOption{
   include?: RegExp;
 }
 
-interface BabelLoaderOptions{
+interface BabelLoaderOptions {
   cacheDirectory: string;
   presets: Array<any>;
   plugins: Array<any>;
 }
 
-export default function(options: JsOption = {}, sweetOptions: SweetOptions): LoaderOption{
+export default function(options: JsOption = {}, sweetOptions: SweetOptions): LoaderOption {
   /**
    * isDevelopment { boolean }: 是否为开发环境
    * ecmascript { boolean }: 是否编译到ecmascript的最新语法
@@ -106,8 +106,9 @@ export default function(options: JsOption = {}, sweetOptions: SweetOptions): Loa
    * plugins { ?Array }: 插件列表
    * resetPresets { ?Array }: 插件覆盖列表
    * resetPlugins { ?Array }: 插件覆盖列表
+   * frame { string } 当前的模式
    */
-  const { isDevelopment, ecmascript, presets, plugins, resetPresets, resetPlugins, frame } = options;
+  const { isDevelopment, ecmascript, presets, plugins, resetPresets, resetPlugins, frame }: JsOption = options;
   const debug: boolean = frame === 'test' ? false : (isDevelopment === undefined ? true : isDevelopment);
   const babelLoaderOptions: BabelLoaderOptions = {
     cacheDirectory: path.join(sweetOptions.basicPath, '.babelCache'),

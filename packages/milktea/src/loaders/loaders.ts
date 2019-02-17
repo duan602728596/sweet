@@ -11,16 +11,16 @@ import vueLoader from './vue';
 import { isObject } from '../utils/utils';
 import { SweetConfig, SweetOptions, Loaders } from '../utils/types';
 
-export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions): Array<Loaders>{
+export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions): Array<Loaders> {
   /**
    * rules { Array }: 自定义规则
    * loaders { Object }: 覆盖默认规则
    * frame { ?string }: 是否为react或vue模式
    */
-  const rules: Array<any> = sweetConfig.rules;
+  const rules: Array<any> | undefined = sweetConfig.rules;
   const frame: string | undefined = sweetConfig.frame;
 
-  const loaders: Loaders = sweetConfig.loaders && isObject(sweetConfig.loaders) ?  sweetConfig.loaders : {};
+  const loaders: Loaders = sweetConfig.loaders && isObject(sweetConfig.loaders) ? sweetConfig.loaders : {};
 
   // 重写loaders，合并rules
   const loadersObj: Loaders = {
@@ -35,14 +35,14 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions): A
   };
 
   // vue
-  if(frame === 'vue'){
+  if (frame === 'vue') {
     loadersObj.vue = loaders.vue || vueLoader();
   }
 
   const loadersArr: object[] = Object.values(loadersObj);
 
   // 添加其他的rules
-  if(rules){
+  if (rules) {
     loadersArr.push(...rules);
   }
 

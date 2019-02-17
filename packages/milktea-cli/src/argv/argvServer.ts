@@ -2,7 +2,7 @@
 import { requireModule } from '../utils/utils';
 import { Argv } from '../utils/types';
 
-function argvServer(argv: Argv): void{
+function argvServer(argv: Argv): void {
   const proServer: Function = requireModule('@sweet/server/lib/proServer');
   const httpPort: number = argv.httpPort;
   const httpsPort: number = argv.httpsPort;

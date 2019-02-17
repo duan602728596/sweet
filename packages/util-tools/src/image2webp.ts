@@ -8,7 +8,7 @@ import * as imageMinWebP from 'imagemin-webp';
  * @param { string } output: 输出文件夹
  * @param { number } quality: 图片转换的质量
  */
-async function image2webp(entry: string, output: string, quality: number): Promise<any>{
+async function image2webp(entry: string, output: string, quality?: number): Promise<any> {
   const q: number = typeof quality !== 'number' ? 70 : quality;
 
   await imageMin([path.join(entry, '*.{jpg,png,jpeg}')], output, {

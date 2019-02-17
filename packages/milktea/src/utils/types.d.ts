@@ -1,8 +1,8 @@
-export interface SweetOptions{
+export interface SweetOptions {
   basicPath: string;
 }
 
-export interface Loaders{
+export interface Loaders {
   js?: object;
   sass?: object;
   css?: object;
@@ -14,7 +14,7 @@ export interface Loaders{
   vue?: object;
 }
 
-export interface Loader{
+export interface Loader {
   test?: RegExp;
   use?: Array<any>;
   exclude?: RegExp;
@@ -22,12 +22,12 @@ export interface Loader{
   oneOf?: Array<any>;
 }
 
-export interface LoaderOption{
+export interface LoaderOption {
   loader?: string | any;
   options?: any;
 }
 
-export interface SweetConfig{
+export interface SweetConfig {
   mode?: string;
   dll?: Array<string>;
   entry?: any;
@@ -69,7 +69,7 @@ export interface SweetConfig{
   frame?: string;
 }
 
-export interface WebpackConfig{
+export interface WebpackConfig {
   mode?: string;
   entry?: any;
   output?: any;

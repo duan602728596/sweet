@@ -6,7 +6,7 @@ import optimization from './optimization/optimization';
 import { isObject } from './utils/utils';
 import { SweetConfig, SweetOptions, WebpackConfig } from './utils/types';
 
-export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions): WebpackConfig{
+export default function(sweetConfig: SweetConfig | null, sweetOptions: SweetOptions): WebpackConfig {
   /**
    * mode { string }: 开发模式还是生产模式
    * entry { any }: 文件入口
@@ -15,11 +15,11 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions): W
    * resolve { ?Object } 解析
    */
   const sweetConfigCopy: SweetConfig = isObject(sweetConfig) ? { ...sweetConfig } : {};
-  const { mode, entry, output, externals, resolve } = sweetConfigCopy;
+  const { mode, entry, output, externals, resolve }: SweetConfig = sweetConfigCopy;
   const isDevelopment: boolean = mode === 'development';
 
   // 格式化配置
-  if('serverRender' in sweetConfigCopy){
+  if ('serverRender' in sweetConfigCopy) {
     delete sweetConfigCopy.serverRender;
   }
 

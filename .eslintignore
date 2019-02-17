@@ -1,6 +1,6 @@
 scripts
 node_modules
-utils
+./utils
 packages/**/lib
 packages/**/node_modules
 packages/**/test/test.js

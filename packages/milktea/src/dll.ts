@@ -5,18 +5,18 @@ import babelConfig from './config/babel';
 import { handleWebpackBuildProgress, isObject } from './utils/utils';
 import { SweetConfig, SweetOptions, WebpackConfig } from './utils/types';
 
-export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions): WebpackConfig{
+export default function(sweetConfig: SweetConfig | null, sweetOptions: SweetOptions): WebpackConfig {
   /**
    * mode { string }: 开发模式还是生产模式
    * dll { Array }: dll配置
    */
   const sweetConfigCopy: SweetConfig = isObject(sweetConfig) ? { ...sweetConfig } : {};
-  const { mode, dll } = sweetConfigCopy;
+  const { mode, dll }: SweetConfig = sweetConfigCopy;
   const ecmascript: boolean = (sweetConfigCopy.js && sweetConfigCopy.js.ecmascript) || false;
   const isDevelopment: boolean = mode === 'development';
 
   // 格式化配置
-  if('serverRender' in sweetConfigCopy){
+  if ('serverRender' in sweetConfigCopy) {
     delete sweetConfigCopy.serverRender;
   }
 
@@ -25,7 +25,7 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions): W
   const dllResetPluginsConfig: Array<any> = [];
 
   // 是否编译到ecmascript
-  if(!ecmascript){
+  if (!ecmascript) {
     dllResetPresetsConfig.push([
       '@babel/preset-env',
       {

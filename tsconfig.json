@@ -6,7 +6,8 @@
     "module": "commonjs",
     "target": "ES2018",
     "newLine": "LF",
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "strictNullChecks": true
   },
   "exclude": [
     "node_modules"

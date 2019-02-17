@@ -6,7 +6,7 @@ import * as VueLoaderPlugin from 'vue-loader/lib/plugin';
 import { requireModule, isArray } from '../utils/utils';
 import { SweetConfig, SweetOptions } from '../utils/types';
 
-export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions): Array<any>{
+export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions): Array<any> {
   /**
    * mode { string }: 开发模式还是生产模式
    * html { Object }: html配置
@@ -14,7 +14,7 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions): A
    * frame { ?string }: 是否为react或vue模式
    * serverRender { boolean }: 开启服务器端渲染
    */
-  const { mode, html, plugins, frame, serverRender } = sweetConfig;
+  const { mode, html, plugins, frame, serverRender }: SweetConfig = sweetConfig;
   const isDevelopment: boolean = mode === 'development';
 
   // 根据模式加载插件
@@ -33,8 +33,8 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions): A
   ];
 
   // html模板
-  if(html && typeof isArray(html) && !serverRender){
-    for(const item of html){
+  if (html && typeof isArray(html) && !serverRender) {
+    for (const item of html) {
       const info: { name: string } = path.parse(item.template);
 
       pluginArr.push(
@@ -50,7 +50,7 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions): A
   }
 
   // vue
-  if(frame === 'vue'){
+  if (frame === 'vue') {
     pluginArr.push(new VueLoaderPlugin());
   }
 

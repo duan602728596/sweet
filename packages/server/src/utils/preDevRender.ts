@@ -13,14 +13,14 @@ async function preRender(
   ctx: Koa.Context,
   serverRenderFile: string,
   sweetOptions: SweetOptions
-): Promise<string>{
+): Promise<string> {
   cleanRequireCache(serverRenderFile);
 
   const formatFile: string = `${ path.join(defaultInterfacePath(sweetOptions), pathAnalyze(file)) }.js`;
   let data: any = {};
 
   // 读取模块
-  if(fs.existsSync(formatFile)){
+  if (fs.existsSync(formatFile)) {
     // 加载es6+环境
     const register: Function = requireModule('@babel/register');
 
@@ -31,7 +31,7 @@ async function preRender(
     const file: Function = requireModule(formatFile);
 
     data = await file(ctx, sweetOptions);
-  }else if(fs.existsSync(defaultInterfaceJsFilename(sweetOptions))){
+  } else if (fs.existsSync(defaultInterfaceJsFilename(sweetOptions))) {
     // 读取默认模块
     // 加载es6+环境
     const register: Function = requireModule('@babel/register');

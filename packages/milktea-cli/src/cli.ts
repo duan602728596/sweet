@@ -15,8 +15,8 @@ const argv: object = yargs
   .command('start', '开发环境', (): void => undefined, argvStart)
   .command('build', '编译代码', (): void => undefined, argvBuild)
   .command('server', '启动服务器', (): void => undefined, argvServer)
-  .command('update', '工具：检查当前目录是否有依赖需要更新', (): void => null, argvUpdate)
-  .command('image2webp', '工具：图片批量转换成webp格式', (): void => null, argvImage2WebP)
+  .command('update', '工具：检查当前目录是否有依赖需要更新', (): void => undefined, argvUpdate)
+  .command('image2webp', '工具：图片批量转换成webp格式', (): void => undefined, argvImage2WebP)
   .options({
     // milktea
     config: {

@@ -2,13 +2,13 @@
 import imageConfig from '../config/image';
 import { SweetConfig, Loader } from '../utils/types';
 
-export default function(sweetConfig: SweetConfig): Loader{
+export default function(sweetConfig: SweetConfig): Loader {
   /**
    * mode { string }: 开发模式还是生产模式
    * serverRender { boolean }: 开启服务器端渲染
    */
-  const mode: string = sweetConfig.mode;
-  const serverRender: boolean = sweetConfig.serverRender;
+  const mode: string | undefined = sweetConfig.mode;
+  const serverRender: boolean | undefined = sweetConfig.serverRender;
 
   const emitFile: boolean = !serverRender;
   const isDevelopment: boolean = mode === 'development';

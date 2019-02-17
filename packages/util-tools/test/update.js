@@ -4,12 +4,12 @@ import { expect } from 'chai';
 import update from '../lib/update';
 
 describe('update', function(): void {
-  it('update', async function(): Promise<void>{
+  it('update', async function(): Promise<void> {
     let isErr: boolean = false;
 
-    try{
+    try {
       await update([path.join(__dirname, '..')], 2, true);
-    }catch(err){
+    } catch (err) {
       isErr = true;
     }
 

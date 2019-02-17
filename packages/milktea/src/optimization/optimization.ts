@@ -15,19 +15,19 @@ interface TerserOptions{
   ecma?: number;
 }
 
-export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions): Optimization{
+export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions): Optimization {
   /**
    * mode { string }: 开发模式还是生产模式
    * serverRender { boolean }: 是否为服务器端渲染
    * js { ?Object }: js配置
    */
-  const { mode = 'development', serverRender, js } = sweetConfig;
+  const { mode = 'development', serverRender, js }: SweetConfig = sweetConfig;
 
   const isDevelopment: boolean = mode === 'development';
   const optimization: Optimization = {};
 
   // 设置splitChunks配置
-  if(!isDevelopment && !serverRender){
+  if (!isDevelopment && !serverRender) {
     optimization.splitChunks = {
       chunks: 'all',
       automaticNameDelimiter: '.'
@@ -35,12 +35,12 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions): O
   }
 
   // 设置minimizer的压缩插件
-  if(!isDevelopment){
+  if (!isDevelopment) {
     const terserOptions: TerserOptions = {};
 
-    if(js && js.ecmascript){
+    if (js && js.ecmascript) {
       terserOptions.ecma = 8;
-    }else{
+    } else {
       terserOptions.ecma = 5;
     }
 

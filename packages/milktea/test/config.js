@@ -8,8 +8,8 @@ const sweetOptions: Object = {
   basicPath: process.cwd()
 };
 
-describe('config', function(): void{
-  describe('react & development', function(): void{
+describe('config', function(): void {
+  describe('react & development', function(): void {
     const config: Object = webpackConfig({
       frame: 'react',
       mode: 'development',
@@ -23,7 +23,7 @@ describe('config', function(): void{
     it('optimization', expectDevOptimization(config));
   });
 
-  describe('vue & production', function(): void{
+  describe('vue & production', function(): void {
     const config: Object = webpackConfig({
       frame: 'vue',
       mode: 'production',

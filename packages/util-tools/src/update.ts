@@ -6,15 +6,16 @@ import axios, { AxiosResponse } from 'axios';
  * 对象转数组
  * @param { Object } obj: 对象
  */
-function objectToArray(obj: object): Array<any>{
-  const resultArr: Array<{ name: string, version: string }> = [];
+function objectToArray(obj: object): Array<any> {
+  const resultArr: Array<{ name: string; version: string }> = [];
 
-  for(const key in obj){
+  for (const key in obj) {
     resultArr.push({
-      name: key,         // 包的名称
-      version: obj[key]  // 包的当前版本号
+      name: key, // 包的名称
+      version: obj[key] // 包的当前版本号
     });
   }
+
   return resultArr;
 }
 
@@ -23,12 +24,12 @@ function objectToArray(obj: object): Array<any>{
  * @param { string } packageName: npm包名
  * @param { number } registry
  */
-function requestPackageInformation(packageName: string, registry: number): Promise<any>{
+function requestPackageInformation(packageName: string, registry: number): Promise<any> {
   // 用来判断当前的npm包信息地址
   const packageHost: string[] = [
-    'https://registry.npmjs.org',   // npm
+    'https://registry.npmjs.org', // npm
     'https://registry.yarnpkg.com', // yarn
-    'https://r.cnpmjs.org'          // cnpm
+    'https://r.cnpmjs.org' // cnpm
   ];
 
   return axios({
@@ -46,13 +47,13 @@ function requestPackageInformation(packageName: string, registry: number): Promi
  * @param { string } oldVersion: 旧版本
  * @param { string } newVersion: 新版本
  */
-function isVersionEqual(oldVersion: string, newVersion: string): boolean{
-  if(newVersion === null || newVersion === undefined){
+function isVersionEqual(oldVersion: string, newVersion?: string | null | undefined): boolean {
+  if (newVersion === null || newVersion === undefined) {
     return false;
-  }else if(/^(>=?|<=?|~|\^).*$/.test(oldVersion)){
+  } else if (/^(>=?|<=?|~|\^).*$/.test(oldVersion)) {
     // 判断前面是否有特殊符号，比如>、>=、<、<=、~、^
     return oldVersion.replace(/(>=?|<=?|~|\^)/g, '') === newVersion;
-  }else{
+  } else {
     return oldVersion === newVersion;
   }
 }
@@ -62,8 +63,9 @@ function isVersionEqual(oldVersion: string, newVersion: string): boolean{
  * @param { string } oldVersion: 旧版本
  * @param { string } newVersion: 新版本
  */
-function formatVersion(oldVersion: string, newVersion: string): string{
-  const iText: Array<string> = oldVersion.match(/^(>=?|<=?|~|\^)/);
+function formatVersion(oldVersion: string, newVersion: string): string {
+  const iText: Array<string> | null = oldVersion.match(/^(>=?|<=?|~|\^)/);
+
   return ' '.repeat(iText ? iText[0].length : 0) + newVersion;
 }
 
@@ -72,7 +74,7 @@ function formatVersion(oldVersion: string, newVersion: string): string{
  * @param { Array } packageArray
  * @param { number } registry
  */
-interface PackageArrayItem{
+interface PackageArrayItem {
   version: string;
   name: string;
   latest: string;
@@ -81,28 +83,28 @@ interface PackageArrayItem{
   canary: string;
 }
 
-async function getVersionFromNpm(packageArray: Array<PackageArrayItem>, registry: number): Promise<void>{
-  try{
+async function getVersionFromNpm(packageArray: Array<PackageArrayItem>, registry: number): Promise<void> {
+  try {
     const depQueue: Promise<object>[] = [];
 
-    for(let i: number = 0, j: number = packageArray.length; i < j; i++){
+    for (let i: number = 0, j: number = packageArray.length; i < j; i++) {
       depQueue.push(requestPackageInformation(packageArray[i].name, registry));
     }
 
     const version: Array<any> = await Promise.all(depQueue);
 
-    for(let i: number = 0, j: number = packageArray.length; i < j; i++){
-      if('dist-tags' in version[i] && 'latest' in version[i]['dist-tags']){
+    for (let i: number = 0, j: number = packageArray.length; i < j; i++) {
+      if ('dist-tags' in version[i] && 'latest' in version[i]['dist-tags']) {
         packageArray[i].latest = version[i]['dist-tags'].latest;
       }
-      if('dist-tags' in version[i] && 'next' in version[i]['dist-tags']){
+      if ('dist-tags' in version[i] && 'next' in version[i]['dist-tags']) {
         packageArray[i].next = version[i]['dist-tags'].next;
       }
-      if('dist-tags' in version[i] && 'rc' in version[i]['dist-tags']){
+      if ('dist-tags' in version[i] && 'rc' in version[i]['dist-tags']) {
         packageArray[i].rc = version[i]['dist-tags'].rc;
       }
     }
-  }catch(err){
+  } catch (err) {
     console.error(err);
   }
 }
@@ -111,10 +113,10 @@ async function getVersionFromNpm(packageArray: Array<PackageArrayItem>, registry
  * 输出console.log文本
  * @param { Array } packageArray
  */
-function consoleLogText(packageArray: Array<PackageArrayItem>): string{
+function consoleLogText(packageArray: Array<PackageArrayItem>): string {
   let consoleText: string = '';
 
-  for(let i: number = 0, j: number = packageArray.length; i < j; i++){
+  for (let i: number = 0, j: number = packageArray.length; i < j; i++) {
     const item: PackageArrayItem = packageArray[i];
     const isLatestNew: boolean = isVersionEqual(item.version, item.latest);
     const isNextNew: boolean = isVersionEqual(item.version, item.next);
@@ -126,52 +128,57 @@ function consoleLogText(packageArray: Array<PackageArrayItem>): string{
     consoleText += `  ${ isLatestNew || isNextNew || isRcNew ? ' ' : symbol } ${ item.name }:\n`;
     consoleText += `      version: ${ item.version }\n`;
 
-    if(item.latest){
+    if (item.latest) {
       consoleText += `      latest : ${ formatVersion(item.version, item.latest) }\n`;
     }
-    if(item.next){
+    if (item.next) {
       consoleText += `      next   : ${ formatVersion(item.version, item.next) }\n`;
     }
-    if(item.rc){
+    if (item.rc) {
       consoleText += `      rc     : ${ formatVersion(item.version, item.rc) }\n`;
     }
   }
+
   return consoleText;
 }
 
-async function start(folder: string, registry: number, test: boolean): Promise<void>{
-  try{
+async function start(folder: string, registry: number, test: boolean): Promise<void> {
+  try {
     // 依赖
-    const packageJson: { dependencies: object, devDependencies: object } = require(path.join(folder, 'package.json'));
-    const dependencies: Array<any> = 'dependencies' in packageJson ? objectToArray(packageJson.dependencies) : null;
-    const devDependencies: Array<any> = 'devDependencies' in packageJson ? objectToArray(packageJson.devDependencies) : null;
+    const packageJson: { dependencies: object; devDependencies: object } = require(path.join(folder, 'package.json'));
+    const dependencies: Array<any> | null = 'dependencies' in packageJson
+      ? objectToArray(packageJson.dependencies)
+      : null;
+    const devDependencies: Array<any> | null = 'devDependencies' in packageJson
+      ? objectToArray(packageJson.devDependencies)
+      : null;
 
     // 获取dep和dev的最新版本号
-    if(dependencies){
+    if (dependencies) {
       await getVersionFromNpm(dependencies, registry);
     }
 
-    if(devDependencies){
+    if (devDependencies) {
       await getVersionFromNpm(devDependencies, registry);
     }
 
     // 输出
     let consoleText: string = `${ folder }:\n`;
 
-    if(dependencies){
+    if (dependencies) {
       consoleText += '  dependencies:\n';
       consoleText += consoleLogText(dependencies);
     }
 
-    if(devDependencies){
+    if (devDependencies) {
       consoleText += '  devDependencies:\n';
       consoleText += consoleLogText(devDependencies);
     }
 
-    if(test !== true){
+    if (test !== true) {
       console.log(consoleText);
     }
-  }catch(err){
+  } catch (err) {
     console.error(err);
   }
 }
@@ -181,8 +188,8 @@ async function start(folder: string, registry: number, test: boolean): Promise<v
  * @param registry: Npm包信息地址。0：Npm，1：Yarn，2：CNpm。
  * @param test: 是否为测试环境
  */
-export default async function(folders: Array<string>, registry: number, test: boolean): Promise<void>{
-  for(let i: number = 0, j: number = folders.length; i < j; i++){
+export default async function(folders: Array<string>, registry: number, test: boolean): Promise<void> {
+  for (let i: number = 0, j: number = folders.length; i < j; i++) {
     await start(folders[i], registry, test);
   }
 }

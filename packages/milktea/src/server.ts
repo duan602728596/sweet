@@ -6,21 +6,21 @@ import optimization from './optimization/optimization';
 import { isObject } from './utils/utils';
 import { SweetConfig, SweetOptions, WebpackConfig } from './utils/types';
 
-export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions): WebpackConfig{
+export default function(sweetConfig: SweetConfig | null, sweetOptions: SweetOptions): WebpackConfig {
   /**
    * mode { string }: 开发模式还是生产模式
    * entry { any }: 文件入口
    * output { any }: 文件出口
    * resolve { ?Object } 解析
    */
-  const sweetConfigCopy: SweetConfig = isObject(sweetConfig) ? { ...sweetConfig } : {};
-  const { mode, serverEntry, serverOutput, resolve } = sweetConfigCopy;
+  const sweetConfigCopy: SweetConfig | undefined = isObject(sweetConfig) ? { ...sweetConfig } : {};
+  const { mode, serverEntry, serverOutput, resolve }: SweetConfig = sweetConfigCopy;
   const isDevelopment: boolean = mode === 'development';
 
   // 格式化配置
-  if(isObject(sweetConfigCopy.js)){
+  if (sweetConfigCopy.js && isObject(sweetConfigCopy.js)) {
     sweetConfigCopy.js.ecmascript = true;
-  }else{
+  } else {
     sweetConfigCopy.js = {
       ecmascript: true
     };

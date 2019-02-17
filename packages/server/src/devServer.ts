@@ -30,7 +30,7 @@ const sweetOptions: SweetOptions = {
  * serverRenderFile { string }: 服务器端渲染的主模块文件
  * env { string }: 运行环境，可能的值为test（测试）
  */
-interface devServerType{
+interface DevServerType {
   compiler?: webpack.Completer;
   httpPort?: number;
   httpsPort?: number;
@@ -39,7 +39,7 @@ interface devServerType{
   env?: string;
 }
 
-async function devServer(argv: devServerType = {}): Promise<void>{
+async function devServer(argv: DevServerType = {}): Promise<void> {
   const {
     compiler,
     httpPort = 5050,
@@ -47,7 +47,7 @@ async function devServer(argv: devServerType = {}): Promise<void>{
     serverRender,
     serverRenderFile = 'buildServer/server.js',
     env
-  } = argv;
+  }: DevServerType = argv;
 
   /* 将端口加入到服务端 */
   sweetOptions.httpPort = httpPort;
@@ -55,7 +55,7 @@ async function devServer(argv: devServerType = {}): Promise<void>{
 
   let formatServerRenderFile: string;
 
-  if(serverRender){
+  if (serverRender) {
     formatServerRenderFile = path.isAbsolute(serverRenderFile)
       ? serverRenderFile
       : path.join(sweetOptions.basicPath, serverRenderFile);
@@ -70,9 +70,18 @@ async function devServer(argv: devServerType = {}): Promise<void>{
 
   /* webpack中间件 */
   const middlewareConfig: {
-    compiler: webpack.Completer,
-    hotClient: { host: { client: string, server: string }, logLevel?: string },
-    devMiddleware: { serverSideRender: boolean, logLevel?: string }
+    compiler: webpack.Completer;
+    hotClient: {
+      host: {
+        client: string;
+        server: string;
+      };
+      logLevel?: string;
+    };
+    devMiddleware: {
+      serverSideRender: boolean;
+      logLevel?: string;
+    };
   } = {
     compiler,
     hotClient: {
@@ -87,7 +96,7 @@ async function devServer(argv: devServerType = {}): Promise<void>{
   };
 
   // 测试配置
-  if(env === 'test'){
+  if (env === 'test') {
     middlewareConfig.hotClient.logLevel = 'silent';
     middlewareConfig.devMiddleware.logLevel = 'silent';
   }
@@ -97,11 +106,11 @@ async function devServer(argv: devServerType = {}): Promise<void>{
   app.use(middleware);
 
   /* webpack 重定向 */
-  router.get(/^\/[^._\-]*$/, async(ctx: Context, next: Function): Promise<void>=>{
+  router.get(/^\/[^._\-]*$/, async (ctx: Context, next: Function): Promise<void> => {
     const file: string = ctx.path;
     const mimeType: string | boolean = mime.lookup(file);
 
-    if(file !== '/' && mimeType === false){
+    if (file !== '/' && mimeType === false) {
       ctx.path = '/';
       ctx._path = file; // 保存旧的path
     }
@@ -109,13 +118,13 @@ async function devServer(argv: devServerType = {}): Promise<void>{
     await next();
 
     // 服务器端渲染
-    if(serverRender && ctx.type === 'text/html'){
+    if (serverRender && ctx.type === 'text/html') {
       ctx.body = await preRender(file, ctx, formatServerRenderFile, sweetOptions);
     }
   });
 
   /* 本地服务 */
-  if(fs.existsSync(defaultRoutersPath(sweetOptions))){
+  if (fs.existsSync(defaultRoutersPath(sweetOptions))) {
     // 加载es6+环境
     const register: Function = requireModule('@babel/register');
     const p: string = defaultRoutersPath(sweetOptions);
@@ -138,7 +147,7 @@ async function devServer(argv: devServerType = {}): Promise<void>{
   const crt: string = path.join(sweetOptions.basicPath, './dev.crt');
 
   // 判断是否有证书
-  if(fs.existsSync(key) && fs.existsSync(crt)){
+  if (fs.existsSync(key) && fs.existsSync(crt)) {
     const keyString: Buffer = await readFile(key);
     const crtString: Buffer = await readFile(crt);
     const httpsConfig: Object = {

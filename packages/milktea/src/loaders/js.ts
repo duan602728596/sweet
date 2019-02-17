@@ -2,7 +2,7 @@
 import babelConfig from '../config/babel';
 import { SweetConfig, SweetOptions, Loader } from '../utils/types';
 
-interface Js{
+interface Js {
   ecmascript?: boolean;
   presets?: Array<any>;
   plugins?: Array<any>;
@@ -12,20 +12,20 @@ interface Js{
   include?: RegExp;
 }
 
-export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions): Loader{
+export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions): Loader {
   /**
    * mode { string } 开发模式还是生产模式
    * js { Object } loader里面js的配置
    * frame { ?string } 是否为react或vue模式
    */
-  const { mode, js } = sweetConfig;
+  const { mode, js }: SweetConfig = sweetConfig;
   const frame: string | undefined = sweetConfig.frame;
 
   const isDevelopment: boolean = mode === 'development';
 
   // 获取配置
   const _js: Js = js || {};
-  const { ecmascript, presets, plugins, resetPresets, resetPlugins, exclude, include } = _js;
+  const { ecmascript, presets, plugins, resetPresets, resetPlugins, exclude, include }: Js = _js;
 
   return {
     test: /^.*\.jsx?$/,

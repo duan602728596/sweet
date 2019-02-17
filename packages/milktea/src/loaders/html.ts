@@ -2,11 +2,11 @@
 import pugConfig from '../config/pug';
 import { SweetConfig, Loader } from '../utils/types';
 
-export default function(sweetConfig: SweetConfig): Loader{
+export default function(sweetConfig: SweetConfig): Loader {
   /**
    * mode { string }: 开发模式还是生产模式
    */
-  const mode: string = sweetConfig.mode;
+  const mode: string | undefined = sweetConfig.mode;
   const isDevelopment: boolean = mode === 'development';
 
   return {

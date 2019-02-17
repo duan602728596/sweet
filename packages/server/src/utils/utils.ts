@@ -4,12 +4,12 @@ import { Stream } from 'stream';
 import { SweetOptions } from './types';
 
 /* 读取文件 */
-export function readFile(file: string): Promise<Buffer>{
-  return new Promise((resolve: Function, reject: Function): void=>{
-    fs.readFile(file, (err: Error, data: Buffer): void=>{
-      if(err){
+export function readFile(file: string): Promise<Buffer> {
+  return new Promise((resolve: Function, reject: Function): void => {
+    fs.readFile(file, (err: Error, data: Buffer): void => {
+      if (err) {
         reject(err);
-      }else{
+      } else {
         resolve(data);
       }
     });
@@ -17,8 +17,8 @@ export function readFile(file: string): Promise<Buffer>{
 }
 
 /* 格式化数据 */
-export function formatTemplateData<T>(data: T): any{
-  if(typeof data === 'object'){
+export function formatTemplateData<T>(data: T): any {
+  if (typeof data === 'object') {
     return JSON.stringify(data);
   }
 
@@ -26,11 +26,12 @@ export function formatTemplateData<T>(data: T): any{
 }
 
 /* 替换模板内的占位符 */
-export function replaceTemplate(template: string, data: object): string{
+export function replaceTemplate(template: string, data: object): string {
   let newTp: string = template;
 
-  for(const key in data){
+  for (const key in data) {
     const reg: RegExp = new RegExp(`<%=\\s*${ key }\\s*%>`, 'g');
+
     newTp = newTp.replace(reg, formatTemplateData(data[key]));
   }
 
@@ -40,10 +41,10 @@ export function replaceTemplate(template: string, data: object): string{
 }
 
 /* 清除模块缓存 */
-export function cleanRequireCache(id: any): void{
+export function cleanRequireCache(id: any): void {
   const modulePath: string = require.resolve(id);
 
-  if(module.parent){
+  if (module.parent) {
     module.parent.children.splice(module.parent.children.indexOf(id), 1);
   }
 
@@ -51,36 +52,36 @@ export function cleanRequireCache(id: any): void{
 }
 
 /* 格式化 */
-export function pathAnalyze(file: string): string{
+export function pathAnalyze(file: string): string {
   const file2: Array<string> = file.split('/');
 
-  for(let i: number = file2.length - 1; i >= 0; i--){
+  for (let i: number = file2.length - 1; i >= 0; i--) {
     const item: string = file2[i];
 
-    if(item === ''){
+    if (item === '') {
       file2.splice(i, 1);
-    }else if(file2[i][0].length > 0){
+    } else if (file2[i][0].length > 0) {
       file2[i] = `${ item[0].toLowerCase() }${ item.slice(1) }`;
     }
   }
 
-  if(file2.length === 0){
+  if (file2.length === 0) {
     return 'index';
-  }else{
+  } else {
     return file2.join('.');
   }
 }
 
 /* 设置默认文件地址 */
-export const defaultInterfacePath: Function = (sweetOptions: SweetOptions): string=>{
+export const defaultInterfacePath: Function = (sweetOptions: SweetOptions): string => {
   return path.join(sweetOptions.basicPath, 'service/interface');
 };
 
-export const defaultInterfaceJsFilename: Function = (sweetOptions: SweetOptions): string=>{
+export const defaultInterfaceJsFilename: Function = (sweetOptions: SweetOptions): string => {
   return path.join(defaultInterfacePath(sweetOptions), 'default.js');
 };
 
-export const defaultRoutersPath: Function = (sweetOptions: SweetOptions): string=>{
+export const defaultRoutersPath: Function = (sweetOptions: SweetOptions): string => {
   return path.join(sweetOptions.basicPath, 'service/routers.js');
 };
 
@@ -120,27 +121,27 @@ export const registerConfig: RegisterConfig = {
 };
 
 /* 模块导入 */
-export function requireModule(id: string): any{
+export function requireModule(id: string): any {
   const module: { default: any } | any = require(id);
 
   return 'default' in module ? module.default : module;
 }
 
 /* 判断是否为readStream */
-export function isReadStream<Input>(input: Input): boolean{
+export function isReadStream<Input>(input: Input): boolean {
   return typeof input === 'object' && Object.prototype.toString.call(input) === '[object Object]' && '_readableState' in input;
 }
 
 /* 读取stream流 */
-export function readStream(stream: Stream): Promise<Buffer>{
+export function readStream(stream: Stream): Promise<Buffer> {
   const chunks: Array<Buffer> = [];
 
-  return new Promise((resolve: Function, reject: Function): void=>{
-    stream.on('data', function(chunk: Buffer): void{
+  return new Promise((resolve: Function, reject: Function): void => {
+    stream.on('data', function(chunk: Buffer): void {
       chunks.push(chunk);
     });
 
-    stream.on('end', function(): void{
+    stream.on('end', function(): void {
       resolve(Buffer.concat(chunks));
     });
   });

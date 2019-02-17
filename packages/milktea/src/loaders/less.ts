@@ -4,7 +4,7 @@ import lessConfig from '../config/less';
 import cssConfig from '../config/css';
 import { SweetConfig, Loader } from '../utils/types';
 
-interface Css{
+interface Css {
   publicPath?: string;
   modules?: boolean;
   exclude?: RegExp;
@@ -12,17 +12,17 @@ interface Css{
   modifyVars?: object;
 }
 
-export default function(sweetConfig: SweetConfig): Loader{
+export default function(sweetConfig: SweetConfig): Loader {
   /**
    * mode { string }: 开发模式还是生产模式
    * css { Object }: loader里面css的配置
    * frame { ?string }: 是否为react或vue模式
    * serverRender { boolean }: 开启服务器端渲染
    */
-  const { mode, css, frame, serverRender } = sweetConfig;
+  const { mode, css, frame, serverRender }: SweetConfig = sweetConfig;
   const isDevelopment: boolean = mode === 'development';
   const _css: Css = css || {};
-  const { publicPath, modules = true, exclude, include, modifyVars } = _css;
+  const { publicPath, modules = true, exclude, include, modifyVars }: Css = _css;
 
   // style-loader配置
   const miniCssExtractPluginLoader: Object = publicPath ? {
@@ -56,12 +56,12 @@ export default function(sweetConfig: SweetConfig): Loader{
   ];
 
   // 服务器端渲染
-  if(!serverRender){
+  if (!serverRender) {
     basicConfig.unshift(endLoader);
   }
 
   // vue
-  if(frame === 'vue'){
+  if (frame === 'vue') {
     const use: Array<any> = [
       cssConfig({
         isDevelopment,
@@ -72,7 +72,7 @@ export default function(sweetConfig: SweetConfig): Loader{
     ];
 
     // 服务器端渲染
-    if(!serverRender){
+    if (!serverRender) {
       use.unshift(endLoader);
     }
 
@@ -85,7 +85,7 @@ export default function(sweetConfig: SweetConfig): Loader{
         use: basicConfig
       }
     ];
-  }else{
+  } else {
     cssLoaderConfig.use = basicConfig;
   }
 

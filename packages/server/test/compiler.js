@@ -4,7 +4,7 @@ import webpack from 'webpack';
 import { config as webpackConfig } from '@sweet/milktea';
 
 // 创建webpack配置
-function createCompiler(mode: string = 'development'): Object{
+function createCompiler(mode: string = 'development'): Object {
   const compiler: Object = webpack(webpackConfig({
     frame: 'test',
     entry: {

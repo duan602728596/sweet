@@ -5,11 +5,11 @@ interface PugOption {
   isDevelopment?: boolean;
 }
 
-export default function(options: PugOption = {}): LoaderOption{
+export default function(options: PugOption = {}): LoaderOption {
   /**
    * isDevelopment { boolean }: 是否为开发环境
    */
-  const { isDevelopment } = options;
+  const { isDevelopment }: PugOption = options;
 
   return {
     loader: 'pug-loader',

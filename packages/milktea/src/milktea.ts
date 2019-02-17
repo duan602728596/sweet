@@ -31,37 +31,37 @@ const explorer: { searchSync: Function } = cosmiconfig(moduleName, {
 /* 获取配置文件 */
 const errorMsg: string = 'Please configure the .sweetrc.js or sweet.config.js file first.';
 
-function getSweetConfigFile(configFile?: string): SweetConfig{
-  if(typeof configFile === 'string'){
+function getSweetConfigFile(configFile?: string): SweetConfig {
+  if (typeof configFile === 'string') {
     // 加载其他的配置文件
     let sweetConfigFile: string;
 
-    if(path.isAbsolute(configFile)){
+    if (path.isAbsolute(configFile)) {
       sweetConfigFile = configFile;
-    }else{
+    } else {
       sweetConfigFile = path.join(sweetOptions.basicPath, configFile);
     }
 
-    if(fs.existsSync(sweetConfigFile)){
+    if (fs.existsSync(sweetConfigFile)) {
       // 加载es6+环境
       return jsRegisterLoader(sweetConfigFile);
-    }else{
+    } else {
       throw new Error(errorMsg);
     }
-  }else{
+  } else {
     // 加载默认的配置文件
-    const searchResult: { config: SweetConfig, filepath: string } | null = explorer.searchSync();
+    const searchResult: { config: SweetConfig; filepath: string } | null = explorer.searchSync();
 
-    if(searchResult === null){
+    if (searchResult === null) {
       throw new Error(errorMsg);
-    }else{
+    } else {
       return searchResult.config;
     }
   }
 }
 
 /* webpack的回调函数 */
-export function callback(err: Error, stats: webpack.Stats): void{
+export function callback(err: Error, stats: webpack.Stats): void {
   console.log(stats.toString({
     colors: true
   }));
@@ -72,18 +72,18 @@ export function callback(err: Error, stats: webpack.Stats): void{
  * @param { object | string | null } sweetConfig: webpack配置，覆盖文件，优先级最高
  * @param { string } mode: 开发环境，覆盖配置的开发环境
  */
-export function config(sweetConfig: SweetConfig | string | null, mode: string): object{
-  let config: SweetConfig;
+export function config(sweetConfig: SweetConfig | string | null, mode: string): object {
+  let config: SweetConfig | null;
 
-  if(typeof sweetConfig === 'string'){
+  if (typeof sweetConfig === 'string') {
     config = getSweetConfigFile(sweetConfig);
-  }else if(isObject(sweetConfig)){
+  } else if (isObject(sweetConfig)) {
     config = sweetConfig;
-  }else{
+  } else {
     config = getSweetConfigFile();
   }
 
-  if(mode){
+  if (config && mode) {
     config.mode = mode;
   }
 
@@ -95,18 +95,18 @@ export function config(sweetConfig: SweetConfig | string | null, mode: string): 
  * @param { object | string | null } sweetConfig: webpack配置，覆盖文件，优先级最高
  * @param { string } mode: 开发环境，覆盖配置的开发环境
  */
-export function serverRenderConfig(sweetConfig: SweetConfig | string | null, mode: string): object{
-  let config: SweetConfig;
+export function serverRenderConfig(sweetConfig: SweetConfig | string | null, mode: string): object {
+  let config: SweetConfig | null;
 
-  if(typeof sweetConfig === 'string'){
+  if (typeof sweetConfig === 'string') {
     config = getSweetConfigFile(sweetConfig);
-  }else if(isObject(sweetConfig)){
+  } else if (isObject(sweetConfig)) {
     config = sweetConfig;
-  }else{
+  } else {
     config = getSweetConfigFile();
   }
 
-  if(mode){
+  if (config && mode) {
     config.mode = mode;
   }
 
@@ -117,14 +117,14 @@ export function serverRenderConfig(sweetConfig: SweetConfig | string | null, mod
  * webpack的dll文件配置
  * @param { object | string | null } sweetConfig: webpack配置，覆盖文件，优先级最高
  */
-export function dll(sweetConfig: SweetConfig | string | null): object{
-  let config: SweetConfig;
+export function dll(sweetConfig: SweetConfig | string | null): object {
+  let config: SweetConfig | null;
 
-  if(typeof sweetConfig === 'string'){
+  if (typeof sweetConfig === 'string') {
     config = getSweetConfigFile(sweetConfig);
-  }else if(isObject(sweetConfig)){
+  } else if (isObject(sweetConfig)) {
     config = sweetConfig;
-  }else{
+  } else {
     config = getSweetConfigFile();
   }
 

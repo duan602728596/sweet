@@ -3,13 +3,13 @@ import * as webpack from 'webpack';
 import { isNone, requireModule } from '../utils/utils';
 import { Milktea, Argv } from '../utils/types';
 
-function argvStart(argv: Argv): void{
+function argvStart(argv: Argv): void {
   const milktea: Milktea = requireModule('@sweet/milktea');
   const compiler: webpack.Compiler = webpack(
     milktea.config(argv.config, 'development')
   );
 
-  if(!isNone(argv.serverRender)){
+  if (!isNone(argv.serverRender)) {
     const serverRenderCompiler: webpack.Compiler = webpack(
       milktea.serverRenderConfig(argv.config, 'development')
     );
@@ -18,7 +18,7 @@ function argvStart(argv: Argv): void{
     }, milktea.callback);
   }
 
-  if(!isNone(argv.server)){
+  if (!isNone(argv.server)) {
     const devServer: Function = requireModule('@sweet/server/lib/devServer');
     const httpPort: number = argv.httpPort;
     const httpsPort: number = argv.httpsPort;
@@ -32,7 +32,7 @@ function argvStart(argv: Argv): void{
       serverRender,
       serverRenderFile
     });
-  }else{
+  } else {
     const watching: webpack.Compiler.FSWatcher = compiler.watch({
       aggregateTimeout: 500
     }, milktea.callback);

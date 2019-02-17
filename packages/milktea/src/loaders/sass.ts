@@ -4,7 +4,7 @@ import sassConfig from '../config/sass';
 import cssConfig from '../config/css';
 import { SweetConfig, Loader } from '../utils/types';
 
-interface Sass{
+interface Sass {
   publicPath?: string;
   modules?: boolean;
   exclude?: RegExp;
@@ -12,26 +12,26 @@ interface Sass{
   modifyVars?: object;
 }
 
-export default function(sweetConfig: SweetConfig): Loader{
+export default function(sweetConfig: SweetConfig): Loader {
   /**
    * mode { string }: 开发模式还是生产模式
    * sass { Object }: loader里面sass的配置
    * frame { ?string }: 是否为react或vue模式
    * serverRender { boolean }: 开启服务器端渲染
    */
-  const { mode, sass, frame, serverRender } = sweetConfig;
+  const { mode, sass, frame, serverRender }: SweetConfig = sweetConfig;
   const isDevelopment: boolean = mode === 'development';
   const _sass: Sass = sass || {};
-  const { publicPath, modules = true, exclude, include } = _sass;
+  const { publicPath, modules = true, exclude, include }: Sass = _sass;
 
   // style-loader配置
-  const miniCssExtractPluginLoader: Object = publicPath ? {
+  const miniCssExtractPluginLoader: object = publicPath ? {
     loader: MiniCssExtractPlugin.loader,
     options: {
       publicPath
     }
   } : MiniCssExtractPlugin.loader;
-  const endLoader: Object | string = isDevelopment
+  const endLoader: object | string = isDevelopment
     ? (frame === 'vue' ? 'vue-style-loader' : 'style-loader')
     : miniCssExtractPluginLoader;
 
@@ -43,7 +43,7 @@ export default function(sweetConfig: SweetConfig): Loader{
   };
 
   // sass
-  const sassConfig2: Object = sassConfig({ isDevelopment });
+  const sassConfig2: object = sassConfig({ isDevelopment });
 
   // loader配置
   const basicConfig: Array<any> = [
@@ -56,12 +56,12 @@ export default function(sweetConfig: SweetConfig): Loader{
   ];
 
   // 服务器端渲染
-  if(!serverRender){
+  if (!serverRender) {
     basicConfig.unshift(endLoader);
   }
 
   // vue
-  if(frame === 'vue'){
+  if (frame === 'vue') {
     const use: Array<any> = [
       cssConfig({
         isDevelopment,
@@ -72,7 +72,7 @@ export default function(sweetConfig: SweetConfig): Loader{
     ];
 
     // 服务器端渲染
-    if(!serverRender){
+    if (!serverRender) {
       use.unshift(endLoader);
     }
 
@@ -85,7 +85,7 @@ export default function(sweetConfig: SweetConfig): Loader{
         use: basicConfig
       }
     ];
-  }else{
+  } else {
     cssLoaderConfig.use = basicConfig;
   }
 

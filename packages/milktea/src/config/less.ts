@@ -2,16 +2,16 @@
 import { isObject } from '../utils/utils';
 import { LoaderOption } from '../utils/types';
 
-interface LessOption{
+interface LessOption {
   isDevelopment?: boolean;
   modifyVars?: object;
 }
 
-export default function(options: LessOption = {}): LoaderOption{
+export default function(options: LessOption = {}): LoaderOption {
   /**
    * isDevelopment { boolean }: 是否为开发环境
    */
-  const { isDevelopment } = options;
+  const { isDevelopment }: LessOption = options;
   /**
    * modifyVars { Object }:  注入less变量
    */

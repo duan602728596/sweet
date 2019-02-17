@@ -4,16 +4,16 @@ import fs from 'fs';
 import path from 'path';
 import { expect } from 'chai';
 
-function run(): Promise<void>{
+function run(): Promise<void> {
   const cli: string = path.join(__dirname, '../lib/cli');
   const config: string = path.join(__dirname, './.sweetrc.build.js');
 
-  return new Promise((resolve: Function, reject: Function): void=>{
+  return new Promise((resolve: Function, reject: Function): void => {
     const child: Object = child_process.spawn('node', [cli, 'build', '--config', config], {
       cwd: __dirname
     });
 
-    child.on('close', (code: ArrayBuffer): void=>{
+    child.on('close', (code: ArrayBuffer): void => {
       resolve();
     });
 
@@ -22,8 +22,8 @@ function run(): Promise<void>{
   });
 }
 
-describe('args: build', function(): void{
-  it('build', async function(): Promise<void>{
+describe('args: build', function(): void {
+  it('build', async function(): Promise<void> {
     await run();
 
     expect(fs.existsSync(path.join(__dirname, 'build/app.build.js'))).to.be.true;

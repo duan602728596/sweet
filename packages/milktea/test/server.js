@@ -8,8 +8,8 @@ const sweetOptions: Object = {
   basicPath: process.cwd()
 };
 
-describe('sever-render config', function(): void{
-  describe('react & development', function(): void{
+describe('sever-render config', function(): void {
+  describe('react & development', function(): void {
     const config: Object = serverConfig({
       serverRender: true,
       frame: 'react',
@@ -17,7 +17,7 @@ describe('sever-render config', function(): void{
       html: [{ template: 'index.pug' }]
     }, sweetOptions);
 
-    it('target & node', function(): void{
+    it('target & node', function(): void {
       expect(config.target).to.equal('node');
       expect(config.node).to.eql({ __filename: true, __dirname: true });
     });
@@ -29,7 +29,7 @@ describe('sever-render config', function(): void{
     it('optimization', expectDevOptimization(config));
   });
 
-  describe('vue & production', function(): void{
+  describe('vue & production', function(): void {
     const config: Object = serverConfig({
       serverRender: true,
       frame: 'vue',
@@ -37,7 +37,7 @@ describe('sever-render config', function(): void{
       html: [{ template: 'index.pug' }]
     }, sweetOptions);
 
-    it('target & node', function(): void{
+    it('target & node', function(): void {
       expect(config.target).to.equal('node');
       expect(config.node).to.eql({ __filename: true, __dirname: true });
     });

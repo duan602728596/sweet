@@ -28,7 +28,7 @@ const sweetOptions: SweetOptions = {
  * serverRender { boolean }: 开启服务器端渲染
  * serverRenderFile { string }: 服务器端渲染的主模块文件
  */
-interface proServerType{
+interface ProServerType {
   httpPort?: number;
   httpsPort?: number;
   serverRoot?: string;
@@ -36,14 +36,14 @@ interface proServerType{
   serverRenderFile?: string;
 }
 
-async function proServer(argv: proServerType = {}): Promise<void>{
+async function proServer(argv: ProServerType = {}): Promise<void> {
   const {
     httpPort = 5052,
     httpsPort = 5053,
     serverRoot = 'build',
     serverRender,
     serverRenderFile = 'buildServer/server.js'
-  } = argv;
+  }: ProServerType = argv;
 
   /* 将端口加入到服务端 */
   sweetOptions.httpPort = httpPort;
@@ -54,7 +54,7 @@ async function proServer(argv: proServerType = {}): Promise<void>{
     : path.join(sweetOptions.basicPath, serverRoot);
   let formatServerRenderFile: string;
 
-  if(serverRender){
+  if (serverRender) {
     formatServerRenderFile = path.isAbsolute(serverRenderFile)
       ? serverRenderFile
       : path.join(sweetOptions.basicPath, serverRenderFile);
@@ -76,7 +76,7 @@ async function proServer(argv: proServerType = {}): Promise<void>{
     .use(router.allowedMethods());
 
   /* index路由 */
-  router.get(/^\/[^._\-]*$/, async(ctx: Koa.Context, next: Function): Promise<void>=>{
+  router.get(/^\/[^._\-]*$/, async (ctx: Koa.Context, next: Function): Promise<void> => {
     const body: Buffer = await readFile(path.join(formatServerRoot, 'index.html'));
 
     ctx.status = 200;
@@ -87,7 +87,7 @@ async function proServer(argv: proServerType = {}): Promise<void>{
   });
 
   /* 本地服务 */
-  if(fs.existsSync(defaultRoutersPath(sweetOptions))){
+  if (fs.existsSync(defaultRoutersPath(sweetOptions))) {
     // 加载es6+环境
     const register: Function = requireModule('@babel/register');
     const p: string = defaultRoutersPath(sweetOptions);
@@ -107,7 +107,7 @@ async function proServer(argv: proServerType = {}): Promise<void>{
   const key: string = path.join(sweetOptions.basicPath, './server.key');
   const crt: string = path.join(sweetOptions.basicPath, './server.crt');
 
-  if(fs.existsSync(key) && fs.existsSync(crt)){
+  if (fs.existsSync(key) && fs.existsSync(crt)) {
     const keyString: Buffer = await readFile(key);
     const crtString: Buffer = await readFile(crt);
     const httpsConfig: Object = {

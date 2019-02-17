@@ -6,7 +6,7 @@ import ImageMinWebpackPlugin from 'imagemin-webpack-plugin';
 import { handleWebpackBuildProgress } from '../utils/utils';
 import { SweetConfig, SweetOptions } from '../utils/types';
 
-export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions): Array<any>{
+export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions): Array<any> {
   const proPlugins: Array<any> = [
     new MiniCssExtractPlugin({
       filename: 'style/[chunkhash:5].css',
@@ -19,7 +19,7 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions): A
   ];
 
   // 当环境为测试时，不使用输出插件
-  if(sweetConfig.frame !== 'test'){
+  if (sweetConfig.frame !== 'test') {
     proPlugins.push(new webpack.ProgressPlugin(handleWebpackBuildProgress));
   }
 

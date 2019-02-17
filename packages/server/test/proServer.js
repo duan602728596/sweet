@@ -8,31 +8,31 @@ import createCompiler from './compiler';
 const compiler: Object = createCompiler();
 
 // 编译文件
-function runBuild(): Promise<void>{
+function runBuild(): Promise<void> {
   compiler.run((): void => undefined);
 
-  return new Promise((resolve: Function, reject: Function): void=>{
-    setTimeout((): void=>{
+  return new Promise((resolve: Function, reject: Function): void => {
+    setTimeout((): void => {
       resolve();
     }, 15000);
   });
 }
 
 // 运行生产环境服务
-function runServer(): Promise<void>{
+function runServer(): Promise<void> {
   proServer({
     serverRoot: 'test/build'
   });
 
-  return new Promise((resolve: Function, reject: Function): void=>{
-    setTimeout((): void=>{
+  return new Promise((resolve: Function, reject: Function): void => {
+    setTimeout((): void => {
       resolve();
     }, 3000);
   });
 }
 
 describe('production server', function(): void{
-  it('run pro server', async function(): Promise<void>{
+  it('run pro server', async function(): Promise<void> {
     await runBuild();
     await runServer();
 
