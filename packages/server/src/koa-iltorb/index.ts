@@ -14,12 +14,13 @@ function iltorb(): Koa.Middleware {
 
     // 对文件进行判断
     if (!Buffer.isBuffer(body)) {
-      // 兼容staticCache缓存
       if (isReadStream(body)) {
-        // 此时的input是ReadStream对象
-        const streamData: Buffer = await readStream(input);
+        // 此时的input是Stream对象，且只有本地文件能够被压缩
+        if (input.path) {
+          const streamData: Buffer = await readStream(input);
 
-        input = streamData;
+          input = streamData;
+        }
       } else {
         // 字符串
         if (typeof body === 'string' || typeof body === 'number') input = Buffer.from(`${ body }`);
