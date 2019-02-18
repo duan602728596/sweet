@@ -43,7 +43,8 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions): A
           template: item.template,
           filename: `${ info.name }.html`,
           excludeChunks: item.excludeChunks,
-          mode
+          mode,
+          hash: !isDevelopment
         })
       );
     }
