@@ -1,7 +1,7 @@
 import * as Koa from 'koa';
 import * as brotli from 'iltorb';
 import gzip from './gzip';
-import { readFile, isReadStream } from '../utils/utils';
+import { isReadStream, readStream } from '../utils/utils';
 
 /* brotli压缩中间件 */
 function iltorb(): Koa.Middleware {
@@ -13,12 +13,13 @@ function iltorb(): Koa.Middleware {
     let input: any = body;
 
     // 对文件进行判断
-    if (!Buffer.isBuffer(input)) {
+    if (!Buffer.isBuffer(body)) {
       // 兼容staticCache缓存
-      if (isReadStream(input)) {
+      if (isReadStream(body)) {
         // 此时的input是ReadStream对象
-        // 当数据从网络抓取时，没有input.path，此时无法压缩
-        if (input.path) input = await readFile(input.path);
+        const streamData: Buffer = await readStream(input);
+
+        input = streamData;
       } else {
         // 字符串
         if (typeof body === 'string' || typeof body === 'number') input = Buffer.from(`${ body }`);

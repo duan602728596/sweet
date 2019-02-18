@@ -1,6 +1,6 @@
 import * as fs from 'fs';
 import * as path from 'path';
-import { Stream } from 'stream';
+import * as Stream from 'stream';
 import { SweetOptions } from './types';
 
 /* 读取文件 */
@@ -129,7 +129,7 @@ export function requireModule(id: string): any {
 
 /* 判断是否为readStream */
 export function isReadStream<Input>(input: Input): boolean {
-  return typeof input === 'object' && Object.prototype.toString.call(input) === '[object Object]' && '_readableState' in input;
+  return typeof input === 'object' && input instanceof Stream;
 }
 
 /* 读取stream流 */
