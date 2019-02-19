@@ -2,9 +2,9 @@
 // @jsx this.$createElement
 import Vue from 'vue';
 import Component from 'vue-class-component';
+import { Layout, Icon } from 'ant-design-vue';
 import HumanInformation from './HumanInformation';
 import style from './style.sass';
-import icon from '../Icon/style.sass';
 
 type options = {
   id: string,
@@ -18,19 +18,19 @@ export const navOptions: options[] = [
     id: 'index',
     name: '主页',
     href: '/Index',
-    icon: icon.home
+    icon: 'home'
   },
   {
     id: 'page',
     name: '列表',
     href: '/Page',
-    icon: icon.cog
+    icon: 'bars'
   },
   {
     id: 'form',
     name: '表单',
     href: '/Form',
-    icon: icon.users
+    icon: 'table'
   }
 ];
 
@@ -52,7 +52,7 @@ class Header extends Vue {
       return (
         <li key={ index }>
           <router-link to={ item.href } active-class={ style.navActive }>
-            <i class={ item.icon} />
+            <Icon class={ style.icon } type={ item.icon } theme="outlined" />
             <span>{ item.name }</span>
           </router-link>
         </li>
@@ -62,13 +62,13 @@ class Header extends Vue {
 
   render(): Vue.VNode {
     return (
-      <i-header class={ style.header }>
+      <Layout.Header class={ style.header }>
         <img class={ style.logo } src={ require('./logo.png') } alt="管理平台 demo" title="管理平台 demo" />
         <nav class={ style.nav }>
           <ul class="clearfix">{ this.listView(navOptions) }</ul>
         </nav>
         <HumanInformation />
-      </i-header>
+      </Layout.Header>
     );
   }
 }

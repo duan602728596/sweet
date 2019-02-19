@@ -2,11 +2,9 @@
 // @jsx this.$createElement
 import Vue from 'vue';
 import { Helmet, HelmetProvider } from '@jnields/vue-helmet';
-import './iview';
 import App from './AppModule';
 import { storeFactory } from './store/store';
 import routers from './router/routers';
-import './common.sass';
 
 Vue.component('helmet', Helmet);
 Vue.component('helmet-provider', HelmetProvider);

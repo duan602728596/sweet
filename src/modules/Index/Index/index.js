@@ -2,6 +2,7 @@
 // @jsx this.$createElement
 import Vue from 'vue';
 import Component from 'vue-class-component';
+import { Button } from 'ant-design-vue';
 
 @Component
 class Index extends Vue {
@@ -13,7 +14,7 @@ class Index extends Vue {
       <div>
         <div>Index</div>
         <div>{ this.$store.getters['index/getCount']() }</div>
-        <button type="button" onClick={ this.handleAddState }>添加</button>
+        <Button type="button" onClick={ this.handleAddState }>添加</Button>
       </div>
     );
   }

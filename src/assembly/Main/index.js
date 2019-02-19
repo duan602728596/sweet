@@ -2,6 +2,7 @@
 // @jsx this.$createElement
 import Vue from 'vue';
 import Component from 'vue-class-component';
+import { Layout } from 'ant-design-vue';
 import style from './style.sass';
 
 /**
@@ -13,9 +14,9 @@ import style from './style.sass';
 class Main extends Vue {
   render(): Vue.VNode {
     return (
-      <i-layout className={ style.main }>
+      <Layout className={ style.main }>
         { this.$slots.default }
-      </i-layout>
+      </Layout>
     );
   }
 }

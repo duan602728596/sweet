@@ -14,6 +14,12 @@ export default {
     app: [path.join(__dirname, 'src/app.js')]
   },
   output: { publicPath: '/' },
+  loaders: {
+    svg: {
+      test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
+      use: ['vue-svg-loader']
+    }
+  },
   rules: [
     {
       test: /dll\.js/,
@@ -27,17 +33,19 @@ export default {
     }
   ],
   js: {
-    plugins: [['import', { libraryName: 'iview', libraryDirectory: 'src/components' }]],
+    plugins: [['import', { libraryName: 'ant-design-vue', libraryDirectory: 'es', style: true }]],
     exclude: /(dll\.js|node_modules)/
   },
   sass: { include: /src/ },
   css: {
     modules: false,
     modifyVars: {
-      // https://github.com/iview/iview/blob/3.x/src/styles/custom.less
-      '@primary-color': '#58b957'
+      // https://github.com/vueComponent/ant-design-vue/blob/master/components/style/themes/default.less
+      '@primary-color': '#58b957',
+      '@layout-body-background': '#fff',
+      '@layout-header-background': '@primary-color'
     },
-    include: /node_modules[\\/]iview/
+    include: /node_modules[\\/]ant-design-vue/
   },
   html: [{ template: path.join(__dirname, 'src/index.pug') }]
 };

@@ -2,6 +2,7 @@
 // @jsx this.$createElement
 import Vue from 'vue';
 import Component from 'vue-class-component';
+import { Layout } from 'ant-design-vue';
 import Header from '../Header/index';
 import style from './style.sass';
 
@@ -16,11 +17,11 @@ import style from './style.sass';
 class Arrangement extends Vue {
   render(): Vue.VNode {
     return (
-      <i-layout class={ style.layout }>
+      <Layout class={ style.layout }>
         <Header />
         <router-view />
-        <i-footer class={ style.footer }>版权所有</i-footer>
-      </i-layout>
+        <Layout.Footer class={ style.footer }>版权所有</Layout.Footer>
+      </Layout>
     );
   }
 }
