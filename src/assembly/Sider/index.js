@@ -57,8 +57,8 @@ class Sider extends Component<{ location: Object, options: Array<Object> }> {
   }
 
   // 渲染菜单
-  menu(arr: Array<Object>): React.ChildrenArray<React.Node> {
-    return arr.map((item: Object, index: number): Object => {
+  menu(arr: Array<Object>): Array<React.Node> {
+    return arr.map((item: Object, index: number): React.Node => {
       if ('children' in item && item.children.length > 0) {
         // 当有children时，返回Menu.SubMenu，里面包裹Menu.Item
         return (

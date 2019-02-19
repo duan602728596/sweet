@@ -18,7 +18,7 @@ type navOptionsItem = {
   id: string,
   name: string,
   href: string,
-  icon: ?(string | React.Node)
+  icon: string
 };
 
 export const navOptions: navOptionsItem[] = [
@@ -26,19 +26,19 @@ export const navOptions: navOptionsItem[] = [
     id: 'home',
     name: '主页',
     href: '/Index',
-    icon: <Icon className={ style.icon } type="home" theme="outlined" />
+    icon: 'home'
   },
   {
     id: 'list',
     name: '列表',
     href: '/List',
-    icon: <Icon className={ style.icon } type="bars" theme="outlined" />
+    icon: 'bars'
   },
   {
     id: 'form',
     name: '表单',
     href: '/Form',
-    icon: <Icon className={ style.icon } type="table" theme="outlined" />
+    icon: 'table'
   }
 ];
 
@@ -63,11 +63,7 @@ class Header extends Component<{}> {
       return (
         <li key={ item.id }>
           <NavLink to={ item.href } activeClassName={ style.navActive } isActive={ this.oddEvent.bind(this, item) }>
-            {
-              typeof item.icon === 'string'
-                ? <i className={ item.icon } />
-                : item.icon
-            }
+            <Icon className={ style.icon } type={ item.icon } theme="outlined" />
             <span>{ item.name }</span>
           </NavLink>
         </li>
