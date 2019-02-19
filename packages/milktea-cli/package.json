@@ -17,7 +17,7 @@
     "clean:build": "rimraf ./test/build"
   },
   "dependencies": {
-    "webpack": "^4.29.4",
+    "webpack": "^4.29.5",
     "yargs": "^13.2.0"
   },
   "devDependencies": {
@@ -37,7 +37,7 @@
     "babel-loader": "^8.0.5",
     "chai": "^4.2.0",
     "cross-env": "^5.2.0",
-    "mocha": "^5.2.0",
+    "mocha": "^6.0.0",
     "react": "^16.8.2",
     "rimraf": "^2.6.3",
     "typescript": "^3.3.3"
