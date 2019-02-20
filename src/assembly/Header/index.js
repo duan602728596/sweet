@@ -7,10 +7,10 @@ import HumanInformation from './HumanInformation';
 import style from './style.sass';
 
 type options = {
-  id: string,
-  name: string,
-  href: string,
-  icon: string
+  id: string;
+  name: string;
+  href: string;
+  icon: string;
 };
 
 export const navOptions: options[] = [

@@ -10,7 +10,7 @@ import style from './style.sass';
 class HumanInformation extends Vue {
   render(h: Function): Vue.VNode {
     return (
-      <div class={ style.humanInformation}>
+      <div class={ style.humanInformation }>
         <Icon class={ style.human } type="user" theme="outlined" />
         <span class={ style.username }>用户名</span>
         <button class={ style.tools } type="button" title="退出系统">

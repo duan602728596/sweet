@@ -7,14 +7,14 @@ import Content from '../../assembly/Content/index';
 
 /* 配置二、三级导航菜单 */
 const options: {
-  id: string,
-  name: string,
-  url?: string,
+  id: string;
+  name: string;
+  url?: string;
   children?: {
-    id: string,
-    name: string,
-    url: string
-  }[]
+    id: string;
+    name: string;
+    url: string;
+  }[];
 }[] = [
   {
     id: 's1',
