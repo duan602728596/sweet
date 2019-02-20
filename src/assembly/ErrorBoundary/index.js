@@ -10,7 +10,7 @@ import PropTypes from 'prop-types';
 import style from './style.sass';
 import Content from '../Content/index';
 
-class ErrorBoundary extends Component<{ children: React.Node }, { hasError: boolean, error: any, info: any }> {
+class ErrorBoundary extends Component<{ children: React.Node }, { hasError: boolean; error: any; info: any }> {
   static propTypes: Object = {
     children: PropTypes.oneOfType([
       PropTypes.string,

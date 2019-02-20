@@ -15,7 +15,7 @@ import style from './style.sass';
 import ErrorBoundary from '../ErrorBoundary/index';
 
 @withRouter
-class Sider extends Component<{ location: Object, options: Array<Object> }> {
+class Sider extends Component<{ location: Object; options: Array<Object> }> {
   static defaultProps: Object = {
     options: []
   };

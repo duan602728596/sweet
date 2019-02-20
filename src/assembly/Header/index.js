@@ -15,10 +15,10 @@ import ErrorBoundary from '../ErrorBoundary/index';
 import HumanInformation from './HumanInformation';
 
 type navOptionsItem = {
-  id: string,
-  name: string,
-  href: string,
-  icon: string
+  id: string;
+  name: string;
+  href: string;
+  icon: string;
 };
 
 export const navOptions: navOptionsItem[] = [

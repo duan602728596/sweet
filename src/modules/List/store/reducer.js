@@ -5,7 +5,7 @@ import { fromJS } from 'immutable';
 import module1Reducer, * as module1Action from './module1';
 
 const initData: {
-  module1: Object
+  module1: Object;
 } = {
   module1: {}
 };

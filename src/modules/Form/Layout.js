@@ -10,16 +10,16 @@ import Index from './Index/index';
 
 /* 配置二、三级导航菜单 */
 const options: {
-  id: string,
-  name: string,
-  url?: string,
-  icon?: string | React.Node, // 传入一个字符串或节点
+  id: string;
+  name: string;
+  url?: string;
+  icon?: string | React.Node; // 传入一个字符串或节点
   children?: {
-    id: string,
-    name: string,
-    url: string,
-    icon?: string | React.Node // 传入一个字符串或节点
-  }[]
+    id: string;
+    name: string;
+    url: string;
+    icon?: string | React.Node; // 传入一个字符串或节点
+  }[];
 }[] = [
   {
     id: 's1',

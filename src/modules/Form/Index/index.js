@@ -10,8 +10,8 @@ class Forms extends Component<{ form: Object }> {
     event.preventDefault();
 
     const { validateFields, getFieldsValue }: {
-      validateFields: Function,
-      getFieldsValue: Function
+      validateFields: Function;
+      getFieldsValue: Function;
     } = this.props.form;
 
     validateFields((err: ?string, value: any): void => {

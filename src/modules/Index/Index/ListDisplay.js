@@ -43,7 +43,7 @@ function simulationData(): Promise<Array<string>> {
   });
 }
 
-class ListDisplay extends Component<{ listDisplay: Array<Object>, action: Object }, { loading: boolean }> {
+class ListDisplay extends Component<{ listDisplay: Array<Object>; action: Object }, { loading: boolean }> {
   static propTypes: Object = {
     listDisplay: PropTypes.array
   };

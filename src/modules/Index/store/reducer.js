@@ -4,7 +4,7 @@ import * as Immutable from 'immutable';
 import { fromJS, List } from 'immutable';
 
 const initData: {
-  listDisplay: Immutable.List<Array<Object>>
+  listDisplay: Immutable.List<Array<Object>>;
 } = {
   listDisplay: List([])
 };
