@@ -205,13 +205,13 @@ overrides:
         - boolean
       flowtype/delimiter-dangle:                          # 强制在Object和Tuple注释中一致使用尾随逗号
         - error
-        - never
+        - always-multiline
       flowtype/generic-spacing: error                     # 在泛型类型注释参数中强制保持一致的间距
       flowtype/no-dupe-keys: error                        # 检查对象注释中的重复属性
       flowtype/no-primitive-constructor-types: error      # 不允许使用基本构造函数作为类型，如Boolean，Number和String
       flowtype/object-type-delimiter:                     # 强制Flow对象类型中的属性之间保持一致的分隔符
         - error
-        - comma
+        - semicolon
       flowtype/require-parameter-type: error              # 要求所有的函数参数都有类型注释
       flowtype/require-return-type:                       # 要求该函数具有返回类型注释
         - error

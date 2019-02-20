@@ -13,7 +13,7 @@ describe('loaders', function(): void {
       const loadersArr: Object[] = loaders({}, sweetOptions);
       const use: Object[] = loadersArr[0].use;
       const { options }: { options: Object } = use[0];
-      const { plugins, presets }: { plugins: any[], presets: any[] } = options;
+      const { plugins, presets }: { plugins: any[]; presets: any[] } = options;
 
       expect(use).to.be.an('array');
       expect(options).to.be.an('object');
@@ -25,7 +25,7 @@ describe('loaders', function(): void {
       const loadersArr: Object[] = loaders({ js: { ecmascript: true } }, sweetOptions);
       const use: Object[] = loadersArr[0].use;
       const { options }: { options: Object } = use[0];
-      const { presets }: { plugins: any[], presets: any[] } = options;
+      const { presets }: { plugins: any[]; presets: any[] } = options;
 
       expect(presets[0]).to.not.be.an('array');
     });
@@ -34,7 +34,7 @@ describe('loaders', function(): void {
       const loadersArr: Object[] = loaders({ frame: 'react', mode: 'development' }, sweetOptions);
       const use: Object[] = loadersArr[0].use;
       const { options }: { options: Object } = use[0];
-      const { plugins, presets }: { plugins: any[], presets: any[] } = options;
+      const { plugins, presets }: { plugins: any[]; presets: any[] } = options;
 
       expect(plugins).to.include('react-hot-loader/babel');
       expect(presets).to.include('@babel/preset-react');
@@ -44,7 +44,7 @@ describe('loaders', function(): void {
       const loadersArr: Object[] = loaders({ frame: 'vue', mode: 'development' }, sweetOptions);
       const use: Object[] = loadersArr[0].use;
       const { options }: { options: Object } = use[0];
-      const { plugins, presets }: { plugins: any[], presets: any[] } = options;
+      const { plugins, presets }: { plugins: any[]; presets: any[] } = options;
 
       expect(loadersArr[loadersArr.length - 1].use).to.eql(['vue-loader']);
       expect(plugins).to.not.include('react-hot-loader/babel');
