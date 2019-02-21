@@ -5,6 +5,7 @@ env:
   node: true
   worker: true
   jquery: true
+parser: babel-eslint
 parserOptions:
   ecmaVersion: 9
   ecmaFeatures:
@@ -207,13 +208,8 @@ rules:
       beforeClosing: never
 overrides:
   - files:
-      - '*.ts'
-      - '*.tsx'
-    parser: '@typescript-eslint/parser'
-  - files:
       - '*.js'
       - '*.jsx'
-    parser: babel-eslint
     rules:
       # flow
       flowtype/boolean-style:                             # 强制布尔类型注释的特定样式
