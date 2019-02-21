@@ -30,7 +30,8 @@
     "rimraf": "^2.6.3",
     "ts-node": "^8.0.2",
     "tslint": "^5.12.1",
-    "typescript": "^3.3.3"
+    "typescript": "^3.3.3",
+    "typescript-eslint-parser": "^22.0.0"
   },
   "husky": {
     "hooks": {
