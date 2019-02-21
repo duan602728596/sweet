@@ -15,6 +15,7 @@
     "@sweet/util-tools": "github:duan602728596/sweet#build-util-tools",
     "@types/koa": "^2.0.48",
     "@types/node": "^11.9.4",
+    "@typescript-eslint/parser": "^1.4.0",
     "babel-eslint": "^10.0.1",
     "commitizen": "^3.0.5",
     "cz-conventional-changelog": "^2.1.0",
@@ -30,8 +31,7 @@
     "rimraf": "^2.6.3",
     "ts-node": "^8.0.2",
     "tslint": "^5.12.1",
-    "typescript": "^3.3.3",
-    "typescript-eslint-parser": "^22.0.0"
+    "typescript": "^3.3.3"
   },
   "husky": {
     "hooks": {
