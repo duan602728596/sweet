@@ -9,7 +9,7 @@ function iltorb(): Koa.Middleware {
     await next();
 
     const acceptEncoding: string = ctx.request.header['accept-encoding']; // 获取请求头的压缩参数
-    const { body }: { body: Buffer | string | number } = ctx; // 获取响应数据
+    const { body }: { body: any } = ctx; // 获取响应数据
     let input: any = body;
 
     // 对文件进行判断
