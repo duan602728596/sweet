@@ -97,9 +97,11 @@ async function getVersionFromNpm(packageArray: Array<PackageArrayItem>, registry
       if ('dist-tags' in version[i] && 'latest' in version[i]['dist-tags']) {
         packageArray[i].latest = version[i]['dist-tags'].latest;
       }
+
       if ('dist-tags' in version[i] && 'next' in version[i]['dist-tags']) {
         packageArray[i].next = version[i]['dist-tags'].next;
       }
+
       if ('dist-tags' in version[i] && 'rc' in version[i]['dist-tags']) {
         packageArray[i].rc = version[i]['dist-tags'].rc;
       }
@@ -131,9 +133,11 @@ function consoleLogText(packageArray: Array<PackageArrayItem>): string {
     if (item.latest) {
       consoleText += `      latest : ${ formatVersion(item.version, item.latest) }\n`;
     }
+
     if (item.next) {
       consoleText += `      next   : ${ formatVersion(item.version, item.next) }\n`;
     }
+
     if (item.rc) {
       consoleText += `      rc     : ${ formatVersion(item.version, item.rc) }\n`;
     }
