@@ -148,12 +148,12 @@ async function devServer(argv: DevServerType = {}): Promise<void> {
 
   // 判断是否有证书
   if (fs.existsSync(key) && fs.existsSync(crt)) {
-    const keyString: Buffer = await readFile(key);
-    const crtString: Buffer = await readFile(crt);
+    const keyFile: Buffer = await readFile(key);
+    const crtFile: Buffer = await readFile(crt);
     const httpsConfig: Object = {
       allowHTTP1: true,
-      key: keyString,
-      cert: crtString
+      key: keyFile,
+      cert: crtFile
     };
 
     http2.createSecureServer(httpsConfig, app.callback())
