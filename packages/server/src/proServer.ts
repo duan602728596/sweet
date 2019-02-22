@@ -108,12 +108,12 @@ async function proServer(argv: ProServerType = {}): Promise<void> {
   const crt: string = path.join(sweetOptions.basicPath, './server.crt');
 
   if (fs.existsSync(key) && fs.existsSync(crt)) {
-    const keyString: Buffer = await readFile(key);
-    const crtString: Buffer = await readFile(crt);
+    const keyFile: Buffer = await readFile(key);
+    const crtFile: Buffer = await readFile(crt);
     const httpsConfig: Object = {
       allowHTTP1: true,
-      key: keyString,
-      cert: crtString
+      key: keyFile,
+      cert: crtFile
     };
 
     http2.createSecureServer(httpsConfig, app.callback())
