@@ -90,6 +90,7 @@ interface RegisterConfig{
   presets: Array<any>;
   plugins: Array<string>;
   cache: boolean;
+  configFile: boolean;
   babelrc: boolean;
   only: Array<RegExp>;
 }
@@ -116,6 +117,7 @@ export const registerConfig: RegisterConfig = {
     '@babel/plugin-proposal-class-properties'
   ],
   cache: false,
+  configFile: false,
   babelrc: false,
   only: [/[\\/]service[\\/]/]
 };

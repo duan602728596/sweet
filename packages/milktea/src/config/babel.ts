@@ -96,6 +96,8 @@ interface BabelLoaderOptions {
   cacheDirectory: string;
   presets: Array<any>;
   plugins: Array<any>;
+  configFile: boolean;
+  babelrc: boolean;
 }
 
 export default function(options: JsOption = {}, sweetOptions: SweetOptions): LoaderOption {
@@ -117,7 +119,9 @@ export default function(options: JsOption = {}, sweetOptions: SweetOptions): Loa
       : presetsList(presets, debug, frame, ecmascript),
     plugins: resetPlugins
       ? resetPlugins
-      : pluginsList(plugins, frame, ecmascript)
+      : pluginsList(plugins, frame, ecmascript),
+    configFile: false,
+    babelrc: false
   };
 
   return {
