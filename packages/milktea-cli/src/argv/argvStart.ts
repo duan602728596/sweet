@@ -8,7 +8,7 @@ function argvStart(argv: Argv): void {
   const webpackConfig: object = milktea.config(argv.config, 'development');
 
   // koa-webpack需要output.publicPath
-  if (!isNone(argv.server)) {
+  if (!isNone(argv.server) && !webpackConfig['output'].publicPath) {
     webpackConfig['output'].publicPath = '/';
   }
 
