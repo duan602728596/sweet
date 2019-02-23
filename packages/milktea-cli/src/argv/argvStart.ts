@@ -5,9 +5,14 @@ import { Milktea, Argv } from '../utils/types';
 
 function argvStart(argv: Argv): void {
   const milktea: Milktea = requireModule('@sweet/milktea');
-  const compiler: webpack.Compiler = webpack(
-    milktea.config(argv.config, 'development')
-  );
+  const webpackConfig: object = milktea.config(argv.config, 'development');
+
+  // koa-webpack需要output.publicPath
+  if (!isNone(argv.server)) {
+    webpackConfig['output'].publicPath = '/';
+  }
+
+  const compiler: webpack.Compiler = webpack(webpackConfig);
 
   if (!isNone(argv.serverRender)) {
     const serverRenderCompiler: webpack.Compiler = webpack(
