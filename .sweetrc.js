@@ -22,7 +22,6 @@ export default {
   entry: {
     app: [path.join(__dirname, 'src/app.js')]
   },
-  output: { publicPath: '/' },
   loaders: {
     svg: {
       test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
@@ -41,8 +40,7 @@ export default {
       use: [{
         loader: 'file-loader',
         options: {
-          name: isDevelopment ? '[name].[ext]' : '[hash:5].[ext]',
-          outputPath: 'script/'
+          name: isDevelopment ? '[name].[ext]' : '[hash:5].[ext]'
         }
       }]
     }
@@ -56,9 +54,7 @@ export default {
     modules: false,
     modifyVars: {
       // https://github.com/ant-design/ant-design/blob/master/components/style/themes/default.less
-      '@primary-color': '#f5222d',
-      '@layout-body-background': '#fff',
-      '@layout-header-background': '@primary-color'
+      '@primary-color': '#f5222d'
     },
     include: /node_modules[\\/]antd/
   },
