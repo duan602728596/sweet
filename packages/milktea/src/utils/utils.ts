@@ -14,6 +14,7 @@ interface RegisterConfig {
   presets: Array<any>;
   plugins: Array<string>;
   cache: boolean;
+  configFile: boolean;
   babelrc: boolean;
 }
 
@@ -38,17 +39,10 @@ export const registerConfig: RegisterConfig = {
     '@babel/plugin-proposal-optional-chaining',
     '@babel/plugin-proposal-class-properties'
   ],
+  configFile: false,
   cache: false,
   babelrc: false
 };
-
-/* 格式化输出 */
-export function handleWebpackBuildProgress(percentage: number, message: string, ...args: Array<any>): void {
-  const schedule: number = Number(percentage.toFixed(2)) * 100;
-  const pNumber: string[] = `${ schedule }`.split('.');
-
-  console.info('\x1B[46m%s\x1B[49m', `${ pNumber[0] }%`, message, ...args);
-}
 
 /* 模块导入 */
 export function requireModule(id: string): any {

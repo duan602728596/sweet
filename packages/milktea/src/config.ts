@@ -24,17 +24,15 @@ export default function(sweetConfig: SweetConfig | null, sweetOptions: SweetOpti
   }
 
   // webpack配置
+  const filename: string = isDevelopment ? '[name].js' : '[chunkhash:5].js';
+
   return {
     mode,
     entry,
     output: {
       path: path.join(sweetOptions.basicPath, 'build'),
-      filename: isDevelopment
-        ? 'script/[name].js'
-        : 'script/[chunkhash:5].js',
-      chunkFilename: isDevelopment
-        ? 'script/[name].js'
-        : 'script/[chunkhash:5].js',
+      filename,
+      chunkFilename: filename,
       ...output
     },
     externals,
