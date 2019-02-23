@@ -2,7 +2,8 @@
 import * as path from 'path';
 import * as webpack from 'webpack';
 import babelConfig from './config/babel';
-import { handleWebpackBuildProgress, isObject } from './utils/utils';
+import handleWebpackBuildProgress from './plugins/handleWebpackBuildProgress';
+import { isObject } from './utils/utils';
 import { SweetConfig, SweetOptions, WebpackConfig } from './utils/types';
 
 export default function(sweetConfig: SweetConfig | null, sweetOptions: SweetOptions): WebpackConfig {
