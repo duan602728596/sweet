@@ -13,7 +13,6 @@ export default {
   entry: {
     app: [path.join(__dirname, 'src/app.js')]
   },
-  output: { publicPath: '/' },
   loaders: {
     svg: {
       test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
@@ -41,9 +40,7 @@ export default {
     modules: false,
     modifyVars: {
       // https://github.com/vueComponent/ant-design-vue/blob/master/components/style/themes/default.less
-      '@primary-color': '#58b957',
-      '@layout-body-background': '#fff',
-      '@layout-header-background': '@primary-color'
+      '@primary-color': '#58b957'
     },
     include: /node_modules[\\/]ant-design-vue/
   },
