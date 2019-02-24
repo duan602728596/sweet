@@ -13,7 +13,7 @@ import { createReducer } from './reducers';
 const reducer: Function = createReducer({});
 
 /* 中间件 */
-const middlewares: Function = applyMiddleware(thunk);
+const middleware: Function = applyMiddleware(thunk);
 
 /* store */
 const store: Object = {
@@ -26,7 +26,7 @@ export function storeFactory(initialState: Object = {}): Object {
   const $$initialState: Immutable.Map<string, any> = Map(state);
 
   /* store */
-  Object.assign(store, createStore(reducer, $$initialState, compose(middlewares)));
+  Object.assign(store, createStore(reducer, $$initialState, compose(middleware)));
 
   return store;
 }
