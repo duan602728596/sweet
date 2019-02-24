@@ -15,7 +15,10 @@ import ErrorBoundary from '../ErrorBoundary/index';
 
 class Content extends Component<{ children: React.Node }> {
   static propTypes: Object = {
-    children: PropTypes.oneOfType(PropTypes.node)
+    children: PropTypes.oneOfType([
+      PropTypes.node,
+      PropTypes.array
+    ])
   };
 
   render(): React.Node {

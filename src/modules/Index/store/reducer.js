@@ -10,7 +10,7 @@ const initData: {
 };
 
 /* Action */
-export const listDisplayChange: Function = createAction('首页列表展示');
+export const listDisplayChange: Function = createAction('index/首页列表展示');
 
 /* reducer */
 const reducer: Function = handleActions({
