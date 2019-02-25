@@ -15,6 +15,7 @@ build
 buildServer
 
 # cache
+.dll
 .babelCache
 .terserCache
 
