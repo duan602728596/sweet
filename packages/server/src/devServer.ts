@@ -31,7 +31,7 @@ const sweetOptions: SweetOptions = {
  * env { string }: 运行环境，可能的值为test（测试）
  */
 interface DevServerType {
-  compiler?: webpack.Completer;
+  compiler?: webpack.Compiler;
   httpPort?: number;
   httpsPort?: number;
   serverRender?: boolean;
@@ -70,7 +70,7 @@ async function devServer(argv: DevServerType = {}): Promise<void> {
 
   /* webpack中间件 */
   const middlewareConfig: {
-    compiler: webpack.Completer;
+    compiler?: webpack.Compiler;
     hotClient: {
       host: {
         client: string;

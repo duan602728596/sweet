@@ -18,7 +18,7 @@ function argvStart(argv: Argv): void {
     const serverRenderCompiler: webpack.Compiler = webpack(
       milktea.serverRenderConfig(argv.config, 'development')
     );
-    const serverRenderWatching: webpack.Compiler.FSWatcher = serverRenderCompiler.watch({
+    const serverRenderWatching: webpack.Watching = serverRenderCompiler.watch({
       aggregateTimeout: 500
     }, milktea.callback);
   }
@@ -38,7 +38,7 @@ function argvStart(argv: Argv): void {
       serverRenderFile
     });
   } else {
-    const watching: webpack.Compiler.FSWatcher = compiler.watch({
+    const watching: webpack.Watching = compiler.watch({
       aggregateTimeout: 500
     }, milktea.callback);
   }

@@ -26,6 +26,7 @@
     "@sweet/util-tools": "github:duan602728596/sweet#build-util-tools",
     "@types/koa": "^2.0.48",
     "@types/node": "^11.9.5",
+    "@types/webpack": "^4.4.24",
     "babel-eslint": "^11.0.0-beta.0",
     "commitizen": "^3.0.7",
     "cz-conventional-changelog": "^2.1.0",

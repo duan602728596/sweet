@@ -1,8 +1,10 @@
+import { Stats } from 'webpack';
+
 export interface Milktea {
   dll: Function;
   config: Function;
   serverRenderConfig: Function;
-  callback: Function;
+  callback: (err: Error, stats: Stats) => void;
 }
 
 export interface Argv {
