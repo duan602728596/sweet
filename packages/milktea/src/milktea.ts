@@ -19,8 +19,8 @@ const sweetOptions: SweetOptions = {
 const moduleName: string = 'sweet';
 const explorer: { searchSync: Function } = cosmiconfig(moduleName, {
   searchPlaces: [
-    `.${ moduleName }rc.js`,
-    `${ moduleName }.config.js`
+    `${ moduleName }.config.js`,
+    `.${ moduleName }rc.js`
   ],
   loaders: {
     '.js': jsRegisterLoader
