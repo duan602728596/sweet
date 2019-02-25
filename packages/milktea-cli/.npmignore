@@ -1,11 +1,22 @@
-src
+# node
+node_modules
+npm-debug.log
+package-lock.json
+
+# yarn
 yarn.lock
 yarn-error.log
-package-lock.json
-npm-debug.log
+
+# ignore
+.npmignore
+
+# packages
+src
 test
+tsconfig.json
+
+# build
+build
 .dll
 .babelCache
-build
-tsconfig.json
-.idea
+.terserCache

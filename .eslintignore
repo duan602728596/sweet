@@ -1,6 +1,10 @@
-scripts
+# node
 node_modules
+
+# project
 ./utils
+
+# packages
 packages/**/lib
 packages/**/node_modules
 packages/**/test/test.js
