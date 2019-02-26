@@ -1,0 +1,60 @@
+defaultSeverity: error
+rules:
+  # TypeScript-specific
+  no-empty-interface: true                # 禁止空接口
+  no-parameter-reassignment: true         # 不允许重新分配参数
+  no-var-requires: true                   # 除import语句外，不允许使用require语句
+  # Functionality
+  curly:                                  # 强制执行if / for / do / while语句的大括号
+    - true
+    - ignore-same-line
+  no-duplicate-super: true                # 如果'super（）'在构造函数中出现两次，则发出警告
+  no-empty: true                          # 禁止空块
+  no-eval: true                           # 禁止eval函数调用
+  no-for-in-array: true                   # 禁止使用for-in循环遍历数组
+  no-var-keyword: true                    # 不允许使用var关键字
+  triple-equals: true                     # 需要 === 和 !== 代替 == 和 !=
+  use-isnan: true                         # 强制使用isNaN（）函数来检查NaN引用，而不是与NaN常量的比较
+  # Maintainability
+  indent:                                 # 使用制表符或空格强制缩进
+    - true
+    - spaces
+    - 2
+  class-name: true                        # 强制类和接口名称大写
+  import-spacing: true                    # 确保import语句关键字之间的适当间距
+  new-parens: true                        # 通过new关键字调用构造函数时需要括号
+  space-before-function-paren:            # 在函数括号之前需要或不允许空格
+    - true
+    - anonymous: never
+      named: never
+      asyncArrow: always
+  typedef:                                # 需要存在类型定义
+    - true
+    - call-signature
+    - arrow-call-signature
+    - parameter
+    - arrow-parameter
+    - property-declaration
+    - variable-declaration
+    - member-variable-declaration
+    - object-destructuring
+    - array-destructuring
+  strict-type-predicates: true            # 警告类型谓词始终为true或始终为false
+  type-literal-delimiter: true            # 检查类型文字成员是否以分号分隔。 为多行类型文字强制使用尾随分号
+  # Format
+  whitespace:                             # 实施空白样式约定
+    - true
+    - check-branch
+    - check-decl
+    - check-operator
+    - check-module
+    - check-separator
+    - check-rest-spread
+    - check-type
+    - check-typecast
+    - check-type-operator
+    - check-preblock
+linterOptions:
+  exclude:
+    - node_modules
+    - '*.json'
