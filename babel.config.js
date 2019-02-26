@@ -20,16 +20,7 @@ module.exports = function(api) {
       '@babel/plugin-proposal-do-expressions',
       '@babel/plugin-proposal-optional-chaining',
       '@babel/plugin-proposal-class-properties',
-      '@babel/plugin-syntax-dynamic-import',
-      [
-        '@babel/plugin-transform-runtime',
-        {
-          corejs: false,
-          helpers: true,
-          regenerator: false,
-          useESModules: true
-        }
-      ]
+      '@babel/plugin-syntax-dynamic-import'
     ]
   };
 };
