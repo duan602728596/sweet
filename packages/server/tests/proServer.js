@@ -21,7 +21,7 @@ function runBuild(): Promise<void> {
 // 运行生产环境服务
 function runServer(): Promise<void> {
   proServer({
-    serverRoot: 'test/build'
+    serverRoot: 'tests/build'
   });
 
   return new Promise((resolve: Function, reject: Function): void => {
@@ -32,7 +32,7 @@ function runServer(): Promise<void> {
 }
 
 describe('production server', function(): void{
-  it('run pro server', async function(): Promise<void> {
+  it('should response status code is 200', async function(): Promise<void> {
     await runBuild();
     await runServer();
 

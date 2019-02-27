@@ -22,7 +22,7 @@ function runServer(): Promise<void> {
 }
 
 describe('development server', function(): void{
-  it('run dev server', async function(): Promise<void> {
+  it('should response status code is 200', async function(): Promise<void> {
     await runServer();
 
     // 请求文件
