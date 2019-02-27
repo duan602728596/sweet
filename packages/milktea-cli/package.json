@@ -10,11 +10,11 @@
     "build": "cross-env NODE_ENV=production npm run clean && tsc",
     "clean": "rimraf ./lib",
     "test": "npm run clean:test && mocha ./tests/test.js --timeout 180000",
-    "clean:test": "npm run clean:dll && npm run clean:babelcache && npm run clean:terser && npm run clean:build",
-    "clean:dll": "rimraf ./test/.dll",
-    "clean:babelcache": "rimraf ./test/.babelCache",
-    "clean:terser": "rimraf ./test/.terserCache",
-    "clean:build": "rimraf ./test/build"
+    "clean:test": "npm run clean:dll && npm run clean:babelCache && npm run clean:terserCache && npm run clean:build",
+    "clean:dll": "rimraf ./tests/.dll",
+    "clean:babelCache": "rimraf ./tests/.babelCache",
+    "clean:terserCache": "rimraf ./tests/.terserCache",
+    "clean:build": "rimraf ./tests/build"
   },
   "dependencies": {
     "webpack": "^4.29.5",
