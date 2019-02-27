@@ -7,8 +7,8 @@ node_modules
 # packages
 packages/**/lib
 packages/**/node_modules
-packages/**/test/test.js
-packages/**/test/build
-packages/**/test/.dll
-packages/**/test/.babelCache
-packages/**/test/.terserCache
+packages/**/tests/test.js
+packages/**/tests/build
+packages/**/tests/.dll
+packages/**/tests/.babelCache
+packages/**/tests/.terserCache

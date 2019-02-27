@@ -23,4 +23,4 @@ packages/**/.babelCache
 packages/**/.terserCache
 
 # util-tools
-packages/util-tools/test/image2webp/*.webp
+packages/util-tools/tests/image2webp/*.webp
