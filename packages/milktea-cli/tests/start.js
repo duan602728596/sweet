@@ -33,7 +33,7 @@ function run(): Promise<void> {
 }
 
 describe('args: start', function(): void{
-  it('start', async function(): Promise<void> {
+  it('should app.js file is existing', async function(): Promise<void> {
     await run();
 
     expect(fs.existsSync(app)).to.be.true;

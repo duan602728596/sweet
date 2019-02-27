@@ -23,7 +23,7 @@ function run(): Promise<void> {
 }
 
 describe('args: dll', function(): void{
-  it('dll', async function(): Promise<void> {
+  it('should dll.js antd manifest.json files is existing', async function(): Promise<void> {
     await run();
 
     expect(fs.existsSync(path.join(__dirname, '.dll/dll.js'))).to.be.true;

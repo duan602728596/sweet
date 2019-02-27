@@ -23,7 +23,7 @@ function run(): Promise<void> {
 }
 
 describe('args: build', function(): void {
-  it('build', async function(): Promise<void> {
+  it('should app.build.js is existing', async function(): Promise<void> {
     await run();
 
     expect(fs.existsSync(path.join(__dirname, 'build/app.build.js'))).to.be.true;

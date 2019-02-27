@@ -9,7 +9,7 @@
     "start": "cross-env NODE_ENV=development npm run clean && tsc --watch",
     "build": "cross-env NODE_ENV=production npm run clean && tsc",
     "clean": "rimraf ./lib",
-    "test": "npm run clean:test && mocha ./test/test.js --timeout 180000",
+    "test": "npm run clean:test && mocha ./tests/test.js --timeout 180000",
     "clean:test": "npm run clean:dll && npm run clean:babelcache && npm run clean:terser && npm run clean:build",
     "clean:dll": "rimraf ./test/.dll",
     "clean:babelcache": "rimraf ./test/.babelCache",
