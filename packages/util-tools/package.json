@@ -5,8 +5,8 @@
     "start": "cross-env NODE_ENV=development npm run clean && tsc --watch",
     "build": "cross-env NODE_ENV=production npm run clean && tsc",
     "clean": "rimraf ./lib",
-    "test": "npm run clean:webp && mocha test/test.js --timeout 180000",
-    "clean:webp": "rimraf ./test/image2webp/image.webp"
+    "test": "npm run clean:webp && mocha tests/test.js --timeout 180000",
+    "clean:webp": "rimraf ./tests/image2webp/image.webp"
   },
   "dependencies": {
     "axios": "^0.18.0",
