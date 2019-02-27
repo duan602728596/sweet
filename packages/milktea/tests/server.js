@@ -17,16 +17,16 @@ describe('sever-render config', function(): void {
       html: [{ template: 'index.pug' }]
     }, sweetOptions);
 
-    it('target & node', function(): void {
+    it('config.target and config.node Configuration is correct', function(): void {
       expect(config.target).to.equal('node');
       expect(config.node).to.eql({ __filename: true, __dirname: true });
     });
 
-    it('module', expectModule(config, 8));
+    it('module Configuration is correct', expectModule(config, 8));
 
-    it('plugins', expectDevServerPlugins(config));
+    it('plugins Configuration is correct', expectDevServerPlugins(config));
 
-    it('optimization', expectDevOptimization(config));
+    it('optimization Configuration is correct', expectDevOptimization(config));
   });
 
   describe('vue & production', function(): void {
@@ -37,15 +37,15 @@ describe('sever-render config', function(): void {
       html: [{ template: 'index.pug' }]
     }, sweetOptions);
 
-    it('target & node', function(): void {
+    it('config.target and config.node Configuration is correct', function(): void {
       expect(config.target).to.equal('node');
       expect(config.node).to.eql({ __filename: true, __dirname: true });
     });
 
-    it('module', expectModule(config, 9));
+    it('module Configuration is correct', expectModule(config, 9));
 
-    it('plugins', expectProServerPlugins(config));
+    it('plugins Configuration is correct', expectProServerPlugins(config));
 
-    it('optimization', expectProOptimization(config, true));
+    it('optimization Configuration is correct', expectProOptimization(config, true));
   });
 });

@@ -16,11 +16,11 @@ describe('config', function(): void {
       html: [{ template: 'index.pug' }]
     }, sweetOptions);
 
-    it('module', expectModule(config, 8));
+    it('module Configuration is correct', expectModule(config, 8));
 
-    it('plugins', expectDevPlugins(config));
+    it('plugins Configuration is correct', expectDevPlugins(config));
 
-    it('optimization', expectDevOptimization(config));
+    it('optimization Configuration is correct', expectDevOptimization(config));
   });
 
   describe('vue & production', function(): void {
@@ -30,10 +30,10 @@ describe('config', function(): void {
       html: [{ template: 'index.pug' }]
     }, sweetOptions);
 
-    it('module', expectModule(config, 9));
+    it('module Configuration is correct', expectModule(config, 9));
 
-    it('plugins', expectProPlugins(config));
+    it('plugins Configuration is correct', expectProPlugins(config));
 
-    it('optimization', expectProOptimization(config, false));
+    it('optimization Configuration is correct', expectProOptimization(config, false));
   });
 });
