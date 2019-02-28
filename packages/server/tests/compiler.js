@@ -8,7 +8,7 @@ function createCompiler(mode: string = 'development'): Object {
   const compiler: Object = webpack(webpackConfig({
     frame: 'test',
     entry: {
-      app: [path.join(__dirname, 'src/app.js')]
+      index: [path.join(__dirname, 'src/index.js')]
     },
     output: {
       path: path.join(__dirname, 'build'),

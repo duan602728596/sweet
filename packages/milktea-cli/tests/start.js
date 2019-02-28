@@ -4,11 +4,11 @@ import fs from 'fs';
 import path from 'path';
 import { expect } from 'chai';
 
-const app: string = path.join(__dirname, 'build/app.js');
+const index: string = path.join(__dirname, 'build/index.js');
 
 function run(): Promise<void> {
   const cli: string = path.join(__dirname, '../lib/cli');
-  const config: string = path.join(__dirname, './.sweetrc.js');
+  const config: string = path.join(__dirname, './sweet.config.js');
 
   return new Promise((resolve: Function, reject: Function): void => {
     const child: Object = child_process.spawn('node', [cli, 'start', '--config', config], {
@@ -24,7 +24,7 @@ function run(): Promise<void> {
 
     // 保证文件编译后结束进程
     const timer: IntervalID = setInterval((): void => {
-      if (fs.existsSync(app)) {
+      if (fs.existsSync(index)) {
         clearInterval(timer);
         child.kill();
       }
@@ -33,9 +33,9 @@ function run(): Promise<void> {
 }
 
 describe('args: start', function(): void{
-  it('should app.js file is existing', async function(): Promise<void> {
+  it('should index.js file is existing', async function(): Promise<void> {
     await run();
 
-    expect(fs.existsSync(app)).to.be.true;
+    expect(fs.existsSync(index)).to.be.true;
   });
 });
