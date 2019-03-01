@@ -17,7 +17,7 @@
     "clean:build": "rimraf ./tests/build"
   },
   "dependencies": {
-    "webpack": "^4.29.5",
+    "webpack": "^4.29.6",
     "yargs": "^13.2.1"
   },
   "devDependencies": {

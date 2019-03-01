@@ -45,10 +45,10 @@
     "terser": "^3.16.1",
     "terser-webpack-plugin": "^1.2.3",
     "url-loader": "^1.1.2",
-    "vue-loader": "^15.6.4",
+    "vue-loader": "^15.7.0",
     "vue-style-loader": "^4.1.2",
     "vue-template-compiler": "^2.6.7",
-    "webpack": "^4.29.5"
+    "webpack": "^4.29.6"
   },
   "devDependencies": {
     "chai": "^4.2.0",

@@ -34,7 +34,7 @@
     "mocha": "^6.0.2",
     "rimraf": "^2.6.3",
     "typescript": "^3.3.3333",
-    "webpack": "^4.29.5"
+    "webpack": "^4.29.6"
   },
   "peerDependencies": {
     "@sweet/milktea": "github:duan602728596/sweet#build-milktea"
