@@ -1,7 +1,6 @@
-// @flow
-import child_process from 'child_process';
-import fs from 'fs';
-import path from 'path';
+import * as child_process from 'child_process';
+import * as fs from 'fs';
+import * as path from 'path';
 import { expect } from 'chai';
 
 function run(): Promise<void> {
@@ -9,7 +8,7 @@ function run(): Promise<void> {
   const config: string = path.join(__dirname, './sweet.config.build.js');
 
   return new Promise((resolve: Function, reject: Function): void => {
-    const child: Object = child_process.spawn('node', [cli, 'build', '--config', config], {
+    const child: object = child_process.spawn('node', [cli, 'build', '--config', config], {
       cwd: __dirname
     });
 

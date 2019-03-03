@@ -1,16 +1,15 @@
-// @flow
-import process from 'process';
+import * as process from 'process';
 import { expect } from 'chai';
 import serverConfig from '../lib/server';
 import { expectModule, expectDevServerPlugins, expectProServerPlugins, expectDevOptimization, expectProOptimization } from './utils/expectFunction';
 
-const sweetOptions: Object = {
+const sweetOptions: object = {
   basicPath: process.cwd()
 };
 
 describe('sever-render config', function(): void {
   describe('react & development', function(): void {
-    const config: Object = serverConfig({
+    const config: object = serverConfig({
       serverRender: true,
       frame: 'react',
       mode: 'development',
@@ -30,7 +29,7 @@ describe('sever-render config', function(): void {
   });
 
   describe('vue & production', function(): void {
-    const config: Object = serverConfig({
+    const config: object = serverConfig({
       serverRender: true,
       frame: 'vue',
       mode: 'production',

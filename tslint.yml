@@ -54,6 +54,7 @@ rules:
     - check-typecast
     - check-type-operator
     - check-preblock
+jsRules: true
 linterOptions:
   exclude:
     - node_modules

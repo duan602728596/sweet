@@ -229,7 +229,6 @@ overrides:
       flowtype/require-return-type:                       # 要求该函数具有返回类型注释
         - error
         - always
-        - annotateUndefined: always
       flowtype/require-variable-type: error               # 要求所有变量声明符都有类型注释
       flowtype/semi: error                                # 在类型别名后强制使用分号
       flowtype/space-after-type-colon: error              # 在类型注释冒号后强制一致的间距

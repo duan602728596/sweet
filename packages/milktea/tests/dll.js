@@ -1,16 +1,15 @@
-// @flow
-import process from 'process';
+import * as process from 'process';
 import { expect } from 'chai';
-import webpack from 'webpack';
+import * as webpack from 'webpack';
 import webpackDll from '../lib/dll';
 
-const sweetOptions: Object = {
+const sweetOptions: object = {
   basicPath: process.cwd()
 };
 
 describe('dll', function(): void {
   describe('dll', function(): void {
-    const config: Object = webpackDll({ mode: 'development' }, sweetOptions);
+    const config: object = webpackDll({ mode: 'development' }, sweetOptions);
 
     it('module Configuration is correct', function(): void {
       expect(config.module).to.be.an('object');

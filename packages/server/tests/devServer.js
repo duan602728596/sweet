@@ -1,11 +1,10 @@
-// @flow
 import { expect } from 'chai';
 import axios from 'axios';
 import devServer from '../lib/devServer';
 import createCompiler from './compiler';
 
 // webpack配置
-const compiler: Object = createCompiler();
+const compiler: object = createCompiler();
 
 // 运行开发环境服务
 function runServer(): Promise<void> {
@@ -21,13 +20,13 @@ function runServer(): Promise<void> {
   });
 }
 
-describe('development server', function(): void{
+describe('development server', function(): void {
   it('should response status code is 200', async function(): Promise<void> {
     await runServer();
 
     // 请求文件
-    const resHtml: Object = await axios.get('http://127.0.0.1:5050');
-    const resJs: Object = await axios.get('http://127.0.0.1:5050/index.js');
+    const resHtml: object = await axios.get('http://127.0.0.1:5050');
+    const resJs: object = await axios.get('http://127.0.0.1:5050/index.js');
 
     expect(resHtml.status).to.be.equal(200);
     expect(resJs.status).to.be.equal(200);

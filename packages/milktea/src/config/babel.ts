@@ -10,7 +10,13 @@ const presetsList: Function = (
   ecmascript: boolean
 ): Array<any> => {
   const list: Array<any> = [
-    '@babel/preset-flow',
+    [
+      '@babel/preset-typescript',
+      {
+        allExtensions: true,
+        isTSX: true
+      }
+    ],
     ...presets
   ];
 
@@ -44,16 +50,17 @@ const presetsList: Function = (
 
 const pluginsList: Function = (plugins: Array<any> = [], frame: string, ecmascript: boolean): Array<any> => {
   const list: Array<any> = [
+    '@babel/plugin-proposal-class-properties',
     [
       '@babel/plugin-proposal-decorators',
       {
         legacy: true
       }
     ],
-    '@babel/plugin-proposal-export-default-from',
     '@babel/plugin-proposal-do-expressions',
+    '@babel/plugin-proposal-optional-catch-binding',
+    '@babel/plugin-proposal-export-default-from',
     '@babel/plugin-proposal-optional-chaining',
-    '@babel/plugin-proposal-class-properties',
     '@babel/plugin-syntax-dynamic-import',
     [
       '@babel/plugin-transform-runtime',

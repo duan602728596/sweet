@@ -11,13 +11,26 @@ module.exports = {
         useBuiltIns: false
       }
     ],
-    '@babel/preset-flow'
+    [
+      '@babel/preset-typescript',
+      {
+        allExtensions: true,
+        isTSX: true
+      }
+    ]
   ],
   plugins: [
-    '@babel/plugin-proposal-export-default-from',
+    '@babel/plugin-proposal-class-properties',
+    [
+      '@babel/plugin-proposal-decorators',
+      {
+        legacy: true
+      }
+    ],
     '@babel/plugin-proposal-do-expressions',
+    '@babel/plugin-proposal-optional-catch-binding',
+    '@babel/plugin-proposal-export-default-from',
     '@babel/plugin-proposal-optional-chaining',
-    '@babel/plugin-proposal-class-properties'
   ],
   cache: false
 };
