@@ -88,7 +88,7 @@ export const defaultRoutersPath: Function = (sweetOptions: SweetOptions): string
 /* @babel/register配置 */
 interface RegisterConfig{
   presets: Array<any>;
-  plugins: Array<string>;
+  plugins: Array<any>;
   cache: boolean;
   configFile: boolean;
   babelrc: boolean;
