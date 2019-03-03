@@ -2,8 +2,6 @@
  * layout - header
  * 顶部header布局
  * 显示logo、导航、登录人信息等
- *
- * @flow
  */
 import * as React from 'react';
 import { Component } from 'react';
@@ -21,7 +19,7 @@ type navOptionsItem = {
   icon: string;
 };
 
-export const navOptions: navOptionsItem[] = [
+export const navOptions: Array<navOptionsItem> = [
   {
     id: 'home',
     name: '主页',
@@ -58,8 +56,8 @@ class Header extends Component<{}> {
     return match && reg.test(pathname);
   }
 
-  navList(options: navOptionsItem[]): React.ChildrenArray<React.Node> {
-    return options.map((item: navOptionsItem, index: number): Object => {
+  navList(options: navOptionsItem[]): React.ReactNodeArray {
+    return options.map((item: navOptionsItem, index: number): React.ReactNode => {
       return (
         <li key={ item.id }>
           <NavLink to={ item.href } activeClassName={ style.navActive } isActive={ this.oddEvent.bind(this, item) }>
@@ -71,7 +69,7 @@ class Header extends Component<{}> {
     });
   }
 
-  render(): React.Node {
+  render(): React.ReactNode {
     return (
       <ErrorBoundary>
         <img className={ style.logo } src={ require('./logo.png') } alt="管理平台 demo" title="管理平台 demo" />

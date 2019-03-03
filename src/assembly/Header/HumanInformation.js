@@ -1,7 +1,5 @@
 /**
  * 登录人信息
- *
- * @flow
  */
 import * as React from 'react';
 import { Component } from 'react';
@@ -9,7 +7,7 @@ import { Icon } from 'antd';
 import style from './style.sass';
 
 class HumanInformation extends Component<{}> {
-  render(): React.Node {
+  render(): React.ReactNode {
     return (
       <div className={ style.humanInformation }>
         <Icon className={ style.human } type="user" theme="outlined" />

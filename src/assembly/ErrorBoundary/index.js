@@ -1,22 +1,31 @@
 /**
  * 错误捕捉模块
  * 当模块报错时，显示错误
- *
- * @flow
  */
 import * as React from 'react';
 import { Component } from 'react';
-import PropTypes from 'prop-types';
+import * as PropTypes from 'prop-types';
+import { Requireable, ReactNodeLike } from 'prop-types';
 import style from './style.sass';
 import Content from '../Content/index';
 
-class ErrorBoundary extends Component<{ children: React.Node }, { hasError: boolean; error: any; info: any }> {
-  static propTypes: Object = {
+interface ErrorBoundaryProps {
+  children: React.ReactNode;
+}
+
+interface ErrorBoundaryState {
+  hasError: boolean;
+  error: any;
+  info: any;
+}
+
+class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
+  static propTypes: {
+    children: Requireable<Requireable<ReactNodeLike> | Requireable<Array<ReactNodeLike>>[]>;
+  } = {
     children: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.number,
-      PropTypes.array,
-      PropTypes.element
+      PropTypes.node,
+      PropTypes.array
     ])
   };
 
@@ -38,7 +47,7 @@ class ErrorBoundary extends Component<{ children: React.Node }, { hasError: bool
     });
   }
 
-  render(): React.Node {
+  render(): React.ReactNode {
     if (this.state.hasError) {
       return (
         <Content>

@@ -3,8 +3,6 @@
  * Header 显示页面header
  * Footer 显示版权信息
  * Routers 根据路由渲染页面
- *
- * @flow
  */
 import * as React from 'react';
 import { Component } from 'react';
@@ -14,7 +12,7 @@ import Header from '../Header/index';
 import Routers from '../../router/Routers';
 
 class Arrangement extends Component<{}> {
-  render(): React.Node {
+  render(): React.ReactNode {
     return (
       <Layout className={ style.arrangement }>
         <Layout.Header className={ style.header }>
