@@ -50,13 +50,13 @@ const presetsList: Function = (
 
 const pluginsList: Function = (plugins: Array<any> = [], frame: string, ecmascript: boolean): Array<any> => {
   const list: Array<any> = [
-    '@babel/plugin-proposal-class-properties',
     [
       '@babel/plugin-proposal-decorators',
       {
         legacy: true
       }
     ],
+    '@babel/plugin-proposal-class-properties',
     '@babel/plugin-proposal-do-expressions',
     '@babel/plugin-proposal-optional-catch-binding',
     '@babel/plugin-proposal-export-default-from',
