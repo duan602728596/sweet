@@ -1,6 +1,6 @@
 {
   "name": "@sweet/milktea",
-  "version": "0.0.0-alpha.4",
+  "version": "0.0.0-alpha.5",
   "main": "lib/milktea.js",
   "scripts": {
     "start": "cross-env NODE_ENV=development npm run clean && tsc --watch",

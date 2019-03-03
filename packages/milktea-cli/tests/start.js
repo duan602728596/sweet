@@ -10,7 +10,7 @@ function run(): Promise<void> {
   const config: string = path.join(__dirname, './sweet.config.js');
 
   return new Promise((resolve: Function, reject: Function): void => {
-    const child: object = child_process.spawn('node', [cli, 'start', '--config', config], {
+    const child: child_process.ChildProcess = child_process.spawn('node', [cli, 'start', '--config', config], {
       cwd: __dirname
     });
 
@@ -22,7 +22,7 @@ function run(): Promise<void> {
     child.stderr.on('data', (): void => undefined);
 
     // 保证文件编译后结束进程
-    const timer: IntervalID = setInterval((): void => {
+    const timer: number = setInterval((): void => {
       if (fs.existsSync(index)) {
         clearInterval(timer);
         child.kill();

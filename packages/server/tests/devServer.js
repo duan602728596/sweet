@@ -1,10 +1,11 @@
 import { expect } from 'chai';
+import webpack from 'webpack';
 import axios from 'axios';
 import devServer from '../lib/devServer';
 import createCompiler from './compiler';
 
 // webpack配置
-const compiler: object = createCompiler();
+const compiler: webpack.Compiler = createCompiler();
 
 // 运行开发环境服务
 function runServer(): Promise<void> {

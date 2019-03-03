@@ -8,7 +8,7 @@ function run(): Promise<void> {
   const config: string = path.join(__dirname, './sweet.config.js');
 
   return new Promise((resolve: Function, reject: Function): void => {
-    const child: object = child_process.spawn('node', [cli, 'dll', '--config', config], {
+    const child: child_process.ChildProcess = child_process.spawn('node', [cli, 'dll', '--config', config], {
       cwd: __dirname
     });
 
