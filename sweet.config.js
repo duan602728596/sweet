@@ -20,7 +20,7 @@ export default {
     'react-helmet'
   ],
   entry: {
-    app: [path.join(__dirname, 'src/app.js')]
+    index: [path.join(__dirname, 'src/index.js')]
   },
   loaders: {
     svg: {
