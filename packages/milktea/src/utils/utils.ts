@@ -30,6 +30,13 @@ export const registerConfig: RegisterConfig = {
         modules: 'commonjs',
         useBuiltIns: 'usage'
       }
+    ],
+    [
+      '@babel/preset-typescript',
+      {
+        allExtensions: true,
+        isTSX: true
+      }
     ]
   ],
   plugins: [
