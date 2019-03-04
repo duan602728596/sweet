@@ -1,21 +1,10 @@
-// @flow
-// @jsx this.$createElement
 import Vue from 'vue';
 import Main from '../../assembly/Main/index';
 import Sider from '../../assembly/Sider/index';
 import Content from '../../assembly/Content/index';
 
 /* 配置二、三级导航菜单 */
-const options: {
-  id: string;
-  name: string;
-  url?: string;
-  children?: {
-    id: string;
-    name: string;
-    url: string;
-  }[];
-}[] = [
+const options = [
   {
     id: 's1',
     name: '导航菜单1',
@@ -45,12 +34,12 @@ const options: {
 ];
 
 export default {
-  data(): Object {
+  data() {
     return {
       options
     };
   },
-  render(): Vue.VNode {
+  render() {
     return (
       <Main>
         <helmet-provider>

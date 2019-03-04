@@ -4,7 +4,7 @@ import Index from '../modules/Index/Layout';
 
 Vue.use(VueRouter);
 
-const routers: VueRouter = new VueRouter({
+const routers = new VueRouter({
   mode: 'history',
   routes: [
     {
@@ -19,7 +19,7 @@ const routers: VueRouter = new VueRouter({
     {
       path: '/Page',
       name: 'page',
-      component: (): Promise<Function> => import('../modules/Page/Layout')
+      component: () => import('../modules/Page/Layout')
     }
   ]
 });

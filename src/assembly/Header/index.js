@@ -1,19 +1,10 @@
-// @flow
-// @jsx this.$createElement
 import Vue from 'vue';
 import Component from 'vue-class-component';
 import { Layout, Icon } from 'ant-design-vue';
 import HumanInformation from './HumanInformation';
 import style from './style.sass';
 
-type options = {
-  id: string;
-  name: string;
-  href: string;
-  icon: string;
-};
-
-export const navOptions: options[] = [
+export const navOptions = [
   {
     id: 'index',
     name: '主页',
@@ -41,14 +32,14 @@ export const navOptions: options[] = [
  */
 @Component
 class Header extends Vue {
-  data(): Object {
+  data() {
     return {
       navOptions
     };
   }
 
-  listView(navOptions: Array<Object>): Vue.VNode {
-    return navOptions.map((item: Object, index: number): Vue.VNode => {
+  listView(navOptions) {
+    return navOptions.map((item, index) => {
       return (
         <li key={ index }>
           <router-link to={ item.href } active-class={ style.navActive }>
@@ -60,7 +51,7 @@ class Header extends Vue {
     });
   }
 
-  render(): Vue.VNode {
+  render() {
     return (
       <Layout.Header class={ style.header }>
         <img class={ style.logo } src={ require('./logo.png') } alt="管理平台 demo" title="管理平台 demo" />

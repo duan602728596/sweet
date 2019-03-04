@@ -1,5 +1,3 @@
-// @flow
-// @jsx this.$createElement
 import Vue from 'vue';
 import Component from 'vue-class-component';
 import { Button } from 'ant-design-vue';
@@ -7,11 +5,11 @@ import { Button } from 'ant-design-vue';
 @Component
 class Index extends Vue {
   // 点击事件
-  handleAddState(event: Event): void {
+  handleAddState(event) {
     this.$store.dispatch('index/add');
   }
 
-  render(): Vue.VNode {
+  render() {
     return (
       <div>
         <div>Index</div>

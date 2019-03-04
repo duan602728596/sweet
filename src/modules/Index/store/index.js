@@ -1,20 +1,18 @@
-// @flow
-// // @jsx this.$createElement
 export default {
   namespaced: true,
   state: {
     count: 0
   },
   getters: {
-    getCount: (state: Object): Function => (): number => state.count
+    getCount: (state) => () => state.count
   },
   mutations: {
-    add(state: Object): void {
+    add(state) {
       state.count++;
     }
   },
   actions: {
-    add(context: Object, payload: Object): void {
+    add(context, payload) {
       context.commit('add', payload);
     }
   }

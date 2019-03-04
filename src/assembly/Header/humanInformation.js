@@ -1,5 +1,3 @@
-// @flow
-// @jsx this.$createElement
 import Vue from 'vue';
 import Component from 'vue-class-component';
 import { Icon } from 'ant-design-vue';
@@ -8,7 +6,7 @@ import style from './style.sass';
 /* 登录人信息 */
 @Component
 class HumanInformation extends Vue {
-  render(h: Function): Vue.VNode {
+  render() {
     return (
       <div class={ style.humanInformation }>
         <Icon class={ style.human } type="user" theme="outlined" />

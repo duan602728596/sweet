@@ -1,5 +1,3 @@
-// @flow
-// @jsx this.$createElement
 import Vue from 'vue';
 import { Helmet, HelmetProvider } from '@jnields/vue-helmet';
 import App from './App';
@@ -10,14 +8,15 @@ Vue.component('helmet', Helmet);
 Vue.component('helmet-provider', HelmetProvider);
 
 /* app */
-const index: Vue = new Vue({
+const index = new Vue({
   el: '#app',
   store: storeFactory(window.__INITIAL_STATE__ || {}),
   router: routers,
-  render(): Vue.VNode {
+  render() {
     return <App />;
   }
 });
 
-// $FlowFixMe
-if (module.hot) module.hot.accept();
+if (module.hot) {
+  module.hot.accept();
+}

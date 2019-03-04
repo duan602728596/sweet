@@ -4,10 +4,7 @@ module.exports = function(api) {
   api.cache.never();
 
   return {
-    presets: [
-      '@babel/preset-react',
-      '@babel/preset-flow'
-    ],
+    presets: ['@babel/preset-react'],
     plugins: [
       [
         '@babel/plugin-proposal-decorators',
@@ -15,20 +12,12 @@ module.exports = function(api) {
           legacy: true
         }
       ],
-      '@babel/plugin-proposal-export-default-from',
-      '@babel/plugin-proposal-do-expressions',
-      '@babel/plugin-proposal-optional-chaining',
       '@babel/plugin-proposal-class-properties',
-      '@babel/plugin-syntax-dynamic-import',
-      [
-        '@babel/plugin-transform-runtime',
-        {
-          corejs: false,
-          helpers: true,
-          regenerator: false,
-          useESModules: true
-        }
-      ]
+      '@babel/plugin-proposal-do-expressions',
+      '@babel/plugin-proposal-optional-catch-binding',
+      '@babel/plugin-proposal-export-default-from',
+      '@babel/plugin-proposal-optional-chaining',
+      '@babel/plugin-syntax-dynamic-import'
     ]
   };
 };

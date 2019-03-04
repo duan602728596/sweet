@@ -1,18 +1,17 @@
-// @flow
 import Vue from 'vue';
 import Vuex from 'vuex';
 import modules from './modules';
 
 Vue.use(Vuex);
 
-const store: Vuex.Store = {};
+const store = {};
 
-export function storeFactory(initialState: Object = {}): Vuex.Store {
+export function storeFactory(initialState = {}) {
   /* store */
   Object.assign(store, new Vuex.Store({
     state: initialState,
     getters: {
-      getInitialStateData: (state: Object): Function => (key: string): number => state[key]
+      getInitialStateData: (state) => (key) => state[key]
     },
     modules
   }));
