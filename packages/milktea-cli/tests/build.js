@@ -1,28 +1,28 @@
-import * as child_process from 'child_process';
-import * as fs from 'fs';
-import * as path from 'path';
+import child_process from 'child_process';
+import fs from 'fs';
+import path from 'path';
 import { expect } from 'chai';
 
-function run(): Promise<void> {
-  const cli: string = path.join(__dirname, '../lib/cli');
-  const config: string = path.join(__dirname, './sweet.config.build.js');
+function run() {
+  const cli = path.join(__dirname, '../lib/cli');
+  const config = path.join(__dirname, './sweet.config.build.js');
 
-  return new Promise((resolve: Function, reject: Function): void => {
-    const child: object = child_process.spawn('node', [cli, 'build', '--config', config], {
+  return new Promise((resolve, reject) => {
+    const child = child_process.spawn('node', [cli, 'build', '--config', config], {
       cwd: __dirname
     });
 
-    child.on('close', (code: ArrayBuffer): void => {
+    child.on('close', (code) => {
       resolve();
     });
 
-    child.stdout.on('data', (): void => undefined);
-    child.stderr.on('data', (): void => undefined);
+    child.stdout.on('data', () => undefined);
+    child.stderr.on('data', () => undefined);
   });
 }
 
-describe('args: build', function(): void {
-  it('should index.build.js is existing', async function(): Promise<void> {
+describe('args: build', function() {
+  it('should index.build.js is existing', async function() {
     await run();
 
     expect(fs.existsSync(path.join(__dirname, 'build/index.build.js'))).to.be.true;

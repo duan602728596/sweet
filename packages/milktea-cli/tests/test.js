@@ -1,4 +1,3 @@
-/* eslint-disable */
 const register = require('@babel/register');
 const babelRegisterConfig = require('../../../utils/babelRegisterConfig');
 

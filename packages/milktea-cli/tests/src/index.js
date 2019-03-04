@@ -1,8 +1,7 @@
-/* eslint-disable */
 const a = 5;
 const b = 15;
 
-function add(c, d){
+function add(c, d) {
   return c + d;
 }
 
