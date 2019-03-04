@@ -10,13 +10,6 @@ module.exports = {
         modules: 'commonjs',
         useBuiltIns: false
       }
-    ],
-    [
-      '@babel/preset-typescript',
-      {
-        allExtensions: true,
-        isTSX: true
-      }
     ]
   ],
   plugins: [
