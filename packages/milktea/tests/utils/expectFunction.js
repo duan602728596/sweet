@@ -8,8 +8,8 @@ import VueLoaderPlugin from 'vue-loader/lib/plugin';
 import TerserPlugin from 'terser-webpack-plugin';
 
 /* module属性 */
-export function expectModule(config: object, length: number): Function {
-  return function(): void {
+export function expectModule(config, length) {
+  return function() {
     expect(config.module).to.be.an('object');
     expect(config.module.rules).to.be.an('array');
     expect(Object.values(config.module.rules)).to.have.lengthOf(length);
@@ -17,8 +17,8 @@ export function expectModule(config: object, length: number): Function {
 }
 
 /* 开发环境 plugins属性 */
-export function expectDevPlugins(config: object): Function {
-  return function(): void {
+export function expectDevPlugins(config) {
+  return function() {
     expect(config.plugins).to.be.an('array');
     expect(config.plugins).to.have.lengthOf(2);
     expect(config.plugins[0] instanceof webpack.IgnorePlugin).to.be.true;
@@ -27,8 +27,8 @@ export function expectDevPlugins(config: object): Function {
 }
 
 /* 服务器端渲染的开发环境 plugins属性 */
-export function expectDevServerPlugins(config: object): Function {
-  return function(): void {
+export function expectDevServerPlugins(config) {
+  return function() {
     expect(config.plugins).to.be.an('array');
     expect(config.plugins).to.have.lengthOf(1);
     expect(config.plugins[0] instanceof webpack.IgnorePlugin).to.be.true;
@@ -36,8 +36,8 @@ export function expectDevServerPlugins(config: object): Function {
 }
 
 /* 生产环境 plugins属性（含vue插件） */
-export function expectProPlugins(config: object): Function {
-  return function(): void {
+export function expectProPlugins(config) {
+  return function() {
     expect(config.plugins).to.be.an('array');
     expect(config.plugins).to.have.lengthOf(7);
     expect(config.plugins[0] instanceof webpack.IgnorePlugin).to.be.true;
@@ -51,8 +51,8 @@ export function expectProPlugins(config: object): Function {
 }
 
 /* 服务器端渲染的生产环境 plugins属性（含vue插件） */
-export function expectProServerPlugins(config: object): Function {
-  return function(): void {
+export function expectProServerPlugins(config) {
+  return function() {
     expect(config.plugins).to.be.an('array');
     expect(config.plugins).to.have.lengthOf(6);
     expect(config.plugins[0] instanceof webpack.IgnorePlugin).to.be.true;
@@ -65,15 +65,15 @@ export function expectProServerPlugins(config: object): Function {
 }
 
 /* 开发环境 optimization属性 */
-export function expectDevOptimization(config: object): Function {
-  return function(): void {
+export function expectDevOptimization(config) {
+  return function() {
     expect(config.optimization).to.be.eql({});
   };
 }
 
 /* 生产环境 optimization属性 */
-export function expectProOptimization(config: object, isServer: boolean): Function {
-  return function(): void {
+export function expectProOptimization(config, isServer) {
+  return function() {
     expect(config.optimization).to.be.an('object');
     expect(config.optimization.splitChunks).to.eql(isServer ? undefined : { chunks: 'all', automaticNameDelimiter: '.' });
     expect(config.optimization.minimizer[0] instanceof TerserPlugin).to.be.true;

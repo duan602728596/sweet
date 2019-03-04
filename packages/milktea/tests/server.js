@@ -1,22 +1,22 @@
-import * as process from 'process';
+import process from 'process';
 import { expect } from 'chai';
 import serverConfig from '../lib/server';
 import { expectModule, expectDevServerPlugins, expectProServerPlugins, expectDevOptimization, expectProOptimization } from './utils/expectFunction';
 
-const sweetOptions: object = {
+const sweetOptions = {
   basicPath: process.cwd()
 };
 
-describe('sever-render config', function(): void {
-  describe('react & development', function(): void {
-    const config: object = serverConfig({
+describe('sever-render config', function() {
+  describe('react & development', function() {
+    const config = serverConfig({
       serverRender: true,
       frame: 'react',
       mode: 'development',
       html: [{ template: 'index.pug' }]
     }, sweetOptions);
 
-    it('config.target and config.node Configuration is correct', function(): void {
+    it('config.target and config.node Configuration is correct', function() {
       expect(config.target).to.equal('node');
       expect(config.node).to.eql({ __filename: true, __dirname: true });
     });
@@ -28,15 +28,15 @@ describe('sever-render config', function(): void {
     it('optimization Configuration is correct', expectDevOptimization(config));
   });
 
-  describe('vue & production', function(): void {
-    const config: object = serverConfig({
+  describe('vue & production', function() {
+    const config = serverConfig({
       serverRender: true,
       frame: 'vue',
       mode: 'production',
       html: [{ template: 'index.pug' }]
     }, sweetOptions);
 
-    it('config.target and config.node Configuration is correct', function(): void {
+    it('config.target and config.node Configuration is correct', function() {
       expect(config.target).to.equal('node');
       expect(config.node).to.eql({ __filename: true, __dirname: true });
     });

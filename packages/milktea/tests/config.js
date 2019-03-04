@@ -1,15 +1,15 @@
-import * as process from 'process';
+import process from 'process';
 import { expect } from 'chai';
 import webpackConfig from '../lib/config';
 import { expectModule, expectDevPlugins, expectProPlugins, expectDevOptimization, expectProOptimization } from './utils/expectFunction';
 
-const sweetOptions: object = {
+const sweetOptions = {
   basicPath: process.cwd()
 };
 
-describe('config', function(): void {
-  describe('react & development', function(): void {
-    const config: object = webpackConfig({
+describe('config', function() {
+  describe('react & development', function() {
+    const config = webpackConfig({
       frame: 'react',
       mode: 'development',
       html: [{ template: 'index.pug' }]
@@ -22,8 +22,8 @@ describe('config', function(): void {
     it('optimization Configuration is correct', expectDevOptimization(config));
   });
 
-  describe('vue & production', function(): void {
-    const config: object = webpackConfig({
+  describe('vue & production', function() {
+    const config = webpackConfig({
       frame: 'vue',
       mode: 'production',
       html: [{ template: 'index.pug' }]
