@@ -1,4 +1,3 @@
-// @flow
 import * as React from 'react';
 import { Component } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
@@ -13,7 +12,7 @@ import Arrangement from './assembly/Arrangement';
 /* 热替换 */
 @hot(module)
 class App extends Component<{}> {
-  render(): React.Node {
+  render(): React.ReactNode {
     return (
       <Provider store={ storeFactory(window.__INITIAL_STATE__ || {}) }>
         <LocaleProvider locale={ zhCN }>

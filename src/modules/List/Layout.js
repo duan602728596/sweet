@@ -1,4 +1,3 @@
-// @flow
 import * as React from 'react';
 import { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
@@ -6,23 +5,12 @@ import Helmet from 'react-helmet';
 import loadReducer from '../../store/loadReducer';
 import reducer from './store/reducer';
 import Main from '../../assembly/Main/index';
-import Sider from '../../assembly/Sider/index';
+import Sider, { SiderOptions } from '../../assembly/Sider/index';
 import Content from '../../assembly/Content/index';
 import Index from './Index/index';
 
 /* 配置二、三级导航菜单 */
-const options: {
-  id: string;
-  name: string;
-  url?: string;
-  icon?: string | React.Node; // 传入一个字符串或节点
-  children?: {
-    id: string;
-    name: string;
-    url: string;
-    icon?: string | React.Node; // 传入一个字符串或节点
-  }[];
-}[] = [
+const options: Array<SiderOptions> = [
   {
     id: 's1',
     name: '导航菜单1',
@@ -53,7 +41,7 @@ const options: {
 
 @loadReducer(reducer)
 class ModuleLayout extends Component<{}> {
-  render(): Array<React.Node> {
+  render(): Array<React.ReactNode> {
     return [
       <Helmet key="helmet">
         <title>列表展示</title>

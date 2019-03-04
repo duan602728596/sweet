@@ -1,4 +1,3 @@
-// @flow
 import * as React from 'react';
 import { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
@@ -9,7 +8,7 @@ const ListBundle: Function = asyncModule((): Promise<Function> => import('../mod
 const FormBundle: Function = asyncModule((): Promise<Function> => import('../modules/Form/Layout'));
 
 class Routers extends Component<{}> {
-  render(): React.Node {
+  render(): React.ReactNode {
     return (
       <Switch>
         <Route path="/" component={ Index } exact={ true } />

@@ -29,7 +29,7 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
     ])
   };
 
-  constructor(): void {
+  constructor() {
     super(...arguments);
 
     this.state = {

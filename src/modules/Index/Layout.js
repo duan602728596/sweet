@@ -1,4 +1,3 @@
-// @flow
 import * as React from 'react';
 import { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
@@ -8,7 +7,7 @@ import Content from '../../assembly/Content/index';
 import Index from './Index/index';
 
 class ModuleLayout extends Component<{}> {
-  render(): Array<React.Node> {
+  render(): Array<React.ReactNode> {
     return [
       <Helmet key="helmet">
         <title>Webpack App</title>

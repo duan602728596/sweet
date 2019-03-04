@@ -1,14 +1,13 @@
-// @flow
 import * as React from 'react';
-import ReactDOM from 'react-dom';
+import { render } from 'react-dom';
 import App from './App';
 
 /* app */
-ReactDOM.render(
+render(
   <App />,
-  // $FlowFixMe
   document.getElementById('app')
 );
 
-// $FlowFixMe
-if (module.hot) module.hot.accept();
+if (module.hot) {
+  module.hot.accept();
+}

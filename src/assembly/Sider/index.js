@@ -14,6 +14,14 @@ import { Layout, Menu } from 'antd';
 import style from './style.sass';
 import ErrorBoundary from '../ErrorBoundary/index';
 
+export interface SiderOptions {
+  id: string;
+  name: string;
+  url?: string;
+  icon?: string | React.ReactNode; // 传入一个字符串或节点
+  children?: Array<SiderOptions>;
+}
+
 interface SiderProps {
   location: Location;
   options: Array<any>;
@@ -22,7 +30,7 @@ interface SiderProps {
 @withRouter
 class Sider extends Component<SiderProps> {
   static defaultProps: {
-    options: Requireable<Array<any>>;
+    options: Requireable<Array<SiderOptions>>;
   } = {
     options: []
   };
@@ -31,12 +39,12 @@ class Sider extends Component<SiderProps> {
   };
 
   // 根据pathname获取默认的selectKey
-  getSelectKey(arr: Array<any>): string | undefined {
+  getSelectKey(arr: Array<SiderOptions>): string | undefined {
     const reg: RegExp = new RegExp(`^${ this.props.location.pathname }.*$`, 'ig');
     let key: string | undefined = undefined;
 
     for (let i: number = 0, j: number = arr.length; i < j; i++) {
-      if ('children' in arr[i] && arr[i].children.length > 0) {
+      if (arr[i].children && arr[i].children.length > 0) {
         const childrenKey: string = this.getSelectKey(arr[i].children);
 
         if (childrenKey) {
@@ -55,7 +63,7 @@ class Sider extends Component<SiderProps> {
   }
 
   // 判断图标的显示
-  hasIcon(item: Object): React.ReactNode {
+  hasIcon(item: SiderOptions): React.ReactNode {
     if ('icon' in item) {
       return typeof item.icon === 'string' ? <i className={ classNames(style.icon, item.icon) } /> : item.icon;
     } else {
@@ -64,8 +72,8 @@ class Sider extends Component<SiderProps> {
   }
 
   // 渲染菜单
-  menu(arr: Array<any>): React.ReactNodeArray {
-    return arr.map((item: Object, index: number): React.Node => {
+  menu(arr: Array<SiderOptions>): React.ReactNodeArray {
+    return arr.map((item: SiderOptions, index: number): React.ReactNode => {
       if ('children' in item && item.children.length > 0) {
         // 当有children时，返回Menu.SubMenu，里面包裹Menu.Item
         return (
@@ -93,7 +101,7 @@ class Sider extends Component<SiderProps> {
   }
 
   render(): React.ReactNode {
-    const options: Array<any> = this.props.options;
+    const options: Array<SiderOptions> = this.props.options;
     const sk: string | undefined = this.getSelectKey(options);
 
     return (

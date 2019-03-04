@@ -1,10 +1,9 @@
-// @flow
 import * as React from 'react';
 import { Component } from 'react';
 import { Table } from 'antd';
 
-function dataSource(): Object[] {
-  const arr: Object[] = [];
+function dataSource(): object[] {
+  const arr: object[] = [];
 
   for (let i: number = 0, j: number = 32; i < j; i++) {
     arr.push({
@@ -19,7 +18,7 @@ function dataSource(): Object[] {
 }
 
 class Index extends Component<{}> {
-  columns(): Object[] {
+  columns(): object[] {
     return [
       {
         title: '姓名',
@@ -42,7 +41,7 @@ class Index extends Component<{}> {
     ];
   }
 
-  render(): Array<React.Node> {
+  render(): Array<React.ReactNode> {
     return [
       <Table key="0"
         dataSource={ dataSource() }

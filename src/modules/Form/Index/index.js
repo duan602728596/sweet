@@ -1,11 +1,15 @@
-// @flow
 import * as React from 'react';
 import { Component } from 'react';
 import { Form, Input, Radio, Button } from 'antd';
+import { WrappedFormUtils } from 'antd/lib/form/Form';
 import style from './style.sass';
 
+interface FormProps {
+  form: WrappedFormUtils;
+}
+
 @Form.create()
-class Forms extends Component<{ form: Object }> {
+class Forms extends Component<FormProps> {
   handleSubmit(event: Event): void {
     event.preventDefault();
 
@@ -14,7 +18,7 @@ class Forms extends Component<{ form: Object }> {
       getFieldsValue: Function;
     } = this.props.form;
 
-    validateFields((err: ?string, value: any): void => {
+    validateFields((err: string, value: any): void => {
       if (!err) {
         console.log(getFieldsValue());
         alert('提交成功！');
@@ -22,7 +26,7 @@ class Forms extends Component<{ form: Object }> {
     });
   }
 
-  render(): React.Node {
+  render(): React.ReactNode {
     const { getFieldDecorator }: { getFieldDecorator: Function } = this.props.form; // 包装表单控件
 
     return (
