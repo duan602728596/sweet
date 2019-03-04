@@ -10,13 +10,6 @@ const presetsList: Function = (
   ecmascript: boolean
 ): Array<any> => {
   const list: Array<any> = [
-    [
-      '@babel/preset-typescript',
-      {
-        allExtensions: true,
-        isTSX: true
-      }
-    ],
     ...presets
   ];
 
