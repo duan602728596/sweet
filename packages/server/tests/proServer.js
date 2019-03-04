@@ -1,44 +1,43 @@
 import { expect } from 'chai';
-import webpack from 'webpack';
 import axios from 'axios';
 import proServer from '../lib/proServer';
 import createCompiler from './compiler';
 
 // webpack配置
-const compiler: webpack.Compiler = createCompiler();
+const compiler = createCompiler();
 
 // 编译文件
-function runBuild(): Promise<void> {
-  compiler.run((): void => undefined);
+function runBuild() {
+  compiler.run(() => undefined);
 
-  return new Promise((resolve: Function, reject: Function): void => {
-    setTimeout((): void => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
       resolve();
     }, 15000);
   });
 }
 
 // 运行生产环境服务
-function runServer(): Promise<void> {
+function runServer() {
   proServer({
     serverRoot: 'tests/build'
   });
 
-  return new Promise((resolve: Function, reject: Function): void => {
-    setTimeout((): void => {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
       resolve();
     }, 3000);
   });
 }
 
-describe('production server', function(): void {
-  it('should response status code is 200', async function(): Promise<void> {
+describe('production server', function() {
+  it('should response status code is 200', async function() {
     await runBuild();
     await runServer();
 
     // 请求文件
-    const resHtml: object = await axios.get('http://127.0.0.1:5052');
-    const resJs: object = await axios.get('http://127.0.0.1:5052/index.js');
+    const resHtml = await axios.get('http://127.0.0.1:5052');
+    const resJs = await axios.get('http://127.0.0.1:5052/index.js');
 
     expect(resHtml.status).to.be.equal(200);
     expect(resJs.status).to.be.equal(200);

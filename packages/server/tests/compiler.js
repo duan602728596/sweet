@@ -1,10 +1,10 @@
-import * as path from 'path';
+import path from 'path';
 import webpack from 'webpack';
 import { config as webpackConfig } from '@sweet/milktea';
 
 // 创建webpack配置
-function createCompiler(mode: string = 'development'): webpack.Compiler {
-  const compiler: webpack.Compiler = webpack(webpackConfig({
+function createCompiler(mode = 'development') {
+  const compiler = webpack(webpackConfig({
     frame: 'test',
     entry: {
       index: [path.join(__dirname, 'src/index.js')]

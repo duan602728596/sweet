@@ -1,3 +1,1 @@
-// @flow
-
-const text: string = 'Hello, world.';
+const text = 'Hello, world.';
