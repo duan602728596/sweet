@@ -12,7 +12,7 @@ export function isArray<Data>(data: Data): boolean {
 /* @babel/register配置 */
 interface RegisterConfig {
   presets: Array<any>;
-  plugins: Array<string>;
+  plugins: Array<any>;
   cache: boolean;
   configFile: boolean;
   babelrc: boolean;
@@ -30,14 +30,20 @@ export const registerConfig: RegisterConfig = {
         modules: 'commonjs',
         useBuiltIns: 'usage'
       }
-    ],
-    '@babel/preset-flow'
+    ]
   ],
   plugins: [
-    '@babel/plugin-proposal-export-default-from',
+    [
+      '@babel/plugin-proposal-decorators',
+      {
+        legacy: true
+      }
+    ],
+    '@babel/plugin-proposal-class-properties',
     '@babel/plugin-proposal-do-expressions',
-    '@babel/plugin-proposal-optional-chaining',
-    '@babel/plugin-proposal-class-properties'
+    '@babel/plugin-proposal-optional-catch-binding',
+    '@babel/plugin-proposal-export-default-from',
+    '@babel/plugin-proposal-optional-chaining'
   ],
   configFile: false,
   cache: false,
