@@ -1,4 +1,3 @@
-import Vue from 'vue';
 import Main from '../../assembly/Main/index';
 import Sider from '../../assembly/Sider/index';
 import Content from '../../assembly/Content/index';
