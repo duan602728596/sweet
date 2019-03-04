@@ -1,16 +1,15 @@
-import * as React from 'react';
-import { Component } from 'react';
+import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import Helmet from 'react-helmet';
 import loadReducer from '../../store/loadReducer';
 import reducer from './store/reducer';
 import Main from '../../assembly/Main/index';
-import Sider, { SiderOptions } from '../../assembly/Sider/index';
+import Sider from '../../assembly/Sider/index';
 import Content from '../../assembly/Content/index';
 import Index from './Index/index';
 
 /* 配置二、三级导航菜单 */
-const options: Array<SiderOptions> = [
+const options = [
   {
     id: 's1',
     name: '导航菜单1',
@@ -40,8 +39,8 @@ const options: Array<SiderOptions> = [
 ];
 
 @loadReducer(reducer)
-class ModuleLayout extends Component<{}> {
-  render(): Array<React.ReactNode> {
+class ModuleLayout extends Component {
+  render() {
     return [
       <Helmet key="helmet">
         <title>列表展示</title>

@@ -1,11 +1,10 @@
-import * as React from 'react';
-import { Component } from 'react';
+import React, { Component } from 'react';
 import { Row, Col } from 'antd';
 import style from './style.sass';
 import ListDisplay from './ListDisplay';
 
-class Index extends Component<{}> {
-  render(): React.ReactNode {
+class Index extends Component {
+  render() {
     return (
       <Row type="flex" gutter={ 10 }>
         {/* 左侧显示列表 */}

@@ -1,13 +1,12 @@
 /**
  * 登录人信息
  */
-import * as React from 'react';
-import { Component } from 'react';
+import React, { Component } from 'react';
 import { Icon } from 'antd';
 import style from './style.sass';
 
-class HumanInformation extends Component<{}> {
-  render(): React.ReactNode {
+class HumanInformation extends Component {
+  render() {
     return (
       <div className={ style.humanInformation }>
         <Icon className={ style.human } type="user" theme="outlined" />

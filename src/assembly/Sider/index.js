@@ -8,52 +8,36 @@ import { Component } from 'react';
 import * as PropTypes from 'prop-types';
 import { Requireable } from 'prop-types';
 import { Link, withRouter } from 'react-router-dom';
-import { Location } from 'history';
 import classNames from 'classnames';
 import { Layout, Menu } from 'antd';
 import style from './style.sass';
 import ErrorBoundary from '../ErrorBoundary/index';
 
-export interface SiderOptions {
-  id: string;
-  name: string;
-  url?: string;
-  icon?: string | React.ReactNode; // 传入一个字符串或节点
-  children?: Array<SiderOptions>;
-}
-
-interface SiderProps {
-  location: Location;
-  options: Array<any>;
-}
-
 @withRouter
-class Sider extends Component<SiderProps> {
-  static defaultProps: {
-    options: Requireable<Array<SiderOptions>>;
-  } = {
+class Sider extends Component {
+  static defaultProps = {
     options: []
   };
-  static propTypes: Object = {
+  static propTypes = {
     options: PropTypes.array
   };
 
   // 根据pathname获取默认的selectKey
-  getSelectKey(arr: Array<SiderOptions>): string | undefined {
-    const reg: RegExp = new RegExp(`^${ this.props.location.pathname }.*$`, 'ig');
-    let key: string | undefined = undefined;
+  getSelectKey(arr) {
+    const reg = new RegExp(`^${ this.props.location.pathname }.*$`, 'ig');
+    let key = undefined;
 
-    for (let i: number = 0, j: number = arr.length; i < j; i++) {
+    for (let i = 0, j = arr.length; i < j; i++) {
       if (arr[i].children && arr[i].children.length > 0) {
-        const childrenKey: string = this.getSelectKey(arr[i].children);
+        const childrenKey = this.getSelectKey(arr[i].children);
 
         if (childrenKey) {
-          key = childrenKey;
+          key = [childrenKey];
           break;
         }
       } else {
         if (reg.test(arr[i].url)) {
-          key = arr[i].id;
+          key = [arr[i].id];
           break;
         }
       }
@@ -63,7 +47,7 @@ class Sider extends Component<SiderProps> {
   }
 
   // 判断图标的显示
-  hasIcon(item: SiderOptions): React.ReactNode {
+  hasIcon(item) {
     if ('icon' in item) {
       return typeof item.icon === 'string' ? <i className={ classNames(style.icon, item.icon) } /> : item.icon;
     } else {
@@ -72,9 +56,9 @@ class Sider extends Component<SiderProps> {
   }
 
   // 渲染菜单
-  menu(arr: Array<SiderOptions>): React.ReactNodeArray {
-    return arr.map((item: SiderOptions, index: number): React.ReactNode => {
-      if ('children' in item && item.children.length > 0) {
+  menu(arr) {
+    return arr.map((item, index) => {
+      if (item.children && item.children.length > 0) {
         // 当有children时，返回Menu.SubMenu，里面包裹Menu.Item
         return (
           <Menu.SubMenu key={ item.id } title={
@@ -100,14 +84,14 @@ class Sider extends Component<SiderProps> {
     });
   }
 
-  render(): React.ReactNode {
-    const options: Array<SiderOptions> = this.props.options;
-    const sk: string | undefined = this.getSelectKey(options);
+  render() {
+    const options = this.props.options;
+    const sk = this.getSelectKey(options);
 
     return (
       <ErrorBoundary>
         <Layout.Sider className={ style.sider } width={ 180 }>
-          <Menu theme="light" mode="inline" defaultSelectedKeys={ [sk] } style={{ borderRight: 'none' }}>
+          <Menu theme="light" mode="inline" defaultSelectedKeys={ sk } style={{ borderRight: 'none' }}>
             { this.menu(options) }
           </Menu>
         </Layout.Sider>

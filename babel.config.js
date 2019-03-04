@@ -4,16 +4,7 @@ module.exports = function(api) {
   api.cache.never();
 
   return {
-    presets: [
-      '@babel/preset-react',
-      [
-        '@babel/preset-typescript',
-        {
-          allExtensions: true,
-          isTSX: true
-        }
-      ]
-    ],
+    presets: ['@babel/preset-react'],
     plugins: [
       [
         '@babel/plugin-proposal-decorators',

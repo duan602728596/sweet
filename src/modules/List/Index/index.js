@@ -1,11 +1,10 @@
-import * as React from 'react';
-import { Component } from 'react';
+import React, { Component } from 'react';
 import { Table } from 'antd';
 
-function dataSource(): object[] {
-  const arr: object[] = [];
+function dataSource() {
+  const arr = [];
 
-  for (let i: number = 0, j: number = 32; i < j; i++) {
+  for (let i = 0, j = 32; i < j; i++) {
     arr.push({
       id: `PRO${ i }`,
       name: `胡彦斌${ i }`,
@@ -17,8 +16,8 @@ function dataSource(): object[] {
   return arr;
 }
 
-class Index extends Component<{}> {
-  columns(): object[] {
+class Index extends Component {
+  columns() {
     return [
       {
         title: '姓名',
@@ -41,11 +40,11 @@ class Index extends Component<{}> {
     ];
   }
 
-  render(): Array<React.ReactNode> {
+  render() {
     return [
       <Table key="0"
         dataSource={ dataSource() }
-        rowKey={ (item: Object): string => item.id }
+        rowKey={ (item) => item.id }
         columns={ this.columns() }
         pagination={{
           defaultPageSize: 20,

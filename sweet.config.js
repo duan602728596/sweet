@@ -1,7 +1,7 @@
-import * as path from 'path';
-import * as process from 'process';
+import path from 'path';
+import process from 'process';
 
-const isDevelopment: boolean = process.env.NODE_ENV === 'development';
+const isDevelopment = process.env.NODE_ENV === 'development';
 
 export default {
   frame: 'react',

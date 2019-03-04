@@ -1,14 +1,11 @@
 /**
  * 首页数据列表展示
  */
-import * as React from 'react';
-import { Component } from 'react';
-import * as PropTypes from 'prop-types';
-import { Requireable } from 'prop-types';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { createSelector, createStructuredSelector } from 'reselect';
-import * as Immutable from 'immutable';
 import { Link } from 'react-router-dom';
 import { Card, Spin } from 'antd';
 import QueueAnim from 'rc-queue-anim';
@@ -16,25 +13,25 @@ import style from './style.sass';
 import { listDisplayChange } from '../store/reducer';
 
 /* state */
-const state: Function = createStructuredSelector({
+const state = createStructuredSelector({
   listDisplay: createSelector(
-    ($$state: Immutable.Map<string, object>): Immutable.Map<string, object> => $$state.get('index'),
-    ($$data: Immutable.Map<string, object>): Array<object> => $$data.get('listDisplay').toJS()
+    ($$state) => $$state.get('index'),
+    ($$data) => $$data.get('listDisplay').toJS()
   )
 });
 
 /* dispatch */
-const dispatch: Function = (dispatch: Function): object => ({
+const dispatch = (dispatch) => ({
   action: bindActionCreators({
     listDisplayChange
   }, dispatch)
 });
 
-function simulationData(): Promise<Array<string>> {
-  return new Promise((resolve: Function, reject: Function): void => {
-    const data: string[] = [];
+function simulationData() {
+  return new Promise((resolve, reject) => {
+    const data = [];
 
-    for (let i: number = 0, j: number = 18; i < j; i++) {
+    for (let i = 0, j = 18; i < j; i++) {
       data.push(`这是一条测试数据 ${ i }`);
     }
 
@@ -42,19 +39,8 @@ function simulationData(): Promise<Array<string>> {
   });
 }
 
-interface ListDisplayProps {
-  listDisplay: Array<Object>;
-  action: Object;
-}
-
-interface ListDisplayState {
-  loading: boolean;
-}
-
-class ListDisplay extends Component<ListDisplayProps, ListDisplayState> {
-  static propTypes: {
-    listDisplay: Requireable<Array<object>>
-  } = {
+class ListDisplay extends Component {
+  static propTypes = {
     listDisplay: PropTypes.array
   };
 
@@ -67,8 +53,8 @@ class ListDisplay extends Component<ListDisplayProps, ListDisplayState> {
   }
 
   // 显示list
-  listDisplay(): Array<React.ReactNode> {
-    return this.props.listDisplay.map((item: string, index: number): React.ReactNode => {
+  listDisplay() {
+    return this.props.listDisplay.map((item, index) => {
       return (
         <li key={ index }>
           <Link to="/" title={ item }>{ item }</Link>
@@ -77,8 +63,8 @@ class ListDisplay extends Component<ListDisplayProps, ListDisplayState> {
     });
   }
 
-  async componentDidMount(): Promise<void> {
-    const data: Array<object> = await simulationData();
+  async componentDidMount() {
+    const data = await simulationData();
 
     this.props.action.listDisplayChange({
       listDisplay: data
@@ -89,7 +75,7 @@ class ListDisplay extends Component<ListDisplayProps, ListDisplayState> {
     });
   }
 
-  render(): React.ReactNode {
+  render() {
     return (
       <Card title="数据列表展示" extra={
         <Link className={ style.more } to="/" title="更多">更多</Link>

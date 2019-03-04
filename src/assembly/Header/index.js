@@ -3,8 +3,7 @@
  * 顶部header布局
  * 显示logo、导航、登录人信息等
  */
-import * as React from 'react';
-import { Component } from 'react';
+import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
 import classNames from 'classnames';
 import { Icon } from 'antd';
@@ -12,14 +11,7 @@ import style from './style.sass';
 import ErrorBoundary from '../ErrorBoundary/index';
 import HumanInformation from './HumanInformation';
 
-type navOptionsItem = {
-  id: string;
-  name: string;
-  href: string;
-  icon: string;
-};
-
-export const navOptions: Array<navOptionsItem> = [
+export const navOptions = [
   {
     id: 'home',
     name: '主页',
@@ -40,14 +32,14 @@ export const navOptions: Array<navOptionsItem> = [
   }
 ];
 
-const len: boolean = navOptions.length > 0;
+const len = navOptions.length > 0;
 
-class Header extends Component<{}> {
+class Header extends Component {
   // 判断首页home
-  oddEvent(item: navOptionsItem, match: Object, location: Object): boolean {
-    const { pathname }: { pathname: string } = location;
-    const { href }: { href: string } = item;
-    const reg: RegExp = new RegExp(`^${ href }.*$`, 'ig');
+  oddEvent(item, match, location) {
+    const { pathname } = location;
+    const { href } = item;
+    const reg = new RegExp(`^${ href }.*$`, 'ig');
 
     if (len && pathname === '/' && href === navOptions[0].href) {
       return true;
@@ -56,8 +48,8 @@ class Header extends Component<{}> {
     return match && reg.test(pathname);
   }
 
-  navList(options: navOptionsItem[]): React.ReactNodeArray {
-    return options.map((item: navOptionsItem, index: number): React.ReactNode => {
+  navList(options) {
+    return options.map((item, index) => {
       return (
         <li key={ item.id }>
           <NavLink to={ item.href } activeClassName={ style.navActive } isActive={ this.oddEvent.bind(this, item) }>
@@ -69,7 +61,7 @@ class Header extends Component<{}> {
     });
   }
 
-  render(): React.ReactNode {
+  render() {
     return (
       <ErrorBoundary>
         <img className={ style.logo } src={ require('./logo.png') } alt="管理平台 demo" title="管理平台 demo" />

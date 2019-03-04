@@ -4,21 +4,14 @@ import { Form, Input, Radio, Button } from 'antd';
 import { WrappedFormUtils } from 'antd/lib/form/Form';
 import style from './style.sass';
 
-interface FormProps {
-  form: WrappedFormUtils;
-}
-
 @Form.create()
-class Forms extends Component<FormProps> {
-  handleSubmit(event: Event): void {
+class Forms extends Component {
+  handleSubmit(event) {
     event.preventDefault();
 
-    const { validateFields, getFieldsValue }: {
-      validateFields: Function;
-      getFieldsValue: Function;
-    } = this.props.form;
+    const { validateFields, getFieldsValue } = this.props.form;
 
-    validateFields((err: string, value: any): void => {
+    validateFields((err, value) => {
       if (!err) {
         console.log(getFieldsValue());
         alert('提交成功！');
@@ -26,8 +19,8 @@ class Forms extends Component<FormProps> {
     });
   }
 
-  render(): React.ReactNode {
-    const { getFieldDecorator }: { getFieldDecorator: Function } = this.props.form; // 包装表单控件
+  render() {
+    const { getFieldDecorator } = this.props.form; // 包装表单控件
 
     return (
       <Form onSubmit={ this.handleSubmit.bind(this) } layout="horizontal">

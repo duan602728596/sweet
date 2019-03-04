@@ -1,14 +1,13 @@
-import * as React from 'react';
-import { Component } from 'react';
+import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import asyncModule from './asyncModule';
 import Index from '../modules/Index/Layout';
 
-const ListBundle: Function = asyncModule((): Promise<Function> => import('../modules/List/Layout'));
-const FormBundle: Function = asyncModule((): Promise<Function> => import('../modules/Form/Layout'));
+const ListBundle = asyncModule(() => import('../modules/List/Layout'));
+const FormBundle = asyncModule(() => import('../modules/Form/Layout'));
 
-class Routers extends Component<{}> {
-  render(): React.ReactNode {
+class Routers extends Component {
+  render() {
     return (
       <Switch>
         <Route path="/" component={ Index } exact={ true } />

@@ -1,27 +1,19 @@
 /**
  * 异步注入reducer的修饰器
  */
-import * as React from 'react';
-import { Component } from 'react';
-import * as PropTypes from 'prop-types';
-import { Requireable } from 'prop-types';
-
-interface LoadReducerProps {
-  injectReducers?: Function;
-}
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 /**
  * @param { object } reducer
  */
-function loadReducer(reducer: object): Function {
+function loadReducer(reducer) {
   /**
    * @param { Function } Module: 需要修饰的模块
    */
-  return function(Module: Function): Function {
-    return class extends Component<LoadReducerProps> {
-      static propTypes: {
-        injectReducers: Requireable<(...args: any[]) => any>
-      } = {
+  return function(Module) {
+    return class extends Component {
+      static propTypes = {
         injectReducers: PropTypes.func
       };
 
@@ -29,14 +21,14 @@ function loadReducer(reducer: object): Function {
         super(...arguments);
 
         // 异步注入reducer
-        const injectReducers: Function | null = this?.props?.injectReducers || null;
+        const injectReducers = this?.props?.injectReducers || null;
 
         if (injectReducers) {
           injectReducers(reducer);
         }
       }
 
-      render(): React.ReactNode {
+      render() {
         return <Module />;
       }
     };

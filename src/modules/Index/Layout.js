@@ -1,13 +1,12 @@
-import * as React from 'react';
-import { Component } from 'react';
+import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import Helmet from 'react-helmet';
 import Main from '../../assembly/Main/index';
 import Content from '../../assembly/Content/index';
 import Index from './Index/index';
 
-class ModuleLayout extends Component<{}> {
-  render(): Array<React.ReactNode> {
+class ModuleLayout extends Component {
+  render() {
     return [
       <Helmet key="helmet">
         <title>Webpack App</title>

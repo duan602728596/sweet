@@ -2,27 +2,13 @@
  * 错误捕捉模块
  * 当模块报错时，显示错误
  */
-import * as React from 'react';
-import { Component } from 'react';
-import * as PropTypes from 'prop-types';
-import { Requireable, ReactNodeLike } from 'prop-types';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import style from './style.sass';
 import Content from '../Content/index';
 
-interface ErrorBoundaryProps {
-  children: React.ReactNode;
-}
-
-interface ErrorBoundaryState {
-  hasError: boolean;
-  error: any;
-  info: any;
-}
-
-class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
-  static propTypes: {
-    children: Requireable<Requireable<ReactNodeLike> | Requireable<Array<ReactNodeLike>>[]>;
-  } = {
+class ErrorBoundary extends Component {
+  static propTypes = {
     children: PropTypes.oneOfType([
       PropTypes.node,
       PropTypes.array
@@ -39,7 +25,7 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
     };
   }
 
-  componentDidCatch(error: any, info: any): void {
+  componentDidCatch(error, info) {
     this.setState({
       hasError: true,
       error,
@@ -47,7 +33,7 @@ class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
     });
   }
 
-  render(): React.ReactNode {
+  render() {
     if (this.state.hasError) {
       return (
         <Content>

@@ -1,5 +1,4 @@
-import * as React from 'react';
-import { Component } from 'react';
+import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import Helmet from 'react-helmet';
 import Main from '../../assembly/Main/index';
@@ -8,7 +7,7 @@ import Content from '../../assembly/Content/index';
 import Index from './Index/index';
 
 /* 配置二、三级导航菜单 */
-const options: Array<SiderOptions> = [
+const options = [
   {
     id: 's1',
     name: '导航菜单1',
@@ -16,8 +15,8 @@ const options: Array<SiderOptions> = [
   }
 ];
 
-class ModuleLayout extends Component<{}> {
-  render(): Array<React.ReactNode> {
+class ModuleLayout extends Component {
+  render() {
     return [
       <Helmet key="helmet">
         <title>表单展示</title>
