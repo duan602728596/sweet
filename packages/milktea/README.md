@@ -16,9 +16,9 @@ import {
 } from '@sweet/milktea';
 
 // mode`{ string }` : 开发模式`development`还是生产模式`production`
-const mode: string = 'development';
+const mode = 'development';
 
-const compiler: Object = webpack(webpackConfig({
+const compiler = webpack(webpackConfig({
   // 配置项
 }, mode));
 
@@ -37,7 +37,7 @@ export default {
 };
 ```
 
-配置文件支持`es6`、`es5`和`flowjs`。
+配置文件支持`es6`、`es5`。
 
 ### 配置项
 
@@ -45,21 +45,21 @@ export default {
 * dll `{ Array<string> }` : 配置需要编译的dll模块
 * entry `{ any }` : 文件入口（参考webpack）
 * output `{ any }` : 文件出口（参考webpack）
-* externals `{ ?Object }` : 外部扩展（参考webpack）
-* resolve `{ ?Object }` : 解析（参考webpack）
+* externals `{ object }` : 外部扩展（参考webpack）
+* resolve `{ object }` : 解析（参考webpack）
 * loaders: 重写loaders的默认规则
-  * js `{ Object }` : 重写默认的js规则
-  * sass `{ Object }` : 重写默认的sass规则
-  * css `{ Object }` : 重写默认的css规则
-  * favicon `{ Object }` : 重写网站图标的规则
-  * fontFile `{ Object }` : 重写字体文件的规则
-  * html `{ Object }` : 重写html的规则，默认为pug
-  * image `{ Object }` : 重写图片文件的规则
-  * svg `{ Object }` : 重写svg的规则
-  * vue `{ Object }` : 重写vue的规则
+  * js `{ object }` : 重写默认的js规则
+  * sass `{ object }` : 重写默认的sass规则
+  * css `{ object }` : 重写默认的css规则
+  * favicon `{ object }` : 重写网站图标的规则
+  * fontFile `{ object }` : 重写字体文件的规则
+  * html `{ object }` : 重写html的规则，默认为pug
+  * image `{ object }` : 重写图片文件的规则
+  * svg `{ object }` : 重写svg的规则
+  * vue `{ object }` : 重写vue的规则
 * rules `{ Array }` : 自定义规则
 * plugins `{ Array }` : 自定义插件
-* js `{ Object }` : js配置
+* js `{ object }` : js配置
   * ecmascript `{ boolean }` : 是否编译到ecmascript的最新语法（即不使用@babel/preset-env，通常适用于node、nwjs和electron）
   * presets `{ Array }` : 自定义presets
   * plugins `{ Array }` : 自定义plugins
@@ -67,18 +67,18 @@ export default {
   * resetPlugins `{ Array }` : 重写plugins
   * exclude `{ RegExp }` : exclude规则
   * include `{ RegExp }` : include规则
-* sass `{ Object }` : sass配置
+* sass `{ object }` : sass配置
   * publicPath `{ string }`
   * modules `{ boolean }` : 开启css-in-modules
   * exclude `{ RegExp }` : exclude规则
   * include `{ RegExp }` : include规则
-* css `{ Object }` : css配置（默认使用less）
+* css `{ object }` : css配置（默认使用less）
   * publicPath `{ string }`
   * modules `{ boolean }` : 开启css-in-modules
   * exclude `{ RegExp }` : exclude规则
   * include `{ RegExp }` : include规则
-  * modifyVars `{ Object }` : 注入less变量
-* html `{ Array<Object> }` : html配置（默认使用pug）
+  * modifyVars `{ object }` : 注入less变量
+* html `{ Array<object> }` : html配置（默认使用pug）
   * template `{ string }` : html模板文件地址
   * excludeChunks `{ Array<string> }` : 不包括的入口
 * frame `{ ?string }` : 值为`react`或`vue`，是否为react或vue模式，并自动注入loaders和plugins
@@ -93,7 +93,7 @@ export default {
 
 创建一个`service/routers.js`文件，代码如下
 ```javascript
-export default function(router: Object, sweetOptions: Object){
+export default function(router, sweetOptions){
   // 在这里面创建你的函数
   router.get('/path', /* ...your_functions */);
 };
@@ -105,7 +105,7 @@ export default function(router: Object, sweetOptions: Object){
 在文件内，需要创建如下代码:
 
 ```javascript
-export default async function(ctx: Object, sweetOptions: Object){
+export default async function(ctx, sweetOptions){
   return {
     initialState, // 返回初始化的state
     ...           // 你要返回的其他数据
