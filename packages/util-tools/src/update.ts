@@ -71,7 +71,7 @@ function formatVersion(oldVersion: string, newVersion: string): string {
 
 /**
  * 获取版本号
- * @param { Array } packageArray
+ * @param { Array<PackageArrayItem> } packageArray
  * @param { number } registry
  */
 interface PackageArrayItem {
@@ -113,7 +113,7 @@ async function getVersionFromNpm(packageArray: Array<PackageArrayItem>, registry
 
 /**
  * 输出console.log文本
- * @param { Array } packageArray
+ * @param { Array<PackageArrayItem> } packageArray
  */
 function consoleLogText(packageArray: Array<PackageArrayItem>): string {
   let consoleText: string = '';

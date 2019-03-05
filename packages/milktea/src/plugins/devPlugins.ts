@@ -6,7 +6,7 @@ import { SweetConfig, SweetOptions } from '../utils/types';
 
 export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions): Array<any> {
   /**
-   * dll { Array }: dll配置
+   * dll { Array<string> }: dll配置
    * serverRender { boolean }: 开启服务器端渲染
    */
   const dll: Array<string> | undefined = sweetConfig.dll;

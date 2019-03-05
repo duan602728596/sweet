@@ -95,10 +95,10 @@ export default function(options: JsOption = {}, sweetOptions: SweetOptions): Loa
   /**
    * isDevelopment { boolean }: 是否为开发环境
    * ecmascript { boolean }: 是否编译到ecmascript的最新语法
-   * presets { Array }: 插件列表
-   * plugins { Array }: 插件列表
-   * resetPresets { Array }: 插件覆盖列表
-   * resetPlugins { Array }: 插件覆盖列表
+   * presets { Array<any> }: 插件列表
+   * plugins { Array<any> }: 插件列表
+   * resetPresets { Array<any> }: 插件覆盖列表
+   * resetPlugins { Array<any> }: 插件覆盖列表
    * frame { string } 当前的模式
    */
   const { isDevelopment, ecmascript, presets, plugins, resetPresets, resetPlugins, frame }: JsOption = options;

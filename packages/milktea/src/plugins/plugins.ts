@@ -10,7 +10,7 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions): A
   /**
    * mode { string }: 开发模式还是生产模式
    * html { object }: html配置
-   * plugins { Array }: 自定义扩展插件
+   * plugins { Array<any> }: 自定义扩展插件
    * frame { string }: 是否为react或vue模式
    * serverRender { boolean }: 开启服务器端渲染
    */

@@ -13,8 +13,8 @@ import { SweetConfig, SweetOptions, Loaders } from '../utils/types';
 
 export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions): Array<Loaders> {
   /**
-   * rules { Array }: 自定义规则
-   * loaders { Object }: 覆盖默认规则
+   * rules { Array<object> }: 自定义规则
+   * loaders { object }: 覆盖默认规则
    * frame { string }: 是否为react或vue模式
    */
   const rules: Array<any> | undefined = sweetConfig.rules;

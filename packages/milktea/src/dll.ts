@@ -9,7 +9,7 @@ import { SweetConfig, SweetOptions, WebpackConfig } from './utils/types';
 export default function(sweetConfig: SweetConfig | null, sweetOptions: SweetOptions): WebpackConfig {
   /**
    * mode { string }: 开发模式还是生产模式
-   * dll { Array }: dll配置
+   * dll { Array<string> }: dll配置
    */
   const sweetConfigCopy: SweetConfig = isObject(sweetConfig) ? { ...sweetConfig } : {};
   const { mode, dll }: SweetConfig = sweetConfigCopy;
