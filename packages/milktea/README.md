@@ -57,14 +57,14 @@ export default {
   * image `{ object }` : 重写图片文件的规则
   * svg `{ object }` : 重写svg的规则
   * vue `{ object }` : 重写vue的规则
-* rules `{ Array }` : 自定义规则
-* plugins `{ Array }` : 自定义插件
+* rules `{ Array<object> }` : 自定义规则
+* plugins `{ Array<any> }` : 自定义插件
 * js `{ object }` : js配置
   * ecmascript `{ boolean }` : 是否编译到ecmascript的最新语法（即不使用@babel/preset-env，通常适用于node、nwjs和electron）
-  * presets `{ Array }` : 自定义presets
-  * plugins `{ Array }` : 自定义plugins
-  * resetPresets `{ Array }` : 重写presets
-  * resetPlugins `{ Array }` : 重写plugins
+  * presets `{ Array<any> }` : 自定义presets
+  * plugins `{ Array<any> }` : 自定义plugins
+  * resetPresets `{ Array<any> }` : 重写presets
+  * resetPlugins `{ Array<any> }` : 重写plugins
   * exclude `{ RegExp }` : exclude规则
   * include `{ RegExp }` : include规则
 * sass `{ object }` : sass配置
