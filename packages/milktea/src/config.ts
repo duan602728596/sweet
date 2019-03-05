@@ -12,7 +12,7 @@ export default function(sweetConfig: SweetConfig | null, sweetOptions: SweetOpti
    * entry { any }: 文件入口
    * output { any }: 文件出口
    * externals { any }: 外部扩展
-   * resolve { ?Object } 解析
+   * resolve { object } 解析
    */
   const sweetConfigCopy: SweetConfig = isObject(sweetConfig) ? { ...sweetConfig } : {};
   const { mode, entry, output, externals, resolve }: SweetConfig = sweetConfigCopy;

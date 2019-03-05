@@ -16,7 +16,7 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions): L
   /**
    * mode { string } 开发模式还是生产模式
    * js { Object } loader里面js的配置
-   * frame { ?string } 是否为react或vue模式
+   * frame { string } 是否为react或vue模式
    */
   const { mode, js }: SweetConfig = sweetConfig;
   const frame: string | undefined = sweetConfig.frame;

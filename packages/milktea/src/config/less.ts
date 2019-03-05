@@ -13,7 +13,7 @@ export default function(options: LessOption = {}): LoaderOption {
    */
   const { isDevelopment }: LessOption = options;
   /**
-   * modifyVars { Object }:  注入less变量
+   * modifyVars { object }:  注入less变量
    */
   const modifyVars: object = options.modifyVars && isObject(options.modifyVars) ? options.modifyVars : {};
 

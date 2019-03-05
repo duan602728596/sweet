@@ -15,7 +15,7 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions): A
   /**
    * rules { Array }: 自定义规则
    * loaders { Object }: 覆盖默认规则
-   * frame { ?string }: 是否为react或vue模式
+   * frame { string }: 是否为react或vue模式
    */
   const rules: Array<any> | undefined = sweetConfig.rules;
   const frame: string | undefined = sweetConfig.frame;

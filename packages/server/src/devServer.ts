@@ -23,7 +23,7 @@ const sweetOptions: SweetOptions = {
 };
 
 /**
- * compiler { Object }: webpack的compiler
+ * compiler { object }: webpack的compiler
  * httpPort { number }: http端口号
  * httpsPort { number }: https端口号
  * serverRender { boolean }: 开启服务器端渲染

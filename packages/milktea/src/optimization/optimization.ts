@@ -19,7 +19,7 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions): O
   /**
    * mode { string }: 开发模式还是生产模式
    * serverRender { boolean }: 是否为服务器端渲染
-   * js { ?Object }: js配置
+   * js { object }: js配置
    */
   const { mode = 'development', serverRender, js }: SweetConfig = sweetConfig;
 

@@ -11,7 +11,7 @@ export default function(sweetConfig: SweetConfig | null, sweetOptions: SweetOpti
    * mode { string }: 开发模式还是生产模式
    * entry { any }: 文件入口
    * output { any }: 文件出口
-   * resolve { ?Object } 解析
+   * resolve { object } 解析
    */
   const sweetConfigCopy: SweetConfig | undefined = isObject(sweetConfig) ? { ...sweetConfig } : {};
   const { mode, serverEntry, serverOutput, resolve }: SweetConfig = sweetConfigCopy;

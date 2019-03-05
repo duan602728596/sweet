@@ -4,7 +4,7 @@ import axios, { AxiosResponse } from 'axios';
 
 /**
  * 对象转数组
- * @param { Object } obj: 对象
+ * @param { object } obj: 对象
  */
 function objectToArray(obj: object): Array<any> {
   const resultArr: Array<{ name: string; version: string }> = [];

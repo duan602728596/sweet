@@ -2,7 +2,8 @@ import * as fs from 'fs';
 import * as path from 'path';
 import * as cosmiconfig from 'cosmiconfig';
 import { SweetConfig, SweetOptions } from './types';
-import { registerConfig, requireModule } from './utils';
+import { requireModule } from './utils';
+import { registerConfig } from './babelConfig';
 
 /* cosmiconfig的js加载器 */
 function jsRegisterLoader(filepath: string, content?: string): any {

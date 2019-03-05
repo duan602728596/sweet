@@ -9,9 +9,9 @@ import { SweetConfig, SweetOptions } from '../utils/types';
 export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions): Array<any> {
   /**
    * mode { string }: 开发模式还是生产模式
-   * html { Object }: html配置
+   * html { object }: html配置
    * plugins { Array }: 自定义扩展插件
-   * frame { ?string }: 是否为react或vue模式
+   * frame { string }: 是否为react或vue模式
    * serverRender { boolean }: 开启服务器端渲染
    */
   const { mode, html, plugins, frame, serverRender }: SweetConfig = sweetConfig;

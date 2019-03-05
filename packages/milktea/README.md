@@ -81,7 +81,7 @@ export default {
 * html `{ Array<object> }` : html配置（默认使用pug）
   * template `{ string }` : html模板文件地址
   * excludeChunks `{ Array<string> }` : 不包括的入口
-* frame `{ ?string }` : 值为`react`或`vue`，是否为react或vue模式，并自动注入loaders和plugins
+* frame `{ string }` : 值为`react`或`vue`，是否为react或vue模式，并自动注入loaders和plugins
 
 下面的配置是关于服务器端渲染的
 

@@ -1,5 +1,6 @@
 /* babel-loader 配置 */
 import * as path from 'path';
+import { babelPlugins } from '../utils/babelConfig';
 import { SweetOptions, LoaderOption } from '../utils/types';
 
 // 默认插件
@@ -43,17 +44,7 @@ const presetsList: Function = (
 
 const pluginsList: Function = (plugins: Array<any> = [], frame: string, ecmascript: boolean): Array<any> => {
   const list: Array<any> = [
-    [
-      '@babel/plugin-proposal-decorators',
-      {
-        legacy: true
-      }
-    ],
-    '@babel/plugin-proposal-class-properties',
-    '@babel/plugin-proposal-do-expressions',
-    '@babel/plugin-proposal-optional-catch-binding',
-    '@babel/plugin-proposal-export-default-from',
-    '@babel/plugin-proposal-optional-chaining',
+    ...babelPlugins,
     '@babel/plugin-syntax-dynamic-import',
     [
       '@babel/plugin-transform-runtime',
@@ -104,10 +95,10 @@ export default function(options: JsOption = {}, sweetOptions: SweetOptions): Loa
   /**
    * isDevelopment { boolean }: 是否为开发环境
    * ecmascript { boolean }: 是否编译到ecmascript的最新语法
-   * presets { ?Array }: 插件列表
-   * plugins { ?Array }: 插件列表
-   * resetPresets { ?Array }: 插件覆盖列表
-   * resetPlugins { ?Array }: 插件覆盖列表
+   * presets { Array }: 插件列表
+   * plugins { Array }: 插件列表
+   * resetPresets { Array }: 插件覆盖列表
+   * resetPlugins { Array }: 插件覆盖列表
    * frame { string } 当前的模式
    */
   const { isDevelopment, ecmascript, presets, plugins, resetPresets, resetPlugins, frame }: JsOption = options;
