@@ -18,6 +18,7 @@
     "mime-types": "^2.1.22"
   },
   "devDependencies": {
+    "@babel/register": "^7.0.0",
     "@sweet/milktea": "github:duan602728596/sweet#build-milktea",
     "axios": "^0.18.0",
     "chai": "^4.2.0",

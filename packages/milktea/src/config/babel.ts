@@ -1,6 +1,5 @@
 /* babel-loader 配置 */
 import * as path from 'path';
-import { babelPlugins } from '../utils/babelConfig';
 import { SweetOptions, LoaderOption } from '../utils/types';
 
 // 默认插件
@@ -44,7 +43,17 @@ const presetsList: Function = (
 
 const pluginsList: Function = (plugins: Array<any> = [], frame: string, ecmascript: boolean): Array<any> => {
   const list: Array<any> = [
-    ...babelPlugins,
+    [
+      '@babel/plugin-proposal-decorators',
+      {
+        legacy: true
+      }
+    ],
+    '@babel/plugin-proposal-class-properties',
+    '@babel/plugin-proposal-do-expressions',
+    '@babel/plugin-proposal-optional-catch-binding',
+    '@babel/plugin-proposal-export-default-from',
+    '@babel/plugin-proposal-optional-chaining',
     '@babel/plugin-syntax-dynamic-import',
     [
       '@babel/plugin-transform-runtime',
