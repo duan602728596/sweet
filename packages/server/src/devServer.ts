@@ -10,7 +10,7 @@ import * as body from 'koa-body';
 import * as mime from 'mime-types';
 import * as webpack from 'webpack';
 import * as koaWebpack from 'koa-webpack';
-import { readFile, defaultRoutersPath, cleanRequireCache, registerConfig, requireModule } from './utils/utils';
+import { readFile, defaultRoutersPath, cleanRequireCache, requireModule } from './utils/utils';
 import preRender from './utils/preDevRender';
 import { SweetOptions, Context } from './utils/types';
 
@@ -125,15 +125,11 @@ async function devServer(argv: DevServerType = {}): Promise<void> {
 
   /* 本地服务 */
   if (fs.existsSync(defaultRoutersPath(sweetOptions))) {
-    // 加载es6+环境
-    const register: Function = requireModule('@babel/register');
-    const p: string = defaultRoutersPath(sweetOptions);
+    const defaultRouter: string = defaultRoutersPath(sweetOptions);
 
-    register(registerConfig);
+    cleanRequireCache(defaultRouter);
 
-    cleanRequireCache(p);
-
-    const routers: Function = requireModule(p);
+    const routers: Function = requireModule(defaultRouter);
 
     routers(router, sweetOptions);
   }

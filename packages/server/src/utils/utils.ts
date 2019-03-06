@@ -85,49 +85,6 @@ export const defaultRoutersPath: Function = (sweetOptions: SweetOptions): string
   return path.join(sweetOptions.basicPath, 'service/routers.js');
 };
 
-/* @babel/register配置 */
-interface RegisterConfig{
-  presets: Array<any>;
-  plugins: Array<any>;
-  cache: boolean;
-  configFile: boolean;
-  babelrc: boolean;
-  only: Array<RegExp>;
-}
-
-export const registerConfig: RegisterConfig = {
-  presets: [
-    [
-      '@babel/preset-env',
-      {
-        targets: {
-          browsers: ['node 9']
-        },
-        debug: false,
-        modules: 'commonjs',
-        useBuiltIns: 'usage'
-      }
-    ]
-  ],
-  plugins: [
-    [
-      '@babel/plugin-proposal-decorators',
-      {
-        legacy: true
-      }
-    ],
-    '@babel/plugin-proposal-class-properties',
-    '@babel/plugin-proposal-do-expressions',
-    '@babel/plugin-proposal-optional-catch-binding',
-    '@babel/plugin-proposal-export-default-from',
-    '@babel/plugin-proposal-optional-chaining'
-  ],
-  cache: false,
-  configFile: false,
-  babelrc: false,
-  only: [/[\\/]service[\\/]/]
-};
-
 /* 模块导入 */
 export function requireModule(id: string): any {
   const module: { default: any } | any = require(id);

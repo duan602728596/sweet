@@ -2,7 +2,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 import * as Koa from 'koa';
 import {
-  replaceTemplate, defaultInterfacePath, pathAnalyze, registerConfig, defaultInterfaceJsFilename,
+  replaceTemplate, defaultInterfacePath, pathAnalyze, defaultInterfaceJsFilename,
   requireModule, isReadStream, readStream
 } from './utils';
 import { SweetOptions } from './types';
@@ -21,22 +21,14 @@ async function preRender(
   // 读取模块
   if (fs.existsSync(formatFile)) {
     // 加载es6+环境
-    const register: Function = requireModule('@babel/register');
-
-    register(registerConfig);
-
     const file: Function = requireModule(formatFile);
 
     data = await file(ctx, sweetOptions);
   } else if (fs.existsSync(defaultInterfaceJsFilename(sweetOptions))) {
     // 读取默认模块
-    // 加载es6+环境
-    const register: Function = requireModule('@babel/register');
-    const p: string = defaultInterfaceJsFilename(sweetOptions);
+    const defaultFilename: string = defaultInterfaceJsFilename(sweetOptions);
 
-    register(registerConfig);
-
-    const file: Function = requireModule(p);
+    const file: Function = requireModule(defaultFilename);
 
     data = await file(ctx, sweetOptions);
   }

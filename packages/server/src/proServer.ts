@@ -9,7 +9,7 @@ import * as Router from '@eggjs/router';
 import * as body from 'koa-body';
 import * as staticCache from 'koa-static-cache';
 import iltorb from './koa-iltorb/index';
-import { readFile, defaultRoutersPath, registerConfig, requireModule } from './utils/utils';
+import { readFile, defaultRoutersPath, requireModule } from './utils/utils';
 import preRender from './utils/preProRender';
 import { SweetOptions } from './utils/types';
 
@@ -88,13 +88,8 @@ async function proServer(argv: ProServerType = {}): Promise<void> {
 
   /* 本地服务 */
   if (fs.existsSync(defaultRoutersPath(sweetOptions))) {
-    // 加载es6+环境
-    const register: Function = requireModule('@babel/register');
-    const p: string = defaultRoutersPath(sweetOptions);
-
-    register(registerConfig);
-
-    const routers: Function = requireModule(p);
+    const defaultRouter: string = defaultRoutersPath(sweetOptions);
+    const routers: Function = requireModule(defaultRouter);
 
     routers(router, sweetOptions);
   }
