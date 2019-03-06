@@ -20,6 +20,7 @@ interface RegisterConfig {
   cache: boolean;
   configFile: boolean;
   babelrc: boolean;
+  only: Array<string>;
 }
 
 export const registerConfig: RegisterConfig = {
@@ -39,5 +40,9 @@ export const registerConfig: RegisterConfig = {
   plugins: babelPlugins,
   configFile: false,
   cache: false,
-  babelrc: false
+  babelrc: false,
+  only: [
+    '.sweetrc.js',
+    'sweet.config.js'
+  ]
 };
