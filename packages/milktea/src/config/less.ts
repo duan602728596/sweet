@@ -10,11 +10,9 @@ interface LessOption {
 export default function(options: LessOption = {}): LoaderOption {
   /**
    * isDevelopment { boolean }: 是否为开发环境
-   */
-  const { isDevelopment }: LessOption = options;
-  /**
    * modifyVars { object }:  注入less变量
    */
+  const { isDevelopment }: LessOption = options;
   const modifyVars: object = options.modifyVars && isObject(options.modifyVars) ? options.modifyVars : {};
 
   return {
