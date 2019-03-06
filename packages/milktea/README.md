@@ -32,12 +32,10 @@ compiler.run(callback);
 根目录下创建`.sweetrc.js`文件。代码如下所示：
 
 ```javascript
-export default {
+module.exports = {
   ... // 配置
 };
 ```
-
-配置文件支持`es6`、`es5`。
 
 ### 配置项
 
@@ -93,7 +91,7 @@ export default {
 
 创建一个`service/routers.js`文件，代码如下
 ```javascript
-export default function(router, sweetOptions){
+module.exports = function(router, sweetOptions) {
   // 在这里面创建你的函数
   router.get('/path', /* ...your_functions */);
 };
@@ -105,7 +103,7 @@ export default function(router, sweetOptions){
 在文件内，需要创建如下代码:
 
 ```javascript
-export default async function(ctx, sweetOptions){
+module.exports = async function(ctx, sweetOptions) {
   return {
     initialState, // 返回初始化的state
     ...           // 你要返回的其他数据
