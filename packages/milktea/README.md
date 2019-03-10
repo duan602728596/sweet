@@ -99,7 +99,8 @@ module.exports = function(router, sweetOptions) {
 
 ## 服务器端渲染
 
-服务器端渲染需要你创建`service/interface/`文件夹，文件夹里面的规则为: 你的路由中的 **“/”** 替换为 **“.”** ，且采用小驼峰命名法。比如`/Path/PathFile`，则需要创建`/path.pathFile.js`文件。
+服务器端渲染需要你创建`service/interface/`文件夹，文件夹里面的规则为: 你的路由中的 **“/”** 替换为 **“.”**，或者为文件夹。比如`/Path/PathFile`，则需要创建`/Path.PathFile.js`文件或`/Path/PathFile.js`文件。   
+
 在文件内，需要创建如下代码:
 
 ```javascript
