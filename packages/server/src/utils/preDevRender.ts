@@ -2,7 +2,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 import * as Koa from 'koa';
 import {
-  replaceTemplate, cleanRequireCache, pathAnalyze, defaultInterfacePath, defaultInterfaceJsFilename,
+  replaceTemplate, cleanRequireCache, folderPathAnalyze, filePathAnalyze, defaultInterfacePath, defaultInterfaceJsFilename,
   requireModule, isReadStream, readStream
 } from './utils';
 import { SweetOptions } from './types';
@@ -17,8 +17,8 @@ async function preRender(
   cleanRequireCache(serverRenderFile);
 
   const defaultPath: string = defaultInterfacePath(sweetOptions);
-  const folderPathFile: string = `${ path.join(defaultPath, file) }.js`; // 文件夹/Path/To/File.js类型
-  const formatFile: string = `${ path.join(defaultPath, pathAnalyze(file)) }.js`;
+  const folderPathFile: string = `${ path.join(defaultPath, folderPathAnalyze(file)) }.js`; // 文件夹/Path/To/File.js类型
+  const formatFile: string = `${ path.join(defaultPath, filePathAnalyze(file)) }.js`;
   let data: any = {};
 
   // 读取模块

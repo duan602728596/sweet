@@ -2,8 +2,8 @@ import * as fs from 'fs';
 import * as path from 'path';
 import * as Koa from 'koa';
 import {
-  replaceTemplate, defaultInterfacePath, pathAnalyze, defaultInterfaceJsFilename,
-  requireModule, isReadStream, readStream
+  replaceTemplate, defaultInterfacePath, folderPathAnalyze, filePathAnalyze, defaultInterfaceJsFilename,
+  requireModule, isReadStream, readStream, cleanRequireCache
 } from './utils';
 import { SweetOptions } from './types';
 
@@ -15,11 +15,19 @@ async function preRender(
   serverRenderFile: string,
   sweetOptions: SweetOptions
 ): Promise<string> {
-  const formatFile: string = `${ path.join(defaultInterfacePath(sweetOptions), pathAnalyze(file)) }.js`;
+  const defaultPath: string = defaultInterfacePath(sweetOptions);
+  const folderPathFile: string = `${ path.join(defaultPath, folderPathAnalyze(file)) }.js`; // 文件夹/Path/To/File.js类型
+  const formatFile: string = `${ path.join(defaultPath, filePathAnalyze(file)) }.js`;
   let data: any = {};
 
   // 读取模块
-  if (fs.existsSync(formatFile)) {
+  if (fs.existsSync(folderPathFile)) {
+    cleanRequireCache(folderPathFile);
+
+    const file: Function = requireModule(folderPathFile);
+
+    data = await file(ctx, sweetOptions);
+  } else if (fs.existsSync(formatFile)) {
     // 加载es6+环境
     const file: Function = requireModule(formatFile);
 

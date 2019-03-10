@@ -51,8 +51,18 @@ export function cleanRequireCache(id: any): void {
   require.cache[modulePath] = null;
 }
 
-/* 格式化 */
-export function pathAnalyze(file: string): string {
+/* 格式化路径 */
+export function folderPathAnalyze(file: string): string {
+  const fileArr: Array<string> = file.split('/');
+
+  if (fileArr.length === 0) {
+    return 'Index';
+  } else {
+    return file;
+  }
+}
+
+export function filePathAnalyze(file: string): string {
   const fileArr: Array<string> = file.split('/');
 
   for (let i: number = fileArr.length - 1; i >= 0; i--) {
@@ -62,7 +72,7 @@ export function pathAnalyze(file: string): string {
   }
 
   if (fileArr.length === 0) {
-    return 'index';
+    return 'Index';
   } else {
     return fileArr.join('.');
   }
