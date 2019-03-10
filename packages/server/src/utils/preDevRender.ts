@@ -16,11 +16,19 @@ async function preRender(
 ): Promise<string> {
   cleanRequireCache(serverRenderFile);
 
-  const formatFile: string = `${ path.join(defaultInterfacePath(sweetOptions), pathAnalyze(file)) }.js`;
+  const defaultPath: string = defaultInterfacePath(sweetOptions);
+  const folderPathFile: string = `${ path.join(defaultPath, file) }.js`; // 文件夹/Path/To/File.js类型
+  const formatFile: string = `${ path.join(defaultPath, pathAnalyze(file)) }.js`;
   let data: any = {};
 
   // 读取模块
-  if (fs.existsSync(formatFile)) {
+  if (fs.existsSync(folderPathFile)) {
+    cleanRequireCache(folderPathFile);
+
+    const file: Function = requireModule(folderPathFile);
+
+    data = await file(ctx, sweetOptions);
+  } else if (fs.existsSync(formatFile)) {
     cleanRequireCache(formatFile);
 
     const file: Function = requireModule(formatFile);

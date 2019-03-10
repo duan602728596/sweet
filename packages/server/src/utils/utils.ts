@@ -53,22 +53,18 @@ export function cleanRequireCache(id: any): void {
 
 /* 格式化 */
 export function pathAnalyze(file: string): string {
-  const file2: Array<string> = file.split('/');
+  const fileArr: Array<string> = file.split('/');
 
-  for (let i: number = file2.length - 1; i >= 0; i--) {
-    const item: string = file2[i];
+  for (let i: number = fileArr.length - 1; i >= 0; i--) {
+    const item: string = fileArr[i];
 
-    if (item === '') {
-      file2.splice(i, 1);
-    } else if (file2[i][0].length > 0) {
-      file2[i] = `${ item[0].toLowerCase() }${ item.slice(1) }`;
-    }
+    if (item === '') fileArr.splice(i, 1);
   }
 
-  if (file2.length === 0) {
+  if (fileArr.length === 0) {
     return 'index';
   } else {
-    return file2.join('.');
+    return fileArr.join('.');
   }
 }
 
