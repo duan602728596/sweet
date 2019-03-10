@@ -14,7 +14,7 @@
     "koa": "^2.7.0",
     "koa-body": "^4.1.0",
     "koa-static-cache": "^5.1.2",
-    "koa-webpack": "^5.2.1",
+    "koa-webpack": "^5.2.2",
     "mime-types": "^2.1.22"
   },
   "devDependencies": {
