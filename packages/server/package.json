@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@eggjs/router": "^2.0.0",
-    "iltorb": "^2.4.1",
+    "iltorb": "^2.4.2",
     "koa": "^2.7.0",
     "koa-body": "^4.1.0",
     "koa-static-cache": "^5.1.2",
