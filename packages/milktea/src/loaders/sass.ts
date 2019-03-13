@@ -31,6 +31,8 @@ export default function(sweetConfig: SweetConfig): Loader {
       publicPath
     }
   } : MiniCssExtractPlugin.loader;
+
+  // 开发环境下为style-loader，生产环境下为mini-css-extract-plugin/loader
   const endLoader: object | string = isDevelopment
     ? (frame === 'vue' ? 'vue-style-loader' : 'style-loader')
     : miniCssExtractPluginLoader;
@@ -43,7 +45,7 @@ export default function(sweetConfig: SweetConfig): Loader {
   };
 
   // sass
-  const sassConfig2: object = sassConfig({ isDevelopment });
+  const sassLoaderConfig: object = sassConfig({ isDevelopment });
 
   // loader配置
   const basicConfig: Array<any> = [
@@ -52,7 +54,7 @@ export default function(sweetConfig: SweetConfig): Loader {
       modules,
       isLocals: serverRender
     }),
-    sassConfig2
+    sassLoaderConfig
   ];
 
   // 服务器端渲染
@@ -68,7 +70,7 @@ export default function(sweetConfig: SweetConfig): Loader {
         modules: false,
         isLocals: serverRender
       }),
-      sassConfig2
+      sassLoaderConfig
     ];
 
     // 服务器端渲染

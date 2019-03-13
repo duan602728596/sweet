@@ -1,6 +1,6 @@
 /* 配置optimization属性 */
 import * as path from 'path';
-import * as TerserPlugin from 'terser-webpack-plugin';
+import * as TerserWebpackPlugin from 'terser-webpack-plugin';
 import { SweetConfig, SweetOptions } from '../utils/types';
 
 interface Optimization{
@@ -8,7 +8,7 @@ interface Optimization{
     chunks: string;
     automaticNameDelimiter: string;
   };
-  minimizer?: [TerserPlugin];
+  minimizer?: [TerserWebpackPlugin];
 }
 
 interface TerserOptions{
@@ -45,7 +45,7 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions): O
     }
 
     optimization.minimizer = [
-      new TerserPlugin({
+      new TerserWebpackPlugin({
         cache: path.join(sweetOptions.basicPath, '.terserCache'),
         terserOptions
       })
