@@ -5,7 +5,7 @@ import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import OptimizeCssAssets from 'optimize-css-assets-webpack-plugin';
 import ImageMinWebpackPlugin from 'imagemin-webpack-plugin';
 import VueLoaderPlugin from 'vue-loader/lib/plugin';
-import TerserPlugin from 'terser-webpack-plugin';
+import TerserWebpackPlugin from 'terser-webpack-plugin';
 
 /* module属性 */
 export function expectModule(config, length) {
@@ -76,6 +76,6 @@ export function expectProOptimization(config, isServer) {
   return function() {
     expect(config.optimization).to.be.an('object');
     expect(config.optimization.splitChunks).to.eql(isServer ? undefined : { chunks: 'all', automaticNameDelimiter: '.' });
-    expect(config.optimization.minimizer[0] instanceof TerserPlugin).to.be.true;
+    expect(config.optimization.minimizer[0] instanceof TerserWebpackPlugin).to.be.true;
   };
 }
