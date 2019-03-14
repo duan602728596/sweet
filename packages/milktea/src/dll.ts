@@ -12,7 +12,7 @@ export default function(sweetConfig: SweetConfig | null, sweetOptions: SweetOpti
    * dll { Array<string> }: dll配置
    */
   const sweetConfigCopy: SweetConfig = isObject(sweetConfig) ? { ...sweetConfig } : {};
-  const { mode, dll }: SweetConfig = sweetConfigCopy;
+  const { mode, dll, externals, resolve }: SweetConfig = sweetConfigCopy;
   const ecmascript: boolean = (sweetConfigCopy.js && sweetConfigCopy.js.ecmascript) || false;
   const isDevelopment: boolean = mode === 'development';
 
@@ -56,6 +56,8 @@ export default function(sweetConfig: SweetConfig | null, sweetOptions: SweetOpti
       libraryTarget: 'var'
     },
     devtool: isDevelopment ? 'module-source-map' : 'none',
+    externals,
+    resolve,
     module: {
       rules: [
         {
