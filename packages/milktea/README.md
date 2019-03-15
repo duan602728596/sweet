@@ -87,9 +87,9 @@ module.exports = {
 * severEntry `{ any }` : 服务器端的文件入口（参考webpack）
 * serverOutput `{ any }` : 服务器端文件出口（参考webpack）
 
-## routers
+## api
 
-创建一个`service/routers.js`文件，代码如下
+创建一个`api/api.js`文件，代码如下
 ```javascript
 module.exports = function(router, sweetOptions) {
   // 在这里面创建你的函数
@@ -99,7 +99,7 @@ module.exports = function(router, sweetOptions) {
 
 ## 服务器端渲染
 
-服务器端渲染需要你创建`service/interface/`文件夹，文件夹里面的规则为: 你的路由中的 **“/”** 替换为 **“.”**，或者为文件夹。比如`/Path/PathFile`，则需要创建`/Path.PathFile.js`文件或`/Path/PathFile.js`文件。   
+服务器端渲染需要你创建`controllers`文件夹，文件夹里面的规则为: 你的路由中的 **“/”** 替换为 **“.”**，或者为文件夹。比如`/Path/PathFile`，则需要创建`/Path.PathFile.js`文件或`/Path/PathFile.js`文件。   
 
 在文件内，需要创建如下代码:
 
