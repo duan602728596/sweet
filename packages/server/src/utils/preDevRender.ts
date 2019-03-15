@@ -43,7 +43,7 @@ async function preRender(
     }
   } else if (filesMap.has('default.js')) {
     // 查找默认文件
-    const defaultFile: string | undefined = filesMap.get('/default.js');
+    const defaultFile: string | undefined = filesMap.get('default.js');
 
     if (defaultFile) {
       cleanRequireCache(defaultFile);

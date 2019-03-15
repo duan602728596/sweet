@@ -40,7 +40,7 @@ function preRenderInit(sweetOptions: SweetOptions): Function {
       }
     } else if (controllersMap.has('default.js')) {
       // 查找默认文件
-      const defaultFile: string | undefined = controllersMap.get('/default.js');
+      const defaultFile: string | undefined = controllersMap.get('default.js');
 
       if (defaultFile) {
         const module: Function = requireModule(defaultFile);
