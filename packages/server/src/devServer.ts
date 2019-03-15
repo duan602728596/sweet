@@ -124,8 +124,8 @@ async function devServer(argv: DevServerType = {}): Promise<void> {
   });
 
   /* 本地服务 */
-  if (fs.existsSync(defaultRoutersPath(sweetOptions))) {
-    const defaultRouter: string = defaultRoutersPath(sweetOptions);
+  if (fs.existsSync(defaultRoutersPath(sweetOptions.basicPath))) {
+    const defaultRouter: string = defaultRoutersPath(sweetOptions.basicPath);
 
     cleanRequireCache(defaultRouter);
 

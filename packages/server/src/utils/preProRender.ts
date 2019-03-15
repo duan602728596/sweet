@@ -1,54 +1,65 @@
-import * as fs from 'fs';
-import * as path from 'path';
 import * as Koa from 'koa';
-import {
-  replaceTemplate, defaultInterfacePath, folderPathAnalyze, filePathAnalyze, defaultInterfaceJsFilename,
-  requireModule, isReadStream, readStream, cleanRequireCache
-} from './utils';
+import { replaceTemplate, folderPathAnalyze, filePathAnalyze, requireModule, isReadStream, readStream } from './utils';
+import { getControllersFilesSync } from './controllers';
 import { SweetOptions } from './types';
 
 // 渲染新的html
-async function preRender(
-  file: string,
-  ctx: Koa.Context,
-  html: Buffer,
-  serverRenderFile: string,
-  sweetOptions: SweetOptions
-): Promise<string> {
-  const defaultPath: string = defaultInterfacePath(sweetOptions);
-  const folderPathFile: string = `${ path.join(defaultPath, folderPathAnalyze(file)) }.js`; // 文件夹/Path/To/File.js类型
-  const formatFile: string = `${ path.join(defaultPath, filePathAnalyze(file)) }.js`;
-  let data: any = {};
+function preRenderInit(sweetOptions: SweetOptions): Function {
+  // 获取controllers文件
+  const basicPath: string = sweetOptions.basicPath;
+  const controllersMap: Map<string, string> = getControllersFilesSync(basicPath);
 
-  // 读取模块
-  if (fs.existsSync(folderPathFile)) {
-    cleanRequireCache(folderPathFile);
+  return async function preRender(
+    file: string,
+    ctx: Koa.Context,
+    html: Buffer,
+    serverRenderFile: string
+  ): Promise<string> {
+    const folderPathFile: string = `${ folderPathAnalyze(file) }.js`; // 格式化为：/path/to/file.js
+    const formatFile: string = `${ filePathAnalyze(file) }.js`; // 格式化为：/path.to.file.js
+    let data: any = {};
 
-    const file: Function = requireModule(folderPathFile);
+    // 查找对应的controller文件
+    if (controllersMap.has(folderPathFile)) {
+      // 查找文件夹
+      const file: string | undefined = controllersMap.get(folderPathFile);
 
-    data = await file(ctx, sweetOptions);
-  } else if (fs.existsSync(formatFile)) {
-    // 加载es6+环境
-    const file: Function = requireModule(formatFile);
+      if (file) {
+        const module: Function = requireModule(file);
 
-    data = await file(ctx, sweetOptions);
-  } else if (fs.existsSync(defaultInterfaceJsFilename(sweetOptions))) {
-    // 读取默认模块
-    const defaultFilename: string = defaultInterfaceJsFilename(sweetOptions);
+        data = await module(ctx, sweetOptions);
+      }
+    } else if (controllersMap.has(formatFile)) {
+      // 查找文件
+      const file: string | undefined = controllersMap.get(formatFile);
 
-    const file: Function = requireModule(defaultFilename);
+      if (file) {
+        const module: Function = requireModule(file);
 
-    data = await file(ctx, sweetOptions);
-  }
+        data = await module(ctx, sweetOptions);
+      }
+    } else if (controllersMap.has('/default.js')) {
+      // 查找默认文件
+      const defaultFile: string | undefined = controllersMap.get('/default.js');
 
-  const server: Function = requireModule(serverRenderFile);
-  const result: any /* Stream | string */ = await server(file, ctx, data.initialState);
-  const render: string = isReadStream(result) ? (await readStream(result)).toString() : result;
+      if (defaultFile) {
+        const module: Function = requireModule(defaultFile);
 
-  return replaceTemplate(html.toString(), {
-    render,
-    ...data
-  });
+        data = await module(ctx, sweetOptions);
+      }
+    }
+
+    // ssr渲染
+    const server: Function = requireModule(serverRenderFile);
+    const result: any /* Stream | string */ = await server(file, ctx, data.initialState);
+    const render: string = isReadStream(result) ? (await readStream(result)).toString() : result;
+
+    return replaceTemplate(html.toString(), {
+      render,
+      ...data
+    });
+  };
 }
 
-export default preRender;
+
+export default preRenderInit;

@@ -10,7 +10,7 @@ import * as body from 'koa-body';
 import * as staticCache from 'koa-static-cache';
 import iltorb from './koa-iltorb/index';
 import { readFile, defaultRoutersPath, requireModule } from './utils/utils';
-import preRender from './utils/preProRender';
+import preRenderInit from './utils/preProRender';
 import { SweetOptions } from './utils/types';
 
 const app: Koa = new Koa();
@@ -20,6 +20,7 @@ const router: Router = new Router();
 const sweetOptions: SweetOptions = {
   basicPath: process.cwd() // 主目录
 };
+const preRender: Function = preRenderInit(sweetOptions);
 
 /**
  * httpPort { number }: http端口号
@@ -81,14 +82,14 @@ async function proServer(argv: ProServerType = {}): Promise<void> {
 
     ctx.status = 200;
     ctx.type = 'text/html';
-    ctx.body = serverRender ? await preRender(ctx.path, ctx, body, formatServerRenderFile, sweetOptions) : body;
+    ctx.body = serverRender ? await preRender(ctx.path, ctx, body, formatServerRenderFile) : body;
 
     await next();
   });
 
   /* 本地服务 */
-  if (fs.existsSync(defaultRoutersPath(sweetOptions))) {
-    const defaultRouter: string = defaultRoutersPath(sweetOptions);
+  if (fs.existsSync(defaultRoutersPath(sweetOptions.basicPath))) {
+    const defaultRouter: string = defaultRoutersPath(sweetOptions.basicPath);
     const routers: Function = requireModule(defaultRouter);
 
     routers(router, sweetOptions);

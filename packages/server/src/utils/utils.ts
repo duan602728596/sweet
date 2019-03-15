@@ -56,9 +56,9 @@ export function folderPathAnalyze(file: string): string {
   const fileArr: Array<string> = file.split('/');
 
   if (fileArr.length === 0) {
-    return 'Index';
+    return '/index';
   } else {
-    return file;
+    return file.toLowerCase();
   }
 }
 
@@ -72,23 +72,15 @@ export function filePathAnalyze(file: string): string {
   }
 
   if (fileArr.length === 0) {
-    return 'Index';
+    return '/index';
   } else {
-    return fileArr.join('.');
+    return fileArr.join('.').toLowerCase();
   }
 }
 
 /* 设置默认文件地址 */
-export const defaultInterfacePath: Function = (sweetOptions: SweetOptions): string => {
-  return path.join(sweetOptions.basicPath, 'service/interface');
-};
-
-export const defaultInterfaceJsFilename: Function = (sweetOptions: SweetOptions): string => {
-  return path.join(defaultInterfacePath(sweetOptions), 'default.js');
-};
-
-export const defaultRoutersPath: Function = (sweetOptions: SweetOptions): string => {
-  return path.join(sweetOptions.basicPath, 'service/routers.js');
+export const defaultRoutersPath: Function = (basicPath: string): string => {
+  return path.join(basicPath, 'api/api.js');
 };
 
 /* 模块导入 */
