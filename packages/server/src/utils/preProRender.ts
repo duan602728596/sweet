@@ -15,8 +15,8 @@ function preRenderInit(sweetOptions: SweetOptions): Function {
     html: Buffer,
     serverRenderFile: string
   ): Promise<string> {
-    const folderPathFile: string = `${ folderPathAnalyze(file) }.js`; // 格式化为：/path/to/file.js
-    const formatFile: string = `${ filePathAnalyze(file) }.js`; // 格式化为：/path.to.file.js
+    const folderPathFile: string = `${ folderPathAnalyze(file) }.js`; // 格式化为：path/to/file.js
+    const formatFile: string = `${ filePathAnalyze(file) }.js`; // 格式化为：path.to.file.js
     let data: any = {};
 
     // 查找对应的controller文件
