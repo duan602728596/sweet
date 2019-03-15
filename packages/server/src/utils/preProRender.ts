@@ -38,7 +38,7 @@ function preRenderInit(sweetOptions: SweetOptions): Function {
 
         data = await module(ctx, sweetOptions);
       }
-    } else if (controllersMap.has('/default.js')) {
+    } else if (controllersMap.has('default.js')) {
       // 查找默认文件
       const defaultFile: string | undefined = controllersMap.get('/default.js');
 

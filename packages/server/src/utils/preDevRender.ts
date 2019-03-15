@@ -41,7 +41,7 @@ async function preRender(
 
       data = await module(ctx, sweetOptions);
     }
-  } else if (filesMap.has('/default.js')) {
+  } else if (filesMap.has('default.js')) {
     // 查找默认文件
     const defaultFile: string | undefined = filesMap.get('/default.js');
 
