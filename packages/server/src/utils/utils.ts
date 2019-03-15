@@ -55,10 +55,16 @@ export function cleanRequireCache(id: any): void {
 export function folderPathAnalyze(file: string): string {
   const fileArr: Array<string> = file.split('/');
 
+  for (let i: number = fileArr.length - 1; i >= 0; i--) {
+    const item: string = fileArr[i];
+
+    if (item === '') fileArr.splice(i, 1);
+  }
+
   if (fileArr.length === 0) {
-    return '/index';
+    return 'index';
   } else {
-    return file.toLowerCase();
+    return fileArr.join('/').toLowerCase();
   }
 }
 
@@ -72,7 +78,7 @@ export function filePathAnalyze(file: string): string {
   }
 
   if (fileArr.length === 0) {
-    return '/index';
+    return 'index';
   } else {
     return fileArr.join('.').toLowerCase();
   }

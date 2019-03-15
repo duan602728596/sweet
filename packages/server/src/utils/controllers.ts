@@ -11,9 +11,10 @@ export function pathArrayToMap(pathArr: Array<string>, basicPath: string): Map<s
   const map: Map<string, string> = new Map();
 
   for (const item of pathArr) {
-    const key: string = item.toLowerCase();
+    const key: string = item.toLowerCase()
+      .replace(/^controllers\//i, '');
 
-    map.set(`/${ key }`, path.join(basicPath, item));
+    map.set(key, path.join(basicPath, item));
   }
 
   return map;
