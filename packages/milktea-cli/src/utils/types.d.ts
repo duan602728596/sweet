@@ -9,15 +9,18 @@ export interface Milktea {
 
 export interface Argv {
   config: string;
+  // server
   server: boolean;
   httpPort: number;
   httpsPort: number;
   serverRoot: string;
   serverRender: boolean;
   serverRenderFile: string;
+  template: string;
+  // utils
   registry: number;
   imageEntry: string;
   imageOutput: string;
-  quality: number,
+  quality: number;
   __DEV__: boolean;
 }

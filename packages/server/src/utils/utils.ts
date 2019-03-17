@@ -17,27 +17,20 @@ export function readFile(file: string): Promise<Buffer> {
 }
 
 /* 格式化数据 */
-export function formatTemplateData<T>(data: T): any {
-  if (typeof data === 'object') {
-    return JSON.stringify(data);
-  }
-
-  return data;
-}
-
-/* 替换模板内的占位符 */
-export function replaceTemplate(template: string, data: object): string {
-  let newTp: string = template;
+export function formatTemplateData(data: object): object {
+  const formatData: object = {};
 
   for (const key in data) {
-    const reg: RegExp = new RegExp(`<%=\\s*${ key }\\s*%>`, 'g');
+    let item: any = data[key];
 
-    newTp = newTp.replace(reg, formatTemplateData(data[key]));
+    if (typeof item === 'object') {
+      item = JSON.stringify(item);
+    }
+
+    formatData[key] = item;
   }
 
-  newTp = newTp.replace(/<%=\s*[0-9a-zA-Z_$]+\s*%>/g, '');
-
-  return newTp;
+  return formatData;
 }
 
 /* 清除模块缓存 */

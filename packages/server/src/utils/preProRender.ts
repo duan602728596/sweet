@@ -1,5 +1,6 @@
 import * as Koa from 'koa';
-import { replaceTemplate, folderPathAnalyze, filePathAnalyze, requireModule, isReadStream, readStream } from './utils';
+import * as ejs from 'ejs';
+import { formatTemplateData, folderPathAnalyze, filePathAnalyze, requireModule, isReadStream, readStream } from './utils';
 import { getControllersFilesSync } from './controllers';
 import { SweetOptions } from './types';
 
@@ -10,13 +11,13 @@ function preRenderInit(sweetOptions: SweetOptions): Function {
   const controllersMap: Map<string, string> = getControllersFilesSync(basicPath);
 
   return async function preRender(
-    file: string,
+    ctxPath: string,
     ctx: Koa.Context,
     html: Buffer,
     serverRenderFile: string
   ): Promise<string> {
-    const folderPathFile: string = `${ folderPathAnalyze(file) }.js`; // 格式化为：path/to/file.js
-    const formatFile: string = `${ filePathAnalyze(file) }.js`; // 格式化为：path.to.file.js
+    const folderPathFile: string = `${ folderPathAnalyze(ctxPath) }.js`; // 格式化为：path/to/file.js
+    const formatFile: string = `${ filePathAnalyze(ctxPath) }.js`; // 格式化为：path.to.file.js
     let data: any = {};
 
     // 查找对应的controller文件
@@ -51,13 +52,13 @@ function preRenderInit(sweetOptions: SweetOptions): Function {
 
     // ssr渲染
     const server: Function = requireModule(serverRenderFile);
-    const result: any /* Stream | string */ = await server(file, ctx, data.initialState);
+    const result: any /* Stream | string */ = await server(ctxPath, ctx, data.initialState);
     const render: string = isReadStream(result) ? (await readStream(result)).toString() : result;
 
-    return replaceTemplate(html.toString(), {
+    return ejs.render(html.toString(), formatTemplateData({
       render,
       ...data
-    });
+    }));
   };
 }
 

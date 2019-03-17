@@ -9,13 +9,15 @@ function argvServer(argv: Argv): void {
   const serverRoot: string = argv.serverRoot;
   const serverRender: boolean = argv.serverRender;
   const serverRenderFile: string = argv.serverRenderFile;
+  const template: string = argv.template;
 
   proServer({
     httpPort,
     httpsPort,
     serverRoot,
     serverRender,
-    serverRenderFile
+    serverRenderFile,
+    template
   });
 }
 

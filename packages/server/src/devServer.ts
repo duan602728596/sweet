@@ -107,19 +107,19 @@ async function devServer(argv: DevServerType = {}): Promise<void> {
 
   /* webpack 重定向 */
   router.get(/^\/[^._\-]*$/, async (ctx: Context, next: Function): Promise<void> => {
-    const file: string = ctx.path;
-    const mimeType: string | boolean = mime.lookup(file);
+    const ctxPath: string = ctx.path;
+    const mimeType: string | boolean = mime.lookup(ctxPath);
 
-    if (file !== '/' && mimeType === false) {
+    if (ctxPath !== '/' && mimeType === false) {
       ctx.path = '/';
-      ctx._path = file; // 保存旧的path
+      ctx._path = ctxPath; // 保存旧的path
     }
 
     await next();
 
     // 服务器端渲染
     if (serverRender && ctx.type === 'text/html') {
-      ctx.body = await preRender(file, ctx, formatServerRenderFile, sweetOptions);
+      ctx.body = await preRender(ctxPath, ctx, formatServerRenderFile, sweetOptions);
     }
   });
 

@@ -112,7 +112,8 @@ module.exports = async function(ctx, sweetOptions) {
 }
 ```
 
-在pug或html模板中，使用`<%= key %>`来标记占位的数据。其中`<%= render %>`表示服务器端渲染的数据，`<%= initialState %>`表示初始化数据，其他的占位数据同理。
+在pug或html模板中，使用`<%- key %>`来标记占位的数据。其中`<%- render %>`表示服务器端渲染的数据，`<%- initialState %>`表示初始化数据，其他的占位数据同理。参考*ejs*。   
+
 如果路由找不到对应的interface文件，会自动寻找`default.js`文件。你可以创建这个文件作为默认的interface文件。
 
 ## 关于node-sass

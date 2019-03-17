@@ -7,7 +7,7 @@ import * as path from 'path';
 import * as Koa from 'koa';
 import * as Router from '@eggjs/router';
 import * as body from 'koa-body';
-import * as staticCache from 'koa-static-cache';
+import * as koaStatic from 'koa-static';
 import iltorb from './koa-iltorb/index';
 import { readFile, defaultApiPath, requireModule } from './utils/utils';
 import preRenderInit from './utils/preProRender';
@@ -28,6 +28,7 @@ const preRender: Function = preRenderInit(sweetOptions);
  * serverRoot { string }: 生产环境下的服务器静态文件入口
  * serverRender { boolean }: 开启服务器端渲染
  * serverRenderFile { string }: 服务器端渲染的主模块文件
+ * template { string }: html模版名称
  */
 interface ProServerType {
   httpPort?: number;
@@ -35,6 +36,7 @@ interface ProServerType {
   serverRoot?: string;
   serverRender?: boolean;
   serverRenderFile?: string;
+  template?: string;
 }
 
 async function proServer(argv: ProServerType = {}): Promise<void> {
@@ -43,7 +45,8 @@ async function proServer(argv: ProServerType = {}): Promise<void> {
     httpsPort = 5053,
     serverRoot = 'build',
     serverRender,
-    serverRenderFile = 'buildServer/server.js'
+    serverRenderFile = 'buildServer/server.js',
+    template = 'index.html'
   }: ProServerType = argv;
 
   /* 将端口加入到服务端 */
@@ -68,7 +71,7 @@ async function proServer(argv: ProServerType = {}): Promise<void> {
   app.use(iltorb());
 
   /* 缓存 */
-  app.use(staticCache(formatServerRoot, {
+  app.use(koaStatic(formatServerRoot, {
     maxAge: (60 ** 2) * 24 * 365
   }));
 
@@ -78,7 +81,7 @@ async function proServer(argv: ProServerType = {}): Promise<void> {
 
   /* index路由 */
   router.get(/^\/[^._\-]*$/, async (ctx: Koa.Context, next: Function): Promise<void> => {
-    const body: Buffer = await readFile(path.join(formatServerRoot, 'index.html'));
+    const body: Buffer = await readFile(path.join(formatServerRoot, template));
 
     ctx.status = 200;
     ctx.type = 'text/html';

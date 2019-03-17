@@ -49,6 +49,10 @@ const argv: object = yargs
       describe: '服务器端渲染的主模块文件',
       type: 'string'
     },
+    template: {
+      describe: 'html模版的文件名',
+      type: 'string'
+    },
     // image2webp
     imageEntry: {
       describe: '需要批量转换的图片所在的文件夹',
