@@ -7,7 +7,7 @@ import * as path from 'path';
 import * as Koa from 'koa';
 import * as Router from '@eggjs/router';
 import * as body from 'koa-body';
-import * as koaStatic from 'koa-static';
+import * as staticCache from 'koa-static-cache';
 import iltorb from './koa-iltorb/index';
 import { readFile, defaultApiPath, requireModule } from './utils/utils';
 import preRenderInit from './utils/preProRender';
@@ -71,7 +71,7 @@ async function proServer(argv: ProServerType = {}): Promise<void> {
   app.use(iltorb());
 
   /* 缓存 */
-  app.use(koaStatic(formatServerRoot, {
+  app.use(staticCache(formatServerRoot, {
     maxAge: (60 ** 2) * 24 * 365
   }));
 
