@@ -40,7 +40,8 @@ module.exports = {
       use: [{
         loader: 'file-loader',
         options: {
-          name: isDevelopment ? '[name].[ext]' : '[hash:5].[ext]'
+          name: isDevelopment ? '[name].[ext]' : '[hash:5].[ext]',
+          outputPath: 'dll/'
         }
       }]
     }
