@@ -1,7 +1,7 @@
 import { Stats } from 'webpack';
 
 export interface Milktea {
-  dll: Function;
+  dllConfig: Function;
   config: Function;
   serverRenderConfig: Function;
   callback: (err: Error, stats: Stats) => void;

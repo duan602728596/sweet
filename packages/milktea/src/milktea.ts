@@ -1,8 +1,8 @@
 import * as process from 'process';
 import * as webpack from 'webpack';
 import webpackConfig from './config';
-import serverConfig from './server';
-import webpackDll from './dll';
+import webpackServerRenderConfig from './server';
+import webpackDllConfig from './dll';
 import { isObject } from './utils/utils';
 import { SweetConfig, SweetOptions } from './utils/types';
 import getSweetConfigFile from './utils/getSweetConfigFile';
@@ -62,14 +62,14 @@ export function serverRenderConfig(sweetConfig: SweetConfig | string | null, mod
     config.mode = mode;
   }
 
-  return serverConfig(config, sweetOptions);
+  return webpackServerRenderConfig(config, sweetOptions);
 }
 
 /**
  * webpack的dll文件配置
  * @param { object | string | null } sweetConfig: webpack配置，覆盖文件，优先级最高
  */
-export function dll(sweetConfig: SweetConfig | string | null): object {
+export function dllConfig(sweetConfig: SweetConfig | string | null): object {
   let config: SweetConfig | null;
 
   if (typeof sweetConfig === 'string') {
@@ -80,5 +80,5 @@ export function dll(sweetConfig: SweetConfig | string | null): object {
     config = getSweetConfigFile(sweetOptions);
   }
 
-  return webpackDll(config, sweetOptions);
+  return webpackDllConfig(config, sweetOptions);
 }

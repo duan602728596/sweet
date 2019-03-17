@@ -1,7 +1,7 @@
 import process from 'process';
 import { expect } from 'chai';
 import webpack from 'webpack';
-import webpackDll from '../lib/dll';
+import webpackDllConfig from '../lib/dll';
 
 const sweetOptions = {
   basicPath: process.cwd()
@@ -9,7 +9,7 @@ const sweetOptions = {
 
 describe('dll', function() {
   describe('dll', function() {
-    const config = webpackDll({ mode: 'development' }, sweetOptions);
+    const config = webpackDllConfig({ mode: 'development' }, sweetOptions);
 
     it('module Configuration is correct', function() {
       expect(config.module).to.be.an('object');
