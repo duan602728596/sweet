@@ -12,7 +12,7 @@ export default function(options: SvgOption = {}): LoaderOption {
    * emitFile { boolean }: 是否生成文件
    */
   const { isDevelopment, emitFile }: SvgOption = options;
-  const filename: string = isDevelopment ? '[name].[ext]' : '[hash:5].[ext]';
+  const filename: string = isDevelopment ? '[name].[hash:5].[ext]' : '[hash:5].[ext]';
 
   return {
     loader: 'file-loader',
