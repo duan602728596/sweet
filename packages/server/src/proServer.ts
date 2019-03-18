@@ -72,7 +72,8 @@ async function proServer(argv: ProServerType = {}): Promise<void> {
 
   /* 缓存 */
   app.use(staticCache(formatServerRoot, {
-    maxAge: (60 ** 2) * 24 * 365
+    maxAge: (60 ** 2) * 24 * 365,
+    filter: (file: string): boolean => !/^.*\.html$/.test(file)
   }));
 
   /* router */
@@ -81,11 +82,24 @@ async function proServer(argv: ProServerType = {}): Promise<void> {
 
   /* index路由 */
   router.get(/^\/[^._\-]*$/, async (ctx: Koa.Context, next: Function): Promise<void> => {
+    const ctxPath: string = ctx.path;
     const body: Buffer = await readFile(path.join(formatServerRoot, template));
 
     ctx.status = 200;
     ctx.type = 'text/html';
-    ctx.body = serverRender ? await preRender(ctx.path, ctx, body, formatServerRenderFile) : body;
+    ctx.body = serverRender ? await preRender(ctxPath, ctx, body, formatServerRenderFile) : body;
+
+    await next();
+  });
+
+  /* html文件允许使用ejs模板 */
+  router.get(/^.*\.html$/, async (ctx: Koa.Context, next: Function): Promise<void> => {
+    const ctxPath: string = ctx.path;
+    const body: Buffer = await readFile(path.join(formatServerRoot, ctxPath));
+
+    ctx.status = 200;
+    ctx.type = 'text/html';
+    ctx.body = serverRender ? await preRender(ctxPath, ctx, body, formatServerRenderFile) : body;
 
     await next();
   });
