@@ -127,6 +127,18 @@ async function devServer(argv: DevServerType = {}): Promise<void> {
     }
   });
 
+  /* html文件允许使用ejs模板 */
+  router.get(/^.*\.html$/, async (ctx: Context, next: Function): Promise<void> => {
+    const ctxPath: string = ctx.path;
+
+    await next();
+
+    // 服务器端渲染
+    if (serverRender) {
+      ctx.body = await preRender(ctxPath, ctx, formatServerRenderFile, sweetOptions);
+    }
+  });
+
   /* 本地api */
   if (fs.existsSync(defaultApiPath(sweetOptions.basicPath))) {
     const defaultApi: string = defaultApiPath(sweetOptions.basicPath);
