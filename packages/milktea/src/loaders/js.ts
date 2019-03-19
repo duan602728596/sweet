@@ -42,40 +42,41 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
   const { ecmascript, presets, plugins, resetPresets, resetPlugins, exclude, include }: Js = _js;
   const debug: boolean = frame === 'test' ? false : (isDevelopment === undefined ? true : isDevelopment);
 
-  config.merge({
-    module: {
-      rule: {
-        js: {
-          test: /^.*\.jsx?$/,
-          use: {
-            'babel-loader': {
-              loader: 'babel-loader',
-              options: {
-                cacheDirectory: path.join(sweetOptions.basicPath, '.babelCache'),
-                presets: resetPresets ? resetPresets : [],
-                plugins: resetPlugins ? resetPlugins : [
-                  ...basicPlugins,
-                  [
-                    '@babel/plugin-transform-runtime',
-                    {
-                      corejs: false,
-                      helpers: true,
-                      regenerator: !ecmascript,
-                      useESModules: true
-                    }
-                  ]
-                ],
-                configFile: false,
-                babelrc: false
+  config
+    .merge({
+      module: {
+        rule: {
+          js: {
+            test: /^.*\.jsx?$/,
+            use: {
+              'babel-loader': {
+                loader: 'babel-loader',
+                options: {
+                  cacheDirectory: path.join(sweetOptions.basicPath, '.babelCache'),
+                  presets: resetPresets ? resetPresets : [],
+                  plugins: resetPlugins ? resetPlugins : [
+                    ...basicPlugins,
+                    [
+                      '@babel/plugin-transform-runtime',
+                      {
+                        corejs: false,
+                        helpers: true,
+                        regenerator: !ecmascript,
+                        useESModules: true
+                      }
+                    ]
+                  ],
+                  configFile: false,
+                  babelrc: false
+                }
               }
-            }
-          },
-          exclude: exclude ? (_.isArray(exclude) ? exclude : [exclude]) : [],
-          include: include ? (_.isArray(include) ? include : [include]) : []
+            },
+            exclude: exclude ? (_.isArray(exclude) ? exclude : [exclude]) : [],
+            include: include ? (_.isArray(include) ? include : [include]) : []
+          }
         }
       }
-    }
-  });
+    });
 
   const configBabelUse: Use = config
     .module
