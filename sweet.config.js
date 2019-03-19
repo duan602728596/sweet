@@ -1,7 +1,4 @@
 const path = require('path');
-const process = require('process');
-
-const isDevelopment = process.env.NODE_ENV === 'development';
 
 module.exports = {
   frame: 'react',
@@ -26,7 +23,9 @@ module.exports = {
     plugins: [['import', { libraryName: 'antd', libraryDirectory: 'es', style: true }]],
     exclude: /node_modules/
   },
-  sass: { include: /src/ },
+  sass: {
+    include: /src/
+  },
   css: {
     modules: false,
     modifyVars: {
@@ -35,5 +34,7 @@ module.exports = {
     },
     include: /node_modules[\\/]antd/
   },
-  html: [{ template: path.join(__dirname, 'src/index.pug') }]
+  html: [
+    { template: path.join(__dirname, 'src/index.pug') }
+  ]
 };
