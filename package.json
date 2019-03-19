@@ -17,7 +17,6 @@
     "pm2": "^3.4.0"
   },
   "devDependencies": {
-    "@svgr/webpack": "^4.1.0",
     "@sweet/milktea": "github:duan602728596/sweet#build-milktea",
     "@sweet/util-tools": "github:duan602728596/sweet#build-util-tools",
     "antd": "^3.15.1",
