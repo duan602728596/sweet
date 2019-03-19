@@ -19,13 +19,15 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
    */
   const frame: string | undefined = sweetConfig.frame;
   const loaders: Loaders = sweetConfig.loaders && _.isPlainObject(sweetConfig.loaders) ? sweetConfig.loaders : {};
+  const isDevelopment: boolean = sweetConfig.mode === 'development';
 
   // js
   config
     .when(
       !!loaders.js,
       (config: Config): void => {
-        config.module
+        config
+          .module
           .rule('js')
           .merge(formatLoader(loaders.js));
       },
@@ -39,7 +41,8 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
     .when(
       !!loaders.sass,
       (config: Config): void => {
-        config.module
+        config
+          .module
           .rule('sass')
           .merge(formatLoader(loaders.sass));
       },
@@ -52,7 +55,8 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
     .when(
       !!loaders.css,
       (config: Config): void => {
-        config.module
+        config
+          .module
           .rule('css')
           .merge(formatLoader(loaders.css));
       },
@@ -65,7 +69,8 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
     .when(
       !!loaders.favicon,
       (config: Config): void => {
-        config.module
+        config
+          .module
           .rule('favicon')
           .merge(formatLoader(loaders.favicon));
       },
@@ -78,7 +83,8 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
     .when(
       !!loaders.fontFile,
       (config: Config): void => {
-        config.module
+        config
+          .module
           .rule('fontFile')
           .merge(formatLoader(loaders.fontFile));
       },
@@ -91,7 +97,8 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
     .when(
       !!loaders.html,
       (config: Config): void => {
-        config.module
+        config
+          .module
           .rule('html')
           .merge(formatLoader(loaders.html));
       },
@@ -104,7 +111,8 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
     .when(
       !!loaders.image,
       (config: Config): void => {
-        config.module
+        config
+          .module
           .rule('image')
           .merge(formatLoader(loaders.image));
       },
@@ -117,7 +125,8 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
     .when(
       !!loaders.svg,
       (config: Config): void => {
-        config.module
+        config
+          .module
           .rule('svg')
           .merge(formatLoader(loaders.svg));
       },
@@ -128,10 +137,23 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
   // vue
   config
     .when(frame === 'vue', (config: Config): void => {
-      config.module
+      config
+        .module
         .rule('vue')
         .test(/^.*\.vue$/)
         .use('vue-loader')
         .loader('vue-loader');
+    });
+
+  // 加载dll文件
+  config
+    .module
+    .rule('dll')
+    .test(/\.dll[\\/]dll\.js/)
+    .use('file-loader')
+    .loader('file-loader')
+    .options({
+      name: isDevelopment ? '[name].[ext]' : '[hash:5].[ext]',
+      outputPath: 'script/'
     });
 }

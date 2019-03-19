@@ -150,4 +150,11 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
           .tap((options: any): any => _.mergeWith(options, { plugins }, customizer));
       }
     );
+
+  // 排除dll文件，dll文件使用file-loader加载
+  config
+    .module
+    .rule('js')
+    .exclude
+    .add(/\.dll[\\/]dll\.js/);
 }
