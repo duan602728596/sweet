@@ -66,9 +66,8 @@ export default function(sweetConfig: SweetConfig | null, sweetOptions: SweetOpti
     configuration.plugins.push(...plugins);
   }
 
-  configuration.entry = entry;
-
   Object.assign(configuration.output, output);
+  configuration.entry = entry;
   configuration.externals = externals;
   configuration.resolve = resolve;
 
