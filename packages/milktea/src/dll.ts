@@ -4,7 +4,6 @@ import * as _ from 'lodash';
 import * as webpack from 'webpack';
 import { Configuration } from 'webpack';
 import * as Config from 'webpack-chain';
-import { Use } from 'webpack-chain';
 import handleWebpackBuildProgress from './plugins/handleWebpackBuildProgress';
 import { SweetConfig, SweetOptions } from './utils/types';
 
@@ -42,12 +41,12 @@ export default function(sweetConfig: SweetConfig | null, sweetOptions: SweetOpti
 
   // babel
   config
-    .module
-    .rule('dll')
-    .use('babel-loader')
     .when(!ecmascript,
-      (use: Use): void => {
-        use
+      (config: Config): void => {
+        config
+          .module
+          .rule('dll')
+          .use('babel-loader')
           .loader('babel-loader')
           .options({
             presets: [
