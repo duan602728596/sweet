@@ -24,7 +24,7 @@ module.exports = {
   },
   js: {
     plugins: [['import', { libraryName: 'antd', libraryDirectory: 'es', style: true }]],
-    exclude: /(dll\.js|node_modules)/
+    exclude: /node_modules/
   },
   sass: { include: /src/ },
   css: {
