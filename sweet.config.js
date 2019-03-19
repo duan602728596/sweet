@@ -22,30 +22,6 @@ module.exports = {
   entry: {
     index: [path.join(__dirname, 'src/index.js')]
   },
-  loaders: {
-    svg: {
-      test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
-      use: [
-        { loader: 'babel-loader' },
-        {
-          loader: '@svgr/webpack',
-          options: { babel: false, icon: true }
-        }
-      ]
-    }
-  },
-  rules: [
-    {
-      test: /dll\.js/,
-      use: [{
-        loader: 'file-loader',
-        options: {
-          name: isDevelopment ? '[name].[ext]' : '[hash:5].[ext]',
-          outputPath: 'script/'
-        }
-      }]
-    }
-  ],
   js: {
     plugins: [['import', { libraryName: 'antd', libraryDirectory: 'es', style: true }]],
     exclude: /(dll\.js|node_modules)/
