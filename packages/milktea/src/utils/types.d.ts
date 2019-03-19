@@ -5,15 +5,15 @@ export interface SweetOptions {
 }
 
 export interface Loaders {
-  js?: object;
-  sass?: object;
-  css?: object;
-  favicon?: object;
-  fontFile?: object;
-  html?: object;
-  image?: object;
-  svg?: object;
-  vue?: object;
+  js?: RuleSetRule;
+  sass?: RuleSetRule;
+  css?: RuleSetRule;
+  favicon?: RuleSetRule;
+  fontFile?: RuleSetRule;
+  html?: RuleSetRule;
+  image?: RuleSetRule;
+  svg?: RuleSetRule;
+  vue?: RuleSetRule;
 }
 
 export interface SweetConfig {
