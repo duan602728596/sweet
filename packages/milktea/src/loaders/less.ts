@@ -25,17 +25,18 @@ export default function(sweetConfig: SweetConfig, config: Config): void {
   const _css: Css = css || {};
   const { publicPath, modules = true, exclude, include, modifyVars }: Css = _css;
 
-  config.merge({
-    module: {
-      rule: {
-        less: {
-          test: /^.*\.(le|c)ss$/,
-          exclude: exclude ? (_.isArray(exclude) ? exclude : [exclude]) : [],
-          include: include ? (_.isArray(include) ? include : [include]) : []
+  config
+    .merge({
+      module: {
+        rule: {
+          less: {
+            test: /^.*\.(le|c)ss$/,
+            exclude: exclude ? (_.isArray(exclude) ? exclude : [exclude]) : [],
+            include: include ? (_.isArray(include) ? include : [include]) : []
+          }
         }
       }
-    }
-  });
+    });
 
   const lessRule: Rule = config.module.rule('less');
 
@@ -63,35 +64,36 @@ export default function(sweetConfig: SweetConfig, config: Config): void {
   };
 
   // vue
-  config.when(frame === 'vue',
-    (config: Config): void => {
-      const oneOf: OneOf = lessRule
-        .oneOf('vue')
-        .resourceQuery(/scoped/);
+  config
+    .when(frame === 'vue',
+      (config: Config): void => {
+        const oneOf: OneOf = lessRule
+          .oneOf('vue')
+          .resourceQuery(/scoped/);
 
-      // style
-      if (!serverRender) {
+        // style
+        if (!serverRender) {
+          oneOf
+            .use('style')
+            .loader(styleLoader)
+            .options(styleLoaderOptions);
+        }
+
         oneOf
-          .use('style')
-          .loader(styleLoader)
-          .options(styleLoaderOptions);
+          // css
+          .use('css')
+          .loader('css-loader')
+          .options({
+            exportOnlyLocals: serverRender,
+            sourceMap: isDevelopment
+          })
+          .end()
+          // less
+          .use('less')
+          .loader('less-loader')
+          .options(lessLoaderOptions);
       }
-
-      oneOf
-        // css
-        .use('css')
-        .loader('css-loader')
-        .options({
-          exportOnlyLocals: serverRender,
-          sourceMap: isDevelopment
-        })
-        .end()
-        // less
-        .use('less')
-        .loader('less-loader')
-        .options(lessLoaderOptions);
-    }
-  );
+    );
 
   // basic
   const oneOf: OneOf = lessRule.oneOf('basic');

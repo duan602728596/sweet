@@ -15,14 +15,15 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
   const isDll: boolean = !!(dll && _.isArray(dll) && dll.length > 0 && !serverRender);
 
   // dll
-  config.when(isDll,
-    (config: Config): void => {
-      config
-        .plugin('DllReferencePlugin')
-        .use(webpack.DllReferencePlugin, [{
-          context: sweetOptions.basicPath,
-          manifest: require(path.join(sweetOptions.basicPath, '.dll/manifest.json'))
-        }]);
-    }
-  );
+  config
+    .when(isDll,
+      (config: Config): void => {
+        config
+          .plugin('DllReferencePlugin')
+          .use(webpack.DllReferencePlugin, [{
+            context: sweetOptions.basicPath,
+            manifest: require(path.join(sweetOptions.basicPath, '.dll/manifest.json'))
+          }]);
+      }
+    );
 }

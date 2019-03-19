@@ -83,65 +83,70 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
     .use('babel-loader');
 
   // ecmascript
-  config.when(!ecmascript && !resetPresets,
-    (config: Config): void => {
-      configBabelUse
-        .tap((options: any): any => _.mergeWith(options, {
-          presets: [
-            [
-              '@babel/preset-env',
-              {
-                targets: {
-                  ie: 11,
-                  edge: 16,
-                  chrome: 62,
-                  firefox: 56,
-                  android: 6,
-                  ios: 11
-                },
-                debug,
-                modules: false,
-                useBuiltIns: 'usage'
-              }
+  config
+    .when(!ecmascript && !resetPresets,
+      (config: Config): void => {
+        configBabelUse
+          .tap((options: any): any => _.mergeWith(options, {
+            presets: [
+              [
+                '@babel/preset-env',
+                {
+                  targets: {
+                    ie: 11,
+                    edge: 16,
+                    chrome: 62,
+                    firefox: 56,
+                    android: 6,
+                    ios: 11
+                  },
+                  debug,
+                  modules: false,
+                  useBuiltIns: 'usage'
+                }
+              ]
             ]
-          ]
-        }, customizer));
-    });
+          }, customizer));
+      });
 
   // 判断是否加载react相关插件，热替换
-  config.when(frame === 'react',
-    (config: Config): void => {
-      configBabelUse
-        .tap((options: any): any => _.mergeWith(options, {
-          presets: resetPresets ? undefined : ['@babel/preset-react'],
-          plugins: resetPlugins ? undefined : ['react-hot-loader/babel']
-        }, customizer));
-    }
-  );
+  config
+    .when(frame === 'react',
+      (config: Config): void => {
+        configBabelUse
+          .tap((options: any): any => _.mergeWith(options, {
+            presets: resetPresets ? undefined : ['@babel/preset-react'],
+            plugins: resetPlugins ? undefined : ['react-hot-loader/babel']
+          }, customizer));
+      }
+    );
 
   // 判断是否加载vue相关插件
-  config.when(frame === 'vue',
-    (config: Config): void => {
-      configBabelUse
-        .tap((options: any): any => _.mergeWith(options, {
-          plugins: resetPlugins ? undefined : ['transform-vue-jsx']
-        }, customizer));
-    }
-  );
+  config
+    .when(frame === 'vue',
+      (config: Config): void => {
+        configBabelUse
+          .tap((options: any): any => _.mergeWith(options, {
+            plugins: resetPlugins ? undefined : ['transform-vue-jsx']
+          }, customizer));
+      }
+    );
 
   // 加载presets
-  config.when(!resetPresets && !!presets,
-    (config: Config): void => {
-      configBabelUse
-        .tap((options: any): any => _.mergeWith(options, { presets }, customizer));
-    }
-  );
+  config
+    .when(!resetPresets && !!presets,
+      (config: Config): void => {
+        configBabelUse
+          .tap((options: any): any => _.mergeWith(options, { presets }, customizer));
+      }
+    );
 
   // 加载plugins
-  config.when(!resetPlugins && !!plugins,
-    (config: Config): void => {
-      configBabelUse
-        .tap((options: any): any => _.mergeWith(options, { plugins }, customizer));
-    }
-  );
+  config
+    .when(!resetPlugins && !!plugins,
+      (config: Config): void => {
+        configBabelUse
+          .tap((options: any): any => _.mergeWith(options, { plugins }, customizer));
+      }
+    );
 }

@@ -27,11 +27,12 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
     }]);
 
   // 当环境为测试时，不使用输出插件
-  config.when(sweetConfig.frame !== 'test',
-    (config: Config): void => {
-      config
-        .plugin('webpack.ProgressPlugin')
-        .use(webpack.ProgressPlugin, [handleWebpackBuildProgress]);
-    }
-  );
+  config
+    .when(sweetConfig.frame !== 'test',
+      (config: Config): void => {
+        config
+          .plugin('webpack.ProgressPlugin')
+          .use(webpack.ProgressPlugin, [handleWebpackBuildProgress]);
+      }
+    );
 }

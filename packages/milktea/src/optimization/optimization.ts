@@ -18,35 +18,37 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
   const isDevelopment: boolean = mode === 'development';
 
   // 设置splitChunks配置
-  config.when(!isDevelopment && !serverRender,
-    (config: Config): void => {
-      config
-        .optimization
-        .splitChunks({
-          chunks: 'all',
-          automaticNameDelimiter: '.'
-        });
-    }
-  );
+  config
+    .when(!isDevelopment && !serverRender,
+      (config: Config): void => {
+        config
+          .optimization
+          .splitChunks({
+            chunks: 'all',
+            automaticNameDelimiter: '.'
+          });
+      }
+    );
 
   // 设置minimizer的压缩插件
-  config.when(!isDevelopment,
-    (config: Config): void => {
-      const terserOptions: TerserOptions = {};
+  config
+    .when(!isDevelopment,
+      (config: Config): void => {
+        const terserOptions: TerserOptions = {};
 
-      if (js && js.ecmascript) {
-        terserOptions.ecma = 8;
-      } else {
-        terserOptions.ecma = 5;
+        if (js && js.ecmascript) {
+          terserOptions.ecma = 8;
+        } else {
+          terserOptions.ecma = 5;
+        }
+
+        config
+          .optimization
+          .minimizer('minimizer')
+          .use(TerserPlugin, [{
+            cache: path.join(sweetOptions.basicPath, '.terserCache'),
+            terserOptions
+          }]);
       }
-
-      config
-        .optimization
-        .minimizer('minimizer')
-        .use(TerserPlugin, [{
-          cache: path.join(sweetOptions.basicPath, '.terserCache'),
-          terserOptions
-        }]);
-    }
-  );
+    );
 }

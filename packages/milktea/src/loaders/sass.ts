@@ -25,17 +25,18 @@ export default function(sweetConfig: SweetConfig, config: Config): void {
   const _sass: Sass = sass || {};
   const { publicPath, modules = true, exclude, include }: Sass = _sass;
 
-  config.merge({
-    module: {
-      rule: {
-        sass: {
-          test: /^.*\.s(a|c)ss$/,
-          exclude: exclude ? (_.isArray(exclude) ? exclude : [exclude]) : [],
-          include: include ? (_.isArray(include) ? include : [include]) : []
+  config
+    .merge({
+      module: {
+        rule: {
+          sass: {
+            test: /^.*\.s(a|c)ss$/,
+            exclude: exclude ? (_.isArray(exclude) ? exclude : [exclude]) : [],
+            include: include ? (_.isArray(include) ? include : [include]) : []
+          }
         }
       }
-    }
-  });
+    });
 
   const sassRule: Rule = config.module.rule('sass');
 
@@ -62,35 +63,36 @@ export default function(sweetConfig: SweetConfig, config: Config): void {
   };
 
   // vue
-  config.when(frame === 'vue',
-    (config: Config): void => {
-      const oneOf: OneOf = sassRule
-        .oneOf('vue')
-        .resourceQuery(/scoped/);
+  config
+    .when(frame === 'vue',
+      (config: Config): void => {
+        const oneOf: OneOf = sassRule
+          .oneOf('vue')
+          .resourceQuery(/scoped/);
 
-      // style
-      if (!serverRender) {
+        // style
+        if (!serverRender) {
+          oneOf
+            .use('style-loader')
+            .loader(styleLoader)
+            .options(styleLoaderOptions);
+        }
+
         oneOf
-          .use('style-loader')
-          .loader(styleLoader)
-          .options(styleLoaderOptions);
+          // css
+          .use('css-loader')
+          .loader('css-loader')
+          .options({
+            exportOnlyLocals: serverRender,
+            sourceMap: isDevelopment
+          })
+          .end()
+          // sass
+          .use('sass-loader')
+          .loader('sass-loader')
+          .options(sassLoaderOptions);
       }
-
-      oneOf
-        // css
-        .use('css-loader')
-        .loader('css-loader')
-        .options({
-          exportOnlyLocals: serverRender,
-          sourceMap: isDevelopment
-        })
-        .end()
-        // sass
-        .use('sass-loader')
-        .loader('sass-loader')
-        .options(sassLoaderOptions);
-    }
-  );
+    );
 
   // basic
   const oneOf: OneOf = sassRule.oneOf('basic');
