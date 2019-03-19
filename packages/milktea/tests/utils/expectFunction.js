@@ -67,7 +67,7 @@ export function expectProServerPlugins(config) {
 /* 开发环境 optimization属性 */
 export function expectDevOptimization(config) {
   return function() {
-    expect(config.optimization).to.be.eql({});
+    expect(config.optimization).to.be.undefined;
   };
 }
 

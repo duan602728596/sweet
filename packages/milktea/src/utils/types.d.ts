@@ -1,3 +1,5 @@
+import { ExternalsElement, RuleSetRule } from 'webpack';
+
 export interface SweetOptions {
   basicPath: string;
 }
@@ -14,28 +16,15 @@ export interface Loaders {
   vue?: object;
 }
 
-export interface Loader {
-  test?: RegExp;
-  use?: Array<any>;
-  exclude?: RegExp;
-  include?: RegExp;
-  oneOf?: Array<any>;
-}
-
-export interface LoaderOption {
-  loader?: string | any;
-  options?: any;
-}
-
 export interface SweetConfig {
-  mode?: string;
+  mode?: 'development' | 'production' | 'none';
   dll?: Array<string>;
   entry?: any;
   output?: any;
-  externals?: object;
+  externals?: ExternalsElement | ExternalsElement[];
   resolve?: object;
   loaders?: Loaders;
-  rules?: Array<any>;
+  rules?: Array<RuleSetRule>;
   plugins?: Array<any>;
   js?: {
     ecmascript?: boolean;
@@ -67,23 +56,4 @@ export interface SweetConfig {
   serverEntry?: any;
   serverOutput?: any;
   frame?: string;
-}
-
-export interface WebpackConfig {
-  mode?: string;
-  entry?: any;
-  output?: any;
-  devtool?: string;
-  externals?: object;
-  resolve?: object;
-  module?: {
-    rules: Array<any>;
-  };
-  plugins?: Array<any>;
-  optimization?: object;
-  target?: string;
-  node?: {
-    __filename: boolean;
-    __dirname: boolean;
-  };
 }

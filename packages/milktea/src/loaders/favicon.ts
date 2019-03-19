@@ -1,12 +1,14 @@
-/* favicon 配置 */
-import faviconConfig from '../config/favicon';
-import { Loader } from '../utils/types';
+import * as Config from 'webpack-chain';
+import { SweetConfig } from '../utils/types';
 
-export default function(): Loader {
-  return {
-    test: /^.*\.ico$/,
-    use: [
-      faviconConfig()
-    ]
-  };
+/* favicon 图标配置 */
+export default function(sweetConfig: SweetConfig, config: Config): void {
+  config.module
+    .rule('favicon')
+    .test(/^.*\.ico$/)
+    .use('file-loader')
+    .loader('file-loader')
+    .options({
+      name: '[name].[ext]'
+    });
 }

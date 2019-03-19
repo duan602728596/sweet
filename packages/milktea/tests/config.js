@@ -14,6 +14,12 @@ describe('config', function() {
     const config = webpackConfig({
       frame: 'react',
       mode: 'development',
+      loader: {
+        js: {
+          test: /.*\.jsx?/,
+          use: ['babel-loader', 'ts-loader']
+        }
+      },
       html: [{ template: 'index.pug' }]
     }, sweetOptions);
 

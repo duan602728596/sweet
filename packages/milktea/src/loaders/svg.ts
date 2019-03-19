@@ -1,23 +1,24 @@
-/* svg文件配置 */
-import svgConfig from '../config/svg';
-import { SweetConfig, Loader } from '../utils/types';
+import * as Config from 'webpack-chain';
+import { SweetConfig } from '../utils/types';
 
-export default function(sweetConfig: SweetConfig): Loader {
+/* svg文件配置 */
+export default function(sweetConfig: SweetConfig, config: Config): void {
   /**
    * mode { string }: 开发模式还是生产模式
    * serverRender { boolean }: 开启服务器端渲染
    */
   const { mode, serverRender }: SweetConfig = sweetConfig;
-  const emitFile: boolean = !serverRender;
   const isDevelopment: boolean = mode === 'development';
+  const filename: string = isDevelopment ? '[name].[hash:5].[ext]' : '[hash:5].[ext]';
 
-  return {
-    test: /\.svg$/,
-    use: [
-      svgConfig({
-        isDevelopment,
-        emitFile
-      })
-    ]
-  };
+  config
+    .module
+    .rule('svg')
+    .test(/\.svg$/)
+    .use('file-loader')
+    .loader('file-loader')
+    .options( {
+      name: filename,
+      emitFile: !serverRender
+    });
 }

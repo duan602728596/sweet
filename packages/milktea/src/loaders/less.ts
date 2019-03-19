@@ -1,8 +1,8 @@
-/* less 配置 */
+import * as _ from 'lodash';
+import * as Config from 'webpack-chain';
+import { Rule, OneOf } from 'webpack-chain';
 import * as MiniCssExtractPlugin from 'mini-css-extract-plugin';
-import lessConfig from '../config/less';
-import cssConfig from '../config/css';
-import { SweetConfig, Loader } from '../utils/types';
+import { SweetConfig } from '../utils/types';
 
 interface Css {
   publicPath?: string;
@@ -12,7 +12,8 @@ interface Css {
   modifyVars?: object;
 }
 
-export default function(sweetConfig: SweetConfig): Loader {
+/* less & css 配置 */
+export default function(sweetConfig: SweetConfig, config: Config): void {
   /**
    * mode { string }: 开发模式还是生产模式
    * css { Object }: loader里面css的配置
@@ -24,72 +25,93 @@ export default function(sweetConfig: SweetConfig): Loader {
   const _css: Css = css || {};
   const { publicPath, modules = true, exclude, include, modifyVars }: Css = _css;
 
-  // style-loader配置
-  const miniCssExtractPluginLoader: Object = publicPath ? {
-    loader: MiniCssExtractPlugin.loader,
-    options: {
-      publicPath
+  config.merge({
+    module: {
+      rule: {
+        less: {
+          test: /^.*\.(le|c)ss$/,
+          exclude: exclude ? (_.isArray(exclude) ? exclude : [exclude]) : [],
+          include: include ? (_.isArray(include) ? include : [include]) : []
+        }
+      }
     }
-  } : MiniCssExtractPlugin.loader;
+  });
 
-  // 开发环境下为style-loader，生产环境下为mini-css-extract-plugin/loader
-  const endLoader: Object | string = isDevelopment
+  const lessRule: Rule = config.module.rule('less');
+
+  // style-loader
+  const styleLoader: any = isDevelopment
     ? (frame === 'vue' ? 'vue-style-loader' : 'style-loader')
-    : miniCssExtractPluginLoader;
+    : MiniCssExtractPlugin.loader;
+  const styleLoaderOptions: object = isDevelopment ? {} : { publicPath };
 
-  // config
-  const cssLoaderConfig: Loader = {
-    test: /^.*\.(le|c)ss$/,
-    exclude,
-    include
+  // css-loader
+  const cssLoaderOptions: object = {
+    modules,
+    localIdentName: modules
+      ? (isDevelopment ? '[path][name]__[local]___[hash:base64:5]' : '_[hash:base64:5]')
+      : undefined,
+    exportOnlyLocals: serverRender,
+    sourceMap: isDevelopment
   };
 
-  // less
-  const lessLoaderConfig: Object = lessConfig({ modifyVars });
-
-  // loader配置
-  const basicConfig: Array<any> = [
-    cssConfig({
-      isDevelopment,
-      modules,
-      isLocals: serverRender
-    }),
-    lessLoaderConfig
-  ];
-
-  // 服务器端渲染
-  if (!serverRender) {
-    basicConfig.unshift(endLoader);
-  }
+  // less-loader
+  const lessLoaderOptions: object = {
+    javascriptEnabled: true,
+    modifyVars,
+    sourceMap: isDevelopment
+  };
 
   // vue
-  if (frame === 'vue') {
-    const use: Array<any> = [
-      cssConfig({
-        isDevelopment,
-        modules: false,
-        isLocals: serverRender
-      }),
-      lessLoaderConfig
-    ];
+  config.when(frame === 'vue',
+    (config: Config): void => {
+      const oneOf: OneOf = lessRule
+        .oneOf('vue')
+        .resourceQuery(/scoped/);
 
-    // 服务器端渲染
-    if (!serverRender) {
-      use.unshift(endLoader);
-    }
-
-    cssLoaderConfig.oneOf = [
-      {
-        resourceQuery: /scoped/,
-        use
-      },
-      {
-        use: basicConfig
+      // style
+      if (!serverRender) {
+        oneOf
+          .use('style')
+          .loader(styleLoader)
+          .options(styleLoaderOptions);
       }
-    ];
-  } else {
-    cssLoaderConfig.use = basicConfig;
+
+      oneOf
+        // css
+        .use('css')
+        .loader('css-loader')
+        .options({
+          exportOnlyLocals: serverRender,
+          sourceMap: isDevelopment
+        })
+        .end()
+        // less
+        .use('less')
+        .loader('less-loader')
+        .options(lessLoaderOptions);
+    }
+  );
+
+  // basic
+  const oneOf: OneOf = lessRule.oneOf('basic');
+
+  // style
+  if (!serverRender) {
+    oneOf
+      .use('style')
+      .loader(styleLoader)
+      .options(styleLoaderOptions);
   }
 
-  return cssLoaderConfig;
+  oneOf
+    // css
+    .use('css')
+    .loader('css-loader')
+    .options(cssLoaderOptions)
+    .end()
+    // less
+    .use('less')
+    .loader('less-loader')
+    .options(lessLoaderOptions);
 }

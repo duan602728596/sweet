@@ -1,21 +1,26 @@
 /* webpack 配置 */
 import * as path from 'path';
+import * as _ from 'lodash';
+import { Configuration } from 'webpack';
+import * as Config from 'webpack-chain';
 import loaders from './loaders/loaders';
-import plugins from './plugins/plugins';
+import basicPlugins from './plugins/plugins';
 import optimization from './optimization/optimization';
-import { isObject } from './utils/utils';
-import { SweetConfig, SweetOptions, WebpackConfig } from './utils/types';
+import { SweetConfig, SweetOptions } from './utils/types';
 
-export default function(sweetConfig: SweetConfig | null, sweetOptions: SweetOptions): WebpackConfig {
+export default function(sweetConfig: SweetConfig | null, sweetOptions: SweetOptions): Configuration {
+  const config: Config = new Config();
   /**
    * mode { string }: 开发模式还是生产模式
    * entry { any }: 文件入口
    * output { any }: 文件出口
    * externals { any }: 外部扩展
    * resolve { object } 解析
+   * rules { Array<RuleSetRule> }: 自定义规则
+   * plugins { Array<any> }: 自定义插件
    */
-  const sweetConfigCopy: SweetConfig = isObject(sweetConfig) ? { ...sweetConfig } : {};
-  const { mode, entry, output, externals, resolve }: SweetConfig = sweetConfigCopy;
+  const sweetConfigCopy: SweetConfig = _.isPlainObject(sweetConfig) ? { ...sweetConfig } : {};
+  const { mode, entry, output, externals, resolve, rules, plugins }: SweetConfig = sweetConfigCopy;
   const isDevelopment: boolean = mode === 'development';
 
   // 格式化配置
@@ -25,31 +30,47 @@ export default function(sweetConfig: SweetConfig | null, sweetOptions: SweetOpti
 
   // webpack配置
   const filename: string = isDevelopment ? '[name].js' : '[chunkhash:5].js';
-  const webpackOutput: {
-    path: string;
-    filename: string;
-    chunkFilename: string;
-  } = {
-    path: path.join(sweetOptions.basicPath, 'build'),
-    filename,
-    chunkFilename: filename
-  };
 
-  if (output) {
-    Object.assign(webpackOutput, output);
+  // 合并配置
+  config
+    .merge({
+      mode,
+      devtool: isDevelopment ? 'module-eval-source-map' : 'none'
+    });
+
+  // 设置文件输出
+  config
+    .output
+    .path(path.join(sweetOptions.basicPath, 'build'))
+    .filename(filename)
+    .chunkFilename(filename);
+
+  // loaders
+  loaders(sweetConfigCopy, sweetOptions, config);
+
+  // plugins
+  basicPlugins(sweetConfigCopy, sweetOptions, config);
+
+  // optimization
+  optimization(sweetConfigCopy, sweetOptions, config);
+
+  const configuration: Configuration = config.toConfig();
+
+  // 添加其他的rules
+  if (rules && configuration.module) {
+    configuration.module.rules.push(...rules);
   }
 
-  return {
-    mode,
-    entry,
-    output: webpackOutput,
-    externals,
-    resolve,
-    devtool: isDevelopment ? 'module-eval-source-map' : 'none',
-    module: {
-      rules: loaders(sweetConfigCopy, sweetOptions)
-    },
-    plugins: plugins(sweetConfigCopy, sweetOptions),
-    optimization: optimization(sweetConfigCopy, sweetOptions)
-  };
+  // 添加自定义的plugins
+  if (plugins && configuration.plugins) {
+    configuration.plugins.push(...plugins);
+  }
+
+  configuration.entry = entry;
+
+  Object.assign(configuration.output, output);
+  configuration.externals = externals;
+  configuration.resolve = resolve;
+
+  return configuration;
 }

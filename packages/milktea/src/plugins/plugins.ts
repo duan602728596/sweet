@@ -1,12 +1,14 @@
 /* 插件配置 */
 import * as path from 'path';
+import * as _ from 'lodash';
 import * as webpack from 'webpack';
+import * as Config from 'webpack-chain';
 import * as HtmlWebpackPlugin from 'html-webpack-plugin';
 import * as VueLoaderPlugin from 'vue-loader/lib/plugin';
-import { requireModule, isArray } from '../utils/utils';
+import { requireModule } from '../utils/utils';
 import { SweetConfig, SweetOptions } from '../utils/types';
 
-export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions): Array<any> {
+export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, config: Config): void {
   /**
    * mode { string }: 开发模式还是生产模式
    * html { object }: html配置
@@ -19,41 +21,47 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions): A
 
   // 根据模式加载插件
   const envPlugins: Function = isDevelopment
-    ? requireModule(path.join(__dirname, './devPlugins'))
-    : requireModule(path.join(__dirname, './proPlugins'));
+    ? requireModule(path.join(__dirname, 'devPlugins'))
+    : requireModule(path.join(__dirname, 'proPlugins'));
 
-  // 合并插件
-  const pluginArr: Array<any> = [
-    ...plugins ? plugins : [],
-    new webpack.IgnorePlugin({
+  // moment
+  config
+    .plugin('webpack.IgnorePlugin')
+    .use(webpack.IgnorePlugin, [{
       resourceRegExp: /^\.\/locale$/,
       contextRegExp: /moment$/
-    }),
-    ...envPlugins(sweetConfig, sweetOptions)
-  ];
+    }]);
+
+  // env plugin
+  envPlugins(sweetConfig, sweetOptions, config);
 
   // html模板
-  if (html && typeof isArray(html) && !serverRender) {
+  if (html && typeof _.isArray(html) && !serverRender) {
+    let index: number = 0;
+
     for (const item of html) {
       const info: { name: string } = path.parse(item.template);
 
-      pluginArr.push(
-        new HtmlWebpackPlugin({
+      config
+        .plugin(`html-webpack-plugin: ${ index }`)
+        .use(HtmlWebpackPlugin, [{
           inject: true,
           template: item.template,
           filename: `${ info.name }.html`,
           excludeChunks: item.excludeChunks,
           mode,
           hash: !isDevelopment
-        })
-      );
+        }]);
+
+      index += 1;
     }
   }
 
-  // vue
-  if (frame === 'vue') {
-    pluginArr.push(new VueLoaderPlugin());
-  }
-
-  return pluginArr;
+  config.when(frame === 'vue',
+    (config: Config): void => {
+      config
+        .plugin('vue')
+        .use(VueLoaderPlugin);
+    }
+  );
 }

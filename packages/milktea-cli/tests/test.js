@@ -5,5 +5,5 @@ register(babelRegisterConfig);
 
 /* test */
 require('./dll');
-require('./build');
-require('./start');
+// require('./build');
+// require('./start');

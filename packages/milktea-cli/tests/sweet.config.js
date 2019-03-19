@@ -9,7 +9,8 @@ module.exports = {
   loaders: {
     js: {
       test: /.*\.jsx?$/,
-      use: ['babel-loader']
+      use: ['babel-loader'],
+      include: /src/
     }
   },
   output: {
