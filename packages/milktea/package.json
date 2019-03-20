@@ -51,7 +51,8 @@
     "vue-svg-loader": "^0.12.0",
     "vue-template-compiler": "^2.6.9",
     "webpack": "^4.29.6",
-    "webpack-chain": "^5.2.2"
+    "webpack-chain": "^5.2.2",
+    "webpack-merge": "^4.2.1"
   },
   "devDependencies": {
     "@babel/register": "^7.0.0",

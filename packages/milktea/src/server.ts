@@ -3,6 +3,7 @@ import * as path from 'path';
 import * as _ from 'lodash';
 import { Configuration } from 'webpack';
 import * as Config from 'webpack-chain';
+import * as merge from 'webpack-merge';
 import loaders from './loaders/loaders';
 import basicPlugins from './plugins/plugins';
 import optimization from './optimization/optimization';
@@ -61,20 +62,15 @@ export default function(sweetConfig: SweetConfig | null, sweetOptions: SweetOpti
   // optimization
   optimization(sweetConfigCopy, sweetOptions, config);
 
-  const configuration: Configuration = config.toConfig();
-
-  // 添加其他的rules
-  if (rules && configuration.module) {
-    configuration.module.rules.push(...rules);
-  }
-
-  // 添加自定义的plugins
-  if (plugins && configuration.plugins) {
-    configuration.plugins.push(...plugins);
-  }
-
-  configuration.entry = serverEntry;
-  configuration.resolve = resolve;
-
-  return configuration;
+  /* 合并自定义配置 */
+  return merge(config.toConfig(), {
+    entry: serverEntry,
+    resolve,
+    // 添加其他的rules
+    module: {
+      rules
+    },
+    // 添加自定义的plugins
+    plugins
+  });
 }

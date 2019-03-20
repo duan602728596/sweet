@@ -4,6 +4,8 @@ import * as _ from 'lodash';
 import * as webpack from 'webpack';
 import { Configuration } from 'webpack';
 import * as Config from 'webpack-chain';
+import * as merge from 'webpack-merge';
+import { targets } from './loaders/js';
 import handleWebpackBuildProgress from './plugins/handleWebpackBuildProgress';
 import { SweetConfig, SweetOptions } from './utils/types';
 
@@ -53,14 +55,7 @@ export default function(sweetConfig: SweetConfig | null, sweetOptions: SweetOpti
               [
                 '@babel/preset-env',
                 {
-                  targets: {
-                    ie: 11,
-                    edge: 16,
-                    chrome: 62,
-                    firefox: 56,
-                    android: 5,
-                    ios: 11
-                  },
+                  targets,
                   debug: false,
                   modules: false,
                   useBuiltIns: false
@@ -95,11 +90,12 @@ export default function(sweetConfig: SweetConfig | null, sweetOptions: SweetOpti
     .plugin('webpack.ProgressPlugin')
     .use(webpack.ProgressPlugin, [handleWebpackBuildProgress]);
 
-  const configuration: Configuration = config.toConfig();
-
-  configuration.entry = { dll: dll || [] };
-  configuration.externals = externals;
-  configuration.resolve = resolve;
-
-  return configuration;
+  /* 合并自定义配置 */
+  return merge(config.toConfig(), {
+    entry: {
+      dll
+    },
+    externals,
+    resolve
+  });
 }

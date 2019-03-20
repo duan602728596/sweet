@@ -16,6 +16,15 @@ interface Js {
   include?: RuleSetCondition;
 }
 
+export const targets: object = {
+  ie: 11,
+  edge: 16,
+  chrome: 62,
+  firefox: 56,
+  android: 6,
+  ios: 11
+};
+
 const basicPlugins: Array<any> = [
   ['@babel/plugin-proposal-decorators', { legacy: true }],
   '@babel/plugin-proposal-class-properties',
@@ -93,14 +102,7 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
               [
                 '@babel/preset-env',
                 {
-                  targets: {
-                    ie: 11,
-                    edge: 16,
-                    chrome: 62,
-                    firefox: 56,
-                    android: 6,
-                    ios: 11
-                  },
+                  targets,
                   debug,
                   modules: false,
                   useBuiltIns: 'usage'
