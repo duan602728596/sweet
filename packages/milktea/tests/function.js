@@ -3,16 +3,34 @@ import { formatLoader } from '../lib/utils/utils';
 
 describe('function', function() {
   it('should return correct webpack rule', function() {
-    expect(formatLoader({
+    const before = {
       test: /.*/,
       use: ['babel-loader']
-    })).to.be.eql({
+    };
+
+    const after = {
       test: /.*/,
       use: [{
         loader: 'babel-loader'
       }]
-    });
+    };
+
+    expect(formatLoader(before)).to.be.eql(after);
   });
 
+  it('should return correct webpack rule', function() {
+    const before = {
+      test: /.*/,
+      use: [
+        {
+          loader: 'babel-loader',
+          options: {
+            babelrc: false
+          }
+        }
+      ]
+    };
 
+    expect(formatLoader(before)).to.be.eql(before);
+  });
 });
