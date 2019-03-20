@@ -9,19 +9,19 @@
     "test": "mocha ./tests/test.js --timeout 180000"
   },
   "dependencies": {
-    "@babel/core": "^7.3.4",
-    "@babel/plugin-proposal-class-properties": "^7.3.4",
-    "@babel/plugin-proposal-decorators": "^7.3.0",
+    "@babel/core": "^7.4.0",
+    "@babel/plugin-proposal-class-properties": "^7.4.0",
+    "@babel/plugin-proposal-decorators": "^7.4.0",
     "@babel/plugin-proposal-do-expressions": "^7.2.0",
     "@babel/plugin-proposal-export-default-from": "^7.2.0",
     "@babel/plugin-proposal-optional-catch-binding": "^7.2.0",
     "@babel/plugin-proposal-optional-chaining": "^7.2.0",
     "@babel/plugin-syntax-dynamic-import": "^7.2.0",
-    "@babel/plugin-transform-runtime": "^7.3.4",
-    "@babel/polyfill": "^7.2.5",
-    "@babel/preset-env": "^7.3.4",
+    "@babel/plugin-transform-runtime": "^7.4.0",
+    "@babel/polyfill": "^7.4.0",
+    "@babel/preset-env": "^7.4.1",
     "@babel/preset-react": "^7.0.0",
-    "@babel/runtime": "^7.3.4",
+    "@babel/runtime": "^7.4.0",
     "@svgr/webpack": "^4.1.0",
     "babel-helper-vue-jsx-merge-props": "^2.0.3",
     "babel-loader": "^8.0.5",
@@ -55,12 +55,12 @@
     "webpack-merge": "^4.2.1"
   },
   "devDependencies": {
-    "@babel/register": "^7.0.0",
+    "@babel/register": "^7.4.0",
     "chai": "^4.2.0",
     "cross-env": "^5.2.0",
     "mocha": "^6.0.2",
     "rimraf": "^2.6.3",
-    "typescript": "^3.3.3333"
+    "typescript": "^3.3.4000"
   },
   "engines": {
     "node": ">= 9.0.0"
