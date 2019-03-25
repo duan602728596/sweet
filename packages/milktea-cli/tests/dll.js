@@ -1,4 +1,4 @@
-import child_process from 'child_process';
+import childProcess from 'child_process';
 import fs from 'fs';
 import path from 'path';
 import { expect } from 'chai';
@@ -8,7 +8,7 @@ function run() {
   const config = path.join(__dirname, './sweet.config.js');
 
   return new Promise((resolve, reject) => {
-    const child = child_process.spawn('node', [cli, 'dll', '--config', config], {
+    const child = childProcess.spawn('node', [cli, 'dll', '--config', config], {
       cwd: __dirname
     });
 
