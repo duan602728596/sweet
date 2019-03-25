@@ -8,6 +8,7 @@
     "server": "milktea server",
     "server:pm2": "pm2 start runServer.js",
     "eslint": "eslint ./ --fix",
+    "case-check": "case-check --dir=\"./\" --ext=\"js,sass,css,jpg,jpeg,png,gif,webp\"",
     "update": "milktea update"
   },
   "dependencies": {
@@ -27,6 +28,7 @@
     "commitizen": "^3.0.7",
     "cross-env": "^5.2.0",
     "cz-conventional-changelog": "^2.1.0",
+    "es-module-path-case-check": "^0.0.3",
     "eslint": "^5.15.3",
     "eslint-plugin-react": "^7.12.4",
     "husky": "^1.3.1",
