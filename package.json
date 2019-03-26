@@ -13,7 +13,7 @@
     "@sweet/milktea-cli": "github:duan602728596/sweet#build-milktea-cli",
     "@sweet/util-tools": "github:duan602728596/sweet#build-util-tools",
     "@types/koa": "^2.0.48",
-    "@types/node": "^11.11.6",
+    "@types/node": "^11.11.7",
     "@types/webpack": "^4.4.26",
     "babel-eslint": "^10.0.1",
     "commitizen": "^3.0.7",
