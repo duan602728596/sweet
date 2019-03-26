@@ -105,7 +105,8 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
                   targets,
                   debug,
                   modules: false,
-                  useBuiltIns: 'usage'
+                  useBuiltIns: 'usage',
+                  corejs: 3
                 }
               ]
             ]
