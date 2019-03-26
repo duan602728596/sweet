@@ -3,7 +3,7 @@
   "scripts": {
     "build": "npm run clean && gulp --gulpfile ./scripts/build.ts",
     "clean": "ts-node ./scripts/clean",
-    "eslint": "eslint ./packages --ext .js,.jsx,.ts,.tsx --fix",
+    "eslint": "eslint ./ --ext .js,.jsx,.ts,.tsx --fix",
     "tslint": "tslint --project ./ --fix",
     "lerna:install": "lerna bootstrap --force-local",
     "update": "milktea update",
