@@ -9,7 +9,7 @@ import basicPlugins from './plugins/plugins';
 import optimization from './optimization/optimization';
 import { SweetConfig, SweetOptions } from './utils/types';
 
-export default function(sweetConfig: SweetConfig | null, sweetOptions: SweetOptions): Configuration {
+export default function(sweetConfig: SweetConfig | null | undefined, sweetOptions: SweetOptions): Configuration {
   const config: Config = new Config();
   /**
    * mode { string }: 开发模式还是生产模式

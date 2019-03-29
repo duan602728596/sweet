@@ -9,7 +9,7 @@ import { targets } from './loaders/js';
 import handleWebpackBuildProgress from './plugins/handleWebpackBuildProgress';
 import { SweetConfig, SweetOptions } from './utils/types';
 
-export default function(sweetConfig: SweetConfig | null, sweetOptions: SweetOptions): Configuration {
+export default function(sweetConfig: SweetConfig | null | undefined, sweetOptions: SweetOptions): Configuration {
   const config: Config = new Config();
 
   /**
