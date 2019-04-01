@@ -16,49 +16,55 @@ function preRenderInit(sweetOptions: SweetOptions): Function {
     html: Buffer,
     serverRenderFile: string
   ): Promise<string> {
-    const folderPathFile: string = `${ folderPathAnalyze(ctxPath) }.js`; // 格式化为：path/to/file.js
-    const formatFile: string = `${ filePathAnalyze(ctxPath) }.js`; // 格式化为：path.to.file.js
-    let data: any = {};
+    try {
+      const folderPathFile: string = `${ folderPathAnalyze(ctxPath) }.js`; // 格式化为：path/to/file.js
+      const formatFile: string = `${ filePathAnalyze(ctxPath) }.js`; // 格式化为：path.to.file.js
+      let data: any = {};
 
-    // 查找对应的controller文件
-    if (controllersMap.has(folderPathFile)) {
-      // 查找文件夹
-      const file: string | undefined = controllersMap.get(folderPathFile);
+      // 查找对应的controller文件
+      if (controllersMap.has(folderPathFile)) {
+        // 查找文件夹
+        const file: string | undefined = controllersMap.get(folderPathFile);
 
-      if (file) {
-        const module: Function = requireModule(file);
+        if (file) {
+          const module: Function = requireModule(file);
 
-        data = await module(ctx, sweetOptions);
+          data = await module(ctx, sweetOptions);
+        }
+      } else if (controllersMap.has(formatFile)) {
+        // 查找文件
+        const file: string | undefined = controllersMap.get(formatFile);
+
+        if (file) {
+          const module: Function = requireModule(file);
+
+          data = await module(ctx, sweetOptions);
+        }
+      } else if (controllersMap.has('default.js')) {
+        // 查找默认文件
+        const defaultFile: string | undefined = controllersMap.get('default.js');
+
+        if (defaultFile) {
+          const module: Function = requireModule(defaultFile);
+
+          data = await module(ctx, sweetOptions);
+        }
       }
-    } else if (controllersMap.has(formatFile)) {
-      // 查找文件
-      const file: string | undefined = controllersMap.get(formatFile);
 
-      if (file) {
-        const module: Function = requireModule(file);
+      // ssr渲染
+      const server: Function = requireModule(serverRenderFile);
+      const result: any /* Stream | string */ = await server(ctxPath, ctx, data.initialState);
+      const render: string = isReadStream(result) ? (await readStream(result)).toString() : result;
 
-        data = await module(ctx, sweetOptions);
-      }
-    } else if (controllersMap.has('default.js')) {
-      // 查找默认文件
-      const defaultFile: string | undefined = controllersMap.get('default.js');
+      return ejs.render(html.toString(), formatTemplateData({
+        render,
+        ...data
+      }));
+    } catch (err) {
+      console.error(err);
 
-      if (defaultFile) {
-        const module: Function = requireModule(defaultFile);
-
-        data = await module(ctx, sweetOptions);
-      }
+      return '';
     }
-
-    // ssr渲染
-    const server: Function = requireModule(serverRenderFile);
-    const result: any /* Stream | string */ = await server(ctxPath, ctx, data.initialState);
-    const render: string = isReadStream(result) ? (await readStream(result)).toString() : result;
-
-    return ejs.render(html.toString(), formatTemplateData({
-      render,
-      ...data
-    }));
   };
 }
 

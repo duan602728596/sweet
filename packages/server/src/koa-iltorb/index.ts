@@ -23,10 +23,14 @@ function iltorb(): Koa.Middleware {
         }
       } else {
         // 字符串
-        if (typeof body === 'string' || typeof body === 'number') input = Buffer.from(`${ body }`);
+        if (typeof body === 'string' || typeof body === 'number') {
+          input = Buffer.from(`${ body }`);
+        }
 
         // 数组或对象
-        if (typeof body === 'object') input = Buffer.from(JSON.stringify(body));
+        if (typeof body === 'object') {
+          input = Buffer.from(JSON.stringify(body));
+        }
       }
     }
 

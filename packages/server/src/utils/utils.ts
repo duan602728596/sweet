@@ -106,5 +106,9 @@ export function readStream(stream: Stream): Promise<Buffer> {
     stream.on('end', function(): void {
       resolve(Buffer.concat(chunks));
     });
+
+    stream.on('error', function(err: Error): void {
+      reject(err);
+    });
   });
 }
