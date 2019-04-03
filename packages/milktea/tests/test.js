@@ -1,5 +1,5 @@
 const register = require('@babel/register');
-const babelRegisterConfig = require('../../../utils/babelRegisterConfig');
+const babelRegisterConfig = require('../../../scripts/babelRegisterConfig');
 
 register(babelRegisterConfig);
 
