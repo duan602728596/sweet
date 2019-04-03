@@ -1,7 +1,7 @@
-/* server 命令 */
 import { requireModule } from '../utils/utils';
 import { Argv } from '../utils/types';
 
+/* server 命令 */
 function argvServer(argv: Argv): void {
   const proServer: Function = requireModule('@sweet/server/lib/proServer');
   const httpPort: number = argv.httpPort;

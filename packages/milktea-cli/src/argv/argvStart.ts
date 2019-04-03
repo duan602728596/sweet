@@ -1,9 +1,9 @@
-/* start 命令 */
 import * as webpack from 'webpack';
 import * as _ from 'lodash';
 import { requireModule } from '../utils/utils';
 import { Milktea, Argv } from '../utils/types';
 
+/* start 命令 */
 function argvStart(argv: Argv): void {
   const milktea: Milktea = requireModule('@sweet/milktea');
   const webpackConfig: object = milktea.config(argv.config, 'development');
