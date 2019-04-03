@@ -1,6 +1,7 @@
 /* 查看升级 */
 import * as path from 'path';
 import axios, { AxiosResponse } from 'axios';
+import * as _ from 'lodash';
 
 interface DistTags {
   latest?: string;
@@ -26,16 +27,12 @@ interface PackageItem {
  * @param { object } obj: 对象
  */
 function objectToArray(obj: object): Array<PackageItem> {
-  const resultArr: Array<PackageItem> = [];
-
-  for (const key in obj) {
-    resultArr.push({
+  return _.transform(obj, function(result: Array<PackageItem>, value: string, key: string): void {
+    result.push({
       name: key, // 包的名称
       version: obj[key] // 包的当前版本号
     });
-  }
-
-  return resultArr;
+  }, []);
 }
 
 /**
@@ -212,7 +209,7 @@ async function start(folder: string, registry: number, test: boolean): Promise<v
  * @param { boolean } test: 是否为测试环境
  */
 export default async function(folders: Array<string>, registry: number, test: boolean): Promise<void> {
-  for (let i: number = 0, j: number = folders.length; i < j; i++) {
-    await start(folders[i], registry, test);
+  for (const folder of folders) {
+    await start(folder, registry, test);
   }
 }
