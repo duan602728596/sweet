@@ -29,3 +29,17 @@ image2webp(
 );
 
 ```
+
+## 图片压缩工具
+
+使用方法：
+
+```javascript
+import image2webp from '@sweet/util-tools/lib/imageCompression';
+
+imageCompression(
+  './src',   // 入口文件夹
+  './build'  // 输出文件夹
+);
+
+```
