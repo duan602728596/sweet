@@ -1,5 +1,6 @@
 import * as webpack from 'webpack';
-import { isNone, requireModule } from '../utils/utils';
+import * as _ from 'lodash';
+import { requireModule } from '../utils/utils';
 import { Milktea, Argv } from '../utils/types';
 
 /* build 命令 */
@@ -11,7 +12,7 @@ function argvBuild(argv: Argv): void {
 
   compiler.run(milktea.callback);
 
-  if (!isNone(argv.serverRender)) {
+  if (!_.isNil(argv.serverRender)) {
     const serverRenderCompiler: webpack.Compiler = webpack(
       milktea.serverRenderConfig(argv.config, 'production')
     );

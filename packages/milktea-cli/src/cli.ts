@@ -8,6 +8,7 @@ import argvBuild from './argv/argvBuild';
 import argvServer from './argv/argvServer';
 import argvUpdate from './argv/argvUpdate';
 import argvImage2WebP from './argv/argvImage2WebP';
+import argvImageCompression from './argv/argvImageCompression';
 
 /* 获取参数 */
 const argv: object = yargs
@@ -17,6 +18,7 @@ const argv: object = yargs
   .command('server', '启动服务器', (): void => undefined, argvServer)
   .command('update', '工具：检查当前目录是否有依赖需要更新', (): void => undefined, argvUpdate)
   .command('image2webp', '工具：图片批量转换成webp格式', (): void => undefined, argvImage2WebP)
+  .command('imageCompression', '工具：图片批量压缩', (): void => undefined, argvImageCompression)
   .options({
     // milktea
     config: {
@@ -53,13 +55,13 @@ const argv: object = yargs
       describe: 'html模版的文件名',
       type: 'string'
     },
-    // image2webp
+    // image2webp & imageCompression
     imageEntry: {
-      describe: '需要批量转换的图片所在的文件夹',
+      describe: '需要批量转换或压缩的图片所在的文件夹',
       type: 'string'
     },
     imageOutput: {
-      describe: '输出批量转换的图片的文件夹',
+      describe: '输出批量转换或压缩的图片的文件夹',
       type: 'string'
     },
     quality: {

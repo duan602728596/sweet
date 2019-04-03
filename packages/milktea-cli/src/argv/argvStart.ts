@@ -1,6 +1,7 @@
 /* start 命令 */
 import * as webpack from 'webpack';
-import { isNone, requireModule } from '../utils/utils';
+import * as _ from 'lodash';
+import { requireModule } from '../utils/utils';
 import { Milktea, Argv } from '../utils/types';
 
 function argvStart(argv: Argv): void {
@@ -8,13 +9,13 @@ function argvStart(argv: Argv): void {
   const webpackConfig: object = milktea.config(argv.config, 'development');
 
   // koa-webpack需要output.publicPath
-  if (!isNone(argv.server) && !webpackConfig['output'].publicPath) {
+  if (!_.isNil(argv.server) && !webpackConfig['output'].publicPath) {
     webpackConfig['output'].publicPath = '/';
   }
 
   const compiler: webpack.Compiler = webpack(webpackConfig);
 
-  if (!isNone(argv.serverRender)) {
+  if (!_.isNil(argv.serverRender)) {
     const serverRenderCompiler: webpack.Compiler = webpack(
       milktea.serverRenderConfig(argv.config, 'development')
     );
@@ -23,7 +24,7 @@ function argvStart(argv: Argv): void {
     }, milktea.callback);
   }
 
-  if (!isNone(argv.server)) {
+  if (!_.isNil(argv.server)) {
     const devServer: Function = requireModule('@sweet/server/lib/devServer');
     const httpPort: number = argv.httpPort;
     const httpsPort: number = argv.httpsPort;

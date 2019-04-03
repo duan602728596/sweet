@@ -1,7 +1,8 @@
 import * as path from 'path';
 import * as fs from 'fs';
 import * as process from 'process';
-import { isNone, requireModule } from '../utils/utils';
+import * as _ from 'lodash';
+import { requireModule } from '../utils/utils';
 import { Argv } from '../utils/types';
 
 /* 列出目录下的所有文件 */
@@ -38,7 +39,7 @@ async function argvUpdate(argv: Argv): Promise<void> {
   const update: Function = requireModule('@sweet/util-tools/lib/update');
   const folders: Array<string> = [];
 
-  if (isNone(argv.__DEV__)) {
+  if (_.isNil(argv.__DEV__)) {
     folders.push(process.cwd());
   } else {
     const packages: string = path.join(process.cwd(), 'packages');
@@ -52,7 +53,7 @@ async function argvUpdate(argv: Argv): Promise<void> {
     }
   }
 
-  const registry: number = isNone(argv.registry) ? 0 : argv.registry;
+  const registry: number = _.isNil(argv.registry) ? 0 : argv.registry;
 
   await update(folders, registry);
 }
