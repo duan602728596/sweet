@@ -8,7 +8,7 @@
     "server": "milktea server",
     "server:pm2": "pm2 start runServer.js",
     "eslint": "eslint ./ --fix",
-    "case-check": "case-check --dir=\"./\" --ext=\"js,sass,css,jpg,jpeg,png,gif,webp\"",
+    "case-check": "case-check --dir=\"./\" --ext=\"js,sass,css,jpg,jpeg,png,gif,webp\" --css",
     "update": "milktea update"
   },
   "dependencies": {
@@ -29,7 +29,7 @@
     "core-js": "^3.0.0",
     "cross-env": "^5.2.0",
     "cz-conventional-changelog": "^2.1.0",
-    "es-module-path-case-check": "^1.2.0",
+    "es-module-path-case-check": "^1.3.0",
     "eslint": "^5.16.0",
     "eslint-plugin-react": "^7.12.4",
     "husky": "^1.3.1",
