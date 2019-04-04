@@ -129,7 +129,8 @@ async function proServer(argv: ProServerType = {}): Promise<void> {
       cert: crtFile
     };
 
-    http2.createSecureServer(httpsConfig, app.callback())
+    http2
+      .createSecureServer(httpsConfig, app.callback())
       .listen(httpsPort);
   }
 }
