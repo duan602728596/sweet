@@ -1,7 +1,5 @@
-import * as React from 'react';
-import { Component } from 'react';
+import React, { Component } from 'react';
 import { Form, Input, Radio, Button } from 'antd';
-import { WrappedFormUtils } from 'antd/lib/form/Form';
 import style from './style.sass';
 
 @Form.create()

@@ -3,10 +3,8 @@
  * 页面左侧菜单
  * 渲染二级和三级菜单
  */
-import * as React from 'react';
-import { Component } from 'react';
-import * as PropTypes from 'prop-types';
-import { Requireable } from 'prop-types';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Link, withRouter } from 'react-router-dom';
 import classNames from 'classnames';
 import { Layout, Menu } from 'antd';
