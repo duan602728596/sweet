@@ -8,7 +8,7 @@
     "server": "milktea server",
     "server:pm2": "pm2 start runServer.js",
     "eslint": "eslint ./ --fix",
-    "case-check": "case-check --dir=\"./\" --ext=\"js,sass,css,jpg,jpeg,png,gif,webp\" --css",
+    "case-check": "case-check --dir=\"./\" --css",
     "update": "milktea update"
   },
   "dependencies": {
