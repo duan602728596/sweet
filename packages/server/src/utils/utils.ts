@@ -1,7 +1,7 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import * as Stream from 'stream';
-import { SweetOptions } from './types';
+import * as _ from 'lodash';
 
 /* 读取文件 */
 export function readFile(file: string): Promise<Buffer> {
@@ -18,19 +18,15 @@ export function readFile(file: string): Promise<Buffer> {
 
 /* 格式化数据 */
 export function formatTemplateData(data: object): object {
-  const formatData: object = {};
+  return _.transform(data, function(result: object, value: any, key: string): void {
+    let item: any = value;
 
-  for (const key in data) {
-    let item: any = data[key];
-
-    if (typeof item === 'object') {
+    if (_.isObject(item)) {
       item = JSON.stringify(item);
     }
 
-    formatData[key] = item;
-  }
-
-  return formatData;
+    result[key] = item;
+  }, {});
 }
 
 /* 清除模块缓存 */
@@ -46,13 +42,7 @@ export function cleanRequireCache(id: any): void {
 
 /* 格式化路径 */
 export function folderPathAnalyze(file: string): string {
-  const fileArr: Array<string> = file.split('/');
-
-  for (let i: number = fileArr.length - 1; i >= 0; i--) {
-    const item: string = fileArr[i];
-
-    if (item === '') fileArr.splice(i, 1);
-  }
+  const fileArr: Array<string> = _.without(file.split('/'), '');
 
   if (fileArr.length === 0) {
     return 'index';
@@ -62,13 +52,7 @@ export function folderPathAnalyze(file: string): string {
 }
 
 export function filePathAnalyze(file: string): string {
-  const fileArr: Array<string> = file.split('/');
-
-  for (let i: number = fileArr.length - 1; i >= 0; i--) {
-    const item: string = fileArr[i];
-
-    if (item === '') fileArr.splice(i, 1);
-  }
+  const fileArr: Array<string> = _.without(file.split('/'), '');
 
   if (fileArr.length === 0) {
     return 'index';
@@ -91,7 +75,7 @@ export function requireModule(id: string): any {
 
 /* 判断是否为readStream */
 export function isReadStream<Input>(input: Input): boolean {
-  return typeof input === 'object' && input instanceof Stream;
+  return _.isObject(input) && input instanceof Stream;
 }
 
 /* 读取stream流 */

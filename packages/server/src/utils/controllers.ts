@@ -1,5 +1,6 @@
 import * as path from 'path';
 import * as glob from 'glob';
+import * as _ from 'lodash';
 
 const controllers: string = 'controllers/**/*.js';
 
@@ -10,14 +11,12 @@ const controllers: string = 'controllers/**/*.js';
 export function pathArrayToMap(pathArr: Array<string>, basicPath: string): Map<string, string> {
   const map: Map<string, string> = new Map();
 
-  for (const item of pathArr) {
-    const key: string = item.toLowerCase()
+  return _.transform(pathArr, function(result: Map<string, string>, value: string): void {
+    const key: string = value.toLowerCase()
       .replace(/^controllers\//i, '');
 
-    map.set(key, path.join(basicPath, item));
-  }
-
-  return map;
+    result.set(key, path.join(basicPath, value));
+  }, map);
 }
 
 /* 获取函数 */

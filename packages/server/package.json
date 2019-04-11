@@ -17,6 +17,7 @@
     "koa-body": "^4.1.0",
     "koa-static-cache": "^5.1.2",
     "koa-webpack": "^5.2.2",
+    "lodash": "^4.17.11",
     "mime-types": "^2.1.22"
   },
   "devDependencies": {

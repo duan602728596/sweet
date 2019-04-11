@@ -1,5 +1,6 @@
 import * as Koa from 'koa';
 import * as brotli from 'iltorb';
+import * as _ from 'lodash';
 import gzip from './gzip';
 import { isReadStream, readStream } from '../utils/utils';
 
@@ -23,12 +24,12 @@ function iltorb(): Koa.Middleware {
         }
       } else {
         // 字符串
-        if (typeof body === 'string' || typeof body === 'number') {
+        if (_.isString(body) || _.isNumber(body)) {
           input = Buffer.from(`${ body }`);
         }
 
         // 数组或对象
-        if (typeof body === 'object') {
+        if (_.isObject(body)) {
           input = Buffer.from(JSON.stringify(body));
         }
       }
