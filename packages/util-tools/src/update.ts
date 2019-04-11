@@ -94,11 +94,9 @@ function formatVersion(oldVersion: string, newVersion: string): string {
  */
 async function getVersionFromNpm(packageArray: Array<PackageItem>, registry: number): Promise<void> {
   try {
-    const depQueue: Promise<PackageInformation>[] = [];
-
-    for (let i: number = 0, j: number = packageArray.length; i < j; i++) {
-      depQueue.push(requestPackageInformation(packageArray[i].name, registry));
-    }
+    const depQueue: Promise<PackageInformation>[] = _.transform(packageArray, function(result: Promise<PackageInformation>[], value: PackageItem): void {
+      result.push(requestPackageInformation(value.name, registry));
+    }, []);
 
     const version: Array<PackageInformation> = await Promise.all(depQueue);
 
@@ -134,8 +132,7 @@ async function getVersionFromNpm(packageArray: Array<PackageItem>, registry: num
 function consoleLogText(packageArray: Array<PackageItem>): string {
   let consoleText: string = '';
 
-  for (let i: number = 0, j: number = packageArray.length; i < j; i++) {
-    const item: PackageItem = packageArray[i];
+  for (const item of packageArray) {
     const isLatestNew: boolean = isVersionEqual(item.version, item.latest);
     const isNextNew: boolean = isVersionEqual(item.version, item.next);
     const isRcNew: boolean = isVersionEqual(item.version, item.rc);
