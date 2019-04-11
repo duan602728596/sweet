@@ -94,9 +94,10 @@ function formatVersion(oldVersion: string, newVersion: string): string {
  */
 async function getVersionFromNpm(packageArray: Array<PackageItem>, registry: number): Promise<void> {
   try {
-    const depQueue: Promise<PackageInformation>[] = _.transform(packageArray, function(result: Promise<PackageInformation>[], value: PackageItem): void {
-      result.push(requestPackageInformation(value.name, registry));
-    }, []);
+    const depQueue: Promise<PackageInformation>[]
+      = _.transform(packageArray, function(result: Promise<PackageInformation>[], value: PackageItem): void {
+        result.push(requestPackageInformation(value.name, registry));
+      }, []);
 
     const version: Array<PackageInformation> = await Promise.all(depQueue);
 
