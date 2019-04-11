@@ -153,7 +153,7 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
     .use('file-loader')
     .loader('file-loader')
     .options({
-      name: isDevelopment ? '[name].[ext]' : '[hash:5].[ext]',
+      name: isDevelopment ? '[name].[hash:5].[ext]' : '[hash:5].[ext]',
       outputPath: 'script/'
     });
 }
