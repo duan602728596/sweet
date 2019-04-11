@@ -131,7 +131,7 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
       (config: Config): void => {
         configBabelUse
           .tap((options: any): any => _.mergeWith(options, {
-            plugins: resetPlugins ? undefined : ['transform-vue-jsx']
+            presets: resetPresets ? undefined : ['@vue/babel-preset-jsx']
           }, customizer));
       }
     );
