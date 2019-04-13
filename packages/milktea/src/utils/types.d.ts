@@ -25,6 +25,7 @@ export interface SweetConfig {
   resolve?: object;
   loaders?: Loaders;
   rules?: Array<RuleSetRule>;
+  noParse?: RegExp | Array<RegExp> | Function;
   plugins?: Array<any>;
   js?: {
     ecmascript?: boolean;

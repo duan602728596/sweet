@@ -21,7 +21,7 @@ export default function(sweetConfig: SweetConfig | null | undefined, sweetOption
    * plugins { Array<any> }: 自定义插件
    */
   const sweetConfigCopy: SweetConfig = _.isPlainObject(sweetConfig) ? { ...sweetConfig } : {};
-  const { mode, entry, output, externals, resolve, rules, plugins }: SweetConfig = sweetConfigCopy;
+  const { mode, entry, output, externals, resolve, rules, noParse, plugins }: SweetConfig = sweetConfigCopy;
   const isDevelopment: boolean = mode === 'development';
 
   // 格式化配置
@@ -63,6 +63,7 @@ export default function(sweetConfig: SweetConfig | null | undefined, sweetOption
     resolve,
     // 添加其他的rules
     module: {
+      noParse,
       rules
     },
     // 添加自定义的plugins

@@ -80,7 +80,7 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
                 }
               }
             },
-            exclude: exclude ? (_.isArray(exclude) ? exclude : [exclude, /node_modules/]) : [/node_modules/],
+            exclude: exclude ? (_.isArray(exclude) ? exclude : [exclude]) : [],
             include: include ? (_.isArray(include) ? include : [include]) : []
           }
         }

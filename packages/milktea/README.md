@@ -56,6 +56,7 @@ module.exports = {
   * svg `{ object }` : 重写svg的规则
   * vue `{ object }` : 重写vue的规则
 * rules `{ Array<object> }` : 自定义规则
+* noParse `RegExp | Array<RegExp> | Function` : 防止解析任何与给定正则表达式相匹配的文件（参考webpack）
 * plugins `{ Array<any> }` : 自定义插件
 * js `{ object }` : js配置
   * ecmascript `{ boolean }` : 是否编译到ecmascript的最新语法（即不使用@babel/preset-env，通常适用于node、nwjs和electron）
