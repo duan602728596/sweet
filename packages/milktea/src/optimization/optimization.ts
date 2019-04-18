@@ -4,7 +4,8 @@ import * as TerserPlugin from 'terser-webpack-plugin';
 import { SweetConfig, SweetOptions } from '../utils/types';
 
 interface TerserOptions{
-  ecma?: number;
+  ecma: number;
+  safari10: boolean;
 }
 
 /* 配置optimization属性 */
@@ -34,19 +35,17 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
   config
     .when(!isDevelopment,
       (config: Config): void => {
-        const terserOptions: TerserOptions = {};
-
-        if (js && js.ecmascript) {
-          terserOptions.ecma = 8;
-        } else {
-          terserOptions.ecma = 5;
-        }
+        const terserOptions: TerserOptions = {
+          ecma: js && js.ecmascript ? 8 : 5,
+          safari10: true
+        };
 
         config
           .optimization
           .minimizer('minimizer')
           .use(TerserPlugin, [{
             cache: path.join(sweetOptions.basicPath, '.terserCache'),
+            parallel: true,
             terserOptions
           }]);
       }
