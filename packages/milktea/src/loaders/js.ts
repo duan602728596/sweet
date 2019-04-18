@@ -17,12 +17,12 @@ interface Js {
 }
 
 export const targets: object = {
-  ie: 11,
+  ie: 9,
   edge: 16,
   chrome: 62,
   firefox: 56,
-  android: 6,
-  ios: 11
+  android: 5,
+  ios: 9
 };
 
 const basicPlugins: Array<any> = [
@@ -50,6 +50,29 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
   const _js: Js = js || {};
   const { ecmascript, presets, plugins, resetPresets, resetPlugins, exclude, include }: Js = _js;
   const debug: boolean = frame === 'test' ? false : (isDevelopment === undefined ? true : isDevelopment);
+  const useConfig: object = {
+    'babel-loader': {
+      loader: 'babel-loader',
+      options: {
+        cacheDirectory: path.join(sweetOptions.basicPath, '.babelCache'),
+        presets: resetPresets ? resetPresets : [],
+        plugins: resetPlugins ? resetPlugins : [
+          ...basicPlugins,
+          [
+            '@babel/plugin-transform-runtime',
+            {
+              corejs: false,
+              helpers: true,
+              regenerator: !ecmascript,
+              useESModules: true
+            }
+          ]
+        ],
+        configFile: false,
+        babelrc: false
+      }
+    }
+  };
 
   config
     .merge({
@@ -57,29 +80,7 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
         rule: {
           js: {
             test: /^.*\.jsx?$/,
-            use: {
-              'babel-loader': {
-                loader: 'babel-loader',
-                options: {
-                  cacheDirectory: path.join(sweetOptions.basicPath, '.babelCache'),
-                  presets: resetPresets ? resetPresets : [],
-                  plugins: resetPlugins ? resetPlugins : [
-                    ...basicPlugins,
-                    [
-                      '@babel/plugin-transform-runtime',
-                      {
-                        corejs: false,
-                        helpers: true,
-                        regenerator: !ecmascript,
-                        useESModules: true
-                      }
-                    ]
-                  ],
-                  configFile: false,
-                  babelrc: false
-                }
-              }
-            },
+            use: useConfig,
             exclude: exclude ? (_.isArray(exclude) ? exclude : [exclude]) : [],
             include: include ? (_.isArray(include) ? include : [include]) : []
           }
