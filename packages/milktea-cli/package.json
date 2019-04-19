@@ -38,10 +38,10 @@
     "babel-loader": "^8.0.5",
     "chai": "^4.2.0",
     "cross-env": "^5.2.0",
-    "mocha": "^6.1.3",
+    "mocha": "^6.1.4",
     "react": "^16.8.6",
     "rimraf": "^2.6.3",
-    "typescript": "^3.4.3"
+    "typescript": "^3.4.4"
   },
   "peerDependencies": {
     "@sweet/milktea": "github:duan602728596/sweet#build-milktea",

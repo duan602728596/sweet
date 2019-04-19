@@ -18,7 +18,7 @@
     "@types/node": "^11.13.5",
     "@types/webpack": "^4.4.27",
     "babel-eslint": "^10.0.1",
-    "commitizen": "^3.0.7",
+    "commitizen": "^3.1.0",
     "cz-conventional-changelog": "^2.1.0",
     "es-module-path-case-check": "^1.4.0",
     "eslint": "^5.16.0",
@@ -32,7 +32,7 @@
     "rimraf": "^2.6.3",
     "ts-node": "^8.1.0",
     "tslint": "^5.16.0",
-    "typescript": "^3.4.3"
+    "typescript": "^3.4.4"
   },
   "husky": {
     "hooks": {
