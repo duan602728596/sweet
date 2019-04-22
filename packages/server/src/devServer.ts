@@ -1,5 +1,7 @@
 /* 开发环境 服务器 */
 import * as http from 'http';
+import * as https from 'https';
+import { Server } from 'https';
 import * as http2 from 'http2';
 import * as fs from 'fs';
 import * as process from 'process';
@@ -10,6 +12,7 @@ import * as body from 'koa-body';
 import * as mime from 'mime-types';
 import * as webpack from 'webpack';
 import * as koaWebpack from 'koa-webpack';
+import * as _ from 'lodash';
 import { readFile, defaultApiPath, cleanRequireCache, requireModule } from './utils/utils';
 import preRender from './utils/preDevRender';
 import { SweetOptions, Context } from './utils/types';
@@ -49,6 +52,13 @@ async function devServer(argv: DevServerType = {}): Promise<void> {
     env
   }: DevServerType = argv;
 
+  /* https服务 */
+  const key: string = path.join(sweetOptions.basicPath, './dev.key');
+  const crt: string = path.join(sweetOptions.basicPath, './dev.crt');
+  const useHttps: boolean = fs.existsSync(key) && fs.existsSync(crt);
+  const keyFile: Buffer | undefined = useHttps ? await readFile(key) : undefined;
+  const crtFile: Buffer | undefined = useHttps ? await readFile(crt) : undefined;
+
   /* 将端口加入到服务端 */
   sweetOptions.httpPort = httpPort;
   sweetOptions.httpsPort = httpsPort;
@@ -69,6 +79,15 @@ async function devServer(argv: DevServerType = {}): Promise<void> {
     .use(router.allowedMethods());
 
   /* webpack中间件 */
+  let server: Server | undefined = undefined;
+
+  if (useHttps && keyFile && crtFile) {
+    server = https.createServer({
+      key: keyFile,
+      cert: crtFile
+    }).listen(_.random(15000, 50000), '127.0.0.1');
+  }
+
   const middlewareConfig: {
     compiler?: webpack.Compiler;
     hotClient: {
@@ -76,6 +95,8 @@ async function devServer(argv: DevServerType = {}): Promise<void> {
         client: string;
         server: string;
       };
+      https: boolean;
+      server?: Server;
       logLevel?: string;
     };
     devMiddleware: {
@@ -88,7 +109,9 @@ async function devServer(argv: DevServerType = {}): Promise<void> {
       host: {
         client: '*',
         server: '0.0.0.0'
-      }
+      },
+      https: useHttps,
+      server
     },
     devMiddleware: {
       serverSideRender: true
@@ -155,13 +178,7 @@ async function devServer(argv: DevServerType = {}): Promise<void> {
     .listen(httpPort);
 
   /* https服务 */
-  const key: string = path.join(sweetOptions.basicPath, './dev.key');
-  const crt: string = path.join(sweetOptions.basicPath, './dev.crt');
-
-  // 判断是否有证书
-  if (fs.existsSync(key) && fs.existsSync(crt)) {
-    const keyFile: Buffer = await readFile(key);
-    const crtFile: Buffer = await readFile(crt);
+  if (useHttps && keyFile && crtFile) {
     const httpsConfig: Object = {
       allowHTTP1: true,
       key: keyFile,
