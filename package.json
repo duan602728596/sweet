@@ -20,7 +20,7 @@
   "devDependencies": {
     "@sweet/milktea": "github:duan602728596/sweet#build-milktea",
     "@sweet/util-tools": "github:duan602728596/sweet#build-util-tools",
-    "antd": "^3.16.4",
+    "antd": "^3.16.5",
     "axios": "^0.18.0",
     "babel-eslint": "^10.0.1",
     "babel-plugin-import": "^1.11.0",
