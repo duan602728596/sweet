@@ -30,7 +30,7 @@ milktea-cli是一个快速运行环境的工具。
   * `--imageEntry`: 源图片文件夹。
   * `--imageOutput`: 输出文件夹。
   * `--quality`: 图片质量。
-* `milktea imageCompression`: 图片批量压缩。
+* `milktea imageCompress`: 图片批量压缩。
   * `--imageEntry`: 源图片文件夹。
   * `--imageOutput`: 输出文件夹。
   * `--quality`: 图片质量。

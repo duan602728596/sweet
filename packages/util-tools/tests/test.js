@@ -6,4 +6,4 @@ register(babelRegisterConfig);
 /* test */
 require('./update');
 require('./image2webp/image2webp');
-require('./imageCompression/imageCompression');
+require('./imageCompress/imageCompress');

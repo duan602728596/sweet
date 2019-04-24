@@ -4,9 +4,9 @@ import { requireModule } from '../utils/utils';
 import { Argv } from '../utils/types';
 
 /* imageCompression命令 */
-function argvImage2WebP(argv: Argv): void {
+function imageCompress(argv: Argv): void {
   const cwd: string = process.cwd();
-  const image2webp: Function = requireModule('@sweet/util-tools/lib/imageCompression');
+  const image2webp: Function = requireModule('@sweet/util-tools/lib/imageCompress');
   const imageEntry: string = argv.imageEntry;
   const imageOutput: string = argv.imageOutput;
 
@@ -16,4 +16,4 @@ function argvImage2WebP(argv: Argv): void {
   );
 }
 
-export default argvImage2WebP;
+export default imageCompress;

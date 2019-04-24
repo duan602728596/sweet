@@ -10,7 +10,7 @@
 import update from '@sweet/util-tools/lib/update';
 
 update(
-  ['path/to/project'], // 项目工程目录的数组 
+  ['path/to/project'], // 项目工程目录的数组
   0                    // Npm包信息地址。0：Npm，1：Yarn，2：CNpm。
 );
 ```
@@ -34,9 +34,9 @@ image2webp(
 使用方法：
 
 ```javascript
-import imageCompression from '@sweet/util-tools/lib/imageCompression';
+import imageCompress from '@sweet/util-tools/lib/imageCompress';
 
-imageCompression(
+imageCompress(
   './src',   // 入口文件夹
   './build'  // 输出文件夹
 );

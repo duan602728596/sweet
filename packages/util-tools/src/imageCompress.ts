@@ -9,7 +9,7 @@ import * as imageminGifsicle from 'imagemin-gifsicle';
  * @param { string } entry: 入口文件夹
  * @param { string } output: 输出文件夹
  */
-async function imageCompression(entry: string, output: string): Promise<void> {
+async function imageCompress(entry: string, output: string): Promise<void> {
   await imageMin([path.join(entry, '*.{jpg,png,gif}')], output, {
     use: [
       imageminPngquant(),
@@ -19,4 +19,4 @@ async function imageCompression(entry: string, output: string): Promise<void> {
   });
 }
 
-export default imageCompression;
+export default imageCompress;
