@@ -27,7 +27,6 @@ image2webp(
   './build', // 输出文件夹
   70         // 图片质量
 );
-
 ```
 
 ## 图片压缩工具
@@ -35,11 +34,10 @@ image2webp(
 使用方法：
 
 ```javascript
-import image2webp from '@sweet/util-tools/lib/imageCompression';
+import imageCompression from '@sweet/util-tools/lib/imageCompression';
 
 imageCompression(
   './src',   // 入口文件夹
   './build'  // 输出文件夹
 );
-
 ```
