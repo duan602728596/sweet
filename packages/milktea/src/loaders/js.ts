@@ -32,6 +32,8 @@ const basicPlugins: Array<any> = [
   '@babel/plugin-proposal-optional-catch-binding',
   '@babel/plugin-proposal-export-default-from',
   '@babel/plugin-proposal-optional-chaining',
+  '@babel/plugin-proposal-numeric-separator',
+  '@babel/plugin-syntax-bigint',
   '@babel/plugin-syntax-dynamic-import'
 ];
 
