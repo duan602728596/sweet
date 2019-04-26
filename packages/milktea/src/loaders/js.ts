@@ -63,7 +63,10 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
           [
             '@babel/plugin-transform-runtime',
             {
-              corejs: false,
+              corejs: {
+                version: 3,
+                proposals: true
+              },
               helpers: true,
               regenerator: !ecmascript,
               useESModules: true
