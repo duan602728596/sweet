@@ -82,14 +82,21 @@ async function proServer(argv: ProServerType = {}): Promise<void> {
 
   /* index路由 */
   router.get(/^\/[^._\-]*$/, async (ctx: Koa.Context, next: Function): Promise<void> => {
-    const ctxPath: string = ctx.path;
-    const body: Buffer = await readFile(path.join(formatServerRoot, template));
+    try {
+      const ctxPath: string = ctx.path;
+      const body: Buffer = await readFile(path.join(formatServerRoot, template));
 
-    ctx.status = 200;
-    ctx.type = 'text/html';
-    ctx.body = serverRender ? await preRender(ctxPath, ctx, body, formatServerRenderFile) : body;
+      ctx.status = 200;
+      ctx.type = 'text/html';
+      ctx.body = serverRender ? await preRender(ctxPath, ctx, body, formatServerRenderFile) : body;
 
-    await next();
+      await next();
+    } catch (err) {
+      ctx.status = 500;
+      ctx.body = err;
+      
+      console.error(err);
+    }
   });
 
   /* html文件允许使用ejs模板 */
