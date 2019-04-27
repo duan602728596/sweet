@@ -94,7 +94,7 @@ async function proServer(argv: ProServerType = {}): Promise<void> {
     } catch (err) {
       ctx.status = 500;
       ctx.body = err;
-      
+
       console.error(err);
     }
   });
