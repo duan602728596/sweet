@@ -24,7 +24,6 @@
   "devDependencies": {
     "@babel/core": "^7.4.4",
     "@babel/preset-env": "^7.4.4",
-    "@babel/preset-react": "^7.0.0",
     "@babel/register": "^7.4.4",
     "@sweet/milktea": "github:duan602728596/sweet#build-milktea",
     "@sweet/server": "github:duan602728596/sweet#build-server",
