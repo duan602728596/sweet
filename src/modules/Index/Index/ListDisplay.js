@@ -10,7 +10,7 @@ import { Link } from 'react-router-dom';
 import { Card, Spin } from 'antd';
 import QueueAnim from 'rc-queue-anim';
 import style from './style.sass';
-import { listDisplayChange } from '../store/reducer';
+import { listDisplayChange } from '../reducer/reducer';
 
 /* state */
 const state = createStructuredSelector({
@@ -20,9 +20,9 @@ const state = createStructuredSelector({
   )
 });
 
-/* dispatch */
-const dispatch = (dispatch) => ({
-  action: bindActionCreators({
+/* actions */
+const actions = (dispatch) => ({
+  actions: bindActionCreators({
     listDisplayChange
   }, dispatch)
 });
@@ -66,7 +66,7 @@ class ListDisplay extends Component {
   async componentDidMount() {
     const data = await simulationData();
 
-    this.props.action.listDisplayChange({
+    this.props.actions.listDisplayChange({
       listDisplay: data
     });
 
@@ -90,4 +90,4 @@ class ListDisplay extends Component {
   }
 }
 
-export default connect(state, dispatch)(ListDisplay);
+export default connect(state, actions)(ListDisplay);

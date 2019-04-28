@@ -12,7 +12,7 @@ const reducer = createReducer({});
 /* 中间件 */
 const middleware = applyMiddleware(thunk);
 
-/* store */
+/* reducer */
 const store = {
   asyncReducers: {}
 };
@@ -22,7 +22,7 @@ export function storeFactory(initialState = {}) {
   const state = fromJS(initialState);
   const $$initialState = Map(state);
 
-  /* store */
+  /* reducer */
   Object.assign(store, createStore(reducer, $$initialState, compose(middleware)));
 
   return store;
