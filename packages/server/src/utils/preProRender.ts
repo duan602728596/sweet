@@ -1,8 +1,7 @@
 import * as Koa from 'koa';
 import * as ejs from 'ejs';
 import { formatTemplateData, folderPathAnalyze, filePathAnalyze, requireModule, isReadStream, readStream } from './utils';
-import { getControllersFilesSync } from './controllers';
-import getControllerData from './getControllerData';
+import { getControllersFilesSync, getControllerData } from './controllers';
 import { SweetOptions } from './types';
 
 // 渲染新的html

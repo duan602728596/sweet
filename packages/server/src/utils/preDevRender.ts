@@ -4,8 +4,7 @@ import {
   formatTemplateData, cleanRequireCache, folderPathAnalyze, filePathAnalyze, requireModule,
   isReadStream, readStream
 } from './utils';
-import { getControllersFiles } from './controllers';
-import getControllerData from './getControllerData';
+import { getControllersFiles, getControllerData } from './controllers';
 import { SweetOptions } from './types';
 
 // 渲染新的html
