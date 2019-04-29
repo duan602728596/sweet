@@ -1,17 +1,15 @@
 import * as Koa from 'koa';
-import * as ejs from 'ejs';
-import * as nunjucks from 'nunjucks';
 import {
   formatTemplateData, cleanRequireCache, folderPathAnalyze, filePathAnalyze, requireModule,
   isReadStream, readStream
 } from './utils';
 import { getControllersFiles, getControllerData } from './controllers';
+import createRenderEngine from './createRenderEngine';
 import { SweetOptions } from './types';
 
 // 渲染新的html
 function preRenderInit(sweetOptions: SweetOptions): Function {
   const basicPath: string = sweetOptions.basicPath;
-  const renderEngine: Function = sweetOptions.renderType === 'nunjucks' ? nunjucks.renderString : ejs.render;
 
   return async function preRender(
     ctxPath: string, // 相对路径
@@ -20,6 +18,7 @@ function preRenderInit(sweetOptions: SweetOptions): Function {
   ): Promise<string> {
     cleanRequireCache(serverRenderFile);
 
+    const renderEngine: Function = createRenderEngine(sweetOptions.renderType);
     const controllersMap: Map<string, string> = await getControllersFiles(basicPath);
     const folderPathFile: string = `${ folderPathAnalyze(ctxPath) }.js`; // 格式化为：path/to/file.js
     const formatFile: string = `${ filePathAnalyze(ctxPath) }.js`; // 格式化为：path.to.file.js

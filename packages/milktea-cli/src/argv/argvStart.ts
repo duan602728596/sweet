@@ -30,13 +30,15 @@ function argvStart(argv: Argv): void {
     const httpsPort: number = argv.httpsPort;
     const serverRender: boolean = argv.serverRender;
     const serverRenderFile: string = argv.serverRenderFile;
+    const renderType: string = argv.renderType;
 
     devServer({
       compiler,
       httpPort,
       httpsPort,
       serverRender,
-      serverRenderFile
+      serverRenderFile,
+      renderType
     });
   } else {
     const watching: webpack.Watching = compiler.watch({

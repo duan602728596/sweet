@@ -1,8 +1,7 @@
 import * as Koa from 'koa';
-import * as ejs from 'ejs';
-import * as nunjucks from 'nunjucks';
 import { formatTemplateData, folderPathAnalyze, filePathAnalyze, requireModule, isReadStream, readStream } from './utils';
 import { getControllersFilesSync, getControllerData } from './controllers';
+import createRenderEngine from './createRenderEngine';
 import { SweetOptions } from './types';
 
 // 渲染新的html
@@ -10,7 +9,6 @@ function preRenderInit(sweetOptions: SweetOptions): Function {
   // 获取controllers文件
   const basicPath: string = sweetOptions.basicPath;
   const controllersMap: Map<string, string> = getControllersFilesSync(basicPath);
-  const renderEngine: Function = sweetOptions.renderType === 'nunjucks' ? nunjucks.renderString : ejs.render;
 
   return async function preRender(
     ctxPath: string,
@@ -19,6 +17,7 @@ function preRenderInit(sweetOptions: SweetOptions): Function {
     serverRenderFile: string
   ): Promise<string> {
     try {
+      const renderEngine: Function = createRenderEngine(sweetOptions.renderType);
       const folderPathFile: string = `${ folderPathAnalyze(ctxPath) }.js`; // 格式化为：path/to/file.js
       const formatFile: string = `${ filePathAnalyze(ctxPath) }.js`; // 格式化为：path.to.file.js
       const data: any = await getControllerData(ctx, sweetOptions, controllersMap, folderPathFile, formatFile);
