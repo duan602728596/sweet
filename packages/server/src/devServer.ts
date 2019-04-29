@@ -14,7 +14,7 @@ import * as webpack from 'webpack';
 import * as koaWebpack from 'koa-webpack';
 import * as _ from 'lodash';
 import { readFile, defaultApiPath, cleanRequireCache, requireModule } from './utils/utils';
-import preRender from './utils/preDevRender';
+import preRenderInit from './utils/preDevRender';
 import { SweetOptions, Context } from './utils/types';
 
 const app: Koa = new Koa();
@@ -24,6 +24,7 @@ const router: Router = new Router();
 const sweetOptions: SweetOptions = {
   basicPath: process.cwd() // 主目录
 };
+const preRender: Function = preRenderInit(sweetOptions);
 
 /**
  * compiler { object }: webpack的compiler
@@ -32,6 +33,7 @@ const sweetOptions: SweetOptions = {
  * serverRender { boolean }: 开启服务器端渲染
  * serverRenderFile { string }: 服务器端渲染的主模块文件
  * env { string }: 运行环境，可能的值为test（测试）
+ * renderType { string } html使用的渲染模板
  */
 interface DevServerType {
   compiler?: webpack.Compiler;
@@ -40,6 +42,7 @@ interface DevServerType {
   serverRender?: boolean;
   serverRenderFile?: string;
   env?: string;
+  renderType?: 'ejs' | 'nunjucks';
 }
 
 async function devServer(argv: DevServerType = {}): Promise<void> {
@@ -49,7 +52,8 @@ async function devServer(argv: DevServerType = {}): Promise<void> {
     httpsPort = 5051,
     serverRender,
     serverRenderFile = 'buildServer/server.js',
-    env
+    env,
+    renderType = 'ejs'
   }: DevServerType = argv;
 
   /* https服务 */
@@ -59,9 +63,12 @@ async function devServer(argv: DevServerType = {}): Promise<void> {
   const keyFile: Buffer | undefined = useHttps ? await readFile(key) : undefined;
   const crtFile: Buffer | undefined = useHttps ? await readFile(crt) : undefined;
 
-  /* 将端口加入到服务端 */
-  sweetOptions.httpPort = httpPort;
-  sweetOptions.httpsPort = httpsPort;
+  /* 合并配置项 */
+  Object.assign(sweetOptions, {
+    httpPort,
+    httpsPort,
+    renderType
+  });
 
   let formatServerRenderFile: string;
 
@@ -146,7 +153,7 @@ async function devServer(argv: DevServerType = {}): Promise<void> {
 
     // 服务器端渲染
     if (serverRender && ctx.type === 'text/html') {
-      ctx.body = await preRender(ctxPath, ctx, formatServerRenderFile, sweetOptions);
+      ctx.body = await preRender(ctxPath, ctx, formatServerRenderFile);
     }
   });
 
@@ -158,7 +165,7 @@ async function devServer(argv: DevServerType = {}): Promise<void> {
 
     // 服务器端渲染
     if (serverRender) {
-      ctx.body = await preRender(ctxPath, ctx, formatServerRenderFile, sweetOptions);
+      ctx.body = await preRender(ctxPath, ctx, formatServerRenderFile);
     }
   });
 

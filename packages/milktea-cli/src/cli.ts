@@ -55,6 +55,10 @@ const argv: object = yargs
       describe: 'html模版的文件名',
       type: 'string'
     },
+    renderType: {
+      describe: 'html使用的渲染模板，ejs 或 nunjucks。默认为ejs',
+      type: 'string'
+    },
     // image2webp & imageCompress
     imageEntry: {
       describe: '需要批量转换或压缩的图片所在的文件夹',

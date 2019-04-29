@@ -1,5 +1,6 @@
 import * as Koa from 'koa';
 import * as ejs from 'ejs';
+import * as nunjucks from 'nunjucks';
 import {
   formatTemplateData, cleanRequireCache, folderPathAnalyze, filePathAnalyze, requireModule,
   isReadStream, readStream
@@ -8,30 +9,33 @@ import { getControllersFiles, getControllerData } from './controllers';
 import { SweetOptions } from './types';
 
 // 渲染新的html
-async function preRender(
-  ctxPath: string, // 相对路径
-  ctx: Koa.Context,
-  serverRenderFile: string,
-  sweetOptions: SweetOptions
-): Promise<string> {
-  cleanRequireCache(serverRenderFile);
-
+function preRenderInit(sweetOptions: SweetOptions): Function {
   const basicPath: string = sweetOptions.basicPath;
-  const controllersMap: Map<string, string> = await getControllersFiles(basicPath);
-  const folderPathFile: string = `${ folderPathAnalyze(ctxPath) }.js`; // 格式化为：path/to/file.js
-  const formatFile: string = `${ filePathAnalyze(ctxPath) }.js`; // 格式化为：path.to.file.js
-  const data: any = await getControllerData(ctx, sweetOptions, controllersMap, folderPathFile, formatFile);
+  const renderEngine: Function = sweetOptions.renderType === 'nunjucks' ? nunjucks.renderString : ejs.render;
 
-  // ssr渲染
-  const html: Buffer = ctx.body;
-  const server: Function = requireModule(serverRenderFile);
-  const result: any /* Stream | string */ = await server(ctxPath, ctx, data.initialState);
-  const render: string = isReadStream(result) ? (await readStream(result)).toString() : result;
+  return async function preRender(
+    ctxPath: string, // 相对路径
+    ctx: Koa.Context,
+    serverRenderFile: string
+  ): Promise<string> {
+    cleanRequireCache(serverRenderFile);
 
-  return ejs.render(html.toString(), formatTemplateData({
-    render,
-    ...data
-  }));
+    const controllersMap: Map<string, string> = await getControllersFiles(basicPath);
+    const folderPathFile: string = `${ folderPathAnalyze(ctxPath) }.js`; // 格式化为：path/to/file.js
+    const formatFile: string = `${ filePathAnalyze(ctxPath) }.js`; // 格式化为：path.to.file.js
+    const data: any = await getControllerData(ctx, sweetOptions, controllersMap, folderPathFile, formatFile);
+
+    // ssr渲染
+    const html: Buffer = ctx.body;
+    const server: Function = requireModule(serverRenderFile);
+    const result: any /* Stream | string */ = await server(ctxPath, ctx, data.initialState);
+    const render: string = isReadStream(result) ? (await readStream(result)).toString() : result;
+
+    return renderEngine(html.toString(), formatTemplateData({
+      render,
+      ...data
+    }));
+  };
 }
 
-export default preRender;
+export default preRenderInit;

@@ -29,6 +29,7 @@ const preRender: Function = preRenderInit(sweetOptions);
  * serverRender { boolean }: 开启服务器端渲染
  * serverRenderFile { string }: 服务器端渲染的主模块文件
  * template { string }: html模版名称
+ * renderType { string } html使用的渲染模板
  */
 interface ProServerType {
   httpPort?: number;
@@ -37,6 +38,7 @@ interface ProServerType {
   serverRender?: boolean;
   serverRenderFile?: string;
   template?: string;
+  renderType?: 'ejs' | 'nunjucks';
 }
 
 async function proServer(argv: ProServerType = {}): Promise<void> {
@@ -46,12 +48,16 @@ async function proServer(argv: ProServerType = {}): Promise<void> {
     serverRoot = 'build',
     serverRender,
     serverRenderFile = 'buildServer/server.js',
-    template = 'index.html'
+    template = 'index.html',
+    renderType = 'ejs'
   }: ProServerType = argv;
 
-  /* 将端口加入到服务端 */
-  sweetOptions.httpPort = httpPort;
-  sweetOptions.httpsPort = httpsPort;
+  /* 合并配置项 */
+  Object.assign(sweetOptions, {
+    httpPort,
+    httpsPort,
+    renderType
+  });
 
   const formatServerRoot: string = path.isAbsolute(serverRoot)
     ? serverRoot

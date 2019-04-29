@@ -17,6 +17,7 @@ export interface Argv {
   serverRender: boolean;
   serverRenderFile: string;
   template: string;
+  renderType: string;
   // utils
   registry: number;
   imageEntry: string;

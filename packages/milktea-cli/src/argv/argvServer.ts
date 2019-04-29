@@ -10,6 +10,7 @@ function argvServer(argv: Argv): void {
   const serverRender: boolean = argv.serverRender;
   const serverRenderFile: string = argv.serverRenderFile;
   const template: string = argv.template;
+  const renderType: string = argv.renderType;
 
   proServer({
     httpPort,
@@ -17,7 +18,8 @@ function argvServer(argv: Argv): void {
     serverRoot,
     serverRender,
     serverRenderFile,
-    template
+    template,
+    renderType
   });
 }
 

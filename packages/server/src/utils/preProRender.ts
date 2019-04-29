@@ -1,5 +1,6 @@
 import * as Koa from 'koa';
 import * as ejs from 'ejs';
+import * as nunjucks from 'nunjucks';
 import { formatTemplateData, folderPathAnalyze, filePathAnalyze, requireModule, isReadStream, readStream } from './utils';
 import { getControllersFilesSync, getControllerData } from './controllers';
 import { SweetOptions } from './types';
@@ -9,6 +10,7 @@ function preRenderInit(sweetOptions: SweetOptions): Function {
   // 获取controllers文件
   const basicPath: string = sweetOptions.basicPath;
   const controllersMap: Map<string, string> = getControllersFilesSync(basicPath);
+  const renderEngine: Function = sweetOptions.renderType === 'nunjucks' ? nunjucks.renderString : ejs.render;
 
   return async function preRender(
     ctxPath: string,
@@ -26,7 +28,7 @@ function preRenderInit(sweetOptions: SweetOptions): Function {
       const result: any /* Stream | string */ = await server(ctxPath, ctx, data.initialState);
       const render: string = isReadStream(result) ? (await readStream(result)).toString() : result;
 
-      return ejs.render(html.toString(), formatTemplateData({
+      return renderEngine(html.toString(), formatTemplateData({
         render,
         ...data
       }));

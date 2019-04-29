@@ -13,7 +13,8 @@ devServer({
   httpPort,
   httpsPort,
   serverRender,
-  serverRenderFile
+  serverRenderFile,
+  renderType
 });
 ```
 
@@ -24,6 +25,7 @@ devServer({
 * httpsPort `{ number }` : https端口号，默认为5051。
 * serverRender `{ boolean }` : 开启服务器端渲染
 * serverRenderFile `{ string }` : 服务器端渲染的主模块文件。默认为`buildServer/server.js`。
+* renderType `{ string }` : html使用的渲染模板，`ejs`或`nunjucks`。默认为`ejs`。
 
 ## 生产环境下运行服务
 
@@ -38,7 +40,8 @@ proServer({
   httpsPort,
   serverRoot,
   serverRender,
-  serverRenderFile
+  serverRenderFile,
+  renderType
 });
 ```
 
@@ -49,6 +52,7 @@ proServer({
 * serverRoot `{ string }` : 生产环境下的服务器静态文件入口。默认为`build`。
 * serverRender `{ boolean }` : 开启服务器端渲染
 * serverRenderFile `{ string }` : 服务器端渲染的主模块文件。默认为`buildServer/server.js`。
+* renderType `{ string }` : html使用的渲染模板。默认为`ejs`。
 
 ## 关于https证书
 
