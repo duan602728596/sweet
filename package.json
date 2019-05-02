@@ -2,10 +2,11 @@
   "name": "@sweet/vue-demo",
   "scripts": {
     "dll": "milktea dll",
-    "start": "cross-env NODE_ENV=development milktea start --server",
-    "build": "npm run clean && cross-env NODE_ENV=production milktea build",
+    "start": "npm run clean && npm run clean:server && cross-env NODE_ENV=development milktea start --server --serverRender",
+    "build": "npm run clean && npm run clean:server && cross-env NODE_ENV=production milktea build --serverRender",
     "clean": "rimraf ./build",
-    "server": "milktea server",
+    "clean:server": "rimraf ./buildServer",
+    "server": "milktea server --serverRender",
     "server:pm2": "pm2 start runServer.js",
     "eslint": "eslint ./ --fix",
     "case-check": "case-check --dir=\"./\" --css",
@@ -36,9 +37,11 @@
     "husky": "^2.1.0",
     "lint-staged": "^8.1.5",
     "rimraf": "^2.6.3",
+    "source-map-support": "^0.5.12",
     "vue": "^2.6.10",
     "vue-class-component": "^7.0.2",
     "vue-router": "^3.0.6",
+    "vue-server-renderer": "^2.6.10",
     "vuex": "^3.1.0"
   },
   "husky": {

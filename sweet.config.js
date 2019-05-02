@@ -10,6 +10,10 @@ module.exports = {
   entry: {
     index: [path.join(__dirname, 'src/index.js')]
   },
+  serverRender: true,
+  serverEntry: {
+    server: [path.join(__dirname, 'src/server.js')]
+  },
   js: {
     plugins: [['import', { libraryName: 'ant-design-vue', libraryDirectory: 'es', style: true }]],
     exclude: /node_modules/
