@@ -2,10 +2,11 @@
   "name": "@sweet/react-demo",
   "scripts": {
     "dll": "milktea dll",
-    "start": "cross-env NODE_ENV=development milktea start --server",
-    "build": "npm run clean && cross-env NODE_ENV=production milktea build",
+    "start": "npm run clean && npm run clean:server && cross-env NODE_ENV=development milktea start --server --serverRender",
+    "build": "npm run clean && npm run clean:server && cross-env NODE_ENV=production milktea build --serverRender",
     "clean": "rimraf ./build",
-    "server": "milktea server",
+    "clean:server": "rimraf ./buildServer",
+    "server": "milktea server --serverRender",
     "server:pm2": "pm2 start runServer.js",
     "eslint": "eslint ./ --fix",
     "case-check": "case-check --dir=\"./\" --css",
@@ -32,7 +33,7 @@
     "es-module-path-case-check": "^1.4.0",
     "eslint": "^5.16.0",
     "eslint-plugin-react": "^7.12.4",
-    "husky": "^2.1.0",
+    "husky": "^2.2.0",
     "immutable": "^4.0.0-rc.12",
     "lint-staged": "^8.1.5",
     "prop-types": "^15.7.2",
@@ -41,13 +42,15 @@
     "react-dom": "^16.8.6",
     "react-helmet": "^5.2.1",
     "react-redux": "^7.0.3",
+    "react-router": "^5.0.0",
     "react-router-dom": "^5.0.0",
     "redux": "^4.0.1",
     "redux-actions": "^2.6.5",
     "redux-immutable": "^4.0.0",
     "redux-thunk": "^2.3.0",
     "reselect": "^4.0.0",
-    "rimraf": "^2.6.3"
+    "rimraf": "^2.6.3",
+    "source-map-support": "^0.5.12"
   },
   "husky": {
     "hooks": {
