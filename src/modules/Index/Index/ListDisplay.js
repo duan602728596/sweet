@@ -22,7 +22,7 @@ const state = createStructuredSelector({
 
 /* actions */
 const actions = (dispatch) => ({
-  actions: bindActionCreators({
+  action: bindActionCreators({
     listDisplayChange
   }, dispatch)
 });
@@ -39,6 +39,7 @@ function simulationData() {
   });
 }
 
+@connect(state, actions)
 class ListDisplay extends Component {
   static propTypes = {
     listDisplay: PropTypes.array
@@ -66,7 +67,7 @@ class ListDisplay extends Component {
   async componentDidMount() {
     const data = await simulationData();
 
-    this.props.actions.listDisplayChange({
+    this.props.action.listDisplayChange({
       listDisplay: data
     });
 
@@ -90,4 +91,4 @@ class ListDisplay extends Component {
   }
 }
 
-export default connect(state, actions)(ListDisplay);
+export default ListDisplay;
