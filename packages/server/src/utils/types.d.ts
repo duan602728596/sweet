@@ -10,3 +10,12 @@ export interface SweetOptions {
 export interface Context extends Koa.Context {
   _path?: string; // 保存旧的path
 }
+
+export interface Log {
+  type: 'file' | 'http';
+  options: {
+    pm2: boolean;
+    url: string;
+    basicPath: string;
+  };
+}

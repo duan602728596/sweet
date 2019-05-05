@@ -7,7 +7,7 @@
 ```javascript
 import serverLog from '@sweet/server-log';
 
-const { accessLogger, applicationLogger }serverLog(type, {
+const { accessLogger, logger }serverLog(type, {
   pm2,
   basicPath,
   url
@@ -21,8 +21,8 @@ const { accessLogger, applicationLogger }serverLog(type, {
   * pm2 `{ boolean }` : 服务是否在pm2状态下运行。
   * basicPath `{ string }` : *.logs*文件夹在本地的目录。
   * url `{ string }` : 日志的远程接口。
-  
+
 ## 返回值
 
 * accessLogger `{ Function }` : Koa日志中间件。
-* applicationLogger `{ object }` : 创建日志方法。
+* logger `{ object }` : 创建日志方法。

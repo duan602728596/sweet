@@ -7,7 +7,7 @@ import createHttpConfig from './createHttpConfig';
 /**
  * 生成log的中间件
  * @param { 'file' | 'http' } type: 类型
- * @param { { pm2: boolean, url: string, basicPath: string } } argu: 配置
+ * @param { { pm2: boolean, url: string, basicPath: string } } options: 配置
  */
 interface Options {
   pm2: boolean;
@@ -17,7 +17,7 @@ interface Options {
 
 interface ServerLog {
   accessLogger: Function;
-  applicationLogger: object;
+  logger: object;
 }
 
 function serverLog(type: 'file' | 'http', options: Options = { pm2: false, url: '', basicPath: process.cwd() }): ServerLog {
@@ -29,7 +29,7 @@ function serverLog(type: 'file' | 'http', options: Options = { pm2: false, url: 
     accessLogger(ctx: Koa.Context, next: Function): Function {
       return log4js.koaLogger(log4js.getLogger('access'));
     },
-    applicationLogger: log4js.getLogger('application')
+    logger: log4js.getLogger('application')
   };
 }
 

@@ -11,7 +11,8 @@ import * as staticCache from 'koa-static-cache';
 import iltorb from './koa-iltorb/index';
 import { readFile, defaultApiPath, requireModule } from './utils/utils';
 import preRenderInit from './utils/preProRender';
-import { SweetOptions } from './utils/types';
+import logs from './logs/logs';
+import { SweetOptions, Log } from './utils/types';
 
 const app: Koa = new Koa();
 const router: Router = new Router();
@@ -29,7 +30,8 @@ const preRender: Function = preRenderInit(sweetOptions);
  * serverRender { boolean }: 开启服务器端渲染
  * serverRenderFile { string }: 服务器端渲染的主模块文件
  * template { string }: html模版名称
- * renderType { string } html使用的渲染模板
+ * renderType { string }: html使用的渲染模板
+ * log { object }: 日志配置
  */
 interface ProServerType {
   httpPort?: number;
@@ -39,6 +41,7 @@ interface ProServerType {
   serverRenderFile?: string;
   template?: string;
   renderType?: 'ejs' | 'nunjucks';
+  log?: Log
 }
 
 async function proServer(argv: ProServerType = {}): Promise<void> {
@@ -49,7 +52,8 @@ async function proServer(argv: ProServerType = {}): Promise<void> {
     serverRender,
     serverRenderFile = 'buildServer/server.js',
     template = 'index.html',
-    renderType = 'ejs'
+    renderType = 'ejs',
+    log
   }: ProServerType = argv;
 
   /* 合并配置项 */
@@ -68,6 +72,11 @@ async function proServer(argv: ProServerType = {}): Promise<void> {
     formatServerRenderFile = path.isAbsolute(serverRenderFile)
       ? serverRenderFile
       : path.join(sweetOptions.basicPath, serverRenderFile);
+  }
+
+  /* 日志 */
+  if (log) {
+    logs(app, log, sweetOptions);
   }
 
   /* post body */

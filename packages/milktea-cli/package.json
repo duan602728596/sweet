@@ -28,6 +28,7 @@
     "@babel/register": "^7.4.4",
     "@sweet/milktea": "github:duan602728596/sweet#build-milktea",
     "@sweet/server": "github:duan602728596/sweet#build-server",
+    "@sweet/server-log": "github:duan602728596/sweet#build-server-log",
     "@sweet/util-tools": "github:duan602728596/sweet#build-util-tools",
     "babel-loader": "^8.0.5",
     "chai": "^4.2.0",
@@ -40,6 +41,7 @@
   "peerDependencies": {
     "@sweet/milktea": "github:duan602728596/sweet#build-milktea",
     "@sweet/server": "github:duan602728596/sweet#build-server",
+    "@sweet/server-log": "github:duan602728596/sweet#build-server-log",
     "@sweet/util-tools": "github:duan602728596/sweet#build-util-tools"
   },
   "engines": {

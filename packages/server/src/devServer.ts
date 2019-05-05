@@ -33,7 +33,7 @@ const preRender: Function = preRenderInit(sweetOptions);
  * serverRender { boolean }: 开启服务器端渲染
  * serverRenderFile { string }: 服务器端渲染的主模块文件
  * env { string }: 运行环境，可能的值为test（测试）
- * renderType { string } html使用的渲染模板
+ * renderType { string }: html使用的渲染模板
  */
 interface DevServerType {
   compiler?: webpack.Compiler;

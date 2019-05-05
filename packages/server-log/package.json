@@ -2,6 +2,7 @@
   "name": "@sweet/server-log",
   "version": "0.0.0-alpha.9",
   "description": "服务端的koa日志中间件函数",
+  "main": "lib/index.js",
   "scripts": {
     "start": "cross-env NODE_ENV=development npm run clean && tsc --watch",
     "build": "cross-env NODE_ENV=production npm run clean && tsc",
