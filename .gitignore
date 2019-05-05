@@ -18,6 +18,7 @@ buildServer
 .dll
 .babelCache
 .terserCache
+.logs
 
 # https
 *.crt
