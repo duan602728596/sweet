@@ -1,6 +1,7 @@
 {
   "name": "@sweet/milktea-cli",
-  "version": "0.0.0-alpha.8",
+  "version": "0.0.0-alpha.9",
+  "description": "sweet cli工具",
   "main": "lib/cli.js",
   "bin": {
     "milktea": "lib/cli.js"
