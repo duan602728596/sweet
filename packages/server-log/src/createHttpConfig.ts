@@ -5,9 +5,11 @@
  */
 function createHttpConfig(url: string, pm2: boolean): object {
   return {
-    logfaces: {
-      type: '@log4js-node/logfaces-http',
-      url
+    appenders: {
+      logfaces: {
+        type: '@log4js-node/logfaces-http',
+        url
+      }
     },
     categories: {
       default: {
