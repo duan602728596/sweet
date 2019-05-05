@@ -1,0 +1,32 @@
+{
+  "name": "@sweet/server-log",
+  "version": "0.0.0-alpha.8",
+  "scripts": {
+    "start": "cross-env NODE_ENV=development npm run clean && tsc --watch",
+    "build": "cross-env NODE_ENV=production npm run clean && tsc",
+    "clean": "rimraf ./lib",
+    "test": "mocha ./tests/test.js --timeout 180000"
+  },
+  "dependencies": {
+    "@log4js-node/logfaces-http": "^1.0.0",
+    "koa-log4": "github:duan602728596/koa-log4js#v2.x",
+    "log4js": "^4.1.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.4.4",
+    "@babel/preset-env": "^7.4.4",
+    "@babel/register": "^7.4.4",
+    "@sweet/milktea": "github:duan602728596/sweet#build-milktea",
+    "": "",
+    "axios": "^0.18.0",
+    "chai": "^4.2.0",
+    "cross-env": "^5.2.0",
+    "mocha": "^6.1.4",
+    "rimraf": "^2.6.3",
+    "typescript": "^3.4.5",
+    "webpack": "^4.30.0"
+  },
+  "engines": {
+    "node": ">= 9.0.0"
+  }
+}
