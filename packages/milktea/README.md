@@ -117,6 +117,16 @@ module.exports = async function(ctx, sweetOptions) {
 
 如果路由找不到对应的interface文件，会自动寻找`default.js`文件。你可以创建这个文件作为默认的interface文件。
 
+入口文件为：
+
+```javascript
+function server(url, context = {}, initialState = {}) {
+  return ''; // 返回字符串、stream对象或Promise
+}
+
+export default server;
+```
+
 ## 关于node-sass
 
 node-sass如果安装失败，可以先到[https://github.com/sass/node-sass/releases](https://github.com/sass/node-sass/releases)下载**binding.node**文件，然后将该文件添加到**SASS_BINARY_PATH**环境变量内。
