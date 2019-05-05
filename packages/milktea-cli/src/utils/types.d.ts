@@ -18,6 +18,9 @@ export interface Argv {
   serverRenderFile: string;
   template: string;
   renderType: string;
+  log: boolean;
+  logUrl: string;
+  logPm2: boolean;
   // utils
   registry: number;
   imageEntry: string;

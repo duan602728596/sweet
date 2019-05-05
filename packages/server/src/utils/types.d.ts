@@ -13,9 +13,6 @@ export interface Context extends Koa.Context {
 
 export interface Log {
   type: 'file' | 'http';
-  options: {
-    pm2: boolean;
-    url: string;
-    basicPath: string;
-  };
+  pm2: boolean;
+  url: string;
 }

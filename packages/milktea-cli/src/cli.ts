@@ -42,6 +42,18 @@ const argv: object = yargs
       describe: '服务器静态文件入口',
       type: 'string'
     },
+    log: {
+      describe: '开启日志',
+      type: 'boolean'
+    },
+    logUrl: {
+      describe: '配置日志的接口，会向接口发送日志来代替本地文件',
+      type: 'string'
+    },
+    logPm2: {
+      describe: '是否在pm2环境下运行程序',
+      type: 'boolean'
+    },
     // 服务器端渲染
     serverRender: {
       describe: '开启服务器端渲染',

@@ -11,6 +11,9 @@ function argvServer(argv: Argv): void {
   const serverRenderFile: string = argv.serverRenderFile;
   const template: string = argv.template;
   const renderType: string = argv.renderType;
+  const log: boolean = argv.log;
+  const logUrl: string = argv.logUrl;
+  const logPm2: boolean = argv.logPm2;
 
   proServer({
     httpPort,
@@ -19,7 +22,12 @@ function argvServer(argv: Argv): void {
     serverRender,
     serverRenderFile,
     template,
-    renderType
+    renderType,
+    log: log ? {
+      type: logUrl ? 'http' : 'file',
+      url: logUrl || undefined,
+      pm2: logPm2
+    } : undefined
   });
 }
 

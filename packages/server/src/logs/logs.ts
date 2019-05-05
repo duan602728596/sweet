@@ -10,7 +10,11 @@ function logs(app: Koa, log: Log, sweetOptions: SweetOptions): void {
     logger: {
       error: Function;
     };
-  } = serverLog(log.type, log.options);
+  } = serverLog(log.type, {
+    pm2: log.pm2,
+    url: log.url,
+    basicPath: sweetOptions.basicPath
+  });
 
   app.use(accessLogger());
 
