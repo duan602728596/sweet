@@ -6,32 +6,26 @@ import * as path from 'path';
  * @param { boolean } pm2: 是否启动pm2
  */
 function createFileConfig(basicPath: string, pm2: boolean): object {
-  const filename: string = path.join(basicPath, '.logs');
+  const dir: string = path.join(basicPath, '.logs');
 
   return {
     appenders: {
       access: {
         type: 'dateFile',
-        filename,
-        pattern: '/yyyy-MM-dd/acces.log',
+        filename: path.join(dir, 'access'),
+        pattern: 'yyyy-MM-dd.log',
         alwaysIncludePattern: true
       },
       application: {
         type: 'dateFile',
-        filename,
-        pattern: '/yyyy-MM-dd/application.log',
-        alwaysIncludePattern: true
-      },
-      out: {
-        type: 'dateFile',
-        filename,
-        pattern: '/yyyy-MM-dd/out.log',
+        filename: path.join(dir, 'application'),
+        pattern: 'yyyy-MM-dd.log',
         alwaysIncludePattern: true
       }
     },
     categories: {
       default: {
-        appenders: ['out'],
+        appenders: ['access'],
         level: 'info'
       },
       application: {

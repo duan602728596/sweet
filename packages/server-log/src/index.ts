@@ -7,6 +7,7 @@ import createHttpConfig from './createHttpConfig';
 /**
  * 生成log的中间件
  * @param { 'file' | 'http' } type: 类型
+ * @param { { pm2: boolean, url: string, basicPath: string } } argu: 配置
  */
 interface Argu {
   pm2: boolean;

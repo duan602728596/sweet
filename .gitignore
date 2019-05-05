@@ -21,6 +21,7 @@ packages/**/build
 packages/**/.dll
 packages/**/.babelCache
 packages/**/.terserCache
+packages/**/.logs
 
 # util-tools
 packages/util-tools/tests/image2webp/*.webp

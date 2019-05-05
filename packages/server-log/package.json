@@ -5,7 +5,8 @@
     "start": "cross-env NODE_ENV=development npm run clean && tsc --watch",
     "build": "cross-env NODE_ENV=production npm run clean && tsc",
     "clean": "rimraf ./lib",
-    "test": "mocha ./tests/test.js --timeout 180000"
+    "test": "npm run clean:logs && mocha ./tests/test.js --timeout 180000",
+    "clean:logs": "rimraf ./tests/.logs"
   },
   "dependencies": {
     "@log4js-node/logfaces-http": "^1.0.0",
@@ -16,15 +17,11 @@
     "@babel/core": "^7.4.4",
     "@babel/preset-env": "^7.4.4",
     "@babel/register": "^7.4.4",
-    "@sweet/milktea": "github:duan602728596/sweet#build-milktea",
-    "": "",
-    "axios": "^0.18.0",
     "chai": "^4.2.0",
     "cross-env": "^5.2.0",
     "mocha": "^6.1.4",
     "rimraf": "^2.6.3",
-    "typescript": "^3.4.5",
-    "webpack": "^4.30.0"
+    "typescript": "^3.4.5"
   },
   "engines": {
     "node": ">= 9.0.0"
