@@ -7,5 +7,6 @@ export const packageNames: string[] = [
   'milktea',
   'milktea-cli',
   'server',
+  'server-log',
   'util-tools'
 ];
