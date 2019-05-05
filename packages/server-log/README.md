@@ -16,7 +16,7 @@ const { accessLogger, logger }serverLog(type, {
 
 ## 参数
 
-* type `{ string }` : 日志类型，本地*file* 或 远程接口*http*。
+* type `{ 'file' | 'http' }` : 日志类型，本地*file* 或 远程接口*http*。
 * options `{ object }` : 配置项。
   * pm2 `{ boolean }` : 服务是否在pm2状态下运行。
   * basicPath `{ string }` : *.logs*文件夹在本地的目录。

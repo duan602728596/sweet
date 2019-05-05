@@ -41,7 +41,8 @@ proServer({
   serverRoot,
   serverRender,
   serverRenderFile,
-  renderType
+  renderType,
+  log
 });
 ```
 
@@ -53,6 +54,10 @@ proServer({
 * serverRender `{ boolean }` : 开启服务器端渲染
 * serverRenderFile `{ string }` : 服务器端渲染的主模块文件。默认为`buildServer/server.js`。
 * renderType `{ string }` : html使用的渲染模板。默认为`ejs`。
+* log `{ object }` : 日志配置。
+  * type `{ 'file' | 'http' }` : 日志类型，本地*file* 或 远程接口*http*。
+  * pm2 `{ boolean }` : 服务是否在pm2状态下运行。
+  * url `{ string }` : 日志的远程接口。
 
 ## 关于https证书
 

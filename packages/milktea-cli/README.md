@@ -25,6 +25,9 @@ milktea-cli是一个快速运行环境的工具。
   * `--serverRenderFile`: 服务器端渲染的主模块文件。默认为`buildServer/server.js`。
   * `--template`: html模版的文件名。默认为`index.html`。
   * `--renderType`：html使用的渲染模板，`ejs`或`nunjucks`。默认为`ejs`。
+  * `--log`: 是否开启日志功能。
+  * `--logUrl`: 配置日志的接口，会向接口发送日志来代替本地文件。
+  * `--logPm2`: 是否在pm2环境下运行程序。
 * `milktea update`: 查看是否有依赖包需要更新。
   * `--registry`: Npm包信息地址。可能的值为 0：Npm源，1：Yarn源，2：CNpm源。
 * `milktea image2webp`: 将图片批量转换成`*.webp`格式。
