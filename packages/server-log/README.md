@@ -1,0 +1,28 @@
+# @sweet/server-log
+
+生产环境下的日志扩展。
+
+## 使用方法
+
+```javascript
+import serverLog from '@sweet/server-log';
+
+const { accessLogger, applicationLogger }serverLog(type, {
+  pm2,
+  basicPath,
+  url
+});
+```
+
+## 参数
+
+* type `{ string }` : 日志类型，本地*file* 或 远程接口*http*。
+* options `{ object }` : 配置项。
+  * pm2 `{ boolean }` : 服务是否在pm2状态下运行。
+  * basicPath `{ string }` : *.logs*文件夹在本地的目录。
+  * url `{ string }` : 日志的远程接口。
+  
+## 返回值
+
+* accessLogger `{ Function }` : Koa日志中间件。
+* applicationLogger `{ object }` : 创建日志方法。

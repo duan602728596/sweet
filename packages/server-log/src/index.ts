@@ -9,7 +9,7 @@ import createHttpConfig from './createHttpConfig';
  * @param { 'file' | 'http' } type: 类型
  * @param { { pm2: boolean, url: string, basicPath: string } } argu: 配置
  */
-interface Argu {
+interface Options {
   pm2: boolean;
   url: string;
   basicPath: string;
@@ -20,8 +20,8 @@ interface ServerLog {
   applicationLogger: object;
 }
 
-function serverLog(type: 'file' | 'http', argu: Argu = { pm2: false, url: '', basicPath: process.cwd() }): ServerLog {
-  const config: object = type === 'http' ? createHttpConfig(argu.url, argu.pm2) : createFileConfig(argu.basicPath, argu.pm2);
+function serverLog(type: 'file' | 'http', options: Options = { pm2: false, url: '', basicPath: process.cwd() }): ServerLog {
+  const config: object = type === 'http' ? createHttpConfig(options.url, options.pm2) : createFileConfig(options.basicPath, options.pm2);
 
   log4js.configure(config);
 
