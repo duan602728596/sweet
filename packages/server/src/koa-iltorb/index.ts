@@ -30,7 +30,9 @@ function iltorb(): Koa.Middleware {
 
         // 数组或对象
         if (_.isObject(body)) {
-          input = Buffer.from(JSON.stringify(body));
+          try {
+            input = Buffer.from(JSON.stringify(body));
+          } catch (err) { /* err */ }
         }
       }
     }
