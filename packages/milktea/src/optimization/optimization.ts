@@ -3,7 +3,7 @@ import * as Config from 'webpack-chain';
 import * as TerserPlugin from 'terser-webpack-plugin';
 import { SweetConfig, SweetOptions } from '../utils/types';
 
-interface TerserOptions{
+interface TerserOptions {
   ecma: number;
   safari10: boolean;
 }
