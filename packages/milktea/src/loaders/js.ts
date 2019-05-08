@@ -17,12 +17,11 @@ interface Js {
 }
 
 export const targets: object = {
-  ie: 9,
-  edge: 16,
-  chrome: 62,
-  firefox: 56,
-  android: 5,
-  ios: 9
+  browsers: [
+    'last 2 versions',
+    'last 10 Chrome versions',
+    'last 1 years'
+  ]
 };
 
 const basicPlugins: Array<any> = [
