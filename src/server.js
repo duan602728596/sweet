@@ -2,21 +2,26 @@ require('source-map-support').install();
 
 import React from 'react';
 import { renderToNodeStream } from 'react-dom/server';
-import { StaticRouter, Switch } from 'react-router';
+import { Route, StaticRouter, Switch } from 'react-router';
 import { Provider } from 'react-redux';
 import Helmet from 'react-helmet';
+import { LocaleProvider } from 'antd';
+import zhCN from 'antd/lib/locale-provider/zh_CN';
 import { storeFactory } from './store/store';
 import './common.sass';
-import ServerRouters from './router/ServerRouters';
+import Arrangement from './assembly/Arrangement/server';
 
 function server(url, context = {}, initialState = {}) {
   const stream = renderToNodeStream(
     <Provider store={ storeFactory(initialState) }>
-      <StaticRouter location={ url } context={ context }>
-        <Switch>
-          <ServerRouters />
-        </Switch>
-      </StaticRouter>
+      <LocaleProvider locale={ zhCN }>
+        <StaticRouter location={ url } context={ context }>
+          <Switch>
+            <Route path="/Login" component={ (props) => <div>登录</div> } exact={ true } />
+            <Route component={ Arrangement } exact={ true } />
+          </Switch>
+        </StaticRouter>
+      </LocaleProvider>
     </Provider>
   );
   const helmet = Helmet.renderStatic();
