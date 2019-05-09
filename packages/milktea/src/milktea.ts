@@ -1,7 +1,6 @@
 import * as process from 'process';
 import * as _ from 'lodash';
-import * as webpack from 'webpack';
-import { Configuration } from 'webpack';
+import { Configuration, Stats } from 'webpack';
 import webpackConfig from './config';
 import webpackServerRenderConfig from './server';
 import webpackDllConfig from './dll';
@@ -14,7 +13,7 @@ const sweetOptions: SweetOptions = {
 };
 
 /* webpack的回调函数 */
-export function callback(err: Error, stats: webpack.Stats): void {
+export function callback(err: Error, stats: Stats): void {
   console.log(stats.toString({
     colors: true
   }));

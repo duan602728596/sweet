@@ -5,6 +5,7 @@ import * as fs from 'fs';
 import * as process from 'process';
 import * as path from 'path';
 import * as Koa from 'koa';
+import { Context } from 'koa';
 import * as Router from '@eggjs/router';
 import * as body from 'koa-body';
 import * as staticCache from 'koa-static-cache';
@@ -96,7 +97,7 @@ async function proServer(argv: ProServerType = {}): Promise<void> {
     .use(router.allowedMethods());
 
   /* index路由 */
-  router.get(/^\/[^._\-]*$/, async (ctx: Koa.Context, next: Function): Promise<void> => {
+  router.get(/^\/[^._\-]*$/, async (ctx: Context, next: Function): Promise<void> => {
     try {
       const ctxPath: string = ctx.path;
       const body: Buffer = await readFile(path.join(formatServerRoot, template));
@@ -115,7 +116,7 @@ async function proServer(argv: ProServerType = {}): Promise<void> {
   });
 
   /* html文件允许使用ejs模板 */
-  router.get(/^.*\.html$/, async (ctx: Koa.Context, next: Function): Promise<void> => {
+  router.get(/^.*\.html$/, async (ctx: Context, next: Function): Promise<void> => {
     const ctxPath: string = ctx.path;
     const body: Buffer = await readFile(path.join(formatServerRoot, ctxPath));
 

@@ -1,7 +1,7 @@
 import * as path from 'path';
 import * as glob from 'glob';
 import * as _ from 'lodash';
-import * as Koa from 'koa';
+import { Context } from 'koa';
 import { SweetOptions } from './types';
 import { requireModule } from './utils';
 
@@ -44,14 +44,14 @@ export function getControllersFilesSync(basicPath: string): Map<string, string> 
 
 /**
  * 从controller中获取数据
- * @param { Koa.Context } ctx
+ * @param { Context } ctx
  * @param { SweetOptions } sweetOptions
  * @param { Map<string, string> } controllersMap
  * @param { string } folderPathFile
  * @param { string } formatFile
  */
 export async function getControllerData(
-  ctx: Koa.Context,
+  ctx: Context,
   sweetOptions: SweetOptions,
   controllersMap: Map<string, string>,
   folderPathFile: string,

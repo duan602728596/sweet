@@ -1,4 +1,4 @@
-import * as Koa from 'koa';
+import { Context } from 'koa';
 import { formatTemplateData, folderPathAnalyze, filePathAnalyze, requireModule, isReadStream, readStream } from './utils';
 import { getControllersFilesSync, getControllerData } from './controllers';
 import createRenderEngine from './createRenderEngine';
@@ -12,7 +12,7 @@ function preRenderInit(sweetOptions: SweetOptions): Function {
 
   return async function preRender(
     ctxPath: string,
-    ctx: Koa.Context,
+    ctx: Context,
     html: Buffer,
     serverRenderFile: string
   ): Promise<string> {

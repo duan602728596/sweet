@@ -15,7 +15,7 @@ import * as koaWebpack from 'koa-webpack';
 import * as _ from 'lodash';
 import { readFile, defaultApiPath, cleanRequireCache, requireModule } from './utils/utils';
 import preRenderInit from './utils/preDevRender';
-import { SweetOptions, Context } from './utils/types';
+import { SweetOptions, DevContext } from './utils/types';
 
 const app: Koa = new Koa();
 const router: Router = new Router();
@@ -136,7 +136,7 @@ async function devServer(argv: DevServerType = {}): Promise<void> {
   app.use(middleware);
 
   /* webpack 重定向 */
-  router.get(/^\/[^._\-]*$/, async (ctx: Context, next: Function): Promise<void> => {
+  router.get(/^\/[^._\-]*$/, async (ctx: DevContext, next: Function): Promise<void> => {
     const ctxPath: string = ctx.path;
     const mimeType: string | boolean = mime.lookup(ctxPath);
 
@@ -158,7 +158,7 @@ async function devServer(argv: DevServerType = {}): Promise<void> {
   });
 
   /* html文件允许使用ejs模板 */
-  router.get(/^.*\.html$/, async (ctx: Context, next: Function): Promise<void> => {
+  router.get(/^.*\.html$/, async (ctx: DevContext, next: Function): Promise<void> => {
     const ctxPath: string = ctx.path;
 
     await next();

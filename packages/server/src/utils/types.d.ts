@@ -1,4 +1,4 @@
-import * as Koa from 'koa';
+import { Context } from 'koa';
 
 export interface SweetOptions {
   basicPath: string;
@@ -7,7 +7,7 @@ export interface SweetOptions {
   renderType?: 'ejs' | 'nunjucks';
 }
 
-export interface Context extends Koa.Context {
+export interface DevContext extends Context {
   _path?: string; // 保存旧的path
 }
 

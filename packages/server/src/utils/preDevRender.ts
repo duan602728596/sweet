@@ -1,4 +1,4 @@
-import * as Koa from 'koa';
+import { Context } from 'koa';
 import {
   formatTemplateData, cleanRequireCache, folderPathAnalyze, filePathAnalyze, requireModule,
   isReadStream, readStream
@@ -13,7 +13,7 @@ function preRenderInit(sweetOptions: SweetOptions): Function {
 
   return async function preRender(
     ctxPath: string, // 相对路径
-    ctx: Koa.Context,
+    ctx: Context,
     serverRenderFile: string
   ): Promise<string> {
     cleanRequireCache(serverRenderFile);
