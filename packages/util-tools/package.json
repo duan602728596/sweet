@@ -17,7 +17,8 @@
     "imagemin-jpegoptim": "^6.0.0",
     "imagemin-pngquant": "^7.0.0",
     "imagemin-webp": "^5.0.0",
-    "lodash": "^4.17.11"
+    "lodash": "^4.17.11",
+    "semver": "^6.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.4.4",

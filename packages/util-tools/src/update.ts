@@ -2,6 +2,7 @@
 import * as path from 'path';
 import axios, { AxiosResponse } from 'axios';
 import * as _ from 'lodash';
+import * as semver from 'semver';
 
 interface DistTags {
   latest?: string;
@@ -68,11 +69,11 @@ async function requestPackageInformation(packageName: string, registry: number):
 function isVersionEqual(oldVersion: string, newVersion: string | undefined): boolean {
   if (!newVersion) {
     return false;
-  } else if (/^(>=?|<=?|~|\^).*$/.test(oldVersion)) {
-    // 判断前面是否有特殊符号，比如>、>=、<、<=、~、^
-    return oldVersion.replace(/(>=?|<=?|~|\^)/g, '') === newVersion;
   } else {
-    return oldVersion === newVersion;
+    const formatOldVersion: string = semver.coerce(oldVersion).version;
+    const hasNewVersion: boolean = semver.lt(formatOldVersion, newVersion);
+
+    return !hasNewVersion;
   }
 }
 

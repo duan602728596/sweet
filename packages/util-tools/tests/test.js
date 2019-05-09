@@ -4,6 +4,6 @@ const babelRegisterConfig = require('../../../scripts/babelRegisterConfig');
 register(babelRegisterConfig);
 
 /* test */
-require('./update');
+require('./update/update');
 require('./image2webp/image2webp');
 require('./imageCompress/imageCompress');
