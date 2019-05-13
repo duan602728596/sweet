@@ -10,7 +10,7 @@ export const listDisplayChange = createAction('index/首页列表展示');
 
 /* reducer */
 const reducer = handleActions({
-  [listDisplayChange]: ($$state, action) => {
+  [listDisplayChange]($$state, action) {
     return $$state.set('listDisplay', List(action.payload.listDisplay));
   }
 }, fromJS(initData));

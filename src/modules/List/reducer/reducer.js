@@ -8,7 +8,7 @@ const initData = {
 
 /* reducer */
 const reducer = handleActions({
-  [combineActions(...Object.values(module1Action))]: ($$state, action) => {
+  [combineActions(...Object.values(module1Action))]($$state, action) {
     return $$state.set('module1', module1Reducer($$state.get('module1'), action));
   }
 }, fromJS(initData));
