@@ -30,7 +30,7 @@ class Sider extends Component {
         const childrenKey = this.getSelectKey(arr[i].children);
 
         if (childrenKey) {
-          key = [childrenKey];
+          key = childrenKey;
           break;
         }
       } else {
