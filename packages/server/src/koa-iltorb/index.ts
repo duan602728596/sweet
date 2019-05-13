@@ -1,4 +1,5 @@
 import * as Koa from 'koa';
+import { Context } from 'koa';
 import * as brotli from 'iltorb';
 import * as _ from 'lodash';
 import gzip from './gzip';
@@ -6,7 +7,7 @@ import { isReadStream, readStream } from '../utils/utils';
 
 /* brotli压缩中间件 */
 function iltorb(): Koa.Middleware {
-  return async function(ctx: Koa.Context, next: () => Promise<void>): Promise<void> {
+  return async function(ctx: Context, next: Function): Promise<void> {
     await next();
 
     const acceptEncoding: string = ctx.request.header['accept-encoding']; // 获取请求头的压缩参数
