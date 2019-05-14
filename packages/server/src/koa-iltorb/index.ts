@@ -19,9 +19,7 @@ function iltorb(): Koa.Middleware {
       if (isReadStream(body)) {
         // 此时的input是Stream对象，且只有本地文件能够被压缩
         if (input.path) {
-          const streamData: Buffer = await readStream(input);
-
-          input = streamData;
+          input = await readStream(input);
         }
       } else {
         // 字符串
