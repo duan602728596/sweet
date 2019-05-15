@@ -2,13 +2,14 @@ import * as _ from 'lodash';
 import * as Config from 'webpack-chain';
 import { Rule, OneOf } from 'webpack-chain';
 import * as MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import { RuleSetCondition } from 'webpack';
 import { SweetConfig } from '../utils/types';
 
 interface Sass {
   publicPath?: string;
   modules?: boolean;
-  exclude?: RegExp;
-  include?: RegExp;
+  exclude?: RuleSetCondition;
+  include?: RuleSetCondition;
   modifyVars?: object;
 }
 

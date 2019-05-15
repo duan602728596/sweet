@@ -45,6 +45,7 @@ module.exports = {
 * output `{ any }` : 文件出口（参考webpack）
 * externals `{ object }` : 外部扩展（参考webpack）
 * resolve `{ object }` : 解析（参考webpack）
+* devtool `{ string }`: 设置SourceMap的类型
 * loaders: 重写loaders的默认规则
   * js `{ object }` : 重写默认的js规则
   * sass `{ object }` : 重写默认的sass规则

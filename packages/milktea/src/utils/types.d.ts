@@ -1,4 +1,4 @@
-import { ExternalsElement, RuleSetRule } from 'webpack';
+import { ExternalsElement, RuleSetRule, Resolve, Options, Plugin, Entry, EntryFunc, Output, RuleSetCondition } from 'webpack';
 
 export interface SweetOptions {
   basicPath: string;
@@ -19,34 +19,35 @@ export interface Loaders {
 export interface SweetConfig {
   mode?: 'development' | 'production' | 'none';
   dll?: Array<string>;
-  entry?: any;
-  output?: any;
+  entry?: string | Array<string> | Entry | EntryFunc;
+  output?: Output;
   externals?: ExternalsElement | ExternalsElement[];
-  resolve?: object;
+  resolve?: Resolve;
+  devtool?: Options.Devtool;
   loaders?: Loaders;
   rules?: Array<RuleSetRule>;
-  noParse?: RegExp | Array<RegExp> | Function;
-  plugins?: Array<any>;
+  noParse?: RegExp | Array<RegExp> | ((content: string) => boolean);
+  plugins?: Array<Plugin>;
   js?: {
     ecmascript?: boolean;
     presets?: Array<any>;
     plugins?: Array<any>;
     resetPresets?: Array<any>;
     resetPlugins?: Array<any>;
-    exclude?: RegExp;
-    include?: RegExp;
+    exclude?: RuleSetCondition;
+    include?: RuleSetCondition;
   };
   sass?: {
     publicPath?: string;
     modules?: boolean;
-    exclude?: RegExp;
-    include?: RegExp;
+    exclude?: RuleSetCondition;
+    include?: RuleSetCondition;
   };
   css?: {
     publicPath?: string;
     modules?: boolean;
-    exclude?: RegExp;
-    include?: RegExp;
+    exclude?: RuleSetCondition;
+    include?: RuleSetCondition;
     modifyVars?: object;
   };
   html?: Array<{
@@ -54,7 +55,7 @@ export interface SweetConfig {
     excludeChunks: Array<string>;
   }>;
   serverRender?: boolean;
-  serverEntry?: any;
-  serverOutput?: any;
-  frame?: string;
+  serverEntry?: string | Array<string> | Entry | EntryFunc;
+  serverOutput?: Output;
+  frame?: 'react' | 'vue' | 'test';
 }

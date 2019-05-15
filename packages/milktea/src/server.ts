@@ -21,7 +21,7 @@ export default function(sweetConfig: SweetConfig | null | undefined, sweetOption
    * plugins { Array<any> }: 自定义插件
    */
   const sweetConfigCopy: SweetConfig | undefined = _.isPlainObject(sweetConfig) ? { ...sweetConfig } : {};
-  const { mode, serverEntry, serverOutput, resolve, rules, noParse, plugins }: SweetConfig = sweetConfigCopy;
+  const { mode, serverEntry, serverOutput, resolve, rules, noParse, plugins, devtool }: SweetConfig = sweetConfigCopy;
   const isDevelopment: boolean = mode === 'development';
 
   // 格式化配置
@@ -35,7 +35,7 @@ export default function(sweetConfig: SweetConfig | null | undefined, sweetOption
   config
     .merge({
       mode,
-      devtool: isDevelopment ? 'module-eval-source-map' : 'none',
+      devtool: devtool ? devtool : (isDevelopment ? 'module-eval-source-map' : 'module-source-map'),
       target: 'node',
       node: {
         __filename: true,
