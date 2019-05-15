@@ -19,7 +19,7 @@ const routers = new VueRouter({
     {
       path: '/Page',
       name: 'page',
-      component: () => import('../modules/Page/Layout')
+      component: () => import(/* webpackChunkName: 'page' */'../modules/Page/Layout')
     }
   ]
 });
