@@ -3,8 +3,8 @@ import { Route, Switch } from 'react-router-dom';
 import asyncModule from './asyncModule';
 import Index from '../modules/Index/Layout';
 
-const ListBundle = asyncModule(() => import('../modules/List/Layout'));
-const FormBundle = asyncModule(() => import('../modules/Form/Layout'));
+const ListBundle = asyncModule(() => import(/* webpackChunkName: 'list' */'../modules/List/Layout'));
+const FormBundle = asyncModule(() => import(/* webpackChunkName: 'form' */'../modules/Form/Layout'));
 
 class Routers extends Component {
   render() {
