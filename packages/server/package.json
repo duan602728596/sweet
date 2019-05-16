@@ -6,7 +6,7 @@
     "start": "cross-env NODE_ENV=development npm run clean && tsc --watch",
     "build": "cross-env NODE_ENV=production npm run clean && tsc",
     "clean": "rimraf ./lib",
-    "test": "npm run clean:build && mocha ./tests/test.js --timeout 180000",
+    "test": "npm run clean:build && cross-env NODE_ENV=test mocha ./tests/test.js --timeout 180000",
     "clean:build": "rimraf ./tests/build"
   },
   "dependencies": {
