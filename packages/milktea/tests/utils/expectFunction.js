@@ -2,6 +2,7 @@ import { expect } from 'chai';
 import webpack from 'webpack';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import HardSourceWebpackPlugin from 'hard-source-webpack-plugin';
 import OptimizeCssAssets from 'optimize-css-assets-webpack-plugin';
 import ImageMinWebpackPlugin from 'imagemin-webpack-plugin';
 import VueLoaderPlugin from 'vue-loader/lib/plugin';
@@ -20,9 +21,10 @@ export function expectModule(config, length) {
 export function expectDevPlugins(config) {
   return function() {
     expect(config.plugins).to.be.an('array');
-    expect(config.plugins).to.have.lengthOf(2);
+    expect(config.plugins).to.have.lengthOf(3);
     expect(config.plugins[0] instanceof webpack.IgnorePlugin).to.be.true;
-    expect(config.plugins[1] instanceof HtmlWebpackPlugin).to.be.true;
+    expect(config.plugins[1] instanceof HardSourceWebpackPlugin).to.be.true;
+    expect(config.plugins[2] instanceof HtmlWebpackPlugin).to.be.true;
   };
 }
 
@@ -30,8 +32,9 @@ export function expectDevPlugins(config) {
 export function expectDevServerPlugins(config) {
   return function() {
     expect(config.plugins).to.be.an('array');
-    expect(config.plugins).to.have.lengthOf(1);
+    expect(config.plugins).to.have.lengthOf(2);
     expect(config.plugins[0] instanceof webpack.IgnorePlugin).to.be.true;
+    expect(config.plugins[1] instanceof HardSourceWebpackPlugin).to.be.true;
   };
 }
 
