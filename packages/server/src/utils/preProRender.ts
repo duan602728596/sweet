@@ -19,7 +19,7 @@ function preRenderInit(sweetOptions: SweetOptions): Function {
     try {
       const renderEngine: Function = createRenderEngine(sweetOptions.renderType);
       const folderPathFile: string = `${ folderPathAnalyze(ctxPath) }.js`; // 格式化为：path/to/file.js
-      const formatFile: string = `${ filePathAnalyze(ctxPath) }.js`; // 格式化为：path.to.file.js
+      const formatFile: string = `${ filePathAnalyze(ctxPath) }.js`;       // 格式化为：path.to.file.js
       const data: any = await getControllerData(ctx, sweetOptions, controllersMap, folderPathFile, formatFile);
 
       // ssr渲染

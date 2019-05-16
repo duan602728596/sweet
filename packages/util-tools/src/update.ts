@@ -30,7 +30,7 @@ interface PackageItem {
 function objectToArray(obj: object): Array<PackageItem> {
   return _.transform(obj, function(result: Array<PackageItem>, value: string, key: string): void {
     result.push({
-      name: key, // 包的名称
+      name: key,        // 包的名称
       version: obj[key] // 包的当前版本号
     });
   }, []);
@@ -44,9 +44,9 @@ function objectToArray(obj: object): Array<PackageItem> {
 async function requestPackageInformation(packageName: string, registry: number): Promise<PackageInformation> {
   // 用来判断当前的npm包信息地址
   const packageHost: string[] = [
-    'https://registry.npmjs.org', // npm
+    'https://registry.npmjs.org',   // npm
     'https://registry.yarnpkg.com', // yarn
-    'https://r.cnpmjs.org' // cnpm
+    'https://r.cnpmjs.org'          // cnpm
   ];
 
   const res: AxiosResponse = await axios({
