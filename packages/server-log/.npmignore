@@ -14,3 +14,11 @@ yarn-error.log
 src
 tests
 tsconfig.json
+
+# build
+build
+.dll
+.babelCache
+.terserCache
+.logs
+.webpackCache
