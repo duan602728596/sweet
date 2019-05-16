@@ -18,6 +18,8 @@ buildServer
 .dll
 .babelCache
 .terserCache
+.logs
+.webpackCache
 
 # https
 *.crt
