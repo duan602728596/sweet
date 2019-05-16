@@ -19,6 +19,7 @@ buildServer
 .babelCache
 .terserCache
 .logs
+.webpackCache
 
 # https
 *.crt
