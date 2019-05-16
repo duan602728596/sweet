@@ -6,6 +6,6 @@
   },
   "exclude": [
     "node_modules",
-    "react-hot-loader.d.ts"
+    "react-hot-loader"
   ]
 }
