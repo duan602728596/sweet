@@ -62,18 +62,18 @@ async function requestPackageInformation(packageName: string, registry: number):
 }
 
 /**
- * 判断依赖是否是最新的
+ * 判断依赖是否是最新的，最新的就返回true
  * @param { string } oldVersion: 旧版本
  * @param { string } newVersion: 新版本
  */
-function isVersionEqual(oldVersion: string, newVersion: string | undefined): boolean {
+function versionEqual(oldVersion: string, newVersion: string | undefined): boolean {
   if (!newVersion) {
-    return false;
+    return true;
   } else {
     const formatOldVersion: string = semver.coerce(oldVersion).version;
     const hasNewVersion: boolean = semver.lt(formatOldVersion, newVersion);
 
-    return !hasNewVersion;
+    return hasNewVersion;
   }
 }
 
@@ -135,14 +135,15 @@ function consoleLogText(packageArray: Array<PackageItem>): string {
   let consoleText: string = '';
 
   for (const item of packageArray) {
-    const isLatestNew: boolean = isVersionEqual(item.version, item.latest);
-    const isNextNew: boolean = isVersionEqual(item.version, item.next);
-    const isRcNew: boolean = isVersionEqual(item.version, item.rc);
+    const isLatestNew: boolean = versionEqual(item.version, item.latest);
+    const isNextNew: boolean = versionEqual(item.version, item.next);
+    const isRcNew: boolean = versionEqual(item.version, item.rc);
+    const inNpm: boolean = !!(item.latest || item.next || item.rc);
 
     // 包需要升级，使用“*”；包在npm上不存在（私有包），使用“#”
-    const symbol: string = (item.latest || item.next || item.rc) ? '*' : '#';
+    const symbol: string = inNpm ? '*' : '#';
 
-    consoleText += `  ${ isLatestNew || isNextNew || isRcNew ? ' ' : symbol } ${ item.name }:\n`;
+    consoleText += `  ${ isLatestNew ? symbol : ' ' } ${ item.name }:\n`;
     consoleText += `      version: ${ item.version }\n`;
 
     if (item.latest) {
@@ -150,11 +151,11 @@ function consoleLogText(packageArray: Array<PackageItem>): string {
     }
 
     if (item.next) {
-      consoleText += `      next   : ${ formatVersion(item.version, item.next) }\n`;
+      consoleText += `    ${ isNextNew ? '+' : ' ' } next   : ${ formatVersion(item.version, item.next) }\n`;
     }
 
     if (item.rc) {
-      consoleText += `      rc     : ${ formatVersion(item.version, item.rc) }\n`;
+      consoleText += `    ${ isRcNew ? '+' : ' ' } rc     : ${ formatVersion(item.version, item.rc) }\n`;
     }
   }
 
