@@ -7,8 +7,8 @@
     "milktea": "lib/cli.js"
   },
   "scripts": {
-    "start": "cross-env NODE_ENV=development npm run clean && tsc --watch",
-    "build": "cross-env NODE_ENV=production npm run clean && tsc",
+    "start": "npm run clean && cross-env NODE_ENV=development tsc --watch",
+    "build": "npm run clean && cross-env NODE_ENV=production tsc",
     "clean": "rimraf ./lib",
     "test": "npm run clean:test && cross-env NODE_ENV=test mocha ./tests/test.js --timeout 180000",
     "clean:test": "npm run clean:dll && npm run clean:babelCache && npm run clean:terserCache && npm run clean:build",

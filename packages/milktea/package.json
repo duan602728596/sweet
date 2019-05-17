@@ -4,8 +4,8 @@
   "description": "webpack配置函数",
   "main": "lib/milktea.js",
   "scripts": {
-    "start": "cross-env NODE_ENV=development npm run clean && tsc --watch",
-    "build": "cross-env NODE_ENV=production npm run clean && tsc",
+    "start": "npm run clean && cross-env NODE_ENV=development tsc --watch",
+    "build": "npm run clean && cross-env NODE_ENV=production tsc",
     "clean": "rimraf ./lib",
     "test": "cross-env NODE_ENV=test mocha ./tests/test.js --timeout 180000"
   },

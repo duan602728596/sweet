@@ -3,8 +3,8 @@
   "version": "0.0.0-alpha.9",
   "description": "通用工具函数",
   "scripts": {
-    "start": "cross-env NODE_ENV=development npm run clean && tsc --watch",
-    "build": "cross-env NODE_ENV=production npm run clean && tsc",
+    "start": "npm run clean && cross-env NODE_ENV=development tsc --watch",
+    "build": "npm run clean && cross-env NODE_ENV=production tsc",
     "clean": "rimraf ./lib",
     "test": "npm run clean:webp && npm run clean:output && cross-env NODE_ENV=test mocha tests/test.js --timeout 180000",
     "clean:webp": "rimraf ./tests/image2webp/image.webp",
