@@ -14,5 +14,6 @@ html
     | <%- render %>
     script
       | window.__INITIAL_STATE__ = <%- initialState %>;
+
     if htmlWebpackPlugin.options.mode === 'development'
       script(src=imports.dll)
