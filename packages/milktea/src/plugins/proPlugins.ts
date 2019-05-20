@@ -3,7 +3,7 @@ import * as Config from 'webpack-chain';
 import * as MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import * as OptimizeCssAssets from 'optimize-css-assets-webpack-plugin';
 import ImageMinWebpackPlugin from 'imagemin-webpack-plugin';
-import handleWebpackBuildProgress from './handleWebpackBuildProgress';
+import handleProgress from './handleProgress';
 import { SweetConfig, SweetOptions } from '../utils/types';
 
 /* 生产环境插件 */
@@ -12,8 +12,8 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
     // mini-css-extract-plugin
     .plugin('mini-css-extract-plugin')
     .use(MiniCssExtractPlugin, [{
-      filename: '[chunkhash:5].css',
-      chunkFilename: '[chunkhash:5].css'
+      filename: '[chunkhash:15].css',
+      chunkFilename: '[chunkhash:15].css'
     }])
     .end()
     // css压缩
@@ -32,7 +32,7 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
       (config: Config): void => {
         config
           .plugin('webpack.ProgressPlugin')
-          .use(webpack.ProgressPlugin, [handleWebpackBuildProgress]);
+          .use(webpack.ProgressPlugin, [handleProgress]);
       }
     );
 }

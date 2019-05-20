@@ -9,7 +9,7 @@ export default function(sweetConfig: SweetConfig, config: Config): void {
    */
   const { mode, serverRender }: SweetConfig = sweetConfig;
   const isDevelopment: boolean = mode === 'development';
-  const filename: string = isDevelopment ? '[name].[hash:5].[ext]' : '[hash:5].[ext]';
+  const filename: string = isDevelopment ? '[name]_[hash:5].[ext]' : '[hash:15].[ext]';
 
   config
     .module

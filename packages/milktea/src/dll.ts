@@ -6,7 +6,7 @@ import { Configuration } from 'webpack';
 import * as Config from 'webpack-chain';
 import * as merge from 'webpack-merge';
 import { targets } from './loaders/js';
-import handleWebpackBuildProgress from './plugins/handleWebpackBuildProgress';
+import handleProgress from './plugins/handleProgress';
 import { SweetConfig, SweetOptions } from './utils/types';
 
 export default function(sweetConfig: SweetConfig | null | undefined, sweetOptions: SweetOptions): Configuration {
@@ -88,7 +88,7 @@ export default function(sweetConfig: SweetConfig | null | undefined, sweetOption
     .end()
     // 进度条
     .plugin('webpack.ProgressPlugin')
-    .use(webpack.ProgressPlugin, [handleWebpackBuildProgress]);
+    .use(webpack.ProgressPlugin, [handleProgress]);
 
   /* 合并自定义配置 */
   return merge(config.toConfig(), {

@@ -51,7 +51,7 @@ export default function(sweetConfig: SweetConfig, config: Config): void {
   const cssLoaderOptions: object = {
     modules,
     localIdentName: modules
-      ? (isDevelopment ? '[path][name]__[local]___[hash:base64:5]' : '_[hash:base64:5]')
+      ? (isDevelopment ? '[path][name]__[local]___[hash:base64:6]' : '_[hash:base64:6]')
       : undefined,
     exportOnlyLocals: serverRender,
     sourceMap: isDevelopment
