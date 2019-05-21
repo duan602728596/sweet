@@ -9,7 +9,7 @@ import { Context } from 'koa';
 import * as Router from '@eggjs/router';
 import * as body from 'koa-body';
 import * as staticCache from 'koa-static-cache';
-import iltorb from './koa-iltorb/index';
+import * as compress from 'koa-compress';
 import { readFile, defaultApiPath, requireModule } from './utils/utils';
 import preRenderInit from './utils/preProRender';
 import logs from './logs/logs';
@@ -84,7 +84,7 @@ async function proServer(argv: ProServerType = {}): Promise<void> {
   app.use(body());
 
   /* 文件压缩 */
-  app.use(iltorb());
+  app.use(compress());
 
   /* 缓存 */
   app.use(staticCache(formatServerRoot, {

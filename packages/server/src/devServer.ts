@@ -9,6 +9,7 @@ import * as path from 'path';
 import * as Koa from 'koa';
 import * as Router from '@eggjs/router';
 import * as body from 'koa-body';
+import * as compress from 'koa-compress';
 import * as mime from 'mime-types';
 import * as webpack from 'webpack';
 import * as koaWebpack from 'koa-webpack';
@@ -70,6 +71,7 @@ async function devServer(argv: DevServerType = {}): Promise<void> {
     renderType
   });
 
+  /* 服务器端渲染文件地址 */
   let formatServerRenderFile: string;
 
   if (serverRender) {
@@ -77,6 +79,9 @@ async function devServer(argv: DevServerType = {}): Promise<void> {
       ? serverRenderFile
       : path.join(sweetOptions.basicPath, serverRenderFile);
   }
+
+  /* 文件压缩 */
+  app.use(compress());
 
   /* post body */
   app.use(body());

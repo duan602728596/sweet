@@ -16,6 +16,7 @@
     "iltorb": "^2.4.3",
     "koa": "^2.7.0",
     "koa-body": "^4.1.0",
+    "koa-compress": "github:duan602728596/compress",
     "koa-static-cache": "^5.1.2",
     "koa-webpack": "^5.2.3",
     "lodash": "^4.17.11",
