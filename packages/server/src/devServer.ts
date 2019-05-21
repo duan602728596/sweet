@@ -81,7 +81,9 @@ async function devServer(argv: DevServerType = {}): Promise<void> {
   }
 
   /* 文件压缩 */
-  app.use(compress());
+  app.use(compress({
+    useBrCompress: false // 关闭brotli压缩
+  }));
 
   /* post body */
   app.use(body());
