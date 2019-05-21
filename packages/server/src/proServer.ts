@@ -42,7 +42,7 @@ interface ProServerType {
   serverRenderFile?: string;
   template?: string;
   renderType?: 'ejs' | 'nunjucks';
-  log?: Log
+  log?: Log;
 }
 
 async function proServer(argv: ProServerType = {}): Promise<void> {
