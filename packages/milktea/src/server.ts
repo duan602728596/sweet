@@ -36,7 +36,7 @@ export default function(sweetConfig: SweetConfig | null | undefined, sweetOption
     .merge({
       mode,
       devtool: devtool ? devtool : (isDevelopment ? 'module-eval-source-map' : 'module-source-map'),
-      target: 'node',
+      target: 'async-node',
       node: {
         __filename: true,
         __dirname: true
