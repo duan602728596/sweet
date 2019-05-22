@@ -147,7 +147,7 @@ function consoleLogText(packageArray: Array<PackageItem>): string {
     consoleText += `      version: ${ item.version }\n`;
 
     if (item.latest) {
-      consoleText += `      latest : ${ formatVersion(item.version, item.latest) }\n`;
+      consoleText += `    ${ /^github:/.test(item.version) ? '?' : ' ' } latest : ${ formatVersion(item.version, item.latest) }\n`;
     }
 
     if (item.next) {
