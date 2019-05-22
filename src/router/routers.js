@@ -4,6 +4,8 @@ import Index from '../modules/Index/Layout';
 
 Vue.use(VueRouter);
 
+const PageBundle = () => import(/* webpackChunkName: 'page' */'../modules/Page/Layout');
+
 const routers = new VueRouter({
   mode: 'history',
   routes: [
@@ -19,7 +21,7 @@ const routers = new VueRouter({
     {
       path: '/Page',
       name: 'page',
-      component: () => import(/* webpackChunkName: 'page' */'../modules/Page/Layout')
+      component: PageBundle
     }
   ]
 });
