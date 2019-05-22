@@ -2,6 +2,7 @@ require('source-map-support').install();
 
 import React from 'react';
 import { renderToNodeStream } from 'react-dom/server';
+import Loadable from 'react-loadable';
 import { Route, StaticRouter, Switch } from 'react-router';
 import { Provider } from 'react-redux';
 import Helmet from 'react-helmet';
@@ -11,7 +12,9 @@ import { storeFactory } from './store/store';
 import './common.sass';
 import Arrangement from './assembly/Arrangement/server';
 
-function server(url, context = {}, initialState = {}) {
+async function server(url, context = {}, initialState = {}) {
+  await Loadable.preloadAll();
+
   const stream = renderToNodeStream(
     <Provider store={ storeFactory(initialState) }>
       <LocaleProvider locale={ zhCN }>

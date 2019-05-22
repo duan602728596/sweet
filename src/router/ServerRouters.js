@@ -1,9 +1,11 @@
-/* 服务器端渲染组件 */
+/* 服务端渲染组件 */
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router';
+import asyncModule from './asyncServerModule';
 import Index from '../modules/Index/Layout';
-import List from '../modules/List/Layout';
-import Form from '../modules/Form/Layout';
+
+const ListBundle = asyncModule(() => import(/* webpackChunkName: 'list' */'../modules/List/Layout'));
+const FormBundle = asyncModule(() => import(/* webpackChunkName: 'form' */'../modules/Form/Layout'));
 
 class ServerRouters extends Component {
   render() {
@@ -11,8 +13,8 @@ class ServerRouters extends Component {
       <Switch>
         <Route path="/" component={ Index } exact={ true } />
         <Route path="/Index" component={ Index } />
-        <Route path="/List" component={ List } />
-        <Route path="/Form" component={ Form } />
+        <Route path="/List" component={ ListBundle } />
+        <Route path="/Form" component={ FormBundle } />
       </Switch>
     );
   }
