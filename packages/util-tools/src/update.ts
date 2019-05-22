@@ -144,10 +144,10 @@ function consoleLogText(packageArray: Array<PackageItem>): string {
     const symbol: string = inNpm ? '*' : '#';
 
     consoleText += `  ${ isLatestNew ? symbol : ' ' } ${ item.name }:\n`;
-    consoleText += `      version: ${ item.version }\n`;
+    consoleText += `    ${ (item.latest && /^github:/.test(item.version)) ? '?' : ' ' } version: ${ item.version }\n`;
 
     if (item.latest) {
-      consoleText += `    ${ /^github:/.test(item.version) ? '?' : ' ' } latest : ${ formatVersion(item.version, item.latest) }\n`;
+      consoleText += `      latest : ${ formatVersion(item.version, item.latest) }\n`;
     }
 
     if (item.next) {
