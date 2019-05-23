@@ -1,4 +1,5 @@
 import { ExternalsElement, RuleSetRule, Resolve, Options, Plugin, Entry, EntryFunc, Output, RuleSetCondition } from 'webpack';
+import * as Config from 'webpack-chain';
 
 export interface SweetOptions {
   basicPath: string;
@@ -58,4 +59,5 @@ export interface SweetConfig {
   serverEntry?: string | Array<string> | Entry | EntryFunc;
   serverOutput?: Output;
   frame?: 'react' | 'vue' | 'test';
+  chainWebpack?: (config: Config) => void;
 }

@@ -17,7 +17,7 @@ export default function(sweetConfig: SweetConfig | null | undefined, sweetOption
    * dll { Array<string> }: dll配置
    */
   const sweetConfigCopy: SweetConfig = _.isPlainObject(sweetConfig) ? { ...sweetConfig } : {};
-  const { mode, dll, externals, resolve }: SweetConfig = sweetConfigCopy;
+  const { mode, dll, externals, resolve, chainWebpack }: SweetConfig = sweetConfigCopy;
   const ecmascript: boolean = (sweetConfigCopy.js && sweetConfigCopy.js.ecmascript) || false;
   const isDevelopment: boolean = mode === 'development';
 
@@ -89,6 +89,11 @@ export default function(sweetConfig: SweetConfig | null | undefined, sweetOption
     // 进度条
     .plugin('webpack.ProgressPlugin')
     .use(webpack.ProgressPlugin, [handleProgress]);
+
+  /* chainWebpack: 通过 webpack-chain 的 API 扩展或修改 webpack 配置 */
+  if (chainWebpack) {
+    chainWebpack(config);
+  }
 
   /* 合并自定义配置 */
   return merge(config.toConfig(), {

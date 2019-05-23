@@ -21,7 +21,7 @@ export default function(sweetConfig: SweetConfig | null | undefined, sweetOption
    * plugins { Array<any> }: 自定义插件
    */
   const sweetConfigCopy: SweetConfig = _.isPlainObject(sweetConfig) ? { ...sweetConfig } : {};
-  const { mode, entry, output, externals, resolve, rules, noParse, plugins, devtool }: SweetConfig = sweetConfigCopy;
+  const { mode, entry, output, externals, resolve, rules, noParse, plugins, devtool, chainWebpack }: SweetConfig = sweetConfigCopy;
   const isDevelopment: boolean = mode === 'development';
 
   // 格式化配置
@@ -54,6 +54,11 @@ export default function(sweetConfig: SweetConfig | null | undefined, sweetOption
 
   // optimization
   optimization(sweetConfigCopy, sweetOptions, config);
+
+  /* chainWebpack: 通过 webpack-chain 的 API 扩展或修改 webpack 配置 */
+  if (chainWebpack) {
+    chainWebpack(config);
+  }
 
   /* 合并自定义配置 */
   return merge(config.toConfig(), {
