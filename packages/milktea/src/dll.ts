@@ -90,7 +90,7 @@ export default function(sweetConfig: SweetConfig | null | undefined, sweetOption
     .plugin('webpack.ProgressPlugin')
     .use(webpack.ProgressPlugin, [handleProgress]);
 
-  /* chainWebpack: 通过 webpack-chain 的 API 扩展或修改 webpack 配置 */
+  /* chainWebpack: 通过webpack-chain的API扩展或修改webpack配置 */
   if (chainWebpack) {
     chainWebpack(config);
   }

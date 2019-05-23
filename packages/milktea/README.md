@@ -82,6 +82,7 @@ module.exports = {
   * template `{ string }` : html模板文件地址
   * excludeChunks `{ Array<string> }` : 不包括的入口
 * frame `{ string }` : 值为`react`或`vue`，是否为react或vue模式，并自动注入loaders和plugins
+* chainWebpack `{ Function }` : 通过`webpack-chain`的API扩展或修改webpack配置
 
 下面的配置是关于服务器端渲染的
 
