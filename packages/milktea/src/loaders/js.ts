@@ -20,7 +20,8 @@ export const targets: object = {
   browsers: [
     'last 2 versions',
     'last 10 Chrome versions',
-    'last 1 years'
+    'last 1 years',
+    'ie >= 9'
   ]
 };
 
