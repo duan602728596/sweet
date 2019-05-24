@@ -1,5 +1,5 @@
-import Main from '../../assembly/Main/index';
-import Content from '../../assembly/Content/index';
+import Main from '../../layouts/Main/index';
+import Content from '../../layouts/Content/index';
 import Index from './Index/index';
 
 export default {

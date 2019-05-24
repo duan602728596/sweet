@@ -1,4 +1,4 @@
-import Arrangement from './assembly/Arrangement/index';
+import Arrangement from './layouts/Arrangement/index';
 
 export default {
   name: 'App',
