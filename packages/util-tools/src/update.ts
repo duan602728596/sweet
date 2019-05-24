@@ -1,6 +1,7 @@
 /* 查看升级 */
 import * as path from 'path';
-import axios, { AxiosResponse } from 'axios';
+import * as request from 'request';
+import { Response } from 'request';
 import * as _ from 'lodash';
 import * as semver from 'semver';
 
@@ -41,7 +42,7 @@ function objectToArray(obj: object): Array<PackageItem> {
  * @param { string } packageName: npm包名
  * @param { number } registry
  */
-async function requestPackageInformation(packageName: string, registry: number): Promise<PackageInformation> {
+function requestPackageInformation(packageName: string, registry: number): Promise<PackageInformation> {
   // 用来判断当前的npm包信息地址
   const packageHost: string[] = [
     'https://registry.npmjs.org',   // npm
@@ -49,16 +50,22 @@ async function requestPackageInformation(packageName: string, registry: number):
     'https://r.cnpmjs.org'          // cnpm
   ];
 
-  const res: AxiosResponse = await axios({
-    method: 'GET',
-    url: `${ packageHost[registry] }/${ packageName }`,
-    headers: {
-      Accept: 'application/vnd.npm.install-v1+json; q=1.0, application/json; q=0.8, */*'
-    },
-    validateStatus: (): boolean => true
+  return new Promise(function(resolve: Function, reject: Function): void {
+    request({
+      method: 'GET',
+      uri: `${ packageHost[registry] }/${ packageName }`,
+      headers: {
+        Accept: 'application/vnd.npm.install-v1+json; q=1.0, application/json; q=0.8, */*'
+      },
+      json: true
+    }, function(err: Error, res: Response, data: PackageInformation): void {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(data);
+      }
+    });
   });
-
-  return res.data;
 }
 
 /**
