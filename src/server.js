@@ -10,7 +10,7 @@ import { LocaleProvider } from 'antd';
 import zhCN from 'antd/lib/locale-provider/zh_CN';
 import { storeFactory } from './store/store';
 import './common.sass';
-import Arrangement from './assembly/Arrangement/server';
+import Arrangement from './layouts/Arrangement/server';
 
 async function server(url, context = {}, initialState = {}) {
   await Loadable.preloadAll();

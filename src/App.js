@@ -6,7 +6,7 @@ import zhCN from 'antd/lib/locale-provider/zh_CN';
 import { hot } from '@sweet/milktea/react-hot-loader';
 import { storeFactory } from './store/store';
 import './common.sass';
-import Arrangement from './assembly/Arrangement/index';
+import Arrangement from './layouts/Arrangement/index';
 
 /* 热替换 */
 @hot(module)

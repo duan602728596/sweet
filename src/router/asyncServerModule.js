@@ -4,7 +4,7 @@
 import React from 'react';
 import Loadable from 'react-loadable';
 import { injectReducers } from '../store/store';
-import SwitchLoading from '../assembly/SwitchLoading/index';
+import SwitchLoading from '../layouts/SwitchLoading/index';
 
 /**
  * 异步加载、注入模块和reducer
