@@ -17,6 +17,17 @@ export interface Loaders {
   vue?: RuleSetRule;
 }
 
+export interface JS {
+  targets?: object;
+  ecmascript?: boolean;
+  presets?: Array<any>;
+  plugins?: Array<any>;
+  resetPresets?: Array<any>;
+  resetPlugins?: Array<any>;
+  exclude?: RuleSetCondition;
+  include?: RuleSetCondition;
+}
+
 export interface SweetConfig {
   mode?: 'development' | 'production' | 'none';
   dll?: Array<string>;
@@ -29,15 +40,7 @@ export interface SweetConfig {
   rules?: Array<RuleSetRule>;
   noParse?: RegExp | Array<RegExp> | ((content: string) => boolean);
   plugins?: Array<Plugin>;
-  js?: {
-    ecmascript?: boolean;
-    presets?: Array<any>;
-    plugins?: Array<any>;
-    resetPresets?: Array<any>;
-    resetPlugins?: Array<any>;
-    exclude?: RuleSetCondition;
-    include?: RuleSetCondition;
-  };
+  js?: JS;
   sass?: {
     publicPath?: string;
     modules?: boolean;

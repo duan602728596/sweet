@@ -4,24 +4,14 @@ import { RuleSetCondition } from 'webpack';
 import * as Config from 'webpack-chain';
 import { Use } from 'webpack-chain';
 import { customizer } from '../utils/utils';
-import { SweetConfig, SweetOptions } from '../utils/types';
-
-interface Js {
-  ecmascript?: boolean;
-  presets?: Array<any>;
-  plugins?: Array<any>;
-  resetPresets?: Array<any>;
-  resetPlugins?: Array<any>;
-  exclude?: RuleSetCondition;
-  include?: RuleSetCondition;
-}
+import { SweetConfig, SweetOptions, JS } from '../utils/types';
 
 export const targets: object = {
   browsers: [
     'last 2 versions',
     'last 10 Chrome versions',
-    'last 1 years',
-    'ie >= 9'
+    'last 1 year',
+    'IE 11'
   ]
 };
 
@@ -49,8 +39,8 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
   const isDevelopment: boolean = mode === 'development';
 
   // 获取配置
-  const _js: Js = js || {};
-  const { ecmascript, presets, plugins, resetPresets, resetPlugins, exclude, include }: Js = _js;
+  const _js: JS = js || {};
+  const { ecmascript, presets, plugins, resetPresets, resetPlugins, exclude, include, targets: customTargets }: JS = _js;
   const debug: boolean = frame === 'test' ? false : (isDevelopment === undefined ? true : isDevelopment);
   const useConfig: object = {
     'babel-loader': {
@@ -108,7 +98,7 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
               [
                 '@babel/preset-env',
                 {
-                  targets,
+                  targets: customTargets ? customTargets : targets,
                   debug,
                   modules: false,
                   useBuiltIns: 'usage',

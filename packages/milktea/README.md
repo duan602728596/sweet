@@ -60,6 +60,7 @@ module.exports = {
 * noParse `RegExp | Array<RegExp> | Function` : 防止解析任何与给定正则表达式相匹配的文件（参考webpack）
 * plugins `{ Array<any> }` : 自定义插件
 * js `{ object }` : js配置
+  * targets `{ object }` : 配置@babel/preset-env的编译目标
   * ecmascript `{ boolean }` : 是否编译到ecmascript的最新语法（即不使用@babel/preset-env，通常适用于node、nwjs和electron）
   * presets `{ Array<any> }` : 自定义presets
   * plugins `{ Array<any> }` : 自定义plugins

@@ -7,7 +7,7 @@ import * as Config from 'webpack-chain';
 import * as merge from 'webpack-merge';
 import { targets } from './loaders/js';
 import handleProgress from './plugins/handleProgress';
-import { SweetConfig, SweetOptions } from './utils/types';
+import { SweetConfig, SweetOptions, JS } from './utils/types';
 
 export default function(sweetConfig: SweetConfig | null | undefined, sweetOptions: SweetOptions): Configuration {
   const config: Config = new Config();
@@ -17,8 +17,10 @@ export default function(sweetConfig: SweetConfig | null | undefined, sweetOption
    * dll { Array<string> }: dll配置
    */
   const sweetConfigCopy: SweetConfig = _.isPlainObject(sweetConfig) ? { ...sweetConfig } : {};
-  const { mode, dll, externals, resolve, chainWebpack }: SweetConfig = sweetConfigCopy;
-  const ecmascript: boolean = (sweetConfigCopy.js && sweetConfigCopy.js.ecmascript) || false;
+  const { mode, dll, externals, resolve, chainWebpack, js }: SweetConfig = sweetConfigCopy;
+
+  const _js: JS = js || {};
+  const { ecmascript, targets: customTargets }: JS = _js;
   const isDevelopment: boolean = mode === 'development';
 
   // 格式化配置
@@ -55,7 +57,7 @@ export default function(sweetConfig: SweetConfig | null | undefined, sweetOption
               [
                 '@babel/preset-env',
                 {
-                  targets,
+                  targets: customTargets ? customTargets : targets,
                   debug: false,
                   modules: false,
                   useBuiltIns: false
