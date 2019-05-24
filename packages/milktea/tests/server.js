@@ -17,7 +17,7 @@ describe('sever-render config', function() {
     }, sweetOptions);
 
     it('config.target and config.node Configuration is correct', function() {
-      expect(config.target).to.equal('node');
+      expect(config.target).to.equal('async-node');
       expect(config.node).to.eql({ __filename: true, __dirname: true });
     });
 
@@ -37,7 +37,7 @@ describe('sever-render config', function() {
     }, sweetOptions);
 
     it('config.target and config.node Configuration is correct', function() {
-      expect(config.target).to.equal('node');
+      expect(config.target).to.equal('async-node');
       expect(config.node).to.eql({ __filename: true, __dirname: true });
     });
 
