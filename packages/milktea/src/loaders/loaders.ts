@@ -154,6 +154,6 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
     .loader('file-loader')
     .options({
       name: isDevelopment ? '[name]_[hash:5].[ext]' : '[hash:15].[ext]',
-      outputPath: 'script/'
+      outputPath: 'dll/'
     });
 }

@@ -30,7 +30,7 @@ export default function(sweetConfig: SweetConfig | null | undefined, sweetOption
   }
 
   // webpack配置
-  const filename: string = isDevelopment ? '[name]_[hash:5].js' : '[chunkhash:15].js';
+  const filename: string = isDevelopment ? 'scripts/[name]_[hash:5].js' : 'scripts/[chunkhash:15].js';
 
   // 合并配置
   config
