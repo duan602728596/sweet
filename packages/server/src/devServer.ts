@@ -184,7 +184,7 @@ async function devServer(argv: DevServerType = {}): Promise<void> {
 
     const routers: Function = requireModule(defaultApi);
 
-    routers(router, sweetOptions);
+    routers(router, sweetOptions, app);
   }
 
   /* http服务 */

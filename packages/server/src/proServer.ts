@@ -132,7 +132,7 @@ async function proServer(argv: ProServerType = {}): Promise<void> {
     const defaultApi: string = defaultApiPath(sweetOptions.basicPath);
     const routers: Function = requireModule(defaultApi);
 
-    routers(router, sweetOptions);
+    routers(router, sweetOptions, app);
   }
 
   /* http服务 */

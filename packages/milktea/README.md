@@ -95,7 +95,7 @@ module.exports = {
 
 创建一个`api/api.js`文件，代码如下
 ```javascript
-module.exports = function(router, sweetOptions) {
+module.exports = function(router, sweetOptions, app) {
   // 在这里面创建你的函数
   router.get('/path', /* ...your_functions */);
 };
