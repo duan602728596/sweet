@@ -1,4 +1,4 @@
-module.exports = function(router, sweetOptions) {
+module.exports = function(router, sweetOptions, app) {
   router.get('/api/test', (ctx, next) => {
     ctx.status = 200;
     ctx.body = {
