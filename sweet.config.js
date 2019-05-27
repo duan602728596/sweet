@@ -6,6 +6,7 @@ module.exports = {
     'react',
     'react-dom',
     'prop-types',
+    'react-router',
     'react-router-dom',
     'redux',
     'react-redux',
