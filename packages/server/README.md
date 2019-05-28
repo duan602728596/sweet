@@ -24,7 +24,7 @@ devServer({
 * httpPort `{ number }` : http端口号，默认为5050。
 * httpsPort `{ number }` : https端口号，默认为5051。
 * serverRender `{ boolean }` : 开启服务器端渲染
-* serverRenderFile `{ string }` : 服务器端渲染的主模块文件。默认为`buildServer/server.js`。
+* serverRenderFile `{ string }` : 服务器端渲染的主模块文件。默认为`dist-server/server.js`。
 * renderType `{ string }` : html使用的渲染模板，`ejs`或`nunjucks`。默认为`ejs`。
 
 ## 生产环境下运行服务
@@ -50,9 +50,9 @@ proServer({
 
 * httpPort `{ number }` : http端口号，默认为5052。
 * httpsPort `{ number }` : https端口号，默认为5053。
-* serverRoot `{ string }` : 生产环境下的服务器静态文件入口。默认为`build`。
+* serverRoot `{ string }` : 生产环境下的服务器静态文件入口。默认为`dist`。
 * serverRender `{ boolean }` : 开启服务器端渲染
-* serverRenderFile `{ string }` : 服务器端渲染的主模块文件。默认为`buildServer/server.js`。
+* serverRenderFile `{ string }` : 服务器端渲染的主模块文件。默认为`dist-server/server.js`。
 * renderType `{ string }` : html使用的渲染模板。默认为`ejs`。
 * log `{ object }` : 日志配置。
   * type `{ 'file' | 'http' }` : 日志类型，本地*file* 或 远程接口*http*。
