@@ -50,8 +50,7 @@ export default function(sweetConfig: SweetConfig | null | undefined, sweetOption
     .filename('[name].js')
     .chunkFilename('[name].js')
     .library('[name]')
-    .libraryTarget('umd')
-    .publicPath('/');
+    .libraryTarget('umd');
 
   // loaders
   loaders(sweetConfigCopy, sweetOptions, config);
