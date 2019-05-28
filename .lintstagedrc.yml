@@ -9,3 +9,5 @@ ignore:
   - .webpackCache
   - build
   - buildServer
+  - dist
+  - dist-server
