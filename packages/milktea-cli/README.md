@@ -12,7 +12,7 @@ milktea-cli是一个快速运行环境的工具。
   * `--httpPort`: http服务的端口号。开发环境（默认：5050）和服务器（默认：5052）。
   * `--httpsPort`: https服务的端口号。开发环境（默认：5051）和服务器（默认：5053）。
   * `--serverRender`: 开启服务器端渲染。
-  * `--serverRenderFile`: 服务器渲染的主模块文件。默认为`buildServer/server.js`。
+  * `--serverRenderFile`: 服务器渲染的主模块文件。默认为`dist-server/server.js`。
 * `milktea build`: 编译代码。
   * `--config`: 选择一个配置文件。
   * `--serverRender`: 开启服务器端渲染。
@@ -20,9 +20,9 @@ milktea-cli是一个快速运行环境的工具。
   * `--config`: 选择一个配置文件。
   * `--httpPort`: http服务的端口号。开发环境（默认：5050）和服务器（默认：5052）。
   * `--httpsPort`: https服务的端口号。开发环境（默认：5051）和服务器（默认：5053）。
-  * `--serverRoot`: 服务器静态文件入口。默认为`build`。
+  * `--serverRoot`: 服务器静态文件入口。默认为`dist`。
   * `--serverRender`: 开启服务器端渲染。
-  * `--serverRenderFile`: 服务器端渲染的主模块文件。默认为`buildServer/server.js`。
+  * `--serverRenderFile`: 服务器端渲染的主模块文件。默认为`dist-server/server.js`。
   * `--template`: html模版的文件名。默认为`index.html`。
   * `--renderType`：html使用的渲染模板，`ejs`或`nunjucks`。默认为`ejs`。
   * `--log`: 是否开启日志功能。

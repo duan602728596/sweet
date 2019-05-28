@@ -18,6 +18,7 @@ packages/**/package-lock.json
 packages/**/yarn.lock
 packages/**/yarn-error.log
 packages/**/build
+packages/**/dist
 packages/**/.dll
 packages/**/.babelCache
 packages/**/.terserCache

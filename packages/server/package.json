@@ -1,13 +1,17 @@
 {
   "name": "@sweet/server",
-  "version": "0.0.0-alpha.9",
+  "version": "0.0.0-alpha.10",
   "description": "webpack服务和web服务",
   "scripts": {
     "start": "npm run clean && cross-env NODE_ENV=development tsc --watch",
     "build": "npm run clean && cross-env NODE_ENV=production tsc",
     "clean": "rimraf ./lib",
     "test": "npm run clean:build && cross-env NODE_ENV=test mocha ./tests/test.js --timeout 180000",
-    "clean:build": "rimraf ./tests/build"
+    "clean:test": "npm run clean:babelCache && npm run clean:terserCache && npm run clean:webpackCache && npm run clean:build",
+    "clean:babelCache": "rimraf ./.babelCache",
+    "clean:terserCache": "rimraf ./.terserCache",
+    "clean:webpackCache": "rimraf ./.webpackCache",
+    "clean:build": "rimraf ./tests/dist"
   },
   "dependencies": {
     "@eggjs/router": "^2.0.0",

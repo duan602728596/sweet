@@ -3,7 +3,7 @@ import fs from 'fs';
 import path from 'path';
 import { expect } from 'chai';
 
-const index = path.join(__dirname, 'build/index.js');
+const index = path.join(__dirname, 'dist/index.js');
 
 function run() {
   const cli = path.join(__dirname, '../lib/cli');

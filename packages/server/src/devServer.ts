@@ -52,7 +52,7 @@ async function devServer(argv: DevServerType = {}): Promise<void> {
     httpPort = 5050,
     httpsPort = 5051,
     serverRender,
-    serverRenderFile = 'buildServer/server.js',
+    serverRenderFile = 'dist-server/server.js',
     env,
     renderType = 'ejs'
   }: DevServerType = argv;

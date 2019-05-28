@@ -46,7 +46,7 @@ export default function(sweetConfig: SweetConfig | null | undefined, sweetOption
   // 设置文件输出
   config
     .output
-    .path(path.join(sweetOptions.basicPath, 'buildServer'))
+    .path(path.join(sweetOptions.basicPath, 'dist-server'))
     .filename('[name].js')
     .chunkFilename('[name].js')
     .library('[name]')

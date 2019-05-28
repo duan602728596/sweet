@@ -1,6 +1,6 @@
 {
   "name": "@sweet/milktea-cli",
-  "version": "0.0.0-alpha.9",
+  "version": "0.0.0-alpha.10",
   "description": "sweet cli工具",
   "main": "lib/cli.js",
   "bin": {
@@ -11,11 +11,12 @@
     "build": "npm run clean && cross-env NODE_ENV=production tsc",
     "clean": "rimraf ./lib",
     "test": "npm run clean:test && cross-env NODE_ENV=test mocha ./tests/test.js --timeout 180000",
-    "clean:test": "npm run clean:dll && npm run clean:babelCache && npm run clean:terserCache && npm run clean:build",
+    "clean:test": "npm run clean:dll && npm run clean:babelCache && npm run clean:terserCache && npm run clean:webpackCache && npm run clean:build",
     "clean:dll": "rimraf ./tests/.dll",
     "clean:babelCache": "rimraf ./tests/.babelCache",
     "clean:terserCache": "rimraf ./tests/.terserCache",
-    "clean:build": "rimraf ./tests/build"
+    "clean:webpackCache": "rimraf ./tests/.webpackCache",
+    "clean:build": "rimraf ./tests/dist"
   },
   "dependencies": {
     "lodash": "^4.17.11",
