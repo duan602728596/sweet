@@ -54,6 +54,7 @@ rules:
     - check-typecast
     - check-type-operator
     - check-preblock
+    - check-postbrace
 jsRules: true
 linterOptions:
   exclude:
