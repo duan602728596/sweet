@@ -32,7 +32,7 @@ export default function(sweetConfig: SweetConfig | null | undefined, sweetOption
   config
     .merge({
       mode: 'development',
-      devtool: isDevelopment ? 'module-source-map' : 'none'
+      devtool: isDevelopment ? 'inline-module-source-map' : 'none'
     });
 
   // 设置文件输出
