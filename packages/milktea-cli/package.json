@@ -20,7 +20,7 @@
   },
   "dependencies": {
     "lodash": "^4.17.11",
-    "webpack": "^4.32.2",
+    "webpack": "^4.33.0",
     "yargs": "^13.2.4"
   },
   "devDependencies": {
