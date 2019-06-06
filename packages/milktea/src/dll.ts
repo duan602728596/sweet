@@ -38,7 +38,7 @@ export default function(sweetConfig: SweetConfig | null | undefined, sweetOption
   // 设置文件输出
   config
     .output
-    .path(path.join(sweetOptions.basicPath, '.dll'))
+    .path(path.join(sweetOptions.basicPath, '.sweet/dll'))
     .filename('[name].js')
     .library('[name]_[hash:5]')
     .libraryTarget('var');
@@ -64,7 +64,7 @@ export default function(sweetConfig: SweetConfig | null | undefined, sweetOption
                 }
               ]
             ],
-            cacheDirectory: path.join(sweetOptions.basicPath, '.babelCache'),
+            cacheDirectory: path.join(sweetOptions.basicPath, '.sweet/cache/babel'),
             configFile: false,
             babelrc: false
           });
@@ -76,7 +76,7 @@ export default function(sweetConfig: SweetConfig | null | undefined, sweetOption
     // dll
     .plugin('webpack.DllPlugin')
     .use(webpack.DllPlugin, [{
-      path: '.dll/manifest.json',
+      path: '.sweet/dll/manifest.json',
       name: '[name]_[hash:5]',
       context: sweetOptions.basicPath
     }])

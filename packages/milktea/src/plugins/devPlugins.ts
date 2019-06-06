@@ -30,7 +30,7 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
           .plugin('DllReferencePlugin')
           .use(webpack.DllReferencePlugin, [{
             context: sweetOptions.basicPath,
-            manifest: require(path.join(sweetOptions.basicPath, '.dll/manifest.json'))
+            manifest: require(path.join(sweetOptions.basicPath, '.sweet/dll/manifest.json'))
           }]);
       }
     );
