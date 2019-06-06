@@ -18,8 +18,4 @@ tsconfig.json
 # build
 build
 dist
-.dll
-.babelCache
-.terserCache
-.logs
-.webpackCache
+.sweet

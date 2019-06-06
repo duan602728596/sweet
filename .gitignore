@@ -19,11 +19,7 @@ packages/**/yarn.lock
 packages/**/yarn-error.log
 packages/**/build
 packages/**/dist
-packages/**/.dll
-packages/**/.babelCache
-packages/**/.terserCache
-packages/**/.logs
-packages/**/.webpackCache
+packages/**/.sweet
 
 # util-tools
 packages/util-tools/tests/image2webp/*.webp

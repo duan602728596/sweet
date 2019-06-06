@@ -25,7 +25,7 @@ describe('args: dll', function() {
   it('should dll.js and manifest.json files is existing', async function() {
     await run();
 
-    expect(fs.existsSync(path.join(__dirname, '.dll/dll.js'))).to.be.true;
-    expect(fs.existsSync(path.join(__dirname, '.dll/manifest.json'))).to.be.true;
+    expect(fs.existsSync(path.join(__dirname, '.sweet/dll/dll.js'))).to.be.true;
+    expect(fs.existsSync(path.join(__dirname, '.sweet/dll/manifest.json'))).to.be.true;
   });
 });
