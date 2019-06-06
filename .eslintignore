@@ -8,8 +8,4 @@ dist
 dist-server
 
 # cache
-.dll
-.babelCache
-.terserCache
-.logs
-.webpackCache
+.sweet/*
