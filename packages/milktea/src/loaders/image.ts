@@ -18,6 +18,7 @@ export default function(sweetConfig: SweetConfig, config: Config): void {
     .use('url-loader')
     .loader('url-loader')
     .options({
-      limit: 8192
+      limit: 8192,
+      emitFile: !serverRender
     });
 }

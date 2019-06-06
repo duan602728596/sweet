@@ -149,7 +149,7 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
   config
     .module
     .rule('dll')
-    .test(/\.dll[\\/]dll\.js/)
+    .test(/\.sweet[\\/]dll[\\/]dll\.js/)
     .use('file-loader')
     .loader('file-loader')
     .options({

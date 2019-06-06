@@ -20,16 +20,11 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
 
   // 设置splitChunks配置
   config
-    .when(!isDevelopment && !serverRender,
-      (config: Config): void => {
-        config
-          .optimization
-          .splitChunks({
-            chunks: 'all',
-            automaticNameDelimiter: '.'
-          });
-      }
-    );
+    .optimization
+    .splitChunks({
+      chunks: 'all',
+      automaticNameDelimiter: '.'
+    });
 
   // 设置minimizer的压缩插件
   config

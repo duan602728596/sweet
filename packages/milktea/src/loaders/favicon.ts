@@ -6,7 +6,7 @@ export default function(sweetConfig: SweetConfig, config: Config): void {
   config
     .module
     .rule('favicon')
-    .test(/^.*\.ico$/)
+    .test(/favicon\.ico$/i)
     .use('file-loader')
     .loader('file-loader')
     .options({

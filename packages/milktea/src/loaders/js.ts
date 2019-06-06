@@ -154,5 +154,5 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
     .module
     .rule('js')
     .exclude
-    .add(/\.dll[\\/]dll\.js/);
+    .add(/\.sweet[\\/]dll[\\/]dll\.js/);
 }
