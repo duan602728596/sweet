@@ -32,7 +32,8 @@ function createJsRegisterLoader(sweetOptions: SweetOptions): Function {
         '@babel/plugin-proposal-numeric-separator',
         '@babel/plugin-syntax-bigint'
       ],
-      cache: path.join(sweetOptions.basicPath, '.sweet/cache/register')
+      cache: true,
+      cacheDirectory: path.join(sweetOptions.basicPath, '.sweet/cache/register')
     });
 
     return requireModule(filepath);

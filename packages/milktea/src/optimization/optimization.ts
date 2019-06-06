@@ -9,7 +9,7 @@ interface TerserOptions {
 }
 
 /* 配置optimization属性 */
-export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, config: Config): void {
+export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, config: Config, asyncChunks?: boolean): void {
   /**
    * mode { string }: 开发模式还是生产模式
    * serverRender { boolean }: 是否为服务器端渲染
@@ -22,7 +22,7 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
   config
     .optimization
     .splitChunks({
-      chunks: 'all',
+      chunks: asyncChunks ? 'async' : 'all',
       automaticNameDelimiter: '.'
     });
 
