@@ -6,7 +6,7 @@ import * as path from 'path';
  * @param { boolean } pm2: 是否启动pm2
  */
 function createFileConfig(basicPath: string, pm2: boolean): object {
-  const dir: string = path.join(basicPath, '.logs');
+  const dir: string = path.join(basicPath, '.sweet/logs');
 
   return {
     appenders: {
