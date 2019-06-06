@@ -82,3 +82,15 @@ export function expectProOptimization(config, isServer) {
     expect(config.optimization.minimizer[0] instanceof TerserWebpackPlugin).to.be.true;
   };
 }
+
+/* optimization属性 */
+export function expectOptimization(config, isPro) {
+  return function() {
+    expect(config.optimization).to.be.an('object');
+    expect(config.optimization.splitChunks).to.eql({ chunks: 'all', automaticNameDelimiter: '.' });
+
+    if (isPro) {
+      expect(config.optimization.minimizer[0] instanceof TerserWebpackPlugin).to.be.true;
+    }
+  };
+}

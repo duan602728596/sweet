@@ -1,7 +1,7 @@
 import process from 'process';
 import { expect } from 'chai';
 import serverConfig from '../lib/server';
-import { expectModule, expectDevServerPlugins, expectProServerPlugins, expectDevOptimization, expectProOptimization } from './utils/expectFunction';
+import { expectModule, expectDevServerPlugins, expectProServerPlugins, expectOptimization } from './utils/expectFunction';
 
 const sweetOptions = {
   basicPath: process.cwd()
@@ -25,7 +25,7 @@ describe('sever-render config', function() {
 
     it('plugins Configuration is correct', expectDevServerPlugins(config));
 
-    it('optimization Configuration is correct', expectDevOptimization(config));
+    it('optimization Configuration is correct', expectOptimization(config));
   });
 
   describe('vue & production', function() {
@@ -45,6 +45,6 @@ describe('sever-render config', function() {
 
     it('plugins Configuration is correct', expectProServerPlugins(config));
 
-    it('optimization Configuration is correct', expectProOptimization(config, true));
+    it('optimization Configuration is correct', expectOptimization(config, true));
   });
 });

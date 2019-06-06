@@ -1,8 +1,6 @@
 import process from 'process';
 import webpackConfig from '../lib/config';
-import {
-  expectModule, expectDevPlugins, expectProPlugins, expectDevOptimization, expectProOptimization
-} from './utils/expectFunction';
+import { expectModule, expectDevPlugins, expectProPlugins, expectOptimization } from './utils/expectFunction';
 
 const sweetOptions = {
   basicPath: process.cwd()
@@ -26,7 +24,7 @@ describe('config', function() {
 
     it('plugins Configuration is correct', expectDevPlugins(config));
 
-    it('optimization Configuration is correct', expectDevOptimization(config));
+    it('optimization Configuration is correct', expectOptimization(config));
   });
 
   describe('vue & production', function() {
@@ -40,6 +38,6 @@ describe('config', function() {
 
     it('plugins Configuration is correct', expectProPlugins(config));
 
-    it('optimization Configuration is correct', expectProOptimization(config, false));
+    it('optimization Configuration is correct', expectOptimization(config, true));
   });
 });
