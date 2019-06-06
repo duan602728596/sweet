@@ -27,8 +27,7 @@ function registerConfig(sweetOptions: SweetOptions): object {
       '@babel/plugin-syntax-bigint',
       '@babel/plugin-syntax-dynamic-import'
     ],
-    cache: true,
-    cacheDirectory: path.join(sweetOptions.basicPath, '.sweet/cache/register')
+    cache: true
   };
 }
 
