@@ -1,6 +1,6 @@
-module.exports = function(ctx, sweetOptions) {
+export default function(ctx, sweetOptions) {
   return {
     title: 'Webpack App',
     initialState: {}
   };
-};
+}
