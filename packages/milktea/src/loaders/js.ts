@@ -1,6 +1,5 @@
 import * as path from 'path';
 import * as _ from 'lodash';
-import { RuleSetCondition } from 'webpack';
 import * as Config from 'webpack-chain';
 import { Use } from 'webpack-chain';
 import { customizer } from '../utils/utils';
@@ -15,7 +14,7 @@ export const targets: object = {
   ]
 };
 
-const basicPlugins: Array<any> = [
+export const basicPlugins: Array<any> = [
   ['@babel/plugin-proposal-decorators', { legacy: true }],
   '@babel/plugin-proposal-class-properties',
   '@babel/plugin-proposal-do-expressions',
@@ -46,7 +45,7 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
     'babel-loader': {
       loader: 'babel-loader',
       options: {
-        cacheDirectory: path.join(sweetOptions.basicPath, '.babelCache'),
+        cacheDirectory: path.join(sweetOptions.basicPath, '.sweet/cache/babel'),
         presets: resetPresets ? resetPresets : [],
         plugins: resetPlugins ? resetPlugins : [
           ...basicPlugins,

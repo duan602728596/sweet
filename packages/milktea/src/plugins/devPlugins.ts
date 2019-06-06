@@ -19,7 +19,7 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
   config
     .plugin('hard-source-webpack-plugin')
     .use(HardSourceWebpackPlugin, [{
-      cacheDirectory: path.join(sweetOptions.basicPath, '.webpackCache', serverRender ? 's' : 'c')
+      cacheDirectory: path.join(sweetOptions.basicPath, '.sweet/cache/webpack', serverRender ? 's' : 'c')
     }]);
 
   // dll

@@ -1,5 +1,4 @@
 import process from 'process';
-import { expect } from 'chai';
 import webpackConfig from '../lib/config';
 import {
   expectModule, expectDevPlugins, expectProPlugins, expectDevOptimization, expectProOptimization

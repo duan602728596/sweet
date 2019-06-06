@@ -24,6 +24,7 @@
     "@babel/polyfill": "^7.4.4",
     "@babel/preset-env": "^7.4.5",
     "@babel/preset-react": "^7.0.0",
+    "@babel/register": "^7.4.4",
     "@babel/runtime-corejs3": "^7.4.5",
     "@svgr/webpack": "^4.3.0",
     "@vue/babel-helper-vue-jsx-merge-props": "^1.0.0",
@@ -59,7 +60,6 @@
     "webpack-merge": "^4.2.1"
   },
   "devDependencies": {
-    "@babel/register": "^7.4.4",
     "chai": "^4.2.0",
     "cross-env": "^5.2.0",
     "mocha": "^6.1.4",

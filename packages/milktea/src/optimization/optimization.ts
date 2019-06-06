@@ -44,7 +44,7 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
           .optimization
           .minimizer('minimizer')
           .use(TerserPlugin, [{
-            cache: path.join(sweetOptions.basicPath, '.terserCache'),
+            cache: path.join(sweetOptions.basicPath, '.sweet/cache/terser'),
             parallel: true,
             terserOptions
           }]);

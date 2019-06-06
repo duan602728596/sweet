@@ -1,17 +1,40 @@
 import * as fs from 'fs';
 import * as path from 'path';
+import register from '@babel/register';
 import * as cosmiconfig from 'cosmiconfig';
-import { SweetConfig, SweetOptions } from './types';
+import { basicPlugins } from '../loaders/js';
 import { requireModule } from './utils';
+import { SweetConfig, SweetOptions } from './types';
 
-/* cosmiconfig的js加载器 */
-function jsRegisterLoader(filepath: string, content?: string): any {
-  return requireModule(filepath);
+/* 创建cosmiconfig的js加载器 */
+function createJsRegisterLoader(sweetOptions: SweetOptions): Function {
+  return function jsRegisterLoader(filepath: string, content?: string): any {
+    register({
+      presets: [
+        [
+          '@babel/preset-env',
+          {
+            targets: {
+              browsers: ['node 9']
+            },
+            debug: false,
+            modules: 'commonjs',
+            useBuiltIns: false
+          }
+        ]
+      ],
+      plugins: basicPlugins,
+      cache: path.join(sweetOptions.basicPath, '.cache/register')
+    });
+
+    return requireModule(filepath);
+  };
 }
 
 /* 获取配置文件 */
 function getSweetConfigFile(sweetOptions: SweetOptions, configFile?: string): SweetConfig {
   const moduleName: string = 'sweet';
+  const jsRegisterLoader: Function = createJsRegisterLoader(sweetOptions);
   const explorer: { searchSync: Function } = cosmiconfig(moduleName, {
     searchPlaces: [
       `${ moduleName }.config.js`,
