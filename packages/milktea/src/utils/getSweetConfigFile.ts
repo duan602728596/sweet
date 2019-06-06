@@ -2,7 +2,6 @@ import * as fs from 'fs';
 import * as path from 'path';
 import register from '@babel/register';
 import * as cosmiconfig from 'cosmiconfig';
-import { basicPlugins } from '../loaders/js';
 import { requireModule } from './utils';
 import { SweetConfig, SweetOptions } from './types';
 
@@ -23,8 +22,17 @@ function createJsRegisterLoader(sweetOptions: SweetOptions): Function {
           }
         ]
       ],
-      plugins: basicPlugins,
-      cache: path.join(sweetOptions.basicPath, '.cache/register')
+      plugins: [
+        ['@babel/plugin-proposal-decorators', { legacy: true }],
+        '@babel/plugin-proposal-class-properties',
+        '@babel/plugin-proposal-do-expressions',
+        '@babel/plugin-proposal-optional-catch-binding',
+        '@babel/plugin-proposal-export-default-from',
+        '@babel/plugin-proposal-optional-chaining',
+        '@babel/plugin-proposal-numeric-separator',
+        '@babel/plugin-syntax-bigint'
+      ],
+      cache: path.join(sweetOptions.basicPath, '.sweet/cache/register')
     });
 
     return requireModule(filepath);

@@ -14,6 +14,17 @@
     "clean:build": "rimraf ./tests/dist"
   },
   "dependencies": {
+    "@babel/core": "^7.4.5",
+    "@babel/plugin-proposal-class-properties": "^7.4.4",
+    "@babel/plugin-proposal-decorators": "^7.4.4",
+    "@babel/plugin-proposal-do-expressions": "^7.2.0",
+    "@babel/plugin-proposal-export-default-from": "^7.2.0",
+    "@babel/plugin-proposal-numeric-separator": "^7.2.0",
+    "@babel/plugin-proposal-optional-catch-binding": "^7.2.0",
+    "@babel/plugin-proposal-optional-chaining": "^7.2.0",
+    "@babel/plugin-syntax-bigint": "^7.4.4",
+    "@babel/preset-env": "^7.4.5",
+    "@babel/register": "^7.4.4",
     "@eggjs/router": "^2.0.0",
     "ejs": "^2.6.1",
     "glob": "^7.1.4",
@@ -28,9 +39,6 @@
     "nunjucks": "^3.2.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.4.5",
-    "@babel/preset-env": "^7.4.5",
-    "@babel/register": "^7.4.4",
     "@sweet/milktea": "github:duan602728596/sweet#build-milktea",
     "@sweet/server-log": "github:duan602728596/sweet#build-server-log",
     "axios": "^0.18.0",

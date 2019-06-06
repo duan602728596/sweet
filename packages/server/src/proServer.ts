@@ -10,6 +10,8 @@ import * as Router from '@eggjs/router';
 import * as body from 'koa-body';
 import * as staticCache from 'koa-static-cache';
 import * as compress from 'koa-compress';
+import * as register from '@babel/register';
+import registerConfig from './utils/registerConfig';
 import { readFile, defaultApiPath, requireModule } from './utils/utils';
 import preRenderInit from './utils/preProRender';
 import logs from './logs/logs';
@@ -129,6 +131,8 @@ async function proServer(argv: ProServerType = {}): Promise<void> {
 
   /* 本地api */
   if (fs.existsSync(defaultApiPath(sweetOptions.basicPath))) {
+    register(registerConfig(sweetOptions));
+
     const defaultApi: string = defaultApiPath(sweetOptions.basicPath);
     const routers: Function = requireModule(defaultApi);
 

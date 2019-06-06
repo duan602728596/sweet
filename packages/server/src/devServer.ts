@@ -14,6 +14,8 @@ import * as mime from 'mime-types';
 import * as webpack from 'webpack';
 import * as koaWebpack from 'koa-webpack';
 import * as _ from 'lodash';
+import * as register from '@babel/register';
+import registerConfig from './utils/registerConfig';
 import { readFile, defaultApiPath, cleanRequireCache, requireModule } from './utils/utils';
 import preRenderInit from './utils/preDevRender';
 import { SweetOptions, DevContext } from './utils/types';
@@ -178,6 +180,8 @@ async function devServer(argv: DevServerType = {}): Promise<void> {
 
   /* 本地api */
   if (fs.existsSync(defaultApiPath(sweetOptions.basicPath))) {
+    register(registerConfig(sweetOptions));
+
     const defaultApi: string = defaultApiPath(sweetOptions.basicPath);
 
     cleanRequireCache(defaultApi);
