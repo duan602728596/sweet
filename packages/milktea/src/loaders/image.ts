@@ -18,13 +18,6 @@ export default function(sweetConfig: SweetConfig, config: Config): void {
     .use('url-loader')
     .loader('url-loader')
     .options({
-      limit: 8192,
-      fallback: {
-        loader: 'file-loader',
-        options: {
-          name: filename,
-          emitFile: !serverRender
-        }
-      }
+      limit: 8192
     });
 }
