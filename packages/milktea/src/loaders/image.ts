@@ -14,10 +14,11 @@ export default function(sweetConfig: SweetConfig, config: Config): void {
   config
     .module
     .rule('image')
-    .test(/^.*\.(jpe?g|png|gif|webp)$/)
+    .test(/^.*\.(jpe?g|png|gif|webp|svg)$/)
     .use('url-loader')
     .loader('url-loader')
     .options({
+      name: filename,
       limit: 8192,
       emitFile: !serverRender
     });
