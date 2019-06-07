@@ -100,8 +100,7 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
                   targets: customTargets ? customTargets : targets,
                   debug,
                   modules: false,
-                  useBuiltIns: 'usage',
-                  corejs: 3
+                  useBuiltIns: 'usage'
                 }
               ]
             ]
