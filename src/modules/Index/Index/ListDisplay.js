@@ -1,14 +1,15 @@
 /**
  * 首页数据列表展示
  */
-import React, { Component } from 'react';
+import React, { Component, useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
+import { connect, useSelector, useDispatch } from 'react-redux';
 import { createSelector, createStructuredSelector } from 'reselect';
 import { Link } from 'react-router-dom';
 import { Card, Spin } from 'antd';
 import QueueAnim from 'rc-queue-anim';
+import useActions from '../../../store/useActions';
 import style from './style.sass';
 import { listDisplayChange } from '../reducer/reducer';
 
@@ -39,23 +40,14 @@ function simulationData() {
   });
 }
 
-@connect(state, actions)
-class ListDisplay extends Component {
-  static propTypes = {
-    listDisplay: PropTypes.array
-  };
-
-  constructor() {
-    super(...arguments);
-
-    this.state = {
-      loading: true
-    };
-  }
+function ListDisplay(props) {
+  const [loading, setLoading] = useState(false);
+  const { listDisplay } = useSelector(state);
+  const { action } = useActions(actions);
 
   // 显示list
-  listDisplay() {
-    return this.props.listDisplay.map((item, index) => {
+  function listDisplayRender() {
+    return (listDisplay || []).map((item, index) => {
       return (
         <li key={ index }>
           <Link to="/" title={ item }>{ item }</Link>
@@ -64,31 +56,37 @@ class ListDisplay extends Component {
     });
   }
 
-  async componentDidMount() {
+  async function getData() {
+    setLoading(true);
+
     const data = await simulationData();
 
-    this.props.action.listDisplayChange({
+    action.listDisplayChange({
       listDisplay: data
     });
 
-    this.setState({
-      loading: false
-    });
+    setLoading(false);
   }
 
-  render() {
-    return (
-      <Card title="数据列表展示" extra={
-        <Link className={ style.more } to="/" title="更多">更多</Link>
-      }>
-        <Spin size="default" spinning={ this.state.loading }>
-          <QueueAnim className={ style.listDisplay } component="ul" type="alpha" interval={ 0 }>
-            { this.listDisplay() }
-          </QueueAnim>
-        </Spin>
-      </Card>
-    );
-  }
+  useEffect(function() {
+    getData();
+  }, []);
+
+  return (
+    <Card title="数据列表展示" extra={
+      <Link className={ style.more } to="/" title="更多">更多</Link>
+    }>
+      <Spin size="default" spinning={ loading }>
+        <QueueAnim className={ style.listDisplay } component="ul" type="alpha" interval={ 0 }>
+          { listDisplayRender() }
+        </QueueAnim>
+      </Spin>
+    </Card>
+  );
 }
+
+ListDisplay.propTypes = {
+  listDisplay: PropTypes.array
+};
 
 export default ListDisplay;
