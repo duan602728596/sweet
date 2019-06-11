@@ -1,6 +1,6 @@
 {
   "name": "@sweet-milktea/server-log",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "服务端的koa日志中间件函数",
   "main": "lib/index.js",
   "scripts": {
@@ -11,8 +11,8 @@
     "clean:sweet": "rimraf ./tests/.sweet"
   },
   "dependencies": {
+    "@bbkkbkk/koa-log4": "^2.3.2",
     "@log4js-node/logfaces-http": "^1.0.0",
-    "koa-log4": "github:duan602728596/koa-log4js#v2.x",
     "log4js": "^4.3.1"
   },
   "devDependencies": {

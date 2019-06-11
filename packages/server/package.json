@@ -1,6 +1,6 @@
 {
   "name": "@sweet-milktea/server",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "webpack服务和web服务",
   "scripts": {
     "start": "npm run clean && cross-env NODE_ENV=development tsc --watch",
@@ -23,13 +23,13 @@
     "@babel/plugin-syntax-bigint": "^7.4.4",
     "@babel/preset-env": "^7.4.5",
     "@babel/register": "^7.4.4",
+    "@bbkkbkk/koa-compress": "^3.0.0",
     "@eggjs/router": "^2.0.0",
     "ejs": "^2.6.1",
     "glob": "^7.1.4",
     "iltorb": "^2.4.3",
     "koa": "^2.7.0",
     "koa-body": "^4.1.0",
-    "koa-compress": "github:duan602728596/compress",
     "koa-static-cache": "^5.1.2",
     "koa-webpack": "^5.2.3",
     "lodash": "^4.17.11",
@@ -38,7 +38,7 @@
   },
   "devDependencies": {
     "@sweet-milktea/milktea": "^0.0.1",
-    "@sweet-milktea/server-log": "^0.0.1",
+    "@sweet-milktea/server-log": "^0.0.2",
     "chai": "^4.2.0",
     "cross-env": "^5.2.0",
     "mocha": "^6.1.4",

@@ -9,7 +9,7 @@ import { Context } from 'koa';
 import * as Router from '@eggjs/router';
 import * as body from 'koa-body';
 import * as staticCache from 'koa-static-cache';
-import * as compress from 'koa-compress';
+import * as compress from '@bbkkbkk/koa-compress';
 import * as register from '@babel/register';
 import registerConfig from './utils/registerConfig';
 import { readFile, defaultApiPath, requireModule } from './utils/utils';

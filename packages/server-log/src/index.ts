@@ -1,5 +1,5 @@
 import * as process from 'process';
-import * as log4js from 'koa-log4';
+import * as log4js from '@bbkkbkk/koa-log4';
 import * as Koa from 'koa';
 import createFileConfig from './createFileConfig';
 import createHttpConfig from './createHttpConfig';

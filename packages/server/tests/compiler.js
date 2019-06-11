@@ -1,6 +1,6 @@
 import path from 'path';
 import webpack from 'webpack';
-import { config as webpackConfig } from '@sweet/milktea';
+import { config as webpackConfig } from '@sweet-milktea/milktea';
 
 // 创建webpack配置
 function createCompiler(mode = 'development') {
