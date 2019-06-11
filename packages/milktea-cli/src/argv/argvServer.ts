@@ -3,7 +3,7 @@ import { Argv } from '../utils/types';
 
 /* server 命令 */
 function argvServer(argv: Argv): void {
-  const proServer: Function = requireModule('@sweet/server/lib/proServer');
+  const proServer: Function = requireModule('@sweet-milktea/server/lib/proServer');
   const httpPort: number = argv.httpPort;
   const httpsPort: number = argv.httpsPort;
   const serverRoot: string = argv.serverRoot;

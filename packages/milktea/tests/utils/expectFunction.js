@@ -84,10 +84,10 @@ export function expectProOptimization(config, isServer) {
 }
 
 /* optimization属性 */
-export function expectOptimization(config, isPro) {
+export function expectOptimization(config, isPro, asyncChunks) {
   return function() {
     expect(config.optimization).to.be.an('object');
-    expect(config.optimization.splitChunks).to.eql({ chunks: 'all', automaticNameDelimiter: '.' });
+    expect(config.optimization.splitChunks).to.eql({ chunks: asyncChunks ? 'async' : 'all', automaticNameDelimiter: '.' });
 
     if (isPro) {
       expect(config.optimization.minimizer[0] instanceof TerserWebpackPlugin).to.be.true;

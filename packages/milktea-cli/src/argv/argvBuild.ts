@@ -5,7 +5,7 @@ import { Milktea, Argv } from '../utils/types';
 
 /* build 命令 */
 function argvBuild(argv: Argv): void {
-  const milktea: Milktea = requireModule('@sweet/milktea');
+  const milktea: Milktea = requireModule('@sweet-milktea/milktea');
   const compiler: webpack.Compiler = webpack(
     milktea.config(argv.config, 'production')
   );

@@ -5,7 +5,7 @@ import { Milktea, Argv } from '../utils/types';
 
 /* start 命令 */
 function argvStart(argv: Argv): void {
-  const milktea: Milktea = requireModule('@sweet/milktea');
+  const milktea: Milktea = requireModule('@sweet-milktea/milktea');
   const webpackConfig: object = milktea.config(argv.config, 'development');
 
   // koa-webpack需要output.publicPath
@@ -25,7 +25,7 @@ function argvStart(argv: Argv): void {
   }
 
   if (!_.isNil(argv.server)) {
-    const devServer: Function = requireModule('@sweet/server/lib/devServer');
+    const devServer: Function = requireModule('@sweet-milktea/server/lib/devServer');
     const httpPort: number = argv.httpPort;
     const httpsPort: number = argv.httpsPort;
     const serverRender: boolean = argv.serverRender;

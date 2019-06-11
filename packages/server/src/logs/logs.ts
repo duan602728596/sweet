@@ -4,7 +4,7 @@ import { Log, SweetOptions } from '../utils/types';
 
 /* 添加日志中间件 */
 function logs(app: Koa, log: Log, sweetOptions: SweetOptions): void {
-  const serverLog: Function = requireModule('@sweet/server-log');
+  const serverLog: Function = requireModule('@sweet-milktea/server-log');
   const { accessLogger, logger }: {
     accessLogger: Function;
     logger: {

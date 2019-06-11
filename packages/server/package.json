@@ -1,6 +1,6 @@
 {
-  "name": "@sweet/server",
-  "version": "0.0.0-alpha.10",
+  "name": "@sweet-milktea/server",
+  "version": "0.0.1",
   "description": "webpack服务和web服务",
   "scripts": {
     "start": "npm run clean && cross-env NODE_ENV=development tsc --watch",
@@ -37,8 +37,8 @@
     "nunjucks": "^3.2.0"
   },
   "devDependencies": {
-    "@sweet/milktea": "github:duan602728596/sweet#build-milktea",
-    "@sweet/server-log": "github:duan602728596/sweet#build-server-log",
+    "@sweet-milktea/milktea": "^0.0.1",
+    "@sweet-milktea/server-log": "^0.0.1",
     "chai": "^4.2.0",
     "cross-env": "^5.2.0",
     "mocha": "^6.1.4",
@@ -50,8 +50,8 @@
     "webpack": "^4.33.0"
   },
   "peerDependencies": {
-    "@sweet/milktea": "github:duan602728596/sweet#build-milktea",
-    "@sweet/server-log": "github:duan602728596/sweet#build-server-log"
+    "@sweet-milktea/milktea": "^0.0.1",
+    "@sweet-milktea/server-log": "^0.0.1"
   },
   "engines": {
     "node": ">= 9.0.0"

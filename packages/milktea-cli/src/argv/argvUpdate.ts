@@ -36,7 +36,7 @@ function stat(filePath: string): Promise<any> {
 }
 
 async function argvUpdate(argv: Argv): Promise<void> {
-  const update: Function = requireModule('@sweet/util-tools/lib/update');
+  const update: Function = requireModule('@sweet-milktea/util-tools/lib/update');
   const folders: Array<string> = [];
 
   if (_.isNil(argv.__DEV__)) {

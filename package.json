@@ -12,8 +12,8 @@
     "update:dev": "milktea update --__DEV__"
   },
   "devDependencies": {
-    "@sweet/milktea-cli": "github:duan602728596/sweet#build-milktea-cli",
-    "@sweet/util-tools": "github:duan602728596/sweet#build-util-tools",
+    "@sweet-milktea/milktea-cli": "^0.0.1",
+    "@sweet-milktea/util-tools": "^0.0.1",
     "@types/koa": "^2.0.48",
     "@types/node": "^12.0.7",
     "@types/request": "^2.48.1",

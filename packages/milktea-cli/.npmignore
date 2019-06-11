@@ -19,3 +19,5 @@ tsconfig.json
 build
 dist
 .sweet/*
+
+.DS_Store

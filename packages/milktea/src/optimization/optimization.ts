@@ -12,10 +12,9 @@ interface TerserOptions {
 export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, config: Config, asyncChunks?: boolean): void {
   /**
    * mode { string }: 开发模式还是生产模式
-   * serverRender { boolean }: 是否为服务器端渲染
    * js { object }: js配置
    */
-  const { mode = 'development', serverRender, js }: SweetConfig = sweetConfig;
+  const { mode = 'development', js }: SweetConfig = sweetConfig;
   const isDevelopment: boolean = mode === 'development';
 
   // 设置splitChunks配置

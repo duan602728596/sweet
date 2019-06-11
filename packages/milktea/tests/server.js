@@ -25,7 +25,7 @@ describe('sever-render config', function() {
 
     it('plugins Configuration is correct', expectDevServerPlugins(config));
 
-    it('optimization Configuration is correct', expectOptimization(config));
+    it('optimization Configuration is correct', expectOptimization(config, false, true));
   });
 
   describe('vue & production', function() {
@@ -45,6 +45,6 @@ describe('sever-render config', function() {
 
     it('plugins Configuration is correct', expectProServerPlugins(config));
 
-    it('optimization Configuration is correct', expectOptimization(config, true));
+    it('optimization Configuration is correct', expectOptimization(config, true, true));
   });
 });
