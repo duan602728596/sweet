@@ -20,7 +20,7 @@
     "pm2": "^3.5.1"
   },
   "devDependencies": {
-    "@sweet-milktea/milktea": "^0.0.1",
+    "@sweet-milktea/milktea": "^0.1.0",
     "@sweet-milktea/util-tools": "^0.0.1",
     "antd": "^3.19.3",
     "axios": "^0.19.0",
@@ -34,7 +34,7 @@
     "es-module-path-case-check": "^1.4.0",
     "eslint": "^5.16.0",
     "eslint-plugin-react": "^7.13.0",
-    "husky": "^2.4.0",
+    "husky": "^2.4.1",
     "immutable": "^4.0.0-rc.12",
     "lint-staged": "^8.2.0",
     "prop-types": "^15.7.2",
