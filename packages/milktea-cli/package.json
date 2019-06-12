@@ -32,7 +32,7 @@
     "@babel/plugin-syntax-bigint": "^7.4.4",
     "@babel/preset-env": "^7.4.5",
     "@babel/register": "^7.4.4",
-    "@sweet-milktea/milktea": "^0.0.1",
+    "@sweet-milktea/milktea": "^0.1.0",
     "@sweet-milktea/server": "^0.0.2",
     "@sweet-milktea/server-log": "^0.0.2",
     "@sweet-milktea/util-tools": "^0.0.1",
@@ -45,9 +45,9 @@
     "typescript": "^3.5.1"
   },
   "peerDependencies": {
-    "@sweet-milktea/milktea": "^0.0.1",
-    "@sweet-milktea/server": "^0.0.1",
-    "@sweet-milktea/server-log": "^0.0.1",
+    "@sweet-milktea/milktea": "^0.1.0",
+    "@sweet-milktea/server": "^0.0.2",
+    "@sweet-milktea/server-log": "^0.0.2",
     "@sweet-milktea/util-tools": "^0.0.1"
   },
   "engines": {
