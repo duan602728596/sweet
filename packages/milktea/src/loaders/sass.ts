@@ -3,6 +3,7 @@ import * as Config from 'webpack-chain';
 import { Rule, OneOf } from 'webpack-chain';
 import * as MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import { RuleSetCondition } from 'webpack';
+import cssLoaderGetLocalIdent from '../utils/cssLoaderGetLocalIdent';
 import { SweetConfig } from '../utils/types';
 
 interface Sass {
@@ -50,7 +51,8 @@ export default function(sweetConfig: SweetConfig, config: Config): void {
   // css-loader
   const cssLoaderOptions: object = {
     modules: modules ? {
-      localIdentName: isDevelopment ? '[path][name]__[local]___[hash:base64:6]' : '_[hash:base64:6]'
+      localIdentName: isDevelopment ? '[path][name]__[local]___[hash:base64:6]' : '_[hash:base64:6]',
+      getLocalIdent: cssLoaderGetLocalIdent
     } : false,
     onlyLocals: serverRender,
     sourceMap: isDevelopment
