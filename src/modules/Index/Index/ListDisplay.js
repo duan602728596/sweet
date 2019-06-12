@@ -21,13 +21,6 @@ const state = createStructuredSelector({
   )
 });
 
-/* actions */
-const actions = (dispatch) => ({
-  action: bindActionCreators({
-    listDisplayChange
-  }, dispatch)
-});
-
 function simulationData() {
   return new Promise((resolve, reject) => {
     const data = [];
@@ -43,7 +36,9 @@ function simulationData() {
 function ListDisplay(props) {
   const [loading, setLoading] = useState(false);
   const { listDisplay } = useSelector(state);
-  const { action } = useActions(actions);
+  const action = useActions({
+    listDisplayChange
+  });
 
   // 显示list
   function listDisplayRender() {

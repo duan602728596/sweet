@@ -3,7 +3,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { LocaleProvider } from 'antd';
 import zhCN from 'antd/lib/locale-provider/zh_CN';
-import { hot } from '@sweet/milktea/react-hot-loader';
+import { hot } from '@sweet-milktea/milktea/react-hot-loader';
 import { storeFactory } from './store/store';
 import './common.sass';
 import Arrangement from './layouts/Arrangement/index';

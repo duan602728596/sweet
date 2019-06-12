@@ -4,17 +4,15 @@ import { useDispatch } from 'react-redux';
 
 /**
  * react-redux hooks创建action函数
+ * @param { object | Function } actions
+ * @param { Array<any> } deps
  */
 function useActions(actions, deps) {
   const dispatch = useDispatch();
 
-  return useMemo(() => {
+  return useMemo(function() {
     if (typeof actions === 'function') {
       return actions(dispatch);
-    }
-
-    if (Array.isArray(actions)) {
-      return actions.map((action) => bindActionCreators(action, dispatch));
     }
 
     return bindActionCreators(actions, dispatch);

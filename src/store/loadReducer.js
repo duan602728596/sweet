@@ -1,10 +1,8 @@
-/**
- * 异步注入reducer的修饰器
- */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 /**
+ * 异步注入reducer的修饰器
  * @param { object } reducer
  */
 function loadReducer(reducer) {
