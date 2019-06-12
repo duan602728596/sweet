@@ -37,7 +37,7 @@
     "nunjucks": "^3.2.0"
   },
   "devDependencies": {
-    "@sweet-milktea/milktea": "^0.1.0",
+    "@sweet-milktea/milktea": "^0.1.1",
     "@sweet-milktea/server-log": "^0.0.2",
     "chai": "^4.2.0",
     "cross-env": "^5.2.0",
@@ -50,7 +50,7 @@
     "webpack": "^4.33.0"
   },
   "peerDependencies": {
-    "@sweet-milktea/milktea": "^0.1.0",
+    "@sweet-milktea/milktea": "^0.1.1",
     "@sweet-milktea/server-log": "^0.0.2"
   },
   "engines": {
