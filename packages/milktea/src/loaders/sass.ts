@@ -83,7 +83,7 @@ export default function(sweetConfig: SweetConfig, config: Config): void {
           .use('css-loader')
           .loader('css-loader')
           .options({
-            exportOnlyLocals: serverRender,
+            onlyLocals: serverRender,
             sourceMap: isDevelopment
           })
           .end()
