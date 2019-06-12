@@ -49,11 +49,10 @@ export default function(sweetConfig: SweetConfig, config: Config): void {
 
   // css-loader
   const cssLoaderOptions: object = {
-    modules,
-    localIdentName: modules
-      ? (isDevelopment ? '[path][name]__[local]___[hash:base64:6]' : '_[hash:base64:6]')
-      : undefined,
-    exportOnlyLocals: serverRender,
+    modules: modules ? {
+      localIdentName: isDevelopment ? '[path][name]__[local]___[hash:base64:6]' : '_[hash:base64:6]'
+    } : false,
+    onlyLocals: serverRender,
     sourceMap: isDevelopment
   };
 
