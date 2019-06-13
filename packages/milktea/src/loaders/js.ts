@@ -38,8 +38,8 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
   const isDevelopment: boolean = mode === 'development';
 
   // 获取配置
-  const _js: JS = js || {};
-  const { ecmascript, presets, plugins, resetPresets, resetPlugins, exclude, include, targets: customTargets }: JS = _js;
+  const jsOptions: JS = js || {};
+  const { ecmascript, presets, plugins, resetPresets, resetPlugins, exclude, include, targets: customTargets }: JS = jsOptions;
   const debug: boolean = frame === 'test' ? false : (isDevelopment === undefined ? true : isDevelopment);
   const useConfig: object = {
     'babel-loader': {

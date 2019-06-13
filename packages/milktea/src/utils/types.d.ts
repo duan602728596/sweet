@@ -1,4 +1,14 @@
-import { ExternalsElement, RuleSetRule, Resolve, Options, Plugin, Entry, EntryFunc, Output, RuleSetCondition } from 'webpack';
+import {
+  ExternalsElement,
+  RuleSetRule,
+  Resolve,
+  Options,
+  Plugin,
+  Entry,
+  EntryFunc,
+  Output,
+  RuleSetCondition
+} from 'webpack';
 import * as Config from 'webpack-chain';
 
 export interface SweetOptions {
@@ -26,6 +36,14 @@ export interface JS {
   resetPlugins?: Array<any>;
   exclude?: RuleSetCondition;
   include?: RuleSetCondition;
+}
+
+export interface Css {
+  publicPath?: string;
+  modules?: boolean;
+  exclude?: RuleSetCondition;
+  include?: RuleSetCondition;
+  modifyVars?: object;
 }
 
 export interface SweetConfig {

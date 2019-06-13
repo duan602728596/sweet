@@ -2,17 +2,8 @@ import * as _ from 'lodash';
 import * as Config from 'webpack-chain';
 import { Rule, OneOf } from 'webpack-chain';
 import * as MiniCssExtractPlugin from 'mini-css-extract-plugin';
-import { RuleSetCondition } from 'webpack';
 import cssLoaderGetLocalIdent from '../utils/cssLoaderGetLocalIdent';
-import { SweetConfig } from '../utils/types';
-
-interface Sass {
-  publicPath?: string;
-  modules?: boolean;
-  exclude?: RuleSetCondition;
-  include?: RuleSetCondition;
-  modifyVars?: object;
-}
+import { SweetConfig, Css } from '../utils/types';
 
 /* sass 配置 */
 export default function(sweetConfig: SweetConfig, config: Config): void {
@@ -24,8 +15,8 @@ export default function(sweetConfig: SweetConfig, config: Config): void {
    */
   const { mode, sass, frame, serverRender }: SweetConfig = sweetConfig;
   const isDevelopment: boolean = mode === 'development';
-  const _sass: Sass = sass || {};
-  const { publicPath, modules = true, exclude, include }: Sass = _sass;
+  const sassOptions: Css = sass || {};
+  const { publicPath, modules = true, exclude, include }: Css = sassOptions;
 
   config
     .merge({
