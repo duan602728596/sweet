@@ -1,6 +1,6 @@
 {
   "name": "@sweet-milktea/server",
-  "version": "0.0.2",
+  "version": "0.1.1",
   "description": "webpack服务和web服务",
   "scripts": {
     "start": "npm run clean && cross-env NODE_ENV=development tsc --watch",
