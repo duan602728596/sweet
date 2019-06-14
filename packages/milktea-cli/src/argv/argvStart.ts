@@ -25,7 +25,7 @@ function argvStart(argv: Argv): void {
   }
 
   if (!_.isNil(argv.server)) {
-    const devServer: Function = requireModule('@sweet-milktea/server/lib/devServer');
+    const devServer: Function = requireModule('@sweet-milktea/server/devServer');
     const httpPort: number = argv.httpPort;
     const httpsPort: number = argv.httpsPort;
     const serverRender: boolean = argv.serverRender;
