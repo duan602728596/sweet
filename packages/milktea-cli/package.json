@@ -42,7 +42,7 @@
     "mocha": "^6.1.4",
     "react": "^16.8.6",
     "rimraf": "^2.6.3",
-    "typescript": "^3.5.1"
+    "typescript": "^3.5.2"
   },
   "peerDependencies": {
     "@sweet-milktea/milktea": "^0.1.1",
