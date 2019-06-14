@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import proServer from '../lib/proServer';
+import proServer from '../proServer';
 import createCompiler from './compiler';
 import reqData from './reqData';
 
