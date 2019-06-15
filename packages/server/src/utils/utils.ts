@@ -63,7 +63,7 @@ export function filePathAnalyze(file: string): string {
 
 /* 设置默认文件地址 */
 export const defaultApiPath: Function = (basicPath: string): string => {
-  return path.join(basicPath, 'api/api.js');
+  return path.join(basicPath, 'api/api.javascript.ts');
 };
 
 /* 模块导入 */

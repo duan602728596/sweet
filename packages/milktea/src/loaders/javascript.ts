@@ -43,7 +43,7 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
 
   const configBabelUse: Use = config
     .module
-    .rule('js')
+    .rule('javascript.ts')
     .use('babel-loader');
 
   // ecmascript
@@ -100,7 +100,7 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
   // 排除dll文件，dll文件使用file-loader加载
   config
     .module
-    .rule('js')
+    .rule('javascript.ts')
     .exclude
     .add(/\.sweet[\\/]dll[\\/]dll\.js/);
 }

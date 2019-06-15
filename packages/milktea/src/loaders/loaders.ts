@@ -1,6 +1,6 @@
 import * as _ from 'lodash';
 import * as Config from 'webpack-chain';
-import jsLoader from './js';
+import jsLoader from './javascript';
 import sassLoader from './sass';
 import lessLoader from './less';
 import faviconLoader from './favicon';
@@ -28,7 +28,7 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
       (config: Config): void => {
         config
           .module
-          .rule('js')
+          .rule('javascript.ts')
           .merge(formatLoader(loaders.js));
       },
       (config: Config): void => {

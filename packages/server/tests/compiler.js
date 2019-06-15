@@ -7,11 +7,11 @@ function createCompiler(mode = 'development') {
   const compiler = webpack(webpackConfig({
     frame: 'test',
     entry: {
-      index: [path.join(__dirname, 'src/index.js')]
+      index: [path.join(__dirname, 'src/index.javascript.ts')]
     },
     output: {
       path: path.join(__dirname, 'dist'),
-      filename: '[name].js',
+      filename: '[name].javascript.ts',
       publicPath: '/'
     },
     html: [{ template: path.join(__dirname, 'src/index.pug') }]

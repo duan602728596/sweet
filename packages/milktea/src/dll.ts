@@ -39,7 +39,7 @@ export default function(sweetConfig: SweetConfig | null | undefined, sweetOption
   config
     .output
     .path(path.join(sweetOptions.basicPath, '.sweet/dll'))
-    .filename('[name].js')
+    .filename('[name].javascript.ts')
     .library('[name]_[hash:5]')
     .libraryTarget('var');
 
