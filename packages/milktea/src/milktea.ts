@@ -24,7 +24,10 @@ export function callback(err: Error, stats: Stats): void {
  * @param { object | string | null } sweetConfig: webpack配置，覆盖文件，优先级最高
  * @param { string } mode: 开发环境，覆盖配置的开发环境
  */
-export function config(sweetConfig?: SweetConfig | string | null, mode?: 'development' | 'production' | 'none'): Configuration {
+export function config(
+  sweetConfig?: SweetConfig | string | null | undefined,
+  mode?: 'development' | 'production' | 'none'
+): Configuration {
   let config: SweetConfig | null | undefined;
 
   if (typeof sweetConfig === 'string') {
@@ -47,7 +50,10 @@ export function config(sweetConfig?: SweetConfig | string | null, mode?: 'develo
  * @param { object | string | null } sweetConfig: webpack配置，覆盖文件，优先级最高
  * @param { string } mode: 开发环境，覆盖配置的开发环境
  */
-export function serverRenderConfig(sweetConfig?: SweetConfig | string | null, mode?: 'development' | 'production' | 'none'): Configuration {
+export function serverRenderConfig(
+  sweetConfig?: SweetConfig | string | null | undefined,
+  mode?: 'development' | 'production' | 'none'
+): Configuration {
   let config: SweetConfig | null | undefined;
 
   if (typeof sweetConfig === 'string') {
@@ -69,7 +75,7 @@ export function serverRenderConfig(sweetConfig?: SweetConfig | string | null, mo
  * webpack的dll文件配置
  * @param { object | string | null } sweetConfig: webpack配置，覆盖文件，优先级最高
  */
-export function dllConfig(sweetConfig?: SweetConfig | string | null): Configuration {
+export function dllConfig(sweetConfig?: SweetConfig | string | null | undefined): Configuration {
   let config: SweetConfig | null | undefined;
 
   if (typeof sweetConfig === 'string') {

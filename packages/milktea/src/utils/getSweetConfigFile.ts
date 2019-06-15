@@ -2,6 +2,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 import register from '@babel/register';
 import * as cosmiconfig from 'cosmiconfig';
+import { createBabelPlugins } from '../config/babelConfig';
 import { requireModule } from './utils';
 import { SweetConfig, SweetOptions } from './types';
 
@@ -14,7 +15,7 @@ function createJsRegisterLoader(sweetOptions: SweetOptions): Function {
           '@babel/preset-env',
           {
             targets: {
-              browsers: ['node 9']
+              browsers: ['node 10']
             },
             debug: false,
             modules: 'commonjs',
@@ -22,16 +23,7 @@ function createJsRegisterLoader(sweetOptions: SweetOptions): Function {
           }
         ]
       ],
-      plugins: [
-        ['@babel/plugin-proposal-decorators', { legacy: true }],
-        '@babel/plugin-proposal-class-properties',
-        '@babel/plugin-proposal-do-expressions',
-        '@babel/plugin-proposal-optional-catch-binding',
-        '@babel/plugin-proposal-export-default-from',
-        '@babel/plugin-proposal-optional-chaining',
-        '@babel/plugin-proposal-numeric-separator',
-        '@babel/plugin-syntax-bigint'
-      ],
+      plugins: createBabelPlugins(),
       cache: true
     });
 

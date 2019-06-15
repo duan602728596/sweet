@@ -5,7 +5,7 @@ import * as webpack from 'webpack';
 import { Configuration } from 'webpack';
 import * as Config from 'webpack-chain';
 import * as merge from 'webpack-merge';
-import { targets } from './loaders/js';
+import { createPresetEnv } from './config/babelConfig';
 import handleProgress from './plugins/handleProgress';
 import { SweetConfig, SweetOptions, JS } from './utils/types';
 
@@ -53,17 +53,7 @@ export default function(sweetConfig: SweetConfig | null | undefined, sweetOption
           .use('babel-loader')
           .loader('babel-loader')
           .options({
-            presets: [
-              [
-                '@babel/preset-env',
-                {
-                  targets: customTargets ? customTargets : targets,
-                  debug: false,
-                  modules: false,
-                  useBuiltIns: false
-                }
-              ]
-            ],
+            presets: [createPresetEnv(customTargets, false)],
             cacheDirectory: path.join(sweetOptions.basicPath, '.sweet/cache/babel'),
             configFile: false,
             babelrc: false

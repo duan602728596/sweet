@@ -1,5 +1,5 @@
 import * as Config from 'webpack-chain';
-import { targets } from './js';
+import { createPresetEnv } from '../config/babelConfig';
 import { SweetConfig, JS } from '../utils/types';
 
 /* svg文件配置 */
@@ -21,15 +21,7 @@ export default function(sweetConfig: SweetConfig, config: Config): void {
   };
 
   if (!ecmascript) {
-    options.presets.push([
-      '@babel/preset-env',
-      {
-        targets: customTargets ? customTargets : targets,
-        debug: false,
-        modules: false,
-        useBuiltIns: 'usage'
-      }
-    ]);
+    options.presets.push(createPresetEnv(customTargets, false));
   }
 
   config
