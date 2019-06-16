@@ -144,8 +144,8 @@ async function proServer(argv: ProServerType = {}): Promise<void> {
     .listen(httpPort);
 
   /* https服务 */
-  const key: string = path.join(sweetOptions.basicPath, './server.key');
-  const crt: string = path.join(sweetOptions.basicPath, './server.crt');
+  const key: string = path.join(sweetOptions.basicPath, 'server.key');
+  const crt: string = path.join(sweetOptions.basicPath, 'server.crt');
 
   if (fs.existsSync(key) && fs.existsSync(crt)) {
     const keyFile: Buffer = await readFile(key);

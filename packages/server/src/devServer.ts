@@ -60,8 +60,8 @@ async function devServer(argv: DevServerType = {}): Promise<void> {
   }: DevServerType = argv;
 
   /* https服务 */
-  const key: string = path.join(sweetOptions.basicPath, './dev.key');
-  const crt: string = path.join(sweetOptions.basicPath, './dev.crt');
+  const key: string = path.join(sweetOptions.basicPath, 'dev.key');
+  const crt: string = path.join(sweetOptions.basicPath, 'dev.crt');
   const useHttps: boolean = fs.existsSync(key) && fs.existsSync(crt);
   const keyFile: Buffer | undefined = useHttps ? await readFile(key) : undefined;
   const crtFile: Buffer | undefined = useHttps ? await readFile(crt) : undefined;
