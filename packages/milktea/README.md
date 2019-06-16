@@ -70,7 +70,6 @@ module.exports = {
   * exclude `{ RegExp }` : exclude规则
   * include `{ RegExp }` : include规则
 * ts `{ object }` : typescript配置
-  * typescript `{ boolean }` : 开启typescript编译
   * presets `{ Array<any> }` : 自定义babel的presets
   * plugins `{ Array<any> }` : 自定义babel的plugins
   * exclude `{ RegExp }` : exclude规则
@@ -139,7 +138,7 @@ export default server;
 
 ## 使用typescript
 
-首先配置`ts.typescript: true`，然后项目内添加`tsconfig.json`文件。
+在项目内添加`tsconfig.json`文件。
 
 ## 关于node-sass
 
