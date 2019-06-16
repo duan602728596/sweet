@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import devServer from '../devServer';
-import createCompiler from './compiler';
-import reqData from './reqData';
+import createCompiler from './utils/compiler';
+import reqData from './utils/reqData';
 
 // webpack配置
 const compiler = createCompiler();
