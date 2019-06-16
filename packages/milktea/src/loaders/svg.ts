@@ -9,7 +9,7 @@ export default function(sweetConfig: SweetConfig, config: Config): void {
    * serverRender { boolean }: 开启服务器端渲染
    * frame { string }: 当前的环境
    */
-  const { mode, frame, js }: SweetConfig = sweetConfig;
+  const { frame, js }: SweetConfig = sweetConfig;
   const jsOptions: JS = js || {};
   const { ecmascript, targets: customTargets }: JS = jsOptions;
 

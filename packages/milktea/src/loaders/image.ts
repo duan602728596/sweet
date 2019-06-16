@@ -1,4 +1,5 @@
 import * as Config from 'webpack-chain';
+import { createImageName } from '../config/fileConfig';
 import { SweetConfig } from '../utils/types';
 
 /* 图片静态文件配置 */
@@ -9,7 +10,7 @@ export default function(sweetConfig: SweetConfig, config: Config): void {
    */
   const { mode, serverRender }: SweetConfig = sweetConfig;
   const isDevelopment: boolean = mode === 'development';
-  const filename: string = isDevelopment ? 'images/[name]_[hash:5].[ext]' : 'images/[hash:15].[ext]';
+  const filename: string = createImageName(isDevelopment);
 
   config
     .module
