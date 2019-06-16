@@ -34,7 +34,11 @@ export function createTargets(): object {
   };
 }
 
-// @babel/preset-env
+/**
+ * @babel/preset-env
+ * @param { object | undefined } customTargets: 自定义@babel/preset-env的编译目标
+ * @param { boolean } debug: 是否debug
+ */
 export function createPresetEnv(customTargets: object | undefined, debug: boolean): Array<any> {
   return [
     '@babel/preset-env',
@@ -48,7 +52,11 @@ export function createPresetEnv(customTargets: object | undefined, debug: boolea
   ];
 }
 
-// babel-loader options
+/**
+ * babel-loader options
+ * @param { SweetOptions } sweetOptions
+ * @param { JS } jsOptions: js配置
+ */
 export function createBabelOptions(sweetOptions: SweetOptions, jsOptions: JS): object {
   const { ecmascript, resetPresets, resetPlugins }: JS = jsOptions;
 

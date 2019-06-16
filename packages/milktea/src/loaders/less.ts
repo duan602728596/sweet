@@ -1,8 +1,7 @@
 import * as _ from 'lodash';
 import * as Config from 'webpack-chain';
 import { Rule, OneOf } from 'webpack-chain';
-import * as MiniCssExtractPlugin from 'mini-css-extract-plugin';
-import cssLoaderGetLocalIdent from '../utils/cssLoaderGetLocalIdent';
+import { createStyleLoader, createCssOptions, createLessOptions } from '../config/cssConfig';
 import { SweetConfig, CSS } from '../utils/types';
 
 /* less & css 配置 */
@@ -31,30 +30,21 @@ export default function(sweetConfig: SweetConfig, config: Config): void {
       }
     });
 
-  const lessRule: Rule = config.module.rule('less');
-
   // style-loader
-  const styleLoader: any = isDevelopment
-    ? (frame === 'vue' ? 'vue-style-loader' : 'style-loader')
-    : MiniCssExtractPlugin.loader;
-  const styleLoaderOptions: object = isDevelopment ? {} : { publicPath };
+  const styleLoader: string | any = createStyleLoader(frame, isDevelopment);
+  const styleLoaderOptions: object = { publicPath };
 
   // css-loader
-  const cssLoaderOptions: object = {
-    modules: modules ? {
-      localIdentName: isDevelopment ? '[path][name]__[local]___[hash:base64:6]' : '_[hash:base64:6]',
-      getLocalIdent: cssLoaderGetLocalIdent
-    } : false,
-    onlyLocals: serverRender,
-    sourceMap: isDevelopment
-  };
+  const sr: boolean = !!serverRender;
+  const cssLoaderOptions: object = createCssOptions(modules, isDevelopment, sr);
+  const ScopedCssLoaderOptions: object = createCssOptions(false, isDevelopment, sr);
 
   // less-loader
-  const lessLoaderOptions: object = {
-    javascriptEnabled: true,
-    modifyVars,
-    sourceMap: isDevelopment
-  };
+  const lessLoaderOptions: object = createLessOptions(modifyVars, isDevelopment);
+
+  const lessRule: Rule = config
+    .module
+    .rule('less');
 
   // vue
   config
@@ -76,10 +66,7 @@ export default function(sweetConfig: SweetConfig, config: Config): void {
           // css
           .use('css')
           .loader('css-loader')
-          .options({
-            onlyLocals: serverRender,
-            sourceMap: isDevelopment
-          })
+          .options(ScopedCssLoaderOptions)
           .end()
           // less
           .use('less')
@@ -89,7 +76,8 @@ export default function(sweetConfig: SweetConfig, config: Config): void {
     );
 
   // basic
-  const oneOf: OneOf = lessRule.oneOf('basic');
+  const oneOf: OneOf = lessRule
+    .oneOf('basic');
 
   // style
   if (!serverRender) {

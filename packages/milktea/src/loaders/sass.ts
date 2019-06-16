@@ -1,8 +1,7 @@
 import * as _ from 'lodash';
 import * as Config from 'webpack-chain';
 import { Rule, OneOf } from 'webpack-chain';
-import * as MiniCssExtractPlugin from 'mini-css-extract-plugin';
-import cssLoaderGetLocalIdent from '../utils/cssLoaderGetLocalIdent';
+import { createStyleLoader, createCssOptions, createSassOptions } from '../config/cssConfig';
 import { SweetConfig, CSS } from '../utils/types';
 
 /* sass 配置 */
@@ -31,29 +30,21 @@ export default function(sweetConfig: SweetConfig, config: Config): void {
       }
     });
 
-  const sassRule: Rule = config.module.rule('sass');
-
   // style-loader
-  const styleLoader: any = isDevelopment
-    ? (frame === 'vue' ? 'vue-style-loader' : 'style-loader')
-    : MiniCssExtractPlugin.loader;
-  const styleLoaderOptions: object = isDevelopment ? {} : { publicPath };
+  const styleLoader: string | any = createStyleLoader(frame, isDevelopment);
+  const styleLoaderOptions: object = { publicPath };
 
   // css-loader
-  const cssLoaderOptions: object = {
-    modules: modules ? {
-      localIdentName: isDevelopment ? '[path][name]__[local]___[hash:base64:6]' : '_[hash:base64:6]',
-      getLocalIdent: cssLoaderGetLocalIdent
-    } : false,
-    onlyLocals: serverRender,
-    sourceMap: isDevelopment
-  };
+  const sr: boolean = !!serverRender;
+  const cssLoaderOptions: object = createCssOptions(modules, isDevelopment, sr);
+  const ScopedCssLoaderOptions: object = createCssOptions(false, isDevelopment, sr);
 
   // sass-loader
-  const sassLoaderOptions: object = {
-    outputStyle: isDevelopment ? 'compact' : 'compressed',
-    sourceMap: isDevelopment
-  };
+  const sassLoaderOptions: object = createSassOptions(isDevelopment);
+
+  const sassRule: Rule = config
+    .module
+    .rule('sass');
 
   // vue
   config
@@ -75,10 +66,7 @@ export default function(sweetConfig: SweetConfig, config: Config): void {
           // css
           .use('css-loader')
           .loader('css-loader')
-          .options({
-            onlyLocals: serverRender,
-            sourceMap: isDevelopment
-          })
+          .options(ScopedCssLoaderOptions)
           .end()
           // sass
           .use('sass-loader')
@@ -88,7 +76,8 @@ export default function(sweetConfig: SweetConfig, config: Config): void {
     );
 
   // basic
-  const oneOf: OneOf = sassRule.oneOf('basic');
+  const oneOf: OneOf = sassRule
+    .oneOf('basic');
 
   // style
   if (!serverRender) {
