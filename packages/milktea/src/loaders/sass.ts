@@ -52,7 +52,7 @@ export default function(sweetConfig: SweetConfig, config: Config, typescript: bo
 
   const sassRule: Rule = config
     .module
-    .rule('sass-typescript');
+    .rule(typescript ? 'sass-typescript' : 'sass');
 
   // vue
   config

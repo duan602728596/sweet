@@ -20,7 +20,7 @@ describe('config', function() {
       html: [{ template: 'index.pug' }]
     }, sweetOptions);
 
-    it('module Configuration is correct', expectModule(config, 11));
+    it('module Configuration is correct', expectModule(config, 9));
 
     it('plugins Configuration is correct', expectDevPlugins(config));
 
@@ -34,7 +34,7 @@ describe('config', function() {
       html: [{ template: 'index.pug' }]
     }, sweetOptions);
 
-    it('module Configuration is correct', expectModule(config, 12));
+    it('module Configuration is correct', expectModule(config, 10));
 
     it('plugins Configuration is correct', expectProPlugins(config));
 

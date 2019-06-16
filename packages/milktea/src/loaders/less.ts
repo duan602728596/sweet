@@ -52,7 +52,7 @@ export default function(sweetConfig: SweetConfig, config: Config, typescript: bo
 
   const lessRule: Rule = config
     .module
-    .rule('less-typescript');
+    .rule(typescript ? 'less-typescript' : 'less');
 
   // vue
   config
