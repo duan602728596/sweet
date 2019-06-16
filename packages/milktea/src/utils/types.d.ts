@@ -40,7 +40,6 @@ export interface JS {
 }
 
 export interface TS {
-  typescript?: boolean;
   presets?: Array<any>;
   plugins?: Array<any>;
   exclude?: RuleSetCondition;

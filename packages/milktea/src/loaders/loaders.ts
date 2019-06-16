@@ -10,7 +10,7 @@ import htmlLoader from './html';
 import imageLoader from './image';
 import svgLoader from './svg';
 import { formatLoader } from '../utils/utils';
-import { SweetConfig, SweetOptions, Loaders, TS } from '../utils/types';
+import { SweetConfig, SweetOptions, Loaders } from '../utils/types';
 
 /* loaders */
 export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, config: Config): void {
@@ -19,7 +19,6 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
    * frame { string }: 是否为react或vue模式
    */
   const frame: string | undefined = sweetConfig.frame;
-  const ts: TS = sweetConfig.ts || {};
   const loaders: Loaders = sweetConfig.loaders && _.isPlainObject(sweetConfig.loaders) ? sweetConfig.loaders : {};
   const isDevelopment: boolean = sweetConfig.mode === 'development';
 
@@ -38,22 +37,19 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
         jsLoader(sweetConfig, sweetOptions, config);
       });
 
-  // ts
-  if (ts.typescript || loaders.ts) {
-    config
-      .when(
-        !!loaders.ts,
-        (config: Config): void => {
-          config
-            .module
-            .rule('ts')
-            .merge(formatLoader(loaders.ts));
-        },
-        (config: Config): void => {
-          // ts loader
-          tsLoader(sweetConfig, sweetOptions, config);
-        });
-  }
+  config
+    .when(
+      !!loaders.ts,
+      (config: Config): void => {
+        config
+          .module
+          .rule('ts')
+          .merge(formatLoader(loaders.ts));
+      },
+      (config: Config): void => {
+        // ts loader
+        tsLoader(sweetConfig, sweetOptions, config);
+      });
 
   // sass
   config
@@ -82,7 +78,7 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
       (config: Config): void => {
         lessLoader(sweetConfig, config);
       });
-  
+
   // favicon
   config
     .when(
