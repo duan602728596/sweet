@@ -13,7 +13,7 @@ describe('sever-render config', function() {
       serverRender: true,
       frame: 'react',
       mode: 'development',
-      html: [{ template: 'index.pug' }]
+      html: [{ template: 'index.tsx.pug' }]
     }, sweetOptions);
 
     it('config.target and config.node Configuration is correct', function() {
@@ -33,7 +33,7 @@ describe('sever-render config', function() {
       serverRender: true,
       frame: 'vue',
       mode: 'production',
-      html: [{ template: 'index.pug' }]
+      html: [{ template: 'index.tsx.pug' }]
     }, sweetOptions);
 
     it('config.target and config.node Configuration is correct', function() {

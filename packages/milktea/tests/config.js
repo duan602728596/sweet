@@ -17,7 +17,7 @@ describe('config', function() {
           use: ['babel-loader', 'ts-loader']
         }
       },
-      html: [{ template: 'index.pug' }]
+      html: [{ template: 'index.tsx.pug' }]
     }, sweetOptions);
 
     it('module Configuration is correct', expectModule(config, 9));
@@ -31,7 +31,7 @@ describe('config', function() {
     const config = webpackConfig({
       frame: 'vue',
       mode: 'production',
-      html: [{ template: 'index.pug' }]
+      html: [{ template: 'index.tsx.pug' }]
     }, sweetOptions);
 
     it('module Configuration is correct', expectModule(config, 10));

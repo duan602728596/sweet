@@ -19,9 +19,7 @@ function runBuild() {
 
 // 运行生产环境服务
 function runServer() {
-  proServer({
-    serverRoot: 'tests/dist'
-  });
+  proServer();
 
   return new Promise((resolve, reject) => {
     setTimeout(() => {

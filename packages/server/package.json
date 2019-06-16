@@ -44,6 +44,8 @@
     "mocha": "^6.1.4",
     "pug": "^2.0.3",
     "pug-loader": "^2.4.0",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
     "request": "^2.88.0",
     "rimraf": "^2.6.3",
     "typescript": "^3.5.2",
