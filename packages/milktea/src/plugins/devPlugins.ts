@@ -3,6 +3,7 @@ import * as _ from 'lodash';
 import * as webpack from 'webpack';
 import * as HardSourceWebpackPlugin from 'hard-source-webpack-plugin';
 import * as Config from 'webpack-chain';
+import { hardSourceWebpackCache, hardSourceWebpackServerCache, dllCache } from '../config/cacheConfig';
 import { SweetConfig, SweetOptions } from '../utils/types';
 
 /* 开发环境插件 */
@@ -19,7 +20,7 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
   config
     .plugin('hard-source-webpack-plugin')
     .use(HardSourceWebpackPlugin, [{
-      cacheDirectory: path.join(sweetOptions.basicPath, '.sweet/cache/webpack', serverRender ? 's' : 'c')
+      cacheDirectory: path.join(sweetOptions.basicPath, serverRender ? hardSourceWebpackServerCache : hardSourceWebpackCache)
     }]);
 
   // dll
@@ -30,7 +31,7 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
           .plugin('DllReferencePlugin')
           .use(webpack.DllReferencePlugin, [{
             context: sweetOptions.basicPath,
-            manifest: require(path.join(sweetOptions.basicPath, '.sweet/dll/manifest.json'))
+            manifest: require(path.join(sweetOptions.basicPath, dllCache, 'manifest.json'))
           }]);
       }
     );

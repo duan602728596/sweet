@@ -7,6 +7,7 @@ import * as Config from 'webpack-chain';
 import * as merge from 'webpack-merge';
 import { createPresetEnv } from './config/babelConfig';
 import handleProgress from './plugins/handleProgress';
+import { babelCache, dllCache } from './config/cacheConfig';
 import { SweetConfig, SweetOptions, JS } from './utils/types';
 
 export default function(sweetConfig: SweetConfig | null | undefined, sweetOptions: SweetOptions): Configuration {
@@ -38,7 +39,7 @@ export default function(sweetConfig: SweetConfig | null | undefined, sweetOption
   // 设置文件输出
   config
     .output
-    .path(path.join(sweetOptions.basicPath, '.sweet/dll'))
+    .path(path.join(sweetOptions.basicPath, dllCache))
     .filename('[name].js')
     .library('[name]_[hash:5]')
     .libraryTarget('var');
@@ -54,7 +55,7 @@ export default function(sweetConfig: SweetConfig | null | undefined, sweetOption
           .loader('babel-loader')
           .options({
             presets: [createPresetEnv(customTargets, false)],
-            cacheDirectory: path.join(sweetOptions.basicPath, '.sweet/cache/babel'),
+            cacheDirectory: path.join(sweetOptions.basicPath, babelCache),
             configFile: false,
             babelrc: false
           });
@@ -66,7 +67,7 @@ export default function(sweetConfig: SweetConfig | null | undefined, sweetOption
     // dll
     .plugin('webpack.DllPlugin')
     .use(webpack.DllPlugin, [{
-      path: '.sweet/dll/manifest.json',
+      path: path.join(dllCache, 'manifest.json'),
       name: '[name]_[hash:5]',
       context: sweetOptions.basicPath
     }])

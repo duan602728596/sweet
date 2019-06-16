@@ -1,6 +1,7 @@
 import * as path from 'path';
 import * as Config from 'webpack-chain';
 import * as TerserPlugin from 'terser-webpack-plugin';
+import { terserCache } from '../config/cacheConfig';
 import { SweetConfig, SweetOptions } from '../utils/types';
 
 interface TerserOptions {
@@ -38,7 +39,7 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
           .optimization
           .minimizer('minimizer')
           .use(TerserPlugin, [{
-            cache: path.join(sweetOptions.basicPath, '.sweet/cache/terser'),
+            cache: path.join(sweetOptions.basicPath, terserCache),
             parallel: true,
             terserOptions
           }]);

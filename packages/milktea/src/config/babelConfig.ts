@@ -1,4 +1,5 @@
 import * as path from 'path';
+import { babelCache } from './cacheConfig';
 import { SweetOptions, JS } from '../utils/types';
 
 /* babel-loader配置 */
@@ -61,7 +62,7 @@ export function createBabelOptions(sweetOptions: SweetOptions, jsOptions: JS): o
   const { ecmascript, resetPresets, resetPlugins }: JS = jsOptions;
 
   return {
-    cacheDirectory: path.join(sweetOptions.basicPath, '.sweet/cache/babel'),
+    cacheDirectory: path.join(sweetOptions.basicPath, babelCache),
     presets: resetPresets ? resetPresets : [],
     plugins: resetPlugins ? resetPlugins : [
       ...createBabelPlugins(),
