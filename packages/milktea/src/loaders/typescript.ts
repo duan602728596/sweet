@@ -17,12 +17,7 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
 
   // 获取配置
   const tsOptions: TS = ts || {};
-  const { typescript, presets, plugins, exclude, include }: TS = tsOptions;
-
-  // 不启动typescript
-  if (!typescript) {
-    return;
-  }
+  const { presets = [], plugins = [], exclude, include }: TS = tsOptions;
 
   const useConfig: object = {
     'babel-loader': {

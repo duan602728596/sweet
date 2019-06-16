@@ -5,7 +5,7 @@ import { createStyleLoader, createCssOptions, createSassOptions } from '../confi
 import { SweetConfig, CSS } from '../utils/types';
 
 /* sass 配置 */
-export default function(sweetConfig: SweetConfig, config: Config, typescript: boolean): void {
+export default function(sweetConfig: SweetConfig, config: Config): void {
   /**
    * mode { string }: 开发模式还是生产模式
    * sass { Object }: loader里面sass的配置
@@ -38,21 +38,13 @@ export default function(sweetConfig: SweetConfig, config: Config, typescript: bo
   const sr: boolean = !!serverRender;
   const cssLoaderOptions: object = createCssOptions(modules, isDevelopment, sr);
   const ScopedCssLoaderOptions: object = createCssOptions(false, isDevelopment, sr);
-  const cssLoader: string = typescript ? 'typings-for-css-modules-loader' : 'css-loader';
-
-  if (typescript) {
-    Object.assign(cssLoaderOptions, {
-      namedExport: true,
-      camelCase: true
-    });
-  }
 
   // sass-loader
   const sassLoaderOptions: object = createSassOptions(isDevelopment);
 
   const sassRule: Rule = config
     .module
-    .rule(typescript ? 'sass-typescript' : 'sass');
+    .rule('sass');
 
   // vue
   config
@@ -73,7 +65,7 @@ export default function(sweetConfig: SweetConfig, config: Config, typescript: bo
         oneOf
           // css
           .use('css-loader')
-          .loader(cssLoader)
+          .loader('css-loader')
           .options(ScopedCssLoaderOptions)
           .end()
           // sass
@@ -98,28 +90,11 @@ export default function(sweetConfig: SweetConfig, config: Config, typescript: bo
   oneOf
     // css
     .use('css-loader')
-    .loader(cssLoader)
+    .loader('css-loader')
     .options(cssLoaderOptions)
     .end()
     // sass
     .use('sass-loader')
     .loader('sass-loader')
     .options(sassLoaderOptions);
-
-  // issuer
-  if (typescript) {
-    config
-      .when(frame === 'react' || frame === 'vue',
-        (config: Config): void => {
-          config
-            .merge({
-              module: {
-                rule: {
-                  'sass-typescript': { issuer: /^.*\.(tsx?|vue)$/ }
-                }
-              }
-            });
-        }
-      );
-  }
 }
