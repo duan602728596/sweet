@@ -47,7 +47,8 @@ module.exports = {
 * resolve `{ object }` : 解析（参考webpack）
 * devtool `{ string }`: 设置SourceMap的类型
 * loaders: 重写loaders的默认规则
-  * js `{ object }` : 重写默认的js规则
+  * js `{ object }` : 重写默认的javascript规则
+  * ts `{ object }` : 重写默认的typescript规则
   * sass `{ object }` : 重写默认的sass规则
   * css `{ object }` : 重写默认的css规则
   * favicon `{ object }` : 重写网站图标的规则
@@ -59,13 +60,19 @@ module.exports = {
 * rules `{ Array<object> }` : 自定义规则
 * noParse `RegExp | Array<RegExp> | Function` : 防止解析任何与给定正则表达式相匹配的文件（参考webpack）
 * plugins `{ Array<any> }` : 自定义插件
-* js `{ object }` : js配置
+* js `{ object }` : javascript配置
   * targets `{ object }` : 配置@babel/preset-env的编译目标
   * ecmascript `{ boolean }` : 是否编译到ecmascript的最新语法（即不使用@babel/preset-env，通常适用于node、nwjs和electron）
   * presets `{ Array<any> }` : 自定义presets
   * plugins `{ Array<any> }` : 自定义plugins
   * resetPresets `{ Array<any> }` : 重写presets
   * resetPlugins `{ Array<any> }` : 重写plugins
+  * exclude `{ RegExp }` : exclude规则
+  * include `{ RegExp }` : include规则
+* ts `{ object }` : typescript配置
+  * typescript `{ boolean }` : 开启typescript编译
+  * presets `{ Array<any> }` : 自定义babel的presets
+  * plugins `{ Array<any> }` : 自定义babel的plugins
   * exclude `{ RegExp }` : exclude规则
   * include `{ RegExp }` : include规则
 * sass `{ object }` : sass配置
@@ -129,6 +136,10 @@ function server(url, context = {}, initialState = {}) {
 
 export default server;
 ```
+
+## 使用typescript
+
+首先配置`ts.typescript: true`，然后项目内添加`tsconfig.json`文件。
 
 ## 关于node-sass
 
