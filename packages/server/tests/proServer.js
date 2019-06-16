@@ -1,7 +1,7 @@
 import { expect } from 'chai';
 import proServer from '../proServer';
-import createCompiler from './utils/compiler';
-import reqData from './utils/reqData';
+import createCompiler from './compiler';
+import reqData from './reqData';
 
 // webpack配置
 const compiler = createCompiler();
@@ -19,7 +19,9 @@ function runBuild() {
 
 // 运行生产环境服务
 function runServer() {
-  proServer();
+  proServer({
+    serverRoot: 'tests/dist'
+  });
 
   return new Promise((resolve, reject) => {
     setTimeout(() => {
