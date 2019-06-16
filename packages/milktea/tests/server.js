@@ -21,7 +21,7 @@ describe('sever-render config', function() {
       expect(config.node).to.eql({ __filename: true, __dirname: true });
     });
 
-    it('module Configuration is correct', expectModule(config, 9));
+    it('module Configuration is correct', expectModule(config, 10));
 
     it('plugins Configuration is correct', expectDevServerPlugins(config));
 
@@ -41,7 +41,7 @@ describe('sever-render config', function() {
       expect(config.node).to.eql({ __filename: true, __dirname: true });
     });
 
-    it('module Configuration is correct', expectModule(config, 10));
+    it('module Configuration is correct', expectModule(config, 11));
 
     it('plugins Configuration is correct', expectProServerPlugins(config));
 
