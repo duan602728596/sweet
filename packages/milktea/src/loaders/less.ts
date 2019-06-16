@@ -5,7 +5,7 @@ import { createStyleLoader, createCssOptions, createLessOptions } from '../confi
 import { SweetConfig, CSS } from '../utils/types';
 
 /* less & css 配置 */
-export default function(sweetConfig: SweetConfig, config: Config): void {
+export default function(sweetConfig: SweetConfig, config: Config, typescript: boolean): void {
   /**
    * mode { string }: 开发模式还是生产模式
    * css { Object }: loader里面css的配置
@@ -38,13 +38,21 @@ export default function(sweetConfig: SweetConfig, config: Config): void {
   const sr: boolean = !!serverRender;
   const cssLoaderOptions: object = createCssOptions(modules, isDevelopment, sr);
   const ScopedCssLoaderOptions: object = createCssOptions(false, isDevelopment, sr);
+  const cssLoader: string = typescript ? 'typings-for-css-modules-loader' : 'css-loader';
+
+  if (typescript) {
+    Object.assign(cssLoaderOptions, {
+      namedExport: true,
+      camelCase: true
+    });
+  }
 
   // less-loader
   const lessLoaderOptions: object = createLessOptions(modifyVars, isDevelopment);
 
   const lessRule: Rule = config
     .module
-    .rule('less');
+    .rule('less-typescript');
 
   // vue
   config
@@ -65,7 +73,7 @@ export default function(sweetConfig: SweetConfig, config: Config): void {
         oneOf
           // css
           .use('css')
-          .loader('css-loader')
+          .loader(cssLoader)
           .options(ScopedCssLoaderOptions)
           .end()
           // less
@@ -90,11 +98,26 @@ export default function(sweetConfig: SweetConfig, config: Config): void {
   oneOf
     // css
     .use('css')
-    .loader('css-loader')
+    .loader(cssLoader)
     .options(cssLoaderOptions)
     .end()
     // less
     .use('less')
     .loader('less-loader')
     .options(lessLoaderOptions);
+
+  // issuer
+  config
+    .when(frame === 'react' || frame === 'vue',
+      (config: Config): void => {
+        config
+          .merge({
+            module: {
+              rule: {
+                'less-typescript': { issuer: /^.*\.(tsx?|vue)$/ }
+              }
+            }
+          });
+      }
+    );
 }

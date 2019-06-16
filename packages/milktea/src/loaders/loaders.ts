@@ -10,7 +10,7 @@ import htmlLoader from './html';
 import imageLoader from './image';
 import svgLoader from './svg';
 import { formatLoader } from '../utils/utils';
-import { SweetConfig, SweetOptions, Loaders } from '../utils/types';
+import { SweetConfig, SweetOptions, Loaders, TS } from '../utils/types';
 
 /* loaders */
 export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, config: Config): void {
@@ -21,6 +21,7 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
   const frame: string | undefined = sweetConfig.frame;
   const loaders: Loaders = sweetConfig.loaders && _.isPlainObject(sweetConfig.loaders) ? sweetConfig.loaders : {};
   const isDevelopment: boolean = sweetConfig.mode === 'development';
+  const ts: TS = loaders.ts || {};
 
   // js
   config
@@ -63,7 +64,7 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
           .merge(formatLoader(loaders.sass));
       },
       (config: Config): void => {
-        sassLoader(sweetConfig, config);
+        sassLoader(sweetConfig, config, false);
       });
 
   // css
@@ -77,8 +78,38 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
           .merge(formatLoader(loaders.css));
       },
       (config: Config): void => {
-        lessLoader(sweetConfig, config);
+        lessLoader(sweetConfig, config, false);
       });
+
+  if (ts.typescript) {
+    // sass
+    config
+      .when(
+        !!loaders.sass,
+        (config: Config): void => {
+          config
+            .module
+            .rule('sass')
+            .merge(formatLoader(loaders.sass));
+        },
+        (config: Config): void => {
+          sassLoader(sweetConfig, config, true);
+        });
+
+    // css
+    config
+      .when(
+        !!loaders.css,
+        (config: Config): void => {
+          config
+            .module
+            .rule('css')
+            .merge(formatLoader(loaders.css));
+        },
+        (config: Config): void => {
+          lessLoader(sweetConfig, config, true);
+        });
+  }
 
   // favicon
   config
