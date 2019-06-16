@@ -47,7 +47,7 @@ export default function(sweetConfig: SweetConfig | null | undefined, sweetOption
       mode,
       devtool: devtool ? devtool : (isDevelopment ? 'module-eval-source-map' : 'module-source-map'),
       resolve: {
-        extensions: ['js', 'jsx', 'mjs', 'json', 'ts', 'tsx']
+        extensions: ['.js', '.jsx', '.mjs', '.json', '.ts', '.tsx']
       },
       target: 'async-node',
       node: {
