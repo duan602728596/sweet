@@ -6,6 +6,7 @@ register(babelRegisterConfig);
 
 /* test */
 require('./devServer');
+require('./devTsServer');
 require('./proServer');
 
 setTimeout(() => {
