@@ -53,7 +53,7 @@ async function proServer(argv: ProServerType = {}): Promise<void> {
     httpsPort = 5053,
     serverRoot = 'dist',
     serverRender,
-    serverRenderFile = 'dist-server/server.javascript.ts',
+    serverRenderFile = 'dist-server/server.js',
     template = 'index.html',
     renderType = 'ejs',
     log

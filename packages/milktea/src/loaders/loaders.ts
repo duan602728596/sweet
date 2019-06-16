@@ -28,7 +28,7 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
       (config: Config): void => {
         config
           .module
-          .rule('javascript.ts')
+          .rule('js')
           .merge(formatLoader(loaders.js));
       },
       (config: Config): void => {

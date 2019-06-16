@@ -3,11 +3,11 @@ import fs from 'fs';
 import path from 'path';
 import { expect } from 'chai';
 
-const index = path.join(__dirname, 'dist/index.javascript.ts');
+const index = path.join(__dirname, 'dist/index.js');
 
 function run() {
   const cli = path.join(__dirname, '../lib/cli');
-  const config = path.join(__dirname, './sweet.config.javascript.ts');
+  const config = path.join(__dirname, './sweet.config.js');
 
   return new Promise((resolve, reject) => {
     const child = childProcess.spawn('node', [cli, 'start', '--config', config], {

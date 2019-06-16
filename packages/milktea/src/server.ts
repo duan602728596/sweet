@@ -47,8 +47,8 @@ export default function(sweetConfig: SweetConfig | null | undefined, sweetOption
   config
     .output
     .path(path.join(sweetOptions.basicPath, 'dist-server'))
-    .filename('[name].javascript.ts')
-    .chunkFilename('[name].javascript.ts')
+    .filename('[name].js')
+    .chunkFilename('[name].js')
     .library('[name]')
     .libraryTarget('umd');
 

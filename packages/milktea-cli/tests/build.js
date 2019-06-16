@@ -5,7 +5,7 @@ import { expect } from 'chai';
 
 function run() {
   const cli = path.join(__dirname, '../lib/cli');
-  const config = path.join(__dirname, './sweet.config.build.javascript.ts');
+  const config = path.join(__dirname, './sweet.config.build.js');
 
   return new Promise((resolve, reject) => {
     const child = childProcess.spawn('node', [cli, 'build', '--config', config], {
@@ -25,6 +25,6 @@ describe('args: build', function() {
   it('should index.build.js is existing', async function() {
     await run();
 
-    expect(fs.existsSync(path.join(__dirname, 'dist/index.build.javascript.ts'))).to.be.true;
+    expect(fs.existsSync(path.join(__dirname, 'dist/index.build.js'))).to.be.true;
   });
 });

@@ -4,7 +4,7 @@ export default {
   frame: 'react',
   dll: ['react'],
   entry: {
-    index: [path.join(__dirname, 'src/index.javascript.ts')]
+    index: [path.join(__dirname, 'src/index.js')]
   },
   loaders: {
     js: {
@@ -15,6 +15,6 @@ export default {
   },
   output: {
     path: path.join(__dirname, 'dist'),
-    filename: '[name].javascript.ts'
+    filename: '[name].js'
   }
 };

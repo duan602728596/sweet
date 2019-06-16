@@ -7,7 +7,7 @@ import registerConfig from './registerConfig';
 import { SweetOptions } from './types';
 import { requireModule } from './utils';
 
-const controllers: string = 'controllers/**/*.javascript.ts';
+const controllers: string = 'controllers/**/*.js';
 
 /**
  * 将路径转化成Map，key全部转换成小写
@@ -82,9 +82,9 @@ export async function getControllerData(
 
       data = await module(ctx, sweetOptions);
     }
-  } else if (controllersMap.has('default.javascript.ts')) {
+  } else if (controllersMap.has('default.js')) {
     // 查找默认文件
-    const defaultFile: string | undefined = controllersMap.get('default.javascript.ts');
+    const defaultFile: string | undefined = controllersMap.get('default.js');
 
     if (defaultFile) {
       const module: Function = requireModule(defaultFile);
