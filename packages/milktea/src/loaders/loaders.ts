@@ -39,19 +39,21 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
       });
 
   // ts
-  config
-    .when(
-      !!loaders.ts,
-      (config: Config): void => {
-        config
-          .module
-          .rule('ts')
-          .merge(formatLoader(loaders.ts));
-      },
-      (config: Config): void => {
-        // ts loader
-        tsLoader(sweetConfig, sweetOptions, config);
-      });
+  if (ts.typescript || loaders.ts) {
+    config
+      .when(
+        !!loaders.ts,
+        (config: Config): void => {
+          config
+            .module
+            .rule('ts')
+            .merge(formatLoader(loaders.ts));
+        },
+        (config: Config): void => {
+          // ts loader
+          tsLoader(sweetConfig, sweetOptions, config);
+        });
+  }
 
   // sass
   config

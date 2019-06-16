@@ -107,17 +107,19 @@ export default function(sweetConfig: SweetConfig, config: Config, typescript: bo
     .options(lessLoaderOptions);
 
   // issuer
-  config
-    .when(frame === 'react' || frame === 'vue',
-      (config: Config): void => {
-        config
-          .merge({
-            module: {
-              rule: {
-                'less-typescript': { issuer: /^.*\.(tsx?|vue)$/ }
+  if (typescript) {
+    config
+      .when(frame === 'react' || frame === 'vue',
+        (config: Config): void => {
+          config
+            .merge({
+              module: {
+                rule: {
+                  'less-typescript': { issuer: /^.*\.(tsx?|vue)$/ }
+                }
               }
-            }
-          });
-      }
-    );
+            });
+        }
+      );
+  }
 }
