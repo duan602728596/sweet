@@ -3,7 +3,7 @@ import * as Config from 'webpack-chain';
 import { Rule, OneOf } from 'webpack-chain';
 import * as MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import cssLoaderGetLocalIdent from '../utils/cssLoaderGetLocalIdent';
-import { SweetConfig, Css } from '../utils/types';
+import { SweetConfig, CSS } from '../utils/types';
 
 /* less & css 配置 */
 export default function(sweetConfig: SweetConfig, config: Config): void {
@@ -15,8 +15,8 @@ export default function(sweetConfig: SweetConfig, config: Config): void {
    */
   const { mode, css, frame, serverRender }: SweetConfig = sweetConfig;
   const isDevelopment: boolean = mode === 'development';
-  const cssOptions: Css = css || {};
-  const { publicPath, modules = true, exclude, include, modifyVars }: Css = cssOptions;
+  const cssOptions: CSS = css || {};
+  const { publicPath, modules = true, exclude, include, modifyVars }: CSS = cssOptions;
 
   config
     .merge({

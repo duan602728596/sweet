@@ -38,7 +38,7 @@ export interface JS {
   include?: RuleSetCondition;
 }
 
-export interface Css {
+export interface CSS {
   publicPath?: string;
   modules?: boolean;
   exclude?: RuleSetCondition;

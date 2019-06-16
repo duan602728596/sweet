@@ -9,11 +9,9 @@ export default function(sweetConfig: SweetConfig, config: Config): void {
    * serverRender { boolean }: 开启服务器端渲染
    * frame { string }: 当前的环境
    */
-  const { mode, serverRender, frame, js }: SweetConfig = sweetConfig;
-  const isDevelopment: boolean = mode === 'development';
-  const filename: string = isDevelopment ? 'images/[name]_[hash:5].[ext]' : 'images/[hash:15].[ext]';
-  const _js: JS = js || {};
-  const { ecmascript, targets: customTargets }: JS = _js;
+  const { mode, frame, js }: SweetConfig = sweetConfig;
+  const jsOptions: JS = js || {};
+  const { ecmascript, targets: customTargets }: JS = jsOptions;
 
   // 当环境是react时
   const options: { presets: Array<any> } = {
