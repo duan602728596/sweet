@@ -1,6 +1,10 @@
 import { Context } from 'koa';
 import {
-  formatTemplateData, cleanRequireCache, folderPathAnalyze, filePathAnalyze, requireModule,
+  formatTemplateData,
+  cleanRequireCache,
+  folderPathAnalyze,
+  filePathAnalyze,
+  requireModule,
   isReadStream, readStream
 } from './utils';
 import { getControllersFiles, getControllerData } from './controllers';
