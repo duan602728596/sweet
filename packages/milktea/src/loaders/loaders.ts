@@ -1,6 +1,7 @@
 import * as _ from 'lodash';
 import * as Config from 'webpack-chain';
 import jsLoader from './javascript';
+import tsLoader from './typescript';
 import sassLoader from './sass';
 import lessLoader from './less';
 import faviconLoader from './favicon';
@@ -34,6 +35,21 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
       (config: Config): void => {
         // js loader
         jsLoader(sweetConfig, sweetOptions, config);
+      });
+
+  // ts
+  config
+    .when(
+      !!loaders.ts,
+      (config: Config): void => {
+        config
+          .module
+          .rule('ts')
+          .merge(formatLoader(loaders.ts));
+      },
+      (config: Config): void => {
+        // ts loader
+        tsLoader(sweetConfig, sweetOptions, config);
       });
 
   // sass

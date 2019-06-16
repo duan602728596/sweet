@@ -1,6 +1,6 @@
 import * as path from 'path';
 import { babelCache } from './cacheConfig';
-import { SweetOptions, JS } from '../utils/types';
+import { SweetOptions, JS, TS } from '../utils/types';
 
 /* babel-loader配置 */
 // babel plugins
@@ -79,6 +79,20 @@ export function createBabelOptions(sweetOptions: SweetOptions, jsOptions: JS): o
         }
       ]
     ],
+    configFile: false,
+    babelrc: false
+  };
+}
+
+/**
+ * babel-loader for typescript
+ * @param { SweetOptions } sweetOptions
+ */
+export function createBabelForTsOptions(sweetOptions: SweetOptions): object {
+  return {
+    cacheDirectory: path.join(sweetOptions.basicPath, babelCache),
+    presets: [],
+    plugins: [],
     configFile: false,
     babelrc: false
   };

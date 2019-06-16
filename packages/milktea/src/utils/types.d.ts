@@ -17,6 +17,7 @@ export interface SweetOptions {
 
 export interface Loaders {
   js?: RuleSetRule;
+  ts?: RuleSetRule;
   sass?: RuleSetRule;
   css?: RuleSetRule;
   favicon?: RuleSetRule;
@@ -34,6 +35,14 @@ export interface JS {
   plugins?: Array<any>;
   resetPresets?: Array<any>;
   resetPlugins?: Array<any>;
+  exclude?: RuleSetCondition;
+  include?: RuleSetCondition;
+}
+
+export interface TS {
+  typescript?: boolean;
+  presets?: Array<any>;
+  plugins?: Array<any>;
   exclude?: RuleSetCondition;
   include?: RuleSetCondition;
 }
@@ -59,6 +68,7 @@ export interface SweetConfig {
   noParse?: RegExp | Array<RegExp> | ((content: string) => boolean);
   plugins?: Array<Plugin>;
   js?: JS;
+  ts?: TS;
   sass?: {
     publicPath?: string;
     modules?: boolean;

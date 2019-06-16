@@ -21,7 +21,18 @@ export default function(sweetConfig: SweetConfig | null | undefined, sweetOption
    * plugins { Array<any> }: 自定义插件
    */
   const sweetConfigCopy: SweetConfig = _.isPlainObject(sweetConfig) ? { ...sweetConfig } : {};
-  const { mode, entry, output, externals, resolve, rules, noParse, plugins, devtool, chainWebpack }: SweetConfig = sweetConfigCopy;
+  const {
+    mode,
+    entry,
+    output,
+    externals,
+    resolve,
+    rules,
+    noParse,
+    plugins,
+    devtool,
+    chainWebpack
+  }: SweetConfig = sweetConfigCopy;
   const isDevelopment: boolean = mode === 'development';
 
   // 格式化配置
