@@ -35,6 +35,7 @@ const preRender: Function = preRenderInit(sweetOptions);
  * template { string }: html模版名称
  * renderType { string }: html使用的渲染模板
  * log { object }: 日志配置
+ * serverChain { (app: Koa) => void }: 扩展koa中间件配置
  */
 interface ProServerType {
   httpPort?: number;
@@ -81,7 +82,7 @@ async function proServer(argv: ProServerType = {}): Promise<void> {
 
   /* 扩展koa中间件配置 */
   if (serverChain) {
-    serverChain(app);
+    await serverChain(app);
   }
 
   /* 日志 */

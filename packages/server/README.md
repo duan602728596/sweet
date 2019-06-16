@@ -14,7 +14,8 @@ devServer({
   httpsPort,
   serverRender,
   serverRenderFile,
-  renderType
+  renderType,
+  serverChain
 });
 ```
 
@@ -26,6 +27,7 @@ devServer({
 * serverRender `{ boolean }` : 开启服务器端渲染
 * serverRenderFile `{ string }` : 服务器端渲染的主模块文件。默认为`dist-server/server.js`。
 * renderType `{ string }` : html使用的渲染模板，`ejs`或`nunjucks`。默认为`ejs`。
+* serverChain `{ (app: Koa) => void }` : 扩展koa中间件配置。
 
 ## 生产环境下运行服务
 
@@ -42,7 +44,8 @@ proServer({
   serverRender,
   serverRenderFile,
   renderType,
-  log
+  log,
+  serverChain
 });
 ```
 
@@ -58,6 +61,7 @@ proServer({
   * type `{ 'file' | 'http' }` : 日志类型，本地*file* 或 远程接口*http*。
   * pm2 `{ boolean }` : 服务是否在pm2状态下运行。
   * url `{ string }` : 日志的远程接口。
+* serverChain `{ (app: Koa) => void }` : 扩展koa中间件配置。
 
 ## 关于https证书
 

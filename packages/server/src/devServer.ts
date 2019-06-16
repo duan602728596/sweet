@@ -35,6 +35,7 @@ const preRender: Function = preRenderInit(sweetOptions);
  * serverRenderFile { string }: 服务器端渲染的主模块文件
  * env { string }: 运行环境，可能的值为test（测试）
  * renderType { string }: html使用的渲染模板
+ * serverChain { (app: Koa) => void }: 扩展koa中间件配置
  */
 interface DevServerType {
   compiler?: webpack.Compiler;
@@ -84,7 +85,7 @@ async function devServer(argv: DevServerType = {}): Promise<void> {
 
   /* 扩展koa中间件配置 */
   if (serverChain) {
-    serverChain(app);
+    await serverChain(app);
   }
 
   /* 文件压缩 */
