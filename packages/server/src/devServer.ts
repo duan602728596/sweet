@@ -44,6 +44,7 @@ interface DevServerType {
   serverRenderFile?: string;
   env?: string;
   renderType?: 'ejs' | 'nunjucks';
+  serverChain?: (app: Koa) => void;
 }
 
 async function devServer(argv: DevServerType = {}): Promise<void> {
@@ -54,7 +55,8 @@ async function devServer(argv: DevServerType = {}): Promise<void> {
     serverRender,
     serverRenderFile = 'dist-server/server.js',
     env,
-    renderType = 'ejs'
+    renderType = 'ejs',
+    serverChain
   }: DevServerType = argv;
 
   /* https服务 */
@@ -78,6 +80,11 @@ async function devServer(argv: DevServerType = {}): Promise<void> {
     formatServerRenderFile = path.isAbsolute(serverRenderFile)
       ? serverRenderFile
       : path.join(sweetOptions.basicPath, serverRenderFile);
+  }
+
+  /* 扩展koa中间件配置 */
+  if (serverChain) {
+    serverChain(app);
   }
 
   /* 文件压缩 */

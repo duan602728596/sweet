@@ -45,6 +45,7 @@ interface ProServerType {
   template?: string;
   renderType?: 'ejs' | 'nunjucks';
   log?: Log;
+  serverChain?: (app: Koa) => void;
 }
 
 async function proServer(argv: ProServerType = {}): Promise<void> {
@@ -56,7 +57,8 @@ async function proServer(argv: ProServerType = {}): Promise<void> {
     serverRenderFile = 'dist-server/server.js',
     template = 'index.html',
     renderType = 'ejs',
-    log
+    log,
+    serverChain
   }: ProServerType = argv;
 
   /* 合并配置项 */
@@ -75,6 +77,11 @@ async function proServer(argv: ProServerType = {}): Promise<void> {
     formatServerRenderFile = path.isAbsolute(serverRenderFile)
       ? serverRenderFile
       : path.join(sweetOptions.basicPath, serverRenderFile);
+  }
+
+  /* 扩展koa中间件配置 */
+  if (serverChain) {
+    serverChain(app);
   }
 
   /* 日志 */
