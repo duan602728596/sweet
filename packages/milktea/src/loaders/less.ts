@@ -32,7 +32,7 @@ export default function(sweetConfig: SweetConfig, config: Config, typescript: bo
 
   // style-loader
   const styleLoader: string | any = createStyleLoader(frame, isDevelopment);
-  const styleLoaderOptions: object = { publicPath };
+  const styleLoaderOptions: object = isDevelopment ? {} : { publicPath };
 
   // css-loader
   const sr: boolean = !!serverRender;
