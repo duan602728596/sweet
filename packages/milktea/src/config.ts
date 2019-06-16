@@ -36,7 +36,10 @@ export default function(sweetConfig: SweetConfig | null | undefined, sweetOption
   config
     .merge({
       mode,
-      devtool: devtool ? devtool : (isDevelopment ? 'module-eval-source-map' : 'none')
+      devtool: devtool ? devtool : (isDevelopment ? 'module-eval-source-map' : 'none'),
+      resolve: {
+        extensions: ['js', 'jsx', 'mjs', 'json', 'ts', 'tsx']
+      }
     });
 
   // 设置文件输出
