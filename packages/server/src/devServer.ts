@@ -1,7 +1,5 @@
 /* 开发环境 服务器 */
 import * as http from 'http';
-import * as https from 'https';
-import { Server } from 'https';
 import * as http2 from 'http2';
 import * as fs from 'fs';
 import * as process from 'process';
@@ -13,8 +11,8 @@ import * as compress from '@bbkkbkk/koa-compress';
 import * as mime from 'mime-types';
 import * as webpack from 'webpack';
 import * as koaWebpack from 'koa-webpack';
-import * as _ from 'lodash';
 import * as register from '@babel/register';
+import createKoaWebpack from './devServer/createKoaWebpack';
 import registerConfig from './utils/registerConfig';
 import { readFile, defaultApiPath, cleanRequireCache, requireModule } from './utils/utils';
 import preRenderInit from './utils/preDevRender';
@@ -95,52 +93,7 @@ async function devServer(argv: DevServerType = {}): Promise<void> {
     .use(router.allowedMethods());
 
   /* webpack中间件 */
-  let server: Server | undefined = undefined;
-
-  if (useHttps && keyFile && crtFile) {
-    server = https.createServer({
-      key: keyFile,
-      cert: crtFile
-    }).listen(_.random(15000, 50000), '127.0.0.1');
-  }
-
-  const middlewareConfig: {
-    compiler?: webpack.Compiler;
-    hotClient: {
-      host: {
-        client: string;
-        server: string;
-      };
-      https: boolean;
-      server?: Server;
-      logLevel?: string;
-    };
-    devMiddleware: {
-      serverSideRender: boolean;
-      logLevel?: string;
-    };
-  } = {
-    compiler,
-    hotClient: {
-      host: {
-        client: '*',
-        server: '0.0.0.0'
-      },
-      https: useHttps,
-      server
-    },
-    devMiddleware: {
-      serverSideRender: true
-    }
-  };
-
-  // 测试配置
-  if (env === 'test') {
-    middlewareConfig.hotClient.logLevel = 'silent';
-    middlewareConfig.devMiddleware.logLevel = 'silent';
-  }
-
-  const middleware: koaWebpack.Middleware<any> = await koaWebpack(middlewareConfig);
+  const middleware: koaWebpack.Middleware<any> = await createKoaWebpack(compiler, env, useHttps, keyFile, crtFile);
 
   app.use(middleware);
 
