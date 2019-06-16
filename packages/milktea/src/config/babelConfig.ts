@@ -39,16 +39,17 @@ export function createTargets(): object {
  * @babel/preset-env
  * @param { object | undefined } customTargets: 自定义@babel/preset-env的编译目标
  * @param { boolean } debug: 是否debug
+ * @param { boolean } notUseBuiltIns: 不使用core-js
  */
-export function createPresetEnv(customTargets: object | undefined, debug: boolean): Array<any> {
+export function createPresetEnv(customTargets: object | undefined, debug: boolean, notUseBuiltIns?: boolean): Array<any> {
   return [
     '@babel/preset-env',
     {
       targets: customTargets ? customTargets : createTargets(),
       debug,
       modules: false,
-      useBuiltIns: 'usage',
-      corejs: 3
+      useBuiltIns: notUseBuiltIns ? false : 'usage',
+      corejs: notUseBuiltIns ? undefined : 3
     }
   ];
 }
