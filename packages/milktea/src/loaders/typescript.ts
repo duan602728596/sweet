@@ -12,7 +12,7 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
    * ts { object } loader里面ts的配置
    * frame { string } 是否为react或vue模式
    */
-  const { mode, ts }: SweetConfig = sweetConfig;
+  const { ts }: SweetConfig = sweetConfig;
   const frame: string | undefined = sweetConfig.frame;
 
   // 获取配置

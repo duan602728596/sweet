@@ -6,7 +6,7 @@ import * as Config from 'webpack-chain';
 import * as HtmlWebpackPlugin from 'html-webpack-plugin';
 import * as VueLoaderPlugin from 'vue-loader/lib/plugin';
 import { requireModule } from '../utils/utils';
-import { SweetConfig, SweetOptions } from '../utils/types';
+import { SweetConfig, SweetOptions, TS } from '../utils/types';
 
 export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, config: Config): void {
   /**
@@ -14,9 +14,11 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
    * html { object }: html配置
    * frame { string }: 是否为react或vue模式
    * serverRender { boolean }: 开启服务器端渲染
+   * loaders { object }: loaders
    */
-  const { mode, html, frame, serverRender }: SweetConfig = sweetConfig;
+  const { mode, html, frame, serverRender, ts }: SweetConfig = sweetConfig;
   const isDevelopment: boolean = mode === 'development';
+  const tsOptions: TS = ts || {};
 
   // 根据模式加载插件
   const envPlugins: Function = isDevelopment
@@ -30,6 +32,14 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
       resourceRegExp: /^\.\/locale$/,
       contextRegExp: /moment$/
     }]);
+
+  // typescript
+  config
+    .when(!!tsOptions.typescript, (config: Config): void => {
+      config
+        .plugin('webpack.WatchIgnorePlugin')
+        .use(webpack.WatchIgnorePlugin, [/(less|sass|scss|styl|css)\.d\.ts$/]);
+    });
 
   // env plugin
   envPlugins(sweetConfig, sweetOptions, config);
