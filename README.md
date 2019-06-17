@@ -14,8 +14,8 @@ sweet是一个webpack的通用配置解决方案。
 
 ## packages：
 
-* [@sweet/milktea](packages/milktea/README.md)
-* [@sweet/milktea-cli](packages/milktea-cli/README.md)
-* [@sweet/server](packages/server/README.md)
-* [@sweet/server-log](packages/server-log/README.md)
-* [@sweet/util-tools](packages/util-tools/README.md)
+* [@sweet-milktea/milktea](packages/milktea/README.md)
+* [@sweet-milktea/milktea-cli](packages/milktea-cli/README.md)
+* [@sweet-milktea/server](packages/server/README.md)
+* [@sweet-milktea/server-log](packages/server-log/README.md)
+* [@sweet-milktea/util-tools](packages/util-tools/README.md)

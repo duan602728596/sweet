@@ -1,13 +1,13 @@
-# @sweet/server-log
+# @sweet-milktea/server-log
 
 生产环境下的日志扩展。
 
 ## 使用方法
 
 ```javascript
-import serverLog from '@sweet/server-log';
+import serverLog from '@sweet-milktea/server-log';
 
-const { accessLogger, logger }serverLog(type, {
+const { accessLogger, logger } = serverLog(type, {
   pm2,
   basicPath,
   url

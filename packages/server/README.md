@@ -1,4 +1,4 @@
-# @sweet/server
+# @sweet-milktea/server
 
 ## 开发环境下运行服务
 
@@ -6,7 +6,7 @@
 
 ```javascript
 import webpack from 'webpack';
-import devServer from '@sweet/server/lib/sevServer';
+import devServer from '@sweet-milktea/server/devServer';
 
 devServer({
   compiler,
@@ -35,7 +35,7 @@ devServer({
 
 ```javascript
 import webpack from 'webpack';
-import proServer from '@sweet/server/lib/proServer';
+import proServer from '@sweet-milktea/server/proServer';
 
 proServer({
   httpPort,

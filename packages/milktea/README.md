@@ -1,4 +1,4 @@
-# @sweet/milktea
+# @sweet-milktea/milktea
 
 ## 使用
 
@@ -13,7 +13,7 @@ import {
   config as webpackConfig, // webpack配置
   serverRenderConfig,      // webpack服务器端渲染配置
   callback                 // webpack的回调函数
-} from '@sweet/milktea';
+} from '@sweet-milktea/milktea';
 
 // mode`{ string }` : 开发模式`development`还是生产模式`production`
 const mode = 'development';

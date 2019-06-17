@@ -7,7 +7,7 @@
 使用方法：
 
 ```javascript
-import update from '@sweet/util-tools/lib/update';
+import update from '@sweet-milktea/util-tools/lib/update';
 
 update(
   ['path/to/project'], // 项目工程目录的数组
@@ -20,7 +20,7 @@ update(
 使用方法：
 
 ```javascript
-import image2webp from '@sweet/util-tools/lib/image2webp';
+import image2webp from '@sweet-milktea/util-tools/lib/image2webp';
 
 image2webp(
   './src',   // 入口文件夹
@@ -34,7 +34,7 @@ image2webp(
 使用方法：
 
 ```javascript
-import imageCompress from '@sweet/util-tools/lib/imageCompress';
+import imageCompress from '@sweet-milktea/util-tools/lib/imageCompress';
 
 imageCompress(
   './src',   // 入口文件夹

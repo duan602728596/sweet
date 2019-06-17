@@ -1,4 +1,4 @@
-# @sweet/milktea-cli
+# @sweet-milktea/milktea-cli
 
 milktea-cli是一个快速运行环境的工具。
 
