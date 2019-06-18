@@ -6,7 +6,6 @@
     "eslint": "eslint ./ --ext .js,.jsx,.ts,.tsx --fix",
     "tslint": "tslint --project ./ --fix",
     "lerna:install": "lerna bootstrap --force-local",
-    "copy": "ts-node ./scripts/copy",
     "case-check": "case-check --dir=\"./\"",
     "update": "milktea update",
     "update:dev": "milktea update --__DEV__"
@@ -24,7 +23,6 @@
     "es-module-path-case-check": "^1.4.0",
     "eslint": "^5.16.0",
     "eslint-plugin-react": "^7.13.0",
-    "fs-extra": "^8.0.1",
     "gulp": "^4.0.2",
     "gulp-typescript": "^5.0.1",
     "husky": "^2.4.1",
