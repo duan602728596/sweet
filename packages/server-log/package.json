@@ -1,6 +1,6 @@
 {
   "name": "@sweet-milktea/server-log",
-  "version": "0.0.2",
+  "version": "0.3.0",
   "description": "服务端的koa日志中间件函数",
   "main": "lib/index.js",
   "scripts": {

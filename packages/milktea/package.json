@@ -1,6 +1,6 @@
 {
   "name": "@sweet-milktea/milktea",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "webpack配置函数",
   "main": "lib/milktea.js",
   "scripts": {
