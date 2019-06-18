@@ -1,6 +1,6 @@
 import path from 'path';
 import { expect } from 'chai';
-import update from '../../lib/update';
+import update from '../../update';
 
 describe('update', function() {
   it('update', async function() {

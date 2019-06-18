@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import { expect } from 'chai';
-import imageCompression from '../../lib/imageCompress';
+import imageCompression from '../../imageCompress';
 
 describe('imageCompression', function() {
   it('should has a jpg picture file, a png picture file and a gif picture file', async function() {
