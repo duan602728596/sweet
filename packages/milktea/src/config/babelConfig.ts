@@ -1,6 +1,6 @@
 import * as path from 'path';
 import { babelCache } from './cacheConfig';
-import { SweetOptions, JS, TS } from '../utils/types';
+import { SweetOptions, JS } from '../utils/types';
 
 /* babel-loader配置 */
 // babel plugins

@@ -1,4 +1,5 @@
 import * as path from 'path';
+import { logsCache, accessCache, applicationCache, logs } from './cacheConfig';
 
 /**
  * 创建本地文件日志的配置
@@ -6,20 +7,20 @@ import * as path from 'path';
  * @param { boolean } pm2: 是否启动pm2
  */
 function createFileConfig(basicPath: string, pm2: boolean): object {
-  const dir: string = path.join(basicPath, '.sweet/logs');
+  const dir: string = path.join(basicPath, logsCache);
 
   return {
     appenders: {
       access: {
         type: 'dateFile',
-        filename: path.join(dir, 'access'),
-        pattern: 'yyyy-MM-dd.log',
+        filename: path.join(dir, accessCache),
+        pattern: logs,
         alwaysIncludePattern: true
       },
       application: {
         type: 'dateFile',
-        filename: path.join(dir, 'application'),
-        pattern: 'yyyy-MM-dd.log',
+        filename: path.join(dir, applicationCache),
+        pattern: logs,
         alwaysIncludePattern: true
       }
     },
