@@ -85,7 +85,7 @@ async function devServer(argv: DevServerType = {}): Promise<void> {
 
   await middleware(app, router, compiler, env, useHttps, keyFile, crtFile);
 
-  createRouters(router, sweetOptions, !!serverRender, serverRenderFile);
+  createRouters(router, sweetOptions, !!serverRender, formatServerRenderFile);
 
   /* 本地api */
   if (fs.existsSync(defaultApiPath(sweetOptions.basicPath))) {
