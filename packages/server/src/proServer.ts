@@ -7,14 +7,11 @@ import * as path from 'path';
 import * as Koa from 'koa';
 import { Context } from 'koa';
 import * as Router from '@eggjs/router';
-import * as body from 'koa-body';
-import * as staticCache from 'koa-static-cache';
-import * as compress from '@bbkkbkk/koa-compress';
 import * as register from '@babel/register';
+import middleware from './proServer/middleware';
+import createRouters from './proServer/createRouters';
 import registerConfig from './utils/registerConfig';
 import { readFile, defaultApiPath, requireModule } from './utils/utils';
-import preRenderInit from './utils/preProRender';
-import logs from './logs/logs';
 import { SweetOptions, Log } from './utils/types';
 
 const app: Koa = new Koa();
@@ -24,7 +21,6 @@ const router: Router = new Router();
 const sweetOptions: SweetOptions = {
   basicPath: process.cwd() // 主目录
 };
-const preRender: Function = preRenderInit(sweetOptions);
 
 /**
  * httpPort { number }: http端口号
@@ -72,7 +68,7 @@ async function proServer(argv: ProServerType = {}): Promise<void> {
   const formatServerRoot: string = path.isAbsolute(serverRoot)
     ? serverRoot
     : path.join(sweetOptions.basicPath, serverRoot);
-  let formatServerRenderFile: string;
+  let formatServerRenderFile: string = '';
 
   if (serverRender) {
     formatServerRenderFile = path.isAbsolute(serverRenderFile)
@@ -85,57 +81,9 @@ async function proServer(argv: ProServerType = {}): Promise<void> {
     await serverChain(app);
   }
 
-  /* 日志 */
-  if (log) {
-    logs(app, log, sweetOptions);
-  }
+  middleware(app, router, sweetOptions, log, formatServerRoot);
 
-  /* post body */
-  app.use(body());
-
-  /* 文件压缩 */
-  app.use(compress());
-
-  /* 缓存 */
-  app.use(staticCache(formatServerRoot, {
-    maxAge: (60 ** 2) * 24 * 365,
-    filter: (file: string): boolean => !/^.*\.html$/.test(file)
-  }));
-
-  /* router */
-  app.use(router.routes())
-    .use(router.allowedMethods());
-
-  /* index路由 */
-  router.get(/^\/[^._\-]*$/, async (ctx: Context, next: Function): Promise<void> => {
-    try {
-      const ctxPath: string = ctx.path;
-      const body: Buffer = await readFile(path.join(formatServerRoot, template));
-
-      ctx.status = 200;
-      ctx.type = 'text/html';
-      ctx.body = serverRender ? await preRender(ctxPath, ctx, body, formatServerRenderFile) : body;
-
-      await next();
-    } catch (err) {
-      ctx.status = 500;
-      ctx.body = err;
-
-      console.error(err);
-    }
-  });
-
-  /* html文件允许使用ejs模板 */
-  router.get(/^.*\.html$/, async (ctx: Context, next: Function): Promise<void> => {
-    const ctxPath: string = ctx.path;
-    const body: Buffer = await readFile(path.join(formatServerRoot, ctxPath));
-
-    ctx.status = 200;
-    ctx.type = 'text/html';
-    ctx.body = serverRender ? await preRender(ctxPath, ctx, body, formatServerRenderFile) : body;
-
-    await next();
-  });
+  createRouters(router, sweetOptions, !!serverRender, formatServerRenderFile, formatServerRoot, template);
 
   /* 本地api */
   if (fs.existsSync(defaultApiPath(sweetOptions.basicPath))) {

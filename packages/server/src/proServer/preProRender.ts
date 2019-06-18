@@ -1,8 +1,8 @@
 import { Context } from 'koa';
-import { formatTemplateData, folderPathAnalyze, filePathAnalyze, requireModule, isReadStream, readStream } from './utils';
-import { getControllersFilesSync, getControllerData } from './controllers';
-import createRenderEngine from './createRenderEngine';
-import { SweetOptions } from './types';
+import { formatTemplateData, folderPathAnalyze, filePathAnalyze, requireModule, isReadStream, readStream } from '../utils/utils';
+import { getControllersFilesSync, getControllerData } from '../utils/controllers';
+import createRenderEngine from '../utils/createRenderEngine';
+import { SweetOptions } from '../utils/types';
 
 // 渲染新的html
 function preRenderInit(sweetOptions: SweetOptions): Function {

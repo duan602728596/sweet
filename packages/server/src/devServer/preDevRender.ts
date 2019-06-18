@@ -6,10 +6,10 @@ import {
   filePathAnalyze,
   requireModule,
   isReadStream, readStream
-} from './utils';
-import { getControllersFiles, getControllerData } from './controllers';
-import createRenderEngine from './createRenderEngine';
-import { SweetOptions } from './types';
+} from '../utils/utils';
+import { getControllersFiles, getControllerData } from '../utils/controllers';
+import createRenderEngine from '../utils/createRenderEngine';
+import { SweetOptions } from '../utils/types';
 
 // 渲染新的html
 function preRenderInit(sweetOptions: SweetOptions): Function {
