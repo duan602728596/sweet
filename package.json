@@ -22,7 +22,7 @@
   "devDependencies": {
     "@sweet-milktea/milktea": "^0.3.0",
     "@sweet-milktea/util-tools": "^0.3.0",
-    "antd": "^3.19.5",
+    "antd": "^3.19.6",
     "axios": "^0.19.0",
     "babel-eslint": "^10.0.2",
     "babel-plugin-import": "^1.12.0",
