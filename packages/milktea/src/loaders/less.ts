@@ -2,7 +2,7 @@ import * as _ from 'lodash';
 import * as Config from 'webpack-chain';
 import { Rule, OneOf } from 'webpack-chain';
 import { createStyleLoader, createCssOptions, createLessOptions } from '../config/cssConfig';
-import { SweetConfig, CSS } from '../utils/types';
+import { SweetConfig, LESS } from '../utils/types';
 
 /* less & css 配置 */
 export default function(sweetConfig: SweetConfig, config: Config): void {
@@ -14,8 +14,8 @@ export default function(sweetConfig: SweetConfig, config: Config): void {
    */
   const { mode, css, frame, serverRender }: SweetConfig = sweetConfig;
   const isDevelopment: boolean = mode === 'development';
-  const cssOptions: CSS = css || {};
-  const { publicPath, modules = true, exclude, include, modifyVars, localIdentName, getLocalIdent }: CSS = cssOptions;
+  const cssOptions: LESS = css || {};
+  const { publicPath, modules = true, exclude, include, modifyVars, localIdentName, getLocalIdent }: LESS = cssOptions;
 
   config
     .merge({

@@ -51,9 +51,16 @@ export interface CSS {
   modules?: boolean;
   exclude?: RuleSetCondition;
   include?: RuleSetCondition;
-  modifyVars?: object;
   localIdentName?: string;
   getLocalIdent?: Function;
+}
+
+export interface LESS extends CSS {
+  modifyVars?: object;
+}
+
+export interface SASS extends CSS {
+  data?: string | Function;
 }
 
 export interface SweetConfig {

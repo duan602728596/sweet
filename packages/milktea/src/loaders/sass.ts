@@ -2,7 +2,7 @@ import * as _ from 'lodash';
 import * as Config from 'webpack-chain';
 import { Rule, OneOf } from 'webpack-chain';
 import { createStyleLoader, createCssOptions, createSassOptions } from '../config/cssConfig';
-import { SweetConfig, CSS } from '../utils/types';
+import { SweetConfig, SASS } from '../utils/types';
 
 /* sass 配置 */
 export default function(sweetConfig: SweetConfig, config: Config): void {
@@ -14,8 +14,8 @@ export default function(sweetConfig: SweetConfig, config: Config): void {
    */
   const { mode, sass, frame, serverRender }: SweetConfig = sweetConfig;
   const isDevelopment: boolean = mode === 'development';
-  const sassOptions: CSS = sass || {};
-  const { publicPath, modules = true, exclude, include, localIdentName, getLocalIdent }: CSS = sassOptions;
+  const sassOptions: SASS = sass || {};
+  const { publicPath, modules = true, exclude, include, data, localIdentName, getLocalIdent }: SASS = sassOptions;
 
   config
     .merge({
@@ -40,7 +40,7 @@ export default function(sweetConfig: SweetConfig, config: Config): void {
   const ScopedCssLoaderOptions: object = createCssOptions(false, isDevelopment, sr);
 
   // sass-loader
-  const sassLoaderOptions: object = createSassOptions(isDevelopment);
+  const sassLoaderOptions: object = createSassOptions(data, isDevelopment);
 
   const sassRule: Rule = config
     .module
