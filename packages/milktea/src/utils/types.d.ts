@@ -52,6 +52,8 @@ export interface CSS {
   exclude?: RuleSetCondition;
   include?: RuleSetCondition;
   modifyVars?: object;
+  localIdentName?: string;
+  getLocalIdent?: Function;
 }
 
 export interface SweetConfig {

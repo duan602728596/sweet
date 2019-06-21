@@ -13,6 +13,11 @@ export function cssLoaderGetLocalIdent(
   localName: string,
   options: { [key: string]: any }
 ): string {
+  // node_modules 和 global文件直接返回className
+  if (/(node_modules|global\.(le|c|sa|sc)ss)/i.test(loaderContext.resourcePath)) {
+    return localName;
+  }
+
   if (!options.context) {
     options.context = loaderContext.rootContext;
   }
@@ -49,12 +54,20 @@ export function createStyleLoader(frame: 'react' | 'vue' | 'test' | undefined, i
  * @param { boolean } modules: 是否开启css-modules
  * @param { boolean } isDevelopment: 是否为开发环境
  * @param { boolean } serverRender: 是否为服务器端渲染
+ * @param { string } localIdentName: localIdentName
+ * @param { Function } getLocalIdent: getLocalIdent
  */
-export function createCssOptions(modules: boolean, isDevelopment: boolean, serverRender: boolean): object {
+export function createCssOptions(
+  modules: boolean,
+  isDevelopment: boolean,
+  serverRender: boolean,
+  localIdentName?: string,
+  getLocalIdent?: Function
+): object {
   return {
     modules: modules ? {
-      localIdentName: isDevelopment ? '[path][name]__[local]___[hash:base64:6]' : '_[hash:base64:6]',
-      getLocalIdent: cssLoaderGetLocalIdent
+      localIdentName: localIdentName || (isDevelopment ? '[path][name]__[local]___[hash:base64:6]' : '_[hash:base64:6]'),
+      getLocalIdent: getLocalIdent || cssLoaderGetLocalIdent
     } : false,
     onlyLocals: serverRender,
     sourceMap: isDevelopment

@@ -15,7 +15,7 @@ export default function(sweetConfig: SweetConfig, config: Config): void {
   const { mode, sass, frame, serverRender }: SweetConfig = sweetConfig;
   const isDevelopment: boolean = mode === 'development';
   const sassOptions: CSS = sass || {};
-  const { publicPath, modules = true, exclude, include }: CSS = sassOptions;
+  const { publicPath, modules = true, exclude, include, localIdentName, getLocalIdent }: CSS = sassOptions;
 
   config
     .merge({
@@ -36,7 +36,7 @@ export default function(sweetConfig: SweetConfig, config: Config): void {
 
   // css-loader
   const sr: boolean = !!serverRender;
-  const cssLoaderOptions: object = createCssOptions(modules, isDevelopment, sr);
+  const cssLoaderOptions: object = createCssOptions(modules, isDevelopment, sr, localIdentName, getLocalIdent);
   const ScopedCssLoaderOptions: object = createCssOptions(false, isDevelopment, sr);
 
   // sass-loader
