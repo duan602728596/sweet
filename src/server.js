@@ -6,7 +6,7 @@ import { createRenderer } from 'vue-server-renderer';
 import App from './App';
 import { storeFactory } from './store/store';
 import routers from './router/routers';
-import './common.sass';
+import './global.sass';
 
 Vue.component('helmet', Helmet);
 Vue.component('helmet-provider', HelmetProvider);
