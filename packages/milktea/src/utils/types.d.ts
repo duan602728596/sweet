@@ -77,19 +77,8 @@ export interface SweetConfig {
   plugins?: Array<Plugin>;
   js?: JS;
   ts?: TS;
-  sass?: {
-    publicPath?: string;
-    modules?: boolean;
-    exclude?: RuleSetCondition;
-    include?: RuleSetCondition;
-  };
-  css?: {
-    publicPath?: string;
-    modules?: boolean;
-    exclude?: RuleSetCondition;
-    include?: RuleSetCondition;
-    modifyVars?: object;
-  };
+  sass?: SASS;
+  css?: LESS;
   html?: Array<{
     template: string;
     excludeChunks: Array<string>;
