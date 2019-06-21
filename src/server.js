@@ -9,7 +9,7 @@ import Helmet from 'react-helmet';
 import { LocaleProvider } from 'antd';
 import zhCN from 'antd/lib/locale-provider/zh_CN';
 import { storeFactory } from './store/store';
-import './common.sass';
+import './global.sass';
 import Arrangement from './layouts/Arrangement/server';
 
 async function server(url, context = {}, initialState = {}) {
