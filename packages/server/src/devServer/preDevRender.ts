@@ -25,7 +25,7 @@ function preRenderInit(sweetOptions: SweetOptions): Function {
     const renderEngine: Function = createRenderEngine(sweetOptions.renderType);
     const controllersMap: Map<string, string> = await getControllersFiles(basicPath);
     const folderPathFile: string = `${ folderPathAnalyze(ctxPath) }.js`; // 格式化为：path/to/file.js
-    const formatFile: string = `${ filePathAnalyze(ctxPath) }.js`; // 格式化为：path.to.file.js
+    const formatFile: string = `${ filePathAnalyze(ctxPath) }.js`;       // 格式化为：path.to.file.js
     const data: any = await getControllerData(ctx, sweetOptions, controllersMap, folderPathFile, formatFile);
 
     // ssr渲染
