@@ -41,6 +41,7 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
           .use(TerserPlugin, [{
             cache: path.join(sweetOptions.basicPath, terserCache),
             parallel: true,
+            sourceMap: true,
             terserOptions
           }]);
       }
