@@ -20,7 +20,7 @@
     "pm2": "^3.5.1"
   },
   "devDependencies": {
-    "@sweet-milktea/milktea": "^0.3.1",
+    "@sweet-milktea/milktea": "^0.3.2",
     "@sweet-milktea/util-tools": "^0.3.0",
     "antd": "^3.19.7",
     "axios": "^0.19.0",
