@@ -47,8 +47,8 @@ interface ProServerType {
 
 async function proServer(argv: ProServerType = {}): Promise<void> {
   const {
-    httpPort = 5052,
-    httpsPort = 5053,
+    httpPort = 80,
+    httpsPort = 443,
     serverRoot = 'dist',
     serverRender,
     serverRenderFile = 'dist-server/server.js',

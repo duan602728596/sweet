@@ -51,8 +51,8 @@ proServer({
 
 ### 配置
 
-* httpPort `{ number }` : http端口号，默认为5052。
-* httpsPort `{ number }` : https端口号，默认为5053。
+* httpPort `{ number }` : http端口号，默认为80。
+* httpsPort `{ number }` : https端口号，默认为443。
 * serverRoot `{ string }` : 生产环境下的服务器静态文件入口。默认为`dist`。
 * serverRender `{ boolean }` : 开启服务器端渲染
 * serverRenderFile `{ string }` : 服务器端渲染的主模块文件。默认为`dist-server/server.js`。

@@ -36,8 +36,8 @@ describe('production server', function() {
     await runServer();
 
     // 请求文件
-    const resHtml = await reqData('http://127.0.0.1:5052');
-    const resJs = await reqData('http://127.0.0.1:5052/index.js');
+    const resHtml = await reqData('http://127.0.0.1');
+    const resJs = await reqData('http://127.0.0.1/index.js');
 
     expect(resHtml.statusCode).to.be.equal(200);
     expect(resJs.statusCode).to.be.equal(200);
