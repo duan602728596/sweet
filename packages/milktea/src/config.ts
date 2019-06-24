@@ -58,7 +58,8 @@ export default function(sweetConfig: SweetConfig | null | undefined, sweetOption
     .output
     .path(path.join(sweetOptions.basicPath, 'dist'))
     .filename(filename)
-    .chunkFilename(filename);
+    .chunkFilename(filename)
+    .globalObject('this');
 
   // loaders
   loaders(sweetConfigCopy, sweetOptions, config);

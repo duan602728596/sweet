@@ -45,7 +45,8 @@ export default function(sweetConfig: SweetConfig | null | undefined, sweetOption
     .path(path.join(sweetOptions.basicPath, dllCache))
     .filename('[name].js')
     .library('[name]_[hash:5]')
-    .libraryTarget('var');
+    .libraryTarget('var')
+    .globalObject('this');
 
   // babel
   config
