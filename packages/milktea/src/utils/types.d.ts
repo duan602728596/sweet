@@ -63,8 +63,10 @@ export interface SASS extends CSS {
   data?: string | Function;
 }
 
+export type Mode = 'development' | 'production' | 'none';
+
 export interface SweetConfig {
-  mode?: 'development' | 'production' | 'none';
+  mode?: Mode;
   dll?: Array<string>;
   entry?: string | Array<string> | Entry | EntryFunc;
   output?: Output;

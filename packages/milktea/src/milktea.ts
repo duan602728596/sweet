@@ -4,8 +4,11 @@ import { Configuration, Stats } from 'webpack';
 import webpackConfig from './config';
 import webpackServerRenderConfig from './server';
 import webpackDllConfig from './dll';
-import { SweetConfig, SweetOptions } from './utils/types';
+import { SweetConfig, SweetOptions, Mode } from './utils/types';
 import getSweetConfigFile from './utils/getSweetConfigFile';
+
+type SweetConfigArgu = SweetConfig | string | null | undefined;
+type Config = SweetConfig | null | undefined;
 
 /* 基础配置 */
 const sweetOptions: SweetOptions = {
@@ -21,14 +24,14 @@ export function callback(err: Error, stats: Stats): void {
 
 /**
  * webpack配置
- * @param { object | string | null } sweetConfig: webpack配置，覆盖文件，优先级最高
+ * @param { SweetConfig | string | null | undefined } sweetConfig: webpack配置，覆盖文件，优先级最高
  * @param { string } mode: 开发环境，覆盖配置的开发环境
  */
 export function config(
-  sweetConfig?: SweetConfig | string | null | undefined,
-  mode?: 'development' | 'production' | 'none'
+  sweetConfig?: SweetConfigArgu,
+  mode?: Mode
 ): Configuration {
-  let config: SweetConfig | null | undefined;
+  let config: Config;
 
   if (typeof sweetConfig === 'string') {
     config = getSweetConfigFile(sweetOptions, sweetConfig);
@@ -47,14 +50,14 @@ export function config(
 
 /**
  * 服务器端渲染的webpack配置
- * @param { object | string | null } sweetConfig: webpack配置，覆盖文件，优先级最高
+ * @param { SweetConfig | string | null | undefined } sweetConfig: webpack配置，覆盖文件，优先级最高
  * @param { string } mode: 开发环境，覆盖配置的开发环境
  */
 export function serverRenderConfig(
-  sweetConfig?: SweetConfig | string | null | undefined,
-  mode?: 'development' | 'production' | 'none'
+  sweetConfig?: SweetConfigArgu,
+  mode?: Mode
 ): Configuration {
-  let config: SweetConfig | null | undefined;
+  let config: Config;
 
   if (typeof sweetConfig === 'string') {
     config = getSweetConfigFile(sweetOptions, sweetConfig);
@@ -73,10 +76,10 @@ export function serverRenderConfig(
 
 /**
  * webpack的dll文件配置
- * @param { object | string | null } sweetConfig: webpack配置，覆盖文件，优先级最高
+ * @param { SweetConfig | string | null | undefined } sweetConfig: webpack配置，覆盖文件，优先级最高
  */
-export function dllConfig(sweetConfig?: SweetConfig | string | null | undefined): Configuration {
-  let config: SweetConfig | null | undefined;
+export function dllConfig(sweetConfig?: SweetConfigArgu): Configuration {
+  let config: Config;
 
   if (typeof sweetConfig === 'string') {
     config = getSweetConfigFile(sweetOptions, sweetConfig);
