@@ -29,17 +29,6 @@ export function formatTemplateData(data: object): object {
   }, {});
 }
 
-/* 清除模块缓存 */
-export function cleanRequireCache(id: any): void {
-  const modulePath: string = require.resolve(id);
-
-  if (module.parent) {
-    module.parent.children.splice(module.parent.children.indexOf(id), 1);
-  }
-
-  require.cache[modulePath] = null;
-}
-
 /* 格式化路径 */
 export function folderPathAnalyze(file: string): string {
   const fileArr: Array<string> = _.without(file.split('/'), '');
@@ -66,8 +55,28 @@ export const defaultApiPath: Function = (basicPath: string): string => {
   return path.join(basicPath, 'api/api.js');
 };
 
+/* 清除模块缓存（只用于开发环境） */
+export function cleanRequireCache(id: any): void {
+  const modulePath: string = require.resolve(id);
+
+  if (module.parent) {
+    module.parent.children.splice(module.parent.children.indexOf(id), 1);
+  }
+
+  delete require.cache[modulePath];
+}
+
 /* 模块导入 */
 export function requireModule(id: string): any {
+  const module: { default: any } | any = require(id);
+
+  return 'default' in module ? module.default : module;
+}
+
+/* 模块导入并且清除缓存 */
+export function deleteCacheAndRequireModule(id: string): any {
+  cleanRequireCache(id);
+
   const module: { default: any } | any = require(id);
 
   return 'default' in module ? module.default : module;
