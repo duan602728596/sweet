@@ -7,11 +7,10 @@ import * as path from 'path';
 import * as Koa from 'koa';
 import * as Router from '@eggjs/router';
 import * as webpack from 'webpack';
-import * as register from '@babel/register';
 import middleware from './devServer/middleware';
 import createRouters from './devServer/createRouters';
-import registerConfig from './utils/registerConfig';
-import { readFile, defaultApiPath, cleanRequireCache, requireModule } from './utils/utils';
+import createApi from './utils/createApi';
+import { readFile } from './utils/utils';
 import { SweetOptions } from './utils/types';
 
 const app: Koa = new Koa();
@@ -88,17 +87,7 @@ async function devServer(argv: DevServerType = {}): Promise<void> {
   createRouters(router, sweetOptions, !!serverRender, formatServerRenderFile);
 
   /* 本地api */
-  if (fs.existsSync(defaultApiPath(sweetOptions.basicPath))) {
-    register(registerConfig(sweetOptions));
-
-    const defaultApi: string = defaultApiPath(sweetOptions.basicPath);
-
-    cleanRequireCache(defaultApi);
-
-    const routers: Function = requireModule(defaultApi);
-
-    routers(router, sweetOptions, app);
-  }
+  createApi(sweetOptions, router, app, true);
 
   /* http服务 */
   http.createServer(app.callback())

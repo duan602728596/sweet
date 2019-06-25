@@ -5,13 +5,11 @@ import * as fs from 'fs';
 import * as process from 'process';
 import * as path from 'path';
 import * as Koa from 'koa';
-import { Context } from 'koa';
 import * as Router from '@eggjs/router';
-import * as register from '@babel/register';
 import middleware from './proServer/middleware';
 import createRouters from './proServer/createRouters';
-import registerConfig from './utils/registerConfig';
-import { readFile, defaultApiPath, requireModule } from './utils/utils';
+import createApi from './utils/createApi';
+import { readFile } from './utils/utils';
 import { SweetOptions, Log } from './utils/types';
 
 const app: Koa = new Koa();
@@ -86,14 +84,7 @@ async function proServer(argv: ProServerType = {}): Promise<void> {
   createRouters(router, sweetOptions, !!serverRender, formatServerRenderFile, formatServerRoot, template);
 
   /* 本地api */
-  if (fs.existsSync(defaultApiPath(sweetOptions.basicPath))) {
-    register(registerConfig(sweetOptions));
-
-    const defaultApi: string = defaultApiPath(sweetOptions.basicPath);
-    const routers: Function = requireModule(defaultApi);
-
-    routers(router, sweetOptions, app);
-  }
+  createApi(sweetOptions, router, app, false);
 
   /* http服务 */
   http.createServer(app.callback())

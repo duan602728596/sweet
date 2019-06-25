@@ -1,11 +1,11 @@
 import { Context } from 'koa';
 import {
   formatTemplateData,
-  cleanRequireCache,
   folderPathAnalyze,
   filePathAnalyze,
-  requireModule,
-  isReadStream, readStream
+  deleteCacheAndRequireModule,
+  isReadStream,
+  readStream
 } from '../utils/utils';
 import { getControllersFiles, getControllerData } from '../utils/controllers';
 import createRenderEngine from '../utils/createRenderEngine';
@@ -20,8 +20,6 @@ function preRenderInit(sweetOptions: SweetOptions): Function {
     ctx: Context,
     serverRenderFile: string
   ): Promise<string> {
-    cleanRequireCache(serverRenderFile);
-
     const renderEngine: Function = createRenderEngine(sweetOptions.renderType);
     const controllersMap: Map<string, string> = await getControllersFiles(basicPath);
     const folderPathFile: string = `${ folderPathAnalyze(ctxPath) }.js`; // 格式化为：path/to/file.js
@@ -30,7 +28,7 @@ function preRenderInit(sweetOptions: SweetOptions): Function {
 
     // ssr渲染
     const html: Buffer = ctx.body;
-    const server: Function = requireModule(serverRenderFile);
+    const server: Function = deleteCacheAndRequireModule(serverRenderFile);
     const result: any /* Stream | string */ = await server(ctxPath, ctx, data.initialState);
     const render: string = isReadStream(result) ? (await readStream(result)).toString() : result;
 
