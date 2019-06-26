@@ -91,3 +91,10 @@ export function dllConfig(sweetConfig?: SweetConfigArgu): Configuration {
 
   return webpackDllConfig(config, sweetOptions);
 }
+
+export default {
+  callback,
+  config,
+  serverRenderConfig,
+  dllConfig
+};
