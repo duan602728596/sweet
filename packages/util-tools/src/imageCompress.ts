@@ -10,7 +10,7 @@ import * as imageminGifsicle from 'imagemin-gifsicle';
  * @param { string } output: 输出文件夹
  */
 async function imageCompress(entry: string, output: string): Promise<void> {
-  await imageMin([path.join(entry, '*.{jpg,png,gif}')], output, {
+  await imageMin([path.join(entry, '*.{jpg,jpeg,png,gif}')], output, {
     use: [
       imageminPngquant(),
       imageminJpegoptim(),

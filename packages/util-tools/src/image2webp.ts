@@ -11,7 +11,7 @@ import * as imageMinWebP from 'imagemin-webp';
 async function image2webp(entry: string, output: string, quality?: number): Promise<any> {
   const q: number = typeof quality !== 'number' ? 70 : quality;
 
-  await imageMin([path.join(entry, '*.{jpg,png,jpeg}')], output, {
+  await imageMin([path.join(entry, '*.{jpg,jpeg,png}')], output, {
     use: [
       imageMinWebP({
         quality: q
