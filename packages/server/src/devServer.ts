@@ -10,7 +10,7 @@ import * as webpack from 'webpack';
 import middleware from './devServer/middleware';
 import createRouters from './devServer/createRouters';
 import createApi from './utils/createApi';
-import { readFile } from './utils/utils';
+import createHttpsCertificate, { HttpsCertificate } from './utils/createHttpsCertificate';
 import { SweetOptions } from './utils/types';
 
 const app: Koa = new Koa();
@@ -30,6 +30,8 @@ const sweetOptions: SweetOptions = {
  * env { string }: 运行环境，可能的值为test（测试）
  * renderType { string }: html使用的渲染模板
  * serverChain { (app: Koa) => void }: 扩展koa中间件配置
+ * httpsKey { string }: https的key的地址
+ * httpsCert { string }: https的cert的地址
  */
 interface DevServerType {
   compiler?: webpack.Compiler;
@@ -40,6 +42,8 @@ interface DevServerType {
   env?: string;
   renderType?: 'ejs' | 'nunjucks';
   serverChain?: (app: Koa) => void;
+  httpsKey?: string;
+  httpsCert?: string;
 }
 
 async function devServer(argv: DevServerType = {}): Promise<void> {
@@ -51,15 +55,13 @@ async function devServer(argv: DevServerType = {}): Promise<void> {
     serverRenderFile = 'dist-server/server.js',
     env,
     renderType = 'ejs',
-    serverChain
+    serverChain,
+    httpsKey = 'dev.key',
+    httpsCert = 'dev.crt'
   }: DevServerType = argv;
 
   /* https服务 */
-  const key: string = path.join(sweetOptions.basicPath, 'dev.key');
-  const crt: string = path.join(sweetOptions.basicPath, 'dev.crt');
-  const useHttps: boolean = fs.existsSync(key) && fs.existsSync(crt);
-  const keyFile: Buffer | undefined = useHttps ? await readFile(key) : undefined;
-  const crtFile: Buffer | undefined = useHttps ? await readFile(crt) : undefined;
+  const [useHttps, keyFile, certFile]: HttpsCertificate = await createHttpsCertificate(sweetOptions, httpsKey, httpsCert);
 
   /* 合并配置项 */
   Object.assign(sweetOptions, {
@@ -82,7 +84,7 @@ async function devServer(argv: DevServerType = {}): Promise<void> {
     await serverChain(app);
   }
 
-  await middleware(app, router, compiler, env, useHttps, keyFile, crtFile);
+  await middleware(app, router, compiler, env, useHttps, keyFile, certFile);
 
   createRouters(router, sweetOptions, !!serverRender, formatServerRenderFile);
 
@@ -94,11 +96,11 @@ async function devServer(argv: DevServerType = {}): Promise<void> {
     .listen(httpPort);
 
   /* https服务 */
-  if (useHttps && keyFile && crtFile) {
-    const httpsConfig: Object = {
+  if (useHttps && keyFile && certFile) {
+    const httpsConfig: object = {
       allowHTTP1: true,
       key: keyFile,
-      cert: crtFile
+      cert: certFile
     };
 
     http2

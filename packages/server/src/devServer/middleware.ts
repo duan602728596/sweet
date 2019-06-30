@@ -17,7 +17,7 @@ async function middleware(
   env: string | undefined,
   useHttps: boolean,
   keyFile: Buffer | undefined,
-  crtFile: Buffer | undefined
+  certFile: Buffer | undefined
 ): Promise<void> {
   /* 文件压缩 */
   app.use(compress({
@@ -32,7 +32,7 @@ async function middleware(
     .use(router.allowedMethods());
 
   /* webpack中间件 */
-  const koaWebpackMiddleware: koaWebpack.Middleware<any> = await createKoaWebpack(compiler, env, useHttps, keyFile, crtFile);
+  const koaWebpackMiddleware: koaWebpack.Middleware<any> = await createKoaWebpack(compiler, env, useHttps, keyFile, certFile);
 
   app.use(koaWebpackMiddleware);
 }

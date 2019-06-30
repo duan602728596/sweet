@@ -9,7 +9,7 @@ import * as Router from '@eggjs/router';
 import middleware from './proServer/middleware';
 import createRouters from './proServer/createRouters';
 import createApi from './utils/createApi';
-import { readFile } from './utils/utils';
+import createHttpsCertificate, { HttpsCertificate } from './utils/createHttpsCertificate';
 import { SweetOptions, Log } from './utils/types';
 
 const app: Koa = new Koa();
@@ -30,6 +30,8 @@ const sweetOptions: SweetOptions = {
  * renderType { string }: html使用的渲染模板
  * log { object }: 日志配置
  * serverChain { (app: Koa) => void }: 扩展koa中间件配置
+ * httpsKey { string }: https的key的地址
+ * httpsCert { string }: https的cert的地址
  */
 interface ProServerType {
   httpPort?: number;
@@ -41,6 +43,8 @@ interface ProServerType {
   renderType?: 'ejs' | 'nunjucks';
   log?: Log;
   serverChain?: (app: Koa) => void;
+  httpsKey?: string;
+  httpsCert?: string;
 }
 
 async function proServer(argv: ProServerType = {}): Promise<void> {
@@ -53,7 +57,9 @@ async function proServer(argv: ProServerType = {}): Promise<void> {
     template = 'index.html',
     renderType = 'ejs',
     log,
-    serverChain
+    serverChain,
+    httpsKey = 'server.key',
+    httpsCert = 'server.crt'
   }: ProServerType = argv;
 
   /* 合并配置项 */
@@ -63,6 +69,10 @@ async function proServer(argv: ProServerType = {}): Promise<void> {
     renderType
   });
 
+  /* https服务 */
+  const [useHttps, keyFile, certFile]: HttpsCertificate = await createHttpsCertificate(sweetOptions, httpsKey, httpsCert);
+
+  /* 获取文件夹地址 */
   const formatServerRoot: string = path.isAbsolute(serverRoot)
     ? serverRoot
     : path.join(sweetOptions.basicPath, serverRoot);
@@ -91,16 +101,11 @@ async function proServer(argv: ProServerType = {}): Promise<void> {
     .listen(httpPort);
 
   /* https服务 */
-  const key: string = path.join(sweetOptions.basicPath, 'server.key');
-  const crt: string = path.join(sweetOptions.basicPath, 'server.crt');
-
-  if (fs.existsSync(key) && fs.existsSync(crt)) {
-    const keyFile: Buffer = await readFile(key);
-    const crtFile: Buffer = await readFile(crt);
-    const httpsConfig: Object = {
+  if (useHttps && keyFile && certFile) {
+    const httpsConfig: object = {
       allowHTTP1: true,
       key: keyFile,
-      cert: crtFile
+      cert: certFile
     };
 
     http2
