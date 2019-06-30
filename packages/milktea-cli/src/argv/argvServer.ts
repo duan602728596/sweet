@@ -14,6 +14,8 @@ function argvServer(argv: Argv): void {
   const log: boolean = argv.log;
   const logUrl: string = argv.logUrl;
   const logPm2: boolean = argv.logPm2;
+  const httpsKey: string = argv.httpsKey;
+  const httpsCert: string = argv.httpsCert;
 
   proServer({
     httpPort,
@@ -27,7 +29,9 @@ function argvServer(argv: Argv): void {
       type: logUrl ? 'http' : 'file',
       url: logUrl || undefined,
       pm2: logPm2
-    } : undefined
+    } : undefined,
+    httpsKey,
+    httpsCert
   });
 }
 

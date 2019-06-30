@@ -31,6 +31,8 @@ function argvStart(argv: Argv): void {
     const serverRender: boolean = argv.serverRender;
     const serverRenderFile: string = argv.serverRenderFile;
     const renderType: string = argv.renderType;
+    const httpsKey: string = argv.httpsKey;
+    const httpsCert: string = argv.httpsCert;
 
     devServer({
       compiler,
@@ -38,7 +40,9 @@ function argvStart(argv: Argv): void {
       httpsPort,
       serverRender,
       serverRenderFile,
-      renderType
+      renderType,
+      httpsKey,
+      httpsCert
     });
   } else {
     const watching: webpack.Watching = compiler.watch({

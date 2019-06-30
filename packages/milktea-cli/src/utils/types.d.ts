@@ -21,6 +21,8 @@ export interface Argv {
   log: boolean;
   logUrl: string;
   logPm2: boolean;
+  httpsKey: string;
+  httpsCert: string;
   // utils
   registry: number;
   imageEntry: string;
