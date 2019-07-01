@@ -1,5 +1,23 @@
 # sweet
 
+[![NPM version][milktea-image]][milktea-url]
+[![NPM version][milktea-cli-image]][milktea-cli-url]
+[![NPM version][server-image]][server-url]
+[![NPM version][server-log-image]][server-log-url]
+[![NPM version][util-tools-image]][util-tools-url]
+
+[milktea-image]: https://img.shields.io/badge/milktea-0.3.4-blue.svg
+[milktea-cli-image]: https://img.shields.io/badge/milktea--cli-0.3.5-blue.svg
+[server-image]: https://img.shields.io/badge/server-0.3.5-blue.svg
+[server-log-image]: https://img.shields.io/badge/server--log-0.3.0-blue.svg
+[util-tools-image]: https://img.shields.io/badge/util--tools-0.3.5-blue.svg
+
+[milktea-url]: http://npmjs.org/package/@sweet-milktea/milktea
+[milktea-cli-url]: http://npmjs.org/package/@sweet-milktea/milktea-cli
+[server-url]: http://npmjs.org/package/@sweet-milktea/server
+[server-log-url]: http://npmjs.org/package/@sweet-milktea/server-log
+[util-tools-url]: http://npmjs.org/package/@sweet-milktea/util-tools
+
 > 甜甜的奶茶，甜甜的......   
 > ![](tsl.jpg)
 
