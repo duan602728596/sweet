@@ -16,7 +16,7 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
    * serverRender { boolean }: 开启服务器端渲染
    * loaders { object }: loaders
    */
-  const { mode, html, frame, serverRender, ts }: SweetConfig = sweetConfig;
+  const { mode, html, frame, serverRender }: SweetConfig = sweetConfig;
   const isDevelopment: boolean = mode === 'development';
 
   // 根据模式加载插件

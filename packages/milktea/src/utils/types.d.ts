@@ -64,6 +64,7 @@ export interface SASS extends CSS {
 }
 
 export type Mode = 'development' | 'production' | 'none';
+export type Frame = 'react' | 'vue' | 'test';
 
 export interface SweetConfig {
   mode?: Mode;
@@ -88,6 +89,6 @@ export interface SweetConfig {
   serverRender?: boolean;
   serverEntry?: string | Array<string> | Entry | EntryFunc;
   serverOutput?: Output;
-  frame?: 'react' | 'vue' | 'test';
+  frame?: Frame;
   chainWebpack?: (config: Config) => void;
 }

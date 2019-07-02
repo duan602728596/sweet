@@ -4,6 +4,7 @@ import * as normalizePath from 'normalize-path';
 import * as cssesc from 'cssesc';
 import * as loaderUtils from 'loader-utils';
 import { loader } from 'webpack';
+import { Frame } from '../utils/types';
 
 /* css-loader配置 */
 // css-loader的getLocalIdent函数
@@ -14,7 +15,7 @@ export function cssLoaderGetLocalIdent(
   options: { [key: string]: any }
 ): string {
   // node_modules 和 global文件直接返回className
-  if (/(node_modules|global\.(le|c|sa|sc)ss)/i.test(loaderContext.resourcePath)) {
+  if (/(node_modules|global\.(c|le|sa|sc)ss)/i.test(loaderContext.resourcePath)) {
     return localName;
   }
 
@@ -43,7 +44,7 @@ export function cssLoaderGetLocalIdent(
  * @param { string } frame: 是否为react或vue模式
  * @param { boolean } isDevelopment: 是否为开发环境
  */
-export function createStyleLoader(frame: 'react' | 'vue' | 'test' | undefined, isDevelopment: boolean): string | any {
+export function createStyleLoader(frame: Frame | undefined, isDevelopment: boolean): string | any {
   return isDevelopment
     ? (frame === 'vue' ? 'vue-style-loader' : 'style-loader')
     : MiniCssExtractPlugin.loader;
