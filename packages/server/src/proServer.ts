@@ -1,7 +1,6 @@
 /* 生产环境 服务器 */
 import * as http from 'http';
 import * as http2 from 'http2';
-import * as fs from 'fs';
 import * as process from 'process';
 import * as path from 'path';
 import * as Koa from 'koa';
