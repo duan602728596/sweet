@@ -16,12 +16,12 @@
     "@babel/plugin-proposal-class-properties": "^7.5.0",
     "@babel/plugin-proposal-decorators": "^7.4.4",
     "@babel/plugin-proposal-do-expressions": "^7.5.0",
-    "@babel/plugin-proposal-export-default-from": "^7.2.0",
+    "@babel/plugin-proposal-export-default-from": "^7.5.2",
     "@babel/plugin-proposal-numeric-separator": "^7.2.0",
     "@babel/plugin-proposal-optional-catch-binding": "^7.2.0",
     "@babel/plugin-proposal-optional-chaining": "^7.2.0",
     "@babel/plugin-syntax-bigint": "^7.4.4",
-    "@babel/preset-env": "^7.5.0",
+    "@babel/preset-env": "^7.5.2",
     "@babel/register": "^7.4.4",
     "@bbkkbkk/koa-compress": "^3.0.0",
     "@eggjs/router": "^2.0.0",
@@ -48,8 +48,8 @@
     "react-dom": "^16.8.6",
     "request": "^2.88.0",
     "rimraf": "^2.6.3",
-    "typescript": "^3.5.2",
-    "webpack": "^4.35.2"
+    "typescript": "^3.5.3",
+    "webpack": "^4.35.3"
   },
   "peerDependencies": {
     "@sweet-milktea/milktea": "^0.3.4",
