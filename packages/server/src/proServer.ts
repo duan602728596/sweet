@@ -4,7 +4,7 @@ import * as http2 from 'http2';
 import * as process from 'process';
 import * as path from 'path';
 import * as Koa from 'koa';
-import * as Router from '@eggjs/router';
+import * as Router from '@koa/router';
 import middleware from './proServer/middleware';
 import createRouters from './proServer/createRouters';
 import createApi from './utils/createApi';

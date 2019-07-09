@@ -1,6 +1,6 @@
 import * as fs from 'fs';
 import * as Koa from 'koa';
-import * as Router from '@eggjs/router';
+import * as Router from '@koa/router';
 import * as register from '@babel/register';
 import { defaultApiPath, deleteCacheAndRequireModule, requireModule } from './utils';
 import registerConfig from './registerConfig';

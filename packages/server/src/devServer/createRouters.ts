@@ -1,4 +1,4 @@
-import * as Router from '@eggjs/router';
+import * as Router from '@koa/router';
 import * as mime from 'mime-types';
 import preRenderInit from './preDevRender';
 import { DevContext, SweetOptions } from '../utils/types';

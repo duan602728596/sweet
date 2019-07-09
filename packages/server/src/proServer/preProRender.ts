@@ -1,5 +1,12 @@
 import { Context } from 'koa';
-import { formatTemplateData, folderPathAnalyze, filePathAnalyze, requireModule, isReadStream, readStream } from '../utils/utils';
+import {
+  formatTemplateData,
+  folderPathAnalyze,
+  filePathAnalyze,
+  requireModule,
+  isReadStream,
+  readStream
+} from '../utils/utils';
 import { getControllersFilesSync, getControllerData } from '../utils/controllers';
 import createRenderEngine from '../utils/createRenderEngine';
 import { SweetOptions } from '../utils/types';

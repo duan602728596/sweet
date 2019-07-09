@@ -1,6 +1,6 @@
 import * as path from 'path';
 import { Context } from 'koa';
-import * as Router from '@eggjs/router';
+import * as Router from '@koa/router';
 import preRenderInit from './preProRender';
 import { readFile } from '../utils/utils';
 import { SweetOptions } from '../utils/types';

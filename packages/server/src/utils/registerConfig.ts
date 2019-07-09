@@ -1,4 +1,3 @@
-import * as path from 'path';
 import { SweetOptions } from './types';
 
 function registerConfig(sweetOptions: SweetOptions): object {

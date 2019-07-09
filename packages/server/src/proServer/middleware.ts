@@ -1,5 +1,5 @@
 import * as Koa from 'koa';
-import * as Router from '@eggjs/router';
+import * as Router from '@koa/router';
 import { SweetOptions, Log } from '../utils/types';
 import * as body from 'koa-body';
 import * as compress from '@bbkkbkk/koa-compress';
