@@ -22,3 +22,5 @@ dist-server
 # https
 *.crt
 *.key
+
+.DS_Store
