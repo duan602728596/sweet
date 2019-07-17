@@ -1,5 +1,6 @@
 {
   "name": "sweet",
+  "description": "一个webpack开发和生产环境的通用配置解决方案。",
   "license": "MIT",
   "scripts": {
     "build": "npm run clean && gulp --gulpfile ./scripts/build.ts",
