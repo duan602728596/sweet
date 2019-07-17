@@ -10,6 +10,10 @@
     "test": "npm run clean:sweet && cross-env NODE_ENV=test mocha ./tests/test.js --timeout 180000",
     "clean:sweet": "rimraf ./tests/.sweet"
   },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:duan602728596/sweet.git"
+  },
   "dependencies": {
     "@bbkkbkk/koa-log4": "^2.3.2",
     "@log4js-node/logfaces-http": "^1.0.0",

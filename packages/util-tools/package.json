@@ -10,6 +10,10 @@
     "clean:webp": "rimraf ./tests/image2webp/image.webp",
     "clean:output": "rimraf ./tests/imageCompression/output"
   },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:duan602728596/sweet.git"
+  },
   "dependencies": {
     "imagemin": "^7.0.0",
     "imagemin-gifsicle": "^6.0.1",

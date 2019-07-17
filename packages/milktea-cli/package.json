@@ -15,6 +15,10 @@
     "clean:sweet": "rimraf ./tests/.sweet",
     "clean:build": "rimraf ./tests/dist"
   },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:duan602728596/sweet.git"
+  },
   "dependencies": {
     "lodash": "^4.17.14",
     "webpack": "^4.35.3",

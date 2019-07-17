@@ -11,6 +11,10 @@
     "clean:sweet": "rimraf ./.sweet",
     "clean:build": "rimraf ./tests/dist"
   },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:duan602728596/sweet.git"
+  },
   "dependencies": {
     "@babel/core": "^7.5.4",
     "@babel/plugin-proposal-class-properties": "^7.5.0",

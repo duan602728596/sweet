@@ -1,5 +1,6 @@
 {
   "name": "sweet",
+  "license": "MIT",
   "scripts": {
     "build": "npm run clean && gulp --gulpfile ./scripts/build.ts",
     "clean": "ts-node ./scripts/clean",
