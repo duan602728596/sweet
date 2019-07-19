@@ -2,16 +2,17 @@
   "name": "@sweet-milktea/milktea",
   "version": "0.3.4",
   "description": "webpack配置函数",
+  "homepage": "https://github.com/duan602728596/sweet",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:duan602728596/sweet.git"
+  },
   "main": "lib/milktea.js",
   "scripts": {
     "start": "npm run clean && cross-env NODE_ENV=development tsc --watch",
     "build": "npm run clean && cross-env NODE_ENV=production tsc",
     "clean": "rimraf ./lib",
     "test": "cross-env NODE_ENV=test mocha ./tests/test.js --timeout 180000"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git@github.com:duan602728596/sweet.git"
   },
   "dependencies": {
     "@babel/core": "^7.5.5",

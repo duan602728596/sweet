@@ -2,6 +2,11 @@
   "name": "@sweet-milktea/server",
   "version": "0.3.6",
   "description": "webpack服务和web服务",
+  "homepage": "https://github.com/duan602728596/sweet",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:duan602728596/sweet.git"
+  },
   "scripts": {
     "start": "npm run clean && cross-env NODE_ENV=development tsc --watch",
     "build": "npm run clean && cross-env NODE_ENV=production tsc",
@@ -10,10 +15,6 @@
     "clean:test": "npm run clean:sweet && npm run clean:build",
     "clean:sweet": "rimraf ./.sweet",
     "clean:build": "rimraf ./tests/dist"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git@github.com:duan602728596/sweet.git"
   },
   "dependencies": {
     "@babel/core": "^7.5.5",

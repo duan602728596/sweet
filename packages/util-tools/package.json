@@ -2,6 +2,11 @@
   "name": "@sweet-milktea/util-tools",
   "version": "0.3.6",
   "description": "通用工具函数",
+  "homepage": "https://github.com/duan602728596/sweet",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:duan602728596/sweet.git"
+  },
   "scripts": {
     "start": "npm run clean && cross-env NODE_ENV=development tsc --watch",
     "build": "npm run clean && cross-env NODE_ENV=production tsc",
@@ -9,10 +14,6 @@
     "test": "npm run clean:webp && npm run clean:output && cross-env NODE_ENV=test mocha tests/test.js --timeout 180000",
     "clean:webp": "rimraf ./tests/image2webp/image.webp",
     "clean:output": "rimraf ./tests/imageCompression/output"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git@github.com:duan602728596/sweet.git"
   },
   "dependencies": {
     "imagemin": "^7.0.0",

@@ -2,6 +2,11 @@
   "name": "@sweet-milktea/server-log",
   "version": "0.3.0",
   "description": "服务端的koa日志中间件函数",
+  "homepage": "https://github.com/duan602728596/sweet",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:duan602728596/sweet.git"
+  },
   "main": "lib/index.js",
   "scripts": {
     "start": "npm run clean && cross-env NODE_ENV=development tsc --watch",
@@ -9,10 +14,6 @@
     "clean": "rimraf ./lib",
     "test": "npm run clean:sweet && cross-env NODE_ENV=test mocha ./tests/test.js --timeout 180000",
     "clean:sweet": "rimraf ./tests/.sweet"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git@github.com:duan602728596/sweet.git"
   },
   "dependencies": {
     "@bbkkbkk/koa-log4": "^2.3.2",
