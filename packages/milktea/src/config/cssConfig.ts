@@ -1,8 +1,5 @@
-import * as path from 'path';
 import * as MiniCssExtractPlugin from 'mini-css-extract-plugin';
-import * as normalizePath from 'normalize-path';
-import * as cssesc from 'cssesc';
-import * as loaderUtils from 'loader-utils';
+import { getLocalIdent } from 'css-loader/dist/utils';
 import { loader } from 'webpack';
 import { Frame } from '../utils/types';
 
@@ -19,22 +16,7 @@ export function cssLoaderGetLocalIdent(
     return localName;
   }
 
-  if (!options.context) {
-    options.context = loaderContext.rootContext;
-  }
-
-  const request: string = normalizePath(
-    path.relative(options.context || '', loaderContext.resourcePath)
-  );
-
-  options.content = `${ options.hashPrefix }${ request }+${ unescape(localName) }`;
-
-  const name: string = loaderUtils.interpolateName(loaderContext, localIdentName, options)
-    .replace(/^((-?[0-9])|--)/, '_$1');
-
-  const className: string = cssesc(name, { isIdentifier: true })
-    .replace(/\\\[local\\\]/gi, localName)
-    .replace(/\\\//g, '-');
+  const className: string = getLocalIdent(loaderContext, localIdentName, localName, options);
 
   return className;
 }
