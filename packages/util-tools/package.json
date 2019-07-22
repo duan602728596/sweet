@@ -21,7 +21,7 @@
     "imagemin-jpegoptim": "^6.0.0",
     "imagemin-pngquant": "^8.0.0",
     "imagemin-webp": "^5.1.0",
-    "lodash": "^4.17.14",
+    "lodash": "^4.17.15",
     "request": "^2.88.0",
     "semver": "^6.2.0"
   },
