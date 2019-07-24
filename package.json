@@ -1,5 +1,5 @@
 {
-  "name": "@sweet/react-demo",
+  "name": "@sweet-milktea/react-demo",
   "scripts": {
     "dll": "milktea dll",
     "start": "npm run clean && npm run clean:server && cross-env NODE_ENV=development milktea start --server --serverRender",
