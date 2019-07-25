@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import modules from './modules';
+import formatModules from './formatModules';
 
 Vue.use(Vuex);
 
@@ -13,7 +14,7 @@ export function storeFactory(initialState = {}) {
     getters: {
       getInitialStateData: (state) => (key) => state[key]
     },
-    modules
+    modules: formatModules(modules, initialState)
   }));
 
   return store;
