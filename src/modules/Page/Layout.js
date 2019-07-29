@@ -1,5 +1,7 @@
 import Vue from 'vue';
 import Component from 'vue-class-component';
+import loadActions from '../../store/loadActions';
+import actions from './actions/index';
 import Main from '../../layouts/Main/index';
 import Sider from '../../layouts/Sider/index';
 import Content from '../../layouts/Content/index';
@@ -34,6 +36,9 @@ const options = [
   }
 ];
 
+@loadActions({
+  page: actions
+})
 @Component({
   metaInfo: {
     title: 'Page'
@@ -51,7 +56,7 @@ class ModuleLayout extends Vue {
       <Main>
         <Sider options={ this.options } />
         <Content>
-          <div>Page</div>
+          <div>{ this.$store.getters['page/getText']() }</div>
         </Content>
       </Main>
     );
