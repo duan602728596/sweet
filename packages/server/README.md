@@ -17,7 +17,8 @@ devServer({
   renderType,
   serverChain,
   httpsKey,
-  httpsCert
+  httpsCert,
+  useBabelRegister
 });
 ```
 
@@ -32,6 +33,7 @@ devServer({
 * serverChain `{ (app: Koa) => void }` : 扩展koa中间件配置。
 * httpsKey `{ string }` : 配置https的证书（*.key）。
 * httpsCert `{ string }` : 配置https的证书（*.crt）。
+* useBabelRegister `{ boolean }` : 是否使用`@babel/register`来加载api文件和controllers文件。默认开启。
 
 ## 生产环境下运行服务
 
@@ -51,7 +53,8 @@ proServer({
   log,
   serverChain,
   httpsKey,
-  httpsCert
+  httpsCert,
+  useBabelRegister
 });
 ```
 
@@ -70,6 +73,46 @@ proServer({
 * serverChain `{ (app: Koa) => void }` : 扩展koa中间件配置。
 * httpsKey `{ string }` : 配置https的证书（*.key）。
 * httpsCert `{ string }` : 配置https的证书（*.crt）。
+* useBabelRegister `{ boolean }` : 是否使用`@babel/register`来加载api文件和controllers文件。默认开启。
+
+## api
+
+创建一个`api/api.js`文件，代码如下
+```javascript
+module.exports = function(router, sweetOptions, app) {
+  // 在这里面创建你的函数
+  router.get('/path', /* ...your_functions */);
+};
+```
+
+## 服务器端渲染
+
+服务器端渲染需要你创建`controllers`文件夹，文件夹里面的规则为: 你的路由中的 **“/”** 替换为 **“.”**，或者为文件夹。比如`/Path/PathFile`，则需要创建`/Path.PathFile.js`文件或`/Path/PathFile.js`文件。   
+
+在文件内，需要创建如下代码:
+
+```javascript
+module.exports = async function(ctx, sweetOptions) {
+  return {
+    initialState, // 返回初始化的state
+    ...           // 你要返回的其他数据
+  };
+}
+```
+
+在pug或html模板中，使用`<%- key %>`来标记占位的数据。其中`<%- render %>`表示服务器端渲染的数据，`<%- initialState %>`表示初始化数据，其他的占位数据同理。参考*ejs*。   
+
+如果路由找不到对应的interface文件，会自动寻找`default.js`文件。你可以创建这个文件作为默认的interface文件。
+
+入口文件为：
+
+```javascript
+function server(url, context = {}, initialState = {}) {
+  return ''; // 返回字符串、stream对象或Promise
+}
+
+export default server;
+```
 
 ## 关于https证书
 
