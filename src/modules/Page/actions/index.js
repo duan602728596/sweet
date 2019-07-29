@@ -1,7 +1,7 @@
 export default {
   namespaced: true,
   state: {
-    text: 'async page'
+    text: 'page'
   },
   getters: {
     getText: (state) => () => state.text
