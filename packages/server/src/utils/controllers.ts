@@ -2,8 +2,7 @@ import * as path from 'path';
 import * as glob from 'glob';
 import * as _ from 'lodash';
 import { Context } from 'koa';
-import * as register from '@babel/register';
-import registerConfig from './registerConfig';
+import useRegister from './babelRegister';
 import { SweetOptions } from './types';
 import { requireModule } from './utils';
 
@@ -61,7 +60,7 @@ export async function getControllerData(
 ): Promise<any> {
   let data: any = {};
 
-  register(registerConfig(sweetOptions));
+  useRegister(sweetOptions);
 
   // 查找对应的controller文件
   if (controllersMap.has(folderPathFile)) {

@@ -1,6 +1,14 @@
+import * as path from 'path';
 import { SweetOptions } from './types';
 
-function registerConfig(sweetOptions: SweetOptions): object {
+interface RegisterConfig {
+  presets: Array<any>;
+  plugins: Array<any>;
+  cache: boolean;
+  ignore: Array<RegExp>;
+}
+
+function createRegisterConfig(): RegisterConfig {
   return {
     presets: [
       [
@@ -26,8 +34,26 @@ function registerConfig(sweetOptions: SweetOptions): object {
       '@babel/plugin-syntax-bigint',
       '@babel/plugin-syntax-dynamic-import'
     ],
-    cache: true
+    cache: true,
+    ignore: [
+      /node_modules/
+    ]
   };
 }
 
-export default registerConfig;
+function useRegister(sweetOptions: SweetOptions): void {
+  if (sweetOptions.useBabelRegister) {
+    const register: Function = require('@babel/register');
+    const config: RegisterConfig = createRegisterConfig();
+
+    if (sweetOptions.serverRenderFile) {
+      const result: path.ParsedPath = path.parse(sweetOptions.serverRenderFile);
+
+      config.ignore.push(new RegExp(result.dir, 'ig'));
+    }
+
+    register(config);
+  }
+}
+
+export default useRegister;

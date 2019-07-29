@@ -31,6 +31,7 @@ const sweetOptions: SweetOptions = {
  * serverChain { (app: Koa) => void }: 扩展koa中间件配置
  * httpsKey { string }: https的key的地址
  * httpsCert { string }: https的cert的地址
+ * useBabelRegister { boolean }: 是否使用@babel/register，用来优化性能
  */
 interface ProServerType {
   httpPort?: number;
@@ -44,6 +45,7 @@ interface ProServerType {
   serverChain?: (app: Koa) => void;
   httpsKey?: string;
   httpsCert?: string;
+  useBabelRegister?: boolean;
 }
 
 async function proServer(argv: ProServerType = {}): Promise<void> {
@@ -58,14 +60,17 @@ async function proServer(argv: ProServerType = {}): Promise<void> {
     log,
     serverChain,
     httpsKey = 'server.key',
-    httpsCert = 'server.crt'
+    httpsCert = 'server.crt',
+    useBabelRegister = true
   }: ProServerType = argv;
 
   /* 合并配置项 */
   Object.assign(sweetOptions, {
     httpPort,
     httpsPort,
-    renderType
+    renderType,
+    serverRenderFile,
+    useBabelRegister
   });
 
   /* https服务 */

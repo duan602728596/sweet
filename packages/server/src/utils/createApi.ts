@@ -1,9 +1,8 @@
 import * as fs from 'fs';
 import * as Koa from 'koa';
 import * as Router from '@koa/router';
-import * as register from '@babel/register';
 import { defaultApiPath, deleteCacheAndRequireModule, requireModule } from './utils';
-import registerConfig from './registerConfig';
+import useRegister from './babelRegister';
 import { SweetOptions } from './types';
 
 /* 本地api，本地api无法清除缓存 */
@@ -11,7 +10,7 @@ function createApi(sweetOptions: SweetOptions, router: Router, app: Koa, isDevel
   const defaultApi: string = defaultApiPath(sweetOptions.basicPath);
 
   if (fs.existsSync(defaultApi)) {
-    register(registerConfig(sweetOptions));
+    useRegister(sweetOptions);
 
     const routers: Function = isDevelopment
       ? deleteCacheAndRequireModule(defaultApi)

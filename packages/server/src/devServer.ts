@@ -31,6 +31,7 @@ const sweetOptions: SweetOptions = {
  * serverChain { (app: Koa) => void }: 扩展koa中间件配置
  * httpsKey { string }: https的key的地址
  * httpsCert { string }: https的cert的地址
+ * useBabelRegister { boolean }: 是否使用@babel/register，用来优化性能
  */
 interface DevServerType {
   compiler?: webpack.Compiler;
@@ -43,6 +44,7 @@ interface DevServerType {
   serverChain?: (app: Koa) => void;
   httpsKey?: string;
   httpsCert?: string;
+  useBabelRegister?: boolean;
 }
 
 async function devServer(argv: DevServerType = {}): Promise<void> {
@@ -56,7 +58,8 @@ async function devServer(argv: DevServerType = {}): Promise<void> {
     renderType = 'ejs',
     serverChain,
     httpsKey = 'dev.key',
-    httpsCert = 'dev.crt'
+    httpsCert = 'dev.crt',
+    useBabelRegister = true
   }: DevServerType = argv;
 
   /* https服务 */
@@ -66,7 +69,9 @@ async function devServer(argv: DevServerType = {}): Promise<void> {
   Object.assign(sweetOptions, {
     httpPort,
     httpsPort,
-    renderType
+    renderType,
+    serverRenderFile,
+    useBabelRegister
   });
 
   /* 服务器端渲染文件地址 */

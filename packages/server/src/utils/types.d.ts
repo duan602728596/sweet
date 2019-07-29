@@ -5,6 +5,8 @@ export interface SweetOptions {
   httpPort?: number;
   httpsPort?: number;
   renderType?: 'ejs' | 'nunjucks';
+  serverRenderFile?: string;
+  useBabelRegister?: boolean;
 }
 
 export interface DevContext extends Context {
