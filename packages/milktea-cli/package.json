@@ -39,7 +39,7 @@
     "@babel/preset-env": "^7.5.5",
     "@babel/register": "^7.5.5",
     "@sweet-milktea/milktea": "^0.3.6",
-    "@sweet-milktea/server": "^0.3.6",
+    "@sweet-milktea/server": "^0.3.7",
     "@sweet-milktea/server-log": "^0.3.0",
     "@sweet-milktea/util-tools": "^0.3.6",
     "babel-loader": "^8.0.6",
@@ -52,7 +52,7 @@
   },
   "peerDependencies": {
     "@sweet-milktea/milktea": "^0.3.6",
-    "@sweet-milktea/server": "^0.3.6",
+    "@sweet-milktea/server": "^0.3.7",
     "@sweet-milktea/server-log": "^0.3.0",
     "@sweet-milktea/util-tools": "^0.3.6"
   },
