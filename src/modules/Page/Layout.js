@@ -1,3 +1,5 @@
+import Vue from 'vue';
+import Component from 'vue-class-component';
 import Main from '../../layouts/Main/index';
 import Sider from '../../layouts/Sider/index';
 import Content from '../../layouts/Content/index';
@@ -32,20 +34,21 @@ const options = [
   }
 ];
 
-export default {
+@Component({
+  metaInfo: {
+    title: 'Page'
+  }
+})
+class ModuleLayout extends Vue {
   data() {
     return {
       options
     };
-  },
+  }
+
   render() {
     return (
       <Main>
-        <helmet-provider>
-          <helmet>
-            <title>Page</title>
-          </helmet>
-        </helmet-provider>
         <Sider options={ this.options } />
         <Content>
           <div>Page</div>
@@ -53,4 +56,6 @@ export default {
       </Main>
     );
   }
-};
+}
+
+export default ModuleLayout;
