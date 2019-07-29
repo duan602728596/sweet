@@ -16,6 +16,7 @@ function argvServer(argv: Argv): void {
   const logPm2: boolean = argv.logPm2;
   const httpsKey: string = argv.httpsKey;
   const httpsCert: string = argv.httpsCert;
+  const useBabelRegister: boolean = argv.useBabelRegister;
 
   proServer({
     httpPort,
@@ -31,7 +32,8 @@ function argvServer(argv: Argv): void {
       pm2: logPm2
     } : undefined,
     httpsKey,
-    httpsCert
+    httpsCert,
+    useBabelRegister
   });
 }
 

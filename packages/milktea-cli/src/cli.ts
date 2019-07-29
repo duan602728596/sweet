@@ -71,6 +71,10 @@ const argv: object = yargs
       describe: 'html使用的渲染模板，ejs 或 nunjucks。默认为ejs',
       type: 'string'
     },
+    useBabelRegister: {
+      describe: '使用@babel/register来加载api文件和controllers文件',
+      type: 'boolean'
+    },
     // image2webp & imageCompress
     imageEntry: {
       describe: '需要批量转换或压缩的图片所在的文件夹',

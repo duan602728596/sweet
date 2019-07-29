@@ -15,6 +15,7 @@ milktea-cli是一个快速运行环境的工具。
   * `--serverRenderFile`: 服务器渲染的主模块文件。默认为`dist-server/server.js`。
   * `--httpsKey`: 配置https的证书（*.key）。
   * `--httpsCert`: 配置https的证书（*.crt）。
+  * `--useBabelRegister`: 使用`@babel/register`来加载api文件和controllers文件。
 * `milktea build`: 编译代码。
   * `--config`: 选择一个配置文件。
   * `--serverRender`: 开启服务器端渲染。
@@ -32,6 +33,7 @@ milktea-cli是一个快速运行环境的工具。
   * `--logPm2`: 是否在pm2环境下运行程序。
   * `--httpsKey`: 配置https的证书（*.key）。
   * `--httpsCert`: 配置https的证书（*.crt）。
+  * `--useBabelRegister`: 使用`@babel/register`来加载api文件和controllers文件。
 * `milktea update`: 查看是否有依赖包需要更新。
   * `--registry`: Npm包信息地址。可能的值为 0：Npm源，1：Yarn源，2：CNpm源。
 * `milktea image2webp`: 将图片批量转换成`*.webp`格式。
