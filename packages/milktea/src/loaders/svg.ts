@@ -46,7 +46,7 @@ export default function(sweetConfig: SweetConfig, config: Config): void {
           .merge({
             module: {
               rule: {
-                svg: { issuer: /^.*\.(jsx?|vue)$/ }
+                svg: { issuer: /^.*\.(jsx?|tsx?|vue)$/ }
               }
             }
           });
