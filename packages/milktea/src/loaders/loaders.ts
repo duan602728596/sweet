@@ -121,20 +121,6 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
         htmlLoader(sweetConfig, config);
       });
 
-  // image
-  config
-    .when(
-      !!loaders.image,
-      (config: Config): void => {
-        config
-          .module
-          .rule('image')
-          .merge(formatLoader(loaders.image));
-      },
-      (config: Config): void => {
-        imageLoader(sweetConfig, config);
-      });
-
   // svg
   config
     .when(
@@ -147,6 +133,20 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
       },
       (config: Config): void => {
         svgLoader(sweetConfig, config);
+      });
+
+  // image
+  config
+    .when(
+      !!loaders.image,
+      (config: Config): void => {
+        config
+          .module
+          .rule('image')
+          .merge(formatLoader(loaders.image));
+      },
+      (config: Config): void => {
+        imageLoader(sweetConfig, config);
       });
 
   // vue

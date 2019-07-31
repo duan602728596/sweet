@@ -1,5 +1,5 @@
 import * as Config from 'webpack-chain';
-import { createFileName } from '../config/fileConfig';
+import { createFileName } from '../config/fileNameConfig';
 import { SweetConfig } from '../utils/types';
 
 /* 字体静态文件配置 */

@@ -1,4 +1,5 @@
 import * as path from 'path';
+import { LoaderOptions } from 'webpack-chain';
 import { babelCache } from './cacheConfig';
 import { SweetOptions, JS } from '../utils/types';
 
@@ -24,7 +25,7 @@ export function createBabelPlugins(): Array<any> {
 }
 
 // @babel/preset-env targets
-export function createTargets(): object {
+export function createTargets(): { browsers: Array<string> } {
   return {
     browsers: [
       'last 2 versions',
@@ -59,7 +60,7 @@ export function createPresetEnv(customTargets: object | undefined, debug: boolea
  * @param { SweetOptions } sweetOptions
  * @param { JS } jsOptions: js配置
  */
-export function createBabelOptions(sweetOptions: SweetOptions, jsOptions: JS): object {
+export function createBabelOptions(sweetOptions: SweetOptions, jsOptions: JS): LoaderOptions {
   const { ecmascript, resetPresets, resetPlugins }: JS = jsOptions;
 
   return {
@@ -89,7 +90,7 @@ export function createBabelOptions(sweetOptions: SweetOptions, jsOptions: JS): o
  * babel-loader for typescript
  * @param { SweetOptions } sweetOptions
  */
-export function createBabelForTsOptions(sweetOptions: SweetOptions): object {
+export function createBabelForTsOptions(sweetOptions: SweetOptions): LoaderOptions {
   return {
     cacheDirectory: path.join(sweetOptions.basicPath, babelCache),
     presets: [],

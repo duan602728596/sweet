@@ -1,5 +1,6 @@
 import * as MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import { getLocalIdent } from 'css-loader/dist/utils';
+import { LoaderOptions } from 'webpack-chain';
 import { loader } from 'webpack';
 import { Frame } from '../utils/types';
 
@@ -46,7 +47,7 @@ export function createCssOptions(
   serverRender: boolean,
   localIdentName?: string,
   getLocalIdent?: Function
-): object {
+): LoaderOptions {
   return {
     modules: modules ? {
       localIdentName: localIdentName || (isDevelopment ? '[path][name]__[local]___[hash:base64:6]' : '_[hash:base64:6]'),
@@ -62,7 +63,7 @@ export function createCssOptions(
  * @param { object } modifyVars: less变量
  * @param { boolean } isDevelopment: 是否为开发环境
  */
-export function createLessOptions(modifyVars: object | undefined, isDevelopment: boolean): object {
+export function createLessOptions(modifyVars: object | undefined, isDevelopment: boolean): LoaderOptions {
   return {
     javascriptEnabled: true,
     modifyVars,
@@ -75,7 +76,7 @@ export function createLessOptions(modifyVars: object | undefined, isDevelopment:
  * @param { string | Function | undefined } data: sass变量
  * @param { boolean } isDevelopment: 是否为开发环境
  */
-export function createSassOptions(data: string | Function | undefined, isDevelopment: boolean): object {
+export function createSassOptions(data: string | Function | undefined, isDevelopment: boolean): LoaderOptions {
   return {
     outputStyle: isDevelopment ? 'compact' : 'compressed',
     data,
