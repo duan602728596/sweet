@@ -13,7 +13,7 @@ function calculateProgress(percentage: number): string {
 
 /* 格式化输出 */
 export function handleDefaultProgress(percentage: number, message: string, ...args: Array<any>): void {
-  console.info(colors.bgMagenta(`${ calculateProgress(percentage) }%`), message, ...args);
+  console.info(colors.bgBlue(`${ calculateProgress(percentage) }%`), message, ...args);
 }
 
 /* 服务端渲染的格式化输出 */
