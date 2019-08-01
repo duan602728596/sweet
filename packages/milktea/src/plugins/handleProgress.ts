@@ -1,9 +1,22 @@
-/* 格式化输出 */
-function handleProgress(percentage: number, message: string, ...args: Array<any>): void {
+import * as colors from 'colors/safe';
+
+/**
+ * 计算进度百分比
+ * @param { number } percentage: 进度
+ */
+function calculateProgress(percentage: number): string {
   const schedule: number = Number(percentage.toFixed(2)) * 100;
   const pNumber: string[] = `${ schedule }`.split('.');
 
-  console.info('\x1B[46m%s\x1B[49m', `${ pNumber[0] }%`, message, ...args);
+  return pNumber[0];
 }
 
-export default handleProgress;
+/* 格式化输出 */
+export function handleDefaultProgress(percentage: number, message: string, ...args: Array<any>): void {
+  console.info(colors.bgMagenta(`${ calculateProgress(percentage) }%`), message, ...args);
+}
+
+/* 服务端渲染的格式化输出 */
+export function handleServerRenderProgress(percentage: number, message: string, ...args: Array<any>): void {
+  console.info(colors.bgGreen(`${ calculateProgress(percentage) }%`), message, ...args);
+}

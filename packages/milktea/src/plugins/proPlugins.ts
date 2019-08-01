@@ -3,11 +3,16 @@ import * as Config from 'webpack-chain';
 import * as MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import * as OptimizeCssAssets from 'optimize-css-assets-webpack-plugin';
 import ImageMinWebpackPlugin from 'imagemin-webpack-plugin';
-import handleProgress from './handleProgress';
+import { handleDefaultProgress, handleServerRenderProgress } from './handleProgress';
 import { SweetConfig, SweetOptions } from '../utils/types';
 
 /* 生产环境插件 */
 export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, config: Config): void {
+  /**
+   * serverRender { boolean }: 开启服务器端渲染
+   */
+  const { serverRender }: SweetConfig = sweetConfig;
+
   config
     // mini-css-extract-plugin
     .plugin('mini-css-extract-plugin')
@@ -32,7 +37,11 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
       (config: Config): void => {
         config
           .plugin('webpack.ProgressPlugin')
-          .use(webpack.ProgressPlugin, [handleProgress]);
+          .use(webpack.ProgressPlugin, [
+            serverRender
+              ? handleServerRenderProgress
+              : handleDefaultProgress
+          ]);
       }
     );
 }
