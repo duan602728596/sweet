@@ -17,9 +17,13 @@ const sweetOptions: SweetOptions = {
 
 /* webpack的回调函数 */
 export function callback(err: Error, stats: Stats): void {
-  console.log(stats.toString({
-    colors: true
-  }));
+  if (err) {
+    console.error(err);
+  } else {
+    console.log(stats.toString({
+      colors: true
+    }));
+  }
 }
 
 /**
