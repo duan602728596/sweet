@@ -1,4 +1,5 @@
 import * as colors from 'colors/safe';
+import * as _ from 'lodash';
 
 /**
  * 计算进度百分比
@@ -12,11 +13,15 @@ function calculateProgress(percentage: number): string {
 }
 
 /* 格式化输出 */
-export function handleDefaultProgress(percentage: number, message: string, ...args: Array<any>): void {
+export function handleDefaultProgress(percentage: number, message: string, ...args: Array<string>): void {
   console.info(colors.bgBlue(`${ calculateProgress(percentage) }%`), message, ...args);
 }
 
 /* 服务端渲染的格式化输出 */
-export function handleServerRenderProgress(percentage: number, message: string, ...args: Array<any>): void {
-  console.info(colors.bgGreen(`${ calculateProgress(percentage) }%`), message, ...args);
+export function handleServerRenderProgress(percentage: number, message: string, ...args: Array<string>): void {
+  const consoleArgs: string[] = _.transform(args, function(result: string[], value: string, index: number): void {
+    result.push(colors.green(value));
+  }, []);
+
+  console.info(colors.bgGreen(`${ calculateProgress(percentage) }%`), colors.green(message), ...consoleArgs);
 }
