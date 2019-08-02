@@ -1,10 +1,10 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import Index from '../modules/Index/Layout';
+import Index from '../pages/Index/Layout';
 
 Vue.use(VueRouter);
 
-const PageBundle = () => import(/* webpackChunkName: 'page' */'../modules/Page/Layout');
+const PageBundle = () => import(/* webpackChunkName: 'page' */'../pages/Page/Layout');
 
 const routers = new VueRouter({
   mode: 'history',

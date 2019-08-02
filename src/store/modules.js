@@ -1,5 +1,5 @@
-import index from '../modules/Index/actions/index';
-import page from '../modules/Page/actions/index';
+import index from '../pages/Index/actions/index';
+import page from '../pages/Page/actions/index';
 
 export default {
   index,
