@@ -79,11 +79,11 @@ const argv: object = yargs
     },
     // image2webp & imageCompress & image2icns
     imageEntry: {
-      describe: '需要批量转换或压缩的图片所在的文件夹，或要转换成icns图标的文件',
+      describe: '需要批量转换或压缩的图片所在的文件夹，或要转换成icns图标的图片文件',
       type: 'string'
     },
     imageOutput: {
-      describe: '输出批量转换或压缩的图片的文件夹，或输出icns图标的文件位置',
+      describe: '输出批量转换或压缩的图片的文件夹，或输出icns图标的文件',
       type: 'string'
     },
     quality: {
