@@ -26,3 +26,4 @@ packages/**/.sweet
 # util-tools
 packages/util-tools/tests/image2webp/*.webp
 packages/util-tools/tests/imageCompress/output
+packages/util-tools/tests/image2icns/*.icns

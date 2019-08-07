@@ -11,9 +11,11 @@
     "start": "npm run clean && cross-env NODE_ENV=development tsc --watch",
     "build": "npm run clean && cross-env NODE_ENV=production tsc",
     "clean": "rimraf ./lib",
-    "test": "npm run clean:webp && npm run clean:output && cross-env NODE_ENV=test mocha tests/test.js --timeout 180000",
+    "test": "npm run clean:test && cross-env NODE_ENV=test mocha tests/test.js --timeout 180000",
+    "clean:test": "npm run clean:webp && npm run clean:output && npm run clean:icns",
     "clean:webp": "rimraf ./tests/image2webp/image.webp",
-    "clean:output": "rimraf ./tests/imageCompression/output"
+    "clean:output": "rimraf ./tests/imageCompression/output",
+    "clean:icns": "rimraf ./tests/image2icns/256x256.icns"
   },
   "dependencies": {
     "@fiahfy/icns": "^0.0.5",
