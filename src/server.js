@@ -6,8 +6,8 @@ import Loadable from 'react-loadable';
 import { Route, StaticRouter, Switch } from 'react-router';
 import { Provider } from 'react-redux';
 import Helmet from 'react-helmet';
-import { LocaleProvider } from 'antd';
-import zhCN from 'antd/lib/locale-provider/zh_CN';
+import { ConfigProvider } from 'antd';
+import zhCN from 'antd/es/locale-provider/zh_CN';
 import { storeFactory } from './store/store';
 import './global.sass';
 import Arrangement from './layouts/Arrangement/server';
@@ -17,14 +17,14 @@ async function server(url, context = {}, initialState = {}) {
 
   const stream = renderToNodeStream(
     <Provider store={ storeFactory(initialState) }>
-      <LocaleProvider locale={ zhCN }>
+      <ConfigProvider locale={ zhCN }>
         <StaticRouter location={ url } context={ context }>
           <Switch>
             <Route path="/Login" component={ (props) => <div>登录</div> } exact={ true } />
             <Route component={ Arrangement } exact={ true } />
           </Switch>
         </StaticRouter>
-      </LocaleProvider>
+      </ConfigProvider>
     </Provider>
   );
   const helmet = Helmet.renderStatic();
