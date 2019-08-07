@@ -59,7 +59,7 @@ interface Options {
  * @param { string } output: 输出文件
  * @param { Options } options: 配置
  */
-async function image2icns(entry: string, output: string, options: Options): Promise<void> {
+async function image2icns(entry: string, output: string, options: Options = {}): Promise<void> {
   const {
     size = 1024,
     retina = 1
