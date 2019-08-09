@@ -3,7 +3,7 @@ import { Form, Input, Radio, Button } from 'antd';
 import style from './style.sass';
 
 @Form.create()
-class Forms extends Component {
+class Index extends Component {
   handleSubmit(event) {
     event.preventDefault();
 
@@ -56,4 +56,4 @@ class Forms extends Component {
   }
 }
 
-export default Forms;
+export default Index;
