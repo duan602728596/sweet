@@ -43,3 +43,8 @@ milktea-cli是一个快速运行环境的工具。
 * `milktea imageCompress`: 图片批量压缩。
   * `--imageEntry`: 源图片文件夹。
   * `--imageOutput`: 输出文件夹。
+* `milktea image2icns`: 将图片转换成`*.icns`图标。
+  * `--imageEntry`: 转换成icns图标的图片文件。
+  * `--imageOutput`: 输出icns图标文件。
+  * `--size`: icns图标的尺寸。
+  * `--retina`: 1k屏或2k屏。

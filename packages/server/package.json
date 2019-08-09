@@ -42,22 +42,20 @@
     "nunjucks": "^3.2.0"
   },
   "devDependencies": {
-    "@sweet-milktea/milktea": "^0.3.8",
+    "@sweet-milktea/milktea": "^0.3.9",
     "@sweet-milktea/server-log": "^0.3.0",
     "chai": "^4.2.0",
     "cross-env": "^5.2.0",
     "mocha": "^6.2.0",
     "pug": "^2.0.4",
     "pug-loader": "^2.4.0",
-    "react": "^16.8.6",
-    "react-dom": "^16.8.6",
     "request": "^2.88.0",
     "rimraf": "^2.6.3",
     "typescript": "^3.5.3",
     "webpack": "^4.39.1"
   },
   "peerDependencies": {
-    "@sweet-milktea/milktea": "^0.3.8",
+    "@sweet-milktea/milktea": "^0.3.9",
     "@sweet-milktea/server-log": "^0.3.0"
   },
   "engines": {

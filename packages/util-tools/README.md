@@ -41,3 +41,23 @@ imageCompress(
   './build'  // 输出文件夹
 );
 ```
+
+## 生成icns图标
+
+使用方法：
+
+```javascript
+import image2icns from '@sweet-milktea/util-tools/image2icns';
+
+image2icns(
+  './1024x1024.png',  // 输入图片
+  './1024x1024.icns', // 生成图标
+  {
+    size: 512, // 尺寸
+    retina: 2  // 1k屏或2k屏 
+  }
+);
+```
+
+如果retina的值为1：则size的值为16、32、128、256、512、1024。   
+如果retina的值为2：则size的值为16、32、128、256、512。
