@@ -83,7 +83,7 @@ export default function(sweetConfig: SweetConfig, config: Config): void {
   if (!serverRender) {
     oneOf
       .use('style')
-      .loader('style-loader')
+      .loader(createStyleLoader(undefined, isDevelopment))
       .options(styleLoaderOptions);
   }
 
