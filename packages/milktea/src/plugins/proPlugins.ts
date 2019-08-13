@@ -41,7 +41,7 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
       (config: Config): void => {
         config
           .plugin('files-map-webpack-plugin')
-          .use(FilesMapWebpackPlugin, filesMap === true ? undefined : [filesMap]);
+          .use(FilesMapWebpackPlugin, _.isPlainObject(filesMap) ? [filesMap] : undefined);
       }
     );
 
