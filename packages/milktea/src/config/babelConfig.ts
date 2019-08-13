@@ -15,10 +15,11 @@ export function createBabelPlugins(): Array<any> {
     ],
     '@babel/plugin-proposal-class-properties',
     '@babel/plugin-proposal-do-expressions',
-    '@babel/plugin-proposal-optional-catch-binding',
     '@babel/plugin-proposal-export-default-from',
-    '@babel/plugin-proposal-optional-chaining',
+    '@babel/plugin-proposal-nullish-coalescing-operator',
     '@babel/plugin-proposal-numeric-separator',
+    '@babel/plugin-proposal-optional-catch-binding',
+    '@babel/plugin-proposal-optional-chaining',
     '@babel/plugin-syntax-bigint',
     '@babel/plugin-syntax-dynamic-import'
   ];
