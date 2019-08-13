@@ -9,8 +9,8 @@ yarn-error.log
 
 # webstorm
 .idea
-
 .DS_Store
+package.json.lerna_backup
 
 # packages
 packages/**/lib
