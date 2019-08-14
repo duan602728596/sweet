@@ -1,12 +1,36 @@
-import envWindow from './asyncModule/window';
-import envNode from './asyncModule/node';
+import React, { lazy, Suspense } from 'react';
+import Loadable from 'react-loadable';
+import { injectReducers } from '../store/store';
+import Loading from '../layouts/Loading/index';
 
-let module = null;
+/**
+ * 异步加载、注入模块和reducer
+ * @param { Function } loader: 需要异步注入的模块
+ */
+function envWindow(loader) {
+  const Module = lazy(loader);
 
-if (typeof window === 'object') {
-  module = envWindow;
-} else {
-  module = envNode;
+  return () => (
+    <Suspense fallback={ <Loading /> }>
+      <Module injectReducers={ injectReducers } />
+    </Suspense>
+  );
 }
 
-export default module;
+/**
+ * 异步加载、注入模块和reducer，用于服务端渲染，兼容浏览器端渲染
+ * @param { Function } loader: 需要异步注入的模块
+ */
+function envNode(loader) {
+  return Loadable({
+    loader,
+    loading: () => <Loading />,
+    render(Module) {
+      const AsyncModule = Module.default;
+
+      return <AsyncModule injectReducers={ injectReducers } />;
+    }
+  });
+}
+
+export default typeof window === 'object' ? envWindow : envNode;
