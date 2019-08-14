@@ -10,7 +10,7 @@ import { ConfigProvider } from 'antd';
 import zhCN from 'antd/es/locale-provider/zh_CN';
 import { storeFactory } from './store/store';
 import './global.sass';
-import SystemLayout from './layouts/SystemLayout/server';
+import Layout from './layouts/Layout/index';
 import Login from './pages/Login/Layout';
 
 /* ssr入口文件 */
@@ -23,7 +23,7 @@ async function server(url, context = {}, initialState = {}) {
         <StaticRouter location={ url } context={ context }>
           <Switch>
             <Route path="/Login" component={ Login } exact={ true } />
-            <Route component={ SystemLayout } exact={ true } />
+            <Route component={ Layout } exact={ true } />
           </Switch>
         </StaticRouter>
       </ConfigProvider>

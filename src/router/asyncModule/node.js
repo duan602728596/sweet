@@ -1,7 +1,7 @@
 import React from 'react';
 import Loadable from 'react-loadable';
-import { injectReducers } from '../store/store';
-import SwitchLoading from '../layouts/SwitchLoading/index';
+import { injectReducers } from '../../store/store';
+import Loading from '../../layouts/Loading';
 
 /**
  * 异步加载、注入模块和reducer，用于服务端渲染，兼容浏览器端渲染
@@ -10,7 +10,7 @@ import SwitchLoading from '../layouts/SwitchLoading/index';
 function asyncModule(loader) {
   return Loadable({
     loader,
-    loading: () => <SwitchLoading />,
+    loading: () => <Loading />,
     render(Module) {
       const AsyncModule = Module.default;
 

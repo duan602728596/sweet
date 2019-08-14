@@ -4,9 +4,9 @@
 import React, { Component } from 'react';
 import { Spin } from 'antd';
 import Main from '../Main/index';
-import style from './style.sass';
+import style from './index.sass';
 
-class SwitchLoading extends Component {
+class Loading extends Component {
   render() {
     return (
       <Main>
@@ -20,4 +20,4 @@ class SwitchLoading extends Component {
   }
 }
 
-export default SwitchLoading;
+export default Loading;

@@ -6,7 +6,7 @@ import zhCN from 'antd/es/locale-provider/zh_CN';
 import { hot } from '@sweet-milktea/milktea/react-hot-loader';
 import { storeFactory } from './store/store';
 import './global.sass';
-import SystemLayout from './layouts/SystemLayout/index';
+import Layout from './layouts/Layout/index';
 import Login from './pages/Login/Layout';
 
 /* 热替换 */
@@ -19,7 +19,7 @@ class App extends Component {
           <BrowserRouter>
             <Switch>
               <Route path="/Login" component={ Login } exact={ true } />
-              <Route component={ SystemLayout } exact={ true } />
+              <Route component={ Layout } exact={ true } />
             </Switch>
           </BrowserRouter>
         </ConfigProvider>
@@ -27,4 +27,5 @@ class App extends Component {
     );
   }
 }
+
 export default App;
