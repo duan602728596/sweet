@@ -19,7 +19,7 @@ function loadReducer(reducer) {
         super(...arguments);
 
         // 异步注入reducer
-        const injectReducers = this?.props?.injectReducers || null;
+        const injectReducers = this?.props?.injectReducers || undefined;
 
         if (injectReducers) {
           injectReducers(reducer);

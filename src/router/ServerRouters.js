@@ -4,8 +4,7 @@ import asyncModule from './asyncServerModule';
 import Index from '../pages/Index/Layout';
 
 /* 服务端渲染组件 */
-const ListBundle = asyncModule(() => import(/* webpackChunkName: 'list' */'../pages/List/Layout'));
-const FormBundle = asyncModule(() => import(/* webpackChunkName: 'form' */'../pages/Form/Layout'));
+const SecondBundle = asyncModule(() => import(/* webpackChunkName: 'second' */'../pages/Second/Layout'));
 
 class ServerRouters extends Component {
   render() {
@@ -13,8 +12,7 @@ class ServerRouters extends Component {
       <Switch>
         <Route path="/" component={ Index } exact={ true } />
         <Route path="/Index" component={ Index } />
-        <Route path="/List" component={ ListBundle } />
-        <Route path="/Form" component={ FormBundle } />
+        <Route path="/Second" component={ SecondBundle } />
       </Switch>
     );
   }

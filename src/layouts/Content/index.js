@@ -2,31 +2,25 @@
  * layout - Content
  * 页面内容
  * 组件用于展示页面的内容
- * 默认padding为10px
  */
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { Layout } from 'antd';
-import style from './style.sass';
+import style from './index.sass';
 import ErrorBoundary from '../ErrorBoundary/index';
 
-class Content extends Component {
-  static propTypes = {
-    children: PropTypes.oneOfType([
-      PropTypes.node,
-      PropTypes.array
-    ])
-  };
-
-  render() {
-    return (
-      <ErrorBoundary>
-        <Layout.Content className={ style.content }>
-          { this.props.children }
-        </Layout.Content>
-      </ErrorBoundary>
-    );
-  }
+function Content(props) {
+  return (
+    <ErrorBoundary>
+      <Layout.Content className={ style.content }>
+        { props.children }
+      </Layout.Content>
+    </ErrorBoundary>
+  );
 }
+
+Content.propTypes = {
+  children: PropTypes.node
+};
 
 export default Content;

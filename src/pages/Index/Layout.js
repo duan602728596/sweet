@@ -1,17 +1,17 @@
-import React, { Component } from 'react';
+import React, { Fragment } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import Helmet from 'react-helmet';
-import Main from '../../layouts/Main/index';
-import Content from '../../layouts/Content/index';
+import Main from '../../layouts/Main';
+import Content from '../../layouts/Content';
 import Index from './Index/index';
 
-class ModuleLayout extends Component {
-  render() {
-    return [
-      <Helmet key="helmet">
+function ModuleLayout(props) {
+  return (
+    <Fragment>
+      <Helmet>
         <title>Webpack App</title>
-      </Helmet>,
-      <Main key="main">
+      </Helmet>
+      <Main>
         <Content>
           <Switch>
             <Route path="/" component={ Index } exact={ true } />
@@ -19,8 +19,8 @@ class ModuleLayout extends Component {
           </Switch>
         </Content>
       </Main>
-    ];
-  }
+    </Fragment>
+  );
 }
 
 export default ModuleLayout;

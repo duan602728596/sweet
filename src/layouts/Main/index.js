@@ -6,23 +6,18 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Layout } from 'antd';
-import style from './style.sass';
+import style from './index.sass';
 
-class Main extends Component {
-  static propTypes = {
-    children: PropTypes.oneOfType([
-      PropTypes.node,
-      PropTypes.array
-    ])
-  };
-
-  render() {
-    return (
-      <Layout className={ style.main }>
-        { this.props.children }
-      </Layout>
-    );
-  }
+function Main(props) {
+  return (
+    <Layout className={ style.main }>
+      { props.children }
+    </Layout>
+  );
 }
+
+Main.propTypes = {
+  children: PropTypes.node
+};
 
 export default Main;

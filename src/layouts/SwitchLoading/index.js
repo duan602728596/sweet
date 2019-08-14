@@ -10,8 +10,10 @@ class SwitchLoading extends Component {
   render() {
     return (
       <Main>
-        <div className={ style.loading }>
-          <Spin size="large" tip="Loading..." />
+        <div className={ style.loadingBox }>
+          <div className={ style.loading }>
+            <Spin size="large" tip="Loading..." />
+          </div>
         </div>
       </Main>
     );

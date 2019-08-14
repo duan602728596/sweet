@@ -1,17 +1,17 @@
 import { createAction, handleActions } from 'redux-actions';
-import { fromJS, List } from 'immutable';
+import { fromJS } from 'immutable';
 
 const initData = {
-  listDisplay: List([])
+  likeLen: 0
 };
 
 /* Action */
-export const listDisplayChange = createAction('index/首页列表展示');
+export const setLikeLen = createAction('index/点赞');
 
 /* reducer */
 const reducer = handleActions({
-  [listDisplayChange]($$state, action) {
-    return $$state.set('listDisplay', List(action.payload.listDisplay));
+  [setLikeLen]($$state, action) {
+    return $$state.set('likeLen', action.payload);
   }
 }, fromJS(initData));
 

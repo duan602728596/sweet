@@ -1,79 +1,69 @@
-/**
- * layout - header
- * 顶部header布局
- * 显示logo、导航、登录人信息等
- */
-import React, { Component } from 'react';
-import { NavLink } from 'react-router-dom';
-import classNames from 'classnames';
-import { Icon } from 'antd';
-import style from './style.sass';
-import ErrorBoundary from '../ErrorBoundary/index';
-import HumanInformation from './HumanInformation';
+import React from 'react';
+import { Link, withRouter } from 'react-router-dom';
+import { Layout, Menu, Icon, Avatar, Dropdown } from 'antd';
+import style from './index.sass';
 
-export const navOptions = [
-  {
-    id: 'home',
-    name: '主页',
-    href: '/Index',
-    icon: 'home'
-  },
-  {
-    id: 'list',
-    name: '列表',
-    href: '/List',
-    icon: 'bars'
-  },
-  {
-    id: 'form',
-    name: '表单',
-    href: '/Form',
-    icon: 'table'
-  }
-];
+/* header */
+function Header(props) {
+  const { location } = props;
 
-const len = navOptions.length > 0;
-
-class Header extends Component {
-  // 判断首页home
-  oddEvent(item, match, location) {
+  // 计算selectedKeys
+  function selectKeys() {
     const { pathname } = location;
-    const { href } = item;
-    const reg = new RegExp(`^${ href }.*$`, 'ig');
+    const url = pathname === '/' ? '/Index' : pathname;
+    const key = url.substr(1)
+      .split(/\//g)[0]
+      .toLocaleLowerCase();
 
-    if (len && pathname === '/' && href === navOptions[0].href) {
-      return true;
-    }
-
-    return match && reg.test(pathname);
+    return key;
   }
 
-  navList(options) {
-    return options.map((item, index) => {
-      return (
-        <li key={ item.id }>
-          <NavLink to={ item.href } activeClassName={ style.navActive } isActive={ this.oddEvent.bind(this, item) }>
-            <Icon className={ style.icon } type={ item.icon } theme="outlined" />
-            <span>{ item.name }</span>
-          </NavLink>
-        </li>
-      );
-    });
-  }
-
-  render() {
+  // 渲染下拉菜单
+  function toolsOverlayRender() {
     return (
-      <ErrorBoundary>
-        <img className={ style.logo } src={ require('./logo.png') } alt="管理平台 demo" title="管理平台 demo" />
-        <nav className={ style.nav }>
-          <ul className={ classNames(style.navList, 'clearfix') }>
-            { this.navList(navOptions) }
-          </ul>
-        </nav>
-        <HumanInformation />
-      </ErrorBoundary>
+      <Menu>
+        <Menu.Item>
+          <Link to="/Login">
+            <Icon type="logout" />
+            退出
+          </Link>
+        </Menu.Item>
+      </Menu>
     );
   }
+
+  return (
+    <Layout.Header className={ style.header }>
+      {/* logo */}
+      <div className={ style.logo }>平台LOGO</div>
+      {/* 导航 */}
+      <nav className={ style.nav }>
+        <Menu mode="horizontal" theme="dark" selectedKeys={ [selectKeys()] }>
+          <Menu.Item key="index">
+            <Link to="/Index">
+              <Icon type="home" />
+              首页
+            </Link>
+          </Menu.Item>
+          <Menu.Item key="second">
+            <Link to="/Second">
+              <Icon type="bars" />
+              二级页
+            </Link>
+          </Menu.Item>
+        </Menu>
+      </nav>
+      {/* 工具 */}
+      <div className={ style.tools }>
+        <Dropdown overlay={ toolsOverlayRender() }>
+          <span className={ style.toolsMenu }>
+            <Avatar className={ style.avatar }>D</Avatar>
+            <span className={ style.username }>用户名</span>
+          </span>
+        </Dropdown>
+      </div>
+    </Layout.Header>
+  );
 }
 
-export default Header;
+export default withRouter(Header);

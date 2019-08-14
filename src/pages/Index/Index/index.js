@@ -1,28 +1,48 @@
-import React, { Component } from 'react';
-import { Row, Col } from 'antd';
-import style from './style.sass';
-import ListDisplay from './ListDisplay';
+import React from 'react';
+import { bindActionCreators } from 'redux';
+import { useSelector } from 'react-redux';
+import { createSelector, createStructuredSelector } from 'reselect';
+import useActions from '../../../store/useActions';
+import { Typography, Icon } from 'antd';
+import style from './index.sass';
+import { setLikeLen } from '../reducer/reducer';
 
-class Index extends Component {
-  render() {
-    return (
-      <Row type="flex" gutter={ 10 }>
-        {/* 左侧显示列表 */}
-        <Col xs={ 24 } sm={ 24 } md={ 12 } lg={ 10 } xl={ 10 } className={ style.mb10 }>
-          <ListDisplay />
-        </Col>
-        {/* 右侧显示图表 */}
-        <Col xs={ 24 } sm={ 24 } md={ 12 } lg={ 14 } xl={ 14 }>
-          <Row type="flex" gutter={ 10 }>
-            <Col xs={ 24 } sm={ 12 } md={ 24 } lg={ 12 } xl={ 12 } className={ style.mb10 }>图表</Col>
-            <Col xs={ 24 } sm={ 12 } md={ 24 } lg={ 12 } xl={ 12 } className={ style.mb10 }>图表</Col>
-            <Col xs={ 24 } sm={ 12 } md={ 24 } lg={ 12 } xl={ 12 } className={ style.mb10 }>图表</Col>
-            <Col xs={ 24 } sm={ 12 } md={ 24 } lg={ 12 } xl={ 12 } className={ style.mb10 }>图表</Col>
-          </Row>
-        </Col>
-      </Row>
-    );
+/* state */
+const state = createStructuredSelector({
+  likeLen: createSelector(
+    ($$state) => $$state.get('index').get('likeLen'),
+    (data) => data
+  )
+});
+
+/* actions */
+const actions = (dispatch) => ({
+  action: bindActionCreators({
+    setLikeLen
+  }, dispatch)
+});
+
+function Index(props) {
+  const { likeLen } = useSelector(state);
+  const { action } = useActions(actions);
+
+  // 点赞
+  function handleZanClick(event) {
+    action.setLikeLen(likeLen + 1);
   }
+
+  return (
+    <Typography>
+      <Typography.Title>欢迎</Typography.Title>
+      <Typography.Paragraph>
+        如果你喜欢，你可以点个赞。
+      </Typography.Paragraph>
+      <div>
+        <Icon className={ style.zan } type="like" role="button" onClick={ handleZanClick } />
+        <span className={ style.len }>{ likeLen }</span>
+      </div>
+    </Typography>
+  );
 }
 
 export default Index;

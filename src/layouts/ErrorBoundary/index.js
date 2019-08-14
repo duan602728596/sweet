@@ -4,26 +4,19 @@
  */
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import style from './style.sass';
+import style from './index.sass';
 import Content from '../Content/index';
 
 class ErrorBoundary extends Component {
   static propTypes = {
-    children: PropTypes.oneOfType([
-      PropTypes.node,
-      PropTypes.array
-    ])
+    children: PropTypes.node
   };
 
-  constructor() {
-    super(...arguments);
-
-    this.state = {
-      hasError: false,
-      error: null,
-      info: null
-    };
-  }
+  state = {
+    hasError: false,
+    error: undefined,
+    info: undefined
+  };
 
   componentDidCatch(error, info) {
     this.setState({
@@ -34,18 +27,21 @@ class ErrorBoundary extends Component {
   }
 
   render() {
-    if (this.state.hasError) {
+    const { props, state } = this;
+    const { hasError, error, info } = state;
+
+    if (hasError) {
       return (
         <Content>
           <h1 className={ style.title }>错误警告：</h1>
           <h2 className={ style.secondTitle }>Error:</h2>
-          <pre className={ style.pre }>{ this.state.error.stack }</pre>
+          <pre className={ style.pre }>{ error.stack }</pre>
           <h2 className={ style.secondTitle }>Info:</h2>
-          <pre className={ style.pre }>{ this.state.info.componentStack }</pre>
+          <pre className={ style.pre }>{ info.componentStack }</pre>
         </Content>
       );
     } else {
-      return this.props.children;
+      return props.children;
     }
   }
 }

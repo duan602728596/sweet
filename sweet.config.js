@@ -40,5 +40,6 @@ export default {
   },
   html: [
     { template: path.join(__dirname, 'src/index.pug') }
-  ]
+  ],
+  filesMap: true
 };
