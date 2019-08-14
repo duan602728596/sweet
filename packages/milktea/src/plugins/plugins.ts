@@ -24,12 +24,18 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
     ? requireModule(path.join(__dirname, 'devPlugins'))
     : requireModule(path.join(__dirname, 'proPlugins'));
 
-  // moment
   config
+    // moment
     .plugin('webpack.IgnorePlugin')
     .use(webpack.IgnorePlugin, [{
       resourceRegExp: /^\.\/locale$/,
       contextRegExp: /moment$/
+    }])
+    .end()
+    // 注入环境变量
+    .plugin('webpack.DefinePlugin-sweet-env')
+    .use(webpack.DefinePlugin, [{
+      'process.env.SWEET_SERVER_RENDER': !!serverRender // 判断是否为ssr渲染
     }]);
 
   // env plugin
