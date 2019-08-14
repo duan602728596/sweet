@@ -142,6 +142,12 @@ function server(url, context = {}, initialState = {}) {
 export default server;
 ```
 
+## 环境变量
+
+内置了环境变量，根据环境变量判断不同的编译环境。
+
+* `process.env.SWEET_SERVER_RENDER`：判断当前环境是否为服务器端渲染。
+
 ## 使用typescript
 
 在项目内添加`tsconfig.json`文件。
