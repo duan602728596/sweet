@@ -33,4 +33,4 @@ function envNode(loader) {
   });
 }
 
-export default typeof window === 'object' ? envWindow : envNode;
+export default process.env.SWEET_SERVER_RENDER === true ? envNode : envWindow;

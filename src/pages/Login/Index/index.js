@@ -48,7 +48,7 @@ function Index(props) {
             })(<Input.Password addonBefore={ <Icon type="lock" /> } />)
           }
         </Form.Item>
-        <div>
+        <div className={ style.btnBox }>
           <Button type="primary" htmlType="submit" size="large" block={ true }>登陆</Button>
         </div>
       </Form>
