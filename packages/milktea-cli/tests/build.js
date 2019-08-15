@@ -18,6 +18,9 @@ function run() {
 
     child.stdout.on('data', () => undefined);
     child.stderr.on('data', () => undefined);
+    child.on('error', (err) => reject(err));
+  }).catch((err) => {
+    console.error(err);
   });
 }
 

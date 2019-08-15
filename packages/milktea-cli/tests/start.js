@@ -20,6 +20,7 @@ function run() {
 
     child.stdout.on('data', () => undefined);
     child.stderr.on('data', () => undefined);
+    child.on('error', (err) => reject(err));
 
     // 保证文件编译后结束进程
     const timer = setInterval(() => {
@@ -28,6 +29,8 @@ function run() {
         child.kill();
       }
     }, 1000);
+  }).catch((err) => {
+    console.error(err);
   });
 }
 
