@@ -98,7 +98,7 @@ async function devServer(argv: DevServerType = {}): Promise<void> {
 
   /* http服务 */
   http.createServer(app.callback())
-    .listen(httpPort);
+    .listen(sweetOptions.httpPort);
 
   /* https服务 */
   if (useHttps && keyFile && certFile) {
@@ -110,7 +110,7 @@ async function devServer(argv: DevServerType = {}): Promise<void> {
 
     http2
       .createSecureServer(httpsConfig, app.callback())
-      .listen(httpsPort);
+      .listen(sweetOptions.httpsPort);
   }
 }
 

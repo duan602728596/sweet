@@ -103,7 +103,7 @@ async function proServer(argv: ProServerType = {}): Promise<void> {
 
   /* http服务 */
   http.createServer(app.callback())
-    .listen(httpPort);
+    .listen(sweetOptions.httpPort);
 
   /* https服务 */
   if (useHttps && keyFile && certFile) {
@@ -115,7 +115,7 @@ async function proServer(argv: ProServerType = {}): Promise<void> {
 
     http2
       .createSecureServer(httpsConfig, app.callback())
-      .listen(httpsPort);
+      .listen(sweetOptions.httpsPort);
   }
 }
 
