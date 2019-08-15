@@ -7,6 +7,7 @@ import * as Koa from 'koa';
 import * as Router from '@koa/router';
 import middleware from './proServer/middleware';
 import createRouters from './proServer/createRouters';
+import portUse from './proServer/portUse';
 import createApi from './utils/createApi';
 import createHttpsCertificate, { HttpsCertificate } from './utils/createHttpsCertificate';
 import { SweetOptions, Log } from './utils/types';
@@ -66,8 +67,8 @@ async function proServer(argv: ProServerType = {}): Promise<void> {
 
   /* 合并配置项 */
   Object.assign(sweetOptions, {
-    httpPort,
-    httpsPort,
+    httpPort: await portUse(httpPort, 'http'),
+    httpsPort: await portUse(httpsPort, 'https'),
     renderType,
     serverRenderFile,
     useBabelRegister

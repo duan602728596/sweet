@@ -3,6 +3,7 @@ import { Server } from 'https';
 import * as webpack from 'webpack';
 import * as koaWebpack from 'koa-webpack';
 import * as _ from 'lodash';
+import getPort from './getPort';
 
 interface MiddlewareConfig {
   compiler?: webpack.Compiler;
@@ -91,10 +92,12 @@ async function createKoaWebpack(
   let server: Server | undefined = undefined;
 
   if (useHttps && keyFile && crtFile) {
+    const socketPort: number = await getPort(_.random(15000, 50000));
+
     server = https.createServer({
       key: keyFile,
       cert: crtFile
-    }).listen(_.random(15000, 50000), '127.0.0.1');
+    }).listen(socketPort, '127.0.0.1');
   }
 
   const middlewareConfig: MiddlewareConfig = createMiddlewareConfig(compiler, env, useHttps, server);

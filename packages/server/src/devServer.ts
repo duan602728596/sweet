@@ -8,6 +8,7 @@ import * as Router from '@koa/router';
 import * as webpack from 'webpack';
 import middleware from './devServer/middleware';
 import createRouters from './devServer/createRouters';
+import getPort from './devServer/getPort';
 import createApi from './utils/createApi';
 import createHttpsCertificate, { HttpsCertificate } from './utils/createHttpsCertificate';
 import { SweetOptions } from './utils/types';
@@ -67,8 +68,8 @@ async function devServer(argv: DevServerType = {}): Promise<void> {
 
   /* 合并配置项 */
   Object.assign(sweetOptions, {
-    httpPort,
-    httpsPort,
+    httpPort: await getPort(httpPort, true, 'http'),
+    httpsPort: await getPort(httpsPort, true, 'https'),
     renderType,
     serverRenderFile,
     useBabelRegister
