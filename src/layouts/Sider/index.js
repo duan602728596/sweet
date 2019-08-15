@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import Component from 'vue-class-component';
-import { Layout, Menu } from 'ant-design-vue';
-import style from './style.sass';
+import { Layout, Menu, Icon } from 'ant-design-vue';
+import style from './index.sass';
 
 /**
  * layout - Sider
@@ -44,15 +44,23 @@ class Sider extends Vue {
         const children = this.optionsView(item.children, index);
 
         return (
-          <Menu.SubMenu key={ item.id } name={ `submenu${ fatherIndex ? `-${ fatherIndex }` : '' }-${ index }` }>
-            <template slot="title">{ item.name }</template>
+          <Menu.SubMenu key={ item.id } name={ item.id }>
+            <template slot="title">
+              <span>
+                { item.icon ? <Icon type={ item.icon } /> : null }
+                <span>{ item.name }</span>
+              </span>
+            </template>
             { children }
           </Menu.SubMenu>
         );
       } else {
         return (
-          <Menu.Item key={ item.id } name={ `item${ fatherIndex ? `-${ fatherIndex }` : '' }-${ index }` }>
-            <router-link class={ style.link } to={ item.url }>{ item.name }</router-link>
+          <Menu.Item key={ item.id } name={ item.id }>
+            <router-link to={ item.url }>
+              { item.icon ? <Icon type={ item.icon } /> : null }
+              <span>{ item.name }</span>
+            </router-link>
           </Menu.Item>
         );
       }
@@ -64,9 +72,9 @@ class Sider extends Vue {
     const sk = this.getSelectKey(options);
 
     return (
-      <Layout.Sider class={ style.sider } width="180">
+      <Layout.Sider class={ style.sider }>
         <Menu theme="light" mode="inline" defaultSelectedKeys={ sk } style={{ borderRight: 'none' }}>
-          { this.optionsView(this.$props.options) }
+          { this.optionsView(options) }
         </Menu>
       </Layout.Sider>
     );

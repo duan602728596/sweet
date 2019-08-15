@@ -1,21 +1,29 @@
 import Vue from 'vue';
 import Component from 'vue-class-component';
-import { Button } from 'ant-design-vue';
+import { Icon } from 'ant-design-vue';
+import style from './index.sass';
 
 @Component
 class Index extends Vue {
   // 点击事件
-  handleAddState(event) {
-    this.$store.dispatch('index/add');
+  handleZanClick(event) {
+    const likeLen = this.$store.getters['index/getLikeLen']();
+
+    this.$store.dispatch('index/setLikeLen', likeLen + 1);
   }
 
   render() {
+    const likeLen = this.$store.getters['index/getLikeLen']();
+
     return (
-      <div>
-        <div>Index</div>
-        <div>{ this.$store.getters['index/getCount']() }</div>
-        <Button type="primary" onClick={ this.handleAddState }>添加</Button>
-      </div>
+      <article>
+        <h1>欢迎</h1>
+        <p>如果你喜欢，你可以点个赞。</p>
+        <div>
+          <Icon class={ style.zan } type="like" role="button" onClick={ this.handleZanClick } />
+          <span class={ style.len }>{ likeLen }</span>
+        </div>
+      </article>
     );
   }
 }

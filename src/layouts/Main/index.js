@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import Component from 'vue-class-component';
 import { Layout } from 'ant-design-vue';
-import style from './style.sass';
+import style from './index.sass';
 
 /**
  * layout - main
@@ -12,7 +12,7 @@ import style from './style.sass';
 class Main extends Vue {
   render() {
     return (
-      <Layout className={ style.main }>
+      <Layout class={ style.main }>
         { this.$slots.default }
       </Layout>
     );

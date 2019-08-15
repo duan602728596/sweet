@@ -1,8 +1,9 @@
 import Vue from 'vue';
 import Component from 'vue-class-component';
-import { Layout } from 'ant-design-vue';
+import { Layout as AntdLayout } from 'ant-design-vue';
 import Header from '../Header/index';
-import style from './style.sass';
+import Footer from '../Footer/index';
+import style from './index.sass';
 
 /**
  * Arrangement
@@ -12,16 +13,16 @@ import style from './style.sass';
  * Routers 根据路由渲染页面
  */
 @Component
-class Arrangement extends Vue {
+class Layout extends Vue {
   render() {
     return (
-      <Layout class={ style.layout }>
+      <AntdLayout class={ style.layout }>
         <Header />
         <router-view />
-        <Layout.Footer class={ style.footer }>版权所有</Layout.Footer>
-      </Layout>
+        <Footer />
+      </AntdLayout>
     );
   }
 }
 
-export default Arrangement;
+export default Layout;

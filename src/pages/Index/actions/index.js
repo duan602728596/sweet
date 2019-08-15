@@ -1,19 +1,19 @@
 export default {
   namespaced: true,
   state: {
-    count: 0
+    likeLen: 0
   },
   getters: {
-    getCount: (state) => () => state.count
+    getLikeLen: (state) => () => state.likeLen
   },
   mutations: {
-    add(state) {
-      state.count++;
+    setLikeLen(state, payload) {
+      state.likeLen = payload;
     }
   },
   actions: {
-    add(context, payload) {
-      context.commit('add', payload);
+    setLikeLen(context, payload) {
+      context.commit('setLikeLen', payload);
     }
   }
 };

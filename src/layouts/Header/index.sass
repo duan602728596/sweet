@@ -1,0 +1,38 @@
+$header-height: 46px
+
+.header
+  display: flex
+  padding: 0
+  height: $header-height
+
+.logo, .tools
+  flex-shrink: 0
+  line-height: $header-height
+
+.logo
+  width: 200px
+  font-size: 24px
+  color: rgba(255, 255, 255, .8)
+  text-align: center
+
+.nav
+  flex-grow: 1
+
+.tools
+  margin-right: 16px
+
+.toolsMenu
+  cursor: pointer
+
+  &:hover .username
+    color: rgba(255, 255, 255, .8)
+
+.avatar
+  background-color: #13c2c2
+  color: #fff
+
+.username
+  margin-left: 8px
+  vertical-align: -1px
+  color: rgba(255, 255, 255, .65)
+  transition: color .3s

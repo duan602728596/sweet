@@ -1,29 +1,7 @@
 import Vue from 'vue';
 import Component from 'vue-class-component';
-import { Layout, Icon } from 'ant-design-vue';
-import HumanInformation from './HumanInformation';
-import style from './style.sass';
-
-export const navOptions = [
-  {
-    id: 'index',
-    name: '主页',
-    href: '/Index',
-    icon: 'home'
-  },
-  {
-    id: 'page',
-    name: '列表',
-    href: '/Page',
-    icon: 'bars'
-  },
-  {
-    id: 'form',
-    name: '表单',
-    href: '/Form',
-    icon: 'table'
-  }
-];
+import { Layout, Icon, Menu, Dropdown, Avatar } from 'ant-design-vue';
+import style from './index.sass';
 
 /**
  * layout - header
@@ -32,33 +10,63 @@ export const navOptions = [
  */
 @Component
 class Header extends Vue {
-  data() {
-    return {
-      navOptions
-    };
+  // 计算selectedKeys
+  selectKeys() {
+    const { current } = this.$router.history;
+    const { path: pathname } = current;
+    const url = pathname === '/' ? '/Index' : pathname;
+    const key = url.substr(1)
+      .split(/\//g)[0]
+      .toLocaleLowerCase();
+
+    return key;
   }
 
-  listView(navOptions) {
-    return navOptions.map((item, index) => {
-      return (
-        <li key={ index }>
-          <router-link to={ item.href } active-class={ style.navActive }>
-            <Icon class={ style.icon } type={ item.icon } theme="outlined" />
-            <span>{ item.name }</span>
+  // 渲染下拉菜单
+  toolsOverlayRender() {
+    return (
+      <Menu>
+        <Menu.Item>
+          <router-link to="/Login">
+            <Icon type="logout" />
+            退出
           </router-link>
-        </li>
-      );
-    });
+        </Menu.Item>
+      </Menu>
+    );
   }
 
   render() {
     return (
       <Layout.Header class={ style.header }>
-        <img class={ style.logo } src={ require('./logo.png') } alt="管理平台 demo" title="管理平台 demo" />
+        {/* logo */}
+        <div class={ style.logo }>平台LOGO</div>
+        {/* 导航 */}
         <nav class={ style.nav }>
-          <ul class="clearfix">{ this.listView(navOptions) }</ul>
+          <Menu mode="horizontal" theme="dark">
+            <Menu.Item key="index">
+              <router-link to="/Index">
+                <Icon type="home" />
+                首页
+              </router-link>
+            </Menu.Item>
+            <Menu.Item key="second">
+              <router-link to="/Second">
+                <Icon type="bars" />
+                二级页
+              </router-link>
+            </Menu.Item>
+          </Menu>
         </nav>
-        <HumanInformation />
+        {/* 工具 */}
+        <div class={ style.tools }>
+          <Dropdown overlay={ this.toolsOverlayRender() }>
+            <span class={ style.toolsMenu }>
+              <Avatar class={ style.avatar }>D</Avatar>
+              <span class={ style.username }>用户名</span>
+            </span>
+          </Dropdown>
+        </div>
       </Layout.Header>
     );
   }
