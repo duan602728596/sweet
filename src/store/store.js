@@ -6,8 +6,7 @@ import formatModules from './formatModules';
 Vue.use(Vuex);
 
 const store = {
-  store: null,
-  asyncModules: {}
+  store: null
 };
 
 export function storeFactory(initialState = {}) {
