@@ -17,7 +17,7 @@ const options = [
   {
     id: 'page-1',
     name: '导航菜单-1',
-    url: '/Second/page1'
+    url: '/Second/Page1'
   },
   {
     id: 'page-2',
@@ -27,12 +27,12 @@ const options = [
       {
         id: 'page-2-0',
         name: '子导航-2-0',
-        url: '/Second/page2'
+        url: '/Second/Page2'
       },
       {
         id: 'page-2-1',
         name: '子导航-2-1',
-        url: '/Second/page3'
+        url: '/Second/Page3'
       }
     ]
   }
