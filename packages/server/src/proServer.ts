@@ -102,7 +102,8 @@ async function proServer(argv: ProServerType = {}): Promise<void> {
   createApi(sweetOptions, router, app, false);
 
   /* http服务 */
-  http.createServer(app.callback())
+  http
+    .createServer(app.callback())
     .listen(sweetOptions.httpPort);
 
   /* https服务 */

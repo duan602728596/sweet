@@ -97,7 +97,8 @@ async function devServer(argv: DevServerType = {}): Promise<void> {
   createApi(sweetOptions, router, app, true);
 
   /* http服务 */
-  http.createServer(app.callback())
+  http
+    .createServer(app.callback())
     .listen(sweetOptions.httpPort);
 
   /* https服务 */
