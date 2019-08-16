@@ -97,8 +97,7 @@ async function devServer(argv: DevServerType = {}): Promise<void> {
   createApi(sweetOptions, router, app, true);
 
   /* http服务 */
-  http
-    .createServer(app.callback())
+  http.createServer(app.callback())
     .listen(sweetOptions.httpPort);
 
   /* https服务 */
@@ -109,8 +108,7 @@ async function devServer(argv: DevServerType = {}): Promise<void> {
       cert: certFile
     };
 
-    http2
-      .createSecureServer(httpsConfig, app.callback())
+    http2.createSecureServer(httpsConfig, app.callback())
       .listen(sweetOptions.httpsPort);
   }
 }
