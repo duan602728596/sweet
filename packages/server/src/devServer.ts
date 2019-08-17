@@ -100,7 +100,7 @@ async function devServer(argv: DevServerType = {}): Promise<void> {
   await createRouters(router, sweetOptions, !!serverRender, formatServerRenderFile);
 
   /* 本地api */
-  createApi(sweetOptions, router, app, true);
+  await createApi(sweetOptions, router, app, true);
 
   /* http服务 */
   http.createServer(app.callback())
