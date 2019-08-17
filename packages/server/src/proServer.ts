@@ -9,6 +9,7 @@ import middleware from './proServer/middleware';
 import createRouters from './proServer/createRouters';
 import portUse from './proServer/portUse';
 import createApi from './utils/createApi';
+import createProxy from './utils/createProxy';
 import createHttpsCertificate, { HttpsCertificate } from './utils/createHttpsCertificate';
 import { SweetOptions, Log } from './utils/types';
 
@@ -89,6 +90,9 @@ async function proServer(argv: ProServerType = {}): Promise<void> {
       : path.join(sweetOptions.basicPath, serverRenderFile);
   }
 
+  /* 添加代理服务 */
+  await createProxy(sweetOptions, app, false);
+
   /* 扩展koa中间件配置 */
   if (serverChain) {
     await serverChain(app);
@@ -101,7 +105,7 @@ async function proServer(argv: ProServerType = {}): Promise<void> {
   createRouters(router, sweetOptions, !!serverRender, formatServerRenderFile, formatServerRoot, template);
 
   /* 本地api */
-  createApi(sweetOptions, router, app, false);
+  await createApi(sweetOptions, router, app, false);
 
   /* http服务 */
   http.createServer(app.callback())

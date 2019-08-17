@@ -50,10 +50,18 @@ export function filePathAnalyze(file: string): string {
   }
 }
 
-/* 设置默认文件地址 */
-export const defaultApiPath: Function = (basicPath: string): string => {
+/* 设置默认api文件的地址 */
+export function defaultApiPath(basicPath: string): string {
   return path.join(basicPath, 'api/api.js');
-};
+}
+
+/* 设置默认的proxy代理的地址 */
+export function defaultProxyPath(basicPath: string): { js: string; json: string } {
+  return {
+    js: path.join(basicPath, 'proxy/proxy.js'),
+    json: path.join(basicPath, 'proxy/proxy.json')
+  };
+}
 
 /* 清除模块缓存（只用于开发环境） */
 export function cleanRequireCache(id: any): void {

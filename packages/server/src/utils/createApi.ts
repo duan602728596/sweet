@@ -6,7 +6,7 @@ import useRegister from './babelRegister';
 import { SweetOptions } from './types';
 
 /* 本地api，本地api无法清除缓存 */
-function createApi(sweetOptions: SweetOptions, router: Router, app: Koa, isDevelopment: boolean): void {
+async function createApi(sweetOptions: SweetOptions, router: Router, app: Koa, isDevelopment: boolean): Promise<void> {
   const defaultApi: string = defaultApiPath(sweetOptions.basicPath);
 
   if (fs.existsSync(defaultApi)) {
@@ -16,7 +16,7 @@ function createApi(sweetOptions: SweetOptions, router: Router, app: Koa, isDevel
       ? deleteCacheAndRequireModule(defaultApi)
       : requireModule(defaultApi);
 
-    routers(router, sweetOptions, app);
+    await routers(router, sweetOptions, app);
   }
 }
 

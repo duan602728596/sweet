@@ -10,6 +10,7 @@ import middleware from './devServer/middleware';
 import createRouters from './devServer/createRouters';
 import getPort from './devServer/getPort';
 import createApi from './utils/createApi';
+import createProxy from './utils/createProxy';
 import createHttpsCertificate, { HttpsCertificate } from './utils/createHttpsCertificate';
 import { SweetOptions } from './utils/types';
 
@@ -84,6 +85,9 @@ async function devServer(argv: DevServerType = {}): Promise<void> {
       : path.join(sweetOptions.basicPath, serverRenderFile);
   }
 
+  /* 添加代理服务 */
+  await createProxy(sweetOptions, app, true);
+
   /* 扩展koa中间件配置 */
   if (serverChain) {
     await serverChain(app);
@@ -93,7 +97,7 @@ async function devServer(argv: DevServerType = {}): Promise<void> {
   await middleware(app, router, compiler, env, useHttps, keyFile, certFile);
 
   /* 创建路由 */
-  createRouters(router, sweetOptions, !!serverRender, formatServerRenderFile);
+  await createRouters(router, sweetOptions, !!serverRender, formatServerRenderFile);
 
   /* 本地api */
   createApi(sweetOptions, router, app, true);
