@@ -94,8 +94,10 @@ async function proServer(argv: ProServerType = {}): Promise<void> {
     await serverChain(app);
   }
 
+  /* 添加其他的中间件 */
   middleware(app, router, sweetOptions, log, formatServerRoot);
 
+  /* 创建路由 */
   createRouters(router, sweetOptions, !!serverRender, formatServerRenderFile, formatServerRoot, template);
 
   /* 本地api */

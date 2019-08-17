@@ -89,8 +89,10 @@ async function devServer(argv: DevServerType = {}): Promise<void> {
     await serverChain(app);
   }
 
+  /* 添加其他的中间件*/
   await middleware(app, router, compiler, env, useHttps, keyFile, certFile);
 
+  /* 创建路由 */
   createRouters(router, sweetOptions, !!serverRender, formatServerRenderFile);
 
   /* 本地api */
