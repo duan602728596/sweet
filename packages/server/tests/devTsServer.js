@@ -1,3 +1,4 @@
+import path from 'path';
 import { expect } from 'chai';
 import devServer from '../devServer';
 import createCompiler from './utils/compiler';
@@ -11,7 +12,9 @@ function runServer() {
   devServer({
     compiler,
     env: 'test',
-    httpPort: 5051
+    httpPort: 5051,
+    apiFile: path.join(__dirname, 'api/api.js'),
+    proxyFile: path.join(__dirname, 'proxy/proxy.js')
   });
 
   return new Promise((resolve, reject) => {

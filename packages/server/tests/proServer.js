@@ -1,3 +1,4 @@
+import path from 'path';
 import { expect } from 'chai';
 import proServer from '../proServer';
 import createCompiler from './utils/compiler';
@@ -20,9 +21,12 @@ function runBuild() {
 // 运行生产环境服务
 function runServer() {
   proServer({
+    env: 'test',
     serverRoot: 'tests/dist',
     httpPort: 5052,
-    httpsPort: 5053
+    httpsPort: 5053,
+    apiFile: path.join(__dirname, 'api/api.js'),
+    proxyFile: path.join(__dirname, 'proxy/proxy.js')
   });
 
   return new Promise((resolve, reject) => {
