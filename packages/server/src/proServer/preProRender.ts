@@ -15,7 +15,7 @@ import { SweetOptions } from '../utils/types';
 function preRenderInit(sweetOptions: SweetOptions): Function {
   // 获取controllers文件
   const basicPath: string = sweetOptions.basicPath;
-  const controllersMap: Map<string, string> = getControllersFilesSync(basicPath);
+  const controllersMap: Map<string, string> = getControllersFilesSync(basicPath, sweetOptions.controllersDir);
 
   return async function preRender(
     ctxPath: string,

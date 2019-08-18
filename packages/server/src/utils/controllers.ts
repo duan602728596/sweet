@@ -6,41 +6,71 @@ import useRegister from './babelRegister';
 import { SweetOptions } from './types';
 import { requireModule } from './utils';
 
-const controllers: string = 'controllers/**/*.js';
+const defaultControllers: string = 'controllers';
+
+/**
+ * 获取controllers信息
+ */
+interface ControllersInfo {
+  isAbsolute: boolean;
+  dir: string;
+  controllers: string;
+}
+
+export function getControllers(controllersDir?: string): ControllersInfo {
+  const isAbsolute: boolean = controllersDir ? path.isAbsolute(controllersDir) : false;
+  const dir: string = controllersDir || defaultControllers;
+  const controllers: string = path.join(dir, '**/*.js');
+
+  return {
+    isAbsolute,
+    dir,
+    controllers
+  };
+}
 
 /**
  * 将路径转化成Map，key全部转换成小写
  * 小写用来兼容大小写查询，大写用来映射实际的文件
  */
-export function pathArrayToMap(pathArr: Array<string>, basicPath: string): Map<string, string> {
+export function pathArrayToMap(
+  pathArr: Array<string>,
+  basicPath: string,
+  controllersInfo: ControllersInfo
+): Map<string, string> {
   const map: Map<string, string> = new Map();
+  const replaceReg: RegExp = new RegExp(`^${ controllersInfo.dir }/`, 'ig');
 
   return _.transform(pathArr, function(result: Map<string, string>, value: string): void {
     const key: string = value.toLowerCase()
-      .replace(/^controllers\//i, '');
+      .replace(replaceReg, '');
 
-    result.set(key, path.join(basicPath, value));
+    result.set(key, controllersInfo.isAbsolute ? value : path.join(basicPath, value));
   }, map);
 }
 
 /* 获取函数 */
-export function getControllersFiles(basicPath: string): Promise<Map<string, string>> {
+export function getControllersFiles(basicPath: string, controllersDir?: string): Promise<Map<string, string>> {
+  const controllersInfo: ControllersInfo = getControllers(controllersDir);
+
   return new Promise((resolve: Function, reject: Function): void => {
-    glob(controllers, {
-      cwd: basicPath
+    glob(controllersInfo.controllers, {
+      cwd: controllersInfo.isAbsolute ? undefined : basicPath
     }, function(err: Error, files: Array<string>): void {
-      resolve(pathArrayToMap(files, basicPath));
+      resolve(pathArrayToMap(files, basicPath, controllersInfo));
     });
   });
 }
 
 /* 获取函数 */
-export function getControllersFilesSync(basicPath: string): Map<string, string> {
-  const files: Array<string> = glob.sync(controllers, {
-    cwd: basicPath
+export function getControllersFilesSync(basicPath: string, controllersDir?: string): Map<string, string> {
+  const controllersInfo: ControllersInfo = getControllers(controllersDir);
+
+  const files: Array<string> = glob.sync(controllersInfo.controllers, {
+    cwd: controllersInfo.isAbsolute ? undefined : basicPath
   });
 
-  return pathArrayToMap(files, basicPath);
+  return pathArrayToMap(files, basicPath, controllersInfo);
 }
 
 /**

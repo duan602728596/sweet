@@ -7,6 +7,10 @@ export interface SweetOptions {
   renderType?: 'ejs' | 'nunjucks';
   serverRenderFile?: string;
   useBabelRegister?: boolean;
+  controllersDir?: string;
+  routerFile?: string;
+  apiFile?: string;
+  proxyFile?: string;
 }
 
 export interface DevContext extends Context {

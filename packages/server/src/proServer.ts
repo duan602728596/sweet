@@ -27,6 +27,7 @@ const sweetOptions: SweetOptions = {
  * serverRoot { string }: 生产环境下的服务器静态文件入口
  * serverRender { boolean }: 开启服务器端渲染
  * serverRenderFile { string }: 服务器端渲染的主模块文件
+ * env { string }: 运行环境，可能的值为test（测试）
  * template { string }: html模版名称
  * renderType { string }: html使用的渲染模板
  * log { object }: 日志配置
@@ -34,6 +35,10 @@ const sweetOptions: SweetOptions = {
  * httpsKey { string }: https的key的地址
  * httpsCert { string }: https的cert的地址
  * useBabelRegister { boolean }: 是否使用@babel/register，用来优化性能
+ * controllersDir { string }: 重新定义的controllers的目录
+ * routerFile { string }: 重新定义的router文件
+ * apiFile { string }: 重新定义的api文件
+ * proxyFile { string }: 重新定义的proxy文件
  */
 interface ProServerType {
   httpPort?: number;
@@ -49,6 +54,10 @@ interface ProServerType {
   httpsKey?: string;
   httpsCert?: string;
   useBabelRegister?: boolean;
+  controllersDir?: string;
+  routerFile?: string;
+  apiFile?: string;
+  proxyFile?: string;
 }
 
 async function proServer(argv: ProServerType = {}): Promise<void> {
@@ -65,7 +74,11 @@ async function proServer(argv: ProServerType = {}): Promise<void> {
     serverChain,
     httpsKey = 'server.key',
     httpsCert = 'server.crt',
-    useBabelRegister = true
+    useBabelRegister = true,
+    controllersDir,
+    routerFile,
+    apiFile,
+    proxyFile
   }: ProServerType = argv;
 
   /* 合并配置项 */
@@ -74,7 +87,11 @@ async function proServer(argv: ProServerType = {}): Promise<void> {
     httpsPort: await portUse(httpsPort, 'https'),
     renderType,
     serverRenderFile,
-    useBabelRegister
+    useBabelRegister,
+    controllersDir,
+    routerFile,
+    apiFile,
+    proxyFile
   });
 
   /* https服务 */
