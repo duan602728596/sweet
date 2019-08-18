@@ -35,7 +35,6 @@ const sweetOptions: SweetOptions = {
  * httpsCert { string }: https的cert的地址
  * useBabelRegister { boolean }: 是否使用@babel/register，用来优化性能
  * controllersDir { string }: 重新定义的controllers的目录
- * routerFile { string }: 重新定义的router文件
  * apiFile { string }: 重新定义的api文件
  * proxyFile { string }: 重新定义的proxy文件
  */
@@ -52,7 +51,6 @@ interface DevServerType {
   httpsCert?: string;
   useBabelRegister?: boolean;
   controllersDir?: string;
-  routerFile?: string;
   apiFile?: string;
   proxyFile?: string;
 }
@@ -71,7 +69,6 @@ async function devServer(argv: DevServerType = {}): Promise<void> {
     httpsCert = 'dev.crt',
     useBabelRegister = true,
     controllersDir,
-    routerFile,
     apiFile,
     proxyFile
   }: DevServerType = argv;
@@ -87,7 +84,6 @@ async function devServer(argv: DevServerType = {}): Promise<void> {
     serverRenderFile,
     useBabelRegister,
     controllersDir,
-    routerFile,
     apiFile,
     proxyFile
   });

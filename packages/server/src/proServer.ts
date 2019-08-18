@@ -55,7 +55,6 @@ interface ProServerType {
   httpsCert?: string;
   useBabelRegister?: boolean;
   controllersDir?: string;
-  routerFile?: string;
   apiFile?: string;
   proxyFile?: string;
 }
@@ -76,7 +75,6 @@ async function proServer(argv: ProServerType = {}): Promise<void> {
     httpsCert = 'server.crt',
     useBabelRegister = true,
     controllersDir,
-    routerFile,
     apiFile,
     proxyFile
   }: ProServerType = argv;
@@ -89,7 +87,6 @@ async function proServer(argv: ProServerType = {}): Promise<void> {
     serverRenderFile,
     useBabelRegister,
     controllersDir,
-    routerFile,
     apiFile,
     proxyFile
   });

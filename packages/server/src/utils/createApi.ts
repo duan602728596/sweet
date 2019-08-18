@@ -9,7 +9,15 @@ import { SweetOptions } from './types';
 async function createApi(sweetOptions: SweetOptions, router: Router, app: Koa, isDevelopment: boolean): Promise<void> {
   const defaultApi: string = defaultApiPath(sweetOptions.basicPath);
 
-  if (fs.existsSync(defaultApi)) {
+  if (sweetOptions.apiFile && fs.existsSync(sweetOptions.apiFile)) {
+    useRegister(sweetOptions);
+
+    const routers: Function = isDevelopment
+      ? deleteCacheAndRequireModule(sweetOptions.apiFile)
+      : requireModule(sweetOptions.apiFile);
+
+    await routers(router, sweetOptions, app);
+  } else if (fs.existsSync(defaultApi)) {
     useRegister(sweetOptions);
 
     const routers: Function = isDevelopment

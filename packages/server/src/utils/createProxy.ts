@@ -34,7 +34,17 @@ function addMiddleware(app: Koa, proxyConfig: ProxyConfig, isDevelopment: boolea
 async function createProxy(sweetOptions: SweetOptions, app: Koa, isDevelopment: boolean, env?: string): Promise<void> {
   const defaultProxy: { js: string; json: string } = defaultProxyPath(sweetOptions.basicPath);
 
-  if (fs.existsSync(defaultProxy.js)) {
+  if (sweetOptions.proxyFile && fs.existsSync(sweetOptions.proxyFile)) {
+    const module: any = requireModule(sweetOptions.proxyFile);
+
+    if (_.isPlainObject(module)) {
+      addMiddleware(app, module, isDevelopment, env);
+    } else if (_.isFunction(module)) {
+      const proxyConfig: ProxyConfig = await module(sweetOptions, app);
+
+      addMiddleware(app, proxyConfig, isDevelopment, env);
+    }
+  } else if (fs.existsSync(defaultProxy.js)) {
     const module: any = requireModule(defaultProxy.js);
 
     if (_.isPlainObject(module)) {
