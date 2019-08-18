@@ -84,6 +84,7 @@ proServer({
 ## api
 
 创建一个`api/api.js`文件，代码如下
+
 ```javascript
 module.exports = function(router, sweetOptions, app) {
   // 在这里面创建你的函数
@@ -118,6 +119,24 @@ function server(url, context = {}, initialState = {}) {
 }
 
 export default server;
+```
+
+## 代理
+
+创建一个`proxy/proxy.js`或`proxy/proxy.json`文件，代码配置参考[http-proxy-middleware](https://github.com/chimurai/http-proxy-middleware)
+
+```javascript
+module.exports = function(sweetOptions, app) {
+  return {
+    '/route': {
+      target: 'http://127.0.0.1',
+      changeOrigin: true,
+      pathRewrite: {
+        '^/proxy': ''
+      }
+    }
+  };
+};
 ```
 
 ## 关于https证书
