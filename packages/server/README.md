@@ -34,6 +34,9 @@ devServer({
 * httpsKey `{ string }` : 配置https的证书（*.key）。
 * httpsCert `{ string }` : 配置https的证书（*.crt）。
 * useBabelRegister `{ boolean }` : 是否使用`@babel/register`来加载api文件和controllers文件。默认开启。
+* controllersDir `{ string }` : 重新定义的controllers的目录。
+* apiFile `{ string }` : 重新定义的api文件。
+* proxyFile `{ string }` : 重新定义的proxy文件。
 
 ## 生产环境下运行服务
 
@@ -74,6 +77,9 @@ proServer({
 * httpsKey `{ string }` : 配置https的证书（*.key）。
 * httpsCert `{ string }` : 配置https的证书（*.crt）。
 * useBabelRegister `{ boolean }` : 是否使用`@babel/register`来加载api文件和controllers文件。默认开启。
+* controllersDir `{ string }` : 重新定义的controllers的目录。
+* apiFile `{ string }` : 重新定义的api文件。
+* proxyFile `{ string }` : 重新定义的proxy文件。
 
 ## api
 
