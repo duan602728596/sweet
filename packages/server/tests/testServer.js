@@ -1,8 +1,8 @@
 /* 测试服务 */
-import http from 'http';
-import Koa from 'koa';
-import Router from '@koa/router';
-import body from 'koa-body';
+const http = require('http');
+const Koa = require('koa');
+const Router = require('@koa/router');
+const body = require('koa-body');
 
 const app = new Koa();
 const router = new Router();
@@ -28,10 +28,10 @@ router.post('/post', function(ctx, next) {
 
   ctx.body = {
     method: 'post',
-    query: body.text
+    body: body.text
   };
 });
 
 
 http.createServer(app.callback())
-  .listen(6060);
+  .listen(5054);
