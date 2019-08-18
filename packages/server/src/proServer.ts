@@ -41,6 +41,7 @@ interface ProServerType {
   serverRoot?: string;
   serverRender?: boolean;
   serverRenderFile?: string;
+  env?: string;
   template?: string;
   renderType?: 'ejs' | 'nunjucks';
   log?: Log;
@@ -57,6 +58,7 @@ async function proServer(argv: ProServerType = {}): Promise<void> {
     serverRoot = 'dist',
     serverRender,
     serverRenderFile = 'dist-server/server.js',
+    env,
     template = 'index.html',
     renderType = 'ejs',
     log,
@@ -91,7 +93,7 @@ async function proServer(argv: ProServerType = {}): Promise<void> {
   }
 
   /* 添加代理服务 */
-  await createProxy(sweetOptions, app, false);
+  await createProxy(sweetOptions, app, false, env);
 
   /* 扩展koa中间件配置 */
   if (serverChain) {

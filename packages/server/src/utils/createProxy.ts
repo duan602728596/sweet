@@ -15,8 +15,8 @@ interface ProxyItemConfig {
 type ProxyConfig = { [key: string]: ProxyItemConfig };
 
 /* 添加代理中间件 */
-function addMiddleware(app: Koa, proxyConfig: ProxyConfig, isDevelopment: boolean): void {
-  const logLevel: string = isDevelopment ? 'info' : 'error';
+function addMiddleware(app: Koa, proxyConfig: ProxyConfig, isDevelopment: boolean, env?: string): void {
+  const logLevel: string = env === 'test' ? 'error' : (isDevelopment ? 'info' : 'error');
 
   for (const key in proxyConfig) {
     const config: ProxyItemConfig = proxyConfig[key];
@@ -31,23 +31,23 @@ function addMiddleware(app: Koa, proxyConfig: ProxyConfig, isDevelopment: boolea
 }
 
 /* 本地代理，本地代理无法清除缓存 */
-async function createProxy(sweetOptions: SweetOptions, app: Koa, isDevelopment: boolean): Promise<void> {
+async function createProxy(sweetOptions: SweetOptions, app: Koa, isDevelopment: boolean, env?: string): Promise<void> {
   const defaultProxy: { js: string; json: string } = defaultProxyPath(sweetOptions.basicPath);
 
   if (fs.existsSync(defaultProxy.js)) {
     const module: any = requireModule(defaultProxy.js);
 
     if (_.isPlainObject(module)) {
-      addMiddleware(app, module, isDevelopment);
+      addMiddleware(app, module, isDevelopment, env);
     } else if (_.isFunction(module)) {
       const proxyConfig: ProxyConfig = await module(sweetOptions, app);
 
-      addMiddleware(app, proxyConfig, isDevelopment);
+      addMiddleware(app, proxyConfig, isDevelopment, env);
     }
   } else if (fs.existsSync(defaultProxy.json)) {
     const module: ProxyConfig = requireModule(defaultProxy.json);
 
-    addMiddleware(app, module, isDevelopment);
+    addMiddleware(app, module, isDevelopment, env);
   }
 }
 

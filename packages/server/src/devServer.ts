@@ -86,7 +86,7 @@ async function devServer(argv: DevServerType = {}): Promise<void> {
   }
 
   /* 添加代理服务 */
-  await createProxy(sweetOptions, app, true);
+  await createProxy(sweetOptions, app, true, env);
 
   /* 扩展koa中间件配置 */
   if (serverChain) {
