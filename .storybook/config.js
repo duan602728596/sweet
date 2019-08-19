@@ -5,9 +5,4 @@ function loadStories() {
   require('../docs/index');
 }
 
-configure(loadStories, module)
-  .addParameter({
-    options: {
-      theme
-    }
-  });
+configure(loadStories, module);
