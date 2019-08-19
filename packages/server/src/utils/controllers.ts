@@ -39,9 +39,9 @@ export function pathArrayToMap(
   controllersInfo: ControllersInfo
 ): Map<string, string> {
   const map: Map<string, string> = new Map();
-  const replaceReg: RegExp = new RegExp(`^${ controllersInfo.dir }/`, 'ig');
+  const replaceReg: RegExp = new RegExp(`^${ controllersInfo.dir.replace(/\\/g, '/') }[\/]`, 'ig');
 
-  return _.transform(pathArr, function(result: Map<string, string>, value: string): void {
+  return _.transform(pathArr, function(result: Map<string, string>, value: string, index: number): void {
     const key: string = value.toLowerCase()
       .replace(replaceReg, '');
 
@@ -52,11 +52,15 @@ export function pathArrayToMap(
 /* 获取函数 */
 export function getControllersFiles(basicPath: string, controllersDir?: string): Promise<Map<string, string>> {
   const controllersInfo: ControllersInfo = getControllers(controllersDir);
+  let options: object = { cwd: basicPath };
+
+  // 绝对路径时移除cwd
+  if (controllersInfo.isAbsolute) {
+    options = _.omit(options, ['cwd']);
+  }
 
   return new Promise((resolve: Function, reject: Function): void => {
-    glob(controllersInfo.controllers, {
-      cwd: controllersInfo.isAbsolute ? undefined : basicPath
-    }, function(err: Error, files: Array<string>): void {
+    glob(controllersInfo.controllers, options, function(err: Error, files: Array<string>): void {
       resolve(pathArrayToMap(files, basicPath, controllersInfo));
     });
   });
@@ -65,10 +69,14 @@ export function getControllersFiles(basicPath: string, controllersDir?: string):
 /* 获取函数 */
 export function getControllersFilesSync(basicPath: string, controllersDir?: string): Map<string, string> {
   const controllersInfo: ControllersInfo = getControllers(controllersDir);
+  let options: object = { cwd: basicPath };
 
-  const files: Array<string> = glob.sync(controllersInfo.controllers, {
-    cwd: controllersInfo.isAbsolute ? undefined : basicPath
-  });
+  // 绝对路径时移除cwd
+  if (controllersInfo.isAbsolute) {
+    options = _.omit(options, ['cwd']);
+  }
+
+  const files: Array<string> = glob.sync(controllersInfo.controllers, options);
 
   return pathArrayToMap(files, basicPath, controllersInfo);
 }
