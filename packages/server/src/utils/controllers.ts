@@ -39,7 +39,7 @@ export function pathArrayToMap(
   controllersInfo: ControllersInfo
 ): Map<string, string> {
   const map: Map<string, string> = new Map();
-  const replaceReg: RegExp = new RegExp(`^${ controllersInfo.dir.replace(/\\/g, '/') }[\/]`, 'ig');
+  const replaceReg: RegExp = new RegExp(`^${ controllersInfo.dir.replace(/[\\/]/g, '[\/]') }[\/]`, 'ig');
 
   return _.transform(pathArr, function(result: Map<string, string>, value: string, index: number): void {
     const key: string = value.toLowerCase()
