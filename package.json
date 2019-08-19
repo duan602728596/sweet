@@ -13,8 +13,8 @@
     "update": "milktea update",
     "update:dev": "milktea update --__DEV__",
     "docs:init": "sb init --type react",
-    "docs:start": "start-storybook -p 5060",
-    "docs:build": "build-storybook"
+    "docs:start": "start-storybook -p 5060 config-dir=\".storybook\"",
+    "docs:build": "rimraf storybook-static && build-storybook config-dir=\".storybook\" && node scripts/rewriteTitle.js"
   },
   "devDependencies": {
     "@babel/core": "^7.5.5",

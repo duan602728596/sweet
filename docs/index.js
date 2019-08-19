@@ -7,7 +7,7 @@ import theme from '../.storybook/theme';
 
 storiesOf('sweet', module)
   .addParameters({
-    options: { theme }
+    options: theme
   })
   .add('介绍', () => <MarkDown source={ introduction } />)
   .add('快速开始', () => <MarkDown source={ quickStart } />);
