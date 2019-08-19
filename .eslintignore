@@ -12,3 +12,6 @@ packages/**/tests/dist
 packages/**/tests/.dll
 packages/**/tests/.babelCache
 packages/**/tests/.terserCache
+
+# docs
+storybook-static/*
