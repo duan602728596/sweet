@@ -14,6 +14,7 @@ interface DistTags {
 interface PackageInformation {
   error?: string;
   'dist-tags'?: DistTags;
+  stack?: Error;
 }
 
 interface PackageItem {
@@ -22,6 +23,7 @@ interface PackageItem {
   latest?: string;
   next?: string;
   rc?: string;
+  error?: boolean;
 }
 
 /**
@@ -60,7 +62,10 @@ function requestPackageInformation(packageName: string, registry: number): Promi
       json: true
     }, function(err: Error, res: Response, data: PackageInformation): void {
       if (err) {
-        reject(err);
+        resolve({
+          error: 'Request error.',
+          stack: err
+        });
       } else {
         resolve(data);
       }
@@ -102,12 +107,22 @@ function formatVersion(oldVersion: string, newVersion: string): string {
  */
 async function getVersionFromNpm(packageArray: Array<PackageItem>, registry: number): Promise<void> {
   try {
-    const depQueue: Promise<PackageInformation>[]
-      = _.transform(packageArray, function(result: Promise<PackageInformation>[], value: PackageItem): void {
-        result.push(requestPackageInformation(value.name, registry));
-      }, []);
+    const version: Array<PackageInformation> = [];
+    let queue: Promise<PackageInformation>[] = [];
 
-    const version: Array<PackageInformation> = await Promise.all(depQueue);
+    // 每次发送5个请求
+    for (let i: number = 0, j: number = packageArray.length, k: number = j - 1; i < j; i++) {
+      const packageItem: PackageItem = packageArray[i];
+
+      queue.push(requestPackageInformation(packageItem.name, registry));
+
+      if (i % 5 === 4 || i === k) {
+        const result: Array<PackageInformation> = await Promise.all(queue);
+
+        version.push(...result);
+        queue = [];
+      }
+    }
 
     for (let i: number = 0, j: number = packageArray.length; i < j; i++) {
       const packageItem: PackageItem = packageArray[i];
@@ -116,16 +131,12 @@ async function getVersionFromNpm(packageArray: Array<PackageItem>, registry: num
       if (versionItem['dist-tags']) {
         const distTags: DistTags = versionItem['dist-tags'];
 
-        if (distTags.latest) {
-          packageItem.latest = distTags.latest;
-        }
+        packageItem.latest = distTags.latest;
+        packageItem.next = distTags.next;
+        packageItem.rc = distTags.rc;
 
-        if (distTags.next) {
-          packageItem.next = distTags.next;
-        }
-
-        if (distTags.rc) {
-          packageItem.rc = distTags.rc;
+        if (versionItem.error) {
+          packageItem.error = true;
         }
       }
     }
@@ -148,7 +159,7 @@ function consoleLogText(packageArray: Array<PackageItem>): string {
     const inNpm: boolean = !!(item.latest || item.next || item.rc);
 
     // 包需要升级，使用“*”；包在npm上不存在（私有包），使用“#”
-    const symbol: string = inNpm ? '*' : '#';
+    const symbol: string = item.error === true ? 'X' : (inNpm ? '*' : '#');
 
     consoleText += `  ${ isLatestNew ? symbol : ' ' } ${ item.name }:\n`;
     consoleText += `    ${ (item.latest && /^github:/.test(item.version)) ? '?' : ' ' } version: ${ item.version }\n`;
