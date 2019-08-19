@@ -14,9 +14,9 @@
   },
   "dependencies": {
     "@sweet-milktea/milktea-cli": "^0.3.9",
-    "@sweet-milktea/server": "^0.3.13",
+    "@sweet-milktea/server": "^0.4.0",
     "@sweet-milktea/server-log": "^0.3.9",
-    "antd": "^3.21.4",
+    "antd": "^3.22.0",
     "axios": "^0.19.0",
     "classnames": "^2.2.6",
     "core-js": "^3.2.1",
@@ -40,17 +40,17 @@
   },
   "devDependencies": {
     "@sweet-milktea/milktea": "^0.3.12",
-    "@sweet-milktea/util-tools": "^0.3.9",
+    "@sweet-milktea/util-tools": "^0.4.0",
     "babel-eslint": "^10.0.2",
     "babel-plugin-import": "^1.12.0",
     "commitizen": "^4.0.3",
     "cross-env": "^5.2.0",
     "cz-conventional-changelog": "^3.0.2",
     "es-module-path-case-check": "^1.4.0",
-    "eslint": "^6.1.0",
+    "eslint": "^6.2.0",
     "eslint-plugin-react": "^7.14.3",
-    "husky": "^3.0.3",
-    "lint-staged": "^9.2.1",
+    "husky": "^3.0.4",
+    "lint-staged": "^9.2.3",
     "rimraf": "^3.0.0"
   },
   "husky": {
