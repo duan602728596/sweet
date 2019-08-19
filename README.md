@@ -1,4 +1,4 @@
-# sweet
+# ![](logo.png)
 
 [![NPM version][milktea-image]][milktea-url]
 [![NPM version][milktea-cli-image]][milktea-cli-url]
