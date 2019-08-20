@@ -1,4 +1,4 @@
-# ![](statics/logo.svg)
+# [![](statics/logo.svg)](https://github.com/duan602728596/sweet)
 
 [![NPM version][milktea-image]][milktea-url]
 [![NPM version][milktea-cli-image]][milktea-cli-url]
