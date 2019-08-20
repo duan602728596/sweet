@@ -30,6 +30,8 @@ sweet是一个webpack开发和生产环境的通用配置解决方案。
 3. 在生产环境下可以编译后快速部署。
 4. 支持react、vue的服务端的渲染。
 
+## [文档](https://duan602728596.github.io/sweet/?path=/story/sweet--%E4%BB%8B%E7%BB%8D)
+
 ## packages：
 
 * [@sweet-milktea/milktea](packages/milktea/README.md)
