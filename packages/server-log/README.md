@@ -25,4 +25,4 @@ const { accessLogger, logger } = serverLog(type, {
 ## 返回值
 
 * accessLogger `{ Function }` : Koa日志中间件。
-* logger `{ object }` : 创建日志方法。
+* logger `{ object }` : 创建日志方法。方法参考[log4js](https://github.com/log4js-node/log4js-node)。
