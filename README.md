@@ -1,4 +1,4 @@
-# ![](logo.png)
+# ![](statics/logo.svg)
 
 [![NPM version][milktea-image]][milktea-url]
 [![NPM version][milktea-cli-image]][milktea-cli-url]
@@ -19,7 +19,7 @@
 [util-tools-url]: http://npmjs.org/package/@sweet-milktea/util-tools
 
 > 甜甜的奶茶，甜甜的......   
-> ![](tsl.jpg)
+> ![](statics/tsl.jpg)
 
 sweet是一个webpack开发和生产环境的通用配置解决方案。
 
