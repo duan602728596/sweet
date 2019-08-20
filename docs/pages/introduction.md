@@ -1,6 +1,6 @@
 # [![](https://raw.githubusercontent.com/duan602728596/sweet/master/statics/logo.svg?sanitize=true)](https://github.com/duan602728596/sweet)
 
-sweet是一个webpack开发和生产环境的通用配置解决方案。
+[sweet](https://github.com/duan602728596/sweet)是一个webpack开发和生产环境的通用配置解决方案。
 
 ## 特点：
 
