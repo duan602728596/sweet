@@ -13,8 +13,9 @@
     "update": "milktea update",
     "update:dev": "milktea update --__DEV__",
     "docs:init": "sb init --type react",
-    "docs:start": "start-storybook -p 5060 config-dir=\".storybook\"",
-    "docs:build": "rimraf storybook-static && build-storybook config-dir=\".storybook\" && node scripts/rewriteTitle.js"
+    "docs:start": "cross-env NODE_ENV=development start-storybook -p 5060",
+    "docs:build": "npm run clean:docs && cross-env NODE_ENV=production build-storybook",
+    "clean:docs": "rimraf storybook-static"
   },
   "devDependencies": {
     "@babel/core": "^7.5.5",
@@ -31,6 +32,7 @@
     "babel-eslint": "^10.0.2",
     "babel-loader": "^8.0.6",
     "commitizen": "^4.0.3",
+    "cross-env": "^5.2.0",
     "cz-conventional-changelog": "^3.0.2",
     "es-module-path-case-check": "^1.4.0",
     "eslint": "^6.2.0",

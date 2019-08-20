@@ -1,4 +1,4 @@
-# sweet
+# ![sweet](https://raw.githubusercontent.com/duan602728596/sweet/master/logo.png)
 
 sweet是一个webpack开发和生产环境的通用配置解决方案。
 
