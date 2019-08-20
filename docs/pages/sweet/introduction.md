@@ -1,4 +1,4 @@
-# ![sweet](https://raw.githubusercontent.com/duan602728596/sweet/master/statics/logo.svg)
+# ![](https://raw.githubusercontent.com/duan602728596/sweet/master/statics/logo.svg?sanitize=true)
 
 sweet是一个webpack开发和生产环境的通用配置解决方案。
 
@@ -8,3 +8,11 @@ sweet是一个webpack开发和生产环境的通用配置解决方案。
 2. 在开发环境下可以选择直接编译到指定目录（适用于Nwjs和Electron的开发），网站的开发可以使用基于Koa的服务器。
 3. 在生产环境下可以编译后快速部署。
 4. 支持react、vue的服务端的渲染。
+
+## packages
+
+* [@sweet-milktea/milktea](https://github.com/duan602728596/sweet/tree/master/packages/milktea/README.md)
+* [@sweet-milktea/milktea-cli](https://github.com/duan602728596/sweet/tree/master/packages/milktea-cli/README.md)
+* [@sweet-milktea/server](https://github.com/duan602728596/sweet/tree/master/packages/server/README.md)
+* [@sweet-milktea/server-log](https://github.com/duan602728596/sweet/tree/master/packages/server-log/README.md)
+* [@sweet-milktea/util-tools](https://github.com/duan602728596/sweet/tree/master/packages/util-tools/README.md)

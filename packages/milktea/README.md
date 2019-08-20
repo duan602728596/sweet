@@ -15,7 +15,7 @@ import {
   callback                 // webpack的回调函数
 } from '@sweet-milktea/milktea';
 
-// mode`{ string }` : 开发模式`development`还是生产模式`production`
+// mode { string }: 开发模式 development, 生产模式 production
 const mode = 'development';
 
 const compiler = webpack(webpackConfig({
@@ -59,7 +59,7 @@ module.exports = {
   * vue `{ object }` : 重写vue的规则
 * rules `{ Array<object> }` : 自定义规则
 * noParse `RegExp | Array<RegExp> | Function` : 防止解析任何与给定正则表达式相匹配的文件（参考webpack）
-* plugins `{ Array<any> }` : 自定义插件
+* plugins `{ Array<any> }` : 自定义webpack插件
 * js `{ object }` : javascript配置
   * targets `{ object }` : 配置@babel/preset-env的编译目标
   * ecmascript `{ boolean }` : 是否编译到ecmascript的最新语法（即不使用@babel/preset-env，通常适用于node、nwjs和electron）
