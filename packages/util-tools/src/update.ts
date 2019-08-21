@@ -4,6 +4,7 @@ import * as request from 'request';
 import { Response } from 'request';
 import * as _ from 'lodash';
 import * as semver from 'semver';
+import * as colors from 'colors/safe';
 
 interface DistTags {
   latest?: string;
@@ -157,24 +158,34 @@ function consoleLogText(packageArray: Array<PackageItem>): string {
     const isNextNew: boolean = versionEqual(item.version, item.next);
     const isRcNew: boolean = versionEqual(item.version, item.rc);
     const inNpm: boolean = !!(item.latest || item.next || item.rc);
+    let itemText: string = '';
 
     // 包需要升级，使用“*”；包在npm上不存在（私有包），使用“#”
     const symbol: string = item.error === true ? 'X' : (inNpm ? '*' : '#');
+    const noLatestAndErr: boolean = !(isLatestNew || (item.error === true)); // 没有最新的版本号和错误
 
-    consoleText += `  ${ isLatestNew ? symbol : ' ' } ${ item.name }:\n`;
-    consoleText += `    ${ (item.latest && /^github:/.test(item.version)) ? '?' : ' ' } version: ${ item.version }\n`;
+    itemText += `  ${ isLatestNew ? symbol : ' ' } ${ item.name }:\n`;
+    itemText += `    ${ (item.latest && /^github:/.test(item.version)) ? '?' : ' ' } version: ${ item.version }\n`;
 
     if (item.latest) {
-      consoleText += `      latest : ${ formatVersion(item.version, item.latest) }\n`;
+      itemText += `      latest : ${ formatVersion(item.version, item.latest) }\n`;
     }
 
     if (item.next) {
-      consoleText += `    ${ isNextNew ? '+' : ' ' } next   : ${ formatVersion(item.version, item.next) }\n`;
+      const t: string = `    ${ isNextNew ? '+' : ' ' } next   : ${ formatVersion(item.version, item.next) }\n`;
+
+      itemText += (noLatestAndErr && isNextNew) ? colors.green(t) : t;
     }
 
     if (item.rc) {
-      consoleText += `    ${ isRcNew ? '+' : ' ' } rc     : ${ formatVersion(item.version, item.rc) }\n`;
+      const t: string = `    ${ isRcNew ? '+' : ' ' } rc     : ${ formatVersion(item.version, item.rc) }\n`;
+
+      itemText += (noLatestAndErr && isRcNew) ? colors.green(t) : t;
     }
+
+    consoleText += (item.error === true)
+      ? colors.red(itemText)
+      : (isLatestNew ? colors.yellow(itemText) : itemText);
   }
 
   return consoleText;
