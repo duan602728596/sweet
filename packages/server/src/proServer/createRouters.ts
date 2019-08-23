@@ -3,7 +3,7 @@ import { Context } from 'koa';
 import * as Router from '@koa/router';
 import preRenderInit from './preProRender';
 import { readFile } from '../utils/utils';
-import { SweetOptions } from '../utils/types';
+import { ServerContext, SweetOptions } from '../utils/types';
 
 function createRouters(
   router: Router,
@@ -16,11 +16,12 @@ function createRouters(
   const preRender: Function = preRenderInit(sweetOptions);
 
   /* index路由 */
-  router.get(/^\/[^._\-]*$/, async (ctx: Context, next: Function): Promise<void> => {
+  router.get(/^\/[^._\-]*$/, async (ctx: ServerContext, next: Function): Promise<void> => {
     try {
       const ctxPath: string = ctx.path;
       const body: Buffer = await readFile(path.join(formatServerRoot, template));
 
+      ctx.routePath = ctxPath;
       ctx.status = 200;
       ctx.type = 'text/html';
       ctx.body = serverRender ? await preRender(ctxPath, ctx, body, formatServerRenderFile) : body;
@@ -35,7 +36,7 @@ function createRouters(
   });
 
   /* html文件允许使用ejs模板 */
-  router.get(/^.*\.html$/, async (ctx: Context, next: Function): Promise<void> => {
+  router.get(/^.*\.html$/, async (ctx: ServerContext, next: Function): Promise<void> => {
     const ctxPath: string = ctx.path;
     const body: Buffer = await readFile(path.join(formatServerRoot, ctxPath));
 

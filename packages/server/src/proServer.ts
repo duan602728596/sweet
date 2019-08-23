@@ -10,6 +10,7 @@ import createRouters from './proServer/createRouters';
 import portUse from './proServer/portUse';
 import createApi from './utils/createApi';
 import createProxy from './utils/createProxy';
+import createSweetOptionsMiddleware from './utils/createOptions';
 import createHttpsCertificate, { HttpsCertificate } from './utils/createHttpsCertificate';
 import { SweetOptions, Log } from './utils/types';
 
@@ -105,6 +106,9 @@ async function proServer(argv: ProServerType = {}): Promise<void> {
       ? serverRenderFile
       : path.join(sweetOptions.basicPath, serverRenderFile);
   }
+
+  /* sweetOptions */
+  createSweetOptionsMiddleware(app, sweetOptions);
 
   /* 添加代理服务 */
   await createProxy(sweetOptions, app, false, env);

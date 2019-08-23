@@ -13,8 +13,10 @@ export interface SweetOptions {
   proxyFile?: string;
 }
 
-export interface DevContext extends Context {
-  _path?: string; // 保存旧的path
+export interface ServerContext extends Context {
+  _path?: string;     // TODO: 未来移除
+  sweetOptions: SweetOptions;
+  routePath: string;  // 保存旧的path
 }
 
 export interface Log {

@@ -1,7 +1,7 @@
 import * as Router from '@koa/router';
 import * as mime from 'mime-types';
 import preRenderInit from './preDevRender';
-import { DevContext, SweetOptions } from '../utils/types';
+import { ServerContext, SweetOptions } from '../utils/types';
 
 function createRouters(
   router: Router,
@@ -12,14 +12,15 @@ function createRouters(
   const preRender: Function = preRenderInit(sweetOptions);
 
   /* webpack 重定向 */
-  router.get(/^\/[^._\-]*$/, async (ctx: DevContext, next: Function): Promise<void> => {
+  router.get(/^\/[^._\-]*$/, async (ctx: ServerContext, next: Function): Promise<void> => {
     const ctxPath: string = ctx.path;
     const mimeType: string | boolean = mime.lookup(ctxPath);
 
     // 重定向path，所有的路由都指向"/"
     if (ctxPath !== '/' && mimeType === false) {
       ctx.path = '/';
-      ctx._path = ctxPath; // TODO: 保存旧的path（可能用不上）
+      ctx._path = ctxPath;     // TODO: 未来移除
+      ctx.routePath = ctxPath; // 保存旧的path
     }
 
     await next();
@@ -34,7 +35,7 @@ function createRouters(
   });
 
   /* html文件允许使用ejs模板 */
-  router.get(/^.*\.html$/, async (ctx: DevContext, next: Function): Promise<void> => {
+  router.get(/^.*\.html$/, async (ctx: ServerContext, next: Function): Promise<void> => {
     const ctxPath: string = ctx.path;
 
     await next();
