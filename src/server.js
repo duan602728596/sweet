@@ -25,7 +25,7 @@ function server(url, context = {}, initialState = {}) {
     }
   });
 
-  routers.push('_path' in context ? context._path : context.path);
+  routers.push(context.routePath);
 
   return new Promise((resolve, reject) => {
     routers.onReady(() => {
