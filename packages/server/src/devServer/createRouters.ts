@@ -16,11 +16,12 @@ function createRouters(
     const ctxPath: string = ctx.path;
     const mimeType: string | boolean = mime.lookup(ctxPath);
 
+    ctx.routePath = ctxPath; // 保存旧的path
+
     // 重定向path，所有的路由都指向"/"
     if (ctxPath !== '/' && mimeType === false) {
       ctx.path = '/';
-      ctx._path = ctxPath;     // TODO: 未来移除
-      ctx.routePath = ctxPath; // 保存旧的path
+      ctx._path = ctxPath; // TODO: 未来移除
     }
 
     await next();
