@@ -81,6 +81,10 @@ proServer({
 * apiFile `{ string }` : 重新定义的api文件。
 * proxyFile `{ string }` : 重新定义的proxy文件。
 
+## sweetOptions
+
+你可以在任何中间件内通过`ctx.sweetOptions`拿到当前服务的配置。
+
 ## api
 
 创建一个`api/api.js`文件，代码如下
@@ -120,6 +124,8 @@ function server(url, context = {}, initialState = {}) {
 
 export default server;
 ```
+
+在入口文件内，你可以通过`context.routePath`拿到当前真实的path。
 
 ## 代理
 
