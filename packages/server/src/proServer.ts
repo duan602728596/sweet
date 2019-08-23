@@ -82,14 +82,22 @@ async function proServer(argv: ProServerType = {}): Promise<void> {
 
   /* 合并配置项 */
   Object.assign(sweetOptions, {
-    httpPort: await portUse(httpPort, 'http'),
-    httpsPort: await portUse(httpsPort, 'https'),
-    renderType,
+    serverRoot,
+    serverRender,
     serverRenderFile,
+    env,
+    template,
+    renderType,
+    log,
+    serverChain,
+    httpsKey,
+    httpsCert,
     useBabelRegister,
     controllersDir,
     apiFile,
-    proxyFile
+    proxyFile,
+    httpPort: await portUse(httpPort, 'http'),
+    httpsPort: await portUse(httpsPort, 'https')
   });
 
   /* https服务 */

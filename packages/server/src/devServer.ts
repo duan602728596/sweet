@@ -79,14 +79,20 @@ async function devServer(argv: DevServerType = {}): Promise<void> {
 
   /* 合并配置项 */
   Object.assign(sweetOptions, {
-    httpPort: await getPort(httpPort, true, 'http'),
-    httpsPort: await getPort(httpsPort, true, 'https'),
-    renderType,
+    compiler,
+    serverRender,
     serverRenderFile,
+    env,
+    renderType,
+    serverChain,
+    httpsKey,
+    httpsCert,
     useBabelRegister,
     controllersDir,
     apiFile,
-    proxyFile
+    proxyFile,
+    httpPort: await getPort(httpPort, true, 'http'),
+    httpsPort: await getPort(httpsPort, true, 'https')
   });
 
   /* 服务器端渲染文件地址 */
