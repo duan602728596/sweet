@@ -73,13 +73,13 @@ export function createLessOptions(modifyVars: object | undefined, isDevelopment:
 
 /**
  * sass-loader options
- * @param { string | Function | undefined } data: sass变量
+ * @param { string | Function | undefined } prependData: sass变量
  * @param { boolean } isDevelopment: 是否为开发环境
  */
-export function createSassOptions(data: string | Function | undefined, isDevelopment: boolean): LoaderOptions {
+export function createSassOptions(prependData: string | Function | undefined, isDevelopment: boolean): LoaderOptions {
   return {
     outputStyle: isDevelopment ? 'compact' : 'compressed',
-    data,
+    prependData,
     sourceMap: isDevelopment
   };
 }

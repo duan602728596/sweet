@@ -60,6 +60,7 @@ export interface LESS extends CSS {
 }
 
 export interface SASS extends CSS {
+  prependData?: string | Function;
   data?: string | Function;
 }
 
