@@ -5,7 +5,7 @@ import 'github-markdown-css/github-markdown.css';
 function MarkDown(props) {
   return (
     <div className="markdown-body" style={{ padding: '16px' }}>
-      <ReactMarkdown { ...props } />
+      <ReactMarkdown escapeHtml={ false } { ...props } />
     </div>
   );
 }
