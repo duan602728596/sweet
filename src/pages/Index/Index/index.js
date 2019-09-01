@@ -2,6 +2,7 @@ import Vue from 'vue';
 import Component from 'vue-class-component';
 import { Icon } from 'ant-design-vue';
 import style from './index.sass';
+import WelcomeSvgComponent from './images/welcome.component.svg';
 
 @Component
 class Index extends Vue {
@@ -17,7 +18,10 @@ class Index extends Vue {
 
     return (
       <article>
-        <h1>欢迎</h1>
+        <h1>
+          欢迎
+          <WelcomeSvgComponent class={ style.welcome } />
+        </h1>
         <p>如果你喜欢，你可以点个赞。</p>
         <div>
           <Icon class={ style.zan } type="like" role="button" onClick={ this.handleZanClick } />
