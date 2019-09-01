@@ -6,6 +6,7 @@ import useActions from '../../../store/useActions';
 import { Typography, Icon } from 'antd';
 import style from './index.sass';
 import { setLikeLen } from '../reducer/reducer';
+import welcome, { ReactComponent as WelcomeSvgComponent } from './images/welcome.svg';
 
 /* state */
 const state = createStructuredSelector({
@@ -33,7 +34,10 @@ function Index(props) {
 
   return (
     <Typography>
-      <Typography.Title>欢迎</Typography.Title>
+      <Typography.Title>
+        欢迎
+        <WelcomeSvgComponent className={ style.welcome } />
+      </Typography.Title>
       <Typography.Paragraph>
         如果你喜欢，你可以点个赞。
       </Typography.Paragraph>
