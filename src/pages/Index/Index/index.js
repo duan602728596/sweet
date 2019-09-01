@@ -45,6 +45,7 @@ function Index(props) {
         <Icon className={ style.zan } type="like" role="button" onClick={ handleZanClick } />
         <span className={ style.len }>{ likeLen }</span>
       </div>
+      <img className={ style.img } src={ require('./images/1R5031O0-17.jpg') } />
     </Typography>
   );
 }
