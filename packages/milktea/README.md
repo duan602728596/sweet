@@ -112,6 +112,27 @@ module.exports = {
 * severEntry `{ any }` : 服务器端的文件入口（参考webpack）
 * serverOutput `{ any }` : 服务器端文件出口（参考webpack）
 
+## 引入svg
+
+### react
+
+```javascript
+import svgUrl, { ReactComponent as SvgComponent } from './image.svg';
+// svgUrl：svg的图片地址
+// SvgComponent：svg作为react组件
+```
+
+### vue
+
+在vue项目中，如果svg文件匹配`component.svg`，则文件作为vue组件引入，否则作为图片地址引入。
+
+```javascript
+import svgUrl from './image.svg';
+import SvgComponent from './image.component.svg';
+// svgUrl：svg的图片地址
+// SvgComponent：svg作为vue组件
+```
+
 ## [api、服务器端渲染](https://github.com/duan602728596/sweet/blob/master/packages/server/README.md)
 
 ## 环境变量
