@@ -78,7 +78,9 @@ export function createLessOptions(modifyVars: object | undefined, isDevelopment:
  */
 export function createSassOptions(prependData: string | Function | undefined, isDevelopment: boolean): LoaderOptions {
   return {
-    outputStyle: isDevelopment ? 'compact' : 'compressed',
+    sassOptions: {
+      outputStyle: isDevelopment ? 'compact' : 'compressed'
+    },
     prependData,
     sourceMap: isDevelopment
   };
