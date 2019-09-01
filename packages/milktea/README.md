@@ -124,7 +124,7 @@ import svgUrl, { ReactComponent as SvgComponent } from './image.svg';
 
 ### vue
 
-在vue项目中，如果svg文件匹配`component.svg`，则文件作为vue组件引入，否则作为图片地址引入。
+在vue项目中，如果svg文件匹配`*.component.svg`，则文件作为vue组件引入，否则作为图片地址引入。
 
 ```javascript
 import svgUrl from './image.svg';
