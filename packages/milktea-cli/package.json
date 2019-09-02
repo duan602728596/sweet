@@ -52,10 +52,10 @@
     "typescript": "^3.6.2"
   },
   "peerDependencies": {
-    "@sweet-milktea/milktea": "^0.4.3",
-    "@sweet-milktea/server": "^0.4.1",
-    "@sweet-milktea/server-log": "^0.3.9",
-    "@sweet-milktea/util-tools": "^0.4.1"
+    "@sweet-milktea/milktea": "^0",
+    "@sweet-milktea/server": "^0",
+    "@sweet-milktea/server-log": "^0",
+    "@sweet-milktea/util-tools": "^0"
   },
   "engines": {
     "node": ">= 9.0.0"
