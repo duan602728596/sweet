@@ -18,7 +18,6 @@ const routers = new VueRouter({
     },
     {
       path: '/',
-      name: 'layout',
       component: Layout,
       children: [
         {
