@@ -17,6 +17,8 @@ function createRouters(
 
     ctx.routePath = ctxPath; // 保存旧的path
 
+    await next();
+
     // 服务器端渲染
     if (serverRender) {
       ctx.body = await preRender(ctxPath, ctx, formatServerRenderFile);
