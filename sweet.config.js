@@ -11,7 +11,8 @@ export default {
     'classnames'
   ],
   entry: {
-    index: [path.join(__dirname, 'src/index.js')]
+    index: [path.join(__dirname, 'src/index.js')],
+    other: [path.join(__dirname, 'src/other.js')]
   },
   serverRender: true,
   serverEntry: {
@@ -32,7 +33,8 @@ export default {
     include: /node_modules[\\/]ant-design-vue/
   },
   html: [
-    { template: path.join(__dirname, 'src/index.pug') }
+    { template: path.join(__dirname, 'src/index.pug'), excludeChunks: ['other'] },
+    { template: path.join(__dirname, 'src/other.pug'), excludeChunks: ['index'] }
   ],
   filesMap: true
 };
