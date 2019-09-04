@@ -4,6 +4,7 @@ import * as Koa from 'koa';
 import * as connect from 'koa-connect';
 import * as proxy from 'http-proxy-middleware';
 import { defaultProxyPath, requireModule } from './utils';
+import useRegister from './babelRegister';
 import { SweetOptions } from './types';
 
 interface ProxyItemConfig {
@@ -35,6 +36,8 @@ async function createProxy(sweetOptions: SweetOptions, app: Koa, isDevelopment: 
   const defaultProxy: { js: string; json: string } = defaultProxyPath(sweetOptions.basicPath);
 
   if (sweetOptions.proxyFile && fs.existsSync(sweetOptions.proxyFile)) {
+    useRegister(sweetOptions);
+
     const module: any = requireModule(sweetOptions.proxyFile);
 
     if (_.isPlainObject(module)) {
@@ -45,6 +48,8 @@ async function createProxy(sweetOptions: SweetOptions, app: Koa, isDevelopment: 
       addMiddleware(app, proxyConfig, isDevelopment, env);
     }
   } else if (fs.existsSync(defaultProxy.js)) {
+    useRegister(sweetOptions);
+
     const module: any = requireModule(defaultProxy.js);
 
     if (_.isPlainObject(module)) {
@@ -55,6 +60,8 @@ async function createProxy(sweetOptions: SweetOptions, app: Koa, isDevelopment: 
       addMiddleware(app, proxyConfig, isDevelopment, env);
     }
   } else if (fs.existsSync(defaultProxy.json)) {
+    useRegister(sweetOptions);
+
     const module: ProxyConfig = requireModule(defaultProxy.json);
 
     addMiddleware(app, module, isDevelopment, env);

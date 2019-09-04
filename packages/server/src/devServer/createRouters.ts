@@ -11,39 +11,43 @@ function createRouters(
 ): void {
   const preRender: Function = preRenderInit(sweetOptions);
 
-  /* webpack 重定向 */
-  router.get(/^\/[^._\-]*$/, async (ctx: ServerContext, next: Function): Promise<void> => {
-    const ctxPath: string = ctx.path;
-    const mimeType: string | boolean = mime.lookup(ctxPath);
-
-    ctx.routePath = ctxPath; // 保存旧的path
-
-    // 重定向path，所有的路由都指向"/"
-    if (ctxPath !== '/' && mimeType === false) {
-      ctx.path = '/';
-      ctx._path = ctxPath; // TODO: 未来移除
-    }
-
-    await next();
-
-    // 将path改回重定向前的值
-    ctx.path = ctxPath;
-
-    // 服务器端渲染
-    if (serverRender && ctx.type === 'text/html') {
-      ctx.body = await preRender(ctxPath, ctx, formatServerRenderFile);
-    }
-  });
-
   /* html文件允许使用ejs模板 */
   router.get(/^.*\.html$/, async (ctx: ServerContext, next: Function): Promise<void> => {
     const ctxPath: string = ctx.path;
 
-    await next();
+    ctx.routePath = ctxPath; // 保存旧的path
 
     // 服务器端渲染
     if (serverRender) {
       ctx.body = await preRender(ctxPath, ctx, formatServerRenderFile);
+    }
+  });
+
+  /* webpack 重定向 */
+  router.get('/*', async (ctx: ServerContext, next: Function): Promise<void> => {
+    try {
+      const ctxPath: string = ctx.path;
+      const mimeType: string | boolean = mime.lookup(ctxPath);
+
+      ctx.routePath = ctxPath; // 保存旧的path
+
+      // 重定向path，所有的路由都指向"/"
+      if (ctxPath !== '/' && mimeType === false) {
+        ctx.path = '/';
+      }
+
+      await next();
+
+      // 将path改回重定向前的值
+      ctx.path = ctxPath;
+
+      // 服务器端渲染
+      if (serverRender && ctx.type === 'text/html') {
+        ctx.body = await preRender(ctxPath, ctx, formatServerRenderFile);
+      }
+    } catch (err) {
+      ctx.status = 500;
+      ctx.body = err;
     }
   });
 }
