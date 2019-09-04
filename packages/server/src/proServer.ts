@@ -1,4 +1,5 @@
 /* 生产环境 服务器 */
+import './alias';
 import * as http from 'http';
 import * as http2 from 'http2';
 import * as process from 'process';
