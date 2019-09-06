@@ -15,17 +15,15 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
   const dll: Array<string> | undefined = sweetConfig.dll;
   const serverRender: boolean | undefined = sweetConfig.serverRender;
   const isDll: boolean = !!(dll && _.isArray(dll) && dll.length > 0 && !serverRender);
-  const inTest: boolean = sweetConfig.frame === 'test';
 
   // 缓存
   config
     .plugin('hard-source-webpack-plugin')
     .use(HardSourceWebpackPlugin, [{
-      cacheDirectory: path.join(sweetOptions.basicPath, serverRender ? hardSourceWebpackServerCache : hardSourceWebpackCache),
-      info: {
-        mode: inTest ? 'test' : 'none',
-        level: inTest ? 'warn' : 'debug'
-      }
+      cacheDirectory: path.join(
+        sweetOptions.basicPath,
+        serverRender ? hardSourceWebpackServerCache : hardSourceWebpackCache
+      )
     }]);
 
   // dll
