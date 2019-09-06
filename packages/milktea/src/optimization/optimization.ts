@@ -42,6 +42,7 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
             cache: path.join(sweetOptions.basicPath, terserCache),
             parallel: true,
             sourceMap: true,
+            extractComments: false,
             terserOptions
           }]);
       }
