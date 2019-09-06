@@ -50,7 +50,6 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
 
       config
         .plugin(`html-webpack-plugin: ${ index }`)
-        // @ts-ignore
         .use(HtmlWebpackPlugin, [{
           inject: true,
           template: item.template,
