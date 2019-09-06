@@ -13,7 +13,7 @@ export function cssLoaderGetLocalIdent(
   options: { [key: string]: any }
 ): string {
   // node_modules 和 global文件直接返回className
-  if (/(node_modules|global\.(c|le|sa|sc)ss)/i.test(loaderContext.resourcePath)) {
+  if (/(node_modules|global\.(css|less|sass|scss|styl))/i.test(loaderContext.resourcePath)) {
     return localName;
   }
 
