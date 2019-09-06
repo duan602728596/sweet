@@ -4,7 +4,7 @@ module.exports = {
       '@babel/preset-env',
       {
         targets: {
-          browsers: ['node 9']
+          browsers: ['node 10']
         },
         debug: false,
         modules: 'commonjs',
