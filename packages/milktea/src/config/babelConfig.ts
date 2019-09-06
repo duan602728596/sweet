@@ -39,16 +39,18 @@ export function createTargets(): { browsers: Array<string> } {
  * @param { boolean } notUseBuiltIns: 不使用core-js
  */
 export function createPresetEnv(customTargets: object | undefined, debug: boolean, notUseBuiltIns?: boolean): Array<any> {
-  return [
-    '@babel/preset-env',
-    {
-      targets: customTargets ? customTargets : createTargets(),
-      debug,
-      modules: false,
-      useBuiltIns: notUseBuiltIns ? false : 'usage',
-      corejs: notUseBuiltIns ? undefined : 3
-    }
-  ];
+  const options: { [key: string]: any } = {
+    targets: customTargets ? customTargets : createTargets(),
+    debug,
+    modules: false,
+    useBuiltIns: notUseBuiltIns ? false : 'usage'
+  };
+
+  if (!notUseBuiltIns) {
+    options.corejs = 3;
+  }
+
+  return ['@babel/preset-env', options];
 }
 
 /**
