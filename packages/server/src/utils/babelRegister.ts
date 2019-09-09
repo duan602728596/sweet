@@ -8,6 +8,7 @@ interface RegisterConfig {
   ignore: Array<RegExp>;
 }
 
+/* @babel/register的配置 */
 function createRegisterConfig(): RegisterConfig {
   return {
     presets: [
@@ -36,17 +37,17 @@ function createRegisterConfig(): RegisterConfig {
       '@babel/plugin-syntax-dynamic-import'                    // import() 语法
     ],
     cache: true,
-    ignore: [
-      /node_modules/
-    ]
+    ignore: [/node_modules/]
   };
 }
 
+/* 使用@babel/register */
 function useRegister(sweetOptions: SweetOptions): void {
   if (sweetOptions.useBabelRegister) {
     const register: Function = require('@babel/register');
     const config: RegisterConfig = createRegisterConfig();
 
+    // 如果开启了ssr，要把编译后的目录加入到忽略列表，否则会影响性能
     if (sweetOptions.serverRenderFile) {
       const result: path.ParsedPath = path.parse(sweetOptions.serverRenderFile);
 
