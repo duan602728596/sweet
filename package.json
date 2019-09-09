@@ -18,7 +18,6 @@
     "clean:docs": "rimraf storybook-static"
   },
   "devDependencies": {
-    "@babel/core": "^7.6.0",
     "@storybook/addon-actions": "^5.1.11",
     "@storybook/addon-links": "^5.1.11",
     "@storybook/addon-notes": "^5.1.11",
