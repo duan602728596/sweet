@@ -15,7 +15,7 @@ function createRegisterConfig(): RegisterConfig {
         '@babel/preset-env',
         {
           targets: {
-            browsers: ['node 9']
+            browsers: ['node 10']
           },
           debug: false,
           modules: 'commonjs',
@@ -24,15 +24,16 @@ function createRegisterConfig(): RegisterConfig {
       ]
     ],
     plugins: [
-      ['@babel/plugin-proposal-decorators', { legacy: true }],
-      '@babel/plugin-proposal-class-properties',
-      '@babel/plugin-proposal-do-expressions',
-      '@babel/plugin-proposal-optional-catch-binding',
-      '@babel/plugin-proposal-export-default-from',
-      '@babel/plugin-proposal-optional-chaining',
-      '@babel/plugin-proposal-numeric-separator',
-      '@babel/plugin-syntax-bigint',
-      '@babel/plugin-syntax-dynamic-import'
+      ['@babel/plugin-proposal-decorators', { legacy: true }], // 修饰器
+      '@babel/plugin-proposal-class-properties',               // class 相关
+      '@babel/plugin-proposal-do-expressions',                 // do {} 语法
+      '@babel/plugin-proposal-export-default-from',            // export module from 语法
+      '@babel/plugin-proposal-nullish-coalescing-operator',    // x ?? y 语法
+      '@babel/plugin-proposal-numeric-separator',              // 1_000_000 语法
+      '@babel/plugin-proposal-optional-catch-binding',         // try {} catch {} 语法
+      '@babel/plugin-proposal-optional-chaining',              // x?.y 语法
+      '@babel/plugin-syntax-bigint',                           // BigInt数据类型
+      '@babel/plugin-syntax-dynamic-import'                    // import() 语法
     ],
     cache: true,
     ignore: [
