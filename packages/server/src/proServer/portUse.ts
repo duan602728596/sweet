@@ -1,5 +1,5 @@
 import * as detectPort from 'detect-port';
-import * as colors from 'colors';
+import * as colors from 'colors/safe';
 
 /**
  * 判断端口是否被占用
