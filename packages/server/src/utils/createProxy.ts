@@ -7,26 +7,19 @@ import { defaultProxyPath, requireModule } from './utils';
 import useRegister from './babelRegister';
 import { SweetOptions } from './types';
 
-interface ProxyItemConfig {
-  target: string;
-  changeOrigin?: boolean;
-  pathRewrite?: { [key: string]: string };
-}
-
-type ProxyConfig = { [key: string]: ProxyItemConfig };
+type ProxyConfig = { [key: string]: object };
 
 /* 添加代理中间件 */
 function addMiddleware(app: Koa, proxyConfig: ProxyConfig, isDevelopment: boolean, env?: string): void {
   const logLevel: string = env === 'test' ? 'error' : (isDevelopment ? 'info' : 'error');
 
   for (const key in proxyConfig) {
-    const config: ProxyItemConfig = proxyConfig[key];
+    const config: object = proxyConfig[key];
 
     app.use(connect(proxy(key, {
-      target: config.target,
-      changeOrigin: _.isBoolean(config.changeOrigin) ? config.changeOrigin : true,
-      pathRewrite: config.pathRewrite,
-      logLevel
+      changeOrigin: true,
+      logLevel,
+      ...config
     })));
   }
 }
