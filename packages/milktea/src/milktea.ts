@@ -15,6 +15,17 @@ const sweetOptions: SweetOptions = {
   basicPath: process.cwd() // 主目录
 };
 
+/* 获取配置 */
+function getConfig(sweetConfig?: SweetConfigArgs): Config {
+  if (typeof sweetConfig === 'string') {
+    return getSweetConfigFile(sweetOptions, sweetConfig);
+  } else if (_.isPlainObject(sweetConfig)) {
+    return sweetConfig;
+  } else {
+    return getSweetConfigFile(sweetOptions);
+  }
+}
+
 /* webpack的回调函数 */
 export function callback(err: Error, stats: Stats): void {
   if (err) {
@@ -31,19 +42,8 @@ export function callback(err: Error, stats: Stats): void {
  * @param { SweetConfig | string | null | undefined } sweetConfig: webpack配置，覆盖文件，优先级最高
  * @param { string } mode: 开发环境，覆盖配置的开发环境
  */
-export function config(
-  sweetConfig?: SweetConfigArgs,
-  mode?: Mode
-): Configuration {
-  let config: Config;
-
-  if (typeof sweetConfig === 'string') {
-    config = getSweetConfigFile(sweetOptions, sweetConfig);
-  } else if (_.isPlainObject(sweetConfig)) {
-    config = sweetConfig;
-  } else {
-    config = getSweetConfigFile(sweetOptions);
-  }
+export function config(sweetConfig?: SweetConfigArgs, mode?: Mode): Configuration {
+  const config: Config = getConfig(sweetConfig);
 
   if (config && mode) {
     config.mode = mode;
@@ -57,19 +57,8 @@ export function config(
  * @param { SweetConfig | string | null | undefined } sweetConfig: webpack配置，覆盖文件，优先级最高
  * @param { string } mode: 开发环境，覆盖配置的开发环境
  */
-export function serverRenderConfig(
-  sweetConfig?: SweetConfigArgs,
-  mode?: Mode
-): Configuration {
-  let config: Config;
-
-  if (typeof sweetConfig === 'string') {
-    config = getSweetConfigFile(sweetOptions, sweetConfig);
-  } else if (_.isPlainObject(sweetConfig)) {
-    config = sweetConfig;
-  } else {
-    config = getSweetConfigFile(sweetOptions);
-  }
+export function serverRenderConfig(sweetConfig?: SweetConfigArgs, mode?: Mode): Configuration {
+  const config: Config = getConfig(sweetConfig);
 
   if (config && mode) {
     config.mode = mode;
@@ -83,15 +72,7 @@ export function serverRenderConfig(
  * @param { SweetConfig | string | null | undefined } sweetConfig: webpack配置，覆盖文件，优先级最高
  */
 export function dllConfig(sweetConfig?: SweetConfigArgs): Configuration {
-  let config: Config;
-
-  if (typeof sweetConfig === 'string') {
-    config = getSweetConfigFile(sweetOptions, sweetConfig);
-  } else if (_.isPlainObject(sweetConfig)) {
-    config = sweetConfig;
-  } else {
-    config = getSweetConfigFile(sweetOptions);
-  }
+  const config: Config = getConfig(sweetConfig);
 
   return webpackDllConfig(config, sweetOptions);
 }
