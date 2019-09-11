@@ -8,6 +8,7 @@ export function requireModule(id: string): any {
   return 'default' in module ? module.default : module;
 }
 
+/* lodash.mergeWith合并函数 */
 export function customizer(objValue: any, srcValue: any): Array<any> | undefined {
   if (_.isArray(objValue)) {
     return objValue.concat(srcValue);
