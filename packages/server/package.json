@@ -60,7 +60,7 @@
     "request": "^2.88.0",
     "rimraf": "^3.0.0",
     "typescript": "^3.6.3",
-    "webpack": "^4.39.3"
+    "webpack": "^4.40.2"
   },
   "peerDependencies": {
     "@sweet-milktea/milktea": "^0",
