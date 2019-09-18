@@ -34,7 +34,7 @@ export default function(sweetConfig: SweetConfig | null | undefined, sweetOption
   }: SweetConfig = sweetConfigCopy;
   const isDevelopment: boolean = mode === 'development';
 
-  // 格式化配置
+  // 格式化ecmascript配置
   if (sweetConfigCopy.js && _.isPlainObject(sweetConfigCopy.js)) {
     sweetConfigCopy.js.ecmascript = true;
   } else {
