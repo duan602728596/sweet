@@ -66,6 +66,11 @@ export interface SASS extends CSS {
 
 export type Mode = 'development' | 'production' | 'none';
 export type Frame = 'react' | 'vue' | 'test';
+export type HtmlItem = {
+  [key: string]: any;
+  template: string;
+  excludeChunks: Array<string>;
+};
 
 export interface SweetConfig {
   mode?: Mode;
@@ -83,10 +88,7 @@ export interface SweetConfig {
   ts?: TS;
   sass?: SASS;
   css?: LESS;
-  html?: Array<{
-    template: string;
-    excludeChunks: Array<string>;
-  }>;
+  html?: Array<HtmlItem>;
   serverRender?: boolean;
   serverEntry?: string | Array<string> | Entry | EntryFunc;
   serverOutput?: Output;

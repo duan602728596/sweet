@@ -5,7 +5,7 @@ import * as Config from 'webpack-chain';
 import * as HtmlWebpackPlugin from 'html-webpack-plugin';
 import * as VueLoaderPlugin from 'vue-loader/lib/plugin';
 import { requireModule } from '../utils/utils';
-import { SweetConfig, SweetOptions } from '../utils/types';
+import { SweetConfig, SweetOptions, HtmlItem } from '../utils/types';
 
 export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, config: Config): void {
   /**
@@ -45,17 +45,19 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
     let index: number = 0;
 
     for (const item of html) {
-      const info: { name: string } = path.parse(item.template);
+      const { template, excludeChunks, ...otherConfig }: HtmlItem = item;
+      const info: { name: string } = path.parse(template);
 
       config
         .plugin(`html-webpack-plugin: ${ index }`)
         .use(HtmlWebpackPlugin, [{
           inject: true,
-          template: item.template,
+          template,
           filename: `${ info.name }.html`,
-          excludeChunks: item.excludeChunks,
+          excludeChunks,
           mode,
-          hash: !isDevelopment
+          hash: !isDevelopment,
+          ...otherConfig
         }]);
 
       index += 1;
