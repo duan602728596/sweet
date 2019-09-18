@@ -10,15 +10,18 @@ function argvBuild(argv: Argv): void {
     milktea.config(argv.config, 'production')
   );
 
-  compiler.run(milktea.callback);
-
   if (!_.isNil(argv.serverRender)) {
-    const serverRenderCompiler: webpack.Compiler = webpack(
-      milktea.serverRenderConfig(argv.config, 'production')
-    );
+    // 正常编译完毕后，编译ssr需要的文件
+    compiler.hooks.done.tap('build-ssr', function(): void {
+      const serverRenderCompiler: webpack.Compiler = webpack(
+        milktea.serverRenderConfig(argv.config, 'production')
+      );
 
-    serverRenderCompiler.run(milktea.callback);
+      serverRenderCompiler.run(milktea.callback);
+    });
   }
+
+  compiler.run(milktea.callback);
 }
 
 export default argvBuild;
