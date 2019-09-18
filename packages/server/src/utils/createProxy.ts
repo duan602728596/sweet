@@ -35,7 +35,7 @@ async function createProxy(sweetOptions: SweetOptions, app: Koa, isDevelopment: 
 
     if (_.isPlainObject(module)) {
       addMiddleware(app, module, isDevelopment, env);
-    } else if (_.isFunction(module)) {
+    } else if (typeof module === 'function') {
       const proxyConfig: ProxyConfig = await module(sweetOptions, app);
 
       addMiddleware(app, proxyConfig, isDevelopment, env);
@@ -47,7 +47,7 @@ async function createProxy(sweetOptions: SweetOptions, app: Koa, isDevelopment: 
 
     if (_.isPlainObject(module)) {
       addMiddleware(app, module, isDevelopment, env);
-    } else if (_.isFunction(module)) {
+    } else if (typeof module === 'function') {
       const proxyConfig: ProxyConfig = await module(sweetOptions, app);
 
       addMiddleware(app, proxyConfig, isDevelopment, env);

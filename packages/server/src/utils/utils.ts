@@ -21,7 +21,7 @@ export function formatTemplateData(data: object): object {
   return _.transform(data, function(result: object, value: any, key: string): void {
     let item: any = value;
 
-    if (_.isObject(item)) {
+    if (typeof item === 'object') {
       item = JSON.stringify(item);
     }
 
@@ -92,7 +92,7 @@ export function deleteCacheAndRequireModule(id: string): any {
 
 /* 判断是否为readStream */
 export function isReadStream<Input>(input: Input): boolean {
-  return _.isObject(input) && input instanceof Stream;
+  return typeof input === 'object' && input instanceof Stream;
 }
 
 /* 读取stream流 */

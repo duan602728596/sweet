@@ -1,4 +1,3 @@
-import * as _ from 'lodash';
 import * as Config from 'webpack-chain';
 import { Rule, OneOf } from 'webpack-chain';
 import { createStyleLoader, createCssOptions, createSassOptions } from '../config/cssConfig';
@@ -23,8 +22,8 @@ export default function(sweetConfig: SweetConfig, config: Config): void {
         rule: {
           sass: {
             test: /^.*\.s(a|c)ss$/,
-            exclude: exclude ? (_.isArray(exclude) ? exclude : [exclude]) : [],
-            include: include ? (_.isArray(include) ? include : [include]) : []
+            exclude: exclude ? (Array.isArray(exclude) ? exclude : [exclude]) : [],
+            include: include ? (Array.isArray(include) ? include : [include]) : []
           }
         }
       }

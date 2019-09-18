@@ -1,6 +1,5 @@
 /* 插件配置 */
 import * as path from 'path';
-import * as _ from 'lodash';
 import * as webpack from 'webpack';
 import * as Config from 'webpack-chain';
 import * as HtmlWebpackPlugin from 'html-webpack-plugin';
@@ -42,7 +41,7 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
   envPlugins(sweetConfig, sweetOptions, config);
 
   // html模板
-  if (html && typeof _.isArray(html) && !serverRender) {
+  if (html && typeof Array.isArray(html) && !serverRender) {
     let index: number = 0;
 
     for (const item of html) {

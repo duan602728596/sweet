@@ -1,4 +1,3 @@
-import * as _ from 'lodash';
 import { RuleSetRule, RuleSetUse } from 'webpack';
 
 /* 模块导入 */
@@ -10,7 +9,7 @@ export function requireModule(id: string): any {
 
 /* lodash.mergeWith合并函数 */
 export function customizer(objValue: any, srcValue: any): Array<any> | undefined {
-  if (_.isArray(objValue)) {
+  if (Array.isArray(objValue)) {
     return objValue.concat(srcValue);
   }
 }
@@ -29,7 +28,7 @@ export function formatLoader(obj: RuleSetRule | undefined): RuleSetRule {
     for (let i: number = 0, j: number = formatObj.use.length; i < j; i++) {
       let item: any = formatObj.use[i];
 
-      if (_.isString(item)) {
+      if (typeof item === 'string') {
         item = { loader: item };
       }
 
@@ -39,11 +38,11 @@ export function formatLoader(obj: RuleSetRule | undefined): RuleSetRule {
     formatObj.use = use;
   }
 
-  if (formatObj.exclude && !_.isArray(formatObj.exclude)) {
+  if (formatObj.exclude && !Array.isArray(formatObj.exclude)) {
     formatObj.exclude = [formatObj.exclude];
   }
 
-  if (formatObj.include && !_.isArray(formatObj.include)) {
+  if (formatObj.include && !Array.isArray(formatObj.include)) {
     formatObj.include = [formatObj.include];
   }
 
