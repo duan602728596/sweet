@@ -67,6 +67,6 @@
     "@sweet-milktea/server-log": "^0"
   },
   "engines": {
-    "node": ">= 9.0.0"
+    "node": ">= 10.0.0"
   }
 }
