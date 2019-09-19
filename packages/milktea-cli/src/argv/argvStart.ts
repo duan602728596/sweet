@@ -1,4 +1,5 @@
 import * as webpack from 'webpack';
+import { Compiler, Watching } from 'webpack';
 import * as _ from 'lodash';
 import { requireModule } from '../utils/utils';
 import { Milktea, Argv } from '../utils/types';
@@ -13,13 +14,13 @@ function argvStart(argv: Argv): void {
     webpackConfig['output'].publicPath = '/';
   }
 
-  const compiler: webpack.Compiler = webpack(webpackConfig);
+  const compiler: Compiler = webpack(webpackConfig);
 
   if (!_.isNil(argv.serverRender)) {
-    const serverRenderCompiler: webpack.Compiler = webpack(
+    const serverRenderCompiler: Compiler = webpack(
       milktea.serverRenderConfig(argv.config, 'development')
     );
-    const serverRenderWatching: webpack.Watching = serverRenderCompiler.watch({
+    const serverRenderWatching: Watching = serverRenderCompiler.watch({
       aggregateTimeout: 500
     }, milktea.callback);
   }
@@ -47,7 +48,7 @@ function argvStart(argv: Argv): void {
       useBabelRegister
     });
   } else {
-    const watching: webpack.Watching = compiler.watch({
+    const watching: Watching = compiler.watch({
       aggregateTimeout: 500
     }, milktea.callback);
   }
