@@ -63,10 +63,10 @@
     "webpack": "^4.40.2"
   },
   "peerDependencies": {
-    "@sweet-milktea/milktea": "^0",
-    "@sweet-milktea/server-log": "^0"
+    "@sweet-milktea/milktea": ">=0",
+    "@sweet-milktea/server-log": ">=0"
   },
   "engines": {
-    "node": ">= 10.0.0"
+    "node": ">=10"
   }
 }
