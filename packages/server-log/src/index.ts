@@ -21,7 +21,9 @@ interface ServerLog {
 }
 
 function serverLog(type: 'file' | 'http', options: Options = { pm2: false, url: '', basicPath: process.cwd() }): ServerLog {
-  const config: object = type === 'http' ? createHttpConfig(options.url, options.pm2) : createFileConfig(options.basicPath, options.pm2);
+  const config: object = type === 'http'
+    ? createHttpConfig(options.url, options.pm2)
+    : createFileConfig(options.basicPath, options.pm2);
 
   log4js.configure(config);
 
