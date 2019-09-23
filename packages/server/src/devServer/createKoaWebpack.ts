@@ -12,6 +12,7 @@ interface MiddlewareConfig {
       client: string;
       server: string;
     };
+    allEntries: boolean;
     https: boolean;
     server?: Server;
     logLevel?: string;
@@ -35,28 +36,14 @@ export function createMiddlewareConfig(
   useHttps: boolean,
   server: Server | undefined
 ): MiddlewareConfig {
-  const middlewareConfig: {
-    compiler?: webpack.Compiler;
-    hotClient: {
-      host: {
-        client: string;
-        server: string;
-      };
-      https: boolean;
-      server?: Server;
-      logLevel?: string;
-    };
-    devMiddleware: {
-      serverSideRender: boolean;
-      logLevel?: string;
-    };
-  } = {
+  const middlewareConfig: MiddlewareConfig = {
     compiler,
     hotClient: {
       host: {
         client: '*',
         server: '0.0.0.0'
       },
+      allEntries: true,
       https: useHttps,
       server
     },
