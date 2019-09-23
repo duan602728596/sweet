@@ -18,7 +18,7 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
   // 获取配置
   const jsOptions: JS = js || {};
   const { ecmascript, presets, plugins, resetPresets, resetPlugins, exclude, include, targets: customTargets }: JS = jsOptions;
-  const debug: boolean = frame === 'test' ? false : (isDevelopment === undefined ? true : isDevelopment);
+  const debug: boolean = frame === 'test' ? false : isDevelopment;
   const useConfig: object = {
     'babel-loader': {
       loader: 'babel-loader',
