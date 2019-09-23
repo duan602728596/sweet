@@ -8,13 +8,6 @@ import { requireModule } from '../utils/utils';
 import { SweetConfig, SweetOptions, HtmlItem } from '../utils/types';
 
 export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, config: Config): void {
-  /**
-   * mode { string }: 开发模式还是生产模式
-   * html { object }: html配置
-   * frame { string }: 是否为react或vue模式
-   * serverRender { boolean }: 开启服务器端渲染
-   * loaders { object }: loaders
-   */
   const { mode, html, frame, serverRender }: SweetConfig = sweetConfig;
   const isDevelopment: boolean = mode === 'development';
 

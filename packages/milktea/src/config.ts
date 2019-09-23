@@ -11,15 +11,6 @@ import { SweetConfig, SweetOptions } from './utils/types';
 
 export default function(sweetConfig: SweetConfig | null | undefined, sweetOptions: SweetOptions): Configuration {
   const config: Config = new Config();
-  /**
-   * mode { string }: 开发模式还是生产模式
-   * entry { any }: 文件入口
-   * output { any }: 文件出口
-   * externals { any }: 外部扩展
-   * resolve { object } 解析
-   * rules { Array<RuleSetRule> }: 自定义规则
-   * plugins { Array<any> }: 自定义插件
-   */
   const sweetConfigCopy: SweetConfig = _.isPlainObject(sweetConfig) ? { ...sweetConfig } : {};
   const {
     mode,

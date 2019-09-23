@@ -10,10 +10,6 @@ import { SweetConfig, SweetOptions } from '../utils/types';
 
 /* 生产环境插件 */
 export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, config: Config): void {
-  /**
-   * serverRender { boolean }: 开启服务器端渲染
-   * fileMaps { boolean | { [key: string]: string } }: 是否输出filesMap
-   */
   const { serverRender, filesMap }: SweetConfig = sweetConfig;
 
   config

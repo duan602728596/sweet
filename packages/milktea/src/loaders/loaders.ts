@@ -14,10 +14,6 @@ import { SweetConfig, SweetOptions, Loaders } from '../utils/types';
 
 /* loaders */
 export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, config: Config): void {
-  /**
-   * loaders { object }: 覆盖默认规则
-   * frame { string }: 是否为react或vue模式
-   */
   const frame: string | undefined = sweetConfig.frame;
   const loaders: Loaders = sweetConfig.loaders && _.isPlainObject(sweetConfig.loaders) ? sweetConfig.loaders : {};
   const isDevelopment: boolean = sweetConfig.mode === 'development';

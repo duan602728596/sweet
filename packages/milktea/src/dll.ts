@@ -12,11 +12,6 @@ import { SweetConfig, SweetOptions, JS } from './utils/types';
 
 export default function(sweetConfig: SweetConfig | null | undefined, sweetOptions: SweetOptions): Configuration {
   const config: Config = new Config();
-
-  /**
-   * mode { string }: 开发模式还是生产模式
-   * dll { Array<string> }: dll配置
-   */
   const sweetConfigCopy: SweetConfig = _.isPlainObject(sweetConfig) ? { ...sweetConfig } : {};
   const { mode, dll, externals, resolve, chainWebpack, js }: SweetConfig = sweetConfigCopy;
 

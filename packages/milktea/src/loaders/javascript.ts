@@ -7,11 +7,6 @@ import { SweetConfig, SweetOptions, JS } from '../utils/types';
 
 /* js 配置 */
 export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, config: Config): void {
-  /**
-   * mode { string } 开发模式还是生产模式
-   * js { object } loader里面js的配置
-   * frame { string } 是否为react或vue模式
-   */
   const { mode, js, frame }: SweetConfig = sweetConfig;
   const isDevelopment: boolean = mode === 'development';
 

@@ -8,10 +8,6 @@ import { SweetConfig, SweetOptions } from '../utils/types';
 
 /* 开发环境插件 */
 export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, config: Config): void {
-  /**
-   * dll { Array<string> }: dll配置
-   * serverRender { boolean }: 开启服务器端渲染
-   */
   const dll: Array<string> | undefined = sweetConfig.dll;
   const serverRender: boolean | undefined = sweetConfig.serverRender;
   const isDll: boolean = !!(dll && _.isArray(dll) && dll.length > 0 && !serverRender);

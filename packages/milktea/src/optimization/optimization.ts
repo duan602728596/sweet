@@ -11,10 +11,6 @@ interface TerserOptions {
 
 /* 配置optimization属性 */
 export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, config: Config, asyncChunks?: boolean): void {
-  /**
-   * mode { string }: 开发模式还是生产模式
-   * js { object }: js配置
-   */
   const { mode = 'development', js }: SweetConfig = sweetConfig;
   const isDevelopment: boolean = mode === 'development';
 

@@ -5,12 +5,6 @@ import { SweetConfig, SASS } from '../utils/types';
 
 /* sass 配置 */
 export default function(sweetConfig: SweetConfig, config: Config): void {
-  /**
-   * mode { string }: 开发模式还是生产模式
-   * sass { Object }: loader里面sass的配置
-   * frame { string }: 是否为react或vue模式
-   * serverRender { boolean }: 开启服务器端渲染
-   */
   const { mode, sass, frame, serverRender }: SweetConfig = sweetConfig;
   const isDevelopment: boolean = mode === 'development';
   const sassOptions: SASS = sass || {};

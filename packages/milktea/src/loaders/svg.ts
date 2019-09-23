@@ -4,9 +4,6 @@ import { SweetConfig } from '../utils/types';
 
 /* svg文件配置 */
 export default function(sweetConfig: SweetConfig, config: Config): void {
-  /**
-   * frame { string }: 当前的环境
-   */
   const { frame }: SweetConfig = sweetConfig;
 
   config

@@ -7,11 +7,6 @@ import { SweetConfig, SweetOptions, TS } from '../utils/types';
 
 /* ts 配置 */
 export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, config: Config): void {
-  /**
-   * mode { string } 开发模式还是生产模式
-   * ts { object } loader里面ts的配置
-   * frame { string } 是否为react或vue模式
-   */
   const { ts }: SweetConfig = sweetConfig;
   const frame: string | undefined = sweetConfig.frame;
 
