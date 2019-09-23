@@ -23,7 +23,7 @@ overrides:
     parserOptions:
       project: tsconfig.json
     plugins:
-      - '@typescript-eslint/tslint'
+      - '@typescript-eslint/eslint-plugin-tslint'
     rules:
       '@typescript-eslint/tslint/config':
         - error
