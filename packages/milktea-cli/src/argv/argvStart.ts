@@ -1,5 +1,5 @@
 import * as webpack from 'webpack';
-import { Compiler, Watching } from 'webpack';
+import { Compiler, Watching, Configuration } from 'webpack';
 import * as _ from 'lodash';
 import { requireModule } from '../utils/utils';
 import { Milktea, Argv } from '../utils/types';
@@ -7,11 +7,15 @@ import { Milktea, Argv } from '../utils/types';
 /* start 命令 */
 function argvStart(argv: Argv): void {
   const milktea: Milktea = requireModule('@sweet-milktea/milktea');
-  const webpackConfig: object = milktea.config(argv.config, 'development');
+  const webpackConfig: Configuration = milktea.config(argv.config, 'development');
 
   // koa-webpack需要output.publicPath
-  if (!_.isNil(argv.server) && !webpackConfig['output'].publicPath) {
-    webpackConfig['output'].publicPath = '/';
+  if (!(_.isNil(argv.server) && webpackConfig.output && webpackConfig.output.publicPath)) {
+    if (!webpackConfig.output) {
+      webpackConfig.output = {};
+    }
+
+    webpackConfig.output.publicPath = '/';
   }
 
   const compiler: Compiler = webpack(webpackConfig);
