@@ -2,6 +2,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 import * as Stream from 'stream';
 import * as _ from 'lodash';
+import { Dictionary } from 'lodash';
 
 /* 读取文件 */
 export function readFile(file: string): Promise<Buffer> {
@@ -17,7 +18,7 @@ export function readFile(file: string): Promise<Buffer> {
 }
 
 /* 格式化数据 */
-export function formatTemplateData(data: object): object {
+export function formatTemplateData(data: Dictionary<any>): object {
   return _.transform(data, function(result: object, value: any, key: string): void {
     let item: any = value;
 
@@ -91,7 +92,7 @@ export function deleteCacheAndRequireModule(id: string): any {
 }
 
 /* 判断是否为readStream */
-export function isReadStream<Input>(input: Input): boolean {
+export function isReadStream(input: string | Stream): input is Stream {
   return typeof input === 'object' && input instanceof Stream;
 }
 

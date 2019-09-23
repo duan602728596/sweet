@@ -3,6 +3,7 @@ import * as path from 'path';
 import * as request from 'request';
 import { Response } from 'request';
 import * as _ from 'lodash';
+import { Dictionary } from 'lodash';
 import * as semver from 'semver';
 import * as colors from 'colors/safe';
 
@@ -31,7 +32,7 @@ interface PackageItem {
  * 对象转数组
  * @param { object } obj: 对象
  */
-function objectToArray(obj: object): Array<PackageItem> {
+function objectToArray(obj: Dictionary<string>): Array<PackageItem> {
   return _.transform(obj, function(result: Array<PackageItem>, value: string, key: string): void {
     result.push({
       name: key,        // 包的名称
@@ -194,7 +195,10 @@ function consoleLogText(packageArray: Array<PackageItem>): string {
 async function start(folder: string, registry: number, test: boolean): Promise<void> {
   try {
     // 依赖
-    const packageJson: { dependencies: object; devDependencies: object } = require(path.join(folder, 'package.json'));
+    const packageJson: {
+      dependencies: Dictionary<string>;
+      devDependencies: Dictionary<string>;
+    } = require(path.join(folder, 'package.json'));
     const dependencies: Array<PackageItem> | null = 'dependencies' in packageJson
       ? objectToArray(packageJson.dependencies)
       : null;

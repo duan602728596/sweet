@@ -1,4 +1,5 @@
 import { Context } from 'koa';
+import * as Stream from 'stream';
 import {
   formatTemplateData,
   folderPathAnalyze,
@@ -31,7 +32,7 @@ function preRenderInit(sweetOptions: SweetOptions): Function {
 
       // ssr渲染
       const server: Function = requireModule(serverRenderFile);
-      const result: any /* Stream | string */ = await server(ctxPath, ctx, data.initialState);
+      const result: Stream | string = await server(ctxPath, ctx, data.initialState);
       const render: string = isReadStream(result) ? (await readStream(result)).toString() : result;
 
       return renderEngine(html.toString(), formatTemplateData({
