@@ -59,7 +59,7 @@
     }
   },
   "lint-staged": {
-    "packages/**/*.{js,jsx}": "eslint"
+    "**/*.{js,jsx}": "eslint"
   },
   "config": {
     "commitizen": {
