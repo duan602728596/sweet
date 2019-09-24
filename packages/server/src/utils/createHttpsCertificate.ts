@@ -1,6 +1,5 @@
 import * as path from 'path';
 import * as fs from 'fs';
-import { readFile } from './utils';
 import { SweetOptions } from './types';
 
 export type HttpsCertificate = [boolean, Buffer | undefined, Buffer | undefined];
@@ -15,8 +14,8 @@ async function createHttpsCertificate(sweetOptions: SweetOptions, httpsKey: stri
     : path.join(sweetOptions.basicPath, httpsCert);
 
   const useHttps: boolean = fs.existsSync(key) && fs.existsSync(cert);
-  const keyFile: Buffer | undefined = useHttps ? await readFile(key) : undefined;
-  const certFile: Buffer | undefined = useHttps ? await readFile(cert) : undefined;
+  const keyFile: Buffer | undefined = useHttps ? await fs.promises.readFile(key) : undefined;
+  const certFile: Buffer | undefined = useHttps ? await fs.promises.readFile(cert) : undefined;
 
   return [useHttps, keyFile, certFile];
 }

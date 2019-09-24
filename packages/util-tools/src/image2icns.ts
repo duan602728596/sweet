@@ -2,22 +2,6 @@ import * as fs from 'fs';
 import * as fse from 'fs-extra';
 import * as Icns from '@fiahfy/icns';
 
-/**
- * 读取文件
- * @param { string } entry: 入口文件夹
- */
-function readFile(entry: string): Promise<Buffer> {
-  return new Promise((resolve: Function, reject: Function): void => {
-    fs.readFile(entry, (err: Error, data: Buffer): void => {
-      if (err) {
-        reject(err);
-      } else {
-        resolve(data);
-      }
-    });
-  });
-}
-
 /* 解析osType */
 const oneK: { [key: string]: string } = {
   '16': 'ic04',
@@ -68,7 +52,7 @@ async function image2icns(entry: string, output: string, options: Options = {}):
   const osType: string = getOsType(size, retina);
 
   // 生成图标
-  const imageData: Buffer = await readFile(entry);
+  const imageData: Buffer = await fs.promises.readFile(entry);
 
   await icns.appendImage(imageData, osType);
   await fse.outputFile(output, icns.data);

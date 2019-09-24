@@ -4,19 +4,6 @@ import * as Stream from 'stream';
 import * as _ from 'lodash';
 import { Dictionary } from 'lodash';
 
-/* 读取文件 */
-export function readFile(file: string): Promise<Buffer> {
-  return new Promise((resolve: Function, reject: Function): void => {
-    fs.readFile(file, (err: Error, data: Buffer): void => {
-      if (err) {
-        reject(err);
-      } else {
-        resolve(data);
-      }
-    });
-  });
-}
-
 /* 格式化数据 */
 export function formatTemplateData(data: Dictionary<any>): object {
   return _.transform(data, function(result: object, value: any, key: string): void {
