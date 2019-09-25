@@ -31,6 +31,7 @@ function createRouters(router: Router, sweetOptions: SweetOptions): void {
       if (sweetOptions.serverRender && sweetOptions.serverRenderEntry && ctx.type === 'text/html') {
         const isHtml: boolean = /\.html$/i.test(ctxPath);
 
+        // 路径为*.html
         if (isHtml && sweetOptions.serverRenderRoot) {
           const parseResult: ParsedPath = path.parse(ctxPath);
           const name: string = `${ parseResult.name }.js`;
@@ -47,7 +48,7 @@ function createRouters(router: Router, sweetOptions: SweetOptions): void {
       }
     } catch (err) {
       ctx.status = 500;
-      ctx.body = err;
+      ctx.body = err.toString();
     }
   });
 }

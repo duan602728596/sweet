@@ -48,7 +48,7 @@ function createRouters(
       }
     } catch (err) {
       ctx.status = 500;
-      ctx.body = err;
+      ctx.body = err.toString();
     }
   });
 }
