@@ -61,7 +61,7 @@ interface ProServerType {
   proxyFile?: string;
 }
 
-async function proServer(argv: ProServerType = {}): Promise<void> {
+async function proServer(args: ProServerType = {}): Promise<void> {
   const {
     httpPort = 80,
     httpsPort = 443,
@@ -79,7 +79,7 @@ async function proServer(argv: ProServerType = {}): Promise<void> {
     controllersDir,
     apiFile,
     proxyFile
-  }: ProServerType = argv;
+  }: ProServerType = args;
 
   /* 合并配置项 */
   Object.assign(sweetOptions, {

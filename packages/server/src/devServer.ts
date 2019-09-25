@@ -57,7 +57,7 @@ interface DevServerType {
   proxyFile?: string;
 }
 
-async function devServer(argv: DevServerType = {}): Promise<void> {
+async function devServer(args: DevServerType = {}): Promise<void> {
   const {
     compiler,
     httpPort = 5050,
@@ -73,7 +73,7 @@ async function devServer(argv: DevServerType = {}): Promise<void> {
     controllersDir,
     apiFile,
     proxyFile
-  }: DevServerType = argv;
+  }: DevServerType = args;
 
   /* https服务 */
   const [useHttps, keyFile, certFile]: HttpsCertificate = await createHttpsCertificate(sweetOptions, httpsKey, httpsCert);
