@@ -15,17 +15,6 @@ function createRouters(
 ): void {
   const preRender: Function = preRenderInit(sweetOptions);
 
-  /* html文件允许使用ejs模板 */
-  router.get(/^.*\.html$/, async (ctx: ServerContext, next: Function): Promise<void> => {
-    const ctxPath: string = ctx.path;
-    const body: Buffer = await fs.promises.readFile(path.join(formatServerRoot, ctxPath));
-
-    ctx.routePath = ctxPath; // 保存旧的path
-    ctx.status = 200;
-    ctx.type = 'text/html';
-    ctx.body = serverRender ? await preRender(ctxPath, ctx, body, formatServerRenderFile) : body;
-  });
-
   /* index路由 */
   router.get('/*', async (ctx: ServerContext, next: Function): Promise<void> => {
     try {
@@ -34,7 +23,8 @@ function createRouters(
       await next();
 
       if (ctx.type === '' && _.isNil(ctx.body)) {
-        const body: Buffer = await fs.promises.readFile(path.join(formatServerRoot, template));
+        const tpPath: string = /\.html$/i.test(ctxPath) ? ctxPath : template;
+        const body: Buffer = await fs.promises.readFile(path.join(formatServerRoot, tpPath));
 
         ctx.routePath = ctxPath;
         ctx.status = 200;
