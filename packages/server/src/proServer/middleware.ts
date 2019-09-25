@@ -13,13 +13,12 @@ function middleware(
   app: Koa,
   router: Router,
   // 中间件参数
-  sweetOptions: SweetOptions,
-  log: Log | undefined,
-  formatServerRoot: string
+  sweetOptions: SweetOptions
+
 ): void {
   /* 日志 */
-  if (log) {
-    logs(app, log, sweetOptions);
+  if (sweetOptions.log) {
+    logs(app, sweetOptions.log, sweetOptions);
   }
 
   /* post body */
@@ -29,7 +28,7 @@ function middleware(
   app.use(compress());
 
   /* 缓存 */
-  app.use(staticCache(formatServerRoot, {
+  app.use(staticCache(sweetOptions.serverRoot, {
     maxAge: (60 ** 2) * 24 * 365,
     filter: (file: string): boolean => !/^.*\.html$/.test(file)
   }));

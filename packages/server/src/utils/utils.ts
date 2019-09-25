@@ -1,8 +1,8 @@
-import * as fs from 'fs';
 import * as path from 'path';
 import * as Stream from 'stream';
 import * as _ from 'lodash';
 import { Dictionary } from 'lodash';
+import { SweetOptions } from './types';
 
 /* 格式化数据 */
 export function formatTemplateData(data: Dictionary<any>): object {
@@ -100,4 +100,9 @@ export function readStream(stream: Stream): Promise<Buffer> {
       reject(err);
     });
   });
+}
+
+/* 格式化目录 */
+export function formatPath(sweetOptions: SweetOptions, file: string): string {
+  return path.isAbsolute(file) ? file : path.join(sweetOptions.basicPath, file);
 }

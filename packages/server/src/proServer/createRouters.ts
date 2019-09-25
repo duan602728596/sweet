@@ -9,8 +9,8 @@ function createRouters(
   router: Router,
   sweetOptions: SweetOptions,
   serverRender: boolean,
-  formatServerRenderFile: string,
-  formatServerRoot: string,
+  serverRenderEntry: string,
+  serverRoot: string,
   template: string
 ): void {
   const preRender: Function = preRenderInit(sweetOptions);
@@ -24,12 +24,12 @@ function createRouters(
 
       if (ctx.type === '' && _.isNil(ctx.body)) {
         const tpPath: string = /\.html$/i.test(ctxPath) ? ctxPath : template;
-        const body: Buffer = await fs.promises.readFile(path.join(formatServerRoot, tpPath));
+        const body: Buffer = await fs.promises.readFile(path.join(serverRoot, tpPath));
 
         ctx.routePath = ctxPath;
         ctx.status = 200;
         ctx.type = 'text/html';
-        ctx.body = serverRender ? await preRender(ctxPath, ctx, body, formatServerRenderFile) : body;
+        ctx.body = serverRender ? await preRender(ctxPath, ctx, body, serverRenderEntry) : body;
       }
     } catch (err) {
       ctx.status = 500;

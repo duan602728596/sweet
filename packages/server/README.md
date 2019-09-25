@@ -27,10 +27,11 @@ devServer({
 * compiler `{ object }` : webpack的compiler。
 * httpPort `{ number }` : http端口号，默认为5050。
 * httpsPort `{ number }` : https端口号，默认为5051。
-* serverRender `{ boolean }` : 开启服务器端渲染
-* serverRenderFile `{ string }` : 服务器端渲染的主模块文件。默认为`dist-server/server.js`。
+* serverRender `{ boolean }` : 开启服务器端渲染。
+* serverRenderRoot { string }: 服务器端渲染的文件夹。默认为`dist-server`。
+* serverRenderFile `{ string }` : 服务器端渲染的主模块文件。默认为`server.js`。
 * renderType `{ string }` : html使用的渲染模板，`ejs`或`nunjucks`。默认为`ejs`。
-* serverChain `{ (app: Koa) => void }` : 扩展koa中间件配置。
+* serverChain `{ (app: Koa) => Promise<void> }` : 扩展koa中间件配置。
 * httpsKey `{ string }` : 配置https的证书（*.key）。
 * httpsCert `{ string }` : 配置https的证书（*.crt）。
 * useBabelRegister `{ boolean }` : 是否使用`@babel/register`来加载api文件和controllers文件。默认开启。
@@ -43,7 +44,6 @@ devServer({
 ### 使用方法
 
 ```javascript
-import webpack from 'webpack';
 import proServer from '@sweet-milktea/server/proServer';
 
 proServer({
@@ -66,14 +66,15 @@ proServer({
 * httpPort `{ number }` : http端口号，默认为80。
 * httpsPort `{ number }` : https端口号，默认为443。
 * serverRoot `{ string }` : 生产环境下的服务器静态文件入口。默认为`dist`。
-* serverRender `{ boolean }` : 开启服务器端渲染
-* serverRenderFile `{ string }` : 服务器端渲染的主模块文件。默认为`dist-server/server.js`。
+* serverRender `{ boolean }` : 开启服务器端渲染。
+* serverRenderRoot { string }: 服务器端渲染的文件夹。默认为`dist-server`。
+* serverRenderFile `{ string }` : 服务器端渲染的主模块文件。默认为`server.js`。
 * renderType `{ string }` : html使用的渲染模板，`ejs`或`nunjucks`。默认为`ejs`。
 * log `{ object }` : 日志配置。
   * type `{ 'file' | 'http' }` : 日志类型，本地*file* 或 远程接口*http*。
   * pm2 `{ boolean }` : 服务是否在pm2状态下运行。
   * url `{ string }` : 日志的远程接口。
-* serverChain `{ (app: Koa) => void }` : 扩展koa中间件配置。
+* serverChain `{ (app: Koa) => Promise<void> }` : 扩展koa中间件配置。
 * httpsKey `{ string }` : 配置https的证书（*.key）。
 * httpsCert `{ string }` : 配置https的证书（*.crt）。
 * useBabelRegister `{ boolean }` : 是否使用`@babel/register`来加载api文件和controllers文件。默认开启。

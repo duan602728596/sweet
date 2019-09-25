@@ -1,16 +1,37 @@
+import * as Koa from 'koa';
 import { Context } from 'koa';
+import { Compiler } from 'webpack';
 
-export interface SweetOptions {
-  basicPath: string;
+export interface ServerArgs {
   httpPort?: number;
   httpsPort?: number;
-  renderType?: 'ejs' | 'nunjucks';
+  serverRender?: boolean;
+  serverRenderRoot?: string;
   serverRenderFile?: string;
+  env?: string;
+  renderType?: 'ejs' | 'nunjucks';
+  serverChain?: (app: Koa) => Promise<void>;
+  httpsKey?: string;
+  httpsCert?: string;
   useBabelRegister?: boolean;
   controllersDir?: string;
-  routerFile?: string;
   apiFile?: string;
   proxyFile?: string;
+}
+
+export interface DevServerArgs extends ServerArgs {
+  compiler?: Compiler;
+}
+
+export interface ProServerArgs extends ServerArgs {
+  serverRoot?: string;
+  template?: string;
+  log?: Log;
+}
+
+export interface SweetOptions extends DevServerArgs, ProServerArgs {
+  basicPath: string;
+  serverRenderEntry?: string;
 }
 
 export interface ServerContext extends Context {

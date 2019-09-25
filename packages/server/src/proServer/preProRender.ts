@@ -22,7 +22,7 @@ function preRenderInit(sweetOptions: SweetOptions): Function {
     ctxPath: string,
     ctx: Context,
     html: Buffer,
-    serverRenderFile: string
+    serverRenderEntry: string
   ): Promise<string> {
     try {
       const renderEngine: Function = createRenderEngine(sweetOptions.renderType);
@@ -31,7 +31,7 @@ function preRenderInit(sweetOptions: SweetOptions): Function {
       const data: any = await getControllerData(ctx, sweetOptions, controllersMap, folderPathFile, formatFile);
 
       // ssr渲染
-      const server: Function = requireModule(serverRenderFile);
+      const server: Function = requireModule(serverRenderEntry);
       const result: Stream | string = await server(ctxPath, ctx, data.initialState);
       const render: string = isReadStream(result) ? (await readStream(result)).toString() : result;
 

@@ -19,7 +19,7 @@ function preRenderInit(sweetOptions: SweetOptions): Function {
   return async function preRender(
     ctxPath: string, // 相对路径
     ctx: Context,
-    serverRenderFile: string
+    serverRenderEntry: string
   ): Promise<string> {
     const renderEngine: Function = createRenderEngine(sweetOptions.renderType);
     const controllersMap: Map<string, string> = await getControllersFiles(basicPath, sweetOptions.controllersDir);
@@ -29,7 +29,7 @@ function preRenderInit(sweetOptions: SweetOptions): Function {
 
     // ssr渲染
     const html: Buffer = ctx.body;
-    const server: Function = deleteCacheAndRequireModule(serverRenderFile);
+    const server: Function = deleteCacheAndRequireModule(serverRenderEntry);
     const result: Stream | string = await server(ctxPath, ctx, data.initialState);
     const render: string = isReadStream(result) ? (await readStream(result)).toString() : result;
 

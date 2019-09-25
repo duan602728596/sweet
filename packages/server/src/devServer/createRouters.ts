@@ -3,12 +3,7 @@ import * as mime from 'mime-types';
 import preRenderInit from './preDevRender';
 import { ServerContext, SweetOptions } from '../utils/types';
 
-function createRouters(
-  router: Router,
-  sweetOptions: SweetOptions,
-  serverRender: boolean,
-  formatServerRenderFile: string
-): void {
+function createRouters(router: Router, sweetOptions: SweetOptions): void {
   const preRender: Function = preRenderInit(sweetOptions);
 
   /* html文件允许使用ejs模板 */
@@ -20,8 +15,8 @@ function createRouters(
     await next();
 
     // 服务器端渲染
-    if (serverRender) {
-      ctx.body = await preRender(ctxPath, ctx, formatServerRenderFile);
+    if (sweetOptions.serverRender && sweetOptions.serverRenderEntry) {
+      ctx.body = await preRender(ctxPath, ctx, sweetOptions.serverRenderEntry);
     }
   });
 
@@ -44,8 +39,8 @@ function createRouters(
       ctx.path = ctxPath;
 
       // 服务器端渲染
-      if (serverRender && ctx.type === 'text/html') {
-        ctx.body = await preRender(ctxPath, ctx, formatServerRenderFile);
+      if (sweetOptions.serverRender && sweetOptions.serverRenderEntry && ctx.type === 'text/html') {
+        ctx.body = await preRender(ctxPath, ctx, sweetOptions.serverRenderEntry);
       }
     } catch (err) {
       ctx.status = 500;
