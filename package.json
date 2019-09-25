@@ -4,8 +4,8 @@
   "license": "MIT",
   "homepage": "https://github.com/duan602728596/sweet",
   "scripts": {
-    "build": "npm run clean && gulp --gulpfile ./scripts/build.ts",
-    "clean": "ts-node ./scripts/clean",
+    "build": "npm run clean && gulp --gulpfile ./scripts/build.js",
+    "clean": "node ./scripts/clean",
     "eslint": "eslint ./ --ext .js,.jsx,.ts,.tsx --fix",
     "lerna:install": "lerna bootstrap --force-local",
     "case-check": "case-check --dir=\"./\"",
@@ -35,7 +35,6 @@
     "react-dom": "^16.9.0",
     "react-markdown": "^4.2.2",
     "rimraf": "^3.0.0",
-    "ts-node": "^8.4.1",
     "typescript": "^3.6.3"
   },
   "devDependencies": {
