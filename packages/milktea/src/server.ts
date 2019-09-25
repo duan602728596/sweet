@@ -21,7 +21,7 @@ export default function(sweetConfig: SweetConfig | null | undefined, sweetOption
     noParse,
     plugins,
     devtool,
-    chainWebpack
+    serverChainWebpack
   }: SweetConfig = sweetConfigCopy;
   const isDevelopment: boolean = mode === 'development';
 
@@ -66,9 +66,9 @@ export default function(sweetConfig: SweetConfig | null | undefined, sweetOption
   // optimization
   optimization(sweetConfigCopy, sweetOptions, config, true);
 
-  /* chainWebpack: 通过webpack-chain的API扩展或修改webpack配置 */
-  if (chainWebpack) {
-    chainWebpack(config);
+  /* serverChainWebpack: 通过webpack-chain的API扩展或修改webpack配置 */
+  if (serverChainWebpack) {
+    serverChainWebpack(config);
   }
 
   /* 合并自定义配置 */
