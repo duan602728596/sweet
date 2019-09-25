@@ -41,7 +41,7 @@ const argv: object = yargs
       type: 'number'
     },
     serverRoot: {
-      describe: '服务器静态文件入口',
+      describe: '服务器静态文件目录',
       type: 'string'
     },
     log: {
@@ -60,6 +60,10 @@ const argv: object = yargs
     serverRender: {
       describe: '开启服务器端渲染',
       type: 'boolean'
+    },
+    serverRenderRoot: {
+      describe: '服务器端渲染的模块文件目录',
+      type: 'string'
     },
     serverRenderFile: {
       describe: '服务器端渲染的主模块文件',
