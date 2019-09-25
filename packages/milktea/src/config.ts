@@ -33,6 +33,7 @@ export default function(sweetConfig: SweetConfig | null | undefined, sweetOption
 
   // webpack配置
   const filename: string = isDevelopment ? 'scripts/[name].js' : 'scripts/[chunkhash:15].js';
+  const chunkFilename: string = isDevelopment ? 'scripts/[name]_chunk.js' : 'scripts/[chunkhash:15].js';
 
   // 合并配置
   config
@@ -49,7 +50,7 @@ export default function(sweetConfig: SweetConfig | null | undefined, sweetOption
     .output
     .path(path.join(sweetOptions.basicPath, 'dist'))
     .filename(filename)
-    .chunkFilename(filename)
+    .chunkFilename(chunkFilename)
     .globalObject('this');
 
   // loaders
