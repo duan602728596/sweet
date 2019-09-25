@@ -13,6 +13,7 @@ import createApi from './utils/createApi';
 import createProxy from './utils/createProxy';
 import createSweetOptionsMiddleware from './utils/createOptions';
 import createHttpsCertificate, { HttpsCertificate } from './utils/createHttpsCertificate';
+import useRegister from './utils/babelRegister';
 import { formatPath } from './utils/utils';
 import { SweetOptions, DevServerArgs } from './utils/types';
 
@@ -61,9 +62,6 @@ async function devServer(args: DevServerArgs): Promise<void> {
     proxyFile
   }: DevServerArgs = args || {};
 
-  /* https服务 */
-  const [useHttps, keyFile, certFile]: HttpsCertificate = await createHttpsCertificate(sweetOptions, httpsKey, httpsCert);
-
   /* 合并配置项 */
   Object.assign(sweetOptions, {
     compiler,
@@ -83,12 +81,18 @@ async function devServer(args: DevServerArgs): Promise<void> {
     httpsPort: await getPort(httpsPort, true, 'https')
   });
 
+  /* @babel/register */
+  useRegister(sweetOptions);
+
   /* 添加新的配置项 */
   if (sweetOptions.serverRenderRoot && sweetOptions.serverRenderFile) {
     sweetOptions.serverRenderEntry = path.join(sweetOptions.serverRenderRoot, sweetOptions.serverRenderFile);
   }
 
-  /* sweetOptions */
+  /* https服务 */
+  const [useHttps, keyFile, certFile]: HttpsCertificate = await createHttpsCertificate(sweetOptions, httpsKey, httpsCert);
+
+  /* 中间件 */
   createSweetOptionsMiddleware(app, sweetOptions);
 
   /* 添加代理服务 */

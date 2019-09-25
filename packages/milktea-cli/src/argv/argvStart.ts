@@ -34,6 +34,7 @@ function argvStart(argv: Argv): void {
     const httpPort: number = argv.httpPort;
     const httpsPort: number = argv.httpsPort;
     const serverRender: boolean = argv.serverRender;
+    const serverRenderRoot: string = argv.serverRenderRoot;
     const serverRenderFile: string = argv.serverRenderFile;
     const renderType: string = argv.renderType;
     const httpsKey: string = argv.httpsKey;
@@ -45,6 +46,7 @@ function argvStart(argv: Argv): void {
       httpPort,
       httpsPort,
       serverRender,
+      serverRenderRoot,
       serverRenderFile,
       renderType,
       httpsKey,

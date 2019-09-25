@@ -1,4 +1,5 @@
 import * as path from 'path';
+import { ParsedPath } from 'path';
 import { SweetOptions } from './types';
 
 interface RegisterConfig {
@@ -48,10 +49,8 @@ function useRegister(sweetOptions: SweetOptions): void {
     const config: RegisterConfig = createRegisterConfig();
 
     // 如果开启了ssr，要把编译后的目录加入到忽略列表，否则会影响性能
-    if (sweetOptions.serverRenderFile) {
-      const result: path.ParsedPath = path.parse(sweetOptions.serverRenderFile);
-
-      config.ignore.push(new RegExp(result.dir, 'ig'));
+    if (sweetOptions.serverRenderRoot) {
+      config.ignore.push(new RegExp(sweetOptions.serverRenderRoot, 'ig'));
     }
 
     register(config);

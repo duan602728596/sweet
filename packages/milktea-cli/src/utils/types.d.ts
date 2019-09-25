@@ -15,6 +15,7 @@ export interface Argv {
   httpsPort: number;
   serverRoot: string;
   serverRender: boolean;
+  serverRenderRoot: string;
   serverRenderFile: string;
   template: string;
   renderType: string;

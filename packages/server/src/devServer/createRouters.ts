@@ -1,3 +1,6 @@
+import * as path from 'path';
+import { ParsedPath } from 'path';
+import * as fs from 'fs';
 import * as Router from '@koa/router';
 import * as mime from 'mime-types';
 import preRenderInit from './preDevRender';
@@ -5,20 +8,6 @@ import { ServerContext, SweetOptions } from '../utils/types';
 
 function createRouters(router: Router, sweetOptions: SweetOptions): void {
   const preRender: Function = preRenderInit(sweetOptions);
-
-  /* html文件允许使用ejs模板 */
-  router.get(/^.*\.html$/, async (ctx: ServerContext, next: Function): Promise<void> => {
-    const ctxPath: string = ctx.path;
-
-    ctx.routePath = ctxPath; // 保存旧的path
-
-    await next();
-
-    // 服务器端渲染
-    if (sweetOptions.serverRender && sweetOptions.serverRenderEntry) {
-      ctx.body = await preRender(ctxPath, ctx, sweetOptions.serverRenderEntry);
-    }
-  });
 
   /* webpack 重定向 */
   router.get('/*', async (ctx: ServerContext, next: Function): Promise<void> => {
@@ -40,6 +29,20 @@ function createRouters(router: Router, sweetOptions: SweetOptions): void {
 
       // 服务器端渲染
       if (sweetOptions.serverRender && sweetOptions.serverRenderEntry && ctx.type === 'text/html') {
+        const isHtml: boolean = /\.html$/i.test(ctxPath);
+
+        if (isHtml && sweetOptions.serverRenderRoot) {
+          const parseResult: ParsedPath = path.parse(ctxPath);
+          const name: string = `${ parseResult.name }.js`;
+          const entry: string = path.join(sweetOptions.serverRenderRoot, name);
+
+          if (fs.existsSync(entry)) {
+            ctx.body = await preRender(ctxPath, ctx, entry);
+          }
+
+          return;
+        }
+
         ctx.body = await preRender(ctxPath, ctx, sweetOptions.serverRenderEntry);
       }
     } catch (err) {

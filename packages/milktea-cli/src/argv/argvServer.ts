@@ -8,6 +8,7 @@ function argvServer(argv: Argv): void {
   const httpsPort: number = argv.httpsPort;
   const serverRoot: string = argv.serverRoot;
   const serverRender: boolean = argv.serverRender;
+  const serverRenderRoot: string = argv.serverRenderRoot;
   const serverRenderFile: string = argv.serverRenderFile;
   const template: string = argv.template;
   const renderType: string = argv.renderType;
@@ -23,6 +24,7 @@ function argvServer(argv: Argv): void {
     httpsPort,
     serverRoot,
     serverRender,
+    serverRenderRoot,
     serverRenderFile,
     template,
     renderType,

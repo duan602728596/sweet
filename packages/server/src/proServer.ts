@@ -13,8 +13,9 @@ import createApi from './utils/createApi';
 import createProxy from './utils/createProxy';
 import createSweetOptionsMiddleware from './utils/createOptions';
 import createHttpsCertificate, { HttpsCertificate } from './utils/createHttpsCertificate';
-import { SweetOptions, ProServerArgs } from './utils/types';
+import useRegister from './utils/babelRegister';
 import { formatPath } from './utils/utils';
+import { SweetOptions, ProServerArgs } from './utils/types';
 
 const app: Koa = new Koa();
 const router: Router = new Router();
@@ -92,10 +93,13 @@ async function proServer(args: ProServerArgs = {}): Promise<void> {
     sweetOptions.serverRenderEntry = path.join(sweetOptions.serverRenderRoot, sweetOptions.serverRenderFile);
   }
 
+  /* @babel/register */
+  useRegister(sweetOptions);
+
   /* https服务 */
   const [useHttps, keyFile, certFile]: HttpsCertificate = await createHttpsCertificate(sweetOptions, httpsKey, httpsCert);
 
-  /* sweetOptions */
+  /* 中间件 */
   createSweetOptionsMiddleware(app, sweetOptions);
 
   /* 添加代理服务 */
