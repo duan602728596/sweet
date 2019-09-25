@@ -61,7 +61,8 @@ function requestPackageInformation(packageName: string, registry: number): Promi
       headers: {
         Accept: 'application/vnd.npm.install-v1+json; q=1.0, application/json; q=0.8, */*'
       },
-      json: true
+      json: true,
+      timeout: 30000
     }, function(err: Error, res: Response, data: PackageInformation): void {
       if (err) {
         resolve({
