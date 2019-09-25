@@ -1,6 +1,6 @@
 import * as process from 'process';
 import * as log4js from '@bbkkbkk/koa-log4';
-import * as Koa from 'koa';
+import { Context } from 'koa';
 import createFileConfig from './createFileConfig';
 import createHttpConfig from './createHttpConfig';
 
@@ -28,7 +28,7 @@ function serverLog(type: 'file' | 'http', options: Options = { pm2: false, url: 
   log4js.configure(config);
 
   return {
-    accessLogger(ctx: Koa.Context, next: Function): Function {
+    accessLogger(ctx: Context, next: Function): Function {
       return log4js.koaLogger(log4js.getLogger('access'));
     },
     logger: log4js.getLogger('application')

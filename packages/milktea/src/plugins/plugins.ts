@@ -1,5 +1,6 @@
 /* 插件配置 */
 import * as path from 'path';
+import { ParsedPath } from 'path';
 import * as webpack from 'webpack';
 import * as Config from 'webpack-chain';
 import * as HtmlWebpackPlugin from 'html-webpack-plugin';
@@ -39,7 +40,7 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
 
     for (const item of html) {
       const { template, excludeChunks, ...otherConfig }: HtmlItem = item;
-      const info: { name: string } = path.parse(template);
+      const info: ParsedPath = path.parse(template);
 
       config
         .plugin(`html-webpack-plugin: ${ index }`)
