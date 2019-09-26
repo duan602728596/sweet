@@ -2,6 +2,7 @@
 import './alias';
 import * as http from 'http';
 import * as http2 from 'http2';
+import { SecureServerOptions } from 'http2';
 import * as process from 'process';
 import * as path from 'path';
 import * as Koa from 'koa';
@@ -132,7 +133,7 @@ async function proServer(args: ProServerArgs = {}): Promise<void> {
 
   /* https服务 */
   if (useHttps && keyFile && certFile) {
-    const httpsConfig: object = {
+    const httpsConfig: SecureServerOptions = {
       allowHTTP1: true,
       key: keyFile,
       cert: certFile
