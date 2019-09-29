@@ -118,9 +118,9 @@ export function runningAtLog(sweetOptions: SweetOptions, displayHttps: boolean):
   ];
 
   if (displayHttps) {
-    logs.splice(2, 0, `${ ' '.repeat(13) }https://127.0.0.1:${ sweetOptions.httpsPort }`);
-    logs.push(`${ ' '.repeat(13) }https://${ ip }:${ sweetOptions.httpsPort }`);
+    logs.splice(2, 0, `${ ' '.repeat(12) }https://127.0.0.1:${ sweetOptions.httpsPort }`);
+    logs.push(`${ ' '.repeat(12) }https://${ ip }:${ sweetOptions.httpsPort }`);
   }
 
-  console.log(colors.cyan(logs.join('\n')));
+  console.log(`\n${ colors.cyan(logs.join('\n')) }\n`);
 }
