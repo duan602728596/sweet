@@ -64,6 +64,9 @@ async function devServer(args: DevServerArgs): Promise<void> {
   }: DevServerArgs = args || {};
 
   /* 合并配置项 */
+  const _httpPort: number = await getPort(httpPort, true, 'http');
+  const _httpsPort: number = await getPort(httpsPort, true, 'https', _httpPort);
+
   Object.assign(sweetOptions, {
     compiler,
     serverRender,
@@ -78,8 +81,8 @@ async function devServer(args: DevServerArgs): Promise<void> {
     controllersDir,
     apiFile,
     proxyFile,
-    httpPort: await getPort(httpPort, true, 'http'),
-    httpsPort: await getPort(httpsPort, true, 'https')
+    httpPort: _httpPort,
+    httpsPort: _httpsPort
   });
 
   /* @babel/register */
