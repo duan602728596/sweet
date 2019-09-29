@@ -15,7 +15,7 @@ import createProxy from './utils/createProxy';
 import createSweetOptionsMiddleware from './utils/createOptions';
 import createHttpsCertificate, { HttpsCertificate } from './utils/createHttpsCertificate';
 import useRegister from './utils/babelRegister';
-import { formatPath } from './utils/utils';
+import { formatPath, runningAtLog } from './utils/utils';
 import { SweetOptions, ProServerArgs } from './utils/types';
 
 const app: Koa = new Koa();
@@ -142,6 +142,9 @@ async function proServer(args: ProServerArgs = {}): Promise<void> {
     http2.createSecureServer(httpsConfig, app.callback())
       .listen(sweetOptions.httpsPort);
   }
+
+  /* 显示启动信息 */
+  runningAtLog(sweetOptions, !!(useHttps && keyFile && certFile));
 }
 
 export default proServer;

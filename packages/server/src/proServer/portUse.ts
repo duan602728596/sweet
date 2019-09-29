@@ -11,7 +11,7 @@ async function portUse(port: number, type: 'http' | 'https'): Promise<number> {
 
   if ((port !== usePort)) {
     const oldPort: string = colors.bold(String(port));
-    const text: string = colors.red(`${ type }端口 ${ oldPort } 已被占用。`);
+    const text: string = colors.red(` - ${ type }端口 ${ oldPort } 已被占用。`);
 
     console.warn(text);
   }

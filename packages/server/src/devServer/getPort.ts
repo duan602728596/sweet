@@ -13,7 +13,7 @@ async function getPort(port: number, warn?: boolean, type?: 'http' | 'https'): P
   if ((port !== usePort) && warn && type) {
     const oldPort: string = colors.bold(String(port));
     const newPort: string = colors.bold(String(usePort));
-    const text: string = colors.red(`${ type }端口 ${ oldPort } 已被占用，使用新的端口：${ newPort }。`);
+    const text: string = colors.red(` - ${ type }端口 ${ oldPort } 已被占用，使用新的端口：${ newPort }。`);
 
     console.warn(text);
   }

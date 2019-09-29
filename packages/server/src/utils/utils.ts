@@ -2,6 +2,8 @@ import * as path from 'path';
 import * as Stream from 'stream';
 import * as _ from 'lodash';
 import { Dictionary } from 'lodash';
+import * as address from 'address';
+import * as colors from 'colors/safe';
 import { SweetOptions } from './types';
 
 /* 格式化数据 */
@@ -105,4 +107,20 @@ export function readStream(stream: Stream): Promise<Buffer> {
 /* 格式化目录 */
 export function formatPath(sweetOptions: SweetOptions, file: string): string {
   return path.isAbsolute(file) ? file : path.join(sweetOptions.basicPath, file);
+}
+
+export function runningAtLog(sweetOptions: SweetOptions, displayHttps: boolean): void {
+  const ip: string = address.ip();
+  const logs: string[] = [
+    ' Running at:',
+    ` - Local:   http://127.0.0.1:${ sweetOptions.httpPort }`,
+    ` - Network: http://${ ip }:${ sweetOptions.httpPort }`
+  ];
+
+  if (displayHttps) {
+    logs.splice(2, 0, `${ ' '.repeat(13) }https://127.0.0.1:${ sweetOptions.httpsPort }`);
+    logs.push(`${ ' '.repeat(13) }https://${ ip }:${ sweetOptions.httpsPort }`);
+  }
+
+  console.log(colors.cyan(logs.join('\n')));
 }
