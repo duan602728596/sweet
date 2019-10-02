@@ -42,8 +42,7 @@ export default function(sweetConfig: SweetConfig | null | undefined, sweetOption
       devtool: devtool ? devtool : (isDevelopment ? 'module-eval-source-map' : 'none'),
       resolve: {
         extensions: ['.js', '.jsx', '.mjs', '.json', '.ts', '.tsx']
-      },
-      stats: 'errors-warnings'
+      }
     });
 
   // 设置文件输出

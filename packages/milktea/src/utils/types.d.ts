@@ -66,7 +66,7 @@ export interface SASS extends CSS {
 
 export type Mode = 'development' | 'production' | 'none';
 export type Frame = 'react' | 'vue' | 'test';
-export type Log = 'progress' | 'stats';
+export type WebpackLog = 'progress' | 'stats';
 export type HtmlItem = {
   [key: string]: any;
   template: string;
@@ -75,7 +75,7 @@ export type HtmlItem = {
 
 export interface SweetConfig {
   mode?: Mode;
-  log?: Log;
+  webpackLog?: WebpackLog;
   dll?: Array<string>;
   entry?: string | Array<string> | Entry | EntryFunc;
   output?: Output;

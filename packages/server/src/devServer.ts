@@ -43,6 +43,7 @@ const sweetOptions: SweetOptions = {
  * controllersDir { string }: 重新定义的controllers的目录
  * apiFile { string }: 重新定义的api文件
  * proxyFile { string }: 重新定义的proxy文件
+ * webpackLog { string }: webpack日志
  */
 async function devServer(args: DevServerArgs): Promise<void> {
   const {
@@ -60,7 +61,8 @@ async function devServer(args: DevServerArgs): Promise<void> {
     useBabelRegister = true,
     controllersDir,
     apiFile,
-    proxyFile
+    proxyFile,
+    webpackLog = 'progress'
   }: DevServerArgs = args || {};
 
   /* 合并配置项 */
@@ -82,7 +84,8 @@ async function devServer(args: DevServerArgs): Promise<void> {
     apiFile,
     proxyFile,
     httpPort: _httpPort,
-    httpsPort: _httpsPort
+    httpsPort: _httpsPort,
+    webpackLog
   });
 
   /* @babel/register */
@@ -108,7 +111,7 @@ async function devServer(args: DevServerArgs): Promise<void> {
   }
 
   /* 添加其他的中间件*/
-  await middleware(app, router, compiler, env, useHttps, keyFile, certFile);
+  await middleware(app, router, compiler, webpackLog, env, useHttps, keyFile, certFile);
 
   /* 创建路由 */
   await createRouters(router, sweetOptions);

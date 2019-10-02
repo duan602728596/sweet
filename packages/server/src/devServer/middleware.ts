@@ -5,6 +5,7 @@ import * as body from 'koa-body';
 import * as koaWebpack from 'koa-webpack';
 import * as webpack from 'webpack';
 import createKoaWebpack from './createKoaWebpack';
+import { WebpackLog } from '../utils/types';
 
 /**
  * 创建中间件
@@ -14,6 +15,7 @@ async function middleware(
   router: Router,
   // createKoaWebpack
   compiler: webpack.Compiler | undefined,
+  webpackLog: WebpackLog | undefined,
   env: string | undefined,
   useHttps: boolean,
   keyFile: Buffer | undefined,
@@ -32,7 +34,14 @@ async function middleware(
     .use(router.allowedMethods());
 
   /* webpack中间件 */
-  const koaWebpackMiddleware: koaWebpack.Middleware<any> = await createKoaWebpack(compiler, env, useHttps, keyFile, certFile);
+  const koaWebpackMiddleware: koaWebpack.Middleware<any> = await createKoaWebpack(
+    compiler,
+    webpackLog,
+    env,
+    useHttps,
+    keyFile,
+    certFile
+  );
 
   app.use(koaWebpackMiddleware);
 }

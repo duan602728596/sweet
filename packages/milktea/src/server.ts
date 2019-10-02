@@ -44,8 +44,7 @@ export default function(sweetConfig: SweetConfig | null | undefined, sweetOption
       node: {
         __filename: true,
         __dirname: true
-      },
-      stats: 'errors-warnings'
+      }
     });
 
   // 设置文件输出

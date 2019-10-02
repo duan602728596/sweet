@@ -14,7 +14,7 @@ import { SweetConfig, SweetOptions, JS } from './utils/types';
 export default function(sweetConfig: SweetConfig | null | undefined, sweetOptions: SweetOptions): Configuration {
   const config: Config = new Config();
   const sweetConfigCopy: SweetConfig = _.isPlainObject(sweetConfig) ? { ...sweetConfig } : {};
-  const { mode, dll, externals, resolve, chainWebpack, js, log = 'progress' }: SweetConfig = sweetConfigCopy;
+  const { mode, dll, externals, resolve, chainWebpack, js, webpackLog = 'progress' }: SweetConfig = sweetConfigCopy;
 
   const jsOptions: JS = js || {};
   const { ecmascript, targets: customTargets }: JS = jsOptions;
@@ -32,8 +32,7 @@ export default function(sweetConfig: SweetConfig | null | undefined, sweetOption
       devtool: isDevelopment ? 'inline-module-source-map' : 'none',
       resolve: {
         extensions: ['.js', '.jsx', '.mjs', '.json', '.ts', '.tsx']
-      },
-      stats: 'errors-warnings'
+      }
     });
 
   // 设置文件输出
@@ -82,7 +81,7 @@ export default function(sweetConfig: SweetConfig | null | undefined, sweetOption
     .end()
     // 进度条
     .plugin('webpack.ProgressPlugin')
-    .use(webpack.ProgressPlugin, [log === 'progress' ? handleDefaultProgressBar : handleDefaultProgress]);
+    .use(webpack.ProgressPlugin, [!webpackLog || webpackLog === 'progress' ? handleDefaultProgressBar : handleDefaultProgress]);
 
   /* chainWebpack: 通过webpack-chain的API扩展或修改webpack配置 */
   if (chainWebpack) {

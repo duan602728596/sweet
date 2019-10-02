@@ -42,6 +42,7 @@ function argvStart(argv: Argv): void {
     const httpsKey: string = argv.httpsKey;
     const httpsCert: string = argv.httpsCert;
     const useBabelRegister: boolean = argv.useBabelRegister;
+    const webpackLog: string = argv.webpackLog;
 
     devServer({
       compiler,
@@ -53,7 +54,8 @@ function argvStart(argv: Argv): void {
       renderType,
       httpsKey,
       httpsCert,
-      useBabelRegister
+      useBabelRegister,
+      webpackLog
     });
   } else {
     const watching: Watching = compiler.watch({

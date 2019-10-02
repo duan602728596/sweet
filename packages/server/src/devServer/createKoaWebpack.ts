@@ -1,9 +1,11 @@
 import * as https from 'https';
 import { Server } from 'https';
 import * as webpack from 'webpack';
+import { Stats } from 'webpack';
 import * as koaWebpack from 'koa-webpack';
 import * as _ from 'lodash';
 import getPort from './getPort';
+import { WebpackLog } from '../utils/types';
 
 interface MiddlewareConfig {
   compiler?: webpack.Compiler;
@@ -20,18 +22,21 @@ interface MiddlewareConfig {
   devMiddleware: {
     serverSideRender: boolean;
     logLevel: string;
+    stats?: Stats.ToStringOptions;
   };
 }
 
 /**
  * middleware配置
  * @param { webpack.Compiler | undefined } compiler
+ * @param { string } webpackLog: webpack日志
  * @param { string | undefined } env: 环境
  * @param { boolean } useHttps: 是否使用https
  * @param { Server | undefined } server: 服务
  */
 export function createMiddlewareConfig(
   compiler: webpack.Compiler | undefined,
+  webpackLog: WebpackLog | undefined,
   env: string | undefined,
   useHttps: boolean,
   server: Server | undefined
@@ -54,6 +59,20 @@ export function createMiddlewareConfig(
     }
   };
 
+  // webpack log
+  if (!webpackLog || webpackLog === 'progress') {
+    middlewareConfig.devMiddleware.stats = {
+      colors: true,
+      assets: false,
+      entrypoints: false,
+      builtAt: false,
+      hash: false,
+      modules: false,
+      version: false,
+      timings: false
+    };
+  }
+
   // 测试配置
   if (env === 'test') {
     middlewareConfig.hotClient.logLevel = 'silent';
@@ -66,6 +85,7 @@ export function createMiddlewareConfig(
 /**
  * koa-webpack中间件配置
  * @param { webpack.Compiler | undefined } compiler
+ * @param { string } webpackLog: webpack日志
  * @param { string } env: 环境
  * @param { boolean } useHttps: 是否使用https
  * @param { string | undefined } keyFile: key
@@ -73,6 +93,7 @@ export function createMiddlewareConfig(
  */
 async function createKoaWebpack(
   compiler: webpack.Compiler | undefined,
+  webpackLog: WebpackLog | undefined,
   env: string | undefined,
   useHttps: boolean,
   keyFile: Buffer | undefined,
@@ -89,7 +110,7 @@ async function createKoaWebpack(
     }).listen(socketPort, '127.0.0.1');
   }
 
-  const middlewareConfig: MiddlewareConfig = createMiddlewareConfig(compiler, env, useHttps, server);
+  const middlewareConfig: MiddlewareConfig = createMiddlewareConfig(compiler, webpackLog, env, useHttps, server);
   const middleware: koaWebpack.Middleware<any> = await koaWebpack(middlewareConfig);
 
   return middleware;
