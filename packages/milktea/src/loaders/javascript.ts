@@ -7,7 +7,7 @@ import { SweetConfig, SweetOptions, JS } from '../utils/types';
 
 /* js 配置 */
 export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, config: Config): void {
-  const { mode, js, frame }: SweetConfig = sweetConfig;
+  const { mode, js, frame, log = 'progress' }: SweetConfig = sweetConfig;
   const isDevelopment: boolean = mode === 'development';
 
   // 获取配置
@@ -46,7 +46,7 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
       (config: Config): void => {
         configBabelUse
           .tap((options: any): any => _.mergeWith(options, {
-            presets: [createPresetEnv(customTargets, debug)]
+            presets: [createPresetEnv(customTargets, (!log || log !== 'progress') && debug)]
           }, customizer));
       });
 

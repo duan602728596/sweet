@@ -5,10 +5,12 @@ export interface Milktea {
   config: Function;
   serverRenderConfig: Function;
   callback: Compiler.Handler;
+  callbackOnlyError: Compiler.Handler
 }
 
 export interface Argv {
   config: string;
+  webpackLog: string;
   // server
   server: boolean;
   httpPort: number;

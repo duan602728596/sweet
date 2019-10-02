@@ -10,7 +10,7 @@ import { SweetConfig, SweetOptions } from '../utils/types';
 
 /* 生产环境插件 */
 export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, config: Config): void {
-  const { serverRender, filesMap }: SweetConfig = sweetConfig;
+  const { serverRender, filesMap, log }: SweetConfig = sweetConfig;
 
   config
     // mini-css-extract-plugin
@@ -43,7 +43,7 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
 
   // 当环境为测试时，不使用输出插件
   config
-    .when(sweetConfig.frame !== 'test',
+    .when(sweetConfig.frame !== 'test' && log === 'stats',
       (config: Config): void => {
         config
           .plugin('webpack.ProgressPlugin')

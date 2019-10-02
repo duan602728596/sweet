@@ -19,7 +19,11 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
       cacheDirectory: path.join(
         sweetOptions.basicPath,
         serverRender ? hardSourceWebpackServerCache : hardSourceWebpackCache
-      )
+      ),
+      info: {
+        mode: 'none',
+        level: 'warn'
+      }
     }]);
 
   // dll

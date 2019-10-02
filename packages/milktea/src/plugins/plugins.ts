@@ -7,9 +7,10 @@ import * as HtmlWebpackPlugin from 'html-webpack-plugin';
 import * as VueLoaderPlugin from 'vue-loader/lib/plugin';
 import { requireModule } from '../utils/utils';
 import { SweetConfig, SweetOptions, HtmlItem } from '../utils/types';
+import { handleDefaultProgressBar, handleServerRenderProgressBar } from './handleProgressBar';
 
 export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, config: Config): void {
-  const { mode, html, frame, serverRender }: SweetConfig = sweetConfig;
+  const { mode, html, frame, serverRender, log = 'progress' }: SweetConfig = sweetConfig;
   const isDevelopment: boolean = mode === 'development';
 
   // 根据模式加载插件
@@ -65,4 +66,18 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
         .use(VueLoaderPlugin);
     }
   );
+
+  // 当环境为测试时，不使用输出插件
+  config
+    .when(sweetConfig.frame !== 'test' && (!log || log === 'progress'),
+      (config: Config): void => {
+        config
+          .plugin('webpack.ProgressPlugin')
+          .use(webpack.ProgressPlugin, [
+            serverRender
+              ? handleServerRenderProgressBar
+              : handleDefaultProgressBar
+          ]);
+      }
+    );
 }

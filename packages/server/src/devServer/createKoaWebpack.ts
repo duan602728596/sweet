@@ -15,11 +15,11 @@ interface MiddlewareConfig {
     allEntries: boolean;
     https: boolean;
     server?: Server;
-    logLevel?: string;
+    logLevel: string;
   };
   devMiddleware: {
     serverSideRender: boolean;
-    logLevel?: string;
+    logLevel: string;
   };
 }
 
@@ -45,10 +45,12 @@ export function createMiddlewareConfig(
       },
       allEntries: true,
       https: useHttps,
-      server
+      server,
+      logLevel: 'warn'
     },
     devMiddleware: {
-      serverSideRender: true
+      serverSideRender: true,
+      logLevel: 'warn'
     }
   };
 

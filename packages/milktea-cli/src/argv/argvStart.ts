@@ -7,7 +7,7 @@ import { Milktea, Argv } from '../utils/types';
 /* start 命令 */
 function argvStart(argv: Argv): void {
   const milktea: Milktea = requireModule('@sweet-milktea/milktea');
-  const webpackConfig: Configuration = milktea.config(argv.config, 'development');
+  const webpackConfig: Configuration = milktea.config(argv.config, 'development', argv.webpackLog);
 
   // koa-webpack需要output.publicPath
   if (argv.server) {
@@ -24,11 +24,11 @@ function argvStart(argv: Argv): void {
 
   if (!_.isNil(argv.serverRender)) {
     const serverRenderCompiler: Compiler = webpack(
-      milktea.serverRenderConfig(argv.config, 'development')
+      milktea.serverRenderConfig(argv.config, 'development', argv.webpackLog)
     );
     const serverRenderWatching: Watching = serverRenderCompiler.watch({
       aggregateTimeout: 500
-    }, milktea.callback);
+    }, !argv.webpackLog || argv.webpackLog === 'progress' ? milktea.callbackOnlyError : milktea.callback);
   }
 
   if (!_.isNil(argv.server)) {
@@ -58,7 +58,7 @@ function argvStart(argv: Argv): void {
   } else {
     const watching: Watching = compiler.watch({
       aggregateTimeout: 500
-    }, milktea.callback);
+    }, !argv.webpackLog || argv.webpackLog === 'progress' ? milktea.callbackOnlyError : milktea.callback);
   }
 }
 

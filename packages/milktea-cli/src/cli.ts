@@ -27,6 +27,10 @@ const argv: object = yargs
       describe: '配置文件的地址',
       type: 'string'
     },
+    webpackLog: {
+      describe: 'webpack日志类型',
+      type: 'string'
+    },
     // webpack服务
     server: {
       describe: '是否开启一个服务器',
