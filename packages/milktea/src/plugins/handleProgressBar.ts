@@ -1,5 +1,6 @@
 import * as ProgressBar from 'progress';
 import * as colors from 'colors/safe';
+import * as moment from 'moment';
 
 /**
  * 计算进度百分比
@@ -23,7 +24,9 @@ let defaultProgressBarCache: InfoCache | null = null,
   serverRenderProgressCache: InfoCache | null = null;
 
 export function handleDefaultProgressBar(percentage: number, message: string, ...args: Array<string>): void {
-  const nowTime: number = new Date().getTime();
+  const mt: moment.Moment = moment();
+  const nowTime: number = mt.valueOf();
+  const timeStr: string = mt.format('YYYY-MM-DD HH:mm:ss');
 
   // 创建定时器
   if (defaultProgressBarCache === null) {
@@ -33,7 +36,7 @@ export function handleDefaultProgressBar(percentage: number, message: string, ..
       bar: new ProgressBar(`Build [${ colors.cyan(':bar') }] :percent :time`, {
         complete: '=',
         incomplete: ' ',
-        width: 25,
+        width: 20,
         total: 100,
         time: '0s'
       })
@@ -50,7 +53,7 @@ export function handleDefaultProgressBar(percentage: number, message: string, ..
       time: `${ endTime }s`
     });
 
-    console.log(colors.green(`\nBuild done. ${ colors.blue(`(${ endTime }s)`) }\n`));
+    console.log(`\n[${ timeStr }] ${ colors.green(`Build done. ${ colors.blue(`(${ endTime }s)`) }`) }\n`);
     defaultProgressBarCache = null;
 
     return;
@@ -66,7 +69,9 @@ export function handleDefaultProgressBar(percentage: number, message: string, ..
 }
 
 export function handleServerRenderProgressBar(percentage: number, message: string, ...args: Array<string>): void {
-  const nowTime: number = new Date().getTime();
+  const mt: moment.Moment = moment();
+  const nowTime: number = mt.valueOf();
+  const timeStr: string = mt.format('YYYY-MM-DD HH:mm:ss');
 
   // 创建定时器
   if (serverRenderProgressCache === null) {
@@ -76,7 +81,7 @@ export function handleServerRenderProgressBar(percentage: number, message: strin
       bar: new ProgressBar(`Build [${ colors.cyan(':bar') }] :percent :time`, {
         complete: '=',
         incomplete: ' ',
-        width: 25,
+        width: 20,
         total: 100,
         time: '0s'
       })
@@ -93,7 +98,7 @@ export function handleServerRenderProgressBar(percentage: number, message: strin
       time: `${ endTime }s`
     });
 
-    console.log(colors.green(`\nSSR build done. ${ colors.blue(`(${ endTime }s)`) }\n`));
+    console.log(`\n[${ timeStr }] ${ colors.green(`SSR build done. ${ colors.blue(`(${ endTime }s)`) }`) }\n`);
     serverRenderProgressCache = null;
 
     return;
