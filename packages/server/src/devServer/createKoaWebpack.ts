@@ -17,11 +17,11 @@ interface MiddlewareConfig {
     allEntries: boolean;
     https: boolean;
     server?: Server;
-    logLevel: string;
+    logLevel?: string;
   };
   devMiddleware: {
     serverSideRender: boolean;
-    logLevel: string;
+    logLevel?: string;
     stats?: Stats.ToStringOptions;
   };
 }
@@ -50,17 +50,17 @@ export function createMiddlewareConfig(
       },
       allEntries: true,
       https: useHttps,
-      server,
-      logLevel: 'warn'
+      server
     },
     devMiddleware: {
-      serverSideRender: true,
-      logLevel: 'warn'
+      serverSideRender: true
     }
   };
 
   // webpack log
   if (!webpackLog || webpackLog === 'progress') {
+    middlewareConfig.hotClient.logLevel = 'warn';
+    middlewareConfig.devMiddleware.logLevel = 'warn';
     middlewareConfig.devMiddleware.stats = {
       colors: true,
       assets: false,
