@@ -18,7 +18,8 @@ devServer({
   serverChain,
   httpsKey,
   httpsCert,
-  useBabelRegister
+  useBabelRegister,
+  webpackLog
 });
 ```
 
@@ -38,6 +39,7 @@ devServer({
 * controllersDir `{ string }` : 重新定义的controllers的目录。
 * apiFile `{ string }` : 重新定义的api文件。
 * proxyFile `{ string }` : 重新定义的proxy文件。
+* webpackLog `{ string }` : 日志输出类型。progress：进度条，stats：传统的输出方式。默认为progress。
 
 ## 生产环境下运行服务
 

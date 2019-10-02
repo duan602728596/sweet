@@ -20,15 +20,17 @@ import {
   dll as dllConfig,        // dll编译配置
   config as webpackConfig, // webpack配置
   serverRenderConfig,      // webpack服务器端渲染配置
-  callback                 // webpack的回调函数
+  callback,                // webpack的回调函数
+  callbackOnlyError        // webpack的回调函数（只显示错误信息）
 } from '@sweet-milktea/milktea';
 
 // mode { string }: 开发模式 development，生产模式 production
+// webpackLog { 'progress' | 'stats' }: 日志输出类型。progress：进度条，stats：传统的输出方式。默认为progress
 const mode = 'development';
 
 const compiler = webpack(webpackConfig({
   // 配置项
-}, mode));
+}, mode, webpackLog));
 
 compiler.run(callback);
 ```
