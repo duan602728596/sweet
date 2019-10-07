@@ -13,7 +13,6 @@ function calculateProgress(percentage: number): number {
   return Number(pNumber[0]);
 }
 
-
 export interface InfoCache {
   current: number;   // 进度
   startTime: number; // 时间
@@ -28,7 +27,7 @@ export function handleDefaultProgressBar(percentage: number, message: string, ..
   const nowTime: number = mt.valueOf();
   const timeStr: string = mt.format('YYYY-MM-DD HH:mm:ss');
 
-  // 创建定时器
+  // 创建进度条
   if (defaultProgressBarCache === null) {
     defaultProgressBarCache = {
       current: 0,
@@ -73,7 +72,7 @@ export function handleServerRenderProgressBar(percentage: number, message: strin
   const nowTime: number = mt.valueOf();
   const timeStr: string = mt.format('YYYY-MM-DD HH:mm:ss');
 
-  // 创建定时器
+  // 创建进度条
   if (serverRenderProgressCache === null) {
     serverRenderProgressCache = {
       current: 0,
