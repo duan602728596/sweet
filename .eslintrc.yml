@@ -14,7 +14,7 @@ plugins:
   - react
 settings:
   react:
-    version: '16.9'
+    version: '16.10'
 overrides:
   - files:
       - '*.ts'
