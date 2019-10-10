@@ -15,7 +15,7 @@ plugins:
   - react
 settings:
   react:
-    version: '16.9'
+    version: '16.10'
 rules:
   # Possible Errors
   no-cond-assign:                                     # 禁止条件表达式中出现赋值操作符
