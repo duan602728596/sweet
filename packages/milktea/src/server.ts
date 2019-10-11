@@ -44,6 +44,9 @@ export default function(sweetConfig: SweetConfig | null | undefined, sweetOption
       node: {
         __filename: true,
         __dirname: true
+      },
+      performance: {
+        hints: false
       }
     });
 

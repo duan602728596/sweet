@@ -32,6 +32,9 @@ export default function(sweetConfig: SweetConfig | null | undefined, sweetOption
       devtool: isDevelopment ? 'inline-module-source-map' : 'none',
       resolve: {
         extensions: ['.js', '.jsx', '.mjs', '.json', '.ts', '.tsx']
+      },
+      performance: {
+        hints: false
       }
     });
 
