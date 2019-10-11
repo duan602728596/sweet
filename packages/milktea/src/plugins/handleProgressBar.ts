@@ -32,7 +32,7 @@ export function handleDefaultProgressBar(percentage: number, message: string, ..
     defaultProgressBarCache = {
       current: 0,
       startTime: nowTime,
-      bar: new ProgressBar(`Build [${ colors.cyan(':bar') }] :percent :time`, {
+      bar: new ProgressBar(`Build [${ colors.cyan(':bar') }] ${ colors.yellow(':percent') } :time`, {
         complete: '=',
         incomplete: ' ',
         width: 20,
@@ -77,7 +77,7 @@ export function handleServerRenderProgressBar(percentage: number, message: strin
     serverRenderProgressCache = {
       current: 0,
       startTime: nowTime,
-      bar: new ProgressBar(`Build [${ colors.cyan(':bar') }] :percent :time`, {
+      bar: new ProgressBar(`Build [${ colors.cyan(':bar') }] ${ colors.yellow(':percent') } :time`, {
         complete: '=',
         incomplete: ' ',
         width: 20,
