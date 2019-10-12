@@ -7,7 +7,7 @@ import * as HtmlWebpackPlugin from 'html-webpack-plugin';
 import * as VueLoaderPlugin from 'vue-loader/lib/plugin';
 import { requireModule } from '../utils/utils';
 import { SweetConfig, SweetOptions, HtmlItem } from '../utils/types';
-import { handleDefaultProgressBar, handleServerRenderProgressBar } from './handleProgressBar';
+import createHandleProgressBar from './handleProgressBar';
 
 export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, config: Config): void {
   const { mode, html, frame, serverRender, webpackLog = 'progress' }: SweetConfig = sweetConfig;
@@ -73,11 +73,7 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
       (config: Config): void => {
         config
           .plugin('webpack.ProgressPlugin')
-          .use(webpack.ProgressPlugin, [
-            serverRender
-              ? handleServerRenderProgressBar
-              : handleDefaultProgressBar
-          ]);
+          .use(webpack.ProgressPlugin, [createHandleProgressBar(!!serverRender)]);
       }
     );
 }

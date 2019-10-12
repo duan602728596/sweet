@@ -19,95 +19,58 @@ export interface InfoCache {
   bar: ProgressBar;  // 进度条
 }
 
-let defaultProgressBarCache: InfoCache | null = null,
-  serverRenderProgressCache: InfoCache | null = null;
+/**
+ * 进度条输出信息
+ * @param { boolean } ssr
+ */
+function createHandleProgressBar(ssr: boolean): Function {
+  const buildDoneMsg: string = ssr ? 'SSR build done.' : 'Build done.';
+  let progressBarCache: InfoCache | null = null;
 
-export function handleDefaultProgressBar(percentage: number, message: string, ...args: Array<string>): void {
-  const mt: moment.Moment = moment();
-  const nowTime: number = mt.valueOf();
-  const timeStr: string = mt.format('YYYY-MM-DD HH:mm:ss');
+  return function handleDefaultProgressBar(percentage: number, message: string, ...args: Array<string>): void {
+    const mt: moment.Moment = moment();
+    const nowTime: number = mt.valueOf();
+    const timeStr: string = mt.format('YYYY-MM-DD HH:mm:ss');
 
-  // 创建进度条
-  if (defaultProgressBarCache === null) {
-    defaultProgressBarCache = {
-      current: 0,
-      startTime: nowTime,
-      bar: new ProgressBar(`Build [${ colors.cyan(':bar') }] ${ colors.yellow(':percent') } :time`, {
-        complete: '=',
-        incomplete: ' ',
-        width: 20,
-        total: 100,
-        time: '0s'
-      })
-    };
+    // 创建进度条
+    if (progressBarCache === null) {
+      progressBarCache = {
+        current: 0,
+        startTime: nowTime,
+        bar: new ProgressBar(`${ colors.cyan('Build') } [:bar] ${ colors.yellow(':percent') } :time`, {
+          complete: '=',
+          incomplete: ' ',
+          width: 20,
+          total: 100,
+          time: '0s'
+        })
+      };
 
-    return;
-  }
+      return;
+    }
 
-  const endTime: number = Number(((nowTime - defaultProgressBarCache.startTime) / 1000).toFixed(3));
-  const current: number = calculateProgress(percentage); // 进度条
+    const endTime: number = Number(((nowTime - progressBarCache.startTime) / 1000).toFixed(3));
+    const current: number = calculateProgress(percentage); // 进度条
 
-  if (defaultProgressBarCache.bar.complete || current >= 100) {
-    defaultProgressBarCache.bar.tick(current - defaultProgressBarCache.current, {
-      time: `${ endTime }s`
-    });
+    if (progressBarCache.bar.complete || current >= 100) {
+      progressBarCache.bar.tick(current - progressBarCache.current, {
+        time: `${ endTime }s`
+      });
 
-    console.log(`\n[${ timeStr }] ${ colors.green(`Build done. ${ colors.blue(`(${ endTime }s)`) }`) }\n`);
-    defaultProgressBarCache = null;
+      console.log(`\n[${ timeStr }] ${ colors.green(`${ buildDoneMsg } ${ colors.yellow(`(${ endTime }s)`) }`) }\n`);
+      progressBarCache = null;
 
-    return;
-  }
+      return;
+    }
 
-  if (current > defaultProgressBarCache.current) {
-    defaultProgressBarCache.bar.tick(current - defaultProgressBarCache.current, {
-      time: `${ endTime }s`
-    });
+    if (current > progressBarCache.current) {
+      progressBarCache.bar.tick(current - progressBarCache.current, {
+        time: `${ endTime }s`
+      });
 
-    defaultProgressBarCache.current = current;
-  }
+      progressBarCache.current = current;
+    }
+  };
 }
 
-export function handleServerRenderProgressBar(percentage: number, message: string, ...args: Array<string>): void {
-  const mt: moment.Moment = moment();
-  const nowTime: number = mt.valueOf();
-  const timeStr: string = mt.format('YYYY-MM-DD HH:mm:ss');
-
-  // 创建进度条
-  if (serverRenderProgressCache === null) {
-    serverRenderProgressCache = {
-      current: 0,
-      startTime: nowTime,
-      bar: new ProgressBar(`Build [${ colors.cyan(':bar') }] ${ colors.yellow(':percent') } :time`, {
-        complete: '=',
-        incomplete: ' ',
-        width: 20,
-        total: 100,
-        time: '0s'
-      })
-    };
-
-    return;
-  }
-
-  const endTime: number = Number(((nowTime - serverRenderProgressCache.startTime) / 1000).toFixed(3));
-  const current: number = calculateProgress(percentage); // 进度条
-
-  if (serverRenderProgressCache.bar.complete || current >= 100) {
-    serverRenderProgressCache.bar.tick(current - serverRenderProgressCache.current, {
-      time: `${ endTime }s`
-    });
-
-    console.log(`\n[${ timeStr }] ${ colors.green(`SSR build done. ${ colors.blue(`(${ endTime }s)`) }`) }\n`);
-    serverRenderProgressCache = null;
-
-    return;
-  }
-
-  if (current > serverRenderProgressCache.current) {
-    serverRenderProgressCache.bar.tick(current - serverRenderProgressCache.current, {
-      time: `${ endTime }s`
-    });
-
-    serverRenderProgressCache.current = current;
-  }
-}
+export default createHandleProgressBar;
