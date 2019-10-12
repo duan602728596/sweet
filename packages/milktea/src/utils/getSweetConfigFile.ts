@@ -33,19 +33,23 @@ function createJsRegisterLoader(sweetOptions: SweetOptions): Function {
 
 /* 获取配置文件 */
 function getSweetConfigFile(sweetOptions: SweetOptions, configFile?: string): SweetConfig {
-  const moduleName: string = 'sweet';
+  // @babel/register
   const jsRegisterLoader: Function = createJsRegisterLoader(sweetOptions);
-  const explorer: { searchSync: Function } = cosmiconfig(moduleName, {
+
+  // 配置文件加载器
+  const MODULE_NAME: string = 'sweet';
+  const ERROR_MSG: string = 'Please configure the .sweetrc.js or sweet.config.js file first.';
+
+  const explorer: { searchSync: Function } = cosmiconfig(MODULE_NAME, {
     searchPlaces: [
-      `${ moduleName }.config.js`,
-      `.${ moduleName }rc.js`
+      `${ MODULE_NAME }.config.js`,
+      `.${ MODULE_NAME }rc.js`
     ],
     loaders: {
       '.js': jsRegisterLoader
     },
     stopDir: sweetOptions.basicPath
   });
-  const errorMsg: string = 'Please configure the .sweetrc.js or sweet.config.js file first.';
 
   if (typeof configFile === 'string') {
     // 加载其他的配置文件
@@ -58,17 +62,16 @@ function getSweetConfigFile(sweetOptions: SweetOptions, configFile?: string): Sw
     }
 
     if (fs.existsSync(sweetConfigFile)) {
-      // 加载es6+环境
       return jsRegisterLoader(sweetConfigFile);
     } else {
-      throw new Error(errorMsg);
+      throw new Error(ERROR_MSG);
     }
   } else {
     // 加载默认的配置文件
     const searchResult: { config: SweetConfig; filepath: string } | null = explorer.searchSync();
 
     if (searchResult === null) {
-      throw new Error(errorMsg);
+      throw new Error(ERROR_MSG);
     } else {
       return searchResult.config;
     }
