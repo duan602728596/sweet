@@ -57,7 +57,7 @@ function createHandleProgressBar(ssr: boolean): Function {
         time: `${ endTime }s`
       });
 
-      console.log(`\n[${ timeStr }] ${ colors.green(`${ buildDoneMsg } ${ colors.yellow(`(${ endTime }s)`) }`) }\n`);
+      console.log(`\n[${ timeStr }] ${ colors.green(buildDoneMsg) }\n`);
       progressBarCache = null;
 
       return;
