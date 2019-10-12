@@ -52,6 +52,7 @@ function createHandleProgressBar(ssr: boolean): Function {
     const endTime: number = Number(((nowTime - progressBarCache.startTime) / 1000).toFixed(3));
     const current: number = calculateProgress(percentage); // 进度条
 
+    // 编译完毕
     if (progressBarCache.bar.complete || current >= 100) {
       progressBarCache.bar.tick(current - progressBarCache.current, {
         time: `${ endTime }s`
@@ -63,6 +64,7 @@ function createHandleProgressBar(ssr: boolean): Function {
       return;
     }
 
+    // 编译中
     if (current > progressBarCache.current) {
       progressBarCache.bar.tick(current - progressBarCache.current, {
         time: `${ endTime }s`
