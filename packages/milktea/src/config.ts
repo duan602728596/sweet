@@ -80,6 +80,9 @@ export default function(sweetConfig: SweetConfig | null | undefined, sweetOption
       ecmaVersion: ecmascript ? 2015 : 5,
       ...(output || {})
     },
+    cache: {
+      type: 'filesystem'
+    },
     externals,
     resolve,
     // 添加其他的rules

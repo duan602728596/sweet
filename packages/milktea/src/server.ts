@@ -81,6 +81,9 @@ export default function(sweetConfig: SweetConfig | null | undefined, sweetOption
       ecmaVersion: 2015,
       ...(serverOutput || {})
     },
+    cache: {
+      type: 'filesystem'
+    },
     resolve,
     // 添加其他的rules
     module: {
