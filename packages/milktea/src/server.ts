@@ -77,7 +77,10 @@ export default function(sweetConfig: SweetConfig | null | undefined, sweetOption
   /* 合并自定义配置 */
   return merge(config.toConfig(), {
     entry: serverEntry,
-    output: serverOutput,
+    output: {
+      ecmaVersion: 2015,
+      ...(serverOutput || {})
+    },
     resolve,
     // 添加其他的rules
     module: {

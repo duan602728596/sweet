@@ -96,6 +96,9 @@ export default function(sweetConfig: SweetConfig | null | undefined, sweetOption
     entry: {
       dll
     },
+    output: {
+      ecmaVersion: ecmascript ? 2015 : 5
+    },
     externals,
     resolve
   });

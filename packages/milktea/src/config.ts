@@ -7,7 +7,7 @@ import * as merge from 'webpack-merge';
 import loaders from './loaders/loaders';
 import basicPlugins from './plugins/plugins';
 import optimization from './optimization/optimization';
-import { SweetConfig, SweetOptions } from './utils/types';
+import { JS, SweetConfig, SweetOptions } from './utils/types';
 
 export default function(sweetConfig: SweetConfig | null | undefined, sweetOptions: SweetOptions): Configuration {
   const config: Config = new Config();
@@ -22,8 +22,11 @@ export default function(sweetConfig: SweetConfig | null | undefined, sweetOption
     noParse,
     plugins,
     devtool,
-    chainWebpack
+    chainWebpack,
+    js
   }: SweetConfig = sweetConfigCopy;
+  const jsOptions: JS = js || {};
+  const { ecmascript }: JS = jsOptions;
   const isDevelopment: boolean = mode === 'development';
 
   // 格式化配置
@@ -73,7 +76,10 @@ export default function(sweetConfig: SweetConfig | null | undefined, sweetOption
   /* 合并自定义配置 */
   return merge(config.toConfig(), {
     entry,
-    output,
+    output: {
+      ecmaVersion: ecmascript ? 2015 : 5,
+      ...(output || {})
+    },
     externals,
     resolve,
     // 添加其他的rules
