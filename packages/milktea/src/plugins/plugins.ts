@@ -3,8 +3,8 @@ import * as path from 'path';
 import { ParsedPath } from 'path';
 import * as webpack from 'webpack';
 import * as Config from 'webpack-chain';
+import { PluginClass } from 'webpack-chain';
 import * as HtmlWebpackPlugin from 'html-webpack-plugin';
-import * as VueLoaderPlugin from 'vue-loader/lib/plugin';
 import { requireModule } from '../utils/utils';
 import { SweetConfig, SweetOptions, HtmlItem } from '../utils/types';
 import createHandleProgressBar from './handleProgressBar';
@@ -59,8 +59,11 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
     }
   }
 
+  // vue插件的加载
   config.when(frame === 'vue',
     (config: Config): void => {
+      const VueLoaderPlugin: PluginClass = require('vue-loader/lib/plugin');
+
       config
         .plugin('vue')
         .use(VueLoaderPlugin);
