@@ -34,6 +34,7 @@ function createRegisterConfig(): RegisterConfig {
       '@babel/plugin-proposal-numeric-separator',              // 1_000_000 语法
       '@babel/plugin-proposal-optional-catch-binding',         // try {} catch {} 语法
       '@babel/plugin-proposal-optional-chaining',              // x?.y 语法
+      ['@babel/plugin-proposal-pipeline-operator', { proposal: 'minimal' }], // 管道函数
       '@babel/plugin-syntax-bigint',                           // BigInt数据类型
       '@babel/plugin-syntax-dynamic-import'                    // import() 语法
     ],
