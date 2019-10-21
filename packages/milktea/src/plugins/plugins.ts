@@ -59,6 +59,7 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
     }
   }
 
+  // vue插件的加载
   config.when(frame === 'vue',
     (config: Config): void => {
       const VueLoaderPlugin: PluginClass = require('vue-loader/lib/plugin');
