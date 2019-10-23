@@ -12,13 +12,14 @@ milktea-cli是一个快速运行环境的工具。
   * `--server`: 开启一个Koa服务器，开发环境有效。
   * `--httpPort`: http服务的端口号。开发环境（默认：5050）和服务器（默认：5052）。
   * `--httpsPort`: https服务的端口号。开发环境（默认：5051）和服务器（默认：5053）。
+  * `--httpsKey`: 配置https的证书（*.key）。
+  * `--httpsCert`: 配置https的证书（*.crt）。
+  * `--redirectToHttps`: 重定向http到https。
+  * `--useBabelRegister`: 使用`@babel/register`来加载api文件和controllers文件。
+  * `--webpackLog`: 日志输出类型。progress：进度条，stats：传统的输出方式。默认为progress。
   * `--serverRender`: 开启服务器端渲染。
   * `--serverRenderRoot`: 服务器端渲染的模块文件目录。默认为`dist-server`。
   * `--serverRenderFile`: 服务器渲染的主模块文件。默认为`server.js`。
-  * `--httpsKey`: 配置https的证书（*.key）。
-  * `--httpsCert`: 配置https的证书（*.crt）。
-  * `--useBabelRegister`: 使用`@babel/register`来加载api文件和controllers文件。
-  * `--webpackLog`: 日志输出类型。progress：进度条，stats：传统的输出方式。默认为progress。
 * `milktea build`: 编译代码。
   * `--config`: 选择一个配置文件。
   * `--serverRender`: 开启服务器端渲染。
