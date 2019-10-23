@@ -19,6 +19,7 @@ devServer({
   httpsKey,
   httpsCert,
   useBabelRegister,
+  redirectToHttps,
   webpackLog
 });
 ```
@@ -39,6 +40,7 @@ devServer({
 * controllersDir `{ string }` : 重新定义的controllers的目录。
 * apiFile `{ string }` : 重新定义的api文件。
 * proxyFile `{ string }` : 重新定义的proxy文件。
+* redirectToHttps `{ boolean }` : 开启https的情况下，重定向http到https。
 * webpackLog `{ string }` : 日志输出类型。progress：进度条，stats：传统的输出方式。默认为progress。
 
 ## 生产环境下运行服务
@@ -59,7 +61,8 @@ proServer({
   serverChain,
   httpsKey,
   httpsCert,
-  useBabelRegister
+  useBabelRegister,
+  redirectToHttps
 });
 ```
 
@@ -83,6 +86,7 @@ proServer({
 * controllersDir `{ string }` : 重新定义的controllers的目录。
 * apiFile `{ string }` : 重新定义的api文件。
 * proxyFile `{ string }` : 重新定义的proxy文件。
+* redirectToHttps `{ boolean }` : 开启https的情况下，重定向http到https。
 
 ## sweetOptions
 
