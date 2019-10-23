@@ -18,7 +18,7 @@
   "dependencies": {
     "@bbkkbkk/koa-log4": "^2.3.3",
     "@log4js-node/logfaces-http": "^1.0.0",
-    "log4js": "^5.2.2"
+    "log4js": "^5.3.0"
   },
   "devDependencies": {
     "@babel/core": "^7.6.4",
