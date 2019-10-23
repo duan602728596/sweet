@@ -28,17 +28,18 @@ milktea-cli是一个快速运行环境的工具。
   * `--httpPort`: http服务的端口号。开发环境（默认：5050）和服务器（默认：80）。
   * `--httpsPort`: https服务的端口号。开发环境（默认：5051）和服务器（默认：443）。
   * `--serverRoot`: 服务器静态文件入口。默认为`dist`。
-  * `--serverRender`: 开启服务器端渲染。
-  * `--serverRenderRoot`: 服务器端渲染的模块文件目录。默认为`dist-server`。 
-  * `--serverRenderFile`: 服务器端渲染的主模块文件。默认为`server.js`。
-  * `--template`: html模版的文件名。默认为`index.html`。
-  * `--renderType`：html使用的渲染模板，`ejs`或`nunjucks`。默认为`ejs`。
   * `--log`: 是否开启日志功能。
   * `--logUrl`: 配置日志的接口，会向接口发送日志来代替本地文件。
   * `--logPm2`: 是否在pm2环境下运行程序。
   * `--httpsKey`: 配置https的证书（*.key）。
   * `--httpsCert`: 配置https的证书（*.crt）。
+  * `--redirectToHttps`: 重定向http到https。
   * `--useBabelRegister`: 使用`@babel/register`来加载api文件和controllers文件。
+  * `--serverRender`: 开启服务器端渲染。
+  * `--serverRenderRoot`: 服务器端渲染的模块文件目录。默认为`dist-server`。 
+  * `--serverRenderFile`: 服务器端渲染的主模块文件。默认为`server.js`。
+  * `--template`: html模版的文件名。默认为`index.html`。
+  * `--renderType`：html使用的渲染模板，`ejs`或`nunjucks`。默认为`ejs`。
 * `milktea update`: 查看是否有依赖包需要更新。
   * `--registry`: Npm包信息地址。可能的值为 0：Npm源，1：Yarn源，2：CNpm源。
 * `milktea image2webp`: 将图片批量转换成`*.webp`格式。

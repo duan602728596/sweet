@@ -17,6 +17,7 @@ function argvServer(argv: Argv): void {
   const logPm2: boolean = argv.logPm2;
   const httpsKey: string = argv.httpsKey;
   const httpsCert: string = argv.httpsCert;
+  const redirectToHttps: boolean = argv.redirectToHttps;
   const useBabelRegister: boolean = argv.useBabelRegister;
 
   proServer({
@@ -35,6 +36,7 @@ function argvServer(argv: Argv): void {
     } : undefined,
     httpsKey,
     httpsCert,
+    redirectToHttps,
     useBabelRegister
   });
 }

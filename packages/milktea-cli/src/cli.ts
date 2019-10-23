@@ -60,6 +60,22 @@ const argv: object = yargs
       describe: '是否在pm2环境下运行程序',
       type: 'boolean'
     },
+    httpsKey: {
+      describe: 'https证书文件地址配置',
+      type: 'string'
+    },
+    httpsCert: {
+      describe: 'https证书文件地址配置',
+      type: 'string'
+    },
+    redirectToHttps: {
+      describe: '重定向http到https',
+      type: 'boolean'
+    },
+    useBabelRegister: {
+      describe: '使用@babel/register来加载api文件和controllers文件',
+      type: 'boolean'
+    },
     // 服务器端渲染
     serverRender: {
       describe: '开启服务器端渲染',
@@ -80,10 +96,6 @@ const argv: object = yargs
     renderType: {
       describe: 'html使用的渲染模板，ejs 或 nunjucks。默认为ejs',
       type: 'string'
-    },
-    useBabelRegister: {
-      describe: '使用@babel/register来加载api文件和controllers文件',
-      type: 'boolean'
     },
     // image2webp & imageCompress & image2icns
     imageEntry: {

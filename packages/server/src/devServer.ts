@@ -12,6 +12,7 @@ import createRouters from './devServer/createRouters';
 import getPort from './devServer/getPort';
 import createApi from './utils/createApi';
 import createProxy from './utils/createProxy';
+import createRedirectToHttpsMiddleware from './utils/redirectToHttps';
 import createSweetOptionsMiddleware from './utils/createOptions';
 import createHttpsCertificate, { HttpsCertificate } from './utils/createHttpsCertificate';
 import useRegister from './utils/babelRegister';
@@ -43,6 +44,7 @@ const sweetOptions: SweetOptions = {
  * controllersDir { string }: 重新定义的controllers的目录
  * apiFile { string }: 重新定义的api文件
  * proxyFile { string }: 重新定义的proxy文件
+ * redirectToHttps { boolean }: 307重定向到https
  * webpackLog { string }: webpack日志
  */
 async function devServer(args: DevServerArgs): Promise<void> {
@@ -62,6 +64,7 @@ async function devServer(args: DevServerArgs): Promise<void> {
     controllersDir,
     apiFile,
     proxyFile,
+    redirectToHttps = false,
     webpackLog = 'progress'
   }: DevServerArgs = args || {};
 
@@ -83,6 +86,7 @@ async function devServer(args: DevServerArgs): Promise<void> {
     controllersDir,
     apiFile,
     proxyFile,
+    redirectToHttps,
     httpPort: _httpPort,
     httpsPort: _httpsPort,
     webpackLog
@@ -101,6 +105,11 @@ async function devServer(args: DevServerArgs): Promise<void> {
 
   /* 中间件 */
   createSweetOptionsMiddleware(app, sweetOptions);
+
+  /* https地址307重定向 */
+  if (useHttps && keyFile && certFile && redirectToHttps) {
+    createRedirectToHttpsMiddleware(app, sweetOptions);
+  }
 
   /* 添加代理服务 */
   await createProxy(sweetOptions, app, true, env);
