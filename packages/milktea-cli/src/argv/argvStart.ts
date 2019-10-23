@@ -41,6 +41,7 @@ function argvStart(argv: Argv): void {
     const renderType: string = argv.renderType;
     const httpsKey: string = argv.httpsKey;
     const httpsCert: string = argv.httpsCert;
+    const redirectToHttps: boolean = argv.redirectToHttps;
     const useBabelRegister: boolean = argv.useBabelRegister;
     const webpackLog: string = argv.webpackLog;
 
@@ -54,6 +55,7 @@ function argvStart(argv: Argv): void {
       renderType,
       httpsKey,
       httpsCert,
+      redirectToHttps,
       useBabelRegister,
       webpackLog
     });

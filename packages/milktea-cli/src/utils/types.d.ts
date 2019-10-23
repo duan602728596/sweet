@@ -16,17 +16,19 @@ export interface Argv {
   httpPort: number;
   httpsPort: number;
   serverRoot: string;
-  serverRender: boolean;
-  serverRenderRoot: string;
-  serverRenderFile: string;
-  template: string;
-  renderType: string;
   log: boolean;
   logUrl: string;
   logPm2: boolean;
   httpsKey: string;
   httpsCert: string;
+  redirectToHttps: boolean;
   useBabelRegister: boolean;
+  // ssr
+  serverRender: boolean;
+  serverRenderRoot: string;
+  serverRenderFile: string;
+  template: string;
+  renderType: string;
   // utils
   registry: number;
   imageEntry: string;
