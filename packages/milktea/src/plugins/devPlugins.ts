@@ -9,7 +9,7 @@ import { SweetConfig, SweetOptions } from '../utils/types';
 export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, config: Config): void {
   const dll: Array<string> | undefined = sweetConfig.dll;
   const serverRender: boolean | undefined = sweetConfig.serverRender;
-  const isDll: boolean = !!(dll && _.isArray(dll) && dll.length > 0 && !serverRender);
+  const isDll: boolean = !!(dll && Array.isArray(dll) && dll.length > 0 && !serverRender);
 
   // dll
   config
