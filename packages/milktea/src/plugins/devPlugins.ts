@@ -1,9 +1,7 @@
 import * as path from 'path';
-import * as _ from 'lodash';
 import * as webpack from 'webpack';
-import * as HardSourceWebpackPlugin from 'hard-source-webpack-plugin';
 import * as Config from 'webpack-chain';
-import { hardSourceWebpackCache, hardSourceWebpackServerCache, dllCache } from '../config/cacheConfig';
+import { dllCache } from '../config/cacheConfig';
 import { SweetConfig, SweetOptions } from '../utils/types';
 
 /* 开发环境插件 */
@@ -11,20 +9,6 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
   const dll: Array<string> | undefined = sweetConfig.dll;
   const serverRender: boolean | undefined = sweetConfig.serverRender;
   const isDll: boolean = !!(dll && Array.isArray(dll) && dll.length > 0 && !serverRender);
-
-  // 缓存
-  config
-    .plugin('hard-source-webpack-plugin')
-    .use(HardSourceWebpackPlugin, [{
-      cacheDirectory: path.join(
-        sweetOptions.basicPath,
-        serverRender ? hardSourceWebpackServerCache : hardSourceWebpackCache
-      ),
-      info: {
-        mode: 'none',
-        level: 'warn'
-      }
-    }]);
 
   // dll
   config
