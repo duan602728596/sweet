@@ -50,7 +50,7 @@
     "mocha": "^6.2.2",
     "react": "^16.11.0",
     "rimraf": "^3.0.0",
-    "typescript": "^3.6.4"
+    "typescript": "^3.7.1-rc"
   },
   "peerDependencies": {
     "@sweet-milktea/milktea": ">=0",
