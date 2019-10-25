@@ -1,5 +1,4 @@
 import * as path from 'path';
-import * as _ from 'lodash';
 import * as webpack from 'webpack';
 import * as Config from 'webpack-chain';
 import { dllCache } from '../config/cacheConfig';

@@ -94,6 +94,7 @@ export interface SweetConfig {
   serverRender?: boolean;
   serverEntry?: string | Array<string> | Entry | EntryFunc;
   serverOutput?: Output;
+  serverExternals?: ExternalsElement | ExternalsElement[];
   frame?: Frame;
   chainWebpack?: (config: Config) => void;
   serverChainWebpack?: (config: Config) => void;

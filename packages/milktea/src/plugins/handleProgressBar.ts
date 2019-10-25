@@ -37,7 +37,7 @@ function createHandleProgressBar(ssr: boolean): Function {
       progressBarCache = {
         current: 0,
         startTime: nowTime,
-        bar: new ProgressBar(`${ colors.cyan('Build') } [:bar] ${ colors.yellow(':percent') } :time`, {
+        bar: new ProgressBar(`${ colors.blue('Build') } [:bar] ${ colors.yellow(':percent') } :time`, {
           complete: '=',
           incomplete: ' ',
           width: 20,

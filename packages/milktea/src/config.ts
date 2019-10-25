@@ -86,10 +86,7 @@ export default function(sweetConfig: SweetConfig | null | undefined, sweetOption
     externals,
     resolve,
     // 添加其他的rules
-    module: {
-      noParse,
-      rules
-    },
+    module: { noParse, rules },
     // 添加自定义的plugins
     plugins
   });

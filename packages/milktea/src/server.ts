@@ -16,6 +16,7 @@ export default function(sweetConfig: SweetConfig | null | undefined, sweetOption
     mode,
     serverEntry,
     serverOutput,
+    serverExternals,
     resolve,
     rules,
     noParse,
@@ -84,12 +85,10 @@ export default function(sweetConfig: SweetConfig | null | undefined, sweetOption
     cache: {
       type: 'filesystem'
     },
+    externals: serverExternals,
     resolve,
     // 添加其他的rules
-    module: {
-      noParse,
-      rules
-    },
+    module: { noParse, rules },
     // 添加自定义的plugins
     plugins
   });

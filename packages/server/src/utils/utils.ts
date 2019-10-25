@@ -2,7 +2,7 @@ import * as path from 'path';
 import * as Stream from 'stream';
 import * as _ from 'lodash';
 import { Dictionary } from 'lodash';
-import * as address from 'address';
+import * as internalIp from 'internal-ip';
 import * as colors from 'colors/safe';
 import { SweetOptions } from './types';
 
@@ -75,9 +75,7 @@ export function requireModule(id: string): any {
 export function deleteCacheAndRequireModule(id: string): any {
   cleanRequireCache(id);
 
-  const module: { default: any } | any = require(id);
-
-  return 'default' in module ? module.default : module;
+  return requireModule(id);
 }
 
 /* 判断是否为readStream */
@@ -109,8 +107,8 @@ export function formatPath(sweetOptions: SweetOptions, file: string): string {
   return path.isAbsolute(file) ? file : path.join(sweetOptions.basicPath, file);
 }
 
-export function runningAtLog(sweetOptions: SweetOptions, displayHttps: boolean): void {
-  const ip: string = address.ip();
+export async function runningAtLog(sweetOptions: SweetOptions, displayHttps: boolean): Promise<void> {
+  const ip: string = await internalIp.v4() || '127.0.0.1';
   const logs: string[] = [
     ' Running at:',
     ` - Local:   http://127.0.0.1:${ sweetOptions.httpPort }`,
@@ -122,5 +120,5 @@ export function runningAtLog(sweetOptions: SweetOptions, displayHttps: boolean):
     logs.push(`${ ' '.repeat(12) }https://${ ip }:${ sweetOptions.httpsPort }`);
   }
 
-  console.log(`\n${ colors.cyan(logs.join('\n')) }\n`);
+  console.log(`\n${ colors.blue(logs.join('\n')) }\n`);
 }

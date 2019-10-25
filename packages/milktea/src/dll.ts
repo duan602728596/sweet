@@ -92,9 +92,7 @@ export default function(sweetConfig: SweetConfig | null | undefined, sweetOption
 
   /* 合并自定义配置 */
   return merge(config.toConfig(), {
-    entry: {
-      dll
-    },
+    entry: { dll },
     output: {
       ecmaVersion: ecmascript ? 2015 : 5
     },
