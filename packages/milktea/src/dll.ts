@@ -14,7 +14,7 @@ import { SweetConfig, SweetOptions, JS } from './utils/types';
 export default function(sweetConfig: SweetConfig | null | undefined, sweetOptions: SweetOptions): Configuration {
   const config: Config = new Config();
   const sweetConfigCopy: SweetConfig = _.isPlainObject(sweetConfig) ? { ...sweetConfig } : {};
-  const { mode, dll, alias, externals, resolve, chainWebpack, js, webpackLog = 'progress' }: SweetConfig = sweetConfigCopy;
+  const { mode, dll, externals, resolve, chainWebpack, js, webpackLog = 'progress' }: SweetConfig = sweetConfigCopy;
 
   const jsOptions: JS = js || {};
   const { ecmascript, targets: customTargets }: JS = jsOptions;
@@ -93,7 +93,6 @@ export default function(sweetConfig: SweetConfig | null | undefined, sweetOption
   /* 合并自定义配置 */
   return merge(config.toConfig(), {
     entry: { dll },
-    alias,
     externals,
     resolve
   });

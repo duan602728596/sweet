@@ -79,7 +79,6 @@ export interface SweetConfig {
   dll?: Array<string>;
   entry?: string | Array<string> | Entry | EntryFunc;
   output?: Output;
-  alias?: { [key: string]: string };
   externals?: ExternalsElement | ExternalsElement[];
   resolve?: Resolve;
   devtool?: Options.Devtool;

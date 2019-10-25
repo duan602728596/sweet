@@ -16,7 +16,6 @@ export default function(sweetConfig: SweetConfig | null | undefined, sweetOption
     mode,
     serverEntry,
     serverOutput,
-    alias,
     serverExternals,
     resolve,
     rules,
@@ -80,7 +79,6 @@ export default function(sweetConfig: SweetConfig | null | undefined, sweetOption
   return merge(config.toConfig(), {
     entry: serverEntry,
     output: serverOutput,
-    alias,
     externals: serverExternals,
     resolve,
     // 添加其他的rules

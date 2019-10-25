@@ -16,7 +16,6 @@ export default function(sweetConfig: SweetConfig | null | undefined, sweetOption
     mode,
     entry,
     output,
-    alias,
     externals,
     resolve,
     rules,
@@ -75,7 +74,6 @@ export default function(sweetConfig: SweetConfig | null | undefined, sweetOption
   return merge(config.toConfig(), {
     entry,
     output,
-    alias,
     externals,
     resolve,
     // 添加其他的rules
