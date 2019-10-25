@@ -122,5 +122,5 @@ export function runningAtLog(sweetOptions: SweetOptions, displayHttps: boolean):
     logs.push(`${ ' '.repeat(12) }https://${ ip }:${ sweetOptions.httpsPort }`);
   }
 
-  console.log(`\n${ colors.cyan(logs.join('\n')) }\n`);
+  console.log(`\n${ colors.blue(logs.join('\n')) }\n`);
 }
