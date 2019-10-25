@@ -153,7 +153,9 @@ async function proServer(args: ProServerArgs = {}): Promise<void> {
   }
 
   /* 显示启动信息 */
-  runningAtLog(sweetOptions, !!(useHttps && keyFile && certFile));
+  if (env !== 'test') {
+    await runningAtLog(sweetOptions, !!(useHttps && keyFile && certFile));
+  }
 }
 
 export default proServer;
