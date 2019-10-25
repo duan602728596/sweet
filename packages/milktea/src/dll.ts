@@ -83,7 +83,10 @@ export default function(sweetConfig: SweetConfig | null | undefined, sweetOption
     .end()
     // 进度条
     .plugin('webpack.ProgressPlugin')
-    .use(webpack.ProgressPlugin, [!webpackLog || webpackLog === 'progress' ? createHandleProgressBar(false) : handleDefaultProgress]);
+    .use(
+      webpack.ProgressPlugin,
+      [!webpackLog || webpackLog === 'progress' ? createHandleProgressBar(false) : handleDefaultProgress]
+    );
 
   /* chainWebpack: 通过webpack-chain的API扩展或修改webpack配置 */
   if (chainWebpack) {
