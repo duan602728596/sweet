@@ -75,9 +75,7 @@ export function requireModule(id: string): any {
 export function deleteCacheAndRequireModule(id: string): any {
   cleanRequireCache(id);
 
-  const module: { default: any } | any = require(id);
-
-  return 'default' in module ? module.default : module;
+  return requireModule(id);
 }
 
 /* 判断是否为readStream */
