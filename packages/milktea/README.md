@@ -53,6 +53,7 @@ module.exports = {
 * dll `{ Array<string> }` : 配置需要编译的dll模块
 * entry `{ any }` : 文件入口（参考webpack）
 * output `{ any }` : 文件出口（参考webpack）
+* alias `{ object }` : 模块别名（参考webpack）
 * externals `{ object }` : 外部扩展（参考webpack）
 * resolve `{ object }` : 解析（参考webpack）
 * devtool `{ string }`: 设置SourceMap的类型
@@ -114,6 +115,7 @@ module.exports = {
 * serverRender `{ boolean }` : 是否开启服务器端渲染
 * severEntry `{ any }` : 服务器端的文件入口（参考webpack）
 * serverOutput `{ any }` : 服务器端文件出口（参考webpack）
+* serverExternals `{ object }` : 服务器端的外部扩展（参考webpack）
 
 ## 引入svg
 

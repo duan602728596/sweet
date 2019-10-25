@@ -79,6 +79,7 @@ export interface SweetConfig {
   dll?: Array<string>;
   entry?: string | Array<string> | Entry | EntryFunc;
   output?: Output;
+  alias?: { [key: string]: string };
   externals?: ExternalsElement | ExternalsElement[];
   resolve?: Resolve;
   devtool?: Options.Devtool;
@@ -94,6 +95,7 @@ export interface SweetConfig {
   serverRender?: boolean;
   serverEntry?: string | Array<string> | Entry | EntryFunc;
   serverOutput?: Output;
+  serverExternals?: ExternalsElement | ExternalsElement[];
   frame?: Frame;
   chainWebpack?: (config: Config) => void;
   serverChainWebpack?: (config: Config) => void;
