@@ -70,9 +70,8 @@ export default function(sweetConfig: SweetConfig | null | undefined, sweetOption
     // dll
     .plugin('webpack.DllPlugin')
     .use(webpack.DllPlugin, [{
-      path: path.join(dllCache, 'manifest.json'),
-      name: '[name]_[hash:5]',
-      context: sweetOptions.basicPath
+      path: path.join(sweetOptions.basicPath, dllCache, 'manifest.json'),
+      name: '[name]_[hash:5]'
     }])
     .end()
     // moment
