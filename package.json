@@ -36,7 +36,7 @@
     "redux-immutable": "^4.0.0",
     "redux-thunk": "^2.3.0",
     "reselect": "^4.0.0",
-    "source-map-support": "^0.5.15"
+    "source-map-support": "^0.5.16"
   },
   "devDependencies": {
     "@sweet-milktea/milktea": "^0.6.4",
