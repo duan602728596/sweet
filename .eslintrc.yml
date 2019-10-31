@@ -12,9 +12,6 @@ parserOptions:
   sourceType: module
 plugins:
   - react
-settings:
-  react:
-    version: '16.10'
 overrides:
   - files:
       - '*.ts'
