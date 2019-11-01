@@ -21,7 +21,7 @@ export default function(sweetConfig: SweetConfig | null | undefined, sweetOption
     rules,
     noParse,
     plugins,
-    devtool,
+    serverDevtool,
     serverChainWebpack
   }: SweetConfig = sweetConfigCopy;
   const isDevelopment: boolean = mode === 'development';
@@ -37,9 +37,9 @@ export default function(sweetConfig: SweetConfig | null | undefined, sweetOption
   config
     .merge({
       mode,
-      devtool: devtool || (isDevelopment ? 'module-eval-source-map' : 'module-source-map'),
+      devtool: serverDevtool ?? (isDevelopment ? 'module-eval-source-map' : 'module-source-map'),
       resolve: {
-        extensions: ['.js', '.jsx', '.mjs', 'wasm', '.json', '.ts', '.tsx']
+        extensions: ['.js', '.jsx', '.mjs', '.wasm', '.json', '.ts', '.tsx']
       },
       target: 'async-node',
       node: {

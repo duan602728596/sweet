@@ -91,12 +91,14 @@ export interface SweetConfig {
   sass?: SASS;
   css?: LESS;
   html?: Array<HtmlItem>;
+  frame?: Frame;
+  chainWebpack?: (config: Config) => void;
+  filesMap?: boolean | { [key: string]: string };
+  // ssr
   serverRender?: boolean;
   serverEntry?: string | Array<string> | Entry | EntryFunc;
   serverOutput?: Output;
   serverExternals?: ExternalsElement | ExternalsElement[];
-  frame?: Frame;
-  chainWebpack?: (config: Config) => void;
+  serverDevtool?: Options.Devtool;
   serverChainWebpack?: (config: Config) => void;
-  filesMap?: boolean | { [key: string]: string };
 }

@@ -8,3 +8,4 @@ require('./update/update');
 require('./image2webp/image2webp');
 require('./imageCompress/imageCompress');
 require('./image2icns/image2icns');
+require('./media2webp/media2webp');

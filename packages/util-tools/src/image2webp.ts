@@ -1,6 +1,7 @@
 import * as path from 'path';
 import * as imageMin from 'imagemin';
 import * as imageMinWebP from 'imagemin-webp';
+import { formatPath } from './utils';
 
 /**
  * 将图片批量转换成webp格式
@@ -10,10 +11,9 @@ import * as imageMinWebP from 'imagemin-webp';
  */
 async function image2webp(entry: string, output: string, quality?: number): Promise<any> {
   const q: number = typeof quality !== 'number' ? 70 : quality;
-  const p: string = path.join(entry, '**/*.{jpg,jpeg,png}')
-    .replace(/\\/g, '/');
+  const imgFile: string = formatPath(path.join(entry, '**/*.{jpg,jpeg,png}'));
 
-  await imageMin([p], {
+  await imageMin([imgFile], {
     destination: output,
     plugins: [
       imageMinWebP({
