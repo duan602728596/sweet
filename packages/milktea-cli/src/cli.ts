@@ -10,6 +10,7 @@ import argvUpdate from './argv/argvUpdate';
 import argvImage2WebP from './argv/argvImage2WebP';
 import argvImageCompress from './argv/argvImageCompress';
 import argvImage2Icns from './argv/argvImage2Icns';
+import argvMedia2WebP from './argv/argvMedia2WebP';
 
 /* 获取参数 */
 const argv: object = yargs
@@ -19,6 +20,7 @@ const argv: object = yargs
   .command('server', '启动服务器', (): void => undefined, argvServer)
   .command('update', '工具：检查当前目录是否有依赖需要更新', (): void => undefined, argvUpdate)
   .command('image2webp', '工具：图片批量转换成webp格式', (): void => undefined, argvImage2WebP)
+  .command('media2webp', '工具：图片、视频批量转换成webp格式', (): void => undefined, argvMedia2WebP)
   .command('imageCompress', '工具：图片批量压缩', (): void => undefined, argvImageCompress)
   .command('image2icns', '工具：图片转icns图标', (): void => undefined, argvImage2Icns)
   .options({
@@ -104,6 +106,10 @@ const argv: object = yargs
     },
     imageOutput: {
       describe: '输出批量转换或压缩的图片的文件夹，或输出icns图标的文件',
+      type: 'string'
+    },
+    ext: {
+      describe: '其他批量转换成webp的图片或视频扩展名（扩展名用 “,” 分隔）',
       type: 'string'
     },
     quality: {

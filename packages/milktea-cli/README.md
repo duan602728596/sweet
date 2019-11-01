@@ -47,6 +47,10 @@ milktea-cli是一个快速运行环境的工具。
   * `--imageEntry`: 源图片文件夹。
   * `--imageOutput`: 输出文件夹。
   * `--quality`: 图片质量。
+* `milktea media2webp`: 将图片、视频批量转换成`*.webp`格式。
+  * `--imageEntry`: 源图片文件夹。
+  * `--imageOutput`: 输出文件夹。
+  * `--ext`: 其他扩展名文件。
 * `milktea imageCompress`: 图片批量压缩。
   * `--imageEntry`: 源图片文件夹。
   * `--imageOutput`: 输出文件夹。

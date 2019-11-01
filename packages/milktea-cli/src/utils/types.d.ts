@@ -33,6 +33,7 @@ export interface Argv {
   registry: number;
   imageEntry: string;
   imageOutput: string;
+  ext: string;
   quality: number;
   size: number;
   retina: number;
