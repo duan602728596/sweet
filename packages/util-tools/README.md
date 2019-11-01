@@ -38,9 +38,21 @@ import imageCompress from '@sweet-milktea/util-tools/imageCompress';
 
 imageCompress(
   './src',   // 入口文件夹
-  './build'  // 输出文件夹
+  './build', // 输出文件夹
+  // 图片压缩选项配置
+  {
+    png
+    jpg,
+    gif
+  }
 );
 ```
+
+### 压缩选项：
+
+* png：[https://github.com/imagemin/imagemin-pngquant#api](https://github.com/imagemin/imagemin-pngquant#api)
+* jpg：[https://github.com/imagemin/imagemin-jpegoptim#api](https://github.com/imagemin/imagemin-jpegoptim#api)
+* gif：[https://github.com/imagemin/imagemin-gifsicle#api](https://github.com/imagemin/imagemin-gifsicle#api)
 
 ## 生成icns图标
 
