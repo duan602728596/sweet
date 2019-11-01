@@ -13,14 +13,17 @@
     "clean": "rimraf ./lib",
     "test": "npm run clean:test && cross-env NODE_ENV=test mocha tests/test.js --timeout 180000",
     "clean:test": "npm run clean:webp && npm run clean:output && npm run clean:icns",
-    "clean:webp": "rimraf ./tests/image2webp/*.webp",
+    "clean:webp": "rimraf ./tests/**/*.webp",
     "clean:output": "rimraf ./tests/imageCompression/output",
     "clean:icns": "rimraf ./tests/image2icns/*.icns"
   },
   "dependencies": {
     "@fiahfy/icns": "^0.0.5",
+    "@ffmpeg-installer/ffmpeg": "^1.0.20",
     "colors": "^1.4.0",
+    "fluent-ffmpeg": "^2.1.2",
     "fs-extra": "^8.1.0",
+    "glob": "^7.1.5",
     "imagemin": "^7.0.0",
     "imagemin-gifsicle": "^6.0.1",
     "imagemin-jpegoptim": "^6.0.0",

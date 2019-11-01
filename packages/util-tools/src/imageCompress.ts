@@ -4,6 +4,7 @@ import imageminPngquant, { Options as PngOptions } from 'imagemin-pngquant';
 import * as imageminJpegoptim from 'imagemin-jpegoptim';
 import * as imageminGifsicle from 'imagemin-gifsicle';
 import * as _ from 'lodash';
+import { formatPath } from './utils';
 
 interface CompressOptions {
   png?: PngOptions;
@@ -18,8 +19,7 @@ interface CompressOptions {
  * @param { CompressOptions } compressOptions: 压缩选项
  */
 async function imageCompress(entry: string, output: string, compressOptions: CompressOptions = {}): Promise<void> {
-  const imgFile: string = path.join(entry, '**/*.{jpg,jpeg,png,gif}')
-    .replace(/\\/g, '/');
+  const imgFile: string = formatPath(path.join(entry, '**/*.{jpg,jpeg,png,gif}'));
 
   // 默认选项
   const pngCompressOptions: PngOptions | undefined = compressOptions.png;
