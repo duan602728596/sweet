@@ -2,6 +2,21 @@
 
 一些通用的工具。
 
+## webp图片、视频批量转换工具
+
+使用方法：
+
+```javascript
+import media2webp from '@sweet-milktea/util-tools/media2webp';
+
+media2webp(
+  './src',        // 入口文件夹
+  './build',      // 输出文件夹
+  true,           // 是否包含视频
+  ['ogg', 'rmvb'] // 配置其他想要转换的格式
+);
+```
+
 ## 查看当前工程下是否有依赖需要升级
 
 使用方法：
@@ -41,9 +56,9 @@ imageCompress(
   './build', // 输出文件夹
   // 图片压缩选项配置
   {
-    png
-    jpg,
-    gif
+    png: {},
+    jpg: {},
+    gif: {}
   }
 );
 ```
