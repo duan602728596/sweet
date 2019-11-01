@@ -18,7 +18,7 @@ interface CompressOptions {
  * @param { CompressOptions } compressOptions: 压缩选项
  */
 async function imageCompress(entry: string, output: string, compressOptions: CompressOptions = {}): Promise<void> {
-  const p: string = path.join(entry, '**/*.{jpg,jpeg,png,gif}')
+  const imgFile: string = path.join(entry, '**/*.{jpg,jpeg,png,gif}')
     .replace(/\\/g, '/');
 
   // 默认选项
@@ -33,11 +33,9 @@ async function imageCompress(entry: string, output: string, compressOptions: Com
   const jpgOptions: object = _.merge({
     max: 70
   }, jpgCompressOptions);
-  const gifOptions: object = _.merge({
-    optimizationLevel: 3
-  }, gifCompressOptions);
+  const gifOptions: object = _.merge({}, gifCompressOptions);
 
-  await imageMin([p], {
+  await imageMin([imgFile], {
     destination: output,
     plugins: [
       imageminPngquant(pngOptions),
