@@ -39,7 +39,7 @@
     "source-map-support": "^0.5.16"
   },
   "devDependencies": {
-    "@sweet-milktea/milktea": "^0.6.5",
+    "@sweet-milktea/milktea": "^0.6.6",
     "@sweet-milktea/util-tools": "^0.6.5",
     "babel-eslint": "^10.0.3",
     "babel-plugin-import": "^1.12.2",
