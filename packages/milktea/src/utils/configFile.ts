@@ -1,14 +1,15 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import register from '@babel/register';
-import * as cosmiconfig from 'cosmiconfig';
+import { cosmiconfigSync, LoaderSync } from 'cosmiconfig';
+import { CosmiconfigResult, Config } from 'cosmiconfig/dist/types';
 import { createBabelPlugins } from '../config/babelConfig';
 import { requireModule } from './utils';
-import { SweetConfig, SweetOptions } from './types';
+import { SweetConfig, SweetOptions, ExplorerSync } from './types';
 
 /* 创建cosmiconfig的js加载器 */
-function createJsRegisterLoader(sweetOptions: SweetOptions): Function {
-  return function jsRegisterLoader(filepath: string, content?: string): any {
+function createJsRegisterLoader(sweetOptions: SweetOptions): LoaderSync {
+  return function jsRegisterLoader(filepath: string, content: string): Config | null {
     register({
       presets: [
         [
@@ -32,15 +33,15 @@ function createJsRegisterLoader(sweetOptions: SweetOptions): Function {
 }
 
 /* 获取配置文件 */
-function getSweetConfigFile(sweetOptions: SweetOptions, configFile?: string): SweetConfig {
+function configFile(sweetOptions: SweetOptions, configFile?: string): SweetConfig {
   // @babel/register
-  const jsRegisterLoader: Function = createJsRegisterLoader(sweetOptions);
+  const jsRegisterLoader: LoaderSync = createJsRegisterLoader(sweetOptions);
 
   // 配置文件加载器
   const MODULE_NAME: string = 'sweet';
   const ERROR_MSG: string = 'Please configure the .sweetrc.js or sweet.config.js file first.';
 
-  const explorer: { searchSync: Function } = cosmiconfig(MODULE_NAME, {
+  const explorerSync: ExplorerSync = cosmiconfigSync(MODULE_NAME, {
     searchPlaces: [
       `${ MODULE_NAME }.config.js`,
       `.${ MODULE_NAME }rc.js`
@@ -62,13 +63,13 @@ function getSweetConfigFile(sweetOptions: SweetOptions, configFile?: string): Sw
     }
 
     if (fs.existsSync(sweetConfigFile)) {
-      return jsRegisterLoader(sweetConfigFile);
+      return jsRegisterLoader(sweetConfigFile, '');
     } else {
       throw new Error(ERROR_MSG);
     }
   } else {
     // 加载默认的配置文件
-    const searchResult: { config: SweetConfig; filepath: string } | null = explorer.searchSync();
+    const searchResult: CosmiconfigResult = explorerSync.search();
 
     if (searchResult === null) {
       throw new Error(ERROR_MSG);
@@ -78,4 +79,4 @@ function getSweetConfigFile(sweetOptions: SweetOptions, configFile?: string): Sw
   }
 }
 
-export default getSweetConfigFile;
+export default configFile;
