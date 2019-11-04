@@ -5,7 +5,7 @@ import webpackConfig from './config';
 import webpackServerRenderConfig from './server';
 import webpackDllConfig from './dll';
 import { SweetConfig, SweetOptions, Mode, WebpackLog } from './utils/types';
-import getSweetConfigFile from './utils/getSweetConfigFile';
+import configFile from './utils/configFile';
 
 type SweetConfigArgs = SweetConfig | string | null | undefined;
 type Config = SweetConfig | null | undefined;
@@ -18,11 +18,11 @@ const sweetOptions: SweetOptions = {
 /* 获取配置 */
 function getConfig(sweetConfig?: SweetConfigArgs): Config {
   if (typeof sweetConfig === 'string') {
-    return getSweetConfigFile(sweetOptions, sweetConfig);
+    return configFile(sweetOptions, sweetConfig);
   } else if (_.isPlainObject(sweetConfig)) {
     return sweetConfig;
   } else {
-    return getSweetConfigFile(sweetOptions);
+    return configFile(sweetOptions);
   }
 }
 
