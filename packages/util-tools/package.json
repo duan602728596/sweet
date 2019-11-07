@@ -23,7 +23,7 @@
     "colors": "^1.4.0",
     "fluent-ffmpeg": "^2.1.2",
     "fs-extra": "^8.1.0",
-    "glob": "^7.1.5",
+    "glob": "^7.1.6",
     "imagemin": "^7.0.0",
     "imagemin-gifsicle": "^6.0.1",
     "imagemin-jpegoptim": "^6.0.0",
@@ -34,7 +34,7 @@
     "semver": "^6.3.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.7.0",
+    "@babel/core": "^7.7.2",
     "@babel/preset-env": "^7.7.1",
     "@babel/register": "^7.7.0",
     "chai": "^4.2.0",
