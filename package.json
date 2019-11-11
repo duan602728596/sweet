@@ -29,7 +29,7 @@
     "vue-meta": "^2.3.1",
     "vue-router": "^3.1.3",
     "vue-server-renderer": "^2.6.10",
-    "vuex": "^3.1.1"
+    "vuex": "^3.1.2"
   },
   "devDependencies": {
     "@sweet-milktea/milktea": "^0.6.6",
