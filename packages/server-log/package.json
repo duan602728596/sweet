@@ -1,6 +1,6 @@
 {
   "name": "@sweet-milktea/server-log",
-  "version": "0.3.9",
+  "version": "0.6.6",
   "description": "服务端的koa日志中间件函数",
   "homepage": "https://github.com/duan602728596/sweet",
   "repository": {
