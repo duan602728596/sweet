@@ -1,3 +1,4 @@
+import * as util from 'util';
 import * as path from 'path';
 import * as Stream from 'stream';
 import * as _ from 'lodash';
@@ -84,23 +85,21 @@ export function isReadStream(input: string | Stream): input is Stream {
 }
 
 /* 读取stream流 */
-export function readStream(stream: Stream): Promise<Buffer> {
+export const readStream: (stream: Stream) => Promise<Buffer> = util.promisify(function(stream: Stream, callback: Function): void {
   const chunks: Array<Buffer> = [];
 
-  return new Promise((resolve: Function, reject: Function): void => {
-    stream.on('data', function(chunk: Buffer): void {
-      chunks.push(chunk);
-    });
-
-    stream.on('end', function(): void {
-      resolve(Buffer.concat(chunks));
-    });
-
-    stream.on('error', function(err: Error): void {
-      reject(err);
-    });
+  stream.on('data', function(chunk: Buffer): void {
+    chunks.push(chunk);
   });
-}
+
+  stream.on('end', function(): void {
+    callback(null, Buffer.concat(chunks));
+  });
+
+  stream.on('error', function(err: Error): void {
+    callback(err);
+  });
+});
 
 /* 格式化目录 */
 export function formatPath(sweetOptions: SweetOptions, file: string): string {
