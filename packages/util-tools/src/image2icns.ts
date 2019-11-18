@@ -1,9 +1,9 @@
 import * as fs from 'fs';
 import * as fse from 'fs-extra';
-import * as Icns from '@fiahfy/icns';
+import { Icns, IcnsImage, OSType } from '@fiahfy/icns';
 
 /* 解析osType */
-const oneK: { [key: string]: string } = {
+const oneK: { [key: string]: OSType } = {
   '16': 'ic04',
   '32': 'ic05',
   '128': 'ic07',
@@ -12,7 +12,7 @@ const oneK: { [key: string]: string } = {
   '1024': 'ic10'
 };
 
-const twoK: { [key: string]: string } = {
+const twoK: { [key: string]: OSType } = {
   '512': 'ic10',
   '16': 'ic11',
   '32': 'ic12',
@@ -20,7 +20,7 @@ const twoK: { [key: string]: string } = {
   '256': 'ic14'
 };
 
-function getOsType(size: number, retina: number): string {
+function getOsType(size: number, retina: number): OSType {
   const sizeStr: string = String(size);
 
   if (retina === 2 && (sizeStr in twoK)) {
@@ -49,12 +49,13 @@ async function image2icns(entry: string, output: string, options: Options = {}):
     retina = 1
   }: Options = options;
   const icns: Icns = new Icns();
-  const osType: string = getOsType(size, retina);
+  const osType: OSType = getOsType(size, retina);
 
   // 生成图标
   const imageData: Buffer = await fs.promises.readFile(entry);
+  const image: IcnsImage = await IcnsImage.fromPNG(imageData, osType);
 
-  await icns.appendImage(imageData, osType);
+  icns.append(image);
   await fse.outputFile(output, icns.data);
 }
 
