@@ -21,13 +21,18 @@ function argvStart(argv: Argv): void {
   }
 
   const compiler: Compiler = webpack(webpackConfig);
+  let serverRenderCompiler: Compiler | null = null,
+    serverRenderWatching: Watching | null = null;
 
   if (!_.isNil(argv.serverRender)) {
-    compiler.hooks.done.tapAsync('sweet-milktea-build', function(): void {
-      const serverRenderCompiler: Compiler = webpack(
+    compiler.hooks.done.tap('sweet-milktea-build', function(): void {
+      // ssr的钩子只执行一次
+      if (serverRenderCompiler !== null && serverRenderWatching !== null) return;
+
+      serverRenderCompiler = webpack(
         milktea.serverRenderConfig(argv.config, 'development', argv.webpackLog)
       );
-      const serverRenderWatching: Watching = serverRenderCompiler.watch({
+      serverRenderWatching = serverRenderCompiler.watch({
         aggregateTimeout: 500
       }, !argv.webpackLog || argv.webpackLog === 'progress' ? milktea.callbackOnlyError : milktea.callback);
     });
