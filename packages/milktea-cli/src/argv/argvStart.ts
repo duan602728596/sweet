@@ -23,12 +23,14 @@ function argvStart(argv: Argv): void {
   const compiler: Compiler = webpack(webpackConfig);
 
   if (!_.isNil(argv.serverRender)) {
-    const serverRenderCompiler: Compiler = webpack(
-      milktea.serverRenderConfig(argv.config, 'development', argv.webpackLog)
-    );
-    const serverRenderWatching: Watching = serverRenderCompiler.watch({
-      aggregateTimeout: 500
-    }, !argv.webpackLog || argv.webpackLog === 'progress' ? milktea.callbackOnlyError : milktea.callback);
+    compiler.hooks.done.tapAsync('sweet-milktea-build', function(): void {
+      const serverRenderCompiler: Compiler = webpack(
+        milktea.serverRenderConfig(argv.config, 'development', argv.webpackLog)
+      );
+      const serverRenderWatching: Watching = serverRenderCompiler.watch({
+        aggregateTimeout: 500
+      }, !argv.webpackLog || argv.webpackLog === 'progress' ? milktea.callbackOnlyError : milktea.callback);
+    });
   }
 
   if (!_.isNil(argv.server)) {
