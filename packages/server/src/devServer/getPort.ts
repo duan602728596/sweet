@@ -9,13 +9,10 @@ import * as colors from 'colors/safe';
  * @param { number } httpPort: http端口
  */
 async function getPort(port: number, warn?: boolean, type?: 'http' | 'https', httpPort?: number): Promise<number> {
-  let usePort: number = await detectPort(port);
+  const oldPort: number = httpPort === port ? port + 1 : port;
+  const usePort: number = await detectPort(oldPort);
 
   if ((port !== usePort) && warn && type) {
-    if (type === 'https' && usePort === httpPort) {
-      usePort = await detectPort(httpPort + 1);
-    }
-
     const oldPort: string = colors.bold(String(port));
     const newPort: string = colors.bold(String(usePort));
     const text: string = colors.red(` - ${ type }端口 ${ oldPort } 已被占用，使用新的端口：${ newPort }。`);
