@@ -1,6 +1,6 @@
 {
   "name": "@sweet-milktea/milktea-cli",
-  "version": "0.6.6",
+  "version": "0.6.7",
   "description": "sweet cli工具",
   "homepage": "https://github.com/duan602728596/sweet",
   "repository": {
@@ -41,7 +41,7 @@
     "@babel/preset-env": "^7.7.1",
     "@babel/register": "^7.7.0",
     "@sweet-milktea/milktea": "^0.6.6",
-    "@sweet-milktea/server": "^0.6.4",
+    "@sweet-milktea/server": "^0.6.7",
     "@sweet-milktea/server-log": "^0.6.6",
     "@sweet-milktea/util-tools": "^0.6.6",
     "babel-loader": "^8.0.6",
