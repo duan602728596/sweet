@@ -103,6 +103,11 @@ async function devServer(args: DevServerArgs): Promise<void> {
   /* https服务 */
   const [useHttps, keyFile, certFile]: HttpsCertificate = await createHttpsCertificate(sweetOptions, httpsKey, httpsCert);
 
+  /* 显示启动信息 */
+  if (env !== 'test') {
+    await runningAtLog(sweetOptions, !!(useHttps && keyFile && certFile));
+  }
+
   /* 中间件 */
   createSweetOptionsMiddleware(app, sweetOptions);
 
@@ -142,11 +147,6 @@ async function devServer(args: DevServerArgs): Promise<void> {
 
     http2.createSecureServer(httpsConfig, app.callback())
       .listen(sweetOptions.httpsPort);
-  }
-
-  /* 显示启动信息 */
-  if (env !== 'test') {
-    await runningAtLog(sweetOptions, !!(useHttps && keyFile && certFile));
   }
 }
 
