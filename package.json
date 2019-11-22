@@ -13,8 +13,8 @@
     "update": "milktea update"
   },
   "dependencies": {
-    "@sweet-milktea/milktea-cli": "^0.6.6",
-    "@sweet-milktea/server": "^0.6.4",
+    "@sweet-milktea/milktea-cli": "^0.6.7",
+    "@sweet-milktea/server": "^0.6.7",
     "@sweet-milktea/server-log": "^0.6.6",
     "antd": "^3.25.2",
     "axios": "^0.19.0",
