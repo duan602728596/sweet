@@ -18,7 +18,7 @@ export default function(sweetConfig: SweetConfig, config: Config): void {
           .end()
           .use('url-loader')
           .loader('url-loader')
-          .options(createImageConfig(sweetConfig));
+          .options(createImageConfig(sweetConfig, false));
       }
     );
 
@@ -29,7 +29,7 @@ export default function(sweetConfig: SweetConfig, config: Config): void {
         config
           .module
           .rule('svg')
-          .test(/\.svg$/)
+          .test(/component\.svg$/)
           .use('vue-svg-loader')
           .loader('vue-svg-loader');
       }

@@ -5,8 +5,9 @@ import { SweetConfig } from '../utils/types';
 /**
  * url-loader配置
  * @param { SweetConfig } sweetConfig
+ * @param { boolean } esModule: 是否配置为esModule
  */
-export function createImageConfig(sweetConfig: SweetConfig): LoaderOptions {
+export function createImageConfig(sweetConfig: SweetConfig, esModule: boolean = true): LoaderOptions {
   /**
    * mode { string }: 开发模式还是生产模式
    * serverRender { boolean }: 开启服务器端渲染
@@ -18,6 +19,7 @@ export function createImageConfig(sweetConfig: SweetConfig): LoaderOptions {
   return {
     name: filename,
     limit: 8192,
-    emitFile: !serverRender
+    emitFile: !serverRender,
+    esModule
   };
 }
