@@ -1,7 +1,7 @@
 import * as MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import { getLocalIdent } from 'css-loader/dist/utils';
-import { LoaderOptions } from 'webpack-chain';
 import { loader } from 'webpack';
+import { LoaderOptions } from 'webpack-chain';
 import { Frame } from '../utils/types';
 
 /* css-loader配置 */
