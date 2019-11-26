@@ -27,7 +27,7 @@ class Index extends Vue {
           <Icon class={ style.zan } type="like" role="button" onClick={ this.handleZanClick } />
           <span class={ style.len }>{ likeLen }</span>
         </div>
-        <img class={ style.img } src={ require('./images/1R5031O0-17.jpg') } />
+        <img class={ style.img } src={ require('./images/1R5031O0-17.jpg').default } />
       </article>
     );
   }
