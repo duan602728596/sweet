@@ -22,6 +22,7 @@
     "@storybook/addon-notes": "^5.2.6",
     "@storybook/cli": "^5.2.6",
     "@storybook/react": "^5.2.6",
+    "@types/html-minifier": "^3.5.3",
     "@types/koa": "^2.11.0",
     "@types/lodash": "^4.14.149",
     "@types/node": "^12.12.14",
