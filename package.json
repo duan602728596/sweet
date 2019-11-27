@@ -19,7 +19,7 @@
     "antd": "^3.25.3",
     "axios": "^0.19.0",
     "classnames": "^2.2.6",
-    "core-js": "^3.4.2",
+    "core-js": "^3.4.3",
     "immutable": "^4.0.0-rc.12",
     "node-cmd": "^3.0.0",
     "pm2": "^4.2.0",
@@ -39,8 +39,8 @@
     "source-map-support": "^0.5.16"
   },
   "devDependencies": {
-    "@sweet-milktea/milktea": "^0.7.0",
-    "@sweet-milktea/util-tools": "^0.6.6",
+    "@sweet-milktea/milktea": "^0.7.1",
+    "@sweet-milktea/util-tools": "^0.7.1",
     "babel-eslint": "^10.0.3",
     "babel-plugin-import": "^1.13.0",
     "commitizen": "^4.0.3",
