@@ -85,10 +85,11 @@ function versionEqual(oldVersion: string, newVersion: string | undefined): boole
   if (!newVersion) {
     return true;
   } else {
-    const formatOldVersion: string = semver.coerce(oldVersion).version;
-    const hasNewVersion: boolean = semver.lt(formatOldVersion, newVersion);
+    const formatOldVersion: string | undefined = semver.coerce(oldVersion)?.version;
 
-    return hasNewVersion;
+    if (!formatOldVersion) return false; // 当oldVersion为“*”时，不会有格式化后的数据
+
+    return semver.lt(formatOldVersion, newVersion);
   }
 }
 
