@@ -17,11 +17,11 @@
     "clean:docs": "rimraf storybook-static"
   },
   "dependencies": {
-    "@storybook/addon-actions": "^5.2.6",
-    "@storybook/addon-links": "^5.2.6",
-    "@storybook/addon-notes": "^5.2.6",
-    "@storybook/cli": "^5.2.6",
-    "@storybook/react": "^5.2.6",
+    "@storybook/addon-actions": "^5.2.7",
+    "@storybook/addon-links": "^5.2.7",
+    "@storybook/addon-notes": "^5.2.7",
+    "@storybook/cli": "^5.2.7",
+    "@storybook/react": "^5.2.7",
     "@types/html-minifier": "^3.5.3",
     "@types/koa": "^2.11.0",
     "@types/lodash": "^4.14.149",
@@ -49,8 +49,8 @@
     "cross-env": "^6.0.3",
     "cz-conventional-changelog": "^3.0.2",
     "es-module-path-case-check": "^1.4.0",
-    "eslint": "^6.7.1",
-    "eslint-plugin-react": "^7.16.0",
+    "eslint": "^6.7.2",
+    "eslint-plugin-react": "^7.17.0",
     "husky": "^3.1.0",
     "lint-staged": "^9.5.0",
     "tslint": "^5.20.1"
