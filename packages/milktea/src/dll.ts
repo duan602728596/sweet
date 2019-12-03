@@ -5,9 +5,9 @@ import * as webpack from 'webpack';
 import { Configuration } from 'webpack';
 import * as Config from 'webpack-chain';
 import * as merge from 'webpack-merge';
+import * as WebpackBar from 'webpackbar';
 import { createPresetEnv } from './config/babelConfig';
 import { handleDefaultProgress } from './plugins/handleProgress';
-import createHandleProgressBar from './plugins/handleProgressBar';
 import { babelCache, dllCache } from './config/cacheConfig';
 import { SweetConfig, SweetOptions, JS } from './utils/types';
 
@@ -66,6 +66,8 @@ export default function(sweetConfig: SweetConfig | null | undefined, sweetOption
     );
 
   // plugin
+  const useProgress: boolean = !webpackLog || webpackLog === 'progress';
+
   config
     // dll
     .plugin('webpack.DllPlugin')
@@ -82,10 +84,10 @@ export default function(sweetConfig: SweetConfig | null | undefined, sweetOption
     }])
     .end()
     // 进度条
-    .plugin('webpack.ProgressPlugin')
+    .plugin('progress')
     .use(
-      webpack.ProgressPlugin,
-      [!webpackLog || webpackLog === 'progress' ? createHandleProgressBar(false) : handleDefaultProgress]
+      useProgress ? WebpackBar : webpack.ProgressPlugin,
+      [!webpackLog || webpackLog === 'progress' ? { name: 'Dll Files Build' } : handleDefaultProgress]
     );
 
   /* chainWebpack: 通过webpack-chain的API扩展或修改webpack配置 */
