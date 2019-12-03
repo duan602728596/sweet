@@ -17,11 +17,11 @@
     "clean:docs": "rimraf storybook-static"
   },
   "dependencies": {
-    "@storybook/addon-actions": "^5.2.7",
-    "@storybook/addon-links": "^5.2.7",
-    "@storybook/addon-notes": "^5.2.7",
-    "@storybook/cli": "^5.2.7",
-    "@storybook/react": "^5.2.7",
+    "@storybook/addon-actions": "^5.2.8",
+    "@storybook/addon-links": "^5.2.8",
+    "@storybook/addon-notes": "^5.2.8",
+    "@storybook/cli": "^5.2.8",
+    "@storybook/react": "^5.2.8",
     "@types/html-minifier": "^3.5.3",
     "@types/koa": "^2.11.0",
     "@types/lodash": "^4.14.149",
@@ -41,8 +41,8 @@
   "devDependencies": {
     "@sweet-milktea/milktea-cli": "^0.6.7",
     "@sweet-milktea/util-tools": "^0.7.1",
-    "@typescript-eslint/eslint-plugin-tslint": "^2.9.0",
-    "@typescript-eslint/parser": "^2.9.0",
+    "@typescript-eslint/eslint-plugin-tslint": "^2.10.0",
+    "@typescript-eslint/parser": "^2.10.0",
     "babel-eslint": "^10.0.3",
     "babel-loader": "^8.0.6",
     "commitizen": "^4.0.3",
