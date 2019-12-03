@@ -5,9 +5,9 @@ import * as webpack from 'webpack';
 import * as Config from 'webpack-chain';
 import { PluginClass } from 'webpack-chain';
 import * as HtmlWebpackPlugin from 'html-webpack-plugin';
-import * as WebpackBar from 'webpackbar';
 import { requireModule } from '../utils/utils';
 import { SweetConfig, SweetOptions, HtmlItem } from '../utils/types';
+import createHandleProgressBar from './handleProgressBar';
 
 export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, config: Config): void {
   const { mode, html, frame, serverRender, webpackLog = 'progress' }: SweetConfig = sweetConfig;
@@ -75,13 +75,8 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
     .when(sweetConfig.frame !== 'test' && (!webpackLog || webpackLog === 'progress'),
       (config: Config): void => {
         config
-          .plugin('progress')
-          .use(WebpackBar, [serverRender ? {
-            name: 'SSR Files Build',
-            color: 'orange'
-          } : {
-            name: 'Files Build'
-          }]);
+          .plugin('webpack.ProgressPlugin')
+          .use(webpack.ProgressPlugin, [createHandleProgressBar(!!serverRender)]);
       }
     );
 }
