@@ -40,7 +40,7 @@
   },
   "devDependencies": {
     "@sweet-milktea/milktea": "^0.7.1",
-    "@sweet-milktea/util-tools": "^0.7.1",
+    "@sweet-milktea/util-tools": "^0.8.0",
     "babel-eslint": "^10.0.3",
     "babel-plugin-import": "^1.13.0",
     "commitizen": "^4.0.3",
