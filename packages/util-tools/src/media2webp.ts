@@ -1,8 +1,8 @@
 import * as path from 'path';
 import { ParsedPath } from 'path';
 import * as fse from 'fs-extra';
-import { formatPath, getFiles, ffmpeg } from './utils';
-
+import * as ffmpeg from 'fluent-ffmpeg';
+import { formatPath, getFiles } from './utils';
 
 const defaultExt: string[] = ['gif', 'png', 'jpg', 'jpeg'];
 const videoExt: string[] = ['mp4', 'flv', 'ts', 'mov', 'avi', 'mpg', 'mpeg'];
