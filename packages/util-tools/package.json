@@ -19,7 +19,7 @@
   },
   "dependencies": {
     "@fiahfy/icns": "^0.0.6",
-    "colors": "^1.4.0",
+    "chalk": "^3.0.0",
     "fluent-ffmpeg": "^2.1.2",
     "fs-extra": "^8.1.0",
     "glob": "^7.1.6",

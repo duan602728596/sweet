@@ -1,5 +1,5 @@
 import * as ProgressBar from 'progress';
-import * as colors from 'colors/safe';
+import * as chalk from 'chalk';
 import * as moment from 'moment';
 
 /**
@@ -37,7 +37,7 @@ function createHandleProgressBar(ssr: boolean): Function {
       progressBarCache = {
         current: 0,
         startTime: nowTime,
-        bar: new ProgressBar(`${ colors.blue('Build') } [:bar] ${ colors.yellow(':percent') } :time`, {
+        bar: new ProgressBar(`${ chalk.blue('Build') } [:bar] ${ chalk.yellow(':percent') } :time`, {
           complete: '=',
           incomplete: ' ',
           width: 20,
@@ -58,7 +58,7 @@ function createHandleProgressBar(ssr: boolean): Function {
         time: `${ endTime }s`
       });
 
-      console.log(`\n[${ timeStr }] ${ colors.green(buildDoneMsg) }\n`);
+      console.log(`\n[${ timeStr }] ${ chalk.green(buildDoneMsg) }\n`);
       progressBarCache = null;
 
       return;

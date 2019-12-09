@@ -37,7 +37,7 @@
     "@vue/babel-helper-vue-jsx-merge-props": "^1.0.0",
     "@vue/babel-preset-jsx": "^1.1.2",
     "babel-loader": "^8.0.6",
-    "colors": "^1.4.0",
+    "chalk": "^3.0.0",
     "core-js": "^3.4.8",
     "cosmiconfig": "^6.0.0",
     "css-loader": "^3.2.1",

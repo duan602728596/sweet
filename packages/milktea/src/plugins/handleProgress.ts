@@ -1,4 +1,4 @@
-import * as colors from 'colors/safe';
+import * as chalk from 'chalk';
 import * as _ from 'lodash';
 
 /**
@@ -14,14 +14,14 @@ function calculateProgress(percentage: number): string {
 
 /* 格式化输出 */
 export function handleDefaultProgress(percentage: number, message: string, ...args: Array<string>): void {
-  console.info(colors.bgYellow(`${ calculateProgress(percentage) }%`), message, ...args);
+  console.info(chalk.bgYellow(`${ calculateProgress(percentage) }%`), message, ...args);
 }
 
 /* 服务端渲染的格式化输出 */
 export function handleServerRenderProgress(percentage: number, message: string, ...args: Array<string>): void {
   const consoleArgs: string[] = _.transform(args, function(result: string[], value: string, index: number): void {
-    result.push(colors.green(value));
+    result.push(chalk.green(value));
   }, []);
 
-  console.info(colors.bgGreen(`${ calculateProgress(percentage) }%`), colors.green(message), ...consoleArgs);
+  console.info(chalk.bgGreen(`${ calculateProgress(percentage) }%`), chalk.green(message), ...consoleArgs);
 }

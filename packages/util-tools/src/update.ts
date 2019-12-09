@@ -5,7 +5,7 @@ import { Response } from 'request';
 import * as _ from 'lodash';
 import { Dictionary } from 'lodash';
 import * as semver from 'semver';
-import * as colors from 'colors/safe';
+import * as chalk from 'chalk';
 
 interface DistTags {
   latest?: string;
@@ -177,18 +177,18 @@ function consoleLogText(packageArray: Array<PackageItem>): string {
     if (item.next) {
       const t: string = `    ${ isNextNew ? '+' : ' ' } next   : ${ formatVersion(item.version, item.next) }\n`;
 
-      itemText += (noLatestAndErr && isNextNew) ? colors.green(t) : t;
+      itemText += (noLatestAndErr && isNextNew) ? chalk.green(t) : t;
     }
 
     if (item.rc) {
       const t: string = `    ${ isRcNew ? '+' : ' ' } rc     : ${ formatVersion(item.version, item.rc) }\n`;
 
-      itemText += (noLatestAndErr && isRcNew) ? colors.green(t) : t;
+      itemText += (noLatestAndErr && isRcNew) ? chalk.green(t) : t;
     }
 
     consoleText += (item.error === true)
-      ? colors.red(itemText)
-      : (isLatestNew ? colors.yellow(itemText) : itemText);
+      ? chalk.red(itemText)
+      : (isLatestNew ? chalk.yellow(itemText) : itemText);
   }
 
   return consoleText;
