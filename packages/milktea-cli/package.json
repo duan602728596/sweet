@@ -22,7 +22,7 @@
   },
   "dependencies": {
     "lodash": "^4.17.15",
-    "webpack": "^5.0.0-beta.7",
+    "webpack": "^5.0.0-beta.9",
     "yargs": "^15.0.2"
   },
   "devDependencies": {
