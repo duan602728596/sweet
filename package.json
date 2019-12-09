@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "@sweet-milktea/milktea-cli": "^0.6.7",
-    "@sweet-milktea/server": "^0.7.0",
+    "@sweet-milktea/server": "^0.8.1",
     "@sweet-milktea/server-log": "^0.6.6",
     "antd": "^3.26.0",
     "axios": "^0.19.0",
@@ -39,8 +39,8 @@
     "source-map-support": "^0.5.16"
   },
   "devDependencies": {
-    "@sweet-milktea/milktea": "^0.7.1",
-    "@sweet-milktea/util-tools": "^0.8.0",
+    "@sweet-milktea/milktea": "^0.8.1",
+    "@sweet-milktea/util-tools": "^0.8.1",
     "babel-eslint": "^10.0.3",
     "babel-plugin-import": "^1.13.0",
     "commitizen": "^4.0.3",
