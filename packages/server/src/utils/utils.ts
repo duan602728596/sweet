@@ -4,7 +4,7 @@ import * as Stream from 'stream';
 import * as _ from 'lodash';
 import { Dictionary } from 'lodash';
 import * as internalIp from 'internal-ip';
-import * as colors from 'colors/safe';
+import * as chalk from 'chalk';
 import { SweetOptions } from './types';
 
 /* 格式化数据 */
@@ -119,5 +119,5 @@ export async function runningAtLog(sweetOptions: SweetOptions, displayHttps: boo
     logs.push(`${ ' '.repeat(12) }https://${ ip }:${ sweetOptions.httpsPort }`);
   }
 
-  console.log(`\n${ colors.blue(logs.join('\n')) }\n`);
+  console.log(`\n${ chalk.blue(logs.join('\n')) }\n`);
 }
