@@ -1,8 +1,45 @@
+import * as path from 'path';
 import * as MiniCssExtractPlugin from 'mini-css-extract-plugin';
-import { getLocalIdent } from 'css-loader/dist/utils';
+import * as normalizePath from 'normalize-path';
+import * as cssesc from 'cssesc';
+import * as loaderUtils from 'loader-utils';
 import { loader } from 'webpack';
 import { LoaderOptions } from 'webpack-chain';
 import { Frame } from '../utils/types';
+
+/**
+ * TODO: css-loader v3.3.0 的getLocalIdent函数，由于无法导出，所以只能这么搞
+ * https://github.com/webpack-contrib/css-loader/blob/master/src/utils.js#L65
+ */
+const filenameReservedRegex: RegExp = /[<>:"/\\|?*\x00-\x1F]/g,
+  reControlChars: RegExp = /[\u0000-\u001f\u0080-\u009f]/g,
+  reRelativePath: RegExp = /^\.+/;
+
+export function cssLoaderGetLocalIdentFunc(loaderContext: loader.LoaderContext, localIdentName: string, localName: string, options: any): string {
+  if (!options.context) {
+    options.context = loaderContext.rootContext;
+  }
+
+  const request: string = normalizePath(
+    path.relative(options.context || '', loaderContext.resourcePath)
+  );
+
+  options.content = `${ options.hashPrefix + request }+${ unescape(localName) }`;
+
+  // Using `[path]` placeholder outputs `/` we need escape their
+  // Also directories can contains invalid characters for css we need escape their too
+  return cssesc(
+    loaderUtils
+      .interpolateName(loaderContext, localIdentName, options)
+      // For `[hash]` placeholder
+      .replace(/^((-?[0-9])|--)/, '_$1')
+      .replace(filenameReservedRegex, '-')
+      .replace(reControlChars, '-')
+      .replace(reRelativePath, '-')
+      .replace(/\./g, '-'),
+    { isIdentifier: true }
+  ).replace(/\\\[local\\\]/gi, localName);
+}
 
 /* css-loader配置 */
 // css-loader的getLocalIdent函数
@@ -17,7 +54,7 @@ export function cssLoaderGetLocalIdent(
     return localName;
   }
 
-  const className: string = getLocalIdent(loaderContext, localIdentName, localName, options);
+  const className: string = cssLoaderGetLocalIdentFunc(loaderContext, localIdentName, localName, options);
 
   return className;
 }
