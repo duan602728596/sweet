@@ -32,7 +32,7 @@
     "vuex": "^3.1.2"
   },
   "devDependencies": {
-    "@sweet-milktea/milktea": "^0.8.1",
+    "@sweet-milktea/milktea": "^0.9.0",
     "@sweet-milktea/util-tools": "^0.8.1",
     "babel-eslint": "^10.0.3",
     "babel-plugin-import": "^1.13.0",
