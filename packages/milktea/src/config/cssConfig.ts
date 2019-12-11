@@ -8,7 +8,7 @@ import { LoaderOptions } from 'webpack-chain';
 import { Frame } from '../utils/types';
 
 /**
- * TODO: css-loader v3.3.0 的getLocalIdent函数，由于无法导出，所以只能这么搞
+ * TODO: css-loader v3.3.0 的getLocalIdent函数，无法导出模块
  * https://github.com/webpack-contrib/css-loader/blob/master/src/utils.js#L65
  */
 const filenameReservedRegex: RegExp = /[<>:"/\\|?*\x00-\x1F]/g,
