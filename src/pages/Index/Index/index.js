@@ -2,8 +2,9 @@ import React from 'react';
 import { bindActionCreators } from 'redux';
 import { useSelector } from 'react-redux';
 import { createSelector, createStructuredSelector } from 'reselect';
+import { Typography } from 'antd';
+import { LikeFilled as IconLikeFilled } from '@ant-design/icons';
 import useActions from '../../../store/useActions';
-import { Typography, Icon } from 'antd';
 import style from './index.sass';
 import { setLikeLen } from '../reducer/reducer';
 import welcome, { ReactComponent as WelcomeSvgComponent } from './images/welcome.svg';
@@ -42,7 +43,7 @@ function Index(props) {
         如果你喜欢，你可以点个赞。
       </Typography.Paragraph>
       <div>
-        <Icon className={ style.zan } type="like" role="button" onClick={ handleZanClick } />
+        <IconLikeFilled className={ style.zan } role="button" onClick={ handleZanClick } />
         <span className={ style.len }>{ likeLen }</span>
       </div>
       <img className={ style.img } src={ require('./images/1R5031O0-17.jpg').default } />
