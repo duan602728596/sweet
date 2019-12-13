@@ -1,6 +1,11 @@
 import React from 'react';
 import { Link, withRouter } from 'react-router-dom';
-import { Layout, Menu, Icon, Avatar, Dropdown } from 'antd';
+import { Layout, Menu, Avatar, Dropdown } from 'antd';
+import {
+  LogoutOutlined as IconLogoutOutlined,
+  HomeOutlined as IconHomeOutlined,
+  BarsOutlined as IconBarsOutlined
+} from '@ant-design/icons';
 import style from './index.sass';
 
 /* header */
@@ -24,7 +29,7 @@ function Header(props) {
       <Menu>
         <Menu.Item>
           <Link to="/Login">
-            <Icon type="logout" />
+            <IconLogoutOutlined />
             退出
           </Link>
         </Menu.Item>
@@ -41,13 +46,13 @@ function Header(props) {
         <Menu mode="horizontal" theme="dark" selectedKeys={ [selectKeys()] }>
           <Menu.Item key="index">
             <Link to="/Index">
-              <Icon type="home" />
+              <IconHomeOutlined />
               首页
             </Link>
           </Menu.Item>
           <Menu.Item key="second">
             <Link to="/Second">
-              <Icon type="bars" />
+              <IconBarsOutlined />
               二级页
             </Link>
           </Menu.Item>

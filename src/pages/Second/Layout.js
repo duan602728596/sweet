@@ -1,6 +1,7 @@
 import React, { Fragment } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import Helmet from 'react-helmet';
+import { FolderOpenOutlined as IconFolderOpenOutlined } from '@ant-design/icons';
 import loadReducer from '../../store/loadReducer';
 import Main from '../../layouts/Main';
 import Content from '../../layouts/Content';
@@ -22,7 +23,7 @@ const options = [
   {
     id: 'page-2',
     name: '导航菜单-2',
-    icon: 'folder-open',
+    icon: <IconFolderOpenOutlined />,
     children: [
       {
         id: 'page-2-0',

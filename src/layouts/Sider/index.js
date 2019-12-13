@@ -6,7 +6,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link, withRouter } from 'react-router-dom';
-import { Layout, Menu, Icon } from 'antd';
+import { Layout, Menu } from 'antd';
 import style from './index.sass';
 import ErrorBoundary from '../ErrorBoundary/index';
 
@@ -46,7 +46,7 @@ function Sider(props) {
           <Menu.SubMenu key={ item.id }
             title={
               <span>
-                { item.icon ? <Icon type={ item.icon } /> : null }
+                { item.icon }
                 { item.name }
               </span>
             }
@@ -59,7 +59,7 @@ function Sider(props) {
         return (
           <Menu.Item key={ item.id }>
             <Link to={ item.url }>
-              { item.icon ? <Icon type={ item.icon } /> : null }
+              { item.icon }
               <span>{ item.name }</span>
             </Link>
           </Menu.Item>
