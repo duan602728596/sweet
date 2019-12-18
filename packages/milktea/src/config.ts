@@ -42,7 +42,7 @@ export default function(sweetConfig: SweetConfig | null | undefined, sweetOption
   config
     .merge({
       mode,
-      devtool: devtool ?? (isDevelopment ? 'module-eval-source-map' : 'none'),
+      devtool: devtool ?? (isDevelopment ? 'eval-source-map' : false),
       resolve: {
         extensions: ['.js', '.jsx', '.mjs', '.json', '.wasm', '.ts', '.tsx']
       },
