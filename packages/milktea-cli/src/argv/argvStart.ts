@@ -29,9 +29,20 @@ function argvStart(argv: Argv): void {
       // ssr的钩子只执行一次
       if (serverRenderCompiler !== null && serverRenderWatching !== null) return;
 
-      serverRenderCompiler = webpack(
-        milktea.serverRenderConfig(argv.config, 'development', argv.webpackLog)
-      );
+      const serverSideRenderConfig: Configuration = milktea.serverRenderConfig(argv.config, 'development', argv.webpackLog);
+
+      // koa-webpack需要output.publicPath
+      if (argv.server) {
+        if (!serverSideRenderConfig.output) {
+          serverSideRenderConfig.output = {};
+        }
+
+        if (!serverSideRenderConfig.output.publicPath) {
+          serverSideRenderConfig.output.publicPath = '/';
+        }
+      }
+
+      serverRenderCompiler = webpack(serverSideRenderConfig);
       serverRenderWatching = serverRenderCompiler.watch({
         aggregateTimeout: 500
       }, !argv.webpackLog || argv.webpackLog === 'progress' ? milktea.callbackOnlyError : milktea.callback);
