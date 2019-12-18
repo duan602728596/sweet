@@ -5,4 +5,4 @@ import * as moduleAlias from 'module-alias';
 moduleAlias.addAlias('http-proxy', '@bbkkbkk/http-proxy');
 
 // webpack5 && webpack-hot-client/lib/compiler.js
-moduleAlias.addAlias('webpack/lib/ParserHelpers', 'webpack/lib/JavascriptParserHelpers');
+moduleAlias.addAlias('webpack/lib/ParserHelpers', 'webpack/lib/javascript/JavascriptParserHelpers');
