@@ -28,7 +28,8 @@ function middleware(app: Koa, router: Router, compiler: Compiler | undefined, we
   /* webpack热替换服务 */
   if (compiler !== undefined) {
     const hotMiddlewareConfig: { [key: string]: any } = {
-      path: webpackHmrPath
+      path: webpackHmrPath,
+      log: false
     },
       devMiddlewareConfig: { [key: string]: any } = {
         publicPath: compiler?.options?.output?.publicPath ?? '/',
@@ -52,7 +53,6 @@ function middleware(app: Koa, router: Router, compiler: Compiler | undefined, we
 
     // 测试配置
     if (env === 'test') {
-      hotMiddlewareConfig.log = false;
       devMiddlewareConfig.logLevel = 'silent';
     }
 
