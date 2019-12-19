@@ -39,7 +39,7 @@
     "typescript": "^3.7.3"
   },
   "devDependencies": {
-    "@sweet-milktea/milktea-cli": "^0.6.7",
+    "@sweet-milktea/milktea-cli": "^0.10.0",
     "@sweet-milktea/util-tools": "^0.9.0",
     "@typescript-eslint/eslint-plugin-tslint": "^2.12.0",
     "@typescript-eslint/parser": "^2.12.0",
