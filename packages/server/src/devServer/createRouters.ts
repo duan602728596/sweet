@@ -4,6 +4,7 @@ import * as fs from 'fs';
 import * as Router from '@koa/router';
 import * as mime from 'mime-types';
 import preRenderInit from './preDevRender';
+import { webpackHmrPath } from '../utils/utils';
 import { ServerContext, SweetOptions } from '../utils/types';
 
 function createRouters(router: Router, sweetOptions: SweetOptions): void {
@@ -18,7 +19,7 @@ function createRouters(router: Router, sweetOptions: SweetOptions): void {
       ctx.routePath = ctxPath; // 保存旧的path
 
       // 重定向path，所有的路由都指向"/"
-      if (ctxPath !== '/' && mimeType === false) {
+      if (ctxPath !== '/' && ctxPath !== webpackHmrPath && mimeType === false) {
         ctx.path = '/';
       }
 
