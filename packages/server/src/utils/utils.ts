@@ -123,4 +123,4 @@ export async function runningAtLog(sweetOptions: SweetOptions, displayHttps: boo
 }
 
 /* webpack热替换地址 */
-export const webpackHmrPath: string = '___WEBPACK_HMR___';
+export const webpackHmrPath: string = '/___WEBPACK_HMR___';
