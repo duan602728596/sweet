@@ -29,7 +29,7 @@ export default function(sweetConfig: SweetConfig | null | undefined, sweetOption
   config
     .merge({
       mode: 'development',
-      devtool: isDevelopment ? 'inline-module-source-map' : 'none',
+      devtool: isDevelopment ? 'inline-source-map' : false,
       resolve: {
         extensions: ['.js', '.jsx', '.mjs', '.json', '.ts', '.tsx']
       },
