@@ -9,8 +9,12 @@ function argvStart(argv: Argv): void {
   const milktea: Milktea = requireModule('@sweet-milktea/milktea');
   const webpackConfig: Configuration = milktea.config(argv.config, 'development', argv.webpackLog);
 
-  // koa-webpack需要output.publicPath
+  // hmr需要output.publicPath
   if (argv.server) {
+    const hotClientEntry: Function = requireModule('@sweet-milktea/server/hotClientEntry');
+
+    webpackConfig.entry = hotClientEntry(webpackConfig.entry);
+
     if (!webpackConfig.output) {
       webpackConfig.output = {};
     }

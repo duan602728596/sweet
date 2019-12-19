@@ -24,6 +24,30 @@ devServer({
 });
 ```
 
+### 热替换
+
+你可以使用函数来包装入口文件。
+
+```javascript
+import hotClientEntry from '@sweet-milktea/server/hotClientEntry';
+
+export default {
+  entry: hotClientEntry({
+    index: [path.join(__dirname, 'src/index.js')]
+  })
+};
+```
+
+或者自行包装入口，path配置为`/___WEBPACK_HMR___`。
+
+```javascript
+export default {
+  entry: {
+    index: [path.join(__dirname, 'src/index.js'), 'webpack-hot-middleware/client?path=/___WEBPACK_HMR___']
+  }
+};
+```
+
 ### 配置
 
 * compiler `{ object }` : webpack的compiler。
