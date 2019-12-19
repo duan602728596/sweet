@@ -15,11 +15,13 @@ function addMiddleware(app: Koa, proxyConfig: ProxyConfig, isDevelopment: boolea
   for (const key in proxyConfig) {
     const config: object = proxyConfig[key];
 
-    app.use(connect(proxy(key, {
-      changeOrigin: true,
-      logLevel,
-      ...config
-    })));
+    app.use(connect(
+      proxy(key, {
+        changeOrigin: true,
+        logLevel,
+        ...config
+      })
+    ));
   }
 }
 

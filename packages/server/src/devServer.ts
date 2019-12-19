@@ -125,7 +125,7 @@ async function devServer(args: DevServerArgs): Promise<void> {
   }
 
   /* 添加其他的中间件*/
-  await middleware(app, router, compiler, webpackLog, env, useHttps, keyFile, certFile);
+  await middleware(app, router, compiler, webpackLog, env);
 
   /* 创建路由 */
   await createRouters(router, sweetOptions);

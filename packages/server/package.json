@@ -45,11 +45,12 @@
     "koa-connect": "^2.0.1",
     "koa-body": "^4.1.1",
     "koa-static-cache": "^5.1.2",
-    "koa-webpack": "^5.2.4",
     "lodash": "^4.17.15",
     "mime-types": "^2.1.25",
     "module-alias": "^2.2.2",
-    "nunjucks": "^3.2.0"
+    "nunjucks": "^3.2.0",
+    "webpack-dev-middleware": "^3.7.2",
+    "webpack-hot-middleware": "^2.25.0"
   },
   "devDependencies": {
     "@sweet-milktea/milktea": "*",

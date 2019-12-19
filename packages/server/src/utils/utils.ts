@@ -121,3 +121,6 @@ export async function runningAtLog(sweetOptions: SweetOptions, displayHttps: boo
 
   console.log(`\n${ chalk.blue(logs.join('\n')) }\n`);
 }
+
+/* webpack热替换地址 */
+export const webpackHmrPath: string = '___WEBPACK_HMR___';
