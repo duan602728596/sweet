@@ -52,6 +52,8 @@ function hotClientEntry(entry: Entry): StandardEntry | Entry {
         result[key] = [hotEntry(key), value];
       }
     }
+
+    return result;
   }
 
   return entry;
