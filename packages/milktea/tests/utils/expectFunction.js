@@ -20,11 +20,12 @@ export function expectModule(config, length) {
 export function expectDevPlugins(config) {
   return function() {
     expect(config.plugins).to.be.an('array');
-    expect(config.plugins).to.have.lengthOf(4);
+    expect(config.plugins).to.have.lengthOf(5);
     expect(config.plugins[0] instanceof webpack.IgnorePlugin).to.be.true;
     expect(config.plugins[1] instanceof webpack.DefinePlugin).to.be.true;
-    expect(config.plugins[2] instanceof HtmlWebpackPlugin).to.be.true;
-    expect(config.plugins[3] instanceof webpack.ProgressPlugin).to.be.true;
+    expect(config.plugins[2] instanceof webpack.HotModuleReplacementPlugin).to.be.true;
+    expect(config.plugins[3] instanceof HtmlWebpackPlugin).to.be.true;
+    expect(config.plugins[4] instanceof webpack.ProgressPlugin).to.be.true;
   };
 }
 
@@ -32,10 +33,11 @@ export function expectDevPlugins(config) {
 export function expectDevServerPlugins(config) {
   return function() {
     expect(config.plugins).to.be.an('array');
-    expect(config.plugins).to.have.lengthOf(3);
+    expect(config.plugins).to.have.lengthOf(4);
     expect(config.plugins[0] instanceof webpack.IgnorePlugin).to.be.true;
     expect(config.plugins[1] instanceof webpack.DefinePlugin).to.be.true;
-    expect(config.plugins[2] instanceof webpack.ProgressPlugin).to.be.true;
+    expect(config.plugins[2] instanceof webpack.HotModuleReplacementPlugin).to.be.true;
+    expect(config.plugins[3] instanceof webpack.ProgressPlugin).to.be.true;
   };
 }
 
