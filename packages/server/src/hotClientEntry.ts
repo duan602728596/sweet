@@ -18,7 +18,8 @@ const env: string = process.env.NODE_ENV ?? 'development';
 function hotEntry(name: string): string {
   const query: string = querystring.stringify({
     path: webpackHmrPath,
-    name
+    name,
+    noInfo: true
   });
 
   return `webpack-hot-middleware/client?${ query }`;
