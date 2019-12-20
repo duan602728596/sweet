@@ -39,11 +39,14 @@
     "typescript": "^3.7.3"
   },
   "devDependencies": {
+    "@babel/core": "^7.7.7",
+    "@babel/preset-env": "^7.7.7",
+    "@babel/preset-react": "^7.7.4",
     "@sweet-milktea/milktea-cli": "^0.10.0",
     "@sweet-milktea/util-tools": "^0.9.0",
     "@typescript-eslint/eslint-plugin-tslint": "^2.12.0",
     "@typescript-eslint/parser": "^2.12.0",
-    "babel-eslint": "^10.0.3",
+    "babel-eslint": "^11.0.0-beta.2",
     "babel-loader": "^8.0.6",
     "commitizen": "^4.0.3",
     "cross-env": "^6.0.3",
@@ -53,6 +56,7 @@
     "eslint-plugin-react": "^7.17.0",
     "husky": "^3.1.0",
     "lint-staged": "^9.5.0",
+    "lodash": "^4.17.15",
     "tslint": "^5.20.1"
   },
   "husky": {
