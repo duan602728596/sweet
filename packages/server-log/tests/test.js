@@ -1,7 +1,6 @@
-const process = require('process');
 const register = require('@babel/register');
-const babelRegisterConfig = require('../../../scripts/registerConfig');
+const babelConfig = require('../../../scripts/babelConfig');
 
-register(babelRegisterConfig);
+register(babelConfig);
 
 require('./serverLog');

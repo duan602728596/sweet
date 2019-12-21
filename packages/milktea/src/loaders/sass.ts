@@ -1,5 +1,6 @@
 import * as Config from 'webpack-chain';
-import { Rule, OneOf } from 'webpack-chain';
+import { Rule, OneOf, LoaderOptions } from 'webpack-chain';
+import * as _ from 'lodash';
 import { createStyleLoader, createCssOptions, createSassOptions } from '../config/cssConfig';
 import { SweetConfig, SASS } from '../utils/types';
 
@@ -23,18 +24,21 @@ export default function(sweetConfig: SweetConfig, config: Config): void {
       }
     });
 
-  // style-loader
-  const styleLoader: string | any = createStyleLoader(frame, isDevelopment);
-  const styleLoaderOptions: object = isDevelopment ? {} : { publicPath };
+  // style-loader options
+  const styleLoaderOptions: LoaderOptions = { esModule: true };
+
+  if (!isDevelopment) {
+    styleLoaderOptions.publicPath = publicPath;
+  }
 
   // css-loader
   const sr: boolean = !!serverRender;
-  const cssLoaderOptions: object = createCssOptions(modules, isDevelopment, sr, localIdentName, getLocalIdent);
-  const ScopedCssLoaderOptions: object = createCssOptions(false, isDevelopment, sr);
+  const cssLoaderOptions: LoaderOptions = createCssOptions(modules, isDevelopment, sr, localIdentName, getLocalIdent);
+  const ScopedCssLoaderOptions: LoaderOptions = createCssOptions(false, isDevelopment, sr);
 
   // sass-loader
   // TODO: 未来会移除 data 选项
-  const sassLoaderOptions: object = createSassOptions(prependData || data, isDevelopment);
+  const sassLoaderOptions: LoaderOptions = createSassOptions(prependData || data, isDevelopment);
 
   const sassRule: Rule = config
     .module
@@ -48,12 +52,14 @@ export default function(sweetConfig: SweetConfig, config: Config): void {
           .oneOf('vue')
           .resourceQuery(/scoped/);
 
-        // style
+        // vue-style
         if (!serverRender) {
+          const vueStyleLoader: string | any = createStyleLoader(frame, isDevelopment);
+
           oneOf
             .use('style-loader')
-            .loader(styleLoader)
-            .options(styleLoaderOptions);
+            .loader(vueStyleLoader)
+            .options(_.omit(styleLoaderOptions, ['esModule']));
         }
 
         oneOf

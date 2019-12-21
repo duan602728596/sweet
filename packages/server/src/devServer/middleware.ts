@@ -1,3 +1,4 @@
+import * as path from 'path';
 import * as Koa from 'koa';
 import * as Router from '@koa/router';
 import * as compress from '@bbkkbkk/koa-compress';
@@ -5,9 +6,19 @@ import * as body from 'koa-body';
 import * as connect from 'koa-connect';
 import { Compiler } from 'webpack';
 import * as hotMiddleware from 'webpack-hot-middleware';
+import { fs as iFs, IFs } from 'memfs';
 import koaDevMiddleware from './koaDevMiddleware';
 import { webpackHmrPath } from '../utils/utils';
 import { WebpackLog } from '../utils/types';
+
+/* 使用memfs替换webpack的文件系统 */
+interface DevMiddlewareFs extends IFs {
+  join: (...paths: string[]) => string;
+}
+
+const devMiddlewareFs: DevMiddlewareFs = Object.assign(iFs, {
+  join: path.join
+});
 
 /**
  * 创建中间件
@@ -33,7 +44,8 @@ function middleware(app: Koa, router: Router, compiler: Compiler | undefined, we
     },
       devMiddlewareConfig: { [key: string]: any } = {
         publicPath: compiler?.options?.output?.publicPath ?? '/',
-        serverSideRender: true
+        serverSideRender: true,
+        fs: devMiddlewareFs
       };
 
     // webpack log
