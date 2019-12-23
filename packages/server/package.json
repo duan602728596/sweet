@@ -64,7 +64,7 @@
     "request": "^2.88.0",
     "rimraf": "^3.0.0",
     "typescript": "^3.7.4",
-    "webpack": "^5.0.0-beta.9"
+    "webpack": "^5.0.0-beta.10"
   },
   "peerDependencies": {
     "@sweet-milktea/milktea": ">=0",
