@@ -1,7 +1,6 @@
 import * as path from 'path';
 import * as Config from 'webpack-chain';
 import * as TerserPlugin from 'terser-webpack-plugin';
-import { Entry } from 'webpack';
 import { terserCache } from '../config/cacheConfig';
 import { SweetConfig, SweetOptions } from '../utils/types';
 
