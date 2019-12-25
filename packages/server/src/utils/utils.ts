@@ -54,6 +54,11 @@ export function defaultProxyPath(basicPath: string): { js: string; json: string 
   };
 }
 
+/* 设置默认的mock的地址 */
+export function defaultMockPath(basicPath: string): string {
+  return path.join(basicPath, 'mock/mock.js');
+}
+
 /* 清除模块缓存（只用于开发环境） */
 export function cleanRequireCache(id: any): void {
   const modulePath: string = require.resolve(id);

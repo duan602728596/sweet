@@ -1,5 +1,5 @@
 import * as Config from 'webpack-chain';
-import { Rule, OneOf, LoaderOptions } from 'webpack-chain';
+import { Rule, LoaderOptions } from 'webpack-chain';
 import * as _ from 'lodash';
 import { createStyleLoader, createCssOptions, createLessOptions } from '../config/cssConfig';
 import { SweetConfig, LESS } from '../utils/types';
@@ -47,7 +47,7 @@ export default function(sweetConfig: SweetConfig, config: Config): void {
   config
     .when(frame === 'vue',
       (config: Config): void => {
-        const oneOf: OneOf = lessRule
+        const oneOf: Rule<Rule> = lessRule
           .oneOf('vue')
           .resourceQuery(/scoped/);
 
@@ -75,7 +75,7 @@ export default function(sweetConfig: SweetConfig, config: Config): void {
     );
 
   // basic
-  const oneOf: OneOf = lessRule
+  const oneOf: Rule<Rule> = lessRule
     .oneOf('basic');
 
   // style

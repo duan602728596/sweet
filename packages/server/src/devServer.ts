@@ -14,6 +14,7 @@ import createApi from './utils/createApi';
 import createProxy from './utils/createProxy';
 import createRedirectToHttpsMiddleware from './utils/redirectToHttps';
 import createSweetOptionsMiddleware from './utils/createOptions';
+import createMock from './utils/createMock';
 import createHttpsCertificate, { HttpsCertificate } from './utils/createHttpsCertificate';
 import useRegister from './utils/babelRegister';
 import { formatPath, runningAtLog } from './utils/utils';
@@ -44,6 +45,7 @@ const sweetOptions: SweetOptions = {
  * controllersDir { string }: 重新定义的controllers的目录
  * apiFile { string }: 重新定义的api文件
  * proxyFile { string }: 重新定义的proxy文件
+ * mockFile { string }: 重新定义的mock文件
  * redirectToHttps { boolean }: 307重定向到https
  * webpackLog { string }: webpack日志
  */
@@ -64,6 +66,7 @@ async function devServer(args: DevServerArgs): Promise<void> {
     controllersDir,
     apiFile,
     proxyFile,
+    mockFile,
     redirectToHttps = false,
     webpackLog = 'progress'
   }: DevServerArgs = args || {};
@@ -86,6 +89,7 @@ async function devServer(args: DevServerArgs): Promise<void> {
     controllersDir,
     apiFile,
     proxyFile,
+    mockFile,
     redirectToHttps,
     httpPort: _httpPort,
     httpsPort: _httpsPort,
@@ -126,6 +130,9 @@ async function devServer(args: DevServerArgs): Promise<void> {
 
   /* 添加其他的中间件*/
   await middleware(app, router, compiler, webpackLog, env);
+
+  /* 本地mock */
+  await createMock(sweetOptions, router, true);
 
   /* 创建路由 */
   await createRouters(router, sweetOptions);
