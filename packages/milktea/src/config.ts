@@ -66,7 +66,7 @@ export default function(sweetConfig: SweetConfig | null | undefined, sweetOption
   basicPlugins(sweetConfigCopy, sweetOptions, config);
 
   // optimization
-  optimization(sweetConfigCopy, sweetOptions, config);
+  optimization(sweetConfigCopy, sweetOptions, config, false, true);
 
   /* chainWebpack: 通过webpack-chain的API扩展或修改webpack配置 */
   if (chainWebpack) {
