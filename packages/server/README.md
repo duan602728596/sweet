@@ -116,17 +116,6 @@ proServer({
 
 你可以在任何中间件内通过`ctx.sweetOptions`拿到当前服务的配置。
 
-## api
-
-创建一个`api/api.js`文件，代码如下
-
-```javascript
-module.exports = function(router, sweetOptions, app) {
-  // 在这里面创建你的函数
-  router.get('/path', /* ...your_functions */);
-};
-```
-
 ## 服务器端渲染
 
 服务器端渲染需要你创建`controllers`文件夹，文件夹里面的规则为: 你的路由中的 **“/”** 替换为 **“.”**，或者为文件夹。比如`/Path/PathFile`，则需要创建`/Path.PathFile.js`文件或`/Path/PathFile.js`文件。   
@@ -158,6 +147,17 @@ export default server;
 
 在入口文件内，你可以通过`context.routePath`拿到当前真实的path。
 
+## api
+
+创建一个`api/api.js`文件，代码如下
+
+```javascript
+module.exports = function(router, sweetOptions, app) {
+  // 在这里面创建你的函数
+  router.get('/path', /* ...your_functions */);
+};
+```
+
 ## 代理
 
 创建一个`proxy/proxy.js`或`proxy/proxy.json`文件，代码配置参考[http-proxy-middleware](https://github.com/chimurai/http-proxy-middleware)
@@ -172,6 +172,31 @@ module.exports = function(sweetOptions, app) {
         '^/proxy': ''
       }
     }
+  };
+};
+```
+
+## mock
+
+创建一个`mock/mock.js`文件，代码如下
+
+```javascript
+module.exports = {
+  // 使用方法
+  'GET /mock/data': { data: [1, 2] },
+  
+  // 省略请求方法时，默认的请求方法为GET
+  '/mock/data': { data: [1, 2] },
+  
+  // 支持自定义函数，API 参考 koa 和 @koa/router
+  'POST /mock/data': (ctx, next) => ctx.body = 'ok'
+};
+
+// 或者返回一个函数
+
+module.exports = function() {
+  return {
+    'GET /mock/data': { data: [1, 2] }
   };
 };
 ```
