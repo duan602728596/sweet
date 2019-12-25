@@ -3,6 +3,7 @@ import { expect } from 'chai';
 import proServer from '../proServer';
 import createCompiler from './utils/compiler';
 import { get, post } from './utils/reqData';
+import toJson from './utils/toJson';
 
 // webpack配置
 const compiler = createCompiler('../src/index.js');
@@ -41,7 +42,6 @@ describe('production server', function() {
     await runBuild();
     await runServer();
 
-    // 请求文件
     const resHtml = await get('http://127.0.0.1:5052');
     const resJs = await get('http://127.0.0.1:5052/index.js');
     const resApi = await get('http://127.0.0.1:5052/api/test', true);
@@ -49,6 +49,10 @@ describe('production server', function() {
     const resProxyPost = await post('http://127.0.0.1:5052/proxy/test/post?text=test', {
       text: 'test'
     });
+    const resMock0 = await get('http://127.0.0.1:5050/mock/api/test/0');
+    const resMock1 = await get('http://127.0.0.1:5050/mock/api/test/1');
+    const resMock2 = await post('http://127.0.0.1:5050/mock/api/test/2');
+    const resMock3 = await post('http://127.0.0.1:5050/mock/api/test/3');
 
     expect(resHtml.statusCode).to.be.equal(200);
     expect(resJs.statusCode).to.be.equal(200);
@@ -63,6 +67,19 @@ describe('production server', function() {
     expect(resProxyPost.data).to.be.eql({
       body: 'test',
       method: 'post'
+    });
+    expect(resMock0.data).to.be.equal('test0');
+    expect(toJson(resMock1.data)).to.be.eql({
+      name: 'get',
+      value: 1
+    });
+    expect(toJson(resMock2.data)).to.be.eql({
+      name: 'post',
+      value: 2
+    });
+    expect(toJson(resMock3.data)).to.be.eql({
+      name: 'post',
+      value: 3
     });
   });
 });

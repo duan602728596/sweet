@@ -12,6 +12,7 @@ import createRouters from './proServer/createRouters';
 import portUse from './proServer/portUse';
 import createApi from './utils/createApi';
 import createProxy from './utils/createProxy';
+import createMock from './utils/createMock';
 import createRedirectToHttpsMiddleware from './utils/redirectToHttps';
 import createSweetOptionsMiddleware from './utils/createOptions';
 import createHttpsCertificate, { HttpsCertificate } from './utils/createHttpsCertificate';
@@ -47,6 +48,7 @@ const sweetOptions: SweetOptions = {
  * routerFile { string }: 重新定义的router文件
  * apiFile { string }: 重新定义的api文件
  * proxyFile { string }: 重新定义的proxy文件
+ * mockFile { string }: 重新定义的mock文件
  * redirectToHttps { boolean }: 307重定向到https
  */
 async function proServer(args: ProServerArgs = {}): Promise<void> {
@@ -68,6 +70,7 @@ async function proServer(args: ProServerArgs = {}): Promise<void> {
     controllersDir,
     apiFile,
     proxyFile,
+    mockFile,
     redirectToHttps = false
   }: ProServerArgs = args;
 
@@ -88,6 +91,7 @@ async function proServer(args: ProServerArgs = {}): Promise<void> {
     controllersDir,
     apiFile,
     proxyFile,
+    mockFile,
     redirectToHttps,
     httpPort: await portUse(httpPort, 'http'),
     httpsPort: await portUse(httpsPort, 'https')
@@ -127,6 +131,9 @@ async function proServer(args: ProServerArgs = {}): Promise<void> {
 
   /* 添加其他的中间件 */
   middleware(app, router, sweetOptions);
+
+  /* 本地mock */
+  await createMock(sweetOptions, router, true);
 
   /* 创建路由 */
   createRouters(

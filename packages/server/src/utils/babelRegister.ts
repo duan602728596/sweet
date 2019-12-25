@@ -1,5 +1,3 @@
-import * as path from 'path';
-import { ParsedPath } from 'path';
 import { SweetOptions } from './types';
 
 interface RegisterConfig {

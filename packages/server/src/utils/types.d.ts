@@ -17,6 +17,7 @@ export interface ServerArgs {
   controllersDir?: string;
   apiFile?: string;
   proxyFile?: string;
+  mockFile?: string;
   redirectToHttps?: boolean;
 }
 
