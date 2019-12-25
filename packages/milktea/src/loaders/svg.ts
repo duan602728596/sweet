@@ -18,7 +18,7 @@ export default function(sweetConfig: SweetConfig, config: Config): void {
           .end()
           .use('url-loader')
           .loader('url-loader')
-          .options(createImageConfig(sweetConfig, false));
+          .options(createImageConfig(sweetConfig));
       }
     );
 
