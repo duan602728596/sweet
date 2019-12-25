@@ -10,7 +10,13 @@ interface TerserOptions {
 }
 
 /* 配置optimization属性 */
-export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, config: Config, asyncChunks?: boolean): void {
+export default function(
+  sweetConfig: SweetConfig,
+  sweetOptions: SweetOptions,
+  config: Config,
+  asyncChunks?: boolean,
+  runtimeChunk?: boolean
+): void {
   const { mode = 'development', js }: SweetConfig = sweetConfig;
   const isDevelopment: boolean = mode === 'development';
 
@@ -21,6 +27,21 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
       chunks: asyncChunks ? 'async' : 'all',
       automaticNameDelimiter: '.'
     });
+
+  // 设置runtimeChunk
+  if (runtimeChunk) {
+
+  }
+  config
+    .when(!!runtimeChunk,
+      (config: Config): void => {
+        config
+          .optimization
+          .runtimeChunk({
+            name: 'manifest'
+          });
+      }
+    );
 
   // 设置minimizer的压缩插件
   config
