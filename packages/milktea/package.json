@@ -32,7 +32,7 @@
     "@babel/register": "^7.7.7",
     "@babel/runtime-corejs3": "^7.7.7",
     "@bbkkbkk/files-map-webpack-plugin": "^0.2.1",
-    "@svgr/webpack": "^4.3.3",
+    "@svgr/webpack": "^5.0.0",
     "@vue/babel-helper-vue-jsx-merge-props": "^1.0.0",
     "@vue/babel-preset-jsx": "^1.1.2",
     "babel-loader": "^8.0.6",
