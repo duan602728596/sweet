@@ -1,9 +1,12 @@
+const devFilename: string = '[name]_[hash:5]',
+  proFilename: string = '[hash:15]';
+
 /**
  * 配置静态文件
  * @param { boolean } isDevelopment: 是否为开发环境
  */
 export function createFileName(isDevelopment: boolean): string {
-  return `files/${ isDevelopment ? '[name]_[hash:5]' : '[hash:15]' }.[ext]`;
+  return `files/${ isDevelopment ? devFilename : proFilename }.[ext]`;
 }
 
 /**
@@ -11,5 +14,5 @@ export function createFileName(isDevelopment: boolean): string {
  * @param { boolean } isDevelopment: 是否为开发环境
  */
 export function createImageName(isDevelopment: boolean): string {
-  return `images/${ isDevelopment ? '[name]_[hash:5]' : '[hash:15]' }.[ext]`;
+  return `images/${ isDevelopment ? devFilename : proFilename }.[ext]`;
 }
