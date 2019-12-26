@@ -1,6 +1,6 @@
 {
   "name": "@sweet-milktea/milktea",
-  "version": "0.10.0",
+  "version": "0.11.0",
   "description": "webpack配置函数",
   "homepage": "https://github.com/duan602728596/sweet",
   "repository": {
@@ -24,6 +24,7 @@
     "@babel/plugin-proposal-numeric-separator": "^7.7.4",
     "@babel/plugin-proposal-optional-chaining": "^7.7.5",
     "@babel/plugin-proposal-pipeline-operator": "^7.7.7",
+    "@babel/plugin-proposal-throw-expressions": "^7.7.4",
     "@babel/plugin-syntax-bigint": "^7.7.4",
     "@babel/plugin-syntax-dynamic-import": "^7.7.4",
     "@babel/plugin-transform-runtime": "^7.7.6",
@@ -37,7 +38,7 @@
     "@vue/babel-preset-jsx": "^1.1.2",
     "babel-loader": "^8.0.6",
     "chalk": "^3.0.0",
-    "core-js": "^3.6.0",
+    "core-js": "^3.6.1",
     "cosmiconfig": "^6.0.0",
     "css-loader": "^3.4.0",
     "file-loader": "^5.0.2",
@@ -55,7 +56,7 @@
     "pug-loader": "^2.4.0",
     "react-hot-loader": "^4.12.18",
     "sass-loader": "^8.0.0",
-    "style-loader": "^1.1.1",
+    "style-loader": "^1.1.2",
     "terser": "^4.4.3",
     "terser-webpack-plugin": "^2.3.1",
     "ts-loader": "^6.2.1",
