@@ -47,7 +47,7 @@
     "koa-static-cache": "^5.1.2",
     "lodash": "^4.17.15",
     "memfs": "^3.0.3",
-    "mime-types": "^2.1.25",
+    "mime-types": "^2.1.26",
     "module-alias": "^2.2.2",
     "nunjucks": "^3.2.0",
     "webpack-dev-middleware": "^3.7.2",
