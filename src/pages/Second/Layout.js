@@ -6,7 +6,7 @@ import loadReducer from '../../store/loadReducer';
 import Main from '../../layouts/Main';
 import Content from '../../layouts/Content';
 import Sider from '../../layouts/Sider/index';
-import reducer from './reducer/reducer';
+import models from './models/models';
 import Index from './Index/index';
 
 const options = [
@@ -60,4 +60,4 @@ function ModuleLayout(props) {
   );
 }
 
-export default loadReducer(reducer)(ModuleLayout);
+export default loadReducer(models)(ModuleLayout);

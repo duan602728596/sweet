@@ -10,7 +10,6 @@ export default {
     'react-router-dom',
     'redux',
     'react-redux',
-    'redux-thunk',
     'redux-actions',
     'immutable',
     'redux-immutable',

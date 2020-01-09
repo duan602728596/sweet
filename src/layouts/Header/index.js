@@ -56,6 +56,12 @@ function Header(props) {
               二级页
             </Link>
           </Menu.Item>
+          <Menu.Item key="list">
+            <Link to="/List">
+              <IconBarsOutlined />
+              列表
+            </Link>
+          </Menu.Item>
         </Menu>
       </nav>
       {/* 工具 */}

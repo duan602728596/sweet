@@ -8,7 +8,7 @@ const initData = {
   }
 };
 
-/* reducer */
+/* models */
 const reducer = handleActions({
   [combineActions(...Object.values(secondAction))]($$state, action) {
     return $$state.set('second', secondReducer($$state.get('second'), action));
@@ -16,5 +16,6 @@ const reducer = handleActions({
 }, fromJS(initData));
 
 export default {
-  second: reducer
+  namespace: 'second',
+  reducer
 };

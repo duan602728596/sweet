@@ -2,15 +2,17 @@
  * 全局的store
  */
 import { createStore, compose, applyMiddleware } from 'redux';
-import thunk from 'redux-thunk';
+import createSagaMiddleware from 'redux-saga';
+import { fork } from 'redux-saga/effects';
 import { fromJS, Map } from 'immutable';
-import { createReducer } from './reducers';
+import { createReducer, createSagas } from './reducers';
 
 /* reducer列表 */
 const reducer = createReducer({});
 
 /* 中间件 */
-const middleware = applyMiddleware(thunk);
+const sagaMiddleware = createSagaMiddleware();
+const middleware = applyMiddleware(sagaMiddleware);
 
 /* store */
 const store = {
@@ -24,6 +26,8 @@ export function storeFactory(initialState = {}) {
 
   /* store */
   Object.assign(store, createStore(reducer, $$initialState, compose(middleware)));
+
+  createSagas(sagaMiddleware);
 
   return store;
 }
@@ -43,4 +47,12 @@ export function injectReducers(asyncReducer) {
 
   // 异步注入reducer
   store.replaceReducer(createReducer(store.asyncReducers));
+}
+
+export function injectSagas(sagas) {
+  sagaMiddleware.run(function *() {
+    for (const key in sagas) {
+      yield fork(sagas[key]);
+    }
+  });
 }

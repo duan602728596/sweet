@@ -6,13 +6,13 @@ import { Typography } from 'antd';
 import { LikeFilled as IconLikeFilled } from '@ant-design/icons';
 import useActions from '../../../store/useActions';
 import style from './index.sass';
-import { setLikeLen } from '../reducer/reducer';
+import { setLikeLen } from '../models/models';
 import welcome, { ReactComponent as WelcomeSvgComponent } from './images/welcome.svg';
 
 /* state */
 const state = createStructuredSelector({
   likeLen: createSelector(
-    ($$state) => $$state.get('index').get('likeLen'),
+    ($$state) => $$state.get('list').get('likeLen'),
     (data) => data
   )
 });
