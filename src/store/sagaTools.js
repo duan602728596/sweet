@@ -17,7 +17,9 @@ export function handleEffects(effects) {
         const value = yield call(effects[key], action, sagaEffects);
 
         // 将执行的结果挂载到action
-        action.result = value;
+        if (value !== undefined) {
+          action.result = value;
+        }
       });
     }
   };
