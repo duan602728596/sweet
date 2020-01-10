@@ -10,7 +10,7 @@ const sagaEffects = {
  * 创建saga的effects
  * @param { object } effects
  */
-export function handleEffects(effects) {
+function handleEffects(effects) {
   return function *() {
     for (const key in effects) {
       yield takeEvery(key, function *(action) {
@@ -24,3 +24,5 @@ export function handleEffects(effects) {
     }
   };
 }
+
+export default handleEffects;

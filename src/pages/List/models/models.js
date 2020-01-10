@@ -1,6 +1,6 @@
 import { createAction, handleActions } from 'redux-actions';
 import { fromJS, List } from 'immutable';
-import { handleEffects } from '../../../store/sagaTools';
+import handleEffects from '../../../store/handleEffects';
 
 // mock
 const res = [
