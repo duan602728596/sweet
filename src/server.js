@@ -17,8 +17,10 @@ import Login from './pages/Login/Layout';
 async function server(url, context = {}, initialState = {}) {
   await Loadable.preloadAll();
 
+  const store = storeFactory(initialState);
+
   const stream = renderToNodeStream(
-    <Provider store={ storeFactory(initialState) }>
+    <Provider store={ store }>
       <ConfigProvider locale={ zhCN }>
         <StaticRouter location={ url } context={ context }>
           <Switch>
@@ -29,6 +31,8 @@ async function server(url, context = {}, initialState = {}) {
       </ConfigProvider>
     </Provider>
   );
+
+  store.closeAllSagas();
 
   Helmet.renderStatic();
 
