@@ -20,12 +20,9 @@ function loadReducer(models) {
 
         // 异步注入reducer
         const injectReducers = this?.props?.injectReducers || undefined;
-        const namespace = models.namespace;
 
-        if (injectReducers && models.reducer) {
-          injectReducers({
-            [namespace]: models.reducer
-          });
+        if (injectReducers) {
+          injectReducers(models);
         }
       }
 

@@ -3,7 +3,7 @@ import indexModels from '../pages/Index/models/models';
 
 /* reducers */
 const reducers = {
-  [indexModels.namespace]: indexModels.reducer
+  ...indexModels
 };
 
 /* 创建reducer */

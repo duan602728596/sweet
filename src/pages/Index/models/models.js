@@ -16,6 +16,5 @@ const reducer = handleActions({
 }, fromJS(initData));
 
 export default {
-  namespace: 'index',
-  reducer
+  index: reducer
 };

@@ -16,6 +16,5 @@ const reducer = handleActions({
 }, fromJS(initData));
 
 export default {
-  namespace: 'second',
-  reducer
+  second: reducer
 };

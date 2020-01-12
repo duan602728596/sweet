@@ -31,6 +31,5 @@ const reducer = handleActions({
 }, fromJS(initData));
 
 export default {
-  namespace: 'list',
-  reducer
+  list: reducer
 };
