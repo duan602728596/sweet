@@ -1,6 +1,6 @@
 import React, { lazy, Suspense } from 'react';
 import Loadable from 'react-loadable';
-import { injectReducers, injectSagas } from '../store/store';
+import { injectReducers } from '../store/store';
 import Loading from '../layouts/Loading/index';
 
 /**
@@ -12,7 +12,7 @@ function envWindow(loader) {
 
   return () => (
     <Suspense fallback={ <Loading /> }>
-      <Module injectReducers={ injectReducers } injectSagas={ injectSagas } />
+      <Module injectReducers={ injectReducers } />
     </Suspense>
   );
 }
@@ -28,7 +28,7 @@ function envNode(loader) {
     render(Module) {
       const AsyncModule = Module.default;
 
-      return <AsyncModule injectReducers={ injectReducers } injectSagas={ injectSagas } />;
+      return <AsyncModule injectReducers={ injectReducers } />;
     }
   });
 }

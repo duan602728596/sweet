@@ -12,8 +12,7 @@ function loadReducer(models) {
   return function(Module) {
     return class extends Component {
       static propTypes = {
-        injectReducers: PropTypes.func,
-        injectSagas: PropTypes.func
+        injectReducers: PropTypes.func
       };
 
       constructor() {
@@ -21,20 +20,11 @@ function loadReducer(models) {
 
         // 异步注入reducer
         const injectReducers = this?.props?.injectReducers || undefined;
-        const key = models.namespace;
+        const namespace = models.namespace;
 
         if (injectReducers && models.reducer) {
           injectReducers({
-            [key]: models.reducer
-          });
-        }
-
-        // 异步注入saga
-        const injectSagas = this?.props?.injectSagas || undefined;
-
-        if (injectSagas && models.effects) {
-          injectSagas({
-            [key]: models.effects
+            [namespace]: models.reducer
           });
         }
       }

@@ -2,32 +2,20 @@
  * 全局的store
  */
 import { createStore, compose, applyMiddleware } from 'redux';
-import createSagaMiddleware from 'redux-saga';
-import { fork, cancel } from 'redux-saga/effects';
+import thunk from 'redux-thunk';
 import { fromJS, Map } from 'immutable';
-import { createReducer, createSagas } from './reducers';
+import { createReducer } from './reducers';
 
 /* reducer列表 */
 const reducer = createReducer({});
 
 /* 中间件 */
-const sagaMiddleware = createSagaMiddleware();
-const middleware = applyMiddleware(sagaMiddleware);
+const middleware = applyMiddleware(thunk);
 
 /* store */
 const store = {
-  asyncReducers: {},
-  sagas: {},
-  sagaTasks: {}
+  asyncReducers: {}
 };
-
-export function closeAllSagas() {
-  sagaMiddleware.run(function *() {
-    for (const key in store.sagaTasks) {
-      yield cancel(store.sagaTasks[key]);
-    }
-  });
-}
 
 export function storeFactory(initialState = {}) {
   /* initialState */
@@ -35,11 +23,7 @@ export function storeFactory(initialState = {}) {
   const $$initialState = Map(state);
 
   /* store */
-  Object.assign(store, createStore(reducer, $$initialState, compose(middleware)), {
-    closeAllSagas
-  });
-
-  createSagas(sagaMiddleware);
+  Object.assign(store, createStore(reducer, $$initialState, compose(middleware)));
 
   return store;
 }
@@ -57,20 +41,6 @@ export function injectReducers(asyncReducer) {
 
   // 异步注入reducer
   store.replaceReducer(createReducer(store.asyncReducers));
-}
-
-export function injectSagas(sagas) {
-  sagaMiddleware.run(function *() {
-    for (const key in sagas) {
-      // 获取sagas的key值，并将sagas保存起来
-      if (!(key in store.sagas)) {
-        const item = sagas[key];
-
-        // 记录任务
-        store.sagaTasks[key] = yield fork(item);
-      }
-    }
-  });
 }
 
 export default store;

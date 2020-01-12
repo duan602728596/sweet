@@ -11,6 +11,7 @@ export default {
     'redux',
     'react-redux',
     'redux-actions',
+    'redux-thunk',
     'immutable',
     'redux-immutable',
     'reselect',

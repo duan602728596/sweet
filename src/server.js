@@ -32,8 +32,6 @@ async function server(url, context = {}, initialState = {}) {
     </Provider>
   );
 
-  store.closeAllSagas();
-
   Helmet.renderStatic();
 
   return stream;

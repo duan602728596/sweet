@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { bindActionCreators } from 'redux';
 import { useSelector } from 'react-redux';
 import { createSelector, createStructuredSelector } from 'reselect';
@@ -25,14 +25,19 @@ const state = createStructuredSelector({
 function List(props) {
   const { dataList } = useSelector(state);
   const { action } = useActions(actions);
+  const [loading, setLoading] = useState(false);
 
   // 点击加载
   async function handleLoadDataClick(event) {
-    const { result: res } = await action.reqDataList(3);
+    setLoading(true);
+
+    const res = await action.reqDataList({ num: 3 });
 
     if (res === true) {
       message.success('success!');
     }
+
+    setLoading(false);
   }
 
   const columns = [
@@ -43,7 +48,7 @@ function List(props) {
   return (
     <div>
       <Button className={ style.btn } onClick={ handleLoadDataClick }>加载数据</Button>
-      <Table columns={ columns } dataSource={ dataList } rowKey={ (record, index) => record.id } />
+      <Table columns={ columns } dataSource={ dataList } loading={ loading } rowKey={ (record, index) => record.id } />
     </div>
   );
 }

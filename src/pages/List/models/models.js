@@ -1,6 +1,6 @@
 import { createAction, handleActions } from 'redux-actions';
 import { fromJS, List } from 'immutable';
-import { handleEffects } from '../../../store/sagaTools';
+import createAsyncAction from '../../../store/createAsyncAction';
 
 // mock
 const res = [
@@ -14,16 +14,13 @@ const initData = {
 };
 
 /* Action */
-export const reqDataList = createAction('list/创建列表');
 export const setDataList = createAction('list/列表');
+export const reqDataList = createAsyncAction(async function(_, args) {
+  const data = await _.delay(1000, res);
 
-/* saga effects */
-const effects = handleEffects({
-  *[reqDataList](action, _) {
-    yield _.put(setDataList(res));
+  await _.put(setDataList(data));
 
-    return true;
-  }
+  return true;
 });
 
 /* reducer */
@@ -35,6 +32,5 @@ const reducer = handleActions({
 
 export default {
   namespace: 'list',
-  reducer,
-  effects
+  reducer
 };
