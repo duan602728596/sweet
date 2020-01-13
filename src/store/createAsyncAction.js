@@ -8,34 +8,22 @@ function createAsyncAction(func) {
       // 封装常用的函数
       const _ = {
         // 执行函数
-        async call(fn, ...args) {
-          try {
-            const [context, runFn] = Array.isArray(fn) ? fn : [undefined, fn];
-            const value = await runFn.call(context, ...args);
+        call(fn, ...args) {
+          const [context, runFn] = Array.isArray(fn) ? fn : [undefined, fn];
 
-            return value;
-          } catch (err) {
-            console.error(err);
-          }
+          return runFn.call(context, ...args);
         },
 
         // 执行函数
-        async apply(fn, args) {
-          try {
-            const [context, runFn] = Array.isArray(fn) ? fn : [undefined, fn];
-            const value = await runFn.apply(context, args);
+        apply(fn, args) {
+          const [context, runFn] = Array.isArray(fn) ? fn : [undefined, fn];
 
-            return value;
-          } catch (err) {
-            console.error(err);
-          }
+          return runFn.apply(context, args);
         },
 
         // 执行action
-        async put(action) {
-          const value = await dispatch(action);
-
-          return value;
+        put(action) {
+          return dispatch(action);
         },
 
         // 获取值
