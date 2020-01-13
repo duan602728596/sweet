@@ -1,23 +1,18 @@
 /* 清除已编译的代码 */
+const util = require('util');
 const path = require('path');
 const rimraf = require('rimraf');
 const { dir, packageNames } = require('./config');
 
-function clean(filePath) {
-  return new Promise((resolve, reject) => {
-    rimraf(filePath, function() {
-      resolve();
-    });
-  });
-}
+const rimrafPromise = util.promisify(rimraf);
 
 async function main() {
   const queue = [];
 
-  for (let i = 0, j = packageNames.length; i < j; i++) {
-    const p = path.join(dir, packageNames[i], 'lib');
+  for (const packageName of packageNames) {
+    const packageDir = path.join(dir, packageName, 'lib');
 
-    queue.push(clean(p));
+    queue.push(rimrafPromise(packageDir));
   }
 
   await Promise.all(queue);
