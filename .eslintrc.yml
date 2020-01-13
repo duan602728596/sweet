@@ -33,7 +33,7 @@ overrides:
             no-empty-interface: true                # 禁止空接口
             no-var-requires: true                   # 除import语句外，不允许使用require语句
             # Functionality
-            no-duplicate-super: true                # 如果'super（）'在构造函数中出现两次，则发出警告
+            no-duplicate-super: true                # 如果'super()'在构造函数中出现两次，则发出警告
             no-for-in-array: true                   # 禁止使用for-in循环遍历数组
             # Maintainability
             class-name: true                        # 强制类和接口名称大写
