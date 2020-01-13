@@ -4,7 +4,7 @@
  */
 function createAsyncAction(func) {
   return function(...args) {
-    return async function(dispatch, getState) {
+    return function(dispatch, getState) {
       // 封装常用的函数
       const _ = {
         // 执行函数
@@ -41,9 +41,7 @@ function createAsyncAction(func) {
         }
       };
 
-      const result = await func.call(undefined, _, ...args);
-
-      return result;
+      return func.call(undefined, _, ...args);
     };
   };
 }
