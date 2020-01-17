@@ -16,6 +16,12 @@ export interface SweetOptions {
   basicPath: string;
 }
 
+export type Environment = 'dll' | 'client' | 'server';
+
+export interface Info {
+  environment: Environment;
+}
+
 export interface Loaders {
   js?: RuleSetRule;
   ts?: RuleSetRule;

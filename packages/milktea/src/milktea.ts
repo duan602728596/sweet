@@ -4,8 +4,8 @@ import { Configuration, Stats } from 'webpack';
 import webpackConfig from './config';
 import webpackServerRenderConfig from './server';
 import webpackDllConfig from './dll';
-import { SweetConfig, SweetOptions, Mode, WebpackLog } from './utils/types';
 import configFile from './utils/configFile';
+import { SweetConfig, SweetOptions, Mode, WebpackLog, Environment, Info } from './utils/types';
 
 type SweetConfigArgs = SweetConfig | string | null | undefined;
 type Config = SweetConfig | null | undefined;
@@ -16,13 +16,17 @@ const sweetOptions: SweetOptions = {
 };
 
 /* 获取配置 */
-function getConfig(sweetConfig?: SweetConfigArgs): Config {
+function getConfig(environment: Environment, sweetConfig?: SweetConfigArgs): Config {
   if (typeof sweetConfig === 'string') {
-    return configFile(sweetOptions, sweetConfig);
+    const config: SweetConfig | ((info: Info) => SweetConfig) = configFile(sweetOptions, sweetConfig);
+
+    return typeof config === 'function' ? config({ environment }) : config;
   } else if (_.isPlainObject(sweetConfig)) {
     return sweetConfig;
   } else {
-    return configFile(sweetOptions);
+    const config: SweetConfig | ((info: Info) => SweetConfig) = configFile(sweetOptions);
+
+    return typeof config === 'function' ? config({ environment }) : config;
   }
 }
 
@@ -62,7 +66,7 @@ export function callback(err: Error, stats: Stats): void {
  * @param { string } webpackLog: 覆盖日志的显示
  */
 export function config(sweetConfig?: SweetConfigArgs, mode?: Mode, webpackLog?: WebpackLog): Configuration {
-  const config: Config = getConfig(sweetConfig);
+  const config: Config = getConfig('client', sweetConfig);
 
   if (config && mode) {
     config.mode = mode;
@@ -82,7 +86,7 @@ export function config(sweetConfig?: SweetConfigArgs, mode?: Mode, webpackLog?: 
  * @param { string } webpackLog: 覆盖日志的显示
  */
 export function serverRenderConfig(sweetConfig?: SweetConfigArgs, mode?: Mode, webpackLog?: WebpackLog): Configuration {
-  const config: Config = getConfig(sweetConfig);
+  const config: Config = getConfig('server', sweetConfig);
 
   if (config && mode) {
     config.mode = mode;
@@ -101,7 +105,7 @@ export function serverRenderConfig(sweetConfig?: SweetConfigArgs, mode?: Mode, w
  * @param { string } webpackLog: 覆盖日志的显示
  */
 export function dllConfig(sweetConfig?: SweetConfigArgs, webpackLog?: WebpackLog): Configuration {
-  const config: Config = getConfig(sweetConfig);
+  const config: Config = getConfig('dll', sweetConfig);
 
   if (config && webpackLog) {
     config.webpackLog = webpackLog;
