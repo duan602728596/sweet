@@ -6,12 +6,6 @@
 
 1. 在工程目录下创建`.sweetrc.js`或`sweet.config.js`文件，然后通过cli工具运行。
 
-```javascript
-module.exports = {
-  ... // 配置
-};
-```
-
 2. 在node内运行函数。
 
 ```javascript
@@ -44,6 +38,16 @@ compiler.run(callback);
 ```javascript
 module.exports = {
   ... // 配置
+};
+```
+
+或
+
+```javascript
+module.exports = function(info) {
+  return {
+    ... // 配置
+  };
 };
 ```
 
@@ -117,6 +121,12 @@ module.exports = {
 * serverExternals `{ object }` : 服务器端的外部扩展（参考webpack）
 * serverDevtool `{ string }` : 服务器端的SourceMap的类型（参考webpack）
 * serverChainWebpack`{ Function }` : 通过`webpack-chain`的API扩展或修改SSR的webpack配置
+
+### info
+
+info是当前环境的信息。
+
+* info.environment：当前环境，可能的值为`dll`、`client`、`server`。分别为编译dll文件、编译浏览器端代码、编译node端代码。
 
 ## 引入svg
 
