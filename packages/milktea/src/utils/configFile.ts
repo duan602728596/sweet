@@ -5,7 +5,7 @@ import { cosmiconfigSync, LoaderSync } from 'cosmiconfig';
 import { CosmiconfigResult, Config } from 'cosmiconfig/dist/types';
 import { createBabelPlugins } from '../config/babelConfig';
 import { requireModule } from './utils';
-import { SweetConfig, SweetOptions, ExplorerSync } from './types';
+import { SweetConfig, SweetOptions, ExplorerSync, Info } from './types';
 
 /* 创建cosmiconfig的js加载器 */
 function createJsRegisterLoader(sweetOptions: SweetOptions): LoaderSync {
@@ -33,7 +33,7 @@ function createJsRegisterLoader(sweetOptions: SweetOptions): LoaderSync {
 }
 
 /* 获取配置文件 */
-function configFile(sweetOptions: SweetOptions, configFile?: string): SweetConfig {
+function configFile(sweetOptions: SweetOptions, configFile?: string): SweetConfig | ((info: Info) => SweetConfig) {
   // @babel/register
   const jsRegisterLoader: LoaderSync = createJsRegisterLoader(sweetOptions);
 
