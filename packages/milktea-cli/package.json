@@ -34,7 +34,7 @@
     "cross-env": "^6.0.3",
     "mocha": "^7.0.0",
     "react": "^16.12.0",
-    "typescript": "^3.7.4"
+    "typescript": "^3.7.5"
   },
   "peerDependencies": {
     "@sweet-milktea/milktea": ">=0",

@@ -46,7 +46,7 @@
     "koa-body": "^4.1.1",
     "koa-static-cache": "^5.1.2",
     "lodash": "^4.17.15",
-    "memfs": "^3.0.3",
+    "memfs": "^3.0.4",
     "mime-types": "^2.1.26",
     "module-alias": "^2.2.2",
     "nunjucks": "^3.2.0",
@@ -63,7 +63,7 @@
     "pug-loader": "^2.4.0",
     "request": "^2.88.0",
     "rimraf": "^3.0.0",
-    "typescript": "^3.7.4",
+    "typescript": "^3.7.5",
     "webpack": "^4.41.5"
   },
   "peerDependencies": {
