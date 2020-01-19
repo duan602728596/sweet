@@ -7,7 +7,7 @@ import Loading from '../layouts/Loading/index';
  * 异步加载、注入模块和reducer
  * @param { Function } loader: 需要异步注入的模块
  */
-function envWindow(loader) {
+function asyncModule(loader) {
   const Module = lazy(loader);
 
   return () => (
@@ -21,7 +21,7 @@ function envWindow(loader) {
  * 异步加载、注入模块和reducer，用于服务端渲染，兼容浏览器端渲染
  * @param { Function } loader: 需要异步注入的模块
  */
-function envNode(loader) {
+function asyncModuleNode(loader) {
   return Loadable({
     loader,
     loading: () => <Loading />,
@@ -33,4 +33,4 @@ function envNode(loader) {
   });
 }
 
-export default process.env.SWEET_SERVER_RENDER === true ? envNode : envWindow;
+export default process.env.SWEET_SERVER_RENDER === true ? asyncModuleNode : asyncModule;
