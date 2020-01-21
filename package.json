@@ -59,7 +59,7 @@
     "eslint": "^6.8.0",
     "eslint-plugin-react": "^7.18.0",
     "husky": "^4.0.10",
-    "lint-staged": "^9.5.0",
+    "lint-staged": "^10.0.1",
     "lodash": "^4.17.15",
     "tslint": "^5.20.1"
   },
