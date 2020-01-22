@@ -7,6 +7,7 @@
     "build": "npm run clean && gulp --gulpfile ./scripts/build.js",
     "clean": "node ./scripts/clean",
     "eslint": "eslint ./ --ext .js,.jsx,.ts,.tsx --fix",
+    "eslint:no-fix": "eslint ./ --ext .js,.jsx,.ts,.tsx",
     "lerna:install": "lerna bootstrap --force-local",
     "case-check": "case-check --dir=\"./\"",
     "update": "milktea update",
@@ -17,15 +18,13 @@
     "clean:docs": "rimraf storybook-static"
   },
   "private": true,
-  "workspaces": [
-    "packages/*"
-  ],
+  "workspaces": ["packages/*"],
   "dependencies": {
-    "@storybook/addon-actions": "^5.3.6",
-    "@storybook/addon-links": "^5.3.6",
-    "@storybook/addon-notes": "^5.3.6",
-    "@storybook/cli": "^5.3.6",
-    "@storybook/react": "^5.3.6",
+    "@storybook/addon-actions": "^5.3.8",
+    "@storybook/addon-links": "^5.3.8",
+    "@storybook/addon-notes": "^5.3.8",
+    "@storybook/cli": "^5.3.8",
+    "@storybook/react": "^5.3.8",
     "@types/html-minifier": "^3",
     "@types/koa": "^2",
     "@types/lodash": "^4",
@@ -46,10 +45,10 @@
     "@babel/core": "^7.8.3",
     "@babel/preset-env": "^7.8.3",
     "@babel/preset-react": "^7.8.3",
-    "@sweet-milktea/milktea-cli": "^0.10.0",
-    "@sweet-milktea/util-tools": "^0.9.0",
-    "@typescript-eslint/eslint-plugin-tslint": "^2.16.0",
-    "@typescript-eslint/parser": "^2.16.0",
+    "@sweet-milktea/milktea-cli": "*",
+    "@sweet-milktea/util-tools": "*",
+    "@typescript-eslint/eslint-plugin": "^2.17.0",
+    "@typescript-eslint/parser": "^2.17.0",
     "babel-eslint": "^11.0.0-beta.2",
     "babel-loader": "^8.0.6",
     "commitizen": "^4.0.3",
@@ -58,10 +57,9 @@
     "es-module-path-case-check": "^1.4.0",
     "eslint": "^6.8.0",
     "eslint-plugin-react": "^7.18.0",
-    "husky": "^4.0.10",
+    "husky": "^4.2.0",
     "lint-staged": "^10.0.1",
-    "lodash": "^4.17.15",
-    "tslint": "^5.20.1"
+    "lodash": "^4.17.15"
   },
   "husky": {
     "hooks": {
