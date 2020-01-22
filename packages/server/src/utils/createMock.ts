@@ -27,8 +27,12 @@ function addMockRouter(router: Router, mock: Mock): void {
 
     if (formatData.length === 0) continue;
 
-    if (formatData.length === 1) uri = formatData[0];
-    else [method, uri] = [formatData[0].toLocaleLowerCase(), formatData[1]];
+    if (formatData.length === 1) {
+      uri = formatData[0];
+    } else {
+      method = formatData[0].toLocaleLowerCase();
+      uri = formatData[1];
+    }
 
     // 判断router是否有该方法
     method = method in router ? method : 'get';

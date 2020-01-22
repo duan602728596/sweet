@@ -160,7 +160,7 @@ function consoleLogText(packageArray: Array<PackageItem>): string {
     const isLatestNew: boolean = versionEqual(item.version, item.latest);
     const isNextNew: boolean = versionEqual(item.version, item.next);
     const isRcNew: boolean = versionEqual(item.version, item.rc);
-    const inNpm: boolean = !!(item.latest || item.next || item.rc);
+    const inNpm: boolean = !!(item.latest ?? item.next ?? item.rc);
     let itemText: string = '';
 
     // 包需要升级，使用“*”；包在npm上不存在（私有包），使用“#”

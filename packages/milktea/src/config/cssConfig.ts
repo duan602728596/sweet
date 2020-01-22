@@ -87,8 +87,8 @@ export function createCssOptions(
 ): LoaderOptions {
   return {
     modules: modules ? {
-      localIdentName: localIdentName || (isDevelopment ? '[path][name]__[local]___[hash:base64:6]' : '_[hash:base64:6]'),
-      getLocalIdent: getLocalIdent || cssLoaderGetLocalIdent
+      localIdentName: localIdentName ?? (isDevelopment ? '[path][name]__[local]___[hash:base64:6]' : '_[hash:base64:6]'),
+      getLocalIdent: getLocalIdent ?? cssLoaderGetLocalIdent
     } : false,
     onlyLocals: serverRender,
     sourceMap: isDevelopment

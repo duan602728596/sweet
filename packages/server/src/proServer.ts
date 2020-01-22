@@ -140,8 +140,8 @@ async function proServer(args: ProServerArgs = {}): Promise<void> {
     router,
     sweetOptions,
     !!sweetOptions.serverRender,
-    sweetOptions.serverRenderEntry || '',
-    sweetOptions.serverRoot || '',
+    sweetOptions.serverRenderEntry ?? '',
+    sweetOptions.serverRoot ?? '',
     template
   );
 

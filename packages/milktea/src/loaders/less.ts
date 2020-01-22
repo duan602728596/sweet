@@ -8,7 +8,7 @@ import { SweetConfig, LESS } from '../utils/types';
 export default function(sweetConfig: SweetConfig, config: Config): void {
   const { mode, css, frame, serverRender }: SweetConfig = sweetConfig;
   const isDevelopment: boolean = mode === 'development';
-  const cssOptions: LESS = css || {};
+  const cssOptions: LESS = css ?? {};
   const { publicPath, modules = true, exclude, include, modifyVars, localIdentName, getLocalIdent }: LESS = cssOptions;
 
   config

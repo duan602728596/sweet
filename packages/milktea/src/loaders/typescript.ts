@@ -11,7 +11,7 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
   const frame: string | undefined = sweetConfig.frame;
 
   // 获取配置
-  const tsOptions: TS = ts || {};
+  const tsOptions: TS = ts ?? {};
   const { presets = [], plugins = [], exclude, include }: TS = tsOptions;
 
   const useConfig: object = {
