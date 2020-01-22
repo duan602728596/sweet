@@ -9,7 +9,7 @@
     "eslint": "eslint ./ --ext .js,.jsx,.ts,.tsx --fix",
     "eslint:no-fix": "eslint ./ --ext .js,.jsx,.ts,.tsx",
     "lerna:install": "lerna bootstrap --force-local",
-    "case-check": "case-check --dir=\"./\"",
+    "case-check": "case-check --dir=\"./\" --css --ext=\"md\"",
     "update": "milktea update",
     "update:dev": "milktea update --__DEV__",
     "docs:init": "sb init --type react",
