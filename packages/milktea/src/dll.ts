@@ -16,7 +16,7 @@ export default function(sweetConfig: SweetConfig | null | undefined, sweetOption
   const sweetConfigCopy: SweetConfig = _.isPlainObject(sweetConfig) ? { ...sweetConfig } : {};
   const { mode, dll, externals, resolve, chainWebpack, js, webpackLog = 'progress' }: SweetConfig = sweetConfigCopy;
 
-  const jsOptions: JS = js || {};
+  const jsOptions: JS = js ?? {};
   const { ecmascript, targets: customTargets }: JS = jsOptions;
   const isDevelopment: boolean = mode === 'development';
 

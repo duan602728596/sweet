@@ -18,7 +18,7 @@ interface ControllersInfo {
 
 export function getControllers(controllersDir?: string): ControllersInfo {
   const isAbsolute: boolean = controllersDir ? path.isAbsolute(controllersDir) : false;
-  const dir: string = controllersDir || defaultControllers;
+  const dir: string = controllersDir ?? defaultControllers;
   const controllers: string = path.join(dir, '**/*.js');
 
   return {

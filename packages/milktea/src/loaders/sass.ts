@@ -8,7 +8,7 @@ import { SweetConfig, SASS } from '../utils/types';
 export default function(sweetConfig: SweetConfig, config: Config): void {
   const { mode, sass, frame, serverRender }: SweetConfig = sweetConfig;
   const isDevelopment: boolean = mode === 'development';
-  const sassOptions: SASS = sass || {};
+  const sassOptions: SASS = sass ?? {};
   const { publicPath, modules = true, exclude, include, prependData, data, localIdentName, getLocalIdent }: SASS = sassOptions;
 
   config
@@ -38,7 +38,7 @@ export default function(sweetConfig: SweetConfig, config: Config): void {
 
   // sass-loader
   // TODO: 未来会移除 data 选项
-  const sassLoaderOptions: LoaderOptions = createSassOptions(prependData || data, isDevelopment);
+  const sassLoaderOptions: LoaderOptions = createSassOptions(prependData ?? data, isDevelopment);
 
   const sassRule: Rule = config
     .module

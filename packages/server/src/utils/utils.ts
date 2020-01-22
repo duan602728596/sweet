@@ -112,7 +112,7 @@ export function formatPath(sweetOptions: SweetOptions, file: string): string {
 }
 
 export async function runningAtLog(sweetOptions: SweetOptions, displayHttps: boolean): Promise<void> {
-  const ip: string = await internalIp.v4() || '127.0.0.1';
+  const ip: string = await internalIp.v4() ?? '127.0.0.1';
   const logs: string[] = [
     ' Running at:',
     ` - Local:   http://127.0.0.1:${ sweetOptions.httpPort }`,
