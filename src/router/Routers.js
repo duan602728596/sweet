@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
-import asyncModule from './asyncModule';
+import asyncModule from './asyncModule/index';
 import Index from '../pages/Index/Layout';
 
 const SecondBundle = asyncModule(() => import(/* webpackChunkName: 'second' */'../pages/Second/Layout'));
