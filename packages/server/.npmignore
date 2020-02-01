@@ -12,6 +12,7 @@ yarn-error.log
 
 # packages
 src
+test
 tests
 tsconfig.json
 api/*
