@@ -23,7 +23,7 @@ function runBuild() {
 function runServer() {
   proServer({
     env: 'test',
-    serverRoot: 'tests/dist',
+    serverRoot: 'test/dist',
     httpPort: 5052,
     httpsPort: 5053,
     apiFile: path.join(__dirname, 'api/api.js'),
