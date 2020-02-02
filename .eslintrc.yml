@@ -1,14 +1,20 @@
 env:
   browser: true
-  commonjs: true
-  es6: true
   node: true
+  commonjs: true
+  shared-node-browser: true
+  es6: true
+  es2017: true
+  es2020: true
   worker: true
+  mocha: true
+  jest: true
   jquery: true
+  serviceworker: true
 parser: babel-eslint
 parserOptions:
-  ecmaVersion: 9
   ecmaFeatures:
+    globalReturn: true
     jsx: true
   sourceType: module
 plugins:
