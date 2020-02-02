@@ -13,7 +13,6 @@ function argvMedia2WebP(argv: Argv): void {
   const ext: string = argv.ext ?? '';
   const extArr: string[] = _.without(ext.split(','), '');
 
-
   image2webp(
     path.isAbsolute(imageEntry) ? imageEntry : path.join(cwd, imageEntry),
     path.isAbsolute(imageOutput) ? imageOutput : path.join(cwd, imageOutput),
