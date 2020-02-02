@@ -5,7 +5,6 @@ import * as _ from 'lodash';
 import { requireModule } from '../utils/utils';
 import { Argv } from '../utils/types';
 
-
 async function argvUpdate(argv: Argv): Promise<void> {
   const update: Function = requireModule('@sweet-milktea/util-tools/update');
   const folders: Array<string> = [];
@@ -14,10 +13,10 @@ async function argvUpdate(argv: Argv): Promise<void> {
     folders.push(process.cwd());
   } else {
     const packages: string = path.join(process.cwd(), 'packages');
-    const f: string[] = await fs.promises.readdir(packages);
+    const dirs: string[] = await fs.promises.readdir(packages);
 
-    for (let i: number = 0, j: number = f.length; i < j; i++) {
-      const item: string = path.join(packages, f[i]);
+    for (const dir of dirs) {
+      const item: string = path.join(packages, dir);
       const stat: fs.Stats = await fs.promises.stat(item);
       const isDirectory: boolean = stat.isDirectory();
 
