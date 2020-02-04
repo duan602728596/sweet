@@ -10,7 +10,7 @@
 [milktea-cli-image]: https://img.shields.io/badge/milktea--cli-0.10.0-blue.svg
 [server-image]: https://img.shields.io/badge/server-0.11.1-blue.svg
 [server-log-image]: https://img.shields.io/badge/server--log-0.6.6-blue.svg
-[util-tools-image]: https://img.shields.io/badge/util--tools-0.9.0-blue.svg
+[util-tools-image]: https://img.shields.io/badge/util--tools-0.11.1-blue.svg
 
 [milktea-url]: http://npmjs.org/package/@sweet-milktea/milktea
 [milktea-cli-url]: http://npmjs.org/package/@sweet-milktea/milktea-cli
