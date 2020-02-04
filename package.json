@@ -18,7 +18,9 @@
     "clean:docs": "rimraf storybook-static"
   },
   "private": true,
-  "workspaces": ["packages/*"],
+  "workspaces": [
+    "packages/*"
+  ],
   "dependencies": {
     "@storybook/addon-actions": "^5.3.9",
     "@storybook/addon-links": "^5.3.9",
