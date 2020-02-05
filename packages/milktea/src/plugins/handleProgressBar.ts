@@ -23,7 +23,7 @@ export interface InfoCache {
  * 进度条输出信息
  * @param { boolean } ssr
  */
-function createHandleProgressBar(ssr: boolean): Function {
+function createHandleProgressBar(ssr: boolean): (percentage: number, message: string, ...args: Array<string>) => void {
   const buildDoneMsg: string = ssr ? 'SSR build done.' : 'Build done.';
   let progressBarCache: InfoCache | null = null;
 

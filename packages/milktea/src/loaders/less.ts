@@ -1,6 +1,5 @@
 import * as Config from 'webpack-chain';
 import { Rule, LoaderOptions } from 'webpack-chain';
-import * as _ from 'lodash';
 import { createStyleLoader, createCssOptions, createLessOptions } from '../config/cssConfig';
 import { SweetConfig, LESS } from '../utils/types';
 
@@ -51,14 +50,14 @@ export default function(sweetConfig: SweetConfig, config: Config): void {
           .oneOf('vue')
           .resourceQuery(/scoped/);
 
-        // vue-style
+        // vue style
         if (!serverRender) {
-          const vueStyleLoader: string | any = createStyleLoader(frame, isDevelopment);
+          const vueStyleLoader: string | any = createStyleLoader(isDevelopment);
 
           oneOf
             .use('style')
             .loader(vueStyleLoader)
-            .options(_.omit(styleLoaderOptions, ['esModule']));
+            .options(styleLoaderOptions);
         }
 
         oneOf
@@ -82,7 +81,7 @@ export default function(sweetConfig: SweetConfig, config: Config): void {
   if (!serverRender) {
     oneOf
       .use('style')
-      .loader(createStyleLoader(undefined, isDevelopment))
+      .loader(createStyleLoader(isDevelopment))
       .options(styleLoaderOptions);
   }
 
