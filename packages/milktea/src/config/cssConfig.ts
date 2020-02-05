@@ -61,12 +61,11 @@ export function cssLoaderGetLocalIdent(
 
 /**
  * style-loader
- * @param { string } frame: 是否为react或vue模式
  * @param { boolean } isDevelopment: 是否为开发环境
  */
-export function createStyleLoader(frame: Frame | undefined, isDevelopment: boolean): string | any {
+export function createStyleLoader(isDevelopment: boolean): string | any {
   return isDevelopment
-    ? (frame === 'vue' ? 'vue-style-loader' : 'style-loader')
+    ? 'style-loader'
     : MiniCssExtractPlugin.loader;
 }
 
