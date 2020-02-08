@@ -1,4 +1,4 @@
-import { storiesOf } from '@storybook/react';
+import { storiesOf, addParameters } from '@storybook/react';
 import React from 'react';
 import MarkDown from './components/MarkDown/MarkDown';
 import sweetIntroduction from './pages/introduction.md';
@@ -10,6 +10,15 @@ import serverReadme from '../packages/server/README.md';
 import serverLogReadme from '../packages/server-log/README.md';
 import utilToolsReadme from '../packages/util-tools/README.md';
 import demo from './pages/demo.md';
+
+addParameters({
+  options: {
+    theme: {
+      brandTitle: 'Sweet - 🍩一个webpack的通用配置解决方案',
+      brandUrl: 'https://github.com/duan602728596/sweet'
+    }
+  }
+});
 
 storiesOf('sweet', module)
   .add('介绍', () => <MarkDown source={ sweetIntroduction } />)
