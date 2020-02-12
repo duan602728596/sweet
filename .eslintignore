@@ -7,11 +7,11 @@ node_modules
 # packages
 packages/**/lib
 packages/**/node_modules
-packages/**/tests/test.js
-packages/**/tests/dist
-packages/**/tests/.dll
-packages/**/tests/.babelCache
-packages/**/tests/.terserCache
+packages/**/test/test.js
+packages/**/test/dist
+packages/**/test/.dll
+packages/**/test/.babelCache
+packages/**/test/.terserCache
 
 # docs
 storybook-static/*
