@@ -1,7 +1,7 @@
 /* 查看升级 */
+import * as https from 'https';
+import { RequestOptions, ClientRequest, IncomingMessage } from 'http';
 import * as path from 'path';
-import * as request from 'request';
-import { Response } from 'request';
 import * as _ from 'lodash';
 import { Dictionary } from 'lodash';
 import * as semver from 'semver';
@@ -41,38 +41,55 @@ function objectToArray(obj: Dictionary<string>): Array<PackageItem> {
   }, []);
 }
 
+/* npm包信息地址 */
+const packageHost: string[] = [
+  'registry.npmjs.org',   // npm
+  'registry.yarnpkg.com', // yarn
+  'r.cnpmjs.org'          // cnpm
+];
+
 /**
  * 查找包
  * @param { string } packageName: npm包名
  * @param { number } registry
  */
-function requestPackageInformation(packageName: string, registry: number): Promise<PackageInformation> {
-  // 用来判断当前的npm包信息地址
-  const packageHost: string[] = [
-    'https://registry.npmjs.org',   // npm
-    'https://registry.yarnpkg.com', // yarn
-    'https://r.cnpmjs.org'          // cnpm
-  ];
+function requestPackageInfo(packageName: string, registry: number = 0): Promise<PackageInformation> {
+  const options: RequestOptions = {
+    protocol: 'https:',
+    hostname: packageHost[registry],
+    port: null,
+    method: 'GET',
+    headers: { Accept: 'application/vnd.npm.install-v1+json; q=1.0, application/json; q=0.8, */*' },
+    path: `/${ packageName }`,
+    timeout: 15000
+  };
 
-  return new Promise(function(resolve: Function, reject: Function): void {
-    request({
-      method: 'GET',
-      uri: `${ packageHost[registry] }/${ packageName }`,
-      headers: {
-        Accept: 'application/vnd.npm.install-v1+json; q=1.0, application/json; q=0.8, */*'
-      },
-      json: true,
-      timeout: 30000
-    }, function(err: Error, res: Response, data: PackageInformation): void {
-      if (err) {
-        resolve({
-          error: 'Request error.',
-          stack: err
-        });
-      } else {
+  return new Promise((resolve: Function, reject: Function): void => {
+    const req: ClientRequest = https.request(options, function(res: IncomingMessage): void {
+      const chunks: Array<Buffer> = [];
+
+      res.on('data', function(chunk: Buffer): void {
+        chunks.push(chunk);
+      });
+
+      res.on('end', function() {
+        const buffer: Buffer = Buffer.concat(chunks),
+          str: string = buffer.toString('utf8'),
+          data: PackageInformation = JSON.parse(str);
+
         resolve(data);
-      }
+      });
     });
+
+    req.on('error', function(err: Error): void {
+      resolve({
+        error: 'Request error.',
+        stack: err
+      });
+    });
+
+    req.write('');
+    req.end();
   });
 }
 
@@ -118,7 +135,7 @@ async function getVersionFromNpm(packageArray: Array<PackageItem>, registry: num
     for (let i: number = 0, j: number = packageArray.length, k: number = j - 1; i < j; i++) {
       const packageItem: PackageItem = packageArray[i];
 
-      queue.push(requestPackageInformation(packageItem.name, registry));
+      queue.push(requestPackageInfo(packageItem.name, registry));
 
       if (i % 5 === 4 || i === k) {
         const result: Array<PackageInformation> = await Promise.all(queue);
