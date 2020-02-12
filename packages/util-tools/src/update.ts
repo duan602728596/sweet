@@ -74,10 +74,19 @@ function requestPackageInfo(packageName: string, registry: number = 0): Promise<
 
       res.on('end', function() {
         const buffer: Buffer = Buffer.concat(chunks),
-          str: string = buffer.toString('utf8'),
-          data: PackageInformation = JSON.parse(str);
+          str: string = buffer.toString('utf8');
 
-        resolve(data);
+        // TODO: 确保json格式解析正确，避免出现问题（测试环境下）
+        try {
+          const data: PackageInformation = JSON.parse(str);
+
+          resolve(data);
+        } catch (err) {
+          resolve({
+            error: 'Request error.',
+            stack: err
+          });
+        }
       });
     });
 
