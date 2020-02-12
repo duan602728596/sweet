@@ -1,6 +1,7 @@
 /* 查看升级 */
 import * as https from 'https';
-import { RequestOptions, ClientRequest, IncomingMessage } from 'http';
+import { RequestOptions } from 'https';
+import { ClientRequest, IncomingMessage } from 'http';
 import * as path from 'path';
 import * as _ from 'lodash';
 import { Dictionary } from 'lodash';
