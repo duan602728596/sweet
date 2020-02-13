@@ -1,21 +1,5 @@
-import eslint from 'eslint';
-import options from './options';
-import typeAnnotationSpacing from '../lib/rules/typeAnnotationSpacing';
-
-const { RuleTester } = eslint;
-
-const ruleTester = new RuleTester({
-  env: {
-    es6: true,
-    es2017: true,
-    es2020: true
-  },
-  parser: options.parser,
-  parserOptions: {
-    project: options.tsconfig,
-    createDefaultProgram: true
-  }
-});
+import ruleTester from '../ruleTester';
+import typeAnnotationSpacing from '../../lib/rules/typeAnnotationSpacing';
 
 ruleTester.run('type-annotation-spacing', typeAnnotationSpacing, {
   valid: [
@@ -25,8 +9,8 @@ ruleTester.run('type-annotation-spacing', typeAnnotationSpacing, {
     `var len: number
            | string = 15;`,
     `function add(a: number | undefined, b: number | undefined): number {
-           return a ?? 0 + b ?? 0;
-         }`,
+       return a ?? 0 + b ?? 0;
+     }`,
     'const a: Array<number> | number = [5];'
   ],
   invalid: [
@@ -83,8 +67,8 @@ ruleTester.run('type-annotation-spacing', typeAnnotationSpacing, {
     },
     {
       code: `function add(a: number|undefined, b: number|undefined): number {
-           return a ?? 0 + b ?? 0;
-         }`,
+        return a ?? 0 + b ?? 0;
+      }`,
       errors: [
         {
           messageId: 'TypeAnnotationSpacing',

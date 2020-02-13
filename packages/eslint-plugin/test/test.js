@@ -3,4 +3,5 @@ const babelConfig = require('../../../scripts/babelConfig');
 
 register(babelConfig);
 
-require('./typeAnnotationSpacing');
+require('./rules/interfaceSpaceBeforeBlocks');
+require('./rules/typeAnnotationSpacing');

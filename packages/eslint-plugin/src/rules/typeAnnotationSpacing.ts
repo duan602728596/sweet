@@ -1,6 +1,8 @@
+import { AST_NODE_TYPES } from '@typescript-eslint/typescript-estree';
 import * as util from '@typescript-eslint/eslint-plugin/dist/util';
 import { Rule, SourceCode, AST } from 'eslint';
 import * as ESTree from 'estree';
+import SYMBOLS from '../symbols';
 
 type Options = [string];
 type MessageIds = 'TypeAnnotationSpacing';
@@ -37,7 +39,7 @@ export default util.createRule<Options, MessageIds>({
         // 判断符号类型，符号可能为"|"、"&"
         if (token.type !== 'Punctuator') continue;
 
-        if (!['|', '&'].includes(token.value)) continue;
+        if (![SYMBOLS.OR, SYMBOLS.AND].includes(token.value)) continue;
 
         // 检查符号与左侧的间距
         if (i > 0) {
@@ -88,8 +90,8 @@ export default util.createRule<Options, MessageIds>({
     }
 
     return {
-      TSUnionType: checkNode,
-      TSIntersectionType: checkNode
+      [AST_NODE_TYPES.TSUnionType]: checkNode,
+      [AST_NODE_TYPES.TSIntersectionType]: checkNode
     };
   }
 });
