@@ -8,5 +8,6 @@ exports.packageNames = [
   'milktea-cli',
   'server',
   'server-log',
-  'util-tools'
+  'util-tools',
+  'eslint-plugin'
 ];
