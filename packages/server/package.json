@@ -14,7 +14,7 @@
     "test": "npm run clean:build && cross-env NODE_ENV=test mocha ./test/test.js --timeout 180000",
     "clean:test": "npm run clean:sweet && npm run clean:build",
     "clean:sweet": "rimraf ./.sweet",
-    "clean:build": "rimraf ./tests/dist"
+    "clean:build": "rimraf ./test/dist"
   },
   "dependencies": {
     "@babel/core": "^7.8.4",

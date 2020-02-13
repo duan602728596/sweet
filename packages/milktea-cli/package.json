@@ -17,8 +17,8 @@
     "clean": "rimraf ./lib",
     "test": "npm run clean:test && cross-env NODE_ENV=test mocha ./test/test.js --timeout 180000",
     "clean:test": "npm run clean:sweet && npm run clean:build",
-    "clean:sweet": "rimraf ./tests/.sweet",
-    "clean:build": "rimraf ./tests/dist"
+    "clean:sweet": "rimraf ./test/.sweet",
+    "clean:build": "rimraf ./test/dist"
   },
   "dependencies": {
     "lodash": "^4.17.15",
