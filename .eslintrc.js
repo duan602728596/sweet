@@ -34,7 +34,7 @@ module.exports = {
         project: 'tsconfig.json',
         createDefaultProgram: true
       },
-      plugins: ['@typescript-eslint'],
+      plugins: ['@typescript-eslint', '@sweet-milktea'],
       rules: {
         // Supported Rules
         '@typescript-eslint/member-delimiter-style': [ // 在接口和类型文字中强制使用一致的成员定界符样式
@@ -70,6 +70,8 @@ module.exports = {
         ],
         // Extension Rules
         '@typescript-eslint/no-array-constructor': 'error', // 禁止使用new Array()，但是可以使用new Array<type>()
+        // @sweet-milktea/eslint-plugin
+        '@sweet-milktea/type-annotation-spacing': 'error'
       }
     },
     {
