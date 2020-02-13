@@ -84,13 +84,13 @@ export default util.createRule<Options, MessageIds>({
       }
     }
 
+    function checkNode(node: ESTree.Node): void {
+      checkTypeAnnotationSpacing(node);
+    }
+
     return {
-      TSUnionType(node: ESTree.Node): void {
-        checkTypeAnnotationSpacing(node);
-      },
-      TSIntersectionType(node: ESTree.Node): void {
-        checkTypeAnnotationSpacing(node);
-      }
+      TSUnionType: checkNode,
+      TSIntersectionType: checkNode
     };
   }
 });
