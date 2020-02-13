@@ -41,8 +41,8 @@ export default util.createRule<Options, MessageIds>({
           // 检查符号与左侧的间距
           if (i > 0) {
             const beforeToken: AST.Token = tokens[i - 1],
-              beforeRange: AST.Range = beforeToken.range;
-            const beforeRangeSpace: number = range[0] - beforeRange[1];
+              beforeRange: AST.Range = beforeToken.range,
+              beforeRangeSpace: number = range[0] - beforeRange[1];
 
             if (
               (options === 'always' && beforeRangeSpace < 1)
