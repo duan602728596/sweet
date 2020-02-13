@@ -1,7 +1,6 @@
 import * as util from '@typescript-eslint/eslint-plugin/dist/util';
 import { Rule, SourceCode, AST } from 'eslint';
 import * as ESTree from 'estree';
-import Token = AST.Token;
 
 type Options = [string];
 type MessageIds = 'TypeAnnotationSpacing';
@@ -29,10 +28,10 @@ export default util.createRule<Options, MessageIds>({
 
     function checkTypeAnnotationSpacing(node: ESTree.Node): void {
       const tokens: Array<AST.Token> = sourceCode.getTokens(node);
-      const errTokens: Array<Token> = [];
+      const errTokens: Array<AST.Token> = [];
 
       for (let i: number = 0, j: number = tokens.length, k: number = j - 1; i < j; i++) {
-        const token: Token = tokens[i],
+        const token: AST.Token = tokens[i],
           range: AST.Range = token.range;
 
         // 判断符号类型，符号可能为"|"、"&"
@@ -42,7 +41,7 @@ export default util.createRule<Options, MessageIds>({
 
         // 检查符号与左侧的间距
         if (i > 0) {
-          const beforeToken: Token = tokens[i - 1],
+          const beforeToken: AST.Token = tokens[i - 1],
             beforeRange: AST.Range = beforeToken.range;
           const beforeRangeSpace: number = range[0] - beforeRange[1];
 
@@ -57,7 +56,7 @@ export default util.createRule<Options, MessageIds>({
 
         // 检查符号与右侧的间距
         if (i < k) {
-          const afterToken: Token = tokens[i + 1],
+          const afterToken: AST.Token = tokens[i + 1],
             afterRange: AST.Range = afterToken.range;
           const afterRangeSpace: number = afterRange[0] - range[1];
 
