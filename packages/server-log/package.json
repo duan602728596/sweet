@@ -13,7 +13,7 @@
     "build": "npm run clean && cross-env NODE_ENV=production tsc",
     "clean": "rimraf ./lib",
     "test": "npm run clean:sweet && cross-env NODE_ENV=test mocha ./test/test.js --timeout 180000",
-    "clean:sweet": "rimraf ./tests/.sweet"
+    "clean:sweet": "rimraf ./test/.sweet"
   },
   "dependencies": {
     "@bbkkbkk/koa-log4": "^2.3.4",
