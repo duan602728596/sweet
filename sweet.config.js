@@ -38,7 +38,7 @@ export default function(info) {
         // https://github.com/ant-design/ant-design/blob/master/components/style/themes/default.less
         '@primary-color': '#f5222d'
       },
-      include: /node_modules[\\/]antd/
+      include: /node_modules[\\/]_?antd/
     },
     html: [
       { template: path.join(__dirname, 'src/index.pug'), excludeChunks: ['other'] },
