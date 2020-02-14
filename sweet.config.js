@@ -31,7 +31,7 @@ export default function(info) {
         // https://github.com/vueComponent/ant-design-vue/blob/master/components/style/themes/default.less
         '@primary-color': '#58b957'
       },
-      include: /node_modules[\\/]ant-design-vue/
+      include: /node_modules[\\/]_?ant-design-vue/
     },
     html: [
       { template: path.join(__dirname, 'src/index.pug'), excludeChunks: ['other'] },
