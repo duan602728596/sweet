@@ -32,6 +32,11 @@ module.exports = {
       parser: 'vue-eslint-parser',
       parserOptions: {
         parser: 'babel-eslint'
+      },
+      plugins: ['vue'],
+      rules: {
+        indent: 'off',
+        'vue/script-indent': ['error', 2, { baseIndent: 1, switchCase: 1 }]
       }
     },
     {
