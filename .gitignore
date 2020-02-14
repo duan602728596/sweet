@@ -15,6 +15,7 @@ build
 buildServer
 dist
 dist-server
+Dockerfile-sss
 
 # cache
 .sweet/*
