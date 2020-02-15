@@ -31,7 +31,7 @@ export default function(sweetConfig: SweetConfig | null | undefined, sweetOption
     .merge({
       mode: 'development',
       devtool: isDevelopment ? 'inline-source-map' : false,
-      resolve: extensions,
+      resolve: { extensions },
       performance: { hints: false }
     });
 
