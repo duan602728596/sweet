@@ -7,6 +7,7 @@ import * as merge from 'webpack-merge';
 import loaders from './loaders/loaders';
 import basicPlugins from './plugins/plugins';
 import optimization from './optimization/optimization';
+import { extensions } from './utils/utils';
 import { SweetConfig, SweetOptions } from './utils/types';
 
 export default function(sweetConfig: SweetConfig | null | undefined, sweetOptions: SweetOptions): Configuration {
@@ -38,16 +39,12 @@ export default function(sweetConfig: SweetConfig | null | undefined, sweetOption
     .merge({
       mode,
       devtool: serverDevtool ?? (isDevelopment ? 'eval-source-map' : 'source-map'),
-      resolve: {
-        extensions: ['.js', '.jsx', '.mjs', '.wasm', '.json', '.ts', '.tsx']
-      },
+      resolve: { extensions },
       target: 'async-node',
+      performance: { hints: false },
       node: {
         __filename: true,
         __dirname: true
-      },
-      performance: {
-        hints: false
       }
     });
 

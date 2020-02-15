@@ -7,6 +7,7 @@ import * as merge from 'webpack-merge';
 import loaders from './loaders/loaders';
 import basicPlugins from './plugins/plugins';
 import optimization from './optimization/optimization';
+import { extensions } from './utils/utils';
 import { JS, SweetConfig, SweetOptions } from './utils/types';
 
 export default function(sweetConfig: SweetConfig | null | undefined, sweetOptions: SweetOptions): Configuration {
@@ -43,12 +44,8 @@ export default function(sweetConfig: SweetConfig | null | undefined, sweetOption
     .merge({
       mode,
       devtool: devtool ?? (isDevelopment ? 'eval-source-map' : false),
-      resolve: {
-        extensions: ['.js', '.jsx', '.mjs', '.json', '.wasm', '.ts', '.tsx']
-      },
-      performance: {
-        hints: false
-      }
+      resolve: { extensions },
+      performance: { hints: false }
     });
 
   // 设置文件输出

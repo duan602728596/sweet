@@ -9,6 +9,7 @@ import { createPresetEnv } from './config/babelConfig';
 import { handleDefaultProgress } from './plugins/handleProgress';
 import createHandleProgressBar from './plugins/handleProgressBar';
 import { babelCache, dllCache } from './config/cacheConfig';
+import { extensions } from './utils/utils';
 import { SweetConfig, SweetOptions, JS } from './utils/types';
 
 export default function(sweetConfig: SweetConfig | null | undefined, sweetOptions: SweetOptions): Configuration {
@@ -30,12 +31,8 @@ export default function(sweetConfig: SweetConfig | null | undefined, sweetOption
     .merge({
       mode: 'development',
       devtool: isDevelopment ? 'inline-source-map' : false,
-      resolve: {
-        extensions: ['.js', '.jsx', '.mjs', '.json', '.ts', '.tsx']
-      },
-      performance: {
-        hints: false
-      }
+      resolve: extensions,
+      performance: { hints: false }
     });
 
   // 设置文件输出
