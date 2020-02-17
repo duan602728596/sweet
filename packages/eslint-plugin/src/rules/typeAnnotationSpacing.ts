@@ -37,9 +37,12 @@ export default util.createRule<Options, MessageIds>({
           range: AST.Range = token.range;
 
         // 判断符号类型，符号可能为"|"、"&"
-        if (token.type !== 'Punctuator') continue;
-
-        if (![SYMBOLS.OR, SYMBOLS.AND].includes(token.value)) continue;
+        if (
+          (token.type !== 'Punctuator')
+          || (![SYMBOLS.OR, SYMBOLS.AND].includes(token.value))
+        ) {
+          continue;
+        }
 
         // 检查符号与左侧的间距
         if (i > 0) {
