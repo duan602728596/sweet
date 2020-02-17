@@ -5,19 +5,19 @@ import * as ESTree from 'estree';
 import SYMBOLS from '../symbols';
 
 type Options = [string];
-type MessageIds = 'TSInterfaceSpaceBeforeBlocks';
+type MessageIds = 'TypeSpaceInFixOps';
 
 export default util.createRule<Options, MessageIds>({
-  name: 'interface-space-before-blocks',
+  name: 'type-space-infix-ops',
   meta: {
     docs: {
-      description: 'Force consistent spaces before interface blocks',
+      description: 'This rule is aimed at ensuring there are spaces around infix operators in typescript.',
       category: 'Stylistic Issues',
       recommended: 'error'
     },
     fixable: null,
     messages: {
-      TSInterfaceSpaceBeforeBlocks: 'Expected space before the \'{{type}}\'.'
+      TypeSpaceInFixOps: 'Operator \'{{type}}\' must be spaced.'
     },
     schema: [{
       type: 'string',
@@ -28,7 +28,7 @@ export default util.createRule<Options, MessageIds>({
   create(context: Rule.RuleContext, [options]: Options): Rule.RuleListener {
     const sourceCode: SourceCode = context.getSourceCode();
 
-    function checkTSInterfaceSpaceBeforeBlocks(node: ESTree.Node): void {
+    function checkTSTypeAliasDeclaration(node: ESTree.Node): void {
       const tokens: Array<AST.Token> = sourceCode.getTokens(node);
       const errTokens: Array<AST.Token> = [];
 
@@ -36,8 +36,8 @@ export default util.createRule<Options, MessageIds>({
         const token: AST.Token = tokens[i],
           range: AST.Range = token.range;
 
-        // 判断符号类型，符号为"{"
-        if (token.type === 'Punctuator' && token.value === SYMBOLS.LEFT_CURLY_BRACKET) {
+        // 判断符号类型，符号为"="
+        if (token.type === 'Punctuator' && token.value === SYMBOLS.EQUAL) {
           // 检查符号与左侧的间距
           if (i > 0) {
             const beforeToken: AST.Token = tokens[i - 1],
@@ -52,6 +52,20 @@ export default util.createRule<Options, MessageIds>({
             }
           }
 
+          // 检查符号与右侧的间距
+          if (i < k && errTokens.length === 0) {
+            const afterToken: AST.Token = tokens[i + 1],
+              afterRange: AST.Range = afterToken.range;
+            const afterRangeSpace: number = afterRange[0] - range[1];
+
+            if (
+              (options === 'always' && afterRangeSpace < 1)
+              || (options === 'never' && afterRangeSpace > 0)
+            ) {
+              errTokens.push(token);
+            }
+          }
+
           break;
         }
       }
@@ -60,7 +74,7 @@ export default util.createRule<Options, MessageIds>({
         for (const errToken of errTokens) {
           context.report({
             node,
-            messageId: 'TSInterfaceSpaceBeforeBlocks',
+            messageId: 'TypeSpaceInFixOps',
             data: {
               type: errToken.value
             },
@@ -71,8 +85,8 @@ export default util.createRule<Options, MessageIds>({
     }
 
     return {
-      [AST_NODE_TYPES.TSInterfaceDeclaration](node: ESTree.Node): void {
-        checkTSInterfaceSpaceBeforeBlocks(node);
+      [AST_NODE_TYPES.TSTypeAliasDeclaration](node: ESTree.Node): void {
+        checkTSTypeAliasDeclaration(node);
       }
     };
   }

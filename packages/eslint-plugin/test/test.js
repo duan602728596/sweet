@@ -5,3 +5,4 @@ register(babelConfig);
 
 require('./rules/interfaceSpaceBeforeBlocks');
 require('./rules/typeAnnotationSpacing');
+require('./rules/typeSpaceInfixOps');
