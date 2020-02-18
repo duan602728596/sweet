@@ -1,17 +1,24 @@
-import Vue from 'vue';
-import Component from 'vue-class-component';
+import { createComponent, ref } from '@vue/composition-api';
 import { Icon } from 'ant-design-vue';
 import style from './index.sass';
 import WelcomeSvgComponent from './images/welcome.component.svg';
 
-@Component
-class Index extends Vue {
-  // 点击事件
-  handleZanClick(event) {
-    const likeLen = this.$store.getters['index/getLikeLen']();
+export default createComponent({
+  setup: ({}, { root }) => {
+    const { $store } = root;
+    const stateLen = ref(0);
 
-    this.$store.dispatch('index/setLikeLen', likeLen + 1);
-  }
+    return {
+      stateLen,
+
+      handleZanClick(event) {
+        const likeLen = $store.getters['index/getLikeLen']();
+
+        $store.dispatch('index/setLikeLen', likeLen + 1);
+        stateLen.value++;
+      }
+    };
+  },
 
   render() {
     const likeLen = this.$store.getters['index/getLikeLen']();
@@ -25,12 +32,10 @@ class Index extends Vue {
         <p>如果你喜欢，你可以点个赞。</p>
         <div>
           <Icon class={ style.zan } type="like" role="button" onClick={ this.handleZanClick } />
-          <span class={ style.len }>{ likeLen }</span>
+          <span class={ style.len }>{ likeLen } & { this.stateLen }</span>
         </div>
         <img class={ style.img } src={ require('./images/1R5031O0-17.jpg').default } />
       </article>
     );
   }
-}
-
-export default Index;
+});

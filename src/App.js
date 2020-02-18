@@ -1,10 +1,7 @@
-import Vue from 'vue';
-import Component from 'vue-class-component';
 import { LocaleProvider } from 'ant-design-vue';
 import zhCN from 'ant-design-vue/es/locale-provider/zh_CN';
 
-@Component
-class App extends Vue {
+export default {
   render() {
     return (
       <div class="app" id="app">
@@ -14,6 +11,4 @@ class App extends Vue {
       </div>
     );
   }
-}
-
-export default App;
+};

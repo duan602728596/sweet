@@ -1,8 +1,4 @@
-import Vue from 'vue';
-import Component from 'vue-class-component';
-
-@Component
-class Index extends Vue {
+export default {
   render() {
     const { current } = this.$router.history;
     const { path: pathname } = current;
@@ -17,6 +13,4 @@ class Index extends Vue {
       </div>
     );
   }
-}
-
-export default Index;
+};

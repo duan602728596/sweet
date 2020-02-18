@@ -1,15 +1,12 @@
-import Vue from 'vue';
-import Component from 'vue-class-component';
 import Main from '../../layouts/Main/index';
 import Content from '../../layouts/Content/index';
 import Index from './Index/index';
 
-@Component({
+export default {
   metaInfo: {
     title: 'Webpack App'
-  }
-})
-class ModuleLayout extends Vue {
+  },
+
   render() {
     return (
       <Main>
@@ -19,6 +16,4 @@ class ModuleLayout extends Vue {
       </Main>
     );
   }
-}
-
-export default ModuleLayout;
+};

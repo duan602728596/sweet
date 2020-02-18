@@ -1,5 +1,3 @@
-import Vue from 'vue';
-import Component from 'vue-class-component';
 import { Layout } from 'ant-design-vue';
 import style from './index.sass';
 
@@ -8,8 +6,7 @@ import style from './index.sass';
  * 页面中部内容布局
  * 包含左侧的菜单Sider和右侧的内容Content
  */
-@Component
-class Main extends Vue {
+export default {
   render() {
     return (
       <Layout class={ style.main }>
@@ -17,6 +14,4 @@ class Main extends Vue {
       </Layout>
     );
   }
-}
-
-export default Main;
+};

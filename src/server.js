@@ -2,6 +2,7 @@ require('source-map-support').install();
 
 import Vue from 'vue';
 import { createRenderer } from 'vue-server-renderer';
+import VueCompositionApi from '@vue/composition-api';
 import VueMeta from 'vue-meta';
 import { cloneDeep } from 'lodash-es';
 import App from './App';
@@ -9,6 +10,7 @@ import { storeFactory } from './store/store';
 import routers from './router/routers';
 import './global.sass';
 
+Vue.use(VueCompositionApi);
 Vue.use(VueMeta);
 
 const renderer = createRenderer();

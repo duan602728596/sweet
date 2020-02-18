@@ -7,9 +7,9 @@ export default function(info) {
       'vue',
       'vue-router',
       'vuex',
-      'vue-class-component',
       'vue-meta',
-      'classnames'
+      'classnames',
+      '@vue/composition-api'
     ],
     entry: {
       index: [path.join(__dirname, 'src/index.js')],

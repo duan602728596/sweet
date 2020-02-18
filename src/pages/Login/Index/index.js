@@ -1,27 +1,30 @@
-import Vue from 'vue';
-import Component from 'vue-class-component';
+import { createComponent, createElement as h } from '@vue/composition-api';
 import { Form, Button, Input, Icon } from 'ant-design-vue';
 import style from './index.sass';
 
-@Form.create()
-@Component({
+const component = createComponent({
   props: {
     form: Object
-  }
-})
-class Index extends Vue {
-  handleLoginSubmit(event) {
-    event.preventDefault();
+  },
 
-    const { history } = this.$router;
-    const { validateFields } = this.$props.form;
+  setup: ({ form }, { root }) => {
+    const { $router } = root;
 
-    validateFields((err, value) => {
-      if (err) return;
+    return {
+      handleLoginSubmit(event) {
+        event.preventDefault();
 
-      history.push('/');
-    });
-  }
+        const { history } = $router;
+        const { validateFields } = form;
+
+        validateFields((err, value) => {
+          if (err) return;
+
+          history.push('/');
+        });
+      }
+    };
+  },
 
   render() {
     const { getFieldDecorator } = this.$props.form;
@@ -62,6 +65,6 @@ class Index extends Vue {
       </div>
     );
   }
-}
+});
 
-export default Index;
+export default Form.create()(component);

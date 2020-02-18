@@ -1,6 +1,4 @@
-import Vue from 'vue';
-import Component from 'vue-class-component';
-import { Layout as AntdLayout } from 'ant-design-vue';
+import { Layout } from 'ant-design-vue';
 import Header from '../Header/index';
 import Footer from '../Footer/index';
 import style from './index.sass';
@@ -12,17 +10,14 @@ import style from './index.sass';
  * Footer 显示版权信息
  * Routers 根据路由渲染页面
  */
-@Component
-class Layout extends Vue {
+export default {
   render() {
     return (
-      <AntdLayout class={ style.layout }>
+      <Layout class={ style.layout }>
         <Header />
         <router-view />
         <Footer />
-      </AntdLayout>
+      </Layout>
     );
   }
-}
-
-export default Layout;
+};

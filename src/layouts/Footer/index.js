@@ -1,10 +1,12 @@
-import Vue from 'vue';
-import Component from 'vue-class-component';
 import { Layout } from 'ant-design-vue';
 import style from './index.sass';
 
-@Component
-class Footer extends Vue {
+/**
+ * layout - footer
+ * 底部footer布局
+ * 显示版权
+ */
+export default {
   render() {
     return (
       <Layout.Footer class={ style.footer }>
@@ -12,6 +14,4 @@ class Footer extends Vue {
       </Layout.Footer>
     );
   }
-}
-
-export default Footer;
+};

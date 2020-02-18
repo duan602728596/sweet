@@ -1,5 +1,4 @@
-import Vue from 'vue';
-import Component from 'vue-class-component';
+import { createComponent, createElement as h } from '@vue/composition-api';
 import { Layout, Icon, Menu, Dropdown, Avatar } from 'ant-design-vue';
 import style from './index.sass';
 
@@ -8,33 +7,24 @@ import style from './index.sass';
  * 顶部header布局
  * 显示logo、导航、登录人信息等
  */
-@Component
-class Header extends Vue {
-  // 计算selectedKeys
-  selectKeys() {
-    const { current } = this.$router.history;
-    const { path: pathname } = current;
-    const url = pathname === '/' ? '/Index' : pathname;
-    const key = url.substr(1)
-      .split(/\//g)[0]
-      .toLocaleLowerCase();
-
-    return key;
-  }
-
-  // 渲染下拉菜单
-  toolsOverlayRender() {
-    return (
-      <Menu>
-        <Menu.Item>
-          <router-link to="/Login">
-            <Icon type="logout" />
-            退出
-          </router-link>
-        </Menu.Item>
-      </Menu>
-    );
-  }
+export default createComponent({
+  setup: () => {
+    return {
+      // 渲染下拉菜单
+      toolsOverlayRender() {
+        return (
+          <Menu>
+            <Menu.Item>
+              <router-link to="/Login">
+                <Icon type="logout" />
+                退出
+              </router-link>
+            </Menu.Item>
+          </Menu>
+        );
+      }
+    };
+  },
 
   render() {
     return (
@@ -70,6 +60,4 @@ class Header extends Vue {
       </Layout.Header>
     );
   }
-}
-
-export default Header;
+});

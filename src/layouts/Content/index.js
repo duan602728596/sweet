@@ -1,5 +1,3 @@
-import Vue from 'vue';
-import Component from 'vue-class-component';
 import { Layout } from 'ant-design-vue';
 import style from './style.sass';
 
@@ -9,8 +7,7 @@ import style from './style.sass';
  * 组件用于展示页面的内容
  * 默认padding为8px
  */
-@Component
-class Content extends Vue {
+export default {
   render() {
     return (
       <Layout.Content class={ style.content }>
@@ -18,6 +15,4 @@ class Content extends Vue {
       </Layout.Content>
     );
   }
-}
-
-export default Content;
+};

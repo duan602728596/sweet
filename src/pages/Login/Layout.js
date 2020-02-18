@@ -1,18 +1,11 @@
-import Vue from 'vue';
-import Component from 'vue-class-component';
 import Index from './Index/index';
 
-@Component({
+export default {
   metaInfo: {
     title: 'Webpack App - login'
-  }
-})
-class ModuleLayout extends Vue {
-  render() {
-    return (
-      <Index />
-    );
-  }
-}
+  },
 
-export default ModuleLayout;
+  render() {
+    return <Index />;
+  }
+};

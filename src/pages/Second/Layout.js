@@ -1,5 +1,3 @@
-import Vue from 'vue';
-import Component from 'vue-class-component';
 import Main from '../../layouts/Main/index';
 import Sider from '../../layouts/Sider/index';
 import Content from '../../layouts/Content/index';
@@ -36,12 +34,11 @@ const options = [
   }
 ];
 
-@Component({
+export default {
   metaInfo: {
     title: 'Webpack App - second'
-  }
-})
-class ModuleLayout extends Vue {
+  },
+
   render() {
     return (
       <Main>
@@ -52,6 +49,4 @@ class ModuleLayout extends Vue {
       </Main>
     );
   }
-}
-
-export default ModuleLayout;
+};
