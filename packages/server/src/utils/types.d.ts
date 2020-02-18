@@ -49,3 +49,5 @@ export interface Log {
   pm2: boolean;
   url: string;
 }
+
+export type LogLevel = 'debug' | 'info' | 'warn' | 'error' | 'silent';
