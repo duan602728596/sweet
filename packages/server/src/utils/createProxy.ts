@@ -2,15 +2,16 @@ import * as fs from 'fs';
 import * as _ from 'lodash';
 import * as Koa from 'koa';
 import * as connect from 'koa-connect';
+// @ts-ignore
 import * as proxy from 'http-proxy-middleware';
 import { defaultProxyPath, requireModule } from './utils';
-import { SweetOptions } from './types';
+import { SweetOptions, LogLevel } from './types';
 
 type ProxyConfig = { [key: string]: object };
 
 /* 添加代理中间件 */
 function addMiddleware(app: Koa, proxyConfig: ProxyConfig, isDevelopment: boolean, env?: string): void {
-  const logLevel: string = env === 'test' ? 'error' : (isDevelopment ? 'info' : 'error');
+  const logLevel: LogLevel | undefined = env === 'test' ? 'error' : (isDevelopment ? 'info' : 'error');
 
   for (const key in proxyConfig) {
     const config: object = proxyConfig[key];
