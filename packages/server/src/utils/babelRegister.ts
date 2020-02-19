@@ -14,12 +14,11 @@ function createRegisterConfig(): RegisterConfig {
       [
         '@babel/preset-env',
         {
-          targets: {
-            browsers: ['node 10']
-          },
+          targets: { browsers: ['node 10'] },
           debug: false,
           modules: 'commonjs',
-          useBuiltIns: false
+          useBuiltIns: 'usage',
+          corejs: 3
         }
       ]
     ],
@@ -34,7 +33,16 @@ function createRegisterConfig(): RegisterConfig {
       ['@babel/plugin-proposal-pipeline-operator', { proposal: 'minimal' }], // 管道函数
       '@babel/plugin-proposal-throw-expressions',                            // var e = throw new Error(err) 语法
       '@babel/plugin-syntax-bigint',                                         // BigInt数据类型
-      '@babel/plugin-syntax-dynamic-import'                                  // import() 语法
+      '@babel/plugin-syntax-dynamic-import',                                 // import() 语法
+      [
+        '@babel/plugin-transform-runtime',
+        {
+          corejs: { version: 3, proposals: true },
+          helpers: true,
+          regenerator: false,
+          useESModules: true
+        }
+      ]
     ],
     cache: true,
     ignore: [/node_modules/]
