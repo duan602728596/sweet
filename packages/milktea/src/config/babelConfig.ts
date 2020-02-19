@@ -70,10 +70,7 @@ export function createBabelOptions(sweetOptions: SweetOptions, jsOptions: JS): L
       [
         '@babel/plugin-transform-runtime',
         {
-          corejs: {
-            version: 3,
-            proposals: true
-          },
+          corejs: { version: 3, proposals: true },
           helpers: true,
           regenerator: !ecmascript,
           useESModules: true
