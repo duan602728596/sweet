@@ -2,8 +2,7 @@ import * as fs from 'fs';
 import * as _ from 'lodash';
 import * as Koa from 'koa';
 import * as connect from 'koa-connect';
-// @ts-ignore
-import * as proxy from 'http-proxy-middleware';
+import { createProxyMiddleware } from 'http-proxy-middleware';
 import { defaultProxyPath, requireModule } from './utils';
 import { SweetOptions, LogLevel } from './types';
 
@@ -17,7 +16,7 @@ function addMiddleware(app: Koa, proxyConfig: ProxyConfig, isDevelopment: boolea
     const config: object = proxyConfig[key];
 
     app.use(connect(
-      proxy(key, {
+      createProxyMiddleware(key, {
         changeOrigin: true,
         logLevel,
         ...config
