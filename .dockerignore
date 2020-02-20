@@ -14,6 +14,7 @@ yarn-error.log
 .editorconfig
 .eslintignore
 .eslintrc.yml
+.eslintrc.js
 .gitignore
 
 # build
