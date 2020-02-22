@@ -49,3 +49,29 @@ const len: string | number = 15; // correct
 const len: string | number = 15; // error
 const len: string|number = 15;   // correct
 ```
+
+## type-space-infix-ops
+
+判断类型的"="之间的空格。
+
+* always
+
+```typescript
+// error
+type Data=number | string;
+type Args=Array<string> | string;
+// correct
+type Data = number | string;
+type Args = Array<string> | string;
+```
+
+* never
+
+```typescript
+// error
+type Data = number | string;
+type Args = Array<string> | string;
+// correct
+type Data=number | string;
+type Args=Array<string> | string;
+```
