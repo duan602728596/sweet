@@ -34,7 +34,7 @@
     "@types/lodash": "^4",
     "@types/node": "^13",
     "@types/webpack": "^4",
-    "github-markdown-css": "^3.0.1",
+    "github-markdown-css": "^4.0.0",
     "gulp": "^4.0.2",
     "gulp-typescript": "^6.0.0-alpha.1",
     "lerna": "^3.20.2",
