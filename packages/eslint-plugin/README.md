@@ -1,5 +1,7 @@
 # @sweet-milktea/eslint-plugin
 
+扩展typescript-eslint配置，解决的issues参考[https://github.com/typescript-eslint/typescript-eslint/issues/1606](https://github.com/typescript-eslint/typescript-eslint/issues/1606)。
+
 ## interface-space-before-blocks
 
 判断interface代码块中"{"之前的空格。
