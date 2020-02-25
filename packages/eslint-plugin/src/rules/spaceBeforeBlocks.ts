@@ -11,13 +11,13 @@ export default util.createRule<Options, MessageIds>({
   name: 'interface-space-before-blocks',
   meta: {
     docs: {
-      description: 'Force consistent spaces before interface blocks',
+      description: 'enforce consistent spacing before blocks',
       category: 'Stylistic Issues',
       recommended: 'error'
     },
     fixable: null,
     messages: {
-      TSInterfaceSpaceBeforeBlocks: 'Expected space before the \'{{type}}\'.'
+      TSInterfaceSpaceBeforeBlocks: 'Missing space before opening brace.'
     },
     schema: []
   },
@@ -29,7 +29,6 @@ export default util.createRule<Options, MessageIds>({
       const errTokens: Array<AST.Token> = [];
       const token: AST.Token | null = sourceCode.getFirstToken(
         node, (o: AST.Token) => o.value === SYMBOLS.LEFT_CURLY_BRACKET);
-
 
       if (token) {
         const beforeToken: AST.Token | null = sourceCode.getTokenBefore(token);
@@ -48,9 +47,6 @@ export default util.createRule<Options, MessageIds>({
           context.report({
             node,
             messageId: 'TSInterfaceSpaceBeforeBlocks',
-            data: {
-              type: errToken.value
-            },
             loc: errToken.loc
           });
         }

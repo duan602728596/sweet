@@ -21,7 +21,6 @@ ruleTester.run('space-before-blocks', interfaceSpaceBeforeBlocks, {
       errors: [
         {
           messageId: 'TSInterfaceSpaceBeforeBlocks',
-          data: { type: '{' },
           line: 1,
           column: 20
         }
@@ -36,7 +35,6 @@ ruleTester.run('space-before-blocks', interfaceSpaceBeforeBlocks, {
       errors: [
         {
           messageId: 'TSInterfaceSpaceBeforeBlocks',
-          data: { type: '{' },
           line: 1,
           column: 19
         }
@@ -51,7 +49,6 @@ ruleTester.run('space-before-blocks', interfaceSpaceBeforeBlocks, {
       errors: [
         {
           messageId: 'TSInterfaceSpaceBeforeBlocks',
-          data: { type: '{' },
           line: 1,
           column: 42
         }
