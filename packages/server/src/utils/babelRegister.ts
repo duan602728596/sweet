@@ -34,6 +34,7 @@ function createRegisterConfig(): RegisterConfig {
       '@babel/plugin-proposal-throw-expressions',                            // var e = throw new Error(err) 语法
       '@babel/plugin-syntax-bigint',                                         // BigInt数据类型
       '@babel/plugin-syntax-dynamic-import',                                 // import() 语法
+      '@babel/plugin-syntax-top-level-await',                                // top-level await
       [
         '@babel/plugin-transform-runtime',
         {

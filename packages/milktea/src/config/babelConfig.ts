@@ -17,7 +17,8 @@ export function createBabelPlugins(): Array<any> {
     ['@babel/plugin-proposal-pipeline-operator', { proposal: 'minimal' }], // 管道函数
     '@babel/plugin-proposal-throw-expressions',                            // var e = throw new Error(err) 语法
     '@babel/plugin-syntax-bigint',                                         // BigInt数据类型
-    '@babel/plugin-syntax-dynamic-import'                                  // import() 语法
+    '@babel/plugin-syntax-dynamic-import',                                 // import() 语法
+    '@babel/plugin-syntax-top-level-await'                                 // top-level await
   ];
 }
 
