@@ -7,6 +7,6 @@
   "exclude": [
     "node_modules",
     "koa.d.ts",
-    "tests"
+    "test"
   ]
 }

@@ -42,21 +42,28 @@ export function filePathAnalyze(file: string): string {
 }
 
 /* 设置默认api文件的地址 */
-export function defaultApiPath(basicPath: string): string {
-  return path.join(basicPath, 'api/api.js');
+export function defaultApiPath(basicPath: string): { js: string; ts: string } {
+  return {
+    ts: path.join(basicPath, 'api/api.ts'),
+    js: path.join(basicPath, 'api/api.js')
+  };
 }
 
 /* 设置默认的proxy代理的地址 */
-export function defaultProxyPath(basicPath: string): { js: string; json: string } {
+export function defaultProxyPath(basicPath: string): { ts: string; js: string; json: string } {
   return {
+    ts: path.join(basicPath, 'proxy/proxy.ts'),
     js: path.join(basicPath, 'proxy/proxy.js'),
     json: path.join(basicPath, 'proxy/proxy.json')
   };
 }
 
 /* 设置默认的mock的地址 */
-export function defaultMockPath(basicPath: string): string {
-  return path.join(basicPath, 'mock/mock.js');
+export function defaultMockPath(basicPath: string): { js: string; ts: string } {
+  return {
+    ts: path.join(basicPath, 'mock/mock.ts'),
+    js: path.join(basicPath, 'mock/mock.js')
+  };
 }
 
 /* 清除模块缓存（只用于开发环境） */

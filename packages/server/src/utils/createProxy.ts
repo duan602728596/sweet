@@ -31,32 +31,31 @@ function addMiddleware(app: Koa, proxyConfig: ProxyConfig, isDevelopment: boolea
  */
 async function createProxy(sweetOptions: SweetOptions, app: Koa, isDevelopment: boolean, env?: string): Promise<void> {
   try {
-    const defaultProxy: { js: string; json: string } = defaultProxyPath(sweetOptions.basicPath);
+    const defaultProxy: { ts: string; js: string; json: string } = defaultProxyPath(sweetOptions.basicPath);
+    const findFiles: Array<string> = [
+      defaultProxy.ts,
+      defaultProxy.js,
+      defaultProxy.json
+    ];
 
-    if (sweetOptions.proxyFile && fs.existsSync(sweetOptions.proxyFile)) {
-      const module: any = requireModule(sweetOptions.proxyFile);
+    if (sweetOptions.proxyFile) {
+      findFiles.unshift(sweetOptions.proxyFile);
+    }
 
-      if (_.isPlainObject(module)) {
-        await addMiddleware(app, module, isDevelopment, env);
-      } else if (typeof module === 'function') {
-        const proxyConfig: ProxyConfig = await module(sweetOptions, app);
+    for (const findFile of findFiles) {
+      if (fs.existsSync(findFile)) {
+        const module: any = requireModule(findFile);
 
-        await addMiddleware(app, proxyConfig, isDevelopment, env);
+        if (_.isPlainObject(module)) {
+          await addMiddleware(app, module, isDevelopment, env);
+        } else if (typeof module === 'function') {
+          const proxyConfig: ProxyConfig = await module(sweetOptions, app);
+
+          await addMiddleware(app, proxyConfig, isDevelopment, env);
+        }
+
+        break;
       }
-    } else if (fs.existsSync(defaultProxy.js)) {
-      const module: any = requireModule(defaultProxy.js);
-
-      if (_.isPlainObject(module)) {
-        await addMiddleware(app, module, isDevelopment, env);
-      } else if (typeof module === 'function') {
-        const proxyConfig: ProxyConfig = await module(sweetOptions, app);
-
-        await addMiddleware(app, proxyConfig, isDevelopment, env);
-      }
-    } else if (fs.existsSync(defaultProxy.json)) {
-      const module: ProxyConfig = requireModule(defaultProxy.json);
-
-      await addMiddleware(app, module, isDevelopment, env);
     }
   } catch (err) {
     console.error(err);
