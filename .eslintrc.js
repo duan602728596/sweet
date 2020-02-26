@@ -37,6 +37,7 @@ module.exports = {
       plugins: ['@typescript-eslint', '@sweet-milktea'],
       rules: {
         // Supported Rules
+        '@typescript-eslint/explicit-function-return-type': 'error', // 函数必须返回值
         '@typescript-eslint/member-delimiter-style': [ // 在接口和类型文字中强制使用一致的成员定界符样式
           'error',
           {
