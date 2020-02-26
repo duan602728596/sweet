@@ -22,11 +22,11 @@
     "packages/*"
   ],
   "dependencies": {
-    "@storybook/addon-actions": "^5.3.13",
-    "@storybook/addon-links": "^5.3.13",
-    "@storybook/addon-notes": "^5.3.13",
-    "@storybook/cli": "^5.3.13",
-    "@storybook/react": "^5.3.13",
+    "@storybook/addon-actions": "^5.3.14",
+    "@storybook/addon-links": "^5.3.14",
+    "@storybook/addon-notes": "^5.3.14",
+    "@storybook/cli": "^5.3.14",
+    "@storybook/react": "^5.3.14",
     "@types/eslint": "^6",
     "@types/estree": "^0",
     "@types/html-minifier": "^3",
@@ -62,7 +62,7 @@
     "eslint": "^7.0.0-alpha.1",
     "eslint-plugin-react": "^7.18.3",
     "husky": "^4.2.3",
-    "lint-staged": "^10.0.7",
+    "lint-staged": "^10.0.8",
     "lodash": "^4.17.15"
   },
   "husky": {
