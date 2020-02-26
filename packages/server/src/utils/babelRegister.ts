@@ -5,6 +5,7 @@ interface RegisterConfig {
   plugins: Array<any>;
   cache: boolean;
   ignore: Array<RegExp>;
+  extensions: Array<string>;
 }
 
 /* @babel/register的配置 */
@@ -19,6 +20,14 @@ function createRegisterConfig(): RegisterConfig {
           modules: 'commonjs',
           useBuiltIns: 'usage',
           corejs: 3
+        }
+      ],
+      [
+        '@babel/preset-typescript',
+        {
+          isTSX: true,
+          allExtensions: true,
+          allowNamespaces: true
         }
       ]
     ],
@@ -46,7 +55,8 @@ function createRegisterConfig(): RegisterConfig {
       ]
     ],
     cache: true,
-    ignore: [/node_modules/]
+    ignore: [/node_modules/],
+    extensions: ['.es6', '.es', '.jsx', '.js', '.mjs', '.tsx', '.ts']
   };
 }
 
