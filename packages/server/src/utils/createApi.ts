@@ -10,20 +10,22 @@ import { SweetOptions } from './types';
  */
 async function createApi(sweetOptions: SweetOptions, router: Router, app: Koa, isDevelopment: boolean): Promise<void> {
   try {
-    const defaultApi: string = defaultApiPath(sweetOptions.basicPath);
+    const defaultApi: { js: string; ts: string } = defaultApiPath(sweetOptions.basicPath);
+    const findFiles: Array<string> = [defaultApi.ts, defaultApi.js];
 
-    if (sweetOptions.apiFile && fs.existsSync(sweetOptions.apiFile)) {
-      const routers: Function = isDevelopment
-        ? deleteCacheAndRequireModule(sweetOptions.apiFile)
-        : requireModule(sweetOptions.apiFile);
+    if (sweetOptions.apiFile) {
+      findFiles.unshift(sweetOptions.apiFile);
+    }
 
-      await routers(router, sweetOptions, app);
-    } else if (fs.existsSync(defaultApi)) {
-      const routers: Function = isDevelopment
-        ? deleteCacheAndRequireModule(defaultApi)
-        : requireModule(defaultApi);
+    for (const findFile of findFiles) {
+      if (fs.existsSync(findFile)) {
+        const routers: Function = isDevelopment
+          ? deleteCacheAndRequireModule(findFile)
+          : requireModule(findFile);
 
-      await routers(router, sweetOptions, app);
+        await routers(router, sweetOptions, app);
+        break;
+      }
     }
   } catch (err) {
     console.error(err);

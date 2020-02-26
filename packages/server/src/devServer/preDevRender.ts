@@ -23,8 +23,8 @@ function preRenderInit(sweetOptions: SweetOptions): Function {
   ): Promise<string> {
     const renderEngine: Function = createRenderEngine(sweetOptions.renderType);
     const controllersMap: Map<string, string> = await getControllersFiles(basicPath, sweetOptions.controllersDir);
-    const folderPathFile: string = `${ folderPathAnalyze(ctxPath) }.js`; // 格式化为：path/to/file.js
-    const formatFile: string = `${ filePathAnalyze(ctxPath) }.js`;       // 格式化为：path.to.file.js
+    const folderPathFile: string = folderPathAnalyze(ctxPath); // 格式化为：path/to/file，没有扩展名
+    const formatFile: string = filePathAnalyze(ctxPath);       // 格式化为：path.to.file，没有扩展名
     const data: any = await getControllerData(ctx, sweetOptions, controllersMap, folderPathFile, formatFile);
 
     // ssr渲染

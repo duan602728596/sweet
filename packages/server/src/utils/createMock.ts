@@ -52,26 +52,31 @@ function addMockRouter(router: Router, mock: Mock): void {
  */
 async function createMock(sweetOptions: SweetOptions, router: Router, isDevelopment: boolean): Promise<void> {
   try {
-    const defaultMock: string = defaultMockPath(sweetOptions.basicPath);
-    let mockModule: MockModule | null = null;
+    const defaultMock: { js: string; ts: string } = defaultMockPath(sweetOptions.basicPath);
+    const findFiles: Array<string> = [
+      defaultMock.ts,
+      defaultMock.js
+    ];
 
-    if (sweetOptions.mockFile && fs.existsSync(sweetOptions.mockFile)) {
-      mockModule = isDevelopment
-        ? deleteCacheAndRequireModule(sweetOptions.mockFile)
-        : requireModule(sweetOptions.mockFile);
-    } else if (fs.existsSync(defaultMock)) {
-      mockModule = isDevelopment
-        ? deleteCacheAndRequireModule(defaultMock)
-        : requireModule(defaultMock);
+    if (sweetOptions.mockFile) {
+      findFiles.unshift(sweetOptions.mockFile);
     }
 
-    if (mockModule) {
-      if (isMockFunc(mockModule)) {
-        const mock: Mock = await mockModule(sweetOptions);
+    for (const findFile of findFiles) {
+      if (fs.existsSync(findFile)) {
+        const mockModule: MockModule = isDevelopment
+          ? deleteCacheAndRequireModule(findFile)
+          : requireModule(findFile);
 
-        addMockRouter(router, mock);
-      } else if (isMock(mockModule)) {
-        addMockRouter(router, mockModule);
+        if (isMockFunc(mockModule)) {
+          const mock: Mock = await mockModule(sweetOptions);
+
+          addMockRouter(router, mock);
+        } else if (isMock(mockModule)) {
+          addMockRouter(router, mockModule);
+        }
+
+        break;
       }
     }
   } catch (err) {
