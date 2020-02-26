@@ -79,7 +79,7 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
       (config: Config): void => {
         configBabelUse
           .tap((options: any): any => _.mergeWith(options, {
-            presets: resetPresets ? undefined : (useTypescript ? undefined : ['@babel/preset-react']),
+            presets: resetPresets ? undefined : ['@babel/preset-react'],
             plugins: resetPlugins ? undefined : ['react-hot-loader/babel']
           }, customizer));
       }
