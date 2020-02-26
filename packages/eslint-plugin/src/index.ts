@@ -1,11 +1,9 @@
-import interfaceSpaceBeforeBlocks from './rules/interfaceSpaceBeforeBlocks';
-import typeAnnotationSpacing from './rules/typeAnnotationSpacing';
-import typeSpaceInfixOps from './rules/typeSpaceInfixOps';
+import spaceBeforeBlocks from './rules/spaceBeforeBlocks';
+import spaceInfixOps from './rules/spaceInfixOps';
 
 export default {
   rules: {
-    'interface-space-before-blocks': interfaceSpaceBeforeBlocks,
-    'type-annotation-spacing': typeAnnotationSpacing,
-    'type-space-infix-ops': typeSpaceInfixOps
+    'space-before-blocks': spaceBeforeBlocks,
+    'space-infix-ops': spaceInfixOps
   }
 };

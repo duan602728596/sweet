@@ -1,6 +1,6 @@
 {
   "name": "@sweet-milktea/server",
-  "version": "0.11.5",
+  "version": "0.12.0",
   "description": "webpack服务和web服务",
   "homepage": "https://github.com/duan602728596/sweet",
   "repository": {
@@ -30,8 +30,10 @@
     "@babel/plugin-proposal-throw-expressions": "^7.8.3",
     "@babel/plugin-syntax-bigint": "^7.8.3",
     "@babel/plugin-syntax-dynamic-import": "^7.8.3",
+    "@babel/plugin-syntax-top-level-await": "^7.8.3",
     "@babel/plugin-transform-runtime": "^7.8.3",
     "@babel/preset-env": "^7.8.4",
+    "@babel/preset-typescript": "^7.8.3",
     "@babel/register": "^7.8.3",
     "@babel/runtime-corejs3": "^7.8.4",
     "@bbkkbkk/http-proxy": "^1.17.0",

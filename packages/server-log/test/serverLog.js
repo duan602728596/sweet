@@ -5,7 +5,7 @@ import { expect } from 'chai';
 import serverLog from '../lib/index';
 
 const { accessLogger, logger } = serverLog('file', {
-  basicPath: path.join(process.cwd(), 'tests')
+  basicPath: path.join(process.cwd(), 'test')
 });
 
 describe('server log', function() {

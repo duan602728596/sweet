@@ -17,7 +17,8 @@ export function createBabelPlugins(): Array<any> {
     ['@babel/plugin-proposal-pipeline-operator', { proposal: 'minimal' }], // 管道函数
     '@babel/plugin-proposal-throw-expressions',                            // var e = throw new Error(err) 语法
     '@babel/plugin-syntax-bigint',                                         // BigInt数据类型
-    '@babel/plugin-syntax-dynamic-import'                                  // import() 语法
+    '@babel/plugin-syntax-dynamic-import',                                 // import() 语法
+    '@babel/plugin-syntax-top-level-await'                                 // top-level await
   ];
 }
 
@@ -31,6 +32,22 @@ export function createTargets(): { browsers: Array<string> } {
       'IE 11'
     ]
   };
+}
+
+/**
+ * @babel/preset-typescript
+ * @param { boolean } isReact: react下使用React，vue下保持原输出
+ */
+export function createPresetTypescript(isReact: boolean = true): Array<any> {
+  return [
+    '@babel/preset-typescript',
+    {
+      isTSX: true,
+      jsxPragma: isReact ? 'React' : 'Preserve',
+      allExtensions: true,
+      allowNamespaces: true
+    }
+  ];
 }
 
 /**

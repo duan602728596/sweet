@@ -37,6 +37,7 @@ module.exports = {
       plugins: ['@typescript-eslint', '@sweet-milktea'],
       rules: {
         // Supported Rules
+        '@typescript-eslint/explicit-function-return-type': 'error', // 函数必须返回值
         '@typescript-eslint/member-delimiter-style': [ // 在接口和类型文字中强制使用一致的成员定界符样式
           'error',
           {
@@ -71,9 +72,8 @@ module.exports = {
         // Extension Rules
         '@typescript-eslint/no-array-constructor': 'error', // 禁止使用new Array()，但是可以使用new Array<type>()
         // @sweet-milktea/eslint-plugin
-        '@sweet-milktea/interface-space-before-blocks': 'error',
-        '@sweet-milktea/type-annotation-spacing': 'error',
-        '@sweet-milktea/type-space-infix-ops': 'error'
+        '@sweet-milktea/space-before-blocks': 'error',
+        '@sweet-milktea/space-infix-ops': 'error'
       }
     },
     {

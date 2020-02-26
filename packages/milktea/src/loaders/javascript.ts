@@ -1,7 +1,7 @@
 import * as _ from 'lodash';
 import * as Config from 'webpack-chain';
 import { Use } from 'webpack-chain';
-import { createBabelOptions, createPresetEnv } from '../config/babelConfig';
+import { createBabelOptions, createPresetEnv, createPresetTypescript } from '../config/babelConfig';
 import { customizer } from '../utils/utils';
 import { SweetConfig, SweetOptions, JS } from '../utils/types';
 
@@ -14,6 +14,7 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
   const jsOptions: JS = js ?? {};
   const {
     ecmascript,
+    typescript,
     presets,
     plugins,
     resetPresets,
@@ -23,6 +24,7 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
     targets: customTargets
   }: JS = jsOptions;
   const debug: boolean = frame === 'test' ? false : isDevelopment;
+  const useTypescript: boolean = !!typescript;
   const useConfig: object = {
     'babel-loader': {
       loader: 'babel-loader',
@@ -35,7 +37,7 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
       module: {
         rule: {
           js: {
-            test: /^.*\.jsx?$/,
+            test: useTypescript ? /^.*\.(j|t)sx?$/ : /^.*\.jsx?$/,
             use: useConfig,
             exclude: exclude ? (Array.isArray(exclude) ? exclude : [exclude]) : [],
             include: include ? (Array.isArray(include) ? include : [include]) : []
@@ -56,6 +58,18 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
         configBabelUse
           .tap((options: any): any => _.mergeWith(options, {
             presets: [createPresetEnv(customTargets, (!webpackLog || webpackLog !== 'progress') && debug)]
+          }, customizer));
+      });
+
+  // typescript
+  config
+    .when(useTypescript,
+      (config: Config): void => {
+        const isReact: boolean = !(frame === 'vue');
+
+        configBabelUse
+          .tap((options: any): any => _.mergeWith(options, {
+            presets: [createPresetTypescript(isReact)]
           }, customizer));
       });
 

@@ -1,11 +1,12 @@
 # @sweet-milktea/eslint-plugin
 
-## interface-space-before-blocks
+扩展typescript-eslint的规则，
+解决的issues参考https://github.com/typescript-eslint/typescript-eslint/issues/1606。
+
+## space-before-blocks
 
 判断interface代码块中"{"之前的空格。
 
-* always
-
 ```typescript
 // error
 interface Interface{
@@ -14,38 +15,20 @@ interface Interface{
 
 // correct
 interface Interface {
-  a: string;
-}
-```
-
-* never
-
-```typescript
-// error
-interface Interface {
-  a: string;
-}
-
-// correct
-interface Interface{
   a: string;
 }
 ```
 
 ## type-annotation-spacing
 
-判断类型的分隔符之间的空格。
-
-* always
+判断类型"="、分隔符（"|"、"&"）之间的空格。
 
 ```typescript
-const len: string|number = 15;   // error
-const len: string | number = 15; // correct
-```
+// error
+const len: string|number = 15;   
+type Data=number|string;
 
-* never
-
-```typescript
-const len: string | number = 15; // error
-const len: string|number = 15;   // correct
+// correct
+const len: string | number = 15;
+type Data = number | string;
 ```

@@ -1,7 +1,7 @@
 import ruleTester from '../ruleTester';
-import interfaceSpaceBeforeBlocks from '../../lib/rules/interfaceSpaceBeforeBlocks';
+import interfaceSpaceBeforeBlocks from '../../lib/rules/spaceBeforeBlocks';
 
-ruleTester.run('interface-space-before-blocks', interfaceSpaceBeforeBlocks, {
+ruleTester.run('space-before-blocks', interfaceSpaceBeforeBlocks, {
   valid: [
     `interface Interface {
        name: string;
@@ -18,29 +18,39 @@ ruleTester.run('interface-space-before-blocks', interfaceSpaceBeforeBlocks, {
         name: string;
         age: number;
       }`,
-      options: ['always'],
       errors: [
         {
           messageId: 'TSInterfaceSpaceBeforeBlocks',
-          data: { type: '{' },
           line: 1,
           column: 20
         }
       ]
     },
     {
-      code: `export interface X {
+      code: `export interface X{
         s: string;
         n: number;
         b: boolean;
       }`,
-      options: ['never'],
       errors: [
         {
           messageId: 'TSInterfaceSpaceBeforeBlocks',
-          data: { type: '{' },
           line: 1,
-          column: 20
+          column: 19
+        }
+      ]
+    },
+    {
+      code: `export interface People extends Interface{
+        s: string;
+        n: number;
+        b: boolean;
+      }`,
+      errors: [
+        {
+          messageId: 'TSInterfaceSpaceBeforeBlocks',
+          line: 1,
+          column: 42
         }
       ]
     }

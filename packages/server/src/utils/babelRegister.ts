@@ -5,6 +5,7 @@ interface RegisterConfig {
   plugins: Array<any>;
   cache: boolean;
   ignore: Array<RegExp>;
+  extensions: Array<string>;
 }
 
 /* @babel/register的配置 */
@@ -20,6 +21,14 @@ function createRegisterConfig(): RegisterConfig {
           useBuiltIns: 'usage',
           corejs: 3
         }
+      ],
+      [
+        '@babel/preset-typescript',
+        {
+          isTSX: true,
+          allExtensions: true,
+          allowNamespaces: true
+        }
       ]
     ],
     plugins: [
@@ -34,6 +43,7 @@ function createRegisterConfig(): RegisterConfig {
       '@babel/plugin-proposal-throw-expressions',                            // var e = throw new Error(err) 语法
       '@babel/plugin-syntax-bigint',                                         // BigInt数据类型
       '@babel/plugin-syntax-dynamic-import',                                 // import() 语法
+      '@babel/plugin-syntax-top-level-await',                                // top-level await
       [
         '@babel/plugin-transform-runtime',
         {
@@ -45,7 +55,8 @@ function createRegisterConfig(): RegisterConfig {
       ]
     ],
     cache: true,
-    ignore: [/node_modules/]
+    ignore: [/node_modules/],
+    extensions: ['.es6', '.es', '.jsx', '.js', '.mjs', '.tsx', '.ts']
   };
 }
 

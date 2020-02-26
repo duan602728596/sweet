@@ -38,6 +38,7 @@ export interface Loaders {
 export interface JS {
   targets?: object;
   ecmascript?: boolean;
+  typescript?: boolean;
   presets?: Array<any>;
   plugins?: Array<any>;
   resetPresets?: Array<any>;
