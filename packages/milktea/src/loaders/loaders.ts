@@ -14,9 +14,10 @@ import { SweetConfig, SweetOptions, Loaders } from '../utils/types';
 
 /* loaders */
 export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, config: Config): void {
-  const frame: string | undefined = sweetConfig.frame;
-  const loaders: Loaders = sweetConfig.loaders && _.isPlainObject(sweetConfig.loaders) ? sweetConfig.loaders : {};
-  const isDevelopment: boolean = sweetConfig.mode === 'development';
+  const { frame, loaders: sweetConfigLoaders, mode, js }: SweetConfig = sweetConfig;
+  const loaders: Loaders = sweetConfigLoaders && _.isPlainObject(sweetConfigLoaders) ? sweetConfigLoaders : {};
+  const isDevelopment: boolean = mode === 'development';
+  const typescript: boolean | undefined = js?.typescript;
 
   // js
   config
@@ -33,19 +34,22 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
         jsLoader(sweetConfig, sweetOptions, config);
       });
 
-  config
-    .when(
-      !!loaders.ts,
-      (config: Config): void => {
-        config
-          .module
-          .rule('ts')
-          .merge(formatLoader(loaders.ts));
-      },
-      (config: Config): void => {
-        // ts loader
-        tsLoader(sweetConfig, sweetOptions, config);
-      });
+  // ts（如果babel配置了typescript属性，则使用babel，而不使用typescript来编译）
+  if (!typescript) {
+    config
+      .when(
+        !!loaders.ts,
+        (config: Config): void => {
+          config
+            .module
+            .rule('ts')
+            .merge(formatLoader(loaders.ts));
+        },
+        (config: Config): void => {
+          // ts loader
+          tsLoader(sweetConfig, sweetOptions, config);
+        });
+  }
 
   // sass
   config

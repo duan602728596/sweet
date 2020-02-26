@@ -35,6 +35,22 @@ export function createTargets(): { browsers: Array<string> } {
 }
 
 /**
+ * @babel/preset-typescript
+ * @param { boolean } isReact: react下使用React，vue下保持原输出
+ */
+export function createPresetTypescript(isReact: boolean = true): Array<any> {
+  return [
+    '@babel/preset-typescript',
+    {
+      isTSX: true,
+      jsxPragma: isReact ? 'React' : 'Preserve',
+      allExtensions: true,
+      allowNamespaces: true
+    }
+  ];
+}
+
+/**
  * @babel/preset-env
  * @param { object | undefined } customTargets: 自定义@babel/preset-env的编译目标
  * @param { boolean } debug: 是否debug
