@@ -78,6 +78,7 @@ module.exports = function(info) {
 * js `{ object }` : javascript配置
   * targets `{ object }` : 配置@babel/preset-env的编译目标
   * ecmascript `{ boolean }` : 是否编译到ecmascript的最新语法（即不使用@babel/preset-env，通常适用于node、nwjs和electron）
+  * typescript `{ boolean }` : 是否使用typescript编译（即使用@babel/preset-typescript）
   * presets `{ Array<any> }` : 自定义presets
   * plugins `{ Array<any> }` : 自定义plugins
   * resetPresets `{ Array<any> }` : 重写presets
@@ -121,6 +122,16 @@ module.exports = function(info) {
 * serverExternals `{ object }` : 服务器端的外部扩展（参考webpack）
 * serverDevtool `{ string }` : 服务器端的SourceMap的类型（参考webpack）
 * serverChainWebpack`{ Function }` : 通过`webpack-chain`的API扩展或修改SSR的webpack配置
+
+### 关于vue
+
+如果使用vue，需要手动安装`@vue/babel-helper-vue-jsx-merge-props`、`@vue/babel-preset-jsx`、`vue-loader`、`vue-svg-loader`、
+`vue-template-compiler`。
+
+### 关于typescript
+
+使用typescript，需要手动安装`typescript`和`ts-loader`。   
+如果`js.typescript`为`true`，则不会配置ts-loader，且ts配置无效。因为typescript编译使用的是babel。
 
 ### info
 
