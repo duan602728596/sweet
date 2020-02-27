@@ -14,7 +14,12 @@ const filenameReservedRegex: RegExp = /[<>:"/\\|?*\x00-\x1F]/g,
   reControlChars: RegExp = /[\u0000-\u001f\u0080-\u009f]/g,
   reRelativePath: RegExp = /^\.+/;
 
-export function cssLoaderGetLocalIdentFunc(loaderContext: loader.LoaderContext, localIdentName: string, localName: string, options: any): string {
+export function cssLoaderGetLocalIdentFunc(
+  loaderContext: loader.LoaderContext,
+  localIdentName: string,
+  localName: string,
+  options: any
+): string {
   if (!options.context) {
     options.context = loaderContext.rootContext;
   }
