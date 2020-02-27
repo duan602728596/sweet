@@ -5,7 +5,6 @@ import * as cssesc from 'cssesc';
 import * as loaderUtils from 'loader-utils';
 import { loader } from 'webpack';
 import { LoaderOptions } from 'webpack-chain';
-import { Frame } from '../utils/types';
 
 /**
  * TODO: css-loader v3.3.0 的getLocalIdent函数，无法导出模块

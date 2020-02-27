@@ -1,6 +1,5 @@
 import * as Config from 'webpack-chain';
 import { Rule, LoaderOptions } from 'webpack-chain';
-import * as _ from 'lodash';
 import { createStyleLoader, createCssOptions, createSassOptions } from '../config/cssConfig';
 import { SweetConfig, SASS } from '../utils/types';
 
