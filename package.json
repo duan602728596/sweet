@@ -38,8 +38,8 @@
     "gulp": "^4.0.2",
     "gulp-typescript": "^6.0.0-alpha.1",
     "lerna": "^3.20.2",
-    "react": "^16.12.0",
-    "react-dom": "^16.12.0",
+    "react": "^16.13.0",
+    "react-dom": "^16.13.0",
     "react-markdown": "^4.3.1",
     "rimraf": "^3.0.2",
     "typescript": "^3.8.2"
