@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import { Route, Switch } from 'react-router-dom';
-import Helmet from 'react-helmet';
+import { Helmet } from 'react-helmet';
 import Index from './Index/index';
 
 function ModuleLayout(props) {

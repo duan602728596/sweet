@@ -2,23 +2,22 @@ require('source-map-support').install();
 
 import React from 'react';
 import { renderToNodeStream } from 'react-dom/server';
-import Loadable from 'react-loadable';
 import { Route, StaticRouter, Switch } from 'react-router';
 import { Provider } from 'react-redux';
-import Helmet from 'react-helmet';
+import { Helmet } from 'react-helmet';
 import { ConfigProvider } from 'antd';
 import zhCN from 'antd/es/locale-provider/zh_CN';
 import { storeFactory } from './store/store';
+import { preloadAll } from './router/asyncModule/asyncModuleNode';
 import './global.sass';
 import Layout from './layouts/Layout/index';
 import Login from './pages/Login/Layout';
 
 /* ssr入口文件 */
 async function server(url, context = {}, initialState = {}) {
-  await Loadable.preloadAll();
+  await preloadAll();
 
   const store = storeFactory(initialState);
-
   const stream = renderToNodeStream(
     <Provider store={ store }>
       <ConfigProvider locale={ zhCN }>
