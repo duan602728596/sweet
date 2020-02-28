@@ -47,7 +47,6 @@ const sweetOptions: SweetOptions = {
  * proxyFile { string }: 重新定义的proxy文件
  * mockFile { string }: 重新定义的mock文件
  * redirectToHttps { boolean }: 307重定向到https
- * webpackLog { string }: webpack日志
  */
 async function devServer(args: DevServerArgs): Promise<void> {
   const {
@@ -67,8 +66,7 @@ async function devServer(args: DevServerArgs): Promise<void> {
     apiFile,
     proxyFile,
     mockFile,
-    redirectToHttps = false,
-    webpackLog = 'progress'
+    redirectToHttps = false
   }: DevServerArgs = args || {};
 
   /* 合并配置项 */
@@ -92,8 +90,7 @@ async function devServer(args: DevServerArgs): Promise<void> {
     mockFile,
     redirectToHttps,
     httpPort: _httpPort,
-    httpsPort: _httpsPort,
-    webpackLog
+    httpsPort: _httpsPort
   });
 
   /* @babel/register */
@@ -129,7 +126,7 @@ async function devServer(args: DevServerArgs): Promise<void> {
   }
 
   /* 添加其他的中间件*/
-  await middleware(app, router, compiler, webpackLog, env);
+  await middleware(app, router, compiler);
 
   /* 本地mock */
   await createMock(sweetOptions, router, true);

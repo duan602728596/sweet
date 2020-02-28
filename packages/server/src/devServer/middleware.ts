@@ -12,13 +12,7 @@ import { WebpackLog } from '../utils/types';
 /**
  * 创建中间件
  */
-function middleware(
-  app: Koa,
-  router: Router,
-  compiler: Compiler | undefined,
-  webpackLog: WebpackLog | undefined,
-  env: string | undefined
-): void {
+function middleware(app: Koa, router: Router, compiler: Compiler | undefined): void {
   /* 文件压缩 */
   app.use(compress({
     useBrCompress: false // 关闭brotli压缩
@@ -40,16 +34,6 @@ function middleware(
     const devMiddlewareConfig: { [key: string]: any } = {
       serverSideRender: true
     };
-
-    // webpack log
-    if (!webpackLog || webpackLog === 'progress') {
-      devMiddlewareConfig.infrastructureLogging.logLevel = 'warn';
-    }
-
-    // 测试配置
-    if (env === 'test') {
-      devMiddlewareConfig.infrastructureLogging.logLevel = 'silent';
-    }
 
     app.use(connect(
       hotMiddleware(compiler, hotMiddlewareConfig)

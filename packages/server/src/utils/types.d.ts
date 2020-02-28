@@ -25,7 +25,6 @@ export type WebpackLog = 'progress' | 'stats';
 
 export interface DevServerArgs extends ServerArgs {
   compiler?: Compiler;
-  webpackLog?: WebpackLog;
 }
 
 export interface ProServerArgs extends ServerArgs {

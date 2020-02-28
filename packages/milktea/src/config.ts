@@ -23,7 +23,8 @@ export default function(sweetConfig: SweetConfig | null | undefined, sweetOption
     noParse,
     plugins,
     devtool,
-    chainWebpack
+    chainWebpack,
+    webpackLog = 'progress'
   }: SweetConfig = sweetConfigCopy;
   const isDevelopment: boolean = mode === 'development';
 
@@ -37,13 +38,20 @@ export default function(sweetConfig: SweetConfig | null | undefined, sweetOption
   const chunkFilename: string = isDevelopment ? 'scripts/[name]_chunk.js' : 'scripts/[chunkhash:15].js';
 
   // 合并配置
+  const mergeConfig: { [key: string]: any } = {
+    mode,
+    devtool: devtool ?? (isDevelopment ? 'eval-source-map' : false),
+    resolve: { extensions },
+    performance: { hints: false }
+  };
+
+  // 日志
+  if (webpackLog === 'progress') {
+    mergeConfig.infrastructureLogging = { level: 'warn' };
+  }
+
   config
-    .merge({
-      mode,
-      devtool: devtool ?? (isDevelopment ? 'eval-source-map' : false),
-      resolve: { extensions },
-      performance: { hints: false }
-    });
+    .merge(mergeConfig);
 
   // 设置文件输出
   config

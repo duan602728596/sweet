@@ -1,55 +1,76 @@
 import { IncomingMessage } from 'http';
-import * as devMiddleware from 'webpack-dev-middleware';
+import webpackDevMiddleware from 'webpack-dev-middleware';
 import { Context, Middleware } from 'koa';
 import { Compiler } from 'webpack';
 
 interface MiddlewareResponse {
-  end: Function;
   locals: any;
-  setHeader: Function;
+  set: Function;
+  get: Function;
+  send: Function;
+  setHeader?: Function;
+  end?: Function;
 }
 
-function middleware(doIt: Function, req: IncomingMessage, res: MiddlewareResponse): Promise<number> {
-  const { end: originalEnd }: MiddlewareResponse = res;
+function middleware(wdm: Function, req: IncomingMessage, res: MiddlewareResponse): Promise<number> {
+  const { send }: MiddlewareResponse = res;
 
   return new Promise((resolve: Function, reject: Function): void => {
-    res.end = function end(): void {
-      originalEnd.apply(this, arguments);
+    res.send = res.end = function end(): void {
+      send.apply(this, arguments);
       resolve(0);
     };
 
-    doIt(req, res, () => {
+    wdm(req, res, () => {
       resolve(1);
     });
   });
 }
 
 function koaDevMiddleware(compiler: Compiler, options: { [key: string]: any }): Middleware {
-  const doIt: Function = devMiddleware(compiler, options);
+  const wdm: Function = webpackDevMiddleware(compiler, options);
 
   async function koaMiddleware(ctx: Context, next: Function): Promise<void> {
     const { req }: Context = ctx;
     const locals: any = ctx.locals || ctx.state;
 
-    ctx.webpack = doIt;
+    ctx.webpack = wdm;
 
-    const runNext: number = await middleware(doIt, req, {
-      end(content: any): void {
-        ctx.body = content;
-      },
+    // 创建兼容express的res
+    const expressRes: MiddlewareResponse = {
       locals,
-      setHeader(): void {
+
+      // 设置响应头
+      set(): void {
         ctx.set.apply(ctx, arguments);
+      },
+
+      // 获取请求头
+      get(): string {
+        return ctx.request.get.apply(ctx, arguments);
+      },
+
+      // 设置返回值
+      send(content: any): void {
+        ctx.body = content;
       }
+    };
+
+    // 兼容函数
+    Object.assign(expressRes, {
+      setHeader: expressRes.set,
+      end: expressRes.send
     });
+
+    const runNext: number = await middleware(wdm, req, expressRes);
 
     if (runNext) {
       await next();
     }
   }
 
-  Object.keys(doIt).forEach((p: any): void => {
-    koaMiddleware[p] = doIt[p];
+  Object.keys(wdm).forEach((p: any): void => {
+    koaMiddleware[p] = wdm[p];
   });
 
   return koaMiddleware;
