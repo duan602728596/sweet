@@ -12,24 +12,28 @@ function asyncModuleNode(loader) {
   map.set(loader, null);
 
   return function() {
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(false),
+      [component, setComponent] = useState(map.get(loader) ?? null);
 
     async function loadComponent() {
       setLoading(true);
 
       const Module = await loader();
 
-      map.set(loader, <Module.default injectReducers={ injectReducers } />);
+      setComponent(<Module.default injectReducers={ injectReducers } />);
       setLoading(false);
+      map.delete(loader);
     }
 
     useEffect(function() {
-      if (!component) {
+      if (component) {
+        map.delete(loader);
+      } else {
         loadComponent();
       }
     }, []);
 
-    return loading ? <Loading /> : map.get(loader);
+    return loading ? <Loading /> : component;
   };
 }
 
