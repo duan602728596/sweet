@@ -16,12 +16,12 @@ function middleware(wdm: Function, req: IncomingMessage, res: MiddlewareResponse
   const { send }: MiddlewareResponse = res;
 
   return new Promise((resolve: Function, reject: Function): void => {
-    res.send = res.end = function end(): void {
+    res.send = res.end = function(): void {
       send.apply(this, arguments);
       resolve(0);
     };
 
-    wdm(req, res, () => {
+    wdm(req, res, (): void => {
       resolve(1);
     });
   });
@@ -32,7 +32,7 @@ function koaDevMiddleware(compiler: Compiler, options: { [key: string]: any }): 
 
   async function koaMiddleware(ctx: Context, next: Function): Promise<void> {
     const { req }: Context = ctx;
-    const locals: any = ctx.locals || ctx.state;
+    const locals: any = ctx.locals ?? ctx.state;
 
     ctx.webpack = wdm;
 
@@ -69,8 +69,8 @@ function koaDevMiddleware(compiler: Compiler, options: { [key: string]: any }): 
     }
   }
 
-  Object.keys(wdm).forEach((p: any): void => {
-    koaMiddleware[p] = wdm[p];
+  Object.keys(wdm).forEach((key: string): void => {
+    koaMiddleware[key] = wdm[key];
   });
 
   return koaMiddleware;
