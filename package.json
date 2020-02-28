@@ -45,9 +45,10 @@
     "typescript": "^3.8.2"
   },
   "devDependencies": {
-    "@babel/core": "^7.8.4",
-    "@babel/preset-env": "^7.8.4",
+    "@babel/core": "^7.8.6",
+    "@babel/preset-env": "^7.8.6",
     "@babel/preset-react": "^7.8.3",
+    "@babel/register": "^7.8.6",
     "@sweet-milktea/eslint-plugin": "*",
     "@sweet-milktea/milktea-cli": "*",
     "@sweet-milktea/util-tools": "*",
