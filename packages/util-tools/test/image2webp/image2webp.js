@@ -5,10 +5,10 @@ import image2webp from '../../image2webp';
 
 describe('image2webp', function() {
   it('should has a webp picture file', async function() {
-    await image2webp(__dirname, __dirname);
+    await image2webp(path.join(__dirname, 'image'), path.join(__dirname, 'output'));
 
-    const isExists = fs.existsSync(path.join(__dirname, 'image.webp'));
+    const isJpegExists = fs.existsSync(path.join(__dirname, 'output/image.webp'));
 
-    expect(isExists).to.be.true;
+    expect(isJpegExists).to.be.true;
   });
 });
