@@ -29,9 +29,7 @@ packages/**/.sweet
 
 # util-tools
 packages/util-tools/test/**/*.webp
-packages/util-tools/test/media2webp/output
-packages/util-tools/test/imageCompress/output
-packages/util-tools/test/image2icns/*.icns
+packages/util-tools/test/**/output
 
 # docs
 storybook-static/*

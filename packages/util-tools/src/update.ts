@@ -42,6 +42,11 @@ function objectToArray(obj: Dictionary<string>): Array<PackageItem> {
   }, []);
 }
 
+/* 空格输出 */
+function space(length: number = 1): string {
+  return ' '.repeat(length);
+}
+
 /* npm包信息地址 */
 const packageHost: string[] = [
   'registry.npmjs.org',   // npm
@@ -194,21 +199,24 @@ function consoleLogText(packageArray: Array<PackageItem>): string {
     const symbol: string = item.error === true ? 'X' : (inNpm ? '*' : '#');
     const noLatestAndErr: boolean = !(isLatestNew || (item.error === true)); // 没有最新的版本号和错误
 
-    itemText += `  ${ isLatestNew ? symbol : ' ' } ${ item.name }:\n`;
-    itemText += `    ${ (item.latest && /^github:/.test(item.version)) ? '?' : ' ' } version: ${ item.version }\n`;
+    itemText += `${ space(2) }${ isLatestNew ? symbol : ' ' } ${ item.name }:\n`;
+    itemText += `${ space(4) }${ (item.latest && /^github:/.test(item.version)) ? '?' : ' ' }`
+      + ` version: ${ item.version }\n`;
 
     if (item.latest) {
-      itemText += `      latest : ${ formatVersion(item.version, item.latest) }\n`;
+      itemText += `${ space(6) }latest : ${ formatVersion(item.version, item.latest) }\n`;
     }
 
     if (item.next) {
-      const t: string = `    ${ isNextNew ? '+' : ' ' } next   : ${ formatVersion(item.version, item.next) }\n`;
+      const t: string = `${ space(4) }${ isNextNew ? '+' : ' ' } next${ space(3) }:`
+        + ` ${ formatVersion(item.version, item.next) }\n`;
 
       itemText += (noLatestAndErr && isNextNew) ? chalk.green(t) : t;
     }
 
     if (item.rc) {
-      const t: string = `    ${ isRcNew ? '+' : ' ' } rc     : ${ formatVersion(item.version, item.rc) }\n`;
+      const t: string = `${ space(4) }${ isRcNew ? '+' : ' ' } rc${ space(5) }:`
+        + `${ formatVersion(item.version, item.rc) }\n`;
 
       itemText += (noLatestAndErr && isRcNew) ? chalk.green(t) : t;
     }

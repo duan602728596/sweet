@@ -8,7 +8,7 @@ import loaders from './loaders/loaders';
 import basicPlugins from './plugins/plugins';
 import optimization from './optimization/optimization';
 import { extensions } from './utils/utils';
-import { JS, SweetConfig, SweetOptions } from './utils/types';
+import { SweetConfig, SweetOptions } from './utils/types';
 
 export default function(sweetConfig: SweetConfig | null | undefined, sweetOptions: SweetOptions): Configuration {
   const config: Config = new Config();
@@ -24,10 +24,10 @@ export default function(sweetConfig: SweetConfig | null | undefined, sweetOption
     plugins,
     devtool,
     chainWebpack,
-    js
+    js,
+    webpackLog = 'progress'
   }: SweetConfig = sweetConfigCopy;
-  const jsOptions: JS = js || {};
-  const { ecmascript }: JS = jsOptions;
+  const ecmascript: boolean | undefined = js?.ecmascript;
   const isDevelopment: boolean = mode === 'development';
 
   // 格式化配置
@@ -40,13 +40,20 @@ export default function(sweetConfig: SweetConfig | null | undefined, sweetOption
   const chunkFilename: string = isDevelopment ? 'scripts/[name]_chunk.js' : 'scripts/[chunkhash:15].js';
 
   // 合并配置
+  const mergeConfig: { [key: string]: any } = {
+    mode,
+    devtool: devtool ?? (isDevelopment ? 'eval-source-map' : false),
+    resolve: { extensions },
+    performance: { hints: false }
+  };
+
+  // 日志
+  if (webpackLog === 'progress') {
+    mergeConfig.infrastructureLogging = { level: 'warn' };
+  }
+
   config
-    .merge({
-      mode,
-      devtool: devtool ?? (isDevelopment ? 'eval-source-map' : false),
-      resolve: { extensions },
-      performance: { hints: false }
-    });
+    .merge(mergeConfig);
 
   // 设置文件输出
   config

@@ -2,6 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import { expect } from 'chai';
 import media2webp from '../../media2webp';
+import afterTest from '../afterTest';
 
 describe('media2webp', function() {
   it('should has webp picture files', async function() {
@@ -15,4 +16,6 @@ describe('media2webp', function() {
     expect(isGifExists).to.be.true;
     expect(isVideoExists).to.be.true;
   });
+
+  after(afterTest);
 });

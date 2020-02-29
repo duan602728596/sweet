@@ -12,23 +12,12 @@
     "start": "npm run clean && cross-env NODE_ENV=development tsc --watch",
     "build": "npm run clean && cross-env NODE_ENV=production tsc",
     "clean": "rimraf ./lib",
-    "test": "npm run clean:sweet && cross-env NODE_ENV=test mocha ./test/test.js --timeout 180000",
-    "clean:sweet": "rimraf ./test/.sweet"
+    "test": "cross-env NODE_ENV=test mocha ./test/test.js --timeout 180000"
   },
   "dependencies": {
     "@bbkkbkk/koa-log4": "^2.3.4",
     "@log4js-node/logfaces-http": "^1.0.0",
     "log4js": "^6.1.2"
-  },
-  "devDependencies": {
-    "@babel/core": "^7.8.4",
-    "@babel/preset-env": "^7.8.4",
-    "@babel/register": "^7.8.3",
-    "chai": "^4.2.0",
-    "cross-env": "^7.0.0",
-    "mocha": "^7.1.0",
-    "rimraf": "^3.0.2",
-    "typescript": "^3.8.2"
   },
   "engines": {
     "node": ">=10"

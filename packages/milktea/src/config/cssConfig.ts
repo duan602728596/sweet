@@ -5,7 +5,6 @@ import * as cssesc from 'cssesc';
 import * as loaderUtils from 'loader-utils';
 import { loader } from 'webpack';
 import { LoaderOptions } from 'webpack-chain';
-import { Frame } from '../utils/types';
 
 /**
  * TODO: css-loader v3.3.0 的getLocalIdent函数，无法导出模块
@@ -15,7 +14,12 @@ const filenameReservedRegex: RegExp = /[<>:"/\\|?*\x00-\x1F]/g,
   reControlChars: RegExp = /[\u0000-\u001f\u0080-\u009f]/g,
   reRelativePath: RegExp = /^\.+/;
 
-export function cssLoaderGetLocalIdentFunc(loaderContext: loader.LoaderContext, localIdentName: string, localName: string, options: any): string {
+export function cssLoaderGetLocalIdentFunc(
+  loaderContext: loader.LoaderContext,
+  localIdentName: string,
+  localName: string,
+  options: any
+): string {
   if (!options.context) {
     options.context = loaderContext.rootContext;
   }
@@ -50,7 +54,7 @@ export function cssLoaderGetLocalIdent(
   options: { [key: string]: any }
 ): string {
   // node_modules 和 global文件直接返回className
-  if (/(node_modules|global\.(css|less|sass|scss|styl))/i.test(loaderContext.resourcePath)) {
+  if (/(node_modules|global\.(css|less|sass|scss|styl(us)?))/i.test(loaderContext.resourcePath)) {
     return localName;
   }
 

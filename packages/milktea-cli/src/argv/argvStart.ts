@@ -14,14 +14,6 @@ function argvStart(argv: Argv): void {
     const hotClientEntry: Function = requireModule('@sweet-milktea/server/hotClientEntry');
 
     webpackConfig.entry = hotClientEntry(webpackConfig.entry);
-
-    if (!webpackConfig.output) {
-      webpackConfig.output = {};
-    }
-
-    if (!webpackConfig.output.publicPath) {
-      webpackConfig.output.publicPath = '/';
-    }
   }
 
   const compiler: Compiler = webpack(webpackConfig);
@@ -65,7 +57,6 @@ function argvStart(argv: Argv): void {
     const httpsCert: string = argv.httpsCert;
     const redirectToHttps: boolean = argv.redirectToHttps;
     const useBabelRegister: boolean = argv.useBabelRegister;
-    const webpackLog: string = argv.webpackLog;
 
     devServer({
       compiler,
@@ -78,8 +69,7 @@ function argvStart(argv: Argv): void {
       httpsKey,
       httpsCert,
       redirectToHttps,
-      useBabelRegister,
-      webpackLog
+      useBabelRegister
     });
   } else {
     const watching: Watching = compiler.watch({

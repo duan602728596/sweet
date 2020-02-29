@@ -4,7 +4,7 @@
     "moduleResolution": "node",
     "locale": "zh-CN",
     "module": "commonjs",
-    "target": "ES2018",
+    "target": "ES2019",
     "newLine": "LF",
     "resolveJsonModule": true,
     "strictNullChecks": true

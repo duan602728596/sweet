@@ -1,6 +1,6 @@
 import * as _ from 'lodash';
 import * as Config from 'webpack-chain';
-import { Use } from 'webpack-chain';
+import { Use, LoaderOptions } from 'webpack-chain';
 import { customizer } from '../utils/utils';
 import { createBabelForTsOptions } from '../config/babelConfig';
 import { SweetConfig, SweetOptions, TS } from '../utils/types';
@@ -48,7 +48,7 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
     .when(frame === 'react',
       (config: Config): void => {
         configBabelUse
-          .tap((options: any): any => _.mergeWith(options, {
+          .tap((options: LoaderOptions): LoaderOptions => _.mergeWith(options, {
             plugins: ['react-hot-loader/babel']
           }, customizer));
       }
@@ -59,7 +59,7 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
     .when(frame === 'vue',
       (config: Config): void => {
         configBabelUse
-          .tap((options: any): any => _.mergeWith(options, {
+          .tap((options: LoaderOptions): LoaderOptions => _.mergeWith(options, {
             presets: ['@vue/babel-preset-jsx']
           }, customizer));
       }
@@ -67,9 +67,9 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
 
   // 加载presets
   configBabelUse
-    .tap((options: any): any => _.mergeWith(options, { presets }, customizer));
+    .tap((options: LoaderOptions): LoaderOptions => _.mergeWith(options, { presets }, customizer));
 
   // 加载plugins
   configBabelUse
-    .tap((options: any): any => _.mergeWith(options, { plugins }, customizer));
+    .tap((options: LoaderOptions): LoaderOptions => _.mergeWith(options, { plugins }, customizer));
 }

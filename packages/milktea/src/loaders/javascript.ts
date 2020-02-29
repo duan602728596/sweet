@@ -1,6 +1,6 @@
 import * as _ from 'lodash';
 import * as Config from 'webpack-chain';
-import { Use } from 'webpack-chain';
+import { Use, LoaderOptions } from 'webpack-chain';
 import { createBabelOptions, createPresetEnv, createPresetTypescript } from '../config/babelConfig';
 import { customizer } from '../utils/utils';
 import { SweetConfig, SweetOptions, JS } from '../utils/types';
@@ -56,7 +56,7 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
     .when(!ecmascript && !resetPresets,
       (config: Config): void => {
         configBabelUse
-          .tap((options: any): any => _.mergeWith(options, {
+          .tap((options: LoaderOptions): LoaderOptions => _.mergeWith(options, {
             presets: [createPresetEnv(customTargets, (!webpackLog || webpackLog !== 'progress') && debug)]
           }, customizer));
       });
@@ -68,7 +68,7 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
         const isReact: boolean = !(frame === 'vue');
 
         configBabelUse
-          .tap((options: any): any => _.mergeWith(options, {
+          .tap((options: LoaderOptions): LoaderOptions => _.mergeWith(options, {
             presets: [createPresetTypescript(isReact)]
           }, customizer));
       });
@@ -78,7 +78,7 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
     .when(frame === 'react',
       (config: Config): void => {
         configBabelUse
-          .tap((options: any): any => _.mergeWith(options, {
+          .tap((options: LoaderOptions): LoaderOptions => _.mergeWith(options, {
             presets: resetPresets ? undefined : ['@babel/preset-react'],
             plugins: resetPlugins ? undefined : ['react-hot-loader/babel']
           }, customizer));
@@ -90,7 +90,7 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
     .when(frame === 'vue',
       (config: Config): void => {
         configBabelUse
-          .tap((options: any): any => _.mergeWith(options, {
+          .tap((options: LoaderOptions): LoaderOptions => _.mergeWith(options, {
             presets: resetPresets ? undefined : ['@vue/babel-preset-jsx']
           }, customizer));
       }
@@ -101,7 +101,7 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
     .when(!resetPresets && !!presets,
       (config: Config): void => {
         configBabelUse
-          .tap((options: any): any => _.mergeWith(options, { presets }, customizer));
+          .tap((options: LoaderOptions): LoaderOptions => _.mergeWith(options, { presets }, customizer));
       }
     );
 
@@ -110,7 +110,7 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
     .when(!resetPlugins && !!plugins,
       (config: Config): void => {
         configBabelUse
-          .tap((options: any): any => _.mergeWith(options, { plugins }, customizer));
+          .tap((options: LoaderOptions): LoaderOptions => _.mergeWith(options, { plugins }, customizer));
       }
     );
 

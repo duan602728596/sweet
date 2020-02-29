@@ -1,24 +1,22 @@
 import * as ejs from 'ejs';
-import * as nunjucks from 'nunjucks';
+import { requireModule } from './utils';
 
-nunjucks.configure({
-  autoescape: false
-});
+function createNunjucksRender(): Function {
+  const nunjucks: { [key: string]: any } = requireModule('nunjucks');
 
-const renderMap: {
-  ejs: Function;
-  nunjucks: Function;
-} = {
-  ejs: ejs.render,
-  nunjucks: nunjucks.renderString
-};
+  nunjucks.configure({
+    autoescape: false
+  });
+
+  return nunjucks.renderString;
+}
 
 /* 创建html的渲染器 */
 function createRenderEngine(type: string | undefined): Function {
-  if (type) {
-    return renderMap[type] || renderMap.ejs;
+  if (type === 'nunjucks') {
+    return createNunjucksRender();
   } else {
-    return renderMap.ejs;
+    return ejs.render;
   }
 
 }

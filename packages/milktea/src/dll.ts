@@ -16,9 +16,7 @@ export default function(sweetConfig: SweetConfig | null | undefined, sweetOption
   const config: Config = new Config();
   const sweetConfigCopy: SweetConfig = _.isPlainObject(sweetConfig) ? { ...sweetConfig } : {};
   const { mode, dll, externals, resolve, chainWebpack, js, webpackLog = 'progress' }: SweetConfig = sweetConfigCopy;
-
-  const jsOptions: JS = js ?? {};
-  const { ecmascript, targets: customTargets }: JS = jsOptions;
+  const { ecmascript, targets: customTargets }: JS = js ?? {};
   const isDevelopment: boolean = mode === 'development';
 
   // 格式化配置

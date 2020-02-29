@@ -19,8 +19,7 @@ devServer({
   httpsKey,
   httpsCert,
   useBabelRegister,
-  redirectToHttps,
-  webpackLog
+  redirectToHttps
 });
 ```
 
@@ -56,7 +55,7 @@ export default {
 * serverRender `{ boolean }` : 开启服务器端渲染。
 * serverRenderRoot { string }: 服务器端渲染的文件夹。默认为`dist-server`。
 * serverRenderFile `{ string }` : 服务器端渲染的主模块文件。默认为`server.js`。
-* renderType `{ string }` : html使用的渲染模板，`ejs`或`nunjucks`。默认为`ejs`。
+* renderType `{ string }` : html使用的渲染模板，`ejs`或`nunjucks`。默认为`ejs`。**如果使用`nunjucks`，请自行下载依赖**。
 * serverChain `{ (app: Koa) => Promise<void> }` : 扩展koa中间件配置。
 * httpsKey `{ string }` : 配置https的证书（*.key）。
 * httpsCert `{ string }` : 配置https的证书（*.crt）。
@@ -65,7 +64,6 @@ export default {
 * apiFile `{ string }` : 重新定义的api文件。
 * proxyFile `{ string }` : 重新定义的proxy文件。
 * redirectToHttps `{ boolean }` : 开启https的情况下，重定向http到https。
-* webpackLog `{ string }` : 日志输出类型。progress：进度条，stats：传统的输出方式。默认为progress。
 
 ## 生产环境下运行服务
 
@@ -98,7 +96,7 @@ proServer({
 * serverRender `{ boolean }` : 开启服务器端渲染。
 * serverRenderRoot { string }: 服务器端渲染的文件夹。默认为`dist-server`。
 * serverRenderFile `{ string }` : 服务器端渲染的主模块文件。默认为`server.js`。
-* renderType `{ string }` : html使用的渲染模板，`ejs`或`nunjucks`。默认为`ejs`。
+* renderType `{ string }` : html使用的渲染模板，`ejs`或`nunjucks`。默认为`ejs`。**如果使用`nunjucks`，请自行下载依赖**。
 * log `{ object }` : 日志配置。
   * type `{ 'file' | 'http' }` : 日志类型，本地*file* 或 远程接口*http*。
   * pm2 `{ boolean }` : 服务是否在pm2状态下运行。
@@ -118,7 +116,9 @@ proServer({
 
 ## 服务器端渲染
 
-服务器端渲染需要你创建`controllers`文件夹，文件夹里面的规则为: 你的路由中的 **“/”** 替换为 **“.”**，或者为文件夹。比如`/Path/PathFile`，则需要创建`/Path.PathFile.js`文件或`/Path/PathFile.js`文件。   
+服务器端渲染需要你创建`controllers`文件夹，文件夹里面的规则为: 你的路由中的 **“/”** 替换为 **“.”**，或者为文件夹。
+比如`/Path/PathFile`，则需要创建`/Path.PathFile.ts`、`/Path.PathFile.js`文件
+或`/Path/PathFile.ts`、`/Path/PathFile.js`文件。   
 
 在文件内，需要创建如下代码:
 
@@ -131,9 +131,10 @@ module.exports = async function(ctx, sweetOptions) {
 }
 ```
 
-在pug或html模板中，使用`<%- key %>`来标记占位的数据。其中`<%- render %>`表示服务器端渲染的数据，`<%- initialState %>`表示初始化数据，其他的占位数据同理。参考*ejs*。   
+在pug或html模板中，使用`<%- key %>`来标记占位的数据。其中`<%- render %>`表示服务器端渲染的数据，
+`<%- initialState %>`表示初始化数据，其他的占位数据同理。参考*ejs*。   
 
-如果路由找不到对应的interface文件，会自动寻找`default.js`文件。你可以创建这个文件作为默认的interface文件。
+如果路由找不到对应的interface文件，会自动寻找`default.ts`或`default.js`文件。你可以创建这个文件作为默认的interface文件。
 
 入口文件为：
 
@@ -149,7 +150,7 @@ export default server;
 
 ## api
 
-创建一个`api/api.js`文件，代码如下
+创建一个`api/api.ts`或`api/api.js`文件，代码如下
 
 ```javascript
 module.exports = function(router, sweetOptions, app) {
@@ -160,7 +161,8 @@ module.exports = function(router, sweetOptions, app) {
 
 ## 代理
 
-创建一个`proxy/proxy.js`或`proxy/proxy.json`文件，代码配置参考[http-proxy-middleware](https://github.com/chimurai/http-proxy-middleware)
+创建一个`proxy/proxy.ts`、`proxy/proxy.js`或`proxy/proxy.json`文件，
+代码配置参考[http-proxy-middleware](https://github.com/chimurai/http-proxy-middleware)
 
 ```javascript
 module.exports = function(sweetOptions, app) {
@@ -178,7 +180,7 @@ module.exports = function(sweetOptions, app) {
 
 ## mock
 
-创建一个`mock/mock.js`文件，代码如下
+创建一个`mock/mock.ts`或`mock/mock.js`文件，代码如下
 
 ```javascript
 module.exports = {
