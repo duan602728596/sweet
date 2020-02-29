@@ -4,6 +4,7 @@ import proServer from '../proServer';
 import createCompiler from './utils/compiler';
 import { get, post } from './utils/reqData';
 import toJson from './utils/toJson';
+import afterTest from './afterTest';
 
 // webpack配置
 const compiler = createCompiler('../src/index.js');
@@ -82,4 +83,6 @@ describe('production server', function() {
       value: 3
     });
   });
+
+  after(afterTest);
 });

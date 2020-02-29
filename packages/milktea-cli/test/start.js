@@ -2,6 +2,7 @@ import childProcess from 'child_process';
 import fs from 'fs';
 import path from 'path';
 import { expect } from 'chai';
+import afterTest from './afterTest';
 
 const index = path.join(__dirname, 'dist/index.js');
 
@@ -40,4 +41,6 @@ describe('args: start', function() {
 
     expect(fs.existsSync(index)).to.be.true;
   });
+
+  after(afterTest);
 });

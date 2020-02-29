@@ -12,10 +12,7 @@
     "start": "npm run clean && cross-env NODE_ENV=development tsc --watch",
     "build": "npm run clean && cross-env NODE_ENV=production tsc",
     "clean": "rimraf ./lib",
-    "test": "npm run clean:build && cross-env NODE_ENV=test mocha ./test/test.js --timeout 180000",
-    "clean:test": "npm run clean:sweet && npm run clean:build",
-    "clean:sweet": "rimraf ./.sweet",
-    "clean:build": "rimraf ./test/dist"
+    "test": "cross-env NODE_ENV=test mocha ./test/test.js --timeout 180000"
   },
   "dependencies": {
     "@babel/core": "^7.8.6",
@@ -62,10 +59,7 @@
   "devDependencies": {
     "@sweet-milktea/milktea": "*",
     "@sweet-milktea/server-log": "*",
-    "node-fetch": "^2.6.0",
-    "pug": "^2.0.4",
-    "pug-loader": "^2.4.0",
-    "webpack": "^4.41.6"
+    "node-fetch": "^2.6.0"
   },
   "peerDependencies": {
     "@sweet-milktea/milktea": ">=0",
