@@ -1,6 +1,15 @@
+import process from 'process';
 import path from 'path';
 
+const isDev = process.env.NODE_ENV === 'development';
+
 export default function(info) {
+  const plugins = [['import', { libraryName: 'antd', libraryDirectory: 'es', style: true }]];
+
+  if (!isDev) {
+    plugins.unshift(['transform-react-remove-prop-types', { mode: 'remove', removeImport: true }]);
+  }
+
   return {
     frame: 'react',
     dll: [
@@ -27,7 +36,7 @@ export default function(info) {
       server: [path.join(__dirname, 'src/server.js')]
     },
     js: {
-      plugins: [['import', { libraryName: 'antd', libraryDirectory: 'es', style: true }]],
+      plugins,
       exclude: /node_modules/
     },
     sass: {
