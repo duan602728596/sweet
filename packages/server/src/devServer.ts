@@ -48,7 +48,7 @@ const sweetOptions: SweetOptions = {
  * mockFile { string }: 重新定义的mock文件
  * redirectToHttps { boolean }: 307重定向到https
  */
-async function devServer(args: DevServerArgs): Promise<void> {
+async function devServer(args: DevServerArgs = {}): Promise<void> {
   const {
     compiler,
     httpPort = 5050,
@@ -67,7 +67,7 @@ async function devServer(args: DevServerArgs): Promise<void> {
     proxyFile,
     mockFile,
     redirectToHttps = false
-  }: DevServerArgs = args || {};
+  }: DevServerArgs = args;
 
   /* 合并配置项 */
   const _httpPort: number = await getPort(httpPort, true, 'http');

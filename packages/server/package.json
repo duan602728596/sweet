@@ -52,18 +52,19 @@
     "memfs": "^3.1.1",
     "mime-types": "^2.1.26",
     "module-alias": "^2.2.2",
-    "nunjucks": "^3.2.0",
     "webpack-dev-middleware": "^4.0.0-rc.1",
     "webpack-hot-middleware": "^2.25.0"
   },
   "devDependencies": {
     "@sweet-milktea/milktea": "*",
     "@sweet-milktea/server-log": "*",
-    "node-fetch": "^2.6.0"
+    "node-fetch": "^2.6.0",
+    "nunjucks": "^3.2.0"
   },
   "peerDependencies": {
     "@sweet-milktea/milktea": ">=0",
-    "@sweet-milktea/server-log": ">=0"
+    "@sweet-milktea/server-log": ">=0",
+    "nunjucks": "^3.2.0"
   },
   "engines": {
     "node": ">=10"
