@@ -5,13 +5,15 @@
  */
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link, withRouter } from 'react-router-dom';
+import { useLocation } from 'react-router';
+import { Link } from 'react-router-dom';
 import { Layout, Menu } from 'antd';
 import style from './index.sass';
 import ErrorBoundary from '../ErrorBoundary/index';
 
 function Sider(props) {
-  const { location, options } = props;
+  const { options } = props;
+  const location = useLocation();
 
   // 根据pathname获取默认的selectKey
   function getSelectKey(arr) {
@@ -87,4 +89,4 @@ Sider.defaultProps = {
   options: []
 };
 
-export default withRouter(Sider);
+export default Sider;

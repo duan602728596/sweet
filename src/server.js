@@ -2,7 +2,8 @@ require('source-map-support').install();
 
 import React from 'react';
 import { renderToNodeStream } from 'react-dom/server';
-import { Route, StaticRouter, Switch } from 'react-router';
+import { Route } from 'react-router';
+import { StaticRouter } from 'react-router-dom/server';
 import { Provider } from 'react-redux';
 import { Helmet } from 'react-helmet';
 import { ConfigProvider } from 'antd';
@@ -22,10 +23,8 @@ async function server(url, context = {}, initialState = {}) {
     <Provider store={ store }>
       <ConfigProvider locale={ zhCN }>
         <StaticRouter location={ url } context={ context }>
-          <Switch>
-            <Route path="/Login" component={ Login } exact={ true } />
-            <Route component={ Layout } exact={ true } />
-          </Switch>
+          <Route path="Login" element={ <Login /> } exact={ true } />
+          <Route element={ <Layout /> } exact={ true } />
         </StaticRouter>
       </ConfigProvider>
     </Provider>

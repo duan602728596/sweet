@@ -1,9 +1,9 @@
 import React from 'react';
-import { hydrate } from 'react-dom';
+import { render } from 'react-dom';
 import App from './App';
 
 /* app */
-hydrate(
+render(
   <App />,
   document.getElementById('app')
 );

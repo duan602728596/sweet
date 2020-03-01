@@ -1,6 +1,4 @@
-/**
- * 全局的store
- */
+/* 全局的store */
 import { createStore, compose, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import { fromJS, Map } from 'immutable';

@@ -31,6 +31,9 @@ export default function(info) {
       index: [path.join(__dirname, 'src/index.js')],
       other: [path.join(__dirname, 'src/other.js')]
     },
+    output: {
+      publicPath: '/'
+    },
     serverRender: true,
     serverEntry: {
       server: [path.join(__dirname, 'src/server.js')]

@@ -1,5 +1,5 @@
 import React from 'react';
-import { withRouter } from 'react-router-dom';
+import { useLocation } from 'react-router';
 import { useSelector } from 'react-redux';
 import { createSelector, createStructuredSelector } from 'reselect';
 
@@ -14,7 +14,7 @@ const state = createStructuredSelector({
 /* 二级页 */
 function Index(props) {
   const { data } = useSelector(state);
-  const { location } = props;
+  const location = useLocation();
 
   return (
     <div>
@@ -31,4 +31,4 @@ function Index(props) {
   );
 }
 
-export default withRouter(Index);
+export default Index;

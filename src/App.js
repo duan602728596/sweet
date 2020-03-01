@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { BrowserRouter, Route } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { ConfigProvider } from 'antd';
 import zhCN from 'antd/es/locale-provider/zh_CN';
@@ -17,10 +17,8 @@ class App extends Component {
       <Provider store={ storeFactory(window.__INITIAL_STATE__ || {}) }>
         <ConfigProvider locale={ zhCN }>
           <BrowserRouter>
-            <Switch>
-              <Route path="/Login" component={ Login } exact={ true } />
-              <Route component={ Layout } exact={ true } />
-            </Switch>
+            <Route path="Login" element={ <Login /> } exact={ true } />
+            <Route exact={ true } element={ <Layout /> } />
           </BrowserRouter>
         </ConfigProvider>
       </Provider>

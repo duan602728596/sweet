@@ -1,5 +1,6 @@
 import React from 'react';
-import { Link, withRouter } from 'react-router-dom';
+import { useLocation } from 'react-router';
+import { Link } from 'react-router-dom';
 import { Layout, Menu, Avatar, Dropdown } from 'antd';
 import {
   LogoutOutlined as IconLogoutOutlined,
@@ -10,7 +11,7 @@ import style from './index.sass';
 
 /* header */
 function Header(props) {
-  const { location } = props;
+  const location = useLocation();
 
   // 计算selectedKeys
   function selectKeys() {
@@ -77,4 +78,4 @@ function Header(props) {
   );
 }
 
-export default withRouter(Header);
+export default Header;

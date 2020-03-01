@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import asyncModule from './asyncModule/index';
 import Index from '../pages/Index/Layout';
 
@@ -9,12 +9,12 @@ const ListBundle = asyncModule(() => import(/* webpackChunkName: 'list' */'../pa
 class Routers extends Component {
   render() {
     return (
-      <Switch>
-        <Route path="/" component={ Index } exact={ true } />
-        <Route path="/Index" component={ Index } />
-        <Route path="/Second" component={ SecondBundle } />
-        <Route path="/List" component={ ListBundle } />
-      </Switch>
+      <Routes>
+        <Route path="//*" element={ <Index /> } />
+        <Route path="Index/*" element={ <Index /> } />
+        <Route path="Second/*" element={ <SecondBundle /> } />
+        <Route path="List/*" element={ <ListBundle /> } />
+      </Routes>
     );
   }
 }
