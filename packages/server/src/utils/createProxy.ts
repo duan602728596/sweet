@@ -2,18 +2,18 @@ import * as fs from 'fs';
 import * as _ from 'lodash';
 import * as Koa from 'koa';
 import * as connect from 'koa-connect';
-import { createProxyMiddleware } from 'http-proxy-middleware';
+import { createProxyMiddleware, Options } from 'http-proxy-middleware';
 import { defaultProxyPath, requireModule } from './utils';
 import { SweetOptions, LogLevel } from './types';
 
-type ProxyConfig = { [key: string]: object };
+type ProxyConfig = { [key: string]: Options };
 
 /* 添加代理中间件 */
 function addMiddleware(app: Koa, proxyConfig: ProxyConfig, isDevelopment: boolean, env?: string): void {
   const logLevel: LogLevel | undefined = env === 'test' ? 'error' : (isDevelopment ? 'info' : 'error');
 
   for (const key in proxyConfig) {
-    const config: object = proxyConfig[key];
+    const config: Options = proxyConfig[key];
 
     app.use(connect(
       createProxyMiddleware(key, {
