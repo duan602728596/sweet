@@ -1,7 +1,7 @@
 import * as fs from 'fs';
 import * as Router from '@koa/router';
 import * as _ from 'lodash';
-import { defaultMockPath, deleteCacheAndRequireModule, requireModule } from './utils';
+import { defaultMockPath, deleteCacheAndRequireModule, requireModule, isExists } from './utils';
 import { SweetOptions, ServerContext } from './types';
 
 type KoaFunc = (ctx: ServerContext, next: Function) => void | Promise<void>;
@@ -63,7 +63,7 @@ async function createMock(sweetOptions: SweetOptions, router: Router, isDevelopm
     }
 
     for (const findFile of findFiles) {
-      if (fs.existsSync(findFile)) {
+      if (await isExists(findFile)) {
         const mockModule: MockModule = isDevelopment
           ? deleteCacheAndRequireModule(findFile)
           : requireModule(findFile);

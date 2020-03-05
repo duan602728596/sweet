@@ -1,9 +1,8 @@
-import * as fs from 'fs';
 import * as _ from 'lodash';
 import * as Koa from 'koa';
 import * as connect from 'koa-connect';
 import { createProxyMiddleware, Options } from 'http-proxy-middleware';
-import { defaultProxyPath, requireModule } from './utils';
+import { defaultProxyPath, requireModule, isExists } from './utils';
 import { SweetOptions, LogLevel } from './types';
 
 type ProxyConfig = { [key: string]: Options };
@@ -43,7 +42,7 @@ async function createProxy(sweetOptions: SweetOptions, app: Koa, isDevelopment: 
     }
 
     for (const findFile of findFiles) {
-      if (fs.existsSync(findFile)) {
+      if (await isExists(findFile)) {
         const module: any = requireModule(findFile);
 
         if (_.isPlainObject(module)) {

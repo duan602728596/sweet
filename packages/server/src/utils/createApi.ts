@@ -1,7 +1,6 @@
-import * as fs from 'fs';
 import * as Koa from 'koa';
 import * as Router from '@koa/router';
-import { defaultApiPath, deleteCacheAndRequireModule, requireModule } from './utils';
+import { defaultApiPath, deleteCacheAndRequireModule, requireModule, isExists } from './utils';
 import { SweetOptions } from './types';
 
 /**
@@ -18,7 +17,7 @@ async function createApi(sweetOptions: SweetOptions, router: Router, app: Koa, i
     }
 
     for (const findFile of findFiles) {
-      if (fs.existsSync(findFile)) {
+      if (await isExists(findFile)) {
         const routers: Function = isDevelopment
           ? deleteCacheAndRequireModule(findFile)
           : requireModule(findFile);
