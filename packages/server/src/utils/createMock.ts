@@ -1,4 +1,3 @@
-import * as fs from 'fs';
 import * as Router from '@koa/router';
 import * as _ from 'lodash';
 import { defaultMockPath, deleteCacheAndRequireModule, requireModule, isExists } from './utils';
