@@ -216,7 +216,7 @@ function consoleLogText(packageArray: Array<PackageItem>): string {
 
     if (item.rc) {
       const t: string = `${ space(4) }${ isRcNew ? '+' : ' ' } rc${ space(5) }:`
-        + `${ formatVersion(item.version, item.rc) }\n`;
+        + ` ${ formatVersion(item.version, item.rc) }\n`;
 
       itemText += (noLatestAndErr && isRcNew) ? chalk.green(t) : t;
     }

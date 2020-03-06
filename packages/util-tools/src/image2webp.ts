@@ -1,24 +1,35 @@
 import * as path from 'path';
 import * as imageMin from 'imagemin';
-import * as imageMinWebP from 'imagemin-webp';
+import * as webp from 'imagemin-webp';
+import * as gif2webp from 'imagemin-gif2webp';
 import { formatPath } from './utils';
+
+interface Options {
+  img?: object;
+  gif?: object;
+}
 
 /**
  * 将图片批量转换成webp格式
  * @param { string } entry: 入口文件夹
  * @param { string } output: 输出文件夹
- * @param { number } quality: 图片转换的质量
+ * @param { Options } options: 图片转换的质量或配置
  */
-async function image2webp(entry: string, output: string, quality?: number): Promise<any> {
-  const q: number = typeof quality !== 'number' ? 70 : quality;
-  const imgFile: string = formatPath(path.join(entry, '**/*.{jpg,jpeg,png}'));
+async function image2webp(entry: string, output: string, options: Options = {}): Promise<any> {
+  const imgOptions: object = { quality: 70 }; // 图片转换配置
+  const gifOptions: object = { quality: 70 }; // gif转换配置
+
+  // 合并配置
+  Object.assign(imgOptions, options.img);
+  Object.assign(gifOptions, options.gif);
+
+  const imgFile: string = formatPath(path.join(entry, '**/*.{jpg,jpeg,png,gif}'));
 
   await imageMin([imgFile], {
     destination: output,
     plugins: [
-      imageMinWebP({
-        quality: q
-      })
+      webp(imgOptions),
+      gif2webp(gifOptions)
     ]
   });
 }

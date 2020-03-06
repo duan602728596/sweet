@@ -1,6 +1,6 @@
 {
   "name": "@sweet-milktea/util-tools",
-  "version": "0.13.0",
+  "version": "0.14.0",
   "description": "通用工具函数",
   "homepage": "https://github.com/duan602728596/sweet",
   "repository": {
@@ -21,6 +21,7 @@
     "fs-extra": "^8.1.0",
     "glob": "^7.1.6",
     "imagemin": "^7.0.1",
+    "imagemin-gif2webp": "^2.0.0",
     "imagemin-gifsicle": "^7.0.0",
     "imagemin-jpegoptim": "^6.0.0",
     "imagemin-pngquant": "^8.0.0",

@@ -8,7 +8,9 @@ describe('image2webp', function() {
     await image2webp(path.join(__dirname, 'image'), path.join(__dirname, 'output'));
 
     const isJpegExists = fs.existsSync(path.join(__dirname, 'output/image.webp'));
+    const isGifExists = fs.existsSync(path.join(__dirname, 'output/image-gif.webp'));
 
     expect(isJpegExists).to.be.true;
+    expect(isGifExists).to.be.true;
   });
 });

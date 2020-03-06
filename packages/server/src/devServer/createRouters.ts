@@ -1,10 +1,9 @@
 import * as path from 'path';
 import { ParsedPath } from 'path';
-import * as fs from 'fs';
 import * as Router from '@koa/router';
 import * as mime from 'mime-types';
 import preRenderInit from './preDevRender';
-import { webpackHmrPath } from '../utils/utils';
+import { webpackHmrPath, isExists } from '../utils/utils';
 import { ServerContext, SweetOptions } from '../utils/types';
 
 function createRouters(router: Router, sweetOptions: SweetOptions): void {
@@ -38,7 +37,7 @@ function createRouters(router: Router, sweetOptions: SweetOptions): void {
           const name: string = `${ parseResult.name }.js`;
           const entry: string = path.join(sweetOptions.serverRenderRoot, name);
 
-          if (fs.existsSync(entry)) {
+          if (await isExists(entry)) {
             ctx.body = await preRender(ctxPath, ctx, entry);
           }
 

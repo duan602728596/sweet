@@ -4,6 +4,7 @@ import * as fs from 'fs';
 import * as Router from '@koa/router';
 import * as _ from 'lodash';
 import preRenderInit from './preProRender';
+import { isExists } from '../utils/utils';
 import { ServerContext, SweetOptions } from '../utils/types';
 
 function createRouters(
@@ -39,7 +40,7 @@ function createRouters(
           const name: string = `${ parseResult.name }.js`;
           const entry: string = path.join(sweetOptions.serverRenderRoot, name);
 
-          ctx.body = (serverRender && fs.existsSync(entry)) ? await preRender(ctxPath, ctx, body, entry) : body;
+          ctx.body = (serverRender && (await isExists(entry))) ? await preRender(ctxPath, ctx, body, entry) : body;
 
           return;
         }

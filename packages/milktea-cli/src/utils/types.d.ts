@@ -34,7 +34,6 @@ export interface Argv {
   imageEntry: string;
   imageOutput: string;
   ext: string;
-  quality: number;
   size: number;
   retina: number;
   __DEV__: boolean;

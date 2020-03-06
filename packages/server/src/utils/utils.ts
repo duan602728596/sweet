@@ -1,5 +1,6 @@
 import * as util from 'util';
 import * as path from 'path';
+import * as fs from 'fs';
 import * as Stream from 'stream';
 import * as _ from 'lodash';
 import { Dictionary } from 'lodash';
@@ -20,7 +21,7 @@ export function formatTemplateData(data: Dictionary<any>): object {
   }, {});
 }
 
-/* 格式化路径 */
+/* 格式化路径：分隔符为"/" */
 export function folderPathAnalyze(file: string): string {
   const fileArr: Array<string> = _.without(file.split('/'), '');
 
@@ -31,6 +32,7 @@ export function folderPathAnalyze(file: string): string {
   }
 }
 
+/* 格式化路径：分隔符为"." */
 export function filePathAnalyze(file: string): string {
   const fileArr: Array<string> = _.without(file.split('/'), '');
 
@@ -118,6 +120,7 @@ export function formatPath(sweetOptions: SweetOptions, file: string): string {
   return path.isAbsolute(file) ? file : path.join(sweetOptions.basicPath, file);
 }
 
+/* 启动日志 */
 export async function runningAtLog(sweetOptions: SweetOptions, displayHttps: boolean): Promise<void> {
   const ip: string = await internalIp.v4() ?? '127.0.0.1';
   const logs: string[] = [
@@ -132,6 +135,17 @@ export async function runningAtLog(sweetOptions: SweetOptions, displayHttps: boo
   }
 
   console.log(`\n${ chalk.blue(logs.join('\n')) }\n`);
+}
+
+/* 判断文件是否存在 */
+export async function isExists(file: string): Promise<boolean> {
+  try {
+    await fs.promises.access(file);
+
+    return true;
+  } catch (err) {
+    return false;
+  }
 }
 
 /* webpack热替换地址 */
