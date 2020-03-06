@@ -112,10 +112,6 @@ const argv: object = yargs
       describe: '其他批量转换成webp的图片或视频扩展名（扩展名用 “,” 分隔）',
       type: 'string'
     },
-    quality: {
-      describe: '图片转换的质量（0~100）',
-      type: 'number'
-    },
     size: {
       describe: 'icns图标的尺寸',
       type: 'number'
