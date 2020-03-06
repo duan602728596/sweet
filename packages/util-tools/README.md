@@ -44,9 +44,16 @@ import image2webp from '@sweet-milktea/util-tools/image2webp';
 image2webp(
   './src',   // 入口文件夹
   './build', // 输出文件夹
-  70         // 图片质量
+  // 图片转换选项配置
+  {
+    img: {},
+    gif: {}
+  }
 );
 ```
+
+* img：[https://github.com/imagemin/imagemin-webp#api](https://github.com/imagemin/imagemin-webp#api)
+* gif：[https://github.com/imagemin/imagemin-gif2webp#api](https://github.com/imagemin/imagemin-gif2webp#api)
 
 ## 图片压缩工具
 
