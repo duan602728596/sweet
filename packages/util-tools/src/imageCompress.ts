@@ -3,7 +3,6 @@ import * as imageMin from 'imagemin';
 import pngquant, { Options as PngOptions } from 'imagemin-pngquant';
 import * as jpegoptim from 'imagemin-jpegoptim';
 import * as gifsicle from 'imagemin-gifsicle';
-import * as _ from 'lodash';
 import { formatPath } from './utils';
 
 interface CompressOptions {
@@ -27,9 +26,9 @@ async function imageCompress(entry: string, output: string, compressOptions: Com
   const gifCompressOptions: object | undefined = compressOptions.gif;
 
   // 合并选项
-  const pngOptions: PngOptions = _.merge({ speed: 3 }, pngCompressOptions);
-  const jpgOptions: object = _.merge({ max: 70 }, jpgCompressOptions);
-  const gifOptions: object = _.merge({}, gifCompressOptions);
+  const pngOptions: PngOptions = Object.assign({ speed: 3 }, pngCompressOptions);
+  const jpgOptions: object = Object.assign({ max: 70 }, jpgCompressOptions);
+  const gifOptions: object = Object.assign({}, gifCompressOptions);
 
   await imageMin([imgFile], {
     destination: output,
