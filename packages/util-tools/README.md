@@ -4,7 +4,7 @@
 
 ## webp图片、视频批量转换工具
 
-首先需要自行安装`ffmpeg`。
+> 首先需要自行安装`ffmpeg`。
 
 使用方法：
 
@@ -34,6 +34,8 @@ update(
 
 ## webp图片批量转换工具
 
+> mac下可能需要使用brew安装`giflib`。
+
 使用方法：
 
 ```javascript
@@ -47,6 +49,8 @@ image2webp(
 ```
 
 ## 图片压缩工具
+
+> mac下可能需要使用brew安装`jpeg`。
 
 使用方法：
 
