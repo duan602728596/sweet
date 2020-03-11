@@ -16,6 +16,4 @@ function asyncModule(loader) {
   );
 }
 
-
-
 export default asyncModule;
