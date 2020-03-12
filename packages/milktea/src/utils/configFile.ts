@@ -1,6 +1,5 @@
 import * as fs from 'fs';
 import * as path from 'path';
-import register from '@babel/register';
 import { cosmiconfigSync, LoaderSync } from 'cosmiconfig';
 import { CosmiconfigResult, Config } from 'cosmiconfig/dist/types';
 import { createBabelPlugins } from '../config/babelConfig';
@@ -10,7 +9,7 @@ import { SweetConfig, SweetOptions, ExplorerSync, Info } from './types';
 /* 创建cosmiconfig的js加载器 */
 function createJsRegisterLoader(): LoaderSync {
   return function jsRegisterLoader(filepath: string, content: string): Config | null {
-    register({
+    require('@babel/register')({
       presets: [
         [
           '@babel/preset-env',
@@ -32,7 +31,9 @@ function createJsRegisterLoader(): LoaderSync {
         ]
       ],
       plugins: createBabelPlugins(),
-      cache: true
+      cache: true,
+      ignore: [/node_modules/],
+      extensions: ['.es6', '.es', '.jsx', '.js', '.mjs', '.tsx', '.ts']
     });
 
     return requireModule(filepath);
