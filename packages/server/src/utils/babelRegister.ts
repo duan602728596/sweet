@@ -63,7 +63,6 @@ function createRegisterConfig(): RegisterConfig {
 /* 使用@babel/register */
 function useRegister(sweetOptions: SweetOptions): void {
   if (sweetOptions.useBabelRegister) {
-    const register: Function = require('@babel/register');
     const config: RegisterConfig = createRegisterConfig();
 
     // 如果开启了ssr，要把编译后的目录加入到忽略列表，否则会影响性能
@@ -71,7 +70,7 @@ function useRegister(sweetOptions: SweetOptions): void {
       config.ignore.push(new RegExp(sweetOptions.serverRenderRoot, 'ig'));
     }
 
-    register(config);
+    require('@babel/register')(config);
   }
 }
 

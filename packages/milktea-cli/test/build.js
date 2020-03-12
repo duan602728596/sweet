@@ -5,7 +5,7 @@ import { expect } from 'chai';
 
 function run() {
   const cli = path.join(__dirname, '../lib/cli');
-  const config = path.join(__dirname, './sweet.config.build.js');
+  const config = path.join(__dirname, './sweet.config.build.ts');
 
   return new Promise((resolve, reject) => {
     const child = childProcess.spawn('node', [cli, 'build', '--config', config], {

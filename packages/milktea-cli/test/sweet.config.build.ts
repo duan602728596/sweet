@@ -1,6 +1,6 @@
-import path from 'path';
+import * as path from 'path';
 
-export default function(info) {
+export default function(info: object): object {
   return {
     frame: 'react',
     dll: ['react'],
