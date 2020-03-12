@@ -56,7 +56,8 @@ function configFile(sweetOptions: SweetOptions, configFile?: string): SweetConfi
       `.${ MODULE_NAME }rc.ts`
     ],
     loaders: {
-      '.js': jsRegisterLoader
+      '.js': jsRegisterLoader,
+      '.ts': jsRegisterLoader
     },
     stopDir: sweetOptions.basicPath
   });
