@@ -78,7 +78,7 @@ function requestPackageInfo(packageName: string, registry: number = 0): Promise<
         chunks.push(chunk);
       });
 
-      res.on('end', function() {
+      res.on('end', function(): void {
         const buffer: Buffer = Buffer.concat(chunks),
           str: string = buffer.toString('utf8');
 
