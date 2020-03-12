@@ -8,7 +8,7 @@ import { requireModule } from './utils';
 import { SweetConfig, SweetOptions, ExplorerSync, Info } from './types';
 
 /* 创建cosmiconfig的js加载器 */
-function createJsRegisterLoader(sweetOptions: SweetOptions): LoaderSync {
+function createJsRegisterLoader(): LoaderSync {
   return function jsRegisterLoader(filepath: string, content: string): Config | null {
     register({
       presets: [
@@ -21,6 +21,13 @@ function createJsRegisterLoader(sweetOptions: SweetOptions): LoaderSync {
             debug: false,
             modules: 'commonjs',
             useBuiltIns: false
+          }
+        ],
+        [
+          '@babel/preset-typescript',
+          {
+            allExtensions: true,
+            allowNamespaces: true
           }
         ]
       ],
@@ -35,7 +42,7 @@ function createJsRegisterLoader(sweetOptions: SweetOptions): LoaderSync {
 /* 获取配置文件 */
 function configFile(sweetOptions: SweetOptions, configFile?: string): SweetConfig | ((info: Info) => SweetConfig) {
   // @babel/register
-  const jsRegisterLoader: LoaderSync = createJsRegisterLoader(sweetOptions);
+  const jsRegisterLoader: LoaderSync = createJsRegisterLoader();
 
   // 配置文件加载器
   const MODULE_NAME: string = 'sweet';
@@ -44,7 +51,9 @@ function configFile(sweetOptions: SweetOptions, configFile?: string): SweetConfi
   const explorerSync: ExplorerSync = cosmiconfigSync(MODULE_NAME, {
     searchPlaces: [
       `${ MODULE_NAME }.config.js`,
-      `.${ MODULE_NAME }rc.js`
+      `.${ MODULE_NAME }rc.js`,
+      `${ MODULE_NAME }.config.ts`,
+      `.${ MODULE_NAME }rc.ts`
     ],
     loaders: {
       '.js': jsRegisterLoader
