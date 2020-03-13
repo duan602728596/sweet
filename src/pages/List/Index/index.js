@@ -7,19 +7,19 @@ import useActions from '../../../store/useActions';
 import { reqDataList } from '../models/models';
 import style from './index.sass';
 
-/* actions */
-const actions = (dispatch) => ({
-  action: bindActionCreators({
-    reqDataList
-  }, dispatch)
-});
-
 /* state */
 const state = createStructuredSelector({
   dataList: createSelector(
     ($$state) => $$state.has('list') ? $$state.get('list').get('dataList').toJS() : [],
     (data) => data
   )
+});
+
+/* actions */
+const actions = (dispatch) => ({
+  action: bindActionCreators({
+    reqDataList
+  }, dispatch)
 });
 
 function List(props) {
