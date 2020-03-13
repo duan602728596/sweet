@@ -1,12 +1,12 @@
 import React from 'react';
-import { useNavigate } from 'react-router';
+import { useHistory } from 'react-router';
 import { Form, Button, Input } from 'antd';
 import { UserOutlined as IconUserOutlined, LockOutlined as IconLockOutlined } from '@ant-design/icons';
 import style from './index.sass';
 
 /* 登陆 */
 function Index(props) {
-  const navigate = useNavigate();
+  const history = useHistory();
   const [form] = Form.useForm();
   const { validateFields, scrollToField } = form;
 
@@ -15,7 +15,7 @@ function Index(props) {
     try {
       const value = await validateFields();
 
-      navigate('/');
+      history.push('/');
     } catch (err) {
       console.error(err);
       scrollToField(err.errorFields[0].name[0]);

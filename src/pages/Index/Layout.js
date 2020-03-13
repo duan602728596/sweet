@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import Main from '../../layouts/Main';
 import Content from '../../layouts/Content';
@@ -13,9 +13,10 @@ function ModuleLayout(props) {
       </Helmet>
       <Main>
         <Content>
-          <Routes>
-            <Route path="//*" element={ <Index /> } exact={ true } />
-          </Routes>
+          <Switch>
+            <Route path="/" component={ Index } exact={ true } />
+            <Route path="/Index" component={ Index } exact={ true } />
+          </Switch>
         </Content>
       </Main>
     </Fragment>

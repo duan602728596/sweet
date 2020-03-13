@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import Index from './Index/index';
 
@@ -9,9 +9,9 @@ function ModuleLayout(props) {
       <Helmet>
         <title>Webpack App - login</title>
       </Helmet>
-      <Routes>
-        <Route path="Login" element={ <Index /> } exact={ true } />
-      </Routes>
+      <Switch>
+        <Route path="/Login" component={ Index } exact={ true } />
+      </Switch>
     </Fragment>
   );
 }
