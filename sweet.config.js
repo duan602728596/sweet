@@ -10,11 +10,10 @@ export default function(info) {
     plugins.unshift(['transform-react-remove-prop-types', { mode: 'remove', removeImport: true }]);
   }
 
-  return {
+  const config = {
     frame: 'react',
     dll: [
       'react',
-      'react-dom',
       'prop-types',
       'react-router',
       'react-router-dom',
@@ -58,4 +57,14 @@ export default function(info) {
     ],
     filesMap: true
   };
+
+  if (isDev) {
+    config.resolve = {
+      alias: {
+        'react-dom': '@hot-loader/react-dom'
+      }
+    };
+  }
+
+  return config;
 }
