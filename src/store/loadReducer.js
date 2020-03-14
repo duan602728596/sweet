@@ -1,34 +1,30 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
+import React, { useEffect } from 'react';
 
 /**
  * 异步注入reducer的修饰器
  * @param { object } models
  */
 function loadReducer(models) {
+  let injectModels = true; // models是否需要注入
+
   /**
    * @param { Function } Module: 需要修饰的模块
    */
   return function(Module) {
-    return class extends Component {
-      static propTypes = {
-        injectReducers: PropTypes.func
-      };
-
-      constructor() {
-        super(...arguments);
-
-        // 异步注入reducer
-        const injectReducers = this?.props?.injectReducers ?? undefined;
-
-        if (injectReducers) {
-          injectReducers(models);
+    return function(props) {
+      // 异步注入reducer
+      function injectReducers() {
+        if (injectModels) {
+          props.injectReducers?.(models);
+          injectModels = false;
         }
       }
 
-      render() {
-        return <Module />;
-      }
+      useEffect(function() {
+        injectReducers();
+      }, []);
+
+      return <Module />;
     };
   };
 }
