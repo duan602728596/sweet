@@ -22,11 +22,11 @@
     "packages/*"
   ],
   "dependencies": {
-    "@storybook/addon-actions": "^5.3.14",
-    "@storybook/addon-links": "^5.3.14",
-    "@storybook/addon-notes": "^5.3.14",
-    "@storybook/cli": "^5.3.14",
-    "@storybook/react": "^5.3.14",
+    "@storybook/addon-actions": "^5.3.17",
+    "@storybook/addon-links": "^5.3.17",
+    "@storybook/addon-notes": "^5.3.17",
+    "@storybook/cli": "^5.3.17",
+    "@storybook/react": "^5.3.17",
     "@types/eslint": "^6",
     "@types/estree": "^0",
     "@types/html-minifier": "^3",
