@@ -10,7 +10,7 @@ import style from './index.sass';
 /* state */
 const state = createStructuredSelector({
   dataList: createSelector(
-    (state) => state.list?.dataList ?? [],
+    ({ list: $$List }) => $$List?.get?.('dataList').toJS() ?? [],
     (data) => data
   )
 });

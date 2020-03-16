@@ -12,7 +12,7 @@ import welcome, { ReactComponent as WelcomeSvgComponent } from './images/welcome
 /* state */
 const state = createStructuredSelector({
   likeLen: createSelector(
-    (state) => state.index.likeLen,
+    ({ index: $$index }) => $$index.get?.('likeLen'),
     (data) => data
   )
 });

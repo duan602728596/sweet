@@ -21,6 +21,7 @@ export default function(info) {
       'react-redux',
       'redux-actions',
       'redux-thunk',
+      'immutable',
       'reselect',
       'react-helmet'
     ],
