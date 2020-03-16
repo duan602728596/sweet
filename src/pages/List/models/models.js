@@ -1,5 +1,4 @@
 import { createAction, handleActions } from 'redux-actions';
-import { fromJS, List } from 'immutable';
 import createAsyncAction from '../../../store/createAsyncAction';
 
 // mock
@@ -25,10 +24,10 @@ export const reqDataList = createAsyncAction(async function(_, args) {
 
 /* reducer */
 const reducer = handleActions({
-  [setDataList]($$state, action) {
-    return $$state.set('dataList', List(action.payload));
+  [setDataList](state, action) {
+    return { ...state, dataList: action.payload };
   }
-}, fromJS(initData));
+}, initData);
 
 export default {
   list: reducer

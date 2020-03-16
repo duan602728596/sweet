@@ -5,8 +5,8 @@ export const setData = createAction('second/数据');
 
 /* models */
 const reducer = handleActions({
-  [setData]($$state, action) {
-    return $$state.set('data', action.payload);
+  [setData](state, action) {
+    return { ...state, data: action.payload };
   }
 }, {});
 

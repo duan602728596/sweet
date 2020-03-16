@@ -1,5 +1,4 @@
 import { createAction, handleActions } from 'redux-actions';
-import { fromJS } from 'immutable';
 
 const initData = {
   likeLen: 0
@@ -10,10 +9,10 @@ export const setLikeLen = createAction('index/点赞');
 
 /* models */
 const reducer = handleActions({
-  [setLikeLen]($$state, action) {
-    return $$state.set('likeLen', action.payload);
+  [setLikeLen](state, action) {
+    return { ...state, likeLen: action.payload };
   }
-}, fromJS(initData));
+}, initData);
 
 export default {
   index: reducer

@@ -1,5 +1,4 @@
 import { handleActions, combineActions } from 'redux-actions';
-import { fromJS } from 'immutable';
 import secondReducer, * as secondAction from './second';
 
 const initData = {
@@ -10,10 +9,10 @@ const initData = {
 
 /* models */
 const reducer = handleActions({
-  [combineActions(...Object.values(secondAction))]($$state, action) {
-    return $$state.set('second', secondReducer($$state.get('second'), action));
+  [combineActions(...Object.values(secondAction))](state, action) {
+    return { ...state, second: secondReducer(state.second, action) };
   }
-}, fromJS(initData));
+}, initData);
 
 export default {
   second: reducer

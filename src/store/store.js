@@ -1,7 +1,6 @@
 /* 全局的store */
 import { createStore, compose, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
-import { fromJS, Map } from 'immutable';
 import { createReducer } from './reducers';
 
 /* reducer列表 */
@@ -16,12 +15,8 @@ const store = {
 };
 
 export function storeFactory(initialState = {}) {
-  /* initialState */
-  const state = fromJS(initialState);
-  const $$initialState = Map(state);
-
   /* store */
-  Object.assign(store, createStore(reducer, $$initialState, compose(middleware)));
+  Object.assign(store, createStore(reducer, initialState, compose(middleware)));
 
   return store;
 }
