@@ -68,7 +68,7 @@
     "@vue/babel-helper-vue-jsx-merge-props": "^1.0.0",
     "@vue/babel-preset-jsx": "^1.1.2",
     "ts-loader": "^6.2.1",
-    "vue-loader": "^15.9.1+",
+    "vue-loader": "^15.9.1",
     "vue-svg-loader": "^0.16.0",
     "vue-template-compiler": "^2.6.11"
   },
