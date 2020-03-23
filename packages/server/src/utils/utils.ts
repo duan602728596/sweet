@@ -2,11 +2,14 @@ import * as util from 'util';
 import * as path from 'path';
 import * as fs from 'fs';
 import * as Stream from 'stream';
+import * as glob from 'glob';
 import * as _ from 'lodash';
 import { Dictionary } from 'lodash';
 import * as internalIp from 'internal-ip';
 import * as chalk from 'chalk';
 import { SweetOptions } from './types';
+
+export const globPromise: (arg1: string, arg2?: glob.IOptions) => Promise<string[]> = util.promisify(glob);
 
 /* 格式化数据 */
 export function formatTemplateData(data: Dictionary<any>): object {
@@ -99,7 +102,8 @@ export function isReadStream(input: string | Stream): input is Stream {
 }
 
 /* 读取stream流 */
-export const readStream: (stream: Stream) => Promise<Buffer> = util.promisify(function(stream: Stream, callback: Function): void {
+type ReadStream = (stream: Stream) => Promise<Buffer>;
+export const readStream: ReadStream = util.promisify(function(stream: Stream, callback: Function): void {
   const chunks: Array<Buffer> = [];
 
   stream.on('data', function(chunk: Buffer): void {

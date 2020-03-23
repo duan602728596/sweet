@@ -2,7 +2,7 @@ import * as path from 'path';
 import * as glob from 'glob';
 import * as _ from 'lodash';
 import { Context } from 'koa';
-import { requireModule } from './utils';
+import { requireModule, globPromise } from './utils';
 import useRegister from './babelRegister';
 import { SweetOptions } from './types';
 
@@ -42,7 +42,7 @@ export function pathArrayToMap(pathArr: Array<string>, basicPath: string, contro
 }
 
 /* 获取函数 */
-export function getControllersFiles(basicPath: string, controllersDir?: string): Promise<Map<string, string>> {
+export async function getControllersFiles(basicPath: string, controllersDir?: string): Promise<Map<string, string>> {
   const controllersInfo: ControllersInfo = getControllers(controllersDir);
   let options: object = { cwd: basicPath };
 
@@ -51,11 +51,9 @@ export function getControllersFiles(basicPath: string, controllersDir?: string):
     options = _.omit(options, ['cwd']);
   }
 
-  return new Promise((resolve: Function, reject: Function): void => {
-    glob(controllersInfo.controllers, options, function(err: Error, files: Array<string>): void {
-      resolve(pathArrayToMap(files, basicPath, controllersInfo));
-    });
-  });
+  const files: Array<string> = await globPromise(controllersInfo.controllers, options);
+
+  return pathArrayToMap(files, basicPath, controllersInfo);
 }
 
 /* 获取函数 */
