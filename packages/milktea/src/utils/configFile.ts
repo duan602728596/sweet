@@ -60,7 +60,8 @@ function configFile(sweetOptions: SweetOptions, configFile?: string): SweetConfi
     ],
     loaders: {
       '.js': jsRegisterLoader,
-      '.ts': jsRegisterLoader
+      '.ts': jsRegisterLoader,
+      '.tsx': jsRegisterLoader
     },
     stopDir: sweetOptions.basicPath
   });
