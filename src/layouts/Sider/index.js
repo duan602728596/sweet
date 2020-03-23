@@ -1,4 +1,4 @@
-import { createComponent, createElement as h } from '@vue/composition-api';
+import { defineComponent, createElement as h } from '@vue/composition-api';
 import { Layout, Menu, Icon } from 'ant-design-vue';
 import style from './index.sass';
 
@@ -7,7 +7,7 @@ import style from './index.sass';
  * 页面左侧菜单
  * 渲染二级和三级菜单
  */
-export default createComponent({
+export default defineComponent({
   props: {
     options: Array
   },

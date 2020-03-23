@@ -1,8 +1,8 @@
-import { createComponent, createElement as h } from '@vue/composition-api';
+import { defineComponent, createElement as h } from '@vue/composition-api';
 import { Form, Button, Input, Icon } from 'ant-design-vue';
 import style from './index.sass';
 
-const component = createComponent({
+const component = defineComponent({
   props: {
     form: Object
   },

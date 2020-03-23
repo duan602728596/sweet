@@ -1,4 +1,4 @@
-import { createComponent, createElement as h } from '@vue/composition-api';
+import { defineComponent, createElement as h } from '@vue/composition-api';
 import { Layout, Icon, Menu, Dropdown, Avatar } from 'ant-design-vue';
 import style from './index.sass';
 
@@ -7,7 +7,7 @@ import style from './index.sass';
  * 顶部header布局
  * 显示logo、导航、登录人信息等
  */
-export default createComponent({
+export default defineComponent({
   setup: () => {
     return {
       // 渲染下拉菜单

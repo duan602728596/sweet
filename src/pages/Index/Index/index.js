@@ -1,9 +1,9 @@
-import { createComponent, ref } from '@vue/composition-api';
+import { defineComponent, ref } from '@vue/composition-api';
 import { Icon } from 'ant-design-vue';
 import style from './index.sass';
 import WelcomeSvgComponent from './images/welcome.component.svg';
 
-export default createComponent({
+export default defineComponent({
   setup: ({}, { root }) => {
     const { $store } = root;
     const stateLen = ref(0);
