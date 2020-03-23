@@ -6,7 +6,7 @@ import { createSelector, createStructuredSelector } from 'reselect';
 /* state */
 const state = createStructuredSelector({
   data: createSelector(
-    ($$state) => $$state.has('second') ? $$state.get('second').get('data') : undefined,
+    ({ second: $$second }) => $$second?.get?.('second')?.get?.('data'),
     (data) => data ?? 0
   )
 });

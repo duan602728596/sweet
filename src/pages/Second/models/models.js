@@ -4,7 +4,7 @@ import secondReducer, * as secondAction from './second';
 
 const initData = {
   second: {
-    data: 0
+    data: 132
   }
 };
 
