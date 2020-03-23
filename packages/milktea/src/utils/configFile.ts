@@ -51,10 +51,12 @@ function configFile(sweetOptions: SweetOptions, configFile?: string): SweetConfi
 
   const explorerSync: ExplorerSync = cosmiconfigSync(MODULE_NAME, {
     searchPlaces: [
-      `${ MODULE_NAME }.config.js`,
-      `.${ MODULE_NAME }rc.js`,
       `${ MODULE_NAME }.config.ts`,
-      `.${ MODULE_NAME }rc.ts`
+      `${ MODULE_NAME }.config.tsx`,
+      `.${ MODULE_NAME }rc.ts`,
+      `.${ MODULE_NAME }rc.tsx`,
+      `${ MODULE_NAME }.config.js`,
+      `.${ MODULE_NAME }rc.js`
     ],
     loaders: {
       '.js': jsRegisterLoader,
