@@ -89,8 +89,11 @@ export async function getControllerData(
   // 文件的查找顺序
   const findFiles: Array<string> = [
     `${ folderPathFile }.ts`,
+    `${ folderPathFile }.tsx`,
     `${ formatFile }.ts`,
+    `${ formatFile }.tsx`,
     'default.ts',
+    'default.tsx',
     `${ folderPathFile }.js`,
     `${ formatFile }.js`,
     'default.js'

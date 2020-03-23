@@ -9,8 +9,8 @@ import { SweetOptions } from './types';
  */
 async function createApi(sweetOptions: SweetOptions, router: Router, app: Koa, isDevelopment: boolean): Promise<void> {
   try {
-    const defaultApi: { js: string; ts: string } = defaultApiPath(sweetOptions.basicPath);
-    const findFiles: Array<string> = [defaultApi.ts, defaultApi.js];
+    const defaultApi: { ts: string; tsx: string; js: string } = defaultApiPath(sweetOptions.basicPath);
+    const findFiles: Array<string> = [defaultApi.ts, defaultApi.tsx, defaultApi.js];
 
     if (sweetOptions.apiFile) {
       findFiles.unshift(sweetOptions.apiFile);
