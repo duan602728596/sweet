@@ -15,7 +15,7 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
   const {
     ecmascript,
     typescript,
-    jsx = true,
+    jsx,
     presets,
     plugins,
     resetPresets,
