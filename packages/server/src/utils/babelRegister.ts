@@ -19,7 +19,8 @@ function createRegisterConfig(): RegisterConfig {
           debug: false,
           modules: 'commonjs',
           useBuiltIns: 'usage',
-          corejs: 3
+          corejs: 3,
+          bugfixes: true
         }
       ],
       [
@@ -27,7 +28,8 @@ function createRegisterConfig(): RegisterConfig {
         {
           isTSX: true,
           allExtensions: true,
-          allowNamespaces: true
+          allowNamespaces: true,
+          onlyRemoveTypeImports: true
         }
       ]
     ],

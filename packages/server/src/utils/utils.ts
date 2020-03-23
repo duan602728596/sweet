@@ -2,11 +2,14 @@ import * as util from 'util';
 import * as path from 'path';
 import * as fs from 'fs';
 import * as Stream from 'stream';
+import * as glob from 'glob';
 import * as _ from 'lodash';
 import { Dictionary } from 'lodash';
 import * as internalIp from 'internal-ip';
 import * as chalk from 'chalk';
 import { SweetOptions } from './types';
+
+export const globPromise: (arg1: string, arg2?: glob.IOptions) => Promise<string[]> = util.promisify(glob);
 
 /* 格式化数据 */
 export function formatTemplateData(data: Dictionary<any>): object {
@@ -44,26 +47,29 @@ export function filePathAnalyze(file: string): string {
 }
 
 /* 设置默认api文件的地址 */
-export function defaultApiPath(basicPath: string): { js: string; ts: string } {
+export function defaultApiPath(basicPath: string): { ts: string; tsx: string; js: string } {
   return {
     ts: path.join(basicPath, 'api/api.ts'),
+    tsx: path.join(basicPath, 'api/api.tsx'),
     js: path.join(basicPath, 'api/api.js')
   };
 }
 
 /* 设置默认的proxy代理的地址 */
-export function defaultProxyPath(basicPath: string): { ts: string; js: string; json: string } {
+export function defaultProxyPath(basicPath: string): { ts: string; tsx: string; js: string; json: string } {
   return {
     ts: path.join(basicPath, 'proxy/proxy.ts'),
+    tsx: path.join(basicPath, 'proxy/proxy.tsx'),
     js: path.join(basicPath, 'proxy/proxy.js'),
     json: path.join(basicPath, 'proxy/proxy.json')
   };
 }
 
 /* 设置默认的mock的地址 */
-export function defaultMockPath(basicPath: string): { js: string; ts: string } {
+export function defaultMockPath(basicPath: string): { ts: string; tsx: string; js: string } {
   return {
     ts: path.join(basicPath, 'mock/mock.ts'),
+    tsx: path.join(basicPath, 'mock/mock.tsx'),
     js: path.join(basicPath, 'mock/mock.js')
   };
 }
@@ -99,7 +105,8 @@ export function isReadStream(input: string | Stream): input is Stream {
 }
 
 /* 读取stream流 */
-export const readStream: (stream: Stream) => Promise<Buffer> = util.promisify(function(stream: Stream, callback: Function): void {
+type ReadStream = (stream: Stream) => Promise<Buffer>;
+export const readStream: ReadStream = util.promisify(function(stream: Stream, callback: Function): void {
   const chunks: Array<Buffer> = [];
 
   stream.on('data', function(chunk: Buffer): void {

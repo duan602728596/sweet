@@ -1,7 +1,7 @@
 import * as util from 'util';
 import * as glob from 'glob';
 
-const globPromise: (arg1: string, arg2: glob.IOptions) => Promise<string[]> = util.promisify(glob);
+const globPromise: (arg1: string, arg2?: glob.IOptions) => Promise<string[]> = util.promisify(glob);
 
 /**
  * 格式化路径
