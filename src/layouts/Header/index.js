@@ -44,7 +44,7 @@ function Header(props) {
       <div className={ style.logo }>平台LOGO</div>
       {/* 导航 */}
       <nav className={ style.nav }>
-        <Menu mode="horizontal" theme="dark" selectedKeys={ [selectKeys()] }>
+        <Menu className={ style.menu } mode="horizontal" theme="dark" selectedKeys={ [selectKeys()] }>
           <Menu.Item key="index">
             <Link to="/Index">
               <IconHomeOutlined />
