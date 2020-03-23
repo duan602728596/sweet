@@ -15,6 +15,7 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
   const {
     ecmascript,
     typescript,
+    jsx = true,
     presets,
     plugins,
     resetPresets,
@@ -79,7 +80,7 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
       (config: Config): void => {
         configBabelUse
           .tap((options: LoaderOptions): LoaderOptions => _.mergeWith(options, {
-            presets: resetPresets ? undefined : ['@babel/preset-react'],
+            presets: resetPresets ? undefined : [['@babel/preset-react', { runtime: jsx ? 'automatic' : 'classic' }]],
             plugins: resetPlugins ? undefined : ['react-hot-loader/babel']
           }, customizer));
       }
