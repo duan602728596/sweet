@@ -45,7 +45,8 @@ export function createPresetTypescript(isReact: boolean = true): Array<any> {
       isTSX: true,
       jsxPragma: isReact ? 'React' : 'Preserve',
       allExtensions: true,
-      allowNamespaces: true
+      allowNamespaces: true,
+      onlyRemoveTypeImports: true
     }
   ];
 }
@@ -61,7 +62,8 @@ export function createPresetEnv(customTargets: object | undefined, debug: boolea
     targets: customTargets ? customTargets : createTargets(),
     debug,
     modules: false,
-    useBuiltIns: notUseBuiltIns ? false : 'usage'
+    useBuiltIns: notUseBuiltIns ? false : 'usage',
+    bugfixes: true
   };
 
   if (!notUseBuiltIns) {
