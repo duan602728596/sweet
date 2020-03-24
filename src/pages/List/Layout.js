@@ -1,5 +1,4 @@
 import React, { Fragment } from 'react';
-import { Route, Switch } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import loadReducer from '../../store/loadReducer';
 import Main from '../../layouts/Main';
@@ -15,9 +14,7 @@ function ModuleLayout(props) {
       </Helmet>
       <Main>
         <Content>
-          <Switch>
-            <Route path="/List" component={ Index } exact={ true } />
-          </Switch>
+          <Index />
         </Content>
       </Main>
     </Fragment>

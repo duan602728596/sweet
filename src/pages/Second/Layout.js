@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Routes, useRoutes } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import { FolderOpenOutlined as IconFolderOpenOutlined } from '@ant-design/icons';
 import loadReducer from '../../store/loadReducer';
@@ -40,6 +40,13 @@ const options = [
 ];
 
 function ModuleLayout(props) {
+  const routes = useRoutes([
+    { path: '/', element: <Index /> },
+    { path: 'Page1', element: <Index /> },
+    { path: 'Page2', element: <Index /> },
+    { path: 'Page3', element: <Index /> }
+  ]);
+
   return (
     <Fragment>
       <Helmet>
@@ -47,14 +54,7 @@ function ModuleLayout(props) {
       </Helmet>
       <Main>
         <Sider options={ options } />
-        <Content>
-          <Switch>
-            <Route path="/Second" component={ Index } exact={ true } />
-            <Route path="/Second/Page1" component={ Index } exact={ true } />
-            <Route path="/Second/Page2" component={ Index } exact={ true } />
-            <Route path="/Second/Page3" component={ Index } exact={ true } />
-          </Switch>
-        </Content>
+        <Content>{ routes }</Content>
       </Main>
     </Fragment>
   );
