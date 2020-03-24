@@ -26,7 +26,8 @@ function createJsRegisterLoader(): LoaderSync {
           '@babel/preset-typescript',
           {
             allExtensions: true,
-            allowNamespaces: true
+            allowNamespaces: true,
+            onlyRemoveTypeImports: true
           }
         ]
       ],
