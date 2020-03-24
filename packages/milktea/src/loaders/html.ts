@@ -1,5 +1,5 @@
 import * as Config from 'webpack-chain';
-import { SweetConfig } from '../utils/types';
+import type { SweetConfig } from '../utils/types';
 
 /* html 配置 */
 export default function(sweetConfig: SweetConfig, config: Config): void {

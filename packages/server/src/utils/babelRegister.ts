@@ -1,4 +1,4 @@
-import { SweetOptions } from './types';
+import type { SweetOptions } from './types';
 
 interface RegisterConfig {
   presets: Array<any>;

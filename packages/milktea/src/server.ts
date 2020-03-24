@@ -1,14 +1,14 @@
 /* webpack 服务器端渲染配置 */
 import * as path from 'path';
 import * as _ from 'lodash';
-import { Configuration } from 'webpack';
+import type { Configuration } from 'webpack';
 import * as Config from 'webpack-chain';
 import * as merge from 'webpack-merge';
 import loaders from './loaders/loaders';
 import basicPlugins from './plugins/plugins';
 import optimization from './optimization/optimization';
 import { extensions } from './utils/utils';
-import { SweetConfig, SweetOptions } from './utils/types';
+import type { SweetConfig, SweetOptions } from './utils/types';
 
 export default function(sweetConfig: SweetConfig | null | undefined, sweetOptions: SweetOptions): Configuration {
   const config: Config = new Config();

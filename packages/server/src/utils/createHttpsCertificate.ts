@@ -1,7 +1,7 @@
 import * as path from 'path';
 import * as fs from 'fs';
 import { isExists } from './utils';
-import { SweetOptions } from './types';
+import type { SweetOptions } from './types';
 
 export type HttpsCertificate = [boolean, Buffer | undefined, Buffer | undefined];
 

@@ -2,7 +2,7 @@ import * as path from 'path';
 import * as webpack from 'webpack';
 import * as Config from 'webpack-chain';
 import { dllCache } from '../config/cacheConfig';
-import { SweetConfig, SweetOptions } from '../utils/types';
+import type { SweetConfig, SweetOptions } from '../utils/types';
 
 /* 开发环境插件 */
 export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, config: Config): void {

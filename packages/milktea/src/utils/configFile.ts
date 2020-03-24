@@ -1,10 +1,10 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import { cosmiconfigSync, LoaderSync } from 'cosmiconfig';
-import { CosmiconfigResult, Config } from 'cosmiconfig/dist/types';
+import type { CosmiconfigResult, Config } from 'cosmiconfig/dist/types';
 import { createBabelPlugins } from '../config/babelConfig';
 import { requireModule } from './utils';
-import { SweetConfig, SweetOptions, ExplorerSync, Info } from './types';
+import type { SweetConfig, SweetOptions, ExplorerSync, Info } from './types';
 
 /* 创建cosmiconfig的js加载器 */
 function createJsRegisterLoader(): LoaderSync {
@@ -26,7 +26,8 @@ function createJsRegisterLoader(): LoaderSync {
           '@babel/preset-typescript',
           {
             allExtensions: true,
-            allowNamespaces: true
+            allowNamespaces: true,
+            onlyRemoveTypeImports: true
           }
         ]
       ],

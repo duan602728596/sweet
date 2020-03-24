@@ -10,7 +10,7 @@ import htmlLoader from './html';
 import imageLoader from './image';
 import svgLoader from './svg';
 import { formatLoader } from '../utils/utils';
-import { SweetConfig, SweetOptions, Loaders } from '../utils/types';
+import type { SweetConfig, SweetOptions, Loaders } from '../utils/types';
 
 /* loaders */
 export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, config: Config): void {

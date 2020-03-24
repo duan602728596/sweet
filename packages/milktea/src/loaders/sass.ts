@@ -1,7 +1,7 @@
 import * as Config from 'webpack-chain';
-import { Rule, LoaderOptions } from 'webpack-chain';
+import type { Rule, LoaderOptions } from 'webpack-chain';
 import { createStyleLoader, createCssOptions, createSassOptions } from '../config/cssConfig';
-import { SweetConfig, SASS } from '../utils/types';
+import type { SweetConfig, SASS } from '../utils/types';
 
 /* sass 配置 */
 export default function(sweetConfig: SweetConfig, config: Config): void {

@@ -1,13 +1,13 @@
 /* 插件配置 */
 import * as path from 'path';
-import { ParsedPath } from 'path';
+import type { ParsedPath } from 'path';
 import * as webpack from 'webpack';
 import * as Config from 'webpack-chain';
-import { PluginClass } from 'webpack-chain';
+import type { PluginClass } from 'webpack-chain';
 import * as HtmlWebpackPlugin from 'html-webpack-plugin';
 import { requireModule } from '../utils/utils';
-import { SweetConfig, SweetOptions, HtmlItem } from '../utils/types';
 import createHandleProgressBar from './handleProgressBar';
+import type { SweetConfig, SweetOptions, HtmlItem } from '../utils/types';
 
 export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, config: Config): void {
   const { mode, html, frame, serverRender, webpackLog = 'progress' }: SweetConfig = sweetConfig;

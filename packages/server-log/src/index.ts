@@ -1,6 +1,6 @@
 import * as process from 'process';
 import * as log4js from '@bbkkbkk/koa-log4';
-import { Context } from 'koa';
+import type { Context } from 'koa';
 import createFileConfig from './createFileConfig';
 import createHttpConfig from './createHttpConfig';
 

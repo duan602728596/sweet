@@ -1,11 +1,11 @@
 import * as process from 'process';
 import * as _ from 'lodash';
-import { Configuration, Stats } from 'webpack';
+import type { Configuration, Stats } from 'webpack';
 import webpackConfig from './config';
 import webpackServerRenderConfig from './server';
 import webpackDllConfig from './dll';
 import configFile from './utils/configFile';
-import { SweetConfig, SweetOptions, Mode, WebpackLog, Environment, Info } from './utils/types';
+import type { SweetConfig, SweetOptions, Mode, WebpackLog, Environment, Info } from './utils/types';
 
 type SweetConfigArgs = SweetConfig | string | null | undefined;
 type Config = SweetConfig | null | undefined;

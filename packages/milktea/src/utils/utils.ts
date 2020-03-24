@@ -1,4 +1,4 @@
-import { RuleSetRule, RuleSetUse } from 'webpack';
+import type { RuleSetRule, RuleSetUse } from 'webpack';
 
 /* 模块导入 */
 export function requireModule(id: string): any {

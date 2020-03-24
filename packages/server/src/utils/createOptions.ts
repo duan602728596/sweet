@@ -1,5 +1,5 @@
 import * as Koa from 'koa';
-import { SweetOptions, ServerContext } from './types';
+import type { SweetOptions, ServerContext } from './types';
 
 /* 注入ctx.sweetOptions */
 function createSweetOptionsMiddleware(app: Koa, sweetOptions: SweetOptions): void {

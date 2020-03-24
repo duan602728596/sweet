@@ -1,5 +1,5 @@
 import { requireModule } from '../utils/utils';
-import { Argv } from '../utils/types';
+import type { Argv } from '../utils/types';
 
 /* server 命令 */
 function argvServer(argv: Argv): void {

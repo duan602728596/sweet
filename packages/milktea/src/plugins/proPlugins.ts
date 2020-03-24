@@ -6,7 +6,7 @@ import ImageMinWebpackPlugin from 'imagemin-webpack-plugin';
 import * as FilesMapWebpackPlugin from '@bbkkbkk/files-map-webpack-plugin';
 import * as _ from 'lodash';
 import { handleDefaultProgress, handleServerRenderProgress } from './handleProgress';
-import { SweetConfig, SweetOptions } from '../utils/types';
+import type { SweetConfig, SweetOptions } from '../utils/types';
 
 /* 生产环境插件 */
 export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, config: Config): void {

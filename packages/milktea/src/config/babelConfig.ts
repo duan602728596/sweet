@@ -1,7 +1,7 @@
 import * as path from 'path';
-import { LoaderOptions } from 'webpack-chain';
+import type { LoaderOptions } from 'webpack-chain';
 import { babelCache } from './cacheConfig';
-import { SweetOptions, JS } from '../utils/types';
+import type { SweetOptions, JS } from '../utils/types';
 
 /* babel-loader配置 */
 // babel plugins

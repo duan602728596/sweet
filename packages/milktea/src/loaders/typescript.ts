@@ -1,9 +1,9 @@
 import * as _ from 'lodash';
 import * as Config from 'webpack-chain';
-import { Use, LoaderOptions } from 'webpack-chain';
+import type { Use, LoaderOptions } from 'webpack-chain';
 import { customizer } from '../utils/utils';
 import { createBabelForTsOptions } from '../config/babelConfig';
-import { SweetConfig, SweetOptions, TS } from '../utils/types';
+import type { SweetConfig, SweetOptions, TS } from '../utils/types';
 
 /* ts 配置 */
 export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, config: Config): void {

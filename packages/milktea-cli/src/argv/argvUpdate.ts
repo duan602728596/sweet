@@ -3,7 +3,7 @@ import * as fs from 'fs';
 import * as process from 'process';
 import * as _ from 'lodash';
 import { requireModule } from '../utils/utils';
-import { Argv } from '../utils/types';
+import type { Argv } from '../utils/types';
 
 async function argvUpdate(argv: Argv): Promise<void> {
   const update: Function = requireModule('@sweet-milktea/util-tools/update');

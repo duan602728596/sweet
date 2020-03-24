@@ -1,10 +1,10 @@
 /* 查看升级 */
 import * as https from 'https';
-import { RequestOptions } from 'https';
-import { ClientRequest, IncomingMessage } from 'http';
+import type { RequestOptions } from 'https';
+import type { ClientRequest, IncomingMessage } from 'http';
 import * as path from 'path';
 import * as _ from 'lodash';
-import { Dictionary } from 'lodash';
+import type { Dictionary } from 'lodash';
 import * as semver from 'semver';
 import * as chalk from 'chalk';
 
