@@ -2,7 +2,7 @@
 import * as path from 'path';
 import * as _ from 'lodash';
 import * as webpack from 'webpack';
-import { Configuration } from 'webpack';
+import type { Configuration } from 'webpack';
 import * as Config from 'webpack-chain';
 import * as merge from 'webpack-merge';
 import { createPresetEnv } from './config/babelConfig';
@@ -10,7 +10,7 @@ import { handleDefaultProgress } from './plugins/handleProgress';
 import createHandleProgressBar from './plugins/handleProgressBar';
 import { babelCache, dllCache } from './config/cacheConfig';
 import { extensions } from './utils/utils';
-import { SweetConfig, SweetOptions, JS } from './utils/types';
+import type { SweetConfig, SweetOptions, JS } from './utils/types';
 
 export default function(sweetConfig: SweetConfig | null | undefined, sweetOptions: SweetOptions): Configuration {
   const config: Config = new Config();

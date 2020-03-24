@@ -1,6 +1,6 @@
 import * as url from 'url';
 import * as Koa from 'koa';
-import { SweetOptions, ServerContext } from './types';
+import type { SweetOptions, ServerContext } from './types';
 
 /* 307重定向到https */
 function createRedirectToHttpsMiddleware(app: Koa, sweetOptions: SweetOptions): void {

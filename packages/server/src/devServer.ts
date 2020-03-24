@@ -2,7 +2,7 @@
 import './alias';
 import * as http from 'http';
 import * as http2 from 'http2';
-import { SecureServerOptions } from 'http2';
+import type { SecureServerOptions } from 'http2';
 import * as process from 'process';
 import * as path from 'path';
 import * as Koa from 'koa';
@@ -18,7 +18,7 @@ import createMock from './utils/createMock';
 import createHttpsCertificate, { HttpsCertificate } from './utils/createHttpsCertificate';
 import useRegister from './utils/babelRegister';
 import { formatPath, runningAtLog } from './utils/utils';
-import { SweetOptions, DevServerArgs } from './utils/types';
+import type { SweetOptions, DevServerArgs } from './utils/types';
 
 const app: Koa = new Koa();
 const router: Router = new Router();

@@ -1,7 +1,7 @@
 import * as Router from '@koa/router';
 import * as _ from 'lodash';
 import { defaultMockPath, deleteCacheAndRequireModule, requireModule, isExists } from './utils';
-import { SweetOptions, ServerContext } from './types';
+import type { SweetOptions, ServerContext } from './types';
 
 type KoaFunc = (ctx: ServerContext, next: Function) => void | Promise<void>;
 type Mock = { [key: string]: any | KoaFunc };

@@ -1,7 +1,7 @@
 import * as Koa from 'koa';
 import * as Router from '@koa/router';
 import { defaultApiPath, deleteCacheAndRequireModule, requireModule, isExists } from './utils';
-import { SweetOptions } from './types';
+import type { SweetOptions } from './types';
 
 /**
  * 本地api

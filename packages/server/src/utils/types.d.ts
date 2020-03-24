@@ -1,6 +1,6 @@
 import * as Koa from 'koa';
-import { Context } from 'koa';
-import { Compiler } from 'webpack';
+import type { Context } from 'koa';
+import type { Compiler } from 'webpack';
 
 export interface ServerArgs {
   httpPort?: number;

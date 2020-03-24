@@ -3,7 +3,7 @@ import * as Koa from 'koa';
 import * as connect from 'koa-connect';
 import { createProxyMiddleware, Options } from 'http-proxy-middleware';
 import { defaultProxyPath, requireModule, isExists } from './utils';
-import { SweetOptions, LogLevel } from './types';
+import type { SweetOptions, LogLevel } from './types';
 
 type ProxyConfig = { [key: string]: Options };
 

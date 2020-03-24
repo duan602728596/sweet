@@ -1,5 +1,5 @@
 import * as path from 'path';
-import { ParsedPath } from 'path';
+import type { ParsedPath } from 'path';
 import * as fse from 'fs-extra';
 import * as ffmpeg from 'fluent-ffmpeg';
 import { formatPath, getFiles } from './utils';

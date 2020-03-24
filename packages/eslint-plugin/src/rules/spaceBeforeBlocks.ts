@@ -1,6 +1,6 @@
 import { AST_NODE_TYPES } from '@typescript-eslint/typescript-estree';
 import * as util from '@typescript-eslint/eslint-plugin/dist/util';
-import { Rule, SourceCode, AST } from 'eslint';
+import type { Rule, SourceCode, AST } from 'eslint';
 import * as ESTree from 'estree';
 import SYMBOLS from '../symbols';
 

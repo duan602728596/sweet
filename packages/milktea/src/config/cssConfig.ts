@@ -4,7 +4,7 @@ import * as normalizePath from 'normalize-path';
 import * as cssesc from 'cssesc';
 import * as loaderUtils from 'loader-utils';
 import { loader } from 'webpack';
-import { LoaderOptions } from 'webpack-chain';
+import type { LoaderOptions } from 'webpack-chain';
 
 /**
  * TODO: css-loader v3.3.0 的getLocalIdent函数，无法导出模块

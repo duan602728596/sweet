@@ -2,7 +2,7 @@ import * as process from 'process';
 import * as path from 'path';
 import * as _ from 'lodash';
 import { requireModule } from '../utils/utils';
-import { Argv } from '../utils/types';
+import type { Argv } from '../utils/types';
 
 /* media2webp命令 */
 function argvMedia2WebP(argv: Argv): void {

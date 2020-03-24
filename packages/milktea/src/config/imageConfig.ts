@@ -1,6 +1,6 @@
-import { LoaderOptions } from 'webpack-chain';
+import type { LoaderOptions } from 'webpack-chain';
 import { createImageName } from './fileNameConfig';
-import { SweetConfig } from '../utils/types';
+import type { SweetConfig } from '../utils/types';
 
 /**
  * url-loader配置

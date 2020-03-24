@@ -1,10 +1,10 @@
 import * as path from 'path';
 import * as glob from 'glob';
 import * as _ from 'lodash';
-import { Context } from 'koa';
+import type { Context } from 'koa';
 import { requireModule, globPromise } from './utils';
 import useRegister from './babelRegister';
-import { SweetOptions } from './types';
+import type { SweetOptions } from './types';
 
 const defaultControllers: string = 'controllers';
 

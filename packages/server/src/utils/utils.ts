@@ -4,10 +4,10 @@ import * as fs from 'fs';
 import * as Stream from 'stream';
 import * as glob from 'glob';
 import * as _ from 'lodash';
-import { Dictionary } from 'lodash';
+import type { Dictionary } from 'lodash';
 import * as internalIp from 'internal-ip';
 import * as chalk from 'chalk';
-import { SweetOptions } from './types';
+import type { SweetOptions } from './types';
 
 export const globPromise: (arg1: string, arg2?: glob.IOptions) => Promise<string[]> = util.promisify(glob);
 

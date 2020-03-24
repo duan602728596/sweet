@@ -1,4 +1,4 @@
-import {
+import type {
   ExternalsElement,
   RuleSetRule,
   Resolve,
@@ -10,7 +10,7 @@ import {
   RuleSetCondition
 } from 'webpack';
 import * as Config from 'webpack-chain';
-import { CosmiconfigResult } from 'cosmiconfig/dist/types';
+import type { CosmiconfigResult } from 'cosmiconfig/dist/types';
 
 export interface SweetOptions {
   basicPath: string;
