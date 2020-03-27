@@ -45,8 +45,7 @@ export function createPresetTypescript(isReact: boolean = true): Array<any> {
       isTSX: true,
       jsxPragma: isReact ? 'React' : 'Preserve',
       allExtensions: true,
-      allowNamespaces: true,
-      onlyRemoveTypeImports: true
+      allowNamespaces: true
     }
   ];
 }
