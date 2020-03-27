@@ -49,7 +49,7 @@ function createRouters(
       }
     } catch (err) {
       ctx.status = 500;
-      ctx.body = err.toString();
+      ctx.body = `<pre style="font-size: 16px">${ err.toString() }</pre>`;
     }
   });
 }
