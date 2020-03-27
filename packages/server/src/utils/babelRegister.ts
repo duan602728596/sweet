@@ -28,8 +28,7 @@ function createRegisterConfig(): RegisterConfig {
         {
           isTSX: true,
           allExtensions: true,
-          allowNamespaces: true,
-          onlyRemoveTypeImports: true
+          allowNamespaces: true
         }
       ]
     ],
