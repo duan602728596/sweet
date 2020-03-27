@@ -52,8 +52,7 @@ export default function(sweetConfig: SweetConfig | null | undefined, sweetOption
     mergeConfig.infrastructureLogging = { level: 'warn' };
   }
 
-  config
-    .merge(mergeConfig);
+  config.merge(mergeConfig);
 
   // 设置文件输出
   config
