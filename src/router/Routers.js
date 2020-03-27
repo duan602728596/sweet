@@ -8,8 +8,8 @@ const ListBundle = asyncModule(() => import(/* webpackChunkName: 'list' */'../pa
 
 function Routers(props) {
   const routes = useRoutes([
-    { path: 'Index/*', element: <Index /> },
     { path: '/', redirectTo: 'Index' },
+    { path: 'Index/*', element: <Index /> },
     { path: 'Second/*', element: <SecondBundle /> },
     { path: 'List/*', element: <ListBundle /> }
   ]);
