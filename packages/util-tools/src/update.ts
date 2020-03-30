@@ -88,10 +88,7 @@ function requestPackageInfo(packageName: string, registry: number = 0): Promise<
 
           resolve(data);
         } catch (err) {
-          resolve({
-            error: 'Request error.',
-            stack: err
-          });
+          resolve({ error: 'Request error.', stack: err });
         }
       });
     });
