@@ -58,7 +58,6 @@
   "devDependencies": {
     "@sweet-milktea/milktea": "*",
     "@sweet-milktea/server-log": "*",
-    "node-fetch": "^2.6.0",
     "nunjucks": "^3.2.1"
   },
   "peerDependencies": {
