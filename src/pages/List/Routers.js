@@ -1,11 +1,12 @@
 import React, { Fragment } from 'react';
-import { useRoutes } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
+import loadReducer from '../../store/loadReducer';
 import Main from '../../layouts/Main';
 import Content from '../../layouts/Content';
+import models from './models/models';
 import Index from './Index/index';
 
-function ModuleLayout(props) {
+function Routers(props) {
   return (
     <Fragment>
       <Helmet>
@@ -20,4 +21,4 @@ function ModuleLayout(props) {
   );
 }
 
-export default ModuleLayout;
+export default loadReducer(models)(Routers);

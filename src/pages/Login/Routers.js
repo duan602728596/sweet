@@ -2,7 +2,7 @@ import React, { Fragment } from 'react';
 import { Helmet } from 'react-helmet';
 import Index from './Index/index';
 
-function ModuleLayout(props) {
+function Routers(props) {
   return (
     <Fragment>
       <Helmet>
@@ -13,4 +13,4 @@ function ModuleLayout(props) {
   );
 }
 
-export default ModuleLayout;
+export default Routers;

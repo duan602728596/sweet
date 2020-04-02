@@ -12,11 +12,11 @@
     "update": "milktea update"
   },
   "dependencies": {
-    "@ant-design/icons": "^4.0.3",
+    "@ant-design/icons": "^4.0.5",
     "@sweet-milktea/milktea-cli": "^0.14.0",
     "@sweet-milktea/server": "^0.14.2",
     "@sweet-milktea/server-log": "^0.6.6",
-    "antd": "^4.0.4",
+    "antd": "^4.1.0",
     "axios": "^0.19.2",
     "classnames": "^2.2.6",
     "core-js": "^3.6.4",
@@ -46,11 +46,11 @@
     "commitizen": "^4.0.3",
     "cross-env": "^7.0.2",
     "cz-conventional-changelog": "^3.1.0",
-    "es-module-path-case-check": "^1.4.0",
+    "es-module-path-case-check": "^1.5.0",
     "eslint": "^7.0.0-alpha.2",
     "eslint-plugin-react": "^7.19.0",
     "husky": "^4.2.3",
-    "lint-staged": "^10.0.9",
+    "lint-staged": "^10.1.1",
     "rimraf": "^3.0.2"
   },
   "husky": {

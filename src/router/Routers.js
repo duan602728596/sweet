@@ -1,10 +1,10 @@
 import React from 'react';
-import { Routes, useRoutes } from 'react-router-dom';
+import { useRoutes } from 'react-router-dom';
 import asyncModule from './asyncModule/index';
-import Index from '../pages/Index/Layout';
+import Index from '../pages/Index/Routers';
 
-const SecondBundle = asyncModule(() => import(/* webpackChunkName: 'second' */'../pages/Second/Layout'));
-const ListBundle = asyncModule(() => import(/* webpackChunkName: 'list' */'../pages/List/Layout'));
+const SecondBundle = asyncModule(() => import(/* webpackChunkName: 'second' */ '../pages/Second/Routers'));
+const ListBundle = asyncModule(() => import(/* webpackChunkName: 'list' */ '../pages/List/Routers'));
 
 function Routers(props) {
   const routes = useRoutes([
