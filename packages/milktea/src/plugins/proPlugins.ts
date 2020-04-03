@@ -3,14 +3,12 @@ import * as Config from 'webpack-chain';
 import * as MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import * as OptimizeCssAssets from 'optimize-css-assets-webpack-plugin';
 import ImageMinWebpackPlugin from 'imagemin-webpack-plugin';
-import * as FilesMapWebpackPlugin from '@bbkkbkk/files-map-webpack-plugin';
-import * as _ from 'lodash';
 import { handleDefaultProgress, handleServerRenderProgress } from './handleProgress';
 import type { SweetConfig, SweetOptions } from '../utils/types';
 
 /* 生产环境插件 */
 export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, config: Config): void {
-  const { serverRender, filesMap, webpackLog }: SweetConfig = sweetConfig;
+  const { serverRender, webpackLog }: SweetConfig = sweetConfig;
 
   config
     // mini-css-extract-plugin
@@ -29,17 +27,6 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
     .use(ImageMinWebpackPlugin, [{
       test: /\.(jpe?g|png|gif)$/i
     }]);
-
-  // files-map-webpack-plugin
-  config
-    .when(
-      _.isPlainObject(filesMap) || (filesMap === true),
-      (config: Config): void => {
-        config
-          .plugin('files-map-webpack-plugin')
-          .use(FilesMapWebpackPlugin, _.isPlainObject(filesMap) ? [filesMap] : undefined);
-      }
-    );
 
   // 当环境为测试时，不使用输出插件
   config

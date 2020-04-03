@@ -5,12 +5,14 @@ import * as webpack from 'webpack';
 import * as Config from 'webpack-chain';
 import type { PluginClass } from 'webpack-chain';
 import * as HtmlWebpackPlugin from 'html-webpack-plugin';
+import * as FilesMapWebpackPlugin from '@bbkkbkk/files-map-webpack-plugin';
+import * as _ from 'lodash';
 import { requireModule } from '../utils/utils';
 import createHandleProgressBar from './handleProgressBar';
 import type { SweetConfig, SweetOptions, HtmlItem } from '../utils/types';
 
 export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, config: Config): void {
-  const { mode, html, frame, serverRender, webpackLog = 'progress' }: SweetConfig = sweetConfig;
+  const { mode, html, frame, serverRender, webpackLog = 'progress', filesMap }: SweetConfig = sweetConfig;
   const isDevelopment: boolean = mode === 'development';
 
   // 根据模式加载插件
@@ -77,6 +79,17 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
         config
           .plugin('webpack.ProgressPlugin')
           .use(webpack.ProgressPlugin, [createHandleProgressBar(!!serverRender)]);
+      }
+    );
+
+  // files-map-webpack-plugin
+  config
+    .when(
+      _.isPlainObject(filesMap) || (filesMap === true),
+      (config: Config): void => {
+        config
+          .plugin('files-map-webpack-plugin')
+          .use(FilesMapWebpackPlugin, _.isPlainObject(filesMap) ? [filesMap] : undefined);
       }
     );
 }
