@@ -1,6 +1,6 @@
 {
   "name": "@sweet-milktea/util-tools",
-  "version": "0.14.0",
+  "version": "0.14.3",
   "description": "通用工具函数",
   "homepage": "https://github.com/duan602728596/sweet",
   "repository": {
@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "@fiahfy/icns": "^0.0.6",
-    "chalk": "^3.0.0",
+    "chalk": "^4.0.0",
     "fluent-ffmpeg": "^2.1.2",
     "fs-extra": "^9.0.0",
     "glob": "^7.1.6",
