@@ -36,7 +36,7 @@
     "@bbkkbkk/http-proxy": "^1.17.0",
     "@bbkkbkk/koa-compress": "^3.1.0",
     "@koa/router": "^8.0.8",
-    "chalk": "^3.0.0",
+    "chalk": "^4.0.0",
     "core-js": "^3.6.4",
     "detect-port": "^1.3.0",
     "ejs": "^3.0.2",
