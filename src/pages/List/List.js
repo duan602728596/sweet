@@ -3,9 +3,9 @@ import { bindActionCreators } from 'redux';
 import { useSelector } from 'react-redux';
 import { createSelector, createStructuredSelector } from 'reselect';
 import { Button, Table, message } from 'antd';
-import useActions from '../../../store/useActions';
-import { reqDataList } from '../models/models';
-import style from './index.sass';
+import useActions from '../../store/useActions';
+import { reqDataList } from './models/models';
+import style from './list.sass';
 
 /* state */
 const state = createStructuredSelector({

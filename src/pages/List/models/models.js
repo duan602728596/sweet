@@ -24,12 +24,10 @@ export const reqDataList = createAsyncAction(async function(_, args) {
 });
 
 /* reducer */
-const reducer = handleActions({
-  [setDataList]($$state, action) {
-    return $$state.set('dataList', List(action.payload));
-  }
-}, fromJS(initData));
-
 export default {
-  list: reducer
+  list: handleActions({
+    [setDataList]($$state, action) {
+      return $$state.set('dataList', List(action.payload));
+    }
+  }, fromJS(initData))
 };

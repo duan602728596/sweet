@@ -4,7 +4,7 @@ import React, { useEffect } from 'react';
  * 异步注入reducer的修饰器
  * @param { object } models
  */
-function loadReducer(models) {
+function loadModels(models) {
   let injectModels = true; // models是否需要注入
 
   /**
@@ -29,4 +29,4 @@ function loadReducer(models) {
   };
 }
 
-export default loadReducer;
+export default loadModels;

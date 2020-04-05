@@ -2,10 +2,10 @@ import React from 'react';
 import { useNavigate } from 'react-router';
 import { Form, Button, Input } from 'antd';
 import { UserOutlined as IconUserOutlined, LockOutlined as IconLockOutlined } from '@ant-design/icons';
-import style from './index.sass';
+import style from './login.sass';
 
 /* 登陆 */
-function Index(props) {
+function Login(props) {
   const navigate = useNavigate();
   const [form] = Form.useForm();
   const { validateFields } = form;
@@ -39,4 +39,4 @@ function Index(props) {
   );
 }
 
-export default Index;
+export default Login;

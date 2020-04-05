@@ -12,7 +12,7 @@ const state = createStructuredSelector({
 });
 
 /* 二级页 */
-function Index(props) {
+function Second(props) {
   const { data } = useSelector(state);
   const location = useLocation();
 
@@ -31,4 +31,4 @@ function Index(props) {
   );
 }
 
-export default Index;
+export default Second;

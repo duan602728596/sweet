@@ -2,12 +2,12 @@ import React, { Fragment } from 'react';
 import { useRoutes } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import { FolderOpenOutlined as IconFolderOpenOutlined } from '@ant-design/icons';
-import loadReducer from '../../store/loadReducer';
+import loadModels from '../../store/loadModels';
 import Main from '../../layouts/Main';
 import Content from '../../layouts/Content';
 import Sider from '../../layouts/Sider/index';
 import models from './models/models';
-import Index from './Index/index';
+import Second from './Second';
 
 const options = [
   {
@@ -39,12 +39,12 @@ const options = [
   }
 ];
 
-function Routers(props) {
+function Index(props) {
   const routes = useRoutes([
-    { path: '/', element: <Index /> },
-    { path: 'Page1', element: <Index /> },
-    { path: 'Page2', element: <Index /> },
-    { path: 'Page3', element: <Index /> }
+    { path: '/', element: <Second /> },
+    { path: 'Page1', element: <Second /> },
+    { path: 'Page2', element: <Second /> },
+    { path: 'Page3', element: <Second /> }
   ]);
 
   return (
@@ -60,4 +60,4 @@ function Routers(props) {
   );
 }
 
-export default loadReducer(models)(Routers);
+export default loadModels(models)(Index);

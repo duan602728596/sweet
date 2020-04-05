@@ -1,16 +1,16 @@
 import React, { Fragment } from 'react';
 import { Helmet } from 'react-helmet';
-import Index from './Index/index';
+import Login from './Login';
 
-function Routers(props) {
+function Index(props) {
   return (
     <Fragment>
       <Helmet>
         <title>Webpack App - login</title>
       </Helmet>
-      <Index />
+      <Login />
     </Fragment>
   );
 }
 
-export default Routers;
+export default Index;

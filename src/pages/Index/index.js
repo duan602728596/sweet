@@ -2,9 +2,9 @@ import React, { Fragment } from 'react';
 import { Helmet } from 'react-helmet';
 import Main from '../../layouts/Main';
 import Content from '../../layouts/Content';
-import Index from './Index/index';
+import Welcome from './Welcome';
 
-function Routers(props) {
+function Index(props) {
   return (
     <Fragment>
       <Helmet>
@@ -12,11 +12,11 @@ function Routers(props) {
       </Helmet>
       <Main>
         <Content>
-          <Index />
+          <Welcome />
         </Content>
       </Main>
     </Fragment>
   );
 }
 
-export default Routers;
+export default Index;

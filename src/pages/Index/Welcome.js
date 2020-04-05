@@ -4,9 +4,9 @@ import { useSelector } from 'react-redux';
 import { createSelector, createStructuredSelector } from 'reselect';
 import { Typography } from 'antd';
 import { LikeFilled as IconLikeFilled } from '@ant-design/icons';
-import useActions from '../../../store/useActions';
-import style from './index.sass';
-import { setLikeLen } from '../models/models';
+import useActions from '../../store/useActions';
+import style from './welcome.sass';
+import { setLikeLen } from './models/models';
 import welcome, { ReactComponent as WelcomeSvgComponent } from './images/welcome.svg';
 
 /* state */
@@ -24,7 +24,7 @@ const actions = (dispatch) => ({
   }, dispatch)
 });
 
-function Index(props) {
+function Welcome(props) {
   const { likeLen } = useSelector(state);
   const { action } = useActions(actions);
 
@@ -51,4 +51,4 @@ function Index(props) {
   );
 }
 
-export default Index;
+export default Welcome;

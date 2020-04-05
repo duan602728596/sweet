@@ -4,10 +4,8 @@ import { createAction, handleActions } from 'redux-actions';
 export const setData = createAction('second/数据');
 
 /* models */
-const reducer = handleActions({
+export default handleActions({
   [setData]($$state, action) {
     return $$state.set('data', action.payload);
   }
 }, {});
-
-export default reducer;

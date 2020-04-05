@@ -9,12 +9,10 @@ const initData = {
 export const setLikeLen = createAction('index/点赞');
 
 /* models */
-const reducer = handleActions({
-  [setLikeLen]($$state, action) {
-    return $$state.set('likeLen', action.payload);
-  }
-}, fromJS(initData));
-
 export default {
-  index: reducer
+  index: handleActions({
+    [setLikeLen]($$state, action) {
+      return $$state.set('likeLen', action.payload);
+    }
+  }, fromJS(initData))
 };

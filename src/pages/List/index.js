@@ -1,12 +1,12 @@
 import React, { Fragment } from 'react';
 import { Helmet } from 'react-helmet';
-import loadReducer from '../../store/loadReducer';
+import loadModels from '../../store/loadModels';
 import Main from '../../layouts/Main';
 import Content from '../../layouts/Content';
 import models from './models/models';
-import Index from './Index/index';
+import List from './List';
 
-function Routers(props) {
+function Index(props) {
   return (
     <Fragment>
       <Helmet>
@@ -14,11 +14,11 @@ function Routers(props) {
       </Helmet>
       <Main>
         <Content>
-          <Index />
+          <List />
         </Content>
       </Main>
     </Fragment>
   );
 }
 
-export default loadReducer(models)(Routers);
+export default loadModels(models)(Index);
