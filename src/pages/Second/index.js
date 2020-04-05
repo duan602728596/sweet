@@ -1,7 +1,7 @@
 import Main from '../../layouts/Main/index';
 import Sider from '../../layouts/Sider/index';
 import Content from '../../layouts/Content/index';
-import Index from './Index/index';
+import Index from './Second';
 
 /* 配置二、三级导航菜单 */
 const options = [

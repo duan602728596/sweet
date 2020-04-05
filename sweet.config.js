@@ -12,7 +12,7 @@ export default function(info) {
       '@vue/composition-api'
     ],
     entry: {
-      index: [path.join(__dirname, 'src/index.js')],
+      index: [path.join(__dirname, 'src/Login.js')],
       other: [path.join(__dirname, 'src/other.js')]
     },
     serverRender: true,

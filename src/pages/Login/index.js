@@ -1,4 +1,4 @@
-import Index from './Index/index';
+import Index from './Login';
 
 export default {
   metaInfo: {

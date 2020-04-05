@@ -1,12 +1,12 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import Layout from '../layouts/Layout/index';
-import Login from '../pages/Login/Routers';
-import Index from '../pages/Index/Routers';
+import Login from '../pages/Login/index';
+import Index from '../pages/index';
 
 Vue.use(VueRouter);
 
-const SecondBundle = () => import(/* webpackChunkName: 'second' */'../pages/Second/Routers');
+const SecondBundle = () => import(/* webpackChunkName: 'second' */'../pages/Second/index');
 
 const routers = new VueRouter({
   mode: 'history',

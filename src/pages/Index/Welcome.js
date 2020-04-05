@@ -1,6 +1,6 @@
 import { defineComponent, ref } from '@vue/composition-api';
 import { Icon } from 'ant-design-vue';
-import style from './index.sass';
+import style from './welcome.sass';
 import WelcomeSvgComponent from './images/welcome.component.svg';
 
 export default defineComponent({
