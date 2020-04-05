@@ -1,4 +1,4 @@
-import Index from './Login';
+import Login from './Login';
 
 export default {
   metaInfo: {
@@ -6,6 +6,6 @@ export default {
   },
 
   render() {
-    return <Index />;
+    return <Login />;
   }
 };
