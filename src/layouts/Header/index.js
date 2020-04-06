@@ -16,7 +16,7 @@ function Header(props) {
   // 计算selectedKeys
   function selectKeys() {
     const { pathname } = location;
-    const url = pathname === '/' ? '/Welcome' : pathname;
+    const url = pathname === '/' ? '/Index' : pathname;
     const key = url.substr(1)
       .split(/\//g)[0]
       .toLocaleLowerCase();
@@ -46,7 +46,7 @@ function Header(props) {
       <nav className={ style.nav }>
         <Menu className={ style.menu } mode="horizontal" theme="dark" selectedKeys={ [selectKeys()] }>
           <Menu.Item key="index">
-            <Link to="/Welcome">
+            <Link to="/Index">
               <IconHomeOutlined />
               首页
             </Link>
