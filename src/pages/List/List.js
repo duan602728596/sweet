@@ -1,9 +1,7 @@
 import React, { useState } from 'react';
-import { bindActionCreators } from 'redux';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { createSelector, createStructuredSelector } from 'reselect';
 import { Button, Table, message } from 'antd';
-import useActions from '../../store/useActions';
 import { reqDataList } from './models/models';
 import style from './list.sass';
 
@@ -15,23 +13,16 @@ const state = createStructuredSelector({
   )
 });
 
-/* actions */
-const actions = (dispatch) => ({
-  action: bindActionCreators({
-    reqDataList
-  }, dispatch)
-});
-
 function List(props) {
   const { dataList } = useSelector(state);
-  const { action } = useActions(actions);
+  const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
 
   // 点击加载
   async function handleLoadDataClick(event) {
     setLoading(true);
 
-    const res = await action.reqDataList({ num: 3 });
+    const res = await dispatch(reqDataList({ num: 3 }));
 
     if (res === true) {
       message.success('success!');

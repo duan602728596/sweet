@@ -1,10 +1,8 @@
 import React from 'react';
-import { bindActionCreators } from 'redux';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { createSelector, createStructuredSelector } from 'reselect';
 import { Typography } from 'antd';
 import { LikeFilled as IconLikeFilled } from '@ant-design/icons';
-import useActions from '../../store/useActions';
 import style from './welcome.sass';
 import { setLikeLen } from './models/models';
 import welcome, { ReactComponent as WelcomeSvgComponent } from './images/welcome.svg';
@@ -17,20 +15,13 @@ const state = createStructuredSelector({
   )
 });
 
-/* actions */
-const actions = (dispatch) => ({
-  action: bindActionCreators({
-    setLikeLen
-  }, dispatch)
-});
-
 function Welcome(props) {
   const { likeLen } = useSelector(state);
-  const { action } = useActions(actions);
+  const dispatch = useDispatch();
 
   // 点赞
   function handleZanClick(event) {
-    action.setLikeLen(likeLen + 1);
+    (likeLen + 1) |> setLikeLen |> dispatch;
   }
 
   return (
