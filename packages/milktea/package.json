@@ -1,6 +1,6 @@
 {
   "name": "@sweet-milktea/milktea",
-  "version": "0.14.3",
+  "version": "0.15.0",
   "description": "webpack配置函数",
   "homepage": "https://github.com/duan602728596/sweet",
   "repository": {
@@ -72,15 +72,15 @@
     "vue-template-compiler": "^2.6.11"
   },
   "peerDependencies": {
-    "@vue/babel-helper-vue-jsx-merge-props": "^1.0.0",
-    "@vue/babel-preset-jsx": "^1.1.2",
-    "ts-loader": "^6.2.2",
-    "typescript": "^3.8.2",
-    "vue-loader": "^15.9.1",
-    "vue-svg-loader": "^0.16.0",
-    "vue-template-compiler": "^2.6.11"
+    "@vue/babel-helper-vue-jsx-merge-props": ">=1",
+    "@vue/babel-preset-jsx": ">=1",
+    "ts-loader": ">=6",
+    "typescript": ">=3",
+    "vue-loader": ">=15",
+    "vue-svg-loader": ">=0",
+    "vue-template-compiler": ">=2"
   },
   "engines": {
-    "node": ">=10.0.0"
+    "node": ">=10"
   }
 }

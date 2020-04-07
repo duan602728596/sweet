@@ -1,6 +1,6 @@
 import * as path from 'path';
 import * as imageMin from 'imagemin';
-import { formatPath } from './utils';
+import { requireModule, formatPath } from './utils';
 
 interface Options {
   img?: object;
@@ -26,8 +26,8 @@ async function image2webp(entry: string, output: string, options: Options = {}):
   await imageMin([imgFile], {
     destination: output,
     plugins: [
-      require('imagemin-webp')(imgOptions),
-      require('imagemin-gif2webp')(gifOptions)
+      requireModule('imagemin-webp')(imgOptions),
+      requireModule('imagemin-gif2webp')(gifOptions)
     ]
   });
 }
