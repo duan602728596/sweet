@@ -17,3 +17,10 @@ export function formatPath(p: string): string {
 export function getFiles(cwd: string, file: string): Promise<string[]> {
   return globPromise(file, { cwd });
 }
+
+/* 模块导入 */
+export function requireModule(id: string): any {
+  const module: { default: any } | any = require(id);
+
+  return 'default' in module ? module.default : module;
+}
