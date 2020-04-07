@@ -34,7 +34,7 @@
     "@babel/register": "^7.9.0",
     "@babel/runtime-corejs3": "^7.9.2",
     "@bbkkbkk/http-proxy": "^1.17.0",
-    "@bbkkbkk/koa-compress": "^3.1.0",
+    "@bbkkbkk/koa-compress": "^3.1.1",
     "@koa/router": "^8.0.8",
     "chalk": "^4.0.0",
     "core-js": "^3.6.4",
