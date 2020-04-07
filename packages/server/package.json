@@ -62,7 +62,7 @@
   "peerDependencies": {
     "@sweet-milktea/milktea": ">=0",
     "@sweet-milktea/server-log": ">=0",
-    "nunjucks": "^3.2.1"
+    "nunjucks": ">=3"
   },
   "engines": {
     "node": ">=10"

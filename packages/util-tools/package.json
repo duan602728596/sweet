@@ -32,11 +32,11 @@
     "imagemin-webp": "^5.1.0"
   },
   "peerDependencies": {
-    "imagemin-gif2webp": "^2.0.0",
-    "imagemin-gifsicle": "^7.0.0",
-    "imagemin-jpegoptim": "^6.0.0",
-    "imagemin-pngquant": "^8.0.0",
-    "imagemin-webp": "^5.1.0"
+    "imagemin-gif2webp": ">=2",
+    "imagemin-gifsicle": ">=7",
+    "imagemin-jpegoptim": ">=6",
+    "imagemin-pngquant": ">=8",
+    "imagemin-webp": ">=5"
   },
   "engines": {
     "node": ">=10"
