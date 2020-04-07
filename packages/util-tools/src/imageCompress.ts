@@ -1,6 +1,6 @@
 import * as path from 'path';
 import * as imageMin from 'imagemin';
-import { Options as PngOptions } from 'imagemin-pngquant';
+import type { Options as PngOptions } from 'imagemin-pngquant';
 import { formatPath } from './utils';
 
 interface CompressOptions {
