@@ -1,8 +1,6 @@
 import * as path from 'path';
 import * as imageMin from 'imagemin';
-import pngquant, { Options as PngOptions } from 'imagemin-pngquant';
-import * as jpegoptim from 'imagemin-jpegoptim';
-import * as gifsicle from 'imagemin-gifsicle';
+import { Options as PngOptions } from 'imagemin-pngquant';
 import { formatPath } from './utils';
 
 interface CompressOptions {
@@ -33,9 +31,9 @@ async function imageCompress(entry: string, output: string, compressOptions: Com
   await imageMin([imgFile], {
     destination: output,
     plugins: [
-      pngquant(pngOptions),
-      jpegoptim(jpgOptions),
-      gifsicle(gifOptions)
+      require('imagemin-pngquant').default(pngOptions),
+      require('imagemin-jpegoptim')(jpgOptions),
+      require('imagemin-gifsicle')(gifOptions)
     ]
   });
 }
