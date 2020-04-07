@@ -34,7 +34,7 @@
     "@babel/preset-typescript": "^7.9.0",
     "@babel/register": "^7.9.0",
     "@babel/runtime-corejs3": "^7.9.2",
-    "@bbkkbkk/files-map-webpack-plugin": "^1.0.0",
+    "@bbkkbkk/files-map-webpack-plugin": "^1.0.1",
     "@svgr/webpack": "^5.3.1",
     "babel-loader": "^8.1.0",
     "chalk": "^4.0.0",
