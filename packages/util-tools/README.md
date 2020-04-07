@@ -34,6 +34,7 @@ update(
 
 ## webp图片批量转换工具
 
+> 首先需要自行安装`imagemin-webp`、`imagemin-gif2webp`。   
 > mac下可能需要使用brew安装`giflib`。
 
 使用方法：
@@ -57,6 +58,7 @@ image2webp(
 
 ## 图片压缩工具
 
+> 首先需要自行安装`imagemin-gifsicle`、`imagemin-jpegoptim`、`imagemin-pngquant`。   
 > mac下可能需要使用brew安装`jpeg`。
 
 使用方法：
