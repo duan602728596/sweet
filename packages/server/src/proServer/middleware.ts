@@ -25,7 +25,7 @@ function middleware(
   app.use(body());
 
   /* 文件压缩 */
-  app.use(compress(undefined, { iltorb: true }));
+  app.use(compress());
 
   /* 缓存 */
   app.use(staticCache(sweetOptions.serverRoot, {

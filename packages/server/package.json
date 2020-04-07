@@ -42,7 +42,6 @@
     "ejs": "^3.0.2",
     "glob": "^7.1.6",
     "http-proxy-middleware": "^1.0.3",
-    "iltorb": "^2.4.5",
     "internal-ip": "^6.0.0",
     "koa": "^2.11.0",
     "koa-body": "^4.1.1",
