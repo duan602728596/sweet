@@ -61,10 +61,14 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
     }
   }
 
-  // vue插件的加载
+  // vue-loader plugin插件的加载
   config.when(frame === 'vue',
     (config: Config): void => {
-      const VueLoaderPlugin: PluginClass = require('vue-loader/lib/plugin');
+      const { version }: { version: string } = requireModule('vue-loader/package.json');
+      const first: number = Number(version.split(/\./g)[0]);
+      const VueLoaderPlugin: PluginClass = first < 16
+        ? requireModule('vue-loader/lib/plugin')
+        : requireModule('vue-loader/dist/plugin');
 
       config
         .plugin('vue')
