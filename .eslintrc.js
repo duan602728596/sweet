@@ -41,7 +41,12 @@ module.exports = {
     },
     {
       files: ['*.js', '*.jsx'],
-      parser: 'babel-eslint'
+      parser: 'babel-eslint',
+      parserOptions: {
+        babelOptions: {
+          configFile: './babel.config.js'
+        }
+      }
     }
   ],
   rules: {
