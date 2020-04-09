@@ -8,7 +8,7 @@ const initData = {
 /* Action */
 export const setLikeLen = createAction('index/点赞');
 
-/* models */
+/* reducer */
 export default {
   index: handleActions({
     [setLikeLen]($$state, action) {

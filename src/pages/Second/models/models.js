@@ -8,7 +8,7 @@ const initData = {
   }
 };
 
-/* models */
+/* reducer */
 export default {
   second: handleActions({
     [combineActions(...Object.values(secondAction))]($$state, action) {
