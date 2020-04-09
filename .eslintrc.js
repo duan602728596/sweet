@@ -13,6 +13,7 @@ module.exports = {
     jquery: true,
     serviceworker: true
   },
+  parser: 'babel-eslint',
   parserOptions: {
     ecmaFeatures: {
       globalReturn: true,
@@ -26,17 +27,6 @@ module.exports = {
       version: 'detect'
     }
   },
-  overrides: [
-    {
-      files: ['*.js', '*.jsx'],
-      parser: 'babel-eslint',
-      parserOptions: {
-        babelOptions: {
-          configFile: './babel.config.js'
-        }
-      }
-    }
-  ],
   rules: {
     // Possible Errors
     'no-cond-assign': ['error', 'always'], // 禁止条件表达式中出现赋值操作符
