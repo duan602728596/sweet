@@ -63,8 +63,8 @@
     "es-module-path-case-check": "^1.5.0",
     "eslint": "^7.0.0-alpha.3",
     "eslint-plugin-react": "^7.19.0",
-    "husky": "^4.2.3",
-    "lint-staged": "^10.1.2",
+    "husky": "^4.2.5",
+    "lint-staged": "^10.1.3",
     "lodash": "^4.17.15",
     "mocha": "^7.1.1"
   },
