@@ -6,9 +6,9 @@
 [![NPM version][server-log-image]][server-log-url]
 [![NPM version][util-tools-image]][util-tools-url]
 
-[milktea-image]: https://img.shields.io/badge/milktea-0.15.1-blue.svg
+[milktea-image]: https://img.shields.io/badge/milktea-0.15.2-blue.svg
 [milktea-cli-image]: https://img.shields.io/badge/milktea--cli-0.14.0-blue.svg
-[server-image]: https://img.shields.io/badge/server-0.15.0-blue.svg
+[server-image]: https://img.shields.io/badge/server-0.15.2-blue.svg
 [server-log-image]: https://img.shields.io/badge/server--log-0.6.6-blue.svg
 [util-tools-image]: https://img.shields.io/badge/util--tools-0.15.0-blue.svg
 
