@@ -18,7 +18,7 @@ function createRouters(
   const preRender: Function = preRenderInit(sweetOptions);
 
   /* index路由 */
-  router.get('/*', async (ctx: ServerContext, next: Function): Promise<void> => {
+  router.get(/^\/.*/, async (ctx: ServerContext, next: Function): Promise<void> => {
     try {
       const ctxPath: string = ctx.path;
 

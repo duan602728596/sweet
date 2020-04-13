@@ -10,7 +10,7 @@ function createRouters(router: Router, sweetOptions: SweetOptions): void {
   const preRender: Function = preRenderInit(sweetOptions);
 
   /* webpack 重定向 */
-  router.get('/*', async (ctx: ServerContext, next: Function): Promise<void> => {
+  router.get(/^\/.*/, async (ctx: ServerContext, next: Function): Promise<void> => {
     try {
       const ctxPath: string = ctx.path;
       const mimeType: string | boolean = mime.lookup(ctxPath);
