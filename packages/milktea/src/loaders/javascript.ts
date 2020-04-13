@@ -80,8 +80,8 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
       (config: Config): void => {
         configBabelUse
           .tap((options: LoaderOptions): LoaderOptions => _.mergeWith(options, {
-            presets: resetPresets ? undefined : [['@babel/preset-react', { runtime: jsx ? 'automatic' : 'classic' }]],
-            plugins: resetPlugins ? undefined : ['react-hot-loader/babel']
+            presets: resetPresets ? [] : [['@babel/preset-react', { runtime: jsx ? 'automatic' : 'classic' }]],
+            plugins: resetPlugins ? [] : ['react-hot-loader/babel']
           }, customizer));
       }
     );
@@ -92,7 +92,7 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
       (config: Config): void => {
         configBabelUse
           .tap((options: LoaderOptions): LoaderOptions => _.mergeWith(options, {
-            presets: resetPresets ? undefined : ['@vue/babel-preset-jsx']
+            presets: resetPresets ? [] : ['@vue/babel-preset-jsx']
           }, customizer));
       }
     );
