@@ -50,4 +50,4 @@ export function formatLoader(obj: RuleSetRule | undefined): RuleSetRule {
 }
 
 /* extensions扩展名 */
-export const extensions: Array<string> = ['.js', '.jsx', '.mjs', '.json', '.wasm', '.ts', '.tsx', '.vue'];
+export const extensions: Array<string> = ['.js', '.jsx', '.mjs', 'cjs', '.json', '.wasm', '.ts', '.tsx', '.vue'];
