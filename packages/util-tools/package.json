@@ -22,7 +22,7 @@
     "glob": "^7.1.6",
     "imagemin": "^7.0.1",
     "lodash": "^4.17.15",
-    "semver": "^7.2.2"
+    "semver": "^7.3.2"
   },
   "devDependencies": {
     "imagemin-gif2webp": "^2.0.0",
