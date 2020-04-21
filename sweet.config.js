@@ -17,7 +17,6 @@ export default function(info) {
       'prop-types',
       'react-router',
       'react-router-dom',
-      'history',
       'redux',
       'react-redux',
       'redux-actions',
