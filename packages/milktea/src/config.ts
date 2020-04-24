@@ -37,7 +37,6 @@ export default function(sweetConfig: SweetConfig | null | undefined, sweetOption
 
   // webpack配置
   const filename: string = isDevelopment ? 'scripts/[name].js' : 'scripts/[chunkhash:15].js';
-  const chunkFilename: string = isDevelopment ? 'scripts/[name]_chunk.js' : 'scripts/[chunkhash:15].js';
 
   // 合并配置
   const mergeConfig: { [key: string]: any } = {
