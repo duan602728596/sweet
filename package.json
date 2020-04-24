@@ -7,7 +7,7 @@
     "clean": "rimraf ./dist",
     "clean:server": "rimraf ./dist-server",
     "server": "milktea server --serverRender --redirectToHttps",
-    "eslint": "eslint ./ --fix",
+    "eslint": "eslint ./ --ext .js,.jsx,.vue --fix",
     "case-check": "case-check --dir=\"./\" --css",
     "update": "milktea update"
   },
