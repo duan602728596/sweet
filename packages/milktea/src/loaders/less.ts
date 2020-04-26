@@ -8,7 +8,17 @@ export default function(sweetConfig: SweetConfig, config: Config): void {
   const { mode, css, frame, serverRender }: SweetConfig = sweetConfig;
   const isDevelopment: boolean = mode === 'development';
   const cssOptions: LESS = css ?? {};
-  const { publicPath, modules = true, exclude, include, modifyVars, localIdentName, getLocalIdent }: LESS = cssOptions;
+  const {
+    publicPath,
+    modules = true,
+    exclude,
+    include,
+    modifyVars,
+    prependData,
+    appendData,
+    localIdentName,
+    getLocalIdent
+  }: LESS = cssOptions;
 
   config
     .merge({
@@ -36,7 +46,7 @@ export default function(sweetConfig: SweetConfig, config: Config): void {
   const ScopedCssLoaderOptions: LoaderOptions = createCssOptions(false, isDevelopment, sr);
 
   // less-loader
-  const lessLoaderOptions: LoaderOptions = createLessOptions(modifyVars, isDevelopment);
+  const lessLoaderOptions: LoaderOptions = createLessOptions(modifyVars, prependData, appendData, isDevelopment);
 
   const lessRule: Rule = config
     .module

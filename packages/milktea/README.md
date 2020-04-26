@@ -106,6 +106,8 @@ module.exports = function(info) {
   * exclude `{ RegExp }` : exclude规则
   * include `{ RegExp }` : include规则
   * modifyVars `{ object }` : 注入less变量（参考less-loader）
+  * prependData `{ string | Function }` : （参考less-loader）
+  * appendData `{ string | Function }` : （参考less-loader）
   * localIdentName `{ string }` : 配置localIdentName（参考css-loader）
   * getLocalIdent `{ Function }` : 配置getLocalIdent（参考css-loader）
 * html `{ Array<object> }` : html配置（默认使用pug）
