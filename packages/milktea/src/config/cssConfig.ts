@@ -101,19 +101,30 @@ export function createCssOptions(
 /**
  * less-loader options
  * @param { object } modifyVars: less变量
+ * @param { string | Function } prependData
+ * @param { string | Function } appendData
  * @param { boolean } isDevelopment: 是否为开发环境
  */
-export function createLessOptions(modifyVars: object | undefined, isDevelopment: boolean): LoaderOptions {
+export function createLessOptions(
+  modifyVars: object | undefined,
+  prependData: string | Function | undefined,
+  appendData: string | Function | undefined,
+  isDevelopment: boolean
+): LoaderOptions {
   return {
-    javascriptEnabled: true,
-    modifyVars,
+    lessOptions: {
+      javascriptEnabled: true,
+      modifyVars
+    },
+    prependData,
+    appendData,
     sourceMap: isDevelopment
   };
 }
 
 /**
  * sass-loader options
- * @param { string | Function | undefined } prependData: sass变量
+ * @param { string | Function } prependData: sass变量
  * @param { boolean } isDevelopment: 是否为开发环境
  */
 export function createSassOptions(prependData: string | Function | undefined, isDevelopment: boolean): LoaderOptions {

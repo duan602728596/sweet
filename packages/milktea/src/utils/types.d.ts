@@ -66,6 +66,8 @@ export interface CSS {
 
 export interface LESS extends CSS {
   modifyVars?: object;
+  prependData?: string | Function;
+  appendData?: string | Function;
 }
 
 export interface SASS extends CSS {

@@ -17,7 +17,7 @@
   "dependencies": {
     "@bbkkbkk/koa-log4": "^2.3.4",
     "@log4js-node/logfaces-http": "^1.0.0",
-    "log4js": "^6.2.0"
+    "log4js": "^6.2.1"
   },
   "engines": {
     "node": ">=10"
