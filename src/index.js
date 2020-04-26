@@ -11,13 +11,12 @@ Vue.use(VueMeta);
 
 /* app */
 const index = new Vue({
-  el: '#app',
   store: storeFactory(window.__INITIAL_STATE__ || {}),
   router: routers,
   render() {
     return <App />;
   }
-});
+}).$mount(document.getElementById('app'));
 
 if (module.hot) {
   module.hot.accept();
