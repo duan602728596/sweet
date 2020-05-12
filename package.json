@@ -6,8 +6,8 @@
   "scripts": {
     "build": "npm run clean && gulp --gulpfile ./scripts/build.js",
     "clean": "node ./scripts/clean",
-    "eslint": "eslint ./ --ext .js,.jsx,.ts,.tsx --fix",
-    "eslint:no-fix": "eslint ./ --ext .js,.jsx,.ts,.tsx",
+    "eslint": "eslint ./ --fix",
+    "eslint:no-fix": "eslint ./",
     "lerna:install": "lerna bootstrap --force-local",
     "case-check": "case-check --dir=\"./\" --css --ext=\"md\"",
     "update": "milktea update",
