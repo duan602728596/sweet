@@ -42,7 +42,7 @@
     "react-dom": "^16.13.1",
     "react-markdown": "^4.3.1",
     "rimraf": "^3.0.2",
-    "typescript": "^3.9.2"
+    "typescript": "^3.9.3"
   },
   "devDependencies": {
     "@babel/core": "^7.9.6",
@@ -52,8 +52,8 @@
     "@sweet-milktea/eslint-plugin": "*",
     "@sweet-milktea/milktea-cli": "*",
     "@sweet-milktea/util-tools": "*",
-    "@typescript-eslint/eslint-plugin": "^2.33.0",
-    "@typescript-eslint/parser": "^2.33.0",
+    "@typescript-eslint/eslint-plugin": "^2.34.0",
+    "@typescript-eslint/parser": "^2.34.0",
     "babel-eslint": "^11.0.0-beta.2",
     "babel-loader": "^8.1.0",
     "chai": "^4.2.0",
@@ -64,7 +64,7 @@
     "eslint": "^7.0.0",
     "eslint-plugin-react": "^7.20.0",
     "husky": "^4.2.5",
-    "lint-staged": "^10.2.2",
+    "lint-staged": "^10.2.4",
     "lodash": "^4.17.15",
     "mocha": "^7.1.2"
   },
