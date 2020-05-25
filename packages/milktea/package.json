@@ -64,7 +64,7 @@
   "devDependencies": {
     "@vue/babel-helper-vue-jsx-merge-props": "^1.0.0",
     "@vue/babel-preset-jsx": "^1.1.2",
-    "ts-loader": "^7.0.4",
+    "ts-loader": "^7.0.5",
     "vue-loader": "^15.9.2",
     "vue-svg-loader": "^0.16.0",
     "vue-template-compiler": "^2.6.11"
