@@ -27,7 +27,7 @@
   "devDependencies": {
     "imagemin-gif2webp": "^2.0.0",
     "imagemin-gifsicle": "^7.0.0",
-    "imagemin-jpegoptim": "^6.0.0",
+    "imagemin-jpegoptim": "^7.0.0",
     "imagemin-pngquant": "^8.0.0",
     "imagemin-webp": "^6.0.0"
   },
