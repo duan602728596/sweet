@@ -8,14 +8,11 @@ import logs from './logs';
 
 /**
  * 创建中间件
+ * @param { Koa } app: koa实例
+ * @param { Router } router: @koa/router实例
+ * @param { SweetOptions } sweetOptions: 配置
  */
-function middleware(
-  app: Koa,
-  router: Router,
-  // 中间件参数
-  sweetOptions: SweetOptions
-
-): void {
+function middleware(app: Koa, router: Router, sweetOptions: SweetOptions): void {
   /* 日志 */
   if (sweetOptions.log) {
     logs(app, sweetOptions.log, sweetOptions);
