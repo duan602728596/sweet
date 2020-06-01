@@ -2,7 +2,7 @@ import * as Koa from 'koa';
 import * as Router from '@koa/router';
 import { SweetOptions } from '../utils/types';
 import * as body from 'koa-body';
-import * as compress from '@bbkkbkk/koa-compress';
+import * as compress from 'koa-compress';
 import * as staticCache from 'koa-static-cache';
 import logs from './logs';
 
@@ -22,7 +22,7 @@ function middleware(app: Koa, router: Router, sweetOptions: SweetOptions): void 
   app.use(body());
 
   /* 文件压缩 */
-  app.use(compress());
+  app.use(compress({}));
 
   /* 缓存 */
   app.use(staticCache(sweetOptions.serverRoot, {

@@ -1,6 +1,5 @@
 import * as Koa from 'koa';
 import * as Router from '@koa/router';
-import * as compress from '@bbkkbkk/koa-compress';
 import * as body from 'koa-body';
 import * as connect from 'koa-connect';
 import { Compiler } from 'webpack';
@@ -15,11 +14,6 @@ import { webpackHmrPath } from '../utils/utils';
  * @param { Compiler } compiler: webpack compiler
  */
 function middleware(app: Koa, router: Router, compiler: Compiler | undefined): void {
-  /* 文件压缩 */
-  app.use(compress({
-    useBrCompress: false // 关闭brotli压缩
-  }));
-
   /* post body */
   app.use(body());
 
