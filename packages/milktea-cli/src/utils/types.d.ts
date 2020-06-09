@@ -1,11 +1,12 @@
-import type { Compiler } from 'webpack';
+import type { Stats } from 'webpack';
+import type { CallbackFunction } from './webpackTypes';
 
 export interface Milktea {
   dllConfig: Function;
   config: Function;
   serverRenderConfig: Function;
-  callback: Compiler.Handler;
-  callbackOnlyError: Compiler.Handler;
+  callback: CallbackFunction<Stats>;
+  callbackOnlyError: CallbackFunction<Stats>;
 }
 
 export interface Argv {

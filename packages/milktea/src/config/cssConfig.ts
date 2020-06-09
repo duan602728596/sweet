@@ -3,7 +3,6 @@ import * as MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import * as normalizePath from 'normalize-path';
 import * as cssesc from 'cssesc';
 import * as loaderUtils from 'loader-utils';
-import { loader } from 'webpack';
 import type { LoaderOptions } from 'webpack-chain';
 
 /**
@@ -15,7 +14,7 @@ const filenameReservedRegex: RegExp = /[<>:"/\\|?*\x00-\x1F]/g,
   reRelativePath: RegExp = /^\.+/;
 
 export function cssLoaderGetLocalIdentFunc(
-  loaderContext: loader.LoaderContext,
+  loaderContext: any,
   localIdentName: string,
   localName: string,
   options: any
@@ -48,7 +47,7 @@ export function cssLoaderGetLocalIdentFunc(
 /* css-loader配置 */
 // css-loader的getLocalIdent函数
 export function cssLoaderGetLocalIdent(
-  loaderContext: loader.LoaderContext,
+  loaderContext: any,
   localIdentName: string,
   localName: string,
   options: { [key: string]: any }

@@ -1,16 +1,7 @@
-import type {
-  ExternalsElement,
-  RuleSetRule,
-  Resolve,
-  Options,
-  Plugin,
-  Entry,
-  EntryFunc,
-  Output,
-  RuleSetCondition
-} from 'webpack';
+import type { RuleSetRule, Entry } from 'webpack';
 import * as Config from 'webpack-chain';
 import type { CosmiconfigResult } from 'cosmiconfig/dist/types';
+import type { Externals, ResolveOptions, DevTool, Plugins, Output, RuleSetCondition } from './webpackTypes';
 
 export interface SweetOptions {
   basicPath: string;
@@ -88,15 +79,15 @@ export interface SweetConfig {
   mode?: Mode;
   webpackLog?: WebpackLog;
   dll?: Array<string>;
-  entry?: string | Array<string> | Entry | EntryFunc;
+  entry?: Entry;
   output?: Output;
-  externals?: ExternalsElement | ExternalsElement[];
-  resolve?: Resolve;
-  devtool?: Options.Devtool;
+  externals?: Externals;
+  resolve?: ResolveOptions;
+  devtool?: DevTool;
   loaders?: Loaders;
   rules?: Array<RuleSetRule>;
   noParse?: RegExp | Array<RegExp> | ((content: string) => boolean);
-  plugins?: Array<Plugin>;
+  plugins?: Plugins;
   js?: JS;
   ts?: TS;
   sass?: SASS;
@@ -107,10 +98,10 @@ export interface SweetConfig {
   filesMap?: boolean | { [key: string]: string };
   // ssr
   serverRender?: boolean;
-  serverEntry?: string | Array<string> | Entry | EntryFunc;
+  serverEntry?: Entry;
   serverOutput?: Output;
-  serverExternals?: ExternalsElement | ExternalsElement[];
-  serverDevtool?: Options.Devtool;
+  serverExternals?: Externals;
+  serverDevtool?: DevTool;
   serverChainWebpack?: (config: Config) => void;
 }
 

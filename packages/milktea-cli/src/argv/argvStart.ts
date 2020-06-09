@@ -1,8 +1,9 @@
 import * as webpack from 'webpack';
-import type { Compiler, Watching, Configuration } from 'webpack';
+import type { Compiler, Configuration } from 'webpack';
 import * as _ from 'lodash';
 import { requireModule } from '../utils/utils';
 import type { Milktea, Argv } from '../utils/types';
+import type { Watching } from '../utils/webpackTypes';
 
 /* start 命令 */
 function argvStart(argv: Argv): void {
