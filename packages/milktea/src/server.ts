@@ -8,6 +8,7 @@ import loaders from './loaders/loaders';
 import basicPlugins from './plugins/plugins';
 import optimization from './optimization/optimization';
 import { extensions } from './utils/utils';
+import { webpackServerCache } from './config/cacheConfig';
 import type { SweetConfig, SweetOptions } from './utils/types';
 
 export default function(sweetConfig: SweetConfig | null | undefined, sweetOptions: SweetOptions): Configuration {
@@ -45,7 +46,13 @@ export default function(sweetConfig: SweetConfig | null | undefined, sweetOption
       node: {
         __filename: true,
         __dirname: true
-      }
+      },
+
+      // 文件缓存
+      cache: isDevelopment ? {
+        type: 'filesystem',
+        cacheDirectory: path.join(sweetOptions.basicPath, webpackServerCache)
+      } : false
     });
 
   // 设置文件输出

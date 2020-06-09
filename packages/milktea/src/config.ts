@@ -8,6 +8,7 @@ import loaders from './loaders/loaders';
 import basicPlugins from './plugins/plugins';
 import optimization from './optimization/optimization';
 import { extensions } from './utils/utils';
+import { webpackCache } from './config/cacheConfig';
 import type { SweetConfig, SweetOptions } from './utils/types';
 
 export default function(sweetConfig: SweetConfig | null | undefined, sweetOptions: SweetOptions): Configuration {
@@ -45,6 +46,14 @@ export default function(sweetConfig: SweetConfig | null | undefined, sweetOption
     resolve: { extensions },
     performance: { hints: false }
   };
+
+  // 文件缓存
+  if (isDevelopment) {
+    mergeConfig.cache = {
+      type: 'filesystem',
+      cacheDirectory: path.join(sweetOptions.basicPath, webpackCache)
+    };
+  }
 
   // 日志
   if (webpackLog === 'progress') {
