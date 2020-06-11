@@ -35,7 +35,7 @@
     "@bbkkbkk/files-map-webpack-plugin": "^1.0.1",
     "@svgr/webpack": "^5.4.0",
     "babel-loader": "^8.1.0",
-    "chalk": "^4.0.0",
+    "chalk": "^4.1.0",
     "core-js": "^3.6.5",
     "cosmiconfig": "^6.0.0",
     "css-loader": "^3.5.3",
