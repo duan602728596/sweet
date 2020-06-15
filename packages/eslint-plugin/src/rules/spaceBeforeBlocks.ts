@@ -1,5 +1,5 @@
 import { AST_NODE_TYPES } from '@typescript-eslint/typescript-estree/dist/ts-estree/ast-node-types';
-import * as util from '@typescript-eslint/eslint-plugin/dist/util';
+import { createRule } from '@typescript-eslint/eslint-plugin/dist/util/createRule';
 import type { Rule, SourceCode, AST } from 'eslint';
 import * as ESTree from 'estree';
 import SYMBOLS from '../symbols';
@@ -7,7 +7,7 @@ import SYMBOLS from '../symbols';
 type Options = [];
 type MessageIds = 'TSInterfaceSpaceBeforeBlocks';
 
-export default util.createRule<Options, MessageIds>({
+export default createRule<Options, MessageIds>({
   name: 'interface-space-before-blocks',
   meta: {
     docs: {
@@ -45,7 +45,6 @@ export default util.createRule<Options, MessageIds>({
       if (errTokens.length > 0) {
         for (const errToken of errTokens) {
           context.report({
-            node,
             messageId: 'TSInterfaceSpaceBeforeBlocks',
             loc: errToken.loc
           });
