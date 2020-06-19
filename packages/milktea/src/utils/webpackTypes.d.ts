@@ -30,37 +30,6 @@ export type Externals =
 // ResolveOptions
 type LibraryExport = string | string[];
 
-declare interface ResolvePluginInstance {
-  [index: string]: any;
-  apply: (resolver?: any) => void;
-}
-
-export declare interface ResolveOptions {
-  alias?:
-    | {
-    alias: string | false | string[];
-    name: string;
-    onlyModule?: boolean;
-  }[]
-    | { [index: string]: string | false | string[] };
-  aliasFields?: LibraryExport[];
-  cache?: boolean;
-  cachePredicate?: Function;
-  cacheWithContext?: boolean;
-  descriptionFiles?: string[];
-  enforceExtension?: boolean;
-  extensions?: string[];
-  fileSystem?: { [index: string]: any };
-  mainFields?: LibraryExport[];
-  mainFiles?: string[];
-  modules?: string[];
-  plugins?: ResolvePluginInstance[];
-  resolver?: { [index: string]: any };
-  symlinks?: boolean;
-  unsafeCache?: boolean | { [index: string]: any };
-  useSyncFileSystemCalls?: boolean;
-}
-
 // DevTool
 export type DevTool = string | false;
 

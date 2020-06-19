@@ -1,7 +1,7 @@
-import type { RuleSetRule, Entry } from 'webpack';
+import type { RuleSetRule, Entry, ResolveOptions } from 'webpack';
 import * as Config from 'webpack-chain';
 import type { CosmiconfigResult } from 'cosmiconfig/dist/types';
-import type { Externals, ResolveOptions, DevTool, Plugins, Output, RuleSetCondition } from './webpackTypes';
+import type { Externals, DevTool, Plugins, Output, RuleSetCondition } from './webpackTypes';
 
 export interface SweetOptions {
   basicPath: string;
