@@ -5,8 +5,7 @@
  */
 import React from 'react';
 import PropTypes from 'prop-types';
-import { useLocation } from 'react-router';
-import { Link } from 'react-router-dom';
+import { useLocation, Link } from 'react-router-dom';
 import { Layout, Menu } from 'antd';
 import style from './index.sass';
 import ErrorBoundary from '../ErrorBoundary/index';

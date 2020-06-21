@@ -1,6 +1,5 @@
 import React from 'react';
-import { useLocation } from 'react-router';
-import { Link } from 'react-router-dom';
+import { useLocation, Link } from 'react-router-dom';
 import { Layout, Menu, Avatar, Dropdown } from 'antd';
 import {
   LogoutOutlined as IconLogoutOutlined,
