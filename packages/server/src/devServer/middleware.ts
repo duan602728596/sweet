@@ -1,7 +1,7 @@
 import * as Koa from 'koa';
 import * as Router from '@koa/router';
 import * as body from 'koa-body';
-import * as connect from 'koa-connect';
+import connect = require('koa-connect');
 import { Compiler } from 'webpack';
 import * as hotMiddleware from 'webpack-hot-middleware';
 import koaDevMiddleware from './koaDevMiddleware';
