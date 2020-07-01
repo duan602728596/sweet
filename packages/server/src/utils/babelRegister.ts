@@ -37,6 +37,7 @@ function createRegisterConfig(): RegisterConfig {
       '@babel/plugin-proposal-class-properties',                             // class 相关
       '@babel/plugin-proposal-do-expressions',                               // do {} 语法
       '@babel/plugin-proposal-export-default-from',                          // export module from 语法
+      '@babel/plugin-proposal-export-namespace-from',                        // export * as module from 语法
       '@babel/plugin-proposal-logical-assignment-operators',                 // x ??= y 语法
       '@babel/plugin-proposal-nullish-coalescing-operator',                  // x ?? y 语法
       '@babel/plugin-proposal-numeric-separator',                            // 1_000_000 语法
