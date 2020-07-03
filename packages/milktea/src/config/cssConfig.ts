@@ -131,10 +131,7 @@ export function createLessOptions(
  */
 export function createSassOptions(additionalData: string | Function | undefined, isDevelopment: boolean): LoaderOptions {
   return {
-    sassOptions: {
-      outputStyle: isDevelopment ? 'compact' : 'compressed',
-      fiber: Fiber
-    },
+    sassOptions: { fiber: Fiber },
     additionalData,
     sourceMap: isDevelopment,
     implementation: sass
