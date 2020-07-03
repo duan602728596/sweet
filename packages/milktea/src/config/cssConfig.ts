@@ -1,4 +1,6 @@
 import * as path from 'path';
+import * as sass from 'sass';
+import * as Fiber from 'fibers';
 import * as MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import * as normalizePath from 'normalize-path';
 import * as cssesc from 'cssesc';
@@ -130,9 +132,11 @@ export function createLessOptions(
 export function createSassOptions(additionalData: string | Function | undefined, isDevelopment: boolean): LoaderOptions {
   return {
     sassOptions: {
-      outputStyle: isDevelopment ? 'compact' : 'compressed'
+      outputStyle: isDevelopment ? 'compact' : 'compressed',
+      fiber: Fiber
     },
     additionalData,
-    sourceMap: isDevelopment
+    sourceMap: isDevelopment,
+    implementation: sass
   };
 }
