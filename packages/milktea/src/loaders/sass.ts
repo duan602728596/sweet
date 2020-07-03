@@ -8,7 +8,17 @@ export default function(sweetConfig: SweetConfig, config: Config): void {
   const { mode, sass, frame, serverRender }: SweetConfig = sweetConfig;
   const isDevelopment: boolean = mode === 'development';
   const sassOptions: SASS = sass ?? {};
-  const { publicPath, modules = true, exclude, include, prependData, data, localIdentName, getLocalIdent }: SASS = sassOptions;
+  const {
+    publicPath,
+    modules = true,
+    exclude,
+    include,
+    additionalData,
+    prependData,
+    data,
+    localIdentName,
+    getLocalIdent
+  }: SASS = sassOptions;
 
   config
     .merge({
@@ -36,8 +46,8 @@ export default function(sweetConfig: SweetConfig, config: Config): void {
   const ScopedCssLoaderOptions: LoaderOptions = createCssOptions(false, isDevelopment, sr);
 
   // sass-loader
-  // TODO: 未来会移除 data 选项
-  const sassLoaderOptions: LoaderOptions = createSassOptions(prependData ?? data, isDevelopment);
+  // TODO: 未来会移除 prependData和data 选项
+  const sassLoaderOptions: LoaderOptions = createSassOptions(additionalData ?? prependData ?? data, isDevelopment);
 
   const sassRule: Rule = config
     .module
