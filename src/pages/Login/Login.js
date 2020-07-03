@@ -1,4 +1,4 @@
-import { defineComponent, createElement as h } from '@vue/composition-api';
+import { defineComponent } from '@vue/composition-api';
 import { Form, Button, Input, Icon } from 'ant-design-vue';
 import style from './login.sass';
 
