@@ -15,7 +15,7 @@
     "@sweet-milktea/milktea-cli": "^0.14.0",
     "@sweet-milktea/server": "^0.15.3",
     "@sweet-milktea/server-log": "^0.6.6",
-    "@vue/composition-api": "^0.6.5",
+    "@vue/composition-api": "^1.0.0-beta.1",
     "ant-design-vue": "^1.6.2",
     "axios": "^0.19.2",
     "classnames": "^2.2.6",
@@ -27,7 +27,7 @@
     "vue-meta": "^2.4.0",
     "vue-router": "^3.3.4",
     "vue-server-renderer": "^2.6.11",
-    "vuex": "^3.4.0"
+    "vuex": "^3.5.1"
   },
   "devDependencies": {
     "@sweet-milktea/milktea": "^0.15.4",
@@ -40,14 +40,14 @@
     "cross-env": "^7.0.2",
     "cz-conventional-changelog": "^3.2.0",
     "es-module-path-case-check": "^1.5.0",
-    "eslint": "^7.3.0",
-    "eslint-plugin-react": "^7.20.0",
+    "eslint": "^7.3.1",
+    "eslint-plugin-react": "^7.20.3",
     "eslint-plugin-vue": "^6.2.2",
     "husky": "^4.2.5",
     "lint-staged": "^10.2.11",
     "rimraf": "^3.0.2",
     "vue-eslint-parser": "^7.1.0",
-    "vue-loader": "^15.9.2",
+    "vue-loader": "^15.9.3",
     "vue-svg-loader": "^0.16.0",
     "vue-template-compiler": "^2.6.11"
   },
