@@ -1,15 +1,19 @@
-/* webpack 服务器端渲染配置 */
 import * as path from 'path';
 import * as _ from 'lodash';
-import type { Configuration } from 'webpack';
+import type { Configuration, RuleSetRule } from 'webpack';
 import * as Config from 'webpack-chain';
-import * as merge from 'webpack-merge';
+import { merge } from 'webpack-merge';
 import loaders from './loaders/loaders';
 import basicPlugins from './plugins/plugins';
 import optimization from './optimization/optimization';
 import { extensions } from './utils/utils';
 import type { SweetConfig, SweetOptions } from './utils/types';
 
+/**
+ * webpack 服务器端渲染配置
+ * @param { SweetConfig | null | undefined } sweetConfig: 获取到的外部配置
+ * @param { SweetOptions } sweetOptions: 内部挂载的一些配置
+ */
 export default function(sweetConfig: SweetConfig | null | undefined, sweetOptions: SweetOptions): Configuration {
   const config: Config = new Config();
   const sweetConfigCopy: SweetConfig | undefined = _.isPlainObject(sweetConfig) ? { ...sweetConfig } : {};
@@ -79,7 +83,10 @@ export default function(sweetConfig: SweetConfig | null | undefined, sweetOption
     externals: serverExternals,
     resolve,
     // 添加其他的rules
-    module: { noParse, rules },
+    module: {
+      noParse,
+      rules: rules as RuleSetRule[]
+    },
     // 添加自定义的plugins
     plugins
   });
