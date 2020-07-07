@@ -42,29 +42,33 @@
 | - sass.modules    | boolean  | 开启css-in-modules |
 | - sass.exclude    | RegExp  | exclude规则 |
 | - sass.include    | RegExp  | include规则 |
-| - sass.data       | string &#124; Function | 注入sass变量（参考sass-loader） |
+| - sass.additionalData | string &#124; Function | 注入sass变量（参考sass-loader） |
 | - sass.localIdentName | string   | 配置localIdentName（参考css-loader） |
 | - sass.getLocalIdent  | Function | 配置getLocalIdent（参考css-loader）  |
-| - sass.data  | string &#124; Function | 注入sass变量（参考sass-loader） |
 | css          | object       | css配置 |
 | - css.publicPath | string  | &nbsp; |
 | - css.modules    | boolean | 开启css-in-modules |
 | - css.exclude    | RegExp  | exclude规则 |
 | - css.include    | RegExp  | include规则 |
 | - sass.modifyVars     | object   | 注入less变量（参考less-loader）      |
+| - sass.prependData | string &#124; Function | （参考less-loader） |
+| - sass.appendData  | string &#124; Function | （参考less-loader） |
 | - sass.localIdentName | string   | 配置localIdentName（参考css-loader） |
 | - sass.getLocalIdent  | Function | 配置getLocalIdent（参考css-loader）  |
 | html | Array<object>  | html配置（默认使用pug）          |
 | - html.template       | string        | html模板文件地址 |
 | - html.excludeChunks  | Array<string> | 不包括的入口     |
 | frame        | string   | 值为`react`或`vue`，是否为react或vue模式，并自动注入loaders和plugins |
-| chainWebpack | Function | 通过`webpack-chain`的API扩展或修改webpack配置          |
+| chainWebpack | Function | 通过`webpack-chain`的API扩展或修改webpack配置 |
 | filesMap     | boolean &#124; object | 输出`filesMap.json`文件，记录了文件的映射 |
 
 ### 下面的配置是关于服务器端渲染的
 
 | 配置项 | 类型 | 说明 |
 | ---    | ---  | ---  |
-| serverRender | boolean | 是否开启服务器端渲染              |
-| severEntry   | any     | 服务器端的文件入口（参考webpack） |
-| serverOutput | any     | 服务器端文件出口（参考webpack）   |
+| serverRender       | boolean  | 是否开启服务器端渲染              |
+| severEntry         | any      | 服务器端的文件入口（参考webpack） |
+| serverOutput       | any      | 服务器端文件出口（参考webpack）   |
+| serverExternals    | object   | 服务器端的外部扩展（参考webpack） |
+| serverDevtool      | string   | 服务器端的SourceMap的类型（参考webpack） |
+| serverChainWebpack | Function | 通过`webpack-chain`的API扩展或修改SSR的webpack配置 |
