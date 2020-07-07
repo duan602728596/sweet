@@ -1,5 +1,8 @@
 import type { Stats } from 'webpack';
-import type { CallbackFunction } from './webpackTypes';
+
+export interface CallbackFunction<T> {
+  (err?: Error, result?: T): any;
+}
 
 export interface Milktea {
   dllConfig: Function;

@@ -3,7 +3,6 @@ import type { Compiler, Configuration } from 'webpack';
 import * as _ from 'lodash';
 import { requireModule } from '../utils/utils';
 import type { Milktea, Argv } from '../utils/types';
-import type { Watching } from '../utils/webpackTypes';
 
 /* start 命令 */
 function argvStart(argv: Argv): void {
@@ -19,7 +18,7 @@ function argvStart(argv: Argv): void {
 
   const compiler: Compiler = webpack(webpackConfig);
   let serverRenderCompiler: Compiler | null = null,
-    serverRenderWatching: Watching | null = null;
+    serverRenderWatching: any | null = null;
 
   if (!_.isNil(argv.serverRender)) {
     compiler.hooks.done.tap('sweet-milktea-build', function(): void {
@@ -73,7 +72,7 @@ function argvStart(argv: Argv): void {
       useBabelRegister
     });
   } else {
-    const watching: Watching = compiler.watch({
+    const watching: any = compiler.watch({
       aggregateTimeout: 500
     }, !argv.webpackLog || argv.webpackLog === 'progress' ? milktea.callbackOnlyError : milktea.callback);
   }
