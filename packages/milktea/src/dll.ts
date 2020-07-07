@@ -1,10 +1,9 @@
-/* webpack dll扩展配置 */
 import * as path from 'path';
 import * as _ from 'lodash';
 import * as webpack from 'webpack';
-import type { Configuration } from 'webpack';
+import type { Configuration, Entry } from 'webpack';
 import * as Config from 'webpack-chain';
-import * as merge from 'webpack-merge';
+import { merge } from 'webpack-merge';
 import { createPresetEnv } from './config/babelConfig';
 import { handleDefaultProgress } from './plugins/handleProgress';
 import createHandleProgressBar from './plugins/handleProgressBar';
@@ -12,6 +11,11 @@ import { babelCache, dllCache } from './config/cacheConfig';
 import { extensions } from './utils/utils';
 import type { SweetConfig, SweetOptions, JS } from './utils/types';
 
+/**
+ * webpack dll扩展配置
+ * @param { SweetConfig | null | undefined } sweetConfig: 获取到的外部配置
+ * @param { SweetOptions } sweetOptions: 内部挂载的一些配置
+ */
 export default function(sweetConfig: SweetConfig | null | undefined, sweetOptions: SweetOptions): Configuration {
   const config: Config = new Config();
   const sweetConfigCopy: SweetConfig = _.isPlainObject(sweetConfig) ? { ...sweetConfig } : {};
@@ -88,13 +92,15 @@ export default function(sweetConfig: SweetConfig | null | undefined, sweetOption
     chainWebpack(config);
   }
 
-  /* 合并自定义配置 */
-  return merge(config.toConfig(), {
-    entry: { dll },
+  const mergeConfiguration: Configuration = {
+    entry: dll?.length ? { dll } : undefined,
     output: {
       ecmaVersion: ecmascript ? 2015 : 5
     },
     externals,
     resolve
-  });
+  };
+
+  /* @ts-ignore 合并自定义配置 */
+  return merge(config.toConfig(), mergeConfiguration);
 }

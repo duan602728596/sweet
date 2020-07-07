@@ -1,4 +1,4 @@
-import { AST_NODE_TYPES } from '@typescript-eslint/typescript-estree/dist/ts-estree/ast-node-types';
+import { AST_NODE_TYPES } from '@typescript-eslint/typescript-estree/dist/ts-estree';
 import { createRule } from '@typescript-eslint/eslint-plugin/dist/util/createRule';
 import type { Rule, SourceCode, AST } from 'eslint';
 import * as ESTree from 'estree';

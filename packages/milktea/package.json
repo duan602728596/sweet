@@ -54,7 +54,7 @@
     "pug": "^3.0.0",
     "pug-loader": "^2.4.0",
     "react-hot-loader": "^4.12.21",
-    "sass": "^1.26.9",
+    "sass": "^1.26.10",
     "sass-loader": "^9.0.1",
     "style-loader": "^1.2.1",
     "terser": "^4.8.0",
@@ -62,7 +62,7 @@
     "url-loader": "^4.1.0",
     "webpack": "^5.0.0-beta.20",
     "webpack-chain": "^6.5.0",
-    "webpack-merge": "^4.2.2"
+    "webpack-merge": "^5.0.7"
   },
   "devDependencies": {
     "@vue/babel-helper-vue-jsx-merge-props": "^1.0.0",

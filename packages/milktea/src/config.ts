@@ -1,9 +1,8 @@
-/* webpack 配置 */
 import * as path from 'path';
 import * as _ from 'lodash';
 import type { Configuration } from 'webpack';
 import * as Config from 'webpack-chain';
-import * as merge from 'webpack-merge';
+import { merge } from 'webpack-merge';
 import loaders from './loaders/loaders';
 import basicPlugins from './plugins/plugins';
 import optimization from './optimization/optimization';
@@ -11,6 +10,11 @@ import { extensions } from './utils/utils';
 import { webpackCache } from './config/cacheConfig';
 import type { SweetConfig, SweetOptions } from './utils/types';
 
+/**
+ * webpack 配置
+ * @param { SweetConfig | null | undefined } sweetConfig: 获取到的外部配置
+ * @param { SweetOptions } sweetOptions: 内部挂载的一些配置
+ */
 export default function(sweetConfig: SweetConfig | null | undefined, sweetOptions: SweetOptions): Configuration {
   const config: Config = new Config();
   const sweetConfigCopy: SweetConfig = _.isPlainObject(sweetConfig) ? { ...sweetConfig } : {};
@@ -83,8 +87,7 @@ export default function(sweetConfig: SweetConfig | null | undefined, sweetOption
     chainWebpack(config);
   }
 
-  /* 合并自定义配置 */
-  return merge(config.toConfig(), {
+  const mergeConfiguration: Configuration = {
     entry,
     output: {
       ecmaVersion: ecmascript ? 2015 : 5,
@@ -93,8 +96,14 @@ export default function(sweetConfig: SweetConfig | null | undefined, sweetOption
     externals,
     resolve,
     // 添加其他的rules
-    module: { noParse, rules },
+    module: {
+      noParse,
+      rules
+    },
     // 添加自定义的plugins
     plugins
-  });
+  };
+
+  /* @ts-ignore 合并自定义配置 */
+  return merge(config.toConfig(), mergeConfiguration);
 }

@@ -1,7 +1,6 @@
-import type { RuleSetRule, Entry, ResolveOptions } from 'webpack';
+import type { RuleSetRule, Entry, ResolveOptions, WebpackPluginInstance } from 'webpack';
 import * as Config from 'webpack-chain';
 import type { CosmiconfigResult } from 'cosmiconfig/dist/types';
-import type { Externals, DevTool, Plugins, Output, RuleSetCondition } from './webpackTypes';
 
 export interface SweetOptions {
   basicPath: string;
@@ -35,22 +34,22 @@ export interface JS {
   plugins?: Array<any>;
   resetPresets?: Array<any>;
   resetPlugins?: Array<any>;
-  exclude?: RuleSetCondition;
-  include?: RuleSetCondition;
+  exclude?: RegExp;
+  include?: RegExp;
 }
 
 export interface TS {
   presets?: Array<any>;
   plugins?: Array<any>;
-  exclude?: RuleSetCondition;
-  include?: RuleSetCondition;
+  exclude?: RegExp;
+  include?: RegExp;
 }
 
 export interface CSS {
   publicPath?: string;
   modules?: boolean;
-  exclude?: RuleSetCondition;
-  include?: RuleSetCondition;
+  exclude?: RegExp;
+  include?: RegExp;
   localIdentName?: string;
   getLocalIdent?: Function;
 }
@@ -79,16 +78,16 @@ export type HtmlItem = {
 export interface SweetConfig {
   mode?: Mode;
   webpackLog?: WebpackLog;
-  dll?: Array<string>;
+  dll?: [string, ...string[]];
   entry?: Entry;
-  output?: Output;
-  externals?: Externals;
+  output?: any;
+  externals?: { [key: string]: string };
   resolve?: ResolveOptions;
-  devtool?: DevTool;
+  devtool?: string;
   loaders?: Loaders;
   rules?: Array<RuleSetRule>;
-  noParse?: RegExp | Array<RegExp> | ((content: string) => boolean);
-  plugins?: Plugins;
+  noParse?: string | Function | RegExp | [string | Function | RegExp, ...(string | Function | RegExp)[]];
+  plugins?: WebpackPluginInstance[];
   js?: JS;
   ts?: TS;
   sass?: SASS;
@@ -100,9 +99,9 @@ export interface SweetConfig {
   // ssr
   serverRender?: boolean;
   serverEntry?: Entry;
-  serverOutput?: Output;
-  serverExternals?: Externals;
-  serverDevtool?: DevTool;
+  serverOutput?: any;
+  serverExternals?: { [key: string]: string };
+  serverDevtool?: string;
   serverChainWebpack?: (config: Config) => void;
 }
 

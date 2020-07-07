@@ -1,5 +1,4 @@
 import type { RuleSetRule } from 'webpack';
-import type { RuleSetUse } from './webpackTypes';
 
 /* 模块导入 */
 export function requireModule(id: string): any {
@@ -24,7 +23,7 @@ export function formatLoader(obj: RuleSetRule | undefined): RuleSetRule {
   if (formatObj.use && typeof formatObj.use === 'string') {
     formatObj.use = [{ loader: formatObj.use }];
   } else if (formatObj.use && Array.isArray(formatObj.use)) {
-    const use: RuleSetUse = [];
+    const use: Array<any> = [];
 
     for (let i: number = 0, j: number = formatObj.use.length; i < j; i++) {
       let item: any = formatObj.use[i];
