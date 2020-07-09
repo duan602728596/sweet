@@ -46,7 +46,7 @@
     "html-webpack-plugin": "^4.3.0",
     "less": "^3.11.3",
     "less-loader": "^6.2.0",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.19",
     "mini-css-extract-plugin": "^0.9.0",
     "moment": "2.27.0",
     "optimize-css-assets-webpack-plugin": "^5.0.3",
@@ -55,19 +55,19 @@
     "pug-loader": "^2.4.0",
     "react-hot-loader": "^4.12.21",
     "sass": "^1.26.10",
-    "sass-loader": "^9.0.1",
+    "sass-loader": "^9.0.2",
     "style-loader": "^1.2.1",
     "terser": "^4.8.0",
     "terser-webpack-plugin": "^3.0.6",
     "url-loader": "^4.1.0",
     "webpack": "^4.43.0",
     "webpack-chain": "^6.5.0",
-    "webpack-merge": "^5.0.7"
+    "webpack-merge": "^5.0.8"
   },
   "devDependencies": {
     "@vue/babel-helper-vue-jsx-merge-props": "^1.0.0",
     "@vue/babel-preset-jsx": "^1.1.2",
-    "ts-loader": "^7.0.5",
+    "ts-loader": "^8.0.0",
     "vue-loader": "^15.9.3",
     "vue-svg-loader": "^0.16.0",
     "vue-template-compiler": "^2.6.11"
@@ -75,7 +75,7 @@
   "peerDependencies": {
     "@vue/babel-helper-vue-jsx-merge-props": ">=1",
     "@vue/babel-preset-jsx": ">=1",
-    "ts-loader": ">=7",
+    "ts-loader": ">=8",
     "typescript": ">=3",
     "vue-loader": ">=15",
     "vue-svg-loader": ">=0",
