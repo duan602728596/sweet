@@ -112,7 +112,7 @@ proServer({
 
 ## sweetOptions
 
-你可以在任何中间件内通过`ctx.sweetOptions`拿到当前服务的配置。
+你可以在任何中间件内通过`ctx.state.sweetOptions`或`ctx.sweetOptions`（预废弃）拿到当前服务的配置。
 
 ## 服务器端渲染
 

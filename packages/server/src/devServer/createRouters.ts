@@ -2,20 +2,21 @@ import * as path from 'path';
 import { ParsedPath } from 'path';
 import * as Router from '@koa/router';
 import * as mime from 'mime-types';
+import type { Context } from 'koa';
 import preRenderInit from './preDevRender';
 import { webpackHmrPath, isExists } from '../utils/utils';
-import { ServerContext, SweetOptions } from '../utils/types';
+import { SweetOptions } from '../utils/types';
 
 function createRouters(router: Router, sweetOptions: SweetOptions): void {
   const preRender: Function = preRenderInit(sweetOptions);
 
   /* webpack 重定向 */
-  router.get(/^\/.*/, async (ctx: ServerContext, next: Function): Promise<void> => {
+  router.get(/^\/.*/, async (ctx: Context, next: Function): Promise<void> => {
     try {
       const ctxPath: string = ctx.path;
       const mimeType: string | boolean = mime.lookup(ctxPath);
 
-      ctx.routePath = ctxPath; // 保存旧的path
+      ctx.state.routePath = ctxPath; // 保存旧的path
 
       // 重定向path，所有的路由都指向"/"
       if (ctxPath !== '/' && ctxPath !== webpackHmrPath && mimeType === false) {

@@ -3,9 +3,10 @@ import { ParsedPath } from 'path';
 import * as fs from 'fs';
 import * as Router from '@koa/router';
 import * as _ from 'lodash';
+import type { Context } from 'koa';
 import preRenderInit from './preProRender';
 import { isExists } from '../utils/utils';
-import { ServerContext, SweetOptions } from '../utils/types';
+import { SweetOptions } from '../utils/types';
 
 function createRouters(
   router: Router,
@@ -18,11 +19,11 @@ function createRouters(
   const preRender: Function = preRenderInit(sweetOptions);
 
   /* index路由 */
-  router.get(/^\/.*/, async (ctx: ServerContext, next: Function): Promise<void> => {
+  router.get(/^\/.*/, async (ctx: Context, next: Function): Promise<void> => {
     try {
       const ctxPath: string = ctx.path;
 
-      ctx.routePath = ctxPath;
+      ctx.state.routePath = ctxPath; // 保存旧的path
 
       await next();
 

@@ -1,9 +1,10 @@
 import * as Router from '@koa/router';
 import * as _ from 'lodash';
+import type { Context } from 'koa';
 import { defaultMockPath, deleteCacheAndRequireModule, requireModule, isExists } from './utils';
-import type { SweetOptions, ServerContext } from './types';
+import type { SweetOptions } from './types';
 
-type KoaFunc = (ctx: ServerContext, next: Function) => void | Promise<void>;
+type KoaFunc = (ctx: Context, next: Function) => void | Promise<void>;
 type Mock = { [key: string]: any | KoaFunc };
 type MockFunc = (sweetOptions: SweetOptions) => Mock | Promise<Mock>;
 type MockModule = Mock | MockFunc;
@@ -39,7 +40,7 @@ function addMockRouter(router: Router, mock: Mock): void {
     const value: any | KoaFunc = mock[key];
     const routerFunc: KoaFunc = typeof value === 'function'
       ? value
-      : (ctx: ServerContext, next: Function): void => ctx.body = value;
+      : (ctx: Context, next: Function): void => ctx.body = value;
 
     router[method](uri, routerFunc);
   }
