@@ -1,5 +1,4 @@
 import * as Koa from 'koa';
-import type { Context } from 'koa';
 import type { Compiler } from 'webpack';
 
 export interface ServerArgs {
@@ -21,8 +20,6 @@ export interface ServerArgs {
   redirectToHttps?: boolean;
 }
 
-export type WebpackLog = 'progress' | 'stats';
-
 export interface DevServerArgs extends ServerArgs {
   compiler?: Compiler;
 }
@@ -36,11 +33,6 @@ export interface ProServerArgs extends ServerArgs {
 export interface SweetOptions extends DevServerArgs, ProServerArgs {
   basicPath: string;
   serverRenderEntry?: string;
-}
-
-export interface ServerContext extends Context {
-  sweetOptions: SweetOptions;
-  routePath: string;  // 保存旧的path
 }
 
 export interface Log {
