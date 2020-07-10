@@ -62,7 +62,7 @@
     "url-loader": "^4.1.0",
     "webpack": "^4.43.0",
     "webpack-chain": "^6.5.0",
-    "webpack-merge": "^5.0.8"
+    "webpack-merge": "^5.0.9"
   },
   "devDependencies": {
     "@vue/babel-helper-vue-jsx-merge-props": "^1.0.0",
