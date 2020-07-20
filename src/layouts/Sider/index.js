@@ -11,7 +11,7 @@ import style from './index.sass';
 import ErrorBoundary from '../ErrorBoundary/index';
 
 function Sider(props) {
-  const { options } = props;
+  const { options = [] } = props;
   const location = useLocation();
 
   // 根据pathname获取默认的selectKey
@@ -82,10 +82,6 @@ function Sider(props) {
 
 Sider.propTypes = {
   options: PropTypes.array
-};
-
-Sider.defaultProps = {
-  options: []
 };
 
 export default Sider;
