@@ -80,7 +80,10 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
       (config: Config): void => {
         configBabelUse
           .tap((options: LoaderOptions): LoaderOptions => _.mergeWith(options, {
-            presets: resetPresets ? [] : [['@babel/preset-react', { runtime: jsx ? 'automatic' : 'classic' }]],
+            presets: resetPresets ? [] : [['@babel/preset-react', {
+              runtime: jsx ? 'automatic' : 'classic',
+              development: isDevelopment
+            }]],
             plugins: resetPlugins ? [] : ['react-hot-loader/babel']
           }, customizer));
       }
