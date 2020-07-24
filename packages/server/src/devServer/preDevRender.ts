@@ -40,11 +40,6 @@ function preRenderInit(sweetOptions: SweetOptions): Function {
 
     // ssr渲染
     const html: Buffer = ctx.body;
-
-    if (sweetOptions.serverRenderOutputFileSystem) {
-      patchRequire(sweetOptions.serverRenderOutputFileSystem);
-    }
-
     const server: Function = deleteCacheAndRequireModule(serverRenderEntry);
     const result: Stream | string = await server(ctxPath, ctx, data.initialState);
     const render: string = isReadStream(result) ? (await readStream(result)).toString() : result;
