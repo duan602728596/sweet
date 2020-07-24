@@ -72,10 +72,11 @@ export default defineComponent({
   render() {
     const options = this.$props.options;
     const sk = this.getSelectKey(options);
+    const defaultSelectedKeys = sk?.length ? [String(sk[0])] : undefined;
 
     return (
       <Layout.Sider class={ style.sider }>
-        <Menu theme="light" mode="inline" defaultSelectedKeys={ sk } style={{ borderRight: 'none' }}>
+        <Menu theme="light" mode="inline" defaultSelectedKeys={ defaultSelectedKeys } style={{ borderRight: 'none' }}>
           { this.optionsView(options) }
         </Menu>
       </Layout.Sider>
