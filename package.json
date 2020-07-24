@@ -14,7 +14,7 @@
   "dependencies": {
     "@ant-design/icons": "^4.2.1",
     "@sweet-milktea/milktea-cli": "^0.16.0",
-    "@sweet-milktea/server": "^0.16.0",
+    "@sweet-milktea/server": "^0.16.1",
     "@sweet-milktea/server-log": "^0.6.6",
     "antd": "^4.4.3",
     "axios": "^0.19.2",
