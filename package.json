@@ -2,7 +2,7 @@
   "name": "@sweet-milktea/vue-demo",
   "scripts": {
     "dll": "cross-env NODE_ENV=development milktea dll",
-    "start": "npm run clean && npm run clean:server && cross-env NODE_ENV=development milktea start --server --serverRender",
+    "start": "npm run clean && npm run clean:server && cross-env NODE_ENV=development milktea start --server --serverRender --serverRenderMemFs",
     "build": "npm run clean && npm run clean:server && cross-env NODE_ENV=production milktea build --serverRender",
     "clean": "rimraf ./dist",
     "clean:server": "rimraf ./dist-server",
@@ -12,11 +12,11 @@
     "update": "milktea update"
   },
   "dependencies": {
-    "@sweet-milktea/milktea-cli": "^0.14.0",
-    "@sweet-milktea/server": "^0.15.3",
+    "@sweet-milktea/milktea-cli": "^0.16.0",
+    "@sweet-milktea/server": "^0.16.0",
     "@sweet-milktea/server-log": "^0.6.6",
-    "@vue/composition-api": "^1.0.0-beta.1",
-    "ant-design-vue": "^1.6.3",
+    "@vue/composition-api": "^1.0.0-beta.6",
+    "ant-design-vue": "^1.6.4",
     "axios": "^0.19.2",
     "classnames": "^2.2.6",
     "core-js": "^3.6.5",
@@ -30,7 +30,7 @@
     "vuex": "^3.5.1"
   },
   "devDependencies": {
-    "@sweet-milktea/milktea": "^0.15.4",
+    "@sweet-milktea/milktea": "^0.16.0",
     "@sweet-milktea/util-tools": "^0.15.0",
     "@vue/babel-helper-vue-jsx-merge-props": "^1.0.0",
     "@vue/babel-preset-jsx": "^1.1.2",
