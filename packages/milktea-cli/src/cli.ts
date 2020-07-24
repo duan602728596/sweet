@@ -93,7 +93,7 @@ const argv: object = yargs
     },
     serverRenderMemFs: {
       describe: '服务器端渲染的文件使用内存文件系统输出',
-      type: 'string'
+      type: 'boolean'
     },
     template: {
       describe: 'html模版的文件名',
