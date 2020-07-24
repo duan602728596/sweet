@@ -20,6 +20,7 @@ milktea-cli是一个快速运行环境的工具。
   * `--serverRender`: 开启服务器端渲染。
   * `--serverRenderRoot`: 服务器端渲染的模块文件目录。默认为`dist-server`。
   * `--serverRenderFile`: 服务器渲染的主模块文件。默认为`server.js`。
+  * `--serverRenderMemFs`: 服务器端渲染的文件使用内存文件系统输出。
 * `milktea build`: 编译代码。
   * `--config`: 选择一个配置文件。
   * `--serverRender`: 开启服务器端渲染。
@@ -39,7 +40,6 @@ milktea-cli是一个快速运行环境的工具。
   * `--serverRender`: 开启服务器端渲染。
   * `--serverRenderRoot`: 服务器端渲染的模块文件目录。默认为`dist-server`。 
   * `--serverRenderFile`: 服务器端渲染的主模块文件。默认为`server.js`。
-  * `--serverRenderMemFs`: 服务器端渲染的文件使用内存文件系统输出。
   * `--template`: html模版的文件名。默认为`index.html`。
   * `--renderType`：html使用的渲染模板，`ejs`或`nunjucks`。默认为`ejs`。
 * `milktea update`: 查看是否有依赖包需要更新。
