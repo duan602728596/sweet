@@ -2,7 +2,7 @@ import * as path from 'path';
 import * as glob from 'glob';
 import * as _ from 'lodash';
 import type { Context } from 'koa';
-import { requireModule, globPromise } from './utils';
+import { requireModule, deleteCacheAndRequireModule, globPromise } from './utils';
 import useRegister from './babelRegister';
 import type { SweetOptions } from './types';
 
@@ -78,13 +78,15 @@ export function getControllersFilesSync(basicPath: string, controllersDir?: stri
  * @param { Map<string, string> } controllersMap
  * @param { string } folderPathFile，path/to/file，没有扩展名
  * @param { string } formatFile，path.to.file，没有扩展名
+ * @param { boolean } clearRequireModule: 是否清除缓存
  */
 export async function getControllerData(
   ctx: Context,
   sweetOptions: SweetOptions,
   controllersMap: Map<string, string>,
-  folderPathFile: string, // 查找文件夹
-  formatFile: string      // 查找文件
+  folderPathFile: string,  // 查找文件夹
+  formatFile: string,      // 查找文件
+  clearRequireModule: boolean
 ): Promise<any> {
   // 文件的查找顺序
   const findFiles: Array<string> = [
@@ -107,7 +109,7 @@ export async function getControllerData(
       if (file) {
         useRegister(sweetOptions);
 
-        const module: Function = requireModule(file);
+        const module: Function = (clearRequireModule ? deleteCacheAndRequireModule : requireModule)(file);
 
         data = await module(ctx, sweetOptions);
         break;
