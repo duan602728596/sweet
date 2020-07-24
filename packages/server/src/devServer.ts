@@ -40,7 +40,7 @@ const sweetOptions: SweetOptions = {
  * serverRender { boolean }: 开启服务器端渲染
  * serverRenderRoot { string }: 服务器端渲染的文件夹
  * serverRenderFile { string }: 服务器端渲染的主模块文件
- * serverRenderOutputFileSystem { Union }: 服务器端渲染输出的文件使用内存文件系统
+ * serverRenderOutputFileSystem { IUnionFs }: 服务器端渲染输出的文件使用的内存文件系统
  * env { string }: 运行环境，可能的值为test（测试）
  * renderType { string }: html使用的渲染模板
  * serverChain { (app: Koa) => void }: 扩展koa中间件配置
@@ -161,6 +161,7 @@ async function devServer(args: DevServerArgs = {}): Promise<void> {
   }
 }
 
+/* 创建一个内存文件系统 */
 devServer.createMemFs = function(): IUnionFs {
   const ifs: IFs = createFsFromVolume(new Volume());
   const ufs: IUnionFs = new Union();
