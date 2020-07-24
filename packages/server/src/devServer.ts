@@ -5,8 +5,12 @@ import * as http2 from 'http2';
 import type { SecureServerOptions } from 'http2';
 import * as process from 'process';
 import * as path from 'path';
+import * as fs from 'fs';
 import * as Koa from 'koa';
 import * as Router from '@koa/router';
+import { createFsFromVolume, Volume, IFs } from 'memfs';
+import { patchRequire } from 'fs-monkey';
+import { Union, IUnionFs } from 'unionfs';
 import middleware from './devServer/middleware';
 import createRouters from './devServer/createRouters';
 import getPort from './devServer/getPort';
@@ -156,5 +160,16 @@ async function devServer(args: DevServerArgs = {}): Promise<void> {
       .listen(sweetOptions.httpsPort);
   }
 }
+
+devServer.createMemFs = function(): IUnionFs {
+  const ifs: IFs = createFsFromVolume(new Volume());
+  const ufs: IUnionFs = new Union();
+
+  ufs.use(ifs as any).use(fs);
+  ufs['join'] = path.join;
+  patchRequire(ufs);
+
+  return ufs;
+};
 
 export default devServer;
