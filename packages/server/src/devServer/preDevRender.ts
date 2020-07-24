@@ -1,4 +1,3 @@
-import { patchRequire } from 'fs-monkey';
 import type { Context } from 'koa';
 import * as Stream from 'stream';
 import {
@@ -9,7 +8,7 @@ import {
   isReadStream,
   readStream
 } from '../utils/utils';
-import { getControllersFiles, getControllerData, getControllerDataByMemFs } from '../utils/controllers';
+import { getControllersFiles, getControllerData } from '../utils/controllers';
 import createRenderEngine from '../utils/createRenderEngine';
 import type { SweetOptions } from '../utils/types';
 
@@ -26,17 +25,8 @@ function preRenderInit(sweetOptions: SweetOptions): Function {
     const renderEngine: Function = createRenderEngine(sweetOptions.renderType);
     const folderPathFile: string = folderPathAnalyze(ctxPath); // 格式化为：path/to/file，没有扩展名
     const formatFile: string = filePathAnalyze(ctxPath);       // 格式化为：path.to.file，没有扩展名
-
-    // 不使用虚拟文件系统时，正常读取文件
-    let data: any = {};
-
-    if (sweetOptions.serverRenderOutputFileSystem) {
-      data = await getControllerDataByMemFs(ctx, sweetOptions, folderPathFile, formatFile);
-    } else {
-      const controllersMap: Map<string, string> = await getControllersFiles(basicPath, sweetOptions.controllersDir);
-
-      data = await getControllerData(ctx, sweetOptions, controllersMap, folderPathFile, formatFile, true);
-    }
+    const controllersMap: Map<string, string> = await getControllersFiles(basicPath, sweetOptions.controllersDir);
+    const data: any = await getControllerData(ctx, sweetOptions, controllersMap, folderPathFile, formatFile, true);
 
     // ssr渲染
     const html: Buffer = ctx.body;
