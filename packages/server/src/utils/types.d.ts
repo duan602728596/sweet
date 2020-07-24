@@ -1,5 +1,6 @@
 import * as Koa from 'koa';
 import type { Compiler } from 'webpack';
+import type { IUnionFs } from 'unionfs';
 
 export interface ServerArgs {
   httpPort?: number;
@@ -7,6 +8,7 @@ export interface ServerArgs {
   serverRender?: boolean;
   serverRenderRoot?: string;
   serverRenderFile?: string;
+  serverRenderOutputFileSystem?: IUnionFs;
   env?: string;
   renderType?: 'ejs' | 'nunjucks';
   serverChain?: (app: Koa) => Promise<void>;

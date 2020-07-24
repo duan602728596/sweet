@@ -36,6 +36,7 @@ const sweetOptions: SweetOptions = {
  * serverRender { boolean }: 开启服务器端渲染
  * serverRenderRoot { string }: 服务器端渲染的文件夹
  * serverRenderFile { string }: 服务器端渲染的主模块文件
+ * serverRenderOutputFileSystem { Union }: 服务器端渲染输出的文件使用内存文件系统
  * env { string }: 运行环境，可能的值为test（测试）
  * renderType { string }: html使用的渲染模板
  * serverChain { (app: Koa) => void }: 扩展koa中间件配置
@@ -56,6 +57,7 @@ async function devServer(args: DevServerArgs = {}): Promise<void> {
     serverRender,
     serverRenderRoot = 'dist-server',
     serverRenderFile = 'server.js',
+    serverRenderOutputFileSystem,
     env,
     renderType = 'ejs',
     serverChain,
@@ -78,6 +80,7 @@ async function devServer(args: DevServerArgs = {}): Promise<void> {
     serverRender,
     serverRenderRoot: formatPath(sweetOptions, serverRenderRoot),
     serverRenderFile,
+    serverRenderOutputFileSystem,
     env,
     renderType,
     serverChain,
