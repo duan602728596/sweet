@@ -14,6 +14,7 @@ devServer({
   httpsPort,
   serverRender,
   serverRenderFile,
+  serverRenderOutputFileSystem,
   renderType,
   serverChain,
   httpsKey,
@@ -55,6 +56,7 @@ export default {
 * serverRender `{ boolean }` : 开启服务器端渲染。
 * serverRenderRoot { string }: 服务器端渲染的文件夹。默认为`dist-server`。
 * serverRenderFile `{ string }` : 服务器端渲染的主模块文件。默认为`server.js`。
+* serverRenderOutputFileSystem `{ IUnionFs }` : 服务器端渲染输出的文件使用的内存文件系统。
 * renderType `{ string }` : html使用的渲染模板，`ejs`或`nunjucks`。默认为`ejs`。**如果使用`nunjucks`，请自行下载依赖**。
 * serverChain `{ (app: Koa) => Promise<void> }` : 扩展koa中间件配置。
 * httpsKey `{ string }` : 配置https的证书（*.key）。
@@ -64,6 +66,16 @@ export default {
 * apiFile `{ string }` : 重新定义的api文件。
 * proxyFile `{ string }` : 重新定义的proxy文件。
 * redirectToHttps `{ boolean }` : 开启https的情况下，重定向http到https。
+
+### 使用 devServer.createMemFs 创建内存文件系统
+
+```javascript
+import devServer from '@sweet-milktea/server/devServer';
+
+const ufs = devServer.createMemFs(); // 创建内存文件系统
+
+serverRenderCompiler.outputFileSystem = ufs; // 提供给ssr的webpackCompiler使用
+```
 
 ## 生产环境下运行服务
 
