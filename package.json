@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "@sweet-milktea/milktea-cli": "^0.16.0",
-    "@sweet-milktea/server": "^0.16.0",
+    "@sweet-milktea/server": "^0.16.1",
     "@sweet-milktea/server-log": "^0.6.6",
     "@vue/composition-api": "^1.0.0-beta.6",
     "ant-design-vue": "^1.6.4",
