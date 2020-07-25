@@ -1,6 +1,6 @@
 {
   "name": "@sweet-milktea/milktea-cli",
-  "version": "0.16.0",
+  "version": "0.16.1",
   "description": "sweet cli工具",
   "homepage": "https://github.com/duan602728596/sweet",
   "repository": {
@@ -19,7 +19,7 @@
   },
   "dependencies": {
     "lodash": "^4.17.19",
-    "webpack": "^4.43.0",
+    "webpack": "^4.44.0",
     "yargs": "^15.4.1"
   },
   "devDependencies": {
