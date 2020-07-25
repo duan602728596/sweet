@@ -40,11 +40,6 @@ function argvStart(argv: Argv): void {
         }
       }
 
-      // 内存文件系统时需要将target修改为node
-      if (argv.serverRenderMemFs && serverRenderOutputFileSystem) {
-        serverSideRenderConfig.target = 'node';
-      }
-
       serverRenderCompiler = webpack(serverSideRenderConfig);
 
       // 修改虚拟文件系统

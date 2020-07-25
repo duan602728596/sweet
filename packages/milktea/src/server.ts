@@ -45,7 +45,7 @@ export default function(sweetConfig: SweetConfig | null | undefined, sweetOption
       mode,
       devtool: serverDevtool ?? (isDevelopment ? 'eval-source-map' : 'source-map'),
       resolve: { extensions },
-      target: 'async-node',
+      target: 'node',
       performance: { hints: false },
       node: {
         __filename: true,
