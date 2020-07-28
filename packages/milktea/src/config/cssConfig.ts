@@ -8,8 +8,8 @@ import * as loaderUtils from 'loader-utils';
 import type { LoaderOptions } from 'webpack-chain';
 
 /**
- * TODO: css-loader v3.3.0 的getLocalIdent函数，无法导出模块
- * https://github.com/webpack-contrib/css-loader/blob/master/src/utils.js#L65
+ * TODO: css-loader的getLocalIdent函数，无法导出模块
+ * https://github.com/webpack-contrib/css-loader/blob/master/src/utils.js#L49
  */
 const filenameReservedRegex: RegExp = /[<>:"/\\|?*\x00-\x1F]/g,
   reControlChars: RegExp = /[\u0000-\u001f\u0080-\u009f]/g,
@@ -21,15 +21,11 @@ export function cssLoaderGetLocalIdentFunc(
   localName: string,
   options: any
 ): string {
-  if (!options.context) {
-    options.context = loaderContext.rootContext;
-  }
+  const { context, hashPrefix }: any = options;
+  const { resourcePath }: loader.LoaderContext = loaderContext;
+  const request: string = normalizePath(path.relative(context, resourcePath));
 
-  const request: string = normalizePath(
-    path.relative(options.context || '', loaderContext.resourcePath)
-  );
-
-  options.content = `${ options.hashPrefix + request }+${ unescape(localName) }`;
+  options.content = `${ hashPrefix + request }\x00${ unescape(localName) }`;
 
   // Using `[path]` placeholder outputs `/` we need escape their
   // Also directories can contains invalid characters for css we need escape their too
@@ -89,14 +85,16 @@ export function createCssOptions(
   localIdentName?: string,
   getLocalIdent?: Function
 ): LoaderOptions {
-  return {
-    modules: modules ? {
+  const modulesOptions: LoaderOptions = { exportOnlyLocals: serverRender };
+
+  if (modules) {
+    Object.assign(modulesOptions, {
       localIdentName: localIdentName ?? (isDevelopment ? '[path][name]__[local]___[hash:base64:6]' : '_[hash:base64:6]'),
       getLocalIdent: getLocalIdent ?? cssLoaderGetLocalIdent
-    } : false,
-    onlyLocals: serverRender,
-    sourceMap: isDevelopment
-  };
+    });
+  }
+
+  return { modules: modulesOptions };
 }
 
 /**
@@ -118,8 +116,7 @@ export function createLessOptions(
       modifyVars
     },
     prependData,
-    appendData,
-    sourceMap: isDevelopment
+    appendData
   };
 }
 
@@ -132,7 +129,6 @@ export function createSassOptions(additionalData: string | Function | undefined,
   return {
     sassOptions: { fiber: Fiber },
     additionalData,
-    sourceMap: isDevelopment,
     implementation: sass
   };
 }
