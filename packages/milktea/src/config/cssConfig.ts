@@ -86,16 +86,16 @@ export function createCssOptions(
   localIdentName?: string,
   getLocalIdent?: Function
 ): LoaderOptions {
-  const options: LoaderOptions = { exportOnlyLocals: serverRender };
+  const modulesOptions: LoaderOptions = { exportOnlyLocals: serverRender };
 
   if (modules) {
-    Object.assign(options, {
+    Object.assign(modulesOptions, {
       localIdentName: localIdentName ?? (isDevelopment ? '[path][name]__[local]___[hash:base64:6]' : '_[hash:base64:6]'),
       getLocalIdent: getLocalIdent ?? cssLoaderGetLocalIdent
     });
   }
 
-  return options;
+  return { modules: modulesOptions };
 }
 
 /**
