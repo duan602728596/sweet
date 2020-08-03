@@ -1,5 +1,5 @@
 import type { LoaderOptions } from 'webpack-chain';
-import { createImageName } from './fileNameConfig';
+import createFileName from './fileNameConfig';
 import type { SweetConfig } from '../utils/types';
 
 /**
@@ -13,7 +13,7 @@ export function createImageConfig(sweetConfig: SweetConfig): LoaderOptions {
    */
   const { mode, serverRender }: SweetConfig = sweetConfig;
   const isDevelopment: boolean = mode === 'development';
-  const filename: string = createImageName(isDevelopment);
+  const filename: string = createFileName(isDevelopment);
 
   return {
     name: filename,

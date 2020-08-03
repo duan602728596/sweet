@@ -13,8 +13,8 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
     // mini-css-extract-plugin
     .plugin('mini-css-extract-plugin')
     .use(MiniCssExtractPlugin, [{
-      filename: '[chunkhash:15].css',
-      chunkFilename: '[chunkhash:15].css'
+      filename: '[name]_[chunkhash:15].css',
+      chunkFilename: '[name]_[chunkhash:15].css'
     }])
     .end()
     // css压缩
