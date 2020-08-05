@@ -232,22 +232,31 @@ async function start(folder: string, registry: number, test: boolean): Promise<v
     const packageJson: {
       dependencies: Dictionary<string>;
       devDependencies: Dictionary<string>;
+      peerDependencies: Dictionary<string>;
     } = require(path.join(folder, 'package.json'));
     const dependencies: Array<PackageItem> | null = 'dependencies' in packageJson
-      ? objectToArray(packageJson.dependencies)
-      : null;
+      ? objectToArray(packageJson.dependencies) : null;
     const devDependencies: Array<PackageItem> | null = 'devDependencies' in packageJson
-      ? objectToArray(packageJson.devDependencies)
-      : null;
+      ? objectToArray(packageJson.devDependencies) : null;
+    const peerDependencies: Array<PackageItem> | null = 'peerDependencies' in packageJson
+      ? objectToArray(packageJson.peerDependencies) : null;
 
     // 获取dep和dev的最新版本号
+    const task: Array<Promise<void>> = [];
+
     if (dependencies) {
-      await getVersionFromNpm(dependencies, registry);
+      task.push(getVersionFromNpm(dependencies, registry));
     }
 
     if (devDependencies) {
-      await getVersionFromNpm(devDependencies, registry);
+      task.push(getVersionFromNpm(devDependencies, registry));
     }
+
+    if (peerDependencies) {
+      task.push(getVersionFromNpm(peerDependencies, registry));
+    }
+
+    await Promise.all(task);
 
     // 输出
     let consoleText: string = `${ folder }:\n`;
@@ -260,6 +269,11 @@ async function start(folder: string, registry: number, test: boolean): Promise<v
     if (devDependencies) {
       consoleText += '  devDependencies:\n';
       consoleText += consoleLogText(devDependencies);
+    }
+
+    if (peerDependencies) {
+      consoleText += '  peerDependencies:\n';
+      consoleText += consoleLogText(peerDependencies);
     }
 
     if (!test) {
