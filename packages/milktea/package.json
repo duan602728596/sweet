@@ -15,7 +15,7 @@
     "test": "cross-env NODE_ENV=test mocha ./test/test.js --timeout 180000"
   },
   "dependencies": {
-    "@babel/core": "^7.11.0",
+    "@babel/core": "^7.11.1",
     "@babel/plugin-proposal-class-properties": "^7.10.4",
     "@babel/plugin-proposal-decorators": "^7.10.5",
     "@babel/plugin-proposal-do-expressions": "^7.10.4",
@@ -33,7 +33,7 @@
     "@babel/preset-react": "^7.10.4",
     "@babel/preset-typescript": "^7.10.4",
     "@babel/register": "^7.10.5",
-    "@babel/runtime-corejs3": "^7.11.0",
+    "@babel/runtime-corejs3": "^7.11.1",
     "@bbkkbkk/files-map-webpack-plugin": "^1.0.1",
     "@svgr/webpack": "^5.4.0",
     "babel-loader": "^8.1.0",
@@ -57,12 +57,12 @@
     "sass": "^1.26.10",
     "sass-loader": "^9.0.2",
     "style-loader": "^1.2.1",
-    "terser": "^4.8.0",
-    "terser-webpack-plugin": "^3.0.8",
+    "terser": "^5.0.0",
+    "terser-webpack-plugin": "^4.0.0",
     "url-loader": "^4.1.0",
     "webpack": "^5.0.0-beta.22",
     "webpack-chain": "^6.5.1",
-    "webpack-merge": "^5.1.0"
+    "webpack-merge": "^5.1.1"
   },
   "devDependencies": {
     "@vue/babel-helper-vue-jsx-merge-props": "^1.0.0",
