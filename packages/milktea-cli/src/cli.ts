@@ -129,8 +129,16 @@ const argv: object = yargs
       describe: 'Npm包信息地址。0：Npm，1：Yarn，2：CNpm',
       type: 'number'
     },
+    peerDependencies: {
+      describe: '是否搜索peerDependencies内的依赖',
+      type: 'boolean'
+    },
     __DEV__: {
       describe: '__DEV__',
       type: 'boolean'
+    },
+    __PACKAGES__: {
+      describe: '__PACKAGES__',
+      type: 'string'
     }
   }).argv;

@@ -12,7 +12,7 @@ async function argvUpdate(argv: Argv): Promise<void> {
   if (_.isNil(argv.__DEV__)) {
     folders.push(process.cwd());
   } else {
-    const packages: string = path.join(process.cwd(), 'packages');
+    const packages: string = path.join(process.cwd(), argv?.__PACKAGES__ ?? 'packages');
     const dirs: string[] = await fs.promises.readdir(packages);
 
     for (const dir of dirs) {
@@ -26,7 +26,7 @@ async function argvUpdate(argv: Argv): Promise<void> {
 
   const registry: number = _.isNil(argv.registry) ? 0 : argv.registry;
 
-  await update(folders, registry);
+  await update(folders, registry, argv?.peerDependencies ?? false);
 }
 
 export default argvUpdate;
