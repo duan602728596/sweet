@@ -44,6 +44,7 @@ milktea-cli是一个快速运行环境的工具。
   * `--renderType`：html使用的渲染模板，`ejs`或`nunjucks`。默认为`ejs`。
 * `milktea update`: 查看是否有依赖包需要更新。
   * `--registry`: Npm包信息地址。可能的值为 0：Npm源，1：Yarn源，2：CNpm源。
+  * `--peerDependencies`: 是否搜索peerDependencies内的依赖。
 * `milktea image2webp`: 将图片批量转换成`*.webp`格式。
   * `--imageEntry`: 源图片文件夹。
   * `--imageOutput`: 输出文件夹。

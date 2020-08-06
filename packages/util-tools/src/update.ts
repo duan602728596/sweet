@@ -226,7 +226,7 @@ function consoleLogText(packageArray: Array<PackageItem>): string {
   return consoleText;
 }
 
-async function start(folder: string, registry: number, test: boolean): Promise<void> {
+async function start(folder: string, registry: number, findPeerDependencies: boolean, test: boolean): Promise<void> {
   try {
     // 依赖
     const packageJson: {
@@ -252,7 +252,7 @@ async function start(folder: string, registry: number, test: boolean): Promise<v
       task.push(getVersionFromNpm(devDependencies, registry));
     }
 
-    if (peerDependencies) {
+    if (peerDependencies && findPeerDependencies) {
       task.push(getVersionFromNpm(peerDependencies, registry));
     }
 
@@ -271,7 +271,7 @@ async function start(folder: string, registry: number, test: boolean): Promise<v
       consoleText += consoleLogText(devDependencies);
     }
 
-    if (peerDependencies) {
+    if (peerDependencies && findPeerDependencies) {
       consoleText += '  peerDependencies:\n';
       consoleText += consoleLogText(peerDependencies);
     }
@@ -286,11 +286,12 @@ async function start(folder: string, registry: number, test: boolean): Promise<v
 
 /**
  * @param { Array<string> } folders: 目录的数组
- * @param { number } registry: Npm包信息地址。0：Npm，1：Yarn，2：CNpm。
+ * @param { number } registry: Npm包信息地址。0：Npm，1：Yarn，2：CNpm
+ * @param { boolean } findPeerDependencies: 是否查找peerDependencies内的包
  * @param { boolean } test: 是否为测试环境
  */
-export default async function(folders: Array<string>, registry: number, test: boolean): Promise<void> {
+export default async function(folders: Array<string>, registry: number, findPeerDependencies: boolean, test: boolean): Promise<void> {
   for (const folder of folders) {
-    await start(folder, registry, test);
+    await start(folder, registry, findPeerDependencies, test);
   }
 }
