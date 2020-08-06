@@ -28,7 +28,8 @@ import update from '@sweet-milktea/util-tools/update';
 
 update(
   ['path/to/project'], // 项目工程目录的数组
-  0                    // Npm包信息地址。0：Npm，1：Yarn，2：CNpm。
+  0,                   // Npm包信息地址。0：Npm，1：Yarn，2：CNpm。
+  false                // 是否搜索peerDependencies内的依赖
 );
 ```
 
