@@ -22,7 +22,7 @@ export function cssLoaderGetLocalIdentFunc(
   options: any
 ): string {
   const { context, hashPrefix }: any = options;
-  const { resourcePath }: loader.LoaderContext = loaderContext;
+  const { resourcePath }: any = loaderContext;
   const request: string = normalizePath(path.relative(context, resourcePath));
 
   options.content = `${ hashPrefix + request }\x00${ unescape(localName) }`;
