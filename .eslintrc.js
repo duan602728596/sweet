@@ -81,7 +81,9 @@ module.exports = {
       parser: '@babel/eslint-parser',
       parserOptions: {
         requireConfigFile: false,
-        babelOptions: {}
+        babelOptions: {
+          presets: ['@babel/preset-react']
+        }
       }
     }
   ],
