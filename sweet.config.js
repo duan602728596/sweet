@@ -14,6 +14,7 @@ export default function(info) {
     frame: 'react',
     dll: [
       'react',
+      'react-dom',
       'prop-types',
       'react-router',
       'react-router-dom',
@@ -38,6 +39,7 @@ export default function(info) {
       server: [path.join(__dirname, 'src/server.js')]
     },
     js: {
+      jsx: true,
       plugins,
       exclude: /node_modules/
     },
@@ -58,6 +60,7 @@ export default function(info) {
     filesMap: true
   };
 
+  /*
   if (isDev) {
     config.resolve = {
       alias: {
@@ -65,6 +68,7 @@ export default function(info) {
       }
     };
   }
+  */
 
   return config;
 }
