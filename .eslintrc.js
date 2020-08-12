@@ -1,3 +1,5 @@
+const { createBabelPlugins } = require('@sweet-milktea/milktea/lib/config/babelConfig');
+
 module.exports = {
   env: {
     browser: true,
@@ -29,10 +31,12 @@ module.exports = {
   overrides: [
     {
       files: ['*.js', '*.jsx'],
-      parser: 'babel-eslint',
+      parser: '@babel/eslint-parser',
       parserOptions: {
+        requireConfigFile: false,
         babelOptions: {
-          configFile: './babel.config.js'
+          presets: ['@babel/preset-react'],
+          plugins: createBabelPlugins()
         }
       }
     }
