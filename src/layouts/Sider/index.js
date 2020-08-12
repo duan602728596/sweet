@@ -3,7 +3,6 @@
  * 页面左侧菜单
  * 渲染二级和三级菜单
  */
-import React from 'react';
 import PropTypes from 'prop-types';
 import { useLocation, Link } from 'react-router-dom';
 import { Layout, Menu } from 'antd';

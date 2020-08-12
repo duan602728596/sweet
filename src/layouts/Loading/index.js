@@ -1,7 +1,7 @@
 /**
  * 异步加载时显示loading
  */
-import React, { Component } from 'react';
+import { Component } from 'react';
 import { Spin } from 'antd';
 import Main from '../Main/index';
 import style from './index.sass';

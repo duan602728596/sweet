@@ -1,4 +1,4 @@
-import React, { lazy, Suspense } from 'react';
+import { lazy, Suspense } from 'react';
 import { injectReducers } from '../../store/store';
 import Loading from '../../layouts/Loading';
 

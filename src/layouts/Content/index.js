@@ -3,7 +3,6 @@
  * 页面内容
  * 组件用于展示页面的内容
  */
-import React from 'react';
 import PropTypes from 'prop-types';
 import { Layout } from 'antd';
 import style from './index.sass';

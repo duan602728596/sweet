@@ -1,4 +1,3 @@
-import React from 'react';
 import { useLocation, Link } from 'react-router-dom';
 import { Layout, Menu, Avatar, Dropdown } from 'antd';
 import {

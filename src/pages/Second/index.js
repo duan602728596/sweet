@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import { Fragment } from 'react';
 import { useRoutes } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import { FolderOpenOutlined as IconFolderOpenOutlined } from '@ant-design/icons';

@@ -1,6 +1,5 @@
 require('source-map-support').install();
 
-import React from 'react';
 import { renderToNodeStream } from 'react-dom/server';
 import { StaticRouter } from 'react-router-dom/server';
 import { Provider } from 'react-redux';

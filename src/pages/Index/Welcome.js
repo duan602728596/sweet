@@ -1,4 +1,3 @@
-import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { createSelector, createStructuredSelector } from 'reselect';
 import { Typography } from 'antd';

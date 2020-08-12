@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import { Fragment } from 'react';
 import { Helmet } from 'react-helmet';
 import loadModels from '../../store/loadModels';
 import Main from '../../layouts/Main';

@@ -2,7 +2,7 @@
  * 错误捕捉模块
  * 当模块报错时，显示错误
  */
-import React, { Component } from 'react';
+import { Component } from 'react';
 import PropTypes from 'prop-types';
 import style from './index.sass';
 import Content from '../Content/index';
