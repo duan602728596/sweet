@@ -22,8 +22,6 @@
     "packages/*"
   ],
   "dependencies": {
-    "@storybook/addon-actions": "^6.0.2",
-    "@storybook/addon-links": "^6.0.2",
     "@storybook/cli": "^6.0.2",
     "@storybook/react": "^6.0.2",
     "@types/eslint": "^7",
