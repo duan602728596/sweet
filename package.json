@@ -13,8 +13,8 @@
     "update": "milktea update",
     "update:dev": "milktea update --__DEV__",
     "docs:init": "sb init --type react",
-    "docs:start": "cross-env NODE_ENV=development start-storybook -p 5060",
-    "docs:build": "npm run clean:docs && cross-env NODE_ENV=production build-storybook",
+    "docs:start": "cross-env NODE_ENV=development start-storybook --config-dir docs -p 5060",
+    "docs:build": "npm run clean:docs && cross-env NODE_ENV=production build-storybook --config-dir docs",
     "clean:docs": "rimraf storybook-static"
   },
   "private": true,
