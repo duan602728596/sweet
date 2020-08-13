@@ -1,9 +1,9 @@
 import { combineReducers } from '@reduxjs/toolkit';
-import indexModels from '../pages/Index/models/models';
+import indexReducers from '../pages/Index/reducers/reducers';
 
 /* reducers */
 const reducers = {
-  ...indexModels
+  ...indexReducers
 };
 
 /* 创建reducer */

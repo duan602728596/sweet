@@ -3,7 +3,7 @@ import { createSelector, createStructuredSelector } from 'reselect';
 import { Typography } from 'antd';
 import { LikeFilled as IconLikeFilled } from '@ant-design/icons';
 import style from './welcome.sass';
-import { setLikeLen } from './models/models';
+import { setLikeLen } from './reducers/reducers';
 import welcome, { ReactComponent as WelcomeSvgComponent } from './images/welcome.svg';
 
 /* state */

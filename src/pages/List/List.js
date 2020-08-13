@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { createSelector, createStructuredSelector } from 'reselect';
 import { Button, Table, message } from 'antd';
-import { requestList } from './models/models';
+import { requestList } from './reducers/reducers';
 import style from './list.sass';
 
 /* state */

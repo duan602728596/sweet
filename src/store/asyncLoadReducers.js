@@ -4,7 +4,7 @@ import { useMemo } from 'react';
  * 异步注入reducer的修饰器
  * @param { object } models
  */
-function loadModels(models) {
+function asyncLoadReducers(models) {
   let injectModels = true; // models是否需要注入
 
   /**
@@ -24,4 +24,4 @@ function loadModels(models) {
   };
 }
 
-export default loadModels;
+export default asyncLoadReducers;
