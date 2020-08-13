@@ -16,15 +16,12 @@ export default function(info) {
       'react',
       'react-dom',
       'prop-types',
+      '@reduxjs/toolkit',
+      'react-redux',
+      'reselect',
       'react-router',
       'react-router-dom',
       'history',
-      'redux',
-      'react-redux',
-      'redux-actions',
-      'redux-thunk',
-      'immutable',
-      'reselect',
       'react-helmet'
     ],
     entry: {

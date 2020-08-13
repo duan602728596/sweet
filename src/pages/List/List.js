@@ -2,13 +2,13 @@ import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { createSelector, createStructuredSelector } from 'reselect';
 import { Button, Table, message } from 'antd';
-import { reqDataList } from './models/models';
+import { requestList } from './models/models';
 import style from './list.sass';
 
 /* state */
 const state = createStructuredSelector({
   dataList: createSelector(
-    ({ list: $$List }) => $$List?.get?.('dataList').toJS() ?? [],
+    ({ list }) => list.dataList,
     (data) => data
   )
 });
@@ -22,7 +22,7 @@ function List(props) {
   async function handleLoadDataClick(event) {
     setLoading(true);
 
-    const res = await dispatch(reqDataList({ num: 3 }));
+    const res = await dispatch(requestList({ num: 3 }));
 
     if (res === true) {
       message.success('success!');
@@ -39,7 +39,7 @@ function List(props) {
   return (
     <div>
       <Button className={ style.btn } onClick={ handleLoadDataClick }>加载数据</Button>
-      <Table columns={ columns } dataSource={ dataList } loading={ loading } rowKey={ (record, index) => record.id } />
+      <Table columns={ columns } dataSource={ dataList } loading={ loading } rowKey="id" />
     </div>
   );
 }

@@ -1,4 +1,4 @@
-import { combineReducers } from 'redux';
+import { combineReducers } from '@reduxjs/toolkit';
 import indexModels from '../pages/Index/models/models';
 
 /* reducers */

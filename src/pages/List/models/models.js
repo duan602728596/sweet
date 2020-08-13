@@ -1,6 +1,4 @@
-import { createAction, handleActions } from 'redux-actions';
-import { fromJS, List } from 'immutable';
-import createAsyncAction from '../../../store/createAsyncAction';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 
 // mock
 const res = [
@@ -9,25 +7,29 @@ const res = [
   { id: '2', name: '夏侯惇' }
 ];
 
-const initData = {
-  dataList: []
-};
+function sleep(time) {
+  return new Promise((resolve, reject) => {
+    setTimeout(resolve, time);
+  });
+}
 
-/* Action */
-export const setDataList = createAction('list/列表');
-export const reqDataList = createAsyncAction(async function(_, args) {
-  const data = await _.delay(1000, res);
+export const requestList = createAsyncThunk('list/requestList', async function() {
+  await sleep(1000);
 
-  await _.put(setDataList(data));
-
-  return true;
+  return res;
 });
 
-/* reducer */
-export default {
-  list: handleActions({
-    [setDataList]($$state, action) {
-      return $$state.set('dataList', List(action.payload));
+const counterSlice = createSlice({
+  name: 'list',
+  initialState: {
+    dataList: []
+  },
+  reducers: {},
+  extraReducers: {
+    [requestList.fulfilled](state, action) {
+      state.dataList = action.payload;
     }
-  }, fromJS(initData))
-};
+  }
+});
+
+export default { list: counterSlice.reducer };

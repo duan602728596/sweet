@@ -1,18 +1,18 @@
-import { createAction, handleActions } from 'redux-actions';
-import { fromJS } from 'immutable';
+import { createSlice } from '@reduxjs/toolkit';
 
-const initData = {
-  likeLen: 0
-};
+const counterSlice = createSlice({
+  name: 'index',
+  initialState: {
+    likeLen: 0
+  },
+  reducers: {
+    setLikeLen(state, action) {
+      state.likeLen = action.payload;
 
-/* Action */
-export const setLikeLen = createAction('index/点赞');
-
-/* reducer */
-export default {
-  index: handleActions({
-    [setLikeLen]($$state, action) {
-      return $$state.set('likeLen', action.payload);
+      return state;
     }
-  }, fromJS(initData))
-};
+  }
+});
+
+export const { setLikeLen } = counterSlice.actions;
+export default { index: counterSlice.reducer };

@@ -1,15 +1,10 @@
 /* 全局的store */
-import { createStore, compose, applyMiddleware } from 'redux';
-import thunk from 'redux-thunk';
-import { fromJS } from 'immutable';
+import { configureStore } from '@reduxjs/toolkit';
 import { createReducer } from './reducers';
 
 /* reducer列表 */
 const reducer = createReducer({});
 const asyncReducers = {}; // 异步的reducers
-
-/* 中间件 */
-const middleware = applyMiddleware(thunk);
 
 /* store */
 const store = {};
@@ -17,14 +12,11 @@ const store = {};
 export function storeFactory(initialState = {}) {
   // 避免热替换导致redux的状态丢失
   if (Object.keys(store).length === 0) {
-    const $$initialState = {};
-
-    for (const key in initialState) {
-      $$initialState[key] = fromJS(initialState[key]);
-    }
-
     /* store */
-    Object.assign(store, createStore(reducer, $$initialState, compose(middleware)));
+    Object.assign(store, configureStore({
+      reducer,
+      preloadedState: initialState
+    }));
   }
 
   return store;

@@ -2,11 +2,9 @@ import { Fragment } from 'react';
 import { useRoutes } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
 import { FolderOpenOutlined as IconFolderOpenOutlined } from '@ant-design/icons';
-import loadModels from '../../store/loadModels';
 import Main from '../../layouts/Main';
 import Content from '../../layouts/Content';
 import Sider from '../../layouts/Sider/index';
-import models from './models/models';
 import Second from './Second';
 
 const options = [
@@ -60,4 +58,4 @@ function Index(props) {
   );
 }
 
-export default loadModels(models)(Index);
+export default Index;

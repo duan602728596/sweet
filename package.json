@@ -2,7 +2,7 @@
   "name": "@sweet-milktea/react-demo",
   "scripts": {
     "dll": "cross-env NODE_ENV=development milktea dll",
-    "start": "npm run clean && npm run clean:server && cross-env NODE_ENV=development milktea start --server --serverRender --serverRenderMemFs",
+    "start": "npm run clean && npm run clean:server && cross-env NODE_ENV=development milktea start --server",
     "build": "npm run clean && npm run clean:server && cross-env NODE_ENV=production milktea build --serverRender",
     "clean": "rimraf ./dist",
     "clean:server": "rimraf ./dist-server",
@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@ant-design/icons": "^4.2.2",
+    "@reduxjs/toolkit": "^1.4.0",
     "@sweet-milktea/milktea-cli": "^0.16.3",
     "@sweet-milktea/server": "^0.16.1",
     "@sweet-milktea/server-log": "^0.6.6",
@@ -30,9 +31,6 @@
     "react-redux": "^7.2.1",
     "react-router": "^6.0.0-beta.0",
     "react-router-dom": "^6.0.0-beta.0",
-    "redux": "^4.0.5",
-    "redux-actions": "^2.6.5",
-    "redux-thunk": "^2.3.0",
     "reselect": "^4.0.0",
     "source-map-support": "^0.5.19"
   },
