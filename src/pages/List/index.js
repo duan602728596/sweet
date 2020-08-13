@@ -3,7 +3,7 @@ import { Helmet } from 'react-helmet';
 import asyncLoadReducers from '../../store/asyncLoadReducers';
 import Main from '../../layouts/Main';
 import Content from '../../layouts/Content';
-import models from './reducers/reducers';
+import reducers from './reducers/reducers';
 import List from './List';
 
 function Index(props) {
@@ -21,4 +21,4 @@ function Index(props) {
   );
 }
 
-export default asyncLoadReducers(models)(Index);
+export default asyncLoadReducers(reducers)(Index);
