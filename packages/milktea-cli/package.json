@@ -18,7 +18,7 @@
     "test": "cross-env NODE_ENV=test mocha ./test/test.js --timeout 180000"
   },
   "dependencies": {
-    "lodash": "^4.17.19",
+    "lodash": "^4.17.20",
     "webpack": "^4.44.1",
     "yargs": "^15.4.1"
   },

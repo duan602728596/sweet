@@ -22,8 +22,8 @@
     "packages/*"
   ],
   "dependencies": {
-    "@storybook/cli": "^6.0.2",
-    "@storybook/react": "^6.0.2",
+    "@storybook/cli": "^6.0.10",
+    "@storybook/react": "^6.0.10",
     "@types/eslint": "^7",
     "@types/estree": "^0",
     "@types/koa": "^2",
@@ -34,8 +34,8 @@
     "gulp": "^4.0.2",
     "gulp-typescript": "^6.0.0-alpha.1",
     "lerna": "^3.22.1",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
+    "react": "^17.0.0-rc.0",
+    "react-dom": "^17.0.0-rc.0",
     "react-markdown": "^4.3.1",
     "rimraf": "^3.0.2",
     "typescript": "^3.9.7"
@@ -57,11 +57,11 @@
     "cross-env": "^7.0.2",
     "cz-conventional-changelog": "^3.2.0",
     "es-module-path-case-check": "^1.5.0",
-    "eslint": "^7.6.0",
-    "eslint-plugin-react": "^7.20.5",
+    "eslint": "^7.7.0",
+    "eslint-plugin-react": "^7.20.6",
     "husky": "^4.2.5",
     "lint-staged": "^10.2.11",
-    "lodash": "^4.17.19",
+    "lodash": "^4.17.20",
     "mocha": "^8.1.1"
   },
   "husky": {
