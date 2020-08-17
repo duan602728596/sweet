@@ -60,7 +60,7 @@
     "terser": "^5.0.0",
     "terser-webpack-plugin": "^4.0.0",
     "url-loader": "^4.1.0",
-    "webpack": "^5.0.0-beta.24",
+    "webpack": "^5.0.0-beta.26",
     "webpack-chain": "^6.5.1",
     "webpack-merge": "^5.1.1"
   },
