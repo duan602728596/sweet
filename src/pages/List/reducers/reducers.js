@@ -19,7 +19,7 @@ export const requestList = createAsyncThunk('list/requestList', async function()
   return res;
 });
 
-const counterSlice = createSlice({
+const { actions, reducer } = createSlice({
   name: 'list',
   initialState: {
     dataList: []
@@ -32,4 +32,4 @@ const counterSlice = createSlice({
   }
 });
 
-export default { list: counterSlice.reducer };
+export default { list: reducer };

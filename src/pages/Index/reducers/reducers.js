@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const counterSlice = createSlice({
+const { actions, reducer } = createSlice({
   name: 'index',
   initialState: {
     likeLen: 0
@@ -14,5 +14,5 @@ const counterSlice = createSlice({
   }
 });
 
-export const { setLikeLen } = counterSlice.actions;
-export default { index: counterSlice.reducer };
+export const { setLikeLen } = actions;
+export default { index: reducer };
