@@ -15,7 +15,7 @@
     "test": "cross-env NODE_ENV=test mocha ./test/test.js --timeout 180000"
   },
   "dependencies": {
-    "@babel/core": "^7.11.1",
+    "@babel/core": "^7.11.4",
     "@babel/plugin-proposal-class-properties": "^7.10.4",
     "@babel/plugin-proposal-decorators": "^7.10.5",
     "@babel/plugin-proposal-do-expressions": "^7.10.4",
@@ -57,7 +57,7 @@
     "sass": "^1.26.10",
     "sass-loader": "^9.0.3",
     "style-loader": "^1.2.1",
-    "terser": "^5.1.0",
+    "terser": "^5.2.1",
     "terser-webpack-plugin": "^4.1.0",
     "url-loader": "^4.1.0",
     "webpack": "^4.44.1",
@@ -70,13 +70,13 @@
     "ts-loader": "^8.0.2",
     "vue-loader": "^15.9.3",
     "vue-svg-loader": "^0.16.0",
-    "vue-template-compiler": "^2.6.11"
+    "vue-template-compiler": "^2.6.12"
   },
   "peerDependencies": {
     "@vue/babel-helper-vue-jsx-merge-props": ">=1",
     "@vue/babel-preset-jsx": ">=1",
     "ts-loader": ">=8",
-    "typescript": ">=3",
+    "typescript": ">=4",
     "vue-loader": ">=15",
     "vue-svg-loader": ">=0",
     "vue-template-compiler": ">=2"
