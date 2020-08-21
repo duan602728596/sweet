@@ -72,7 +72,9 @@ export interface LESS extends CSS {
 
 export interface SASS extends CSS {
   additionalData?: string | Function;
+  /** @deprecated */
   prependData?: string | Function;
+  /** @deprecated */
   data?: string | Function;
 }
 
