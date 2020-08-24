@@ -5,20 +5,20 @@ import formatModules from './formatModules';
 
 Vue.use(Vuex);
 
-const store = {
-  store: null
-};
+const store = {};
 
 export function storeFactory(initialState = {}) {
-  store.store = new Vuex.Store({
-    state: initialState,
-    getters: {
-      getInitialStateData: (state) => (key) => state[key]
-    },
-    modules: formatModules(modules, initialState)
-  });
+  if (Object.keys(store).length === 0) {
+    Object.assign(store, new Vuex.Store({
+      state: initialState,
+      getters: {
+        getInitialStateData: (state) => (key) => state[key]
+      },
+      modules: formatModules(modules, initialState)
+    }));
+  }
 
-  return store.store;
+  return store;
 }
 
 export default store;
