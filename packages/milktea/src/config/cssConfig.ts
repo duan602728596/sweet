@@ -49,7 +49,7 @@ export function cssLoaderGetLocalIdent(
   loaderContext: loader.LoaderContext,
   localIdentName: string,
   localName: string,
-  options: { [key: string]: any }
+  options: any
 ): string {
   // node_modules 和 global文件直接返回className
   if (/(node_modules|global\.(css|less|sass|scss|styl(us)?))/i.test(loaderContext.resourcePath)) {
