@@ -80,6 +80,7 @@ module.exports = function(info) {
   * ecmascript `{ boolean }` : 是否编译到ecmascript的最新语法（即不使用@babel/preset-env，通常适用于node、nwjs和electron）
   * typescript `{ boolean }` : 是否使用typescript编译（即使用@babel/preset-typescript）
   * [jsx](https://github.com/reactjs/rfcs/blob/createlement-rfc/text/0000-create-element-changes.md#summary) `{ boolean }` : babel-preset-react的runtime选项值为`automatic`，否则为`classic`。默认为false
+  * vue3 `{ boolean }` : 加载vue3的插件（默认加载vue2的插件）。
   * presets `{ Array<any> }` : 自定义presets
   * plugins `{ Array<any> }` : 自定义plugins
   * resetPresets `{ Array<any> }` : 重写presets
@@ -126,8 +127,8 @@ module.exports = function(info) {
 
 ### 关于vue
 
-如果使用vue，需要手动安装`@vue/babel-helper-vue-jsx-merge-props`、`@vue/babel-preset-jsx`、`vue-loader`、`vue-svg-loader`、
-`vue-template-compiler`。
+如果使用vue，需要手动安装`@vue/babel-helper-vue-jsx-merge-props`、`@vue/babel-preset-jsx` (vue2) 或 `@vue/babel-plugin-jsx`(vue3) ，
+`vue-loader`、`vue-svg-loader@0.17.0-beta.1`，`vue-template-compiler`(vue2) 或 `@vue/compiler-sfc`(vue3)。
 
 ### 关于typescript
 
