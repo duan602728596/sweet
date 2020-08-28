@@ -30,6 +30,7 @@ export interface JS {
   ecmascript?: boolean;
   typescript?: boolean;
   jsx?: boolean;
+  vue3?: boolean;
   presets?: Array<any>;
   plugins?: Array<any>;
   resetPresets?: Array<any>;
