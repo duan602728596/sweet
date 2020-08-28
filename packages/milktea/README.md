@@ -96,9 +96,7 @@ module.exports = function(info) {
   * modules `{ boolean }` : 开启css-in-modules
   * exclude `{ RegExp }` : exclude规则
   * include `{ RegExp }` : include规则
-  * additionalData `{ string | Function }` : 注入sass变量（参考sass-loader，sass-loader >= 9）
-  * <del> prependData `{ string | Function }` : 注入sass变量（参考sass-loader，sass-loader >= 8 && sass-loader < 9） </del>
-  * <del> data `{ string | Function }` : 注入sass变量（参考sass-loader，sass-loader < 8） </del>
+  * additionalData `{ string | Function }` : 注入sass变量（参考sass-loader）
   * localIdentName `{ string }` : 配置localIdentName（参考css-loader）
   * getLocalIdent `{ Function }` : 配置getLocalIdent（参考css-loader）
 * css `{ object }` : css配置（默认使用less）
@@ -107,8 +105,7 @@ module.exports = function(info) {
   * exclude `{ RegExp }` : exclude规则
   * include `{ RegExp }` : include规则
   * modifyVars `{ object }` : 注入less变量（参考less-loader）
-  * prependData `{ string | Function }` : （参考less-loader）
-  * appendData `{ string | Function }` : （参考less-loader）
+  * additionalData `{ string | Function }` : （参考less-loader）
   * localIdentName `{ string }` : 配置localIdentName（参考css-loader）
   * getLocalIdent `{ Function }` : 配置getLocalIdent（参考css-loader）
 * html `{ Array<object> }` : html配置（默认使用pug）

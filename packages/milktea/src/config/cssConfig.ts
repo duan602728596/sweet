@@ -101,14 +101,12 @@ export function createCssOptions(
 /**
  * less-loader options
  * @param { object } modifyVars: less变量
- * @param { string | Function } prependData
- * @param { string | Function } appendData
+ * @param { string | Function } additionalData
  * @param { boolean } isDevelopment: 是否为开发环境
  */
 export function createLessOptions(
   modifyVars: object | undefined,
-  prependData: string | Function | undefined,
-  appendData: string | Function | undefined,
+  additionalData: string | Function | undefined,
   isDevelopment: boolean
 ): LoaderOptions {
   return {
@@ -116,8 +114,7 @@ export function createLessOptions(
       javascriptEnabled: true,
       modifyVars
     },
-    prependData,
-    appendData
+    additionalData
   };
 }
 

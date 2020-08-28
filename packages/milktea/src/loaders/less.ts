@@ -14,8 +14,7 @@ export default function(sweetConfig: SweetConfig, config: Config): void {
     exclude,
     include,
     modifyVars,
-    prependData,
-    appendData,
+    additionalData,
     localIdentName,
     getLocalIdent
   }: LESS = cssOptions;
@@ -46,7 +45,7 @@ export default function(sweetConfig: SweetConfig, config: Config): void {
   const ScopedCssLoaderOptions: LoaderOptions = createCssOptions(false, isDevelopment, sr);
 
   // less-loader
-  const lessLoaderOptions: LoaderOptions = createLessOptions(modifyVars, prependData, appendData, isDevelopment);
+  const lessLoaderOptions: LoaderOptions = createLessOptions(modifyVars, additionalData, isDevelopment);
 
   const lessRule: Rule = config
     .module

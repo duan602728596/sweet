@@ -14,8 +14,6 @@ export default function(sweetConfig: SweetConfig, config: Config): void {
     exclude,
     include,
     additionalData,
-    prependData,
-    data,
     localIdentName,
     getLocalIdent
   }: SASS = sassOptions;
@@ -47,7 +45,7 @@ export default function(sweetConfig: SweetConfig, config: Config): void {
 
   // sass-loader
   // TODO: 未来会移除 prependData和data 选项
-  const sassLoaderOptions: LoaderOptions = createSassOptions(additionalData ?? prependData ?? data, isDevelopment);
+  const sassLoaderOptions: LoaderOptions = createSassOptions(additionalData, isDevelopment);
 
   const sassRule: Rule = config
     .module
