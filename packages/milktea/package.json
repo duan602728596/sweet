@@ -63,7 +63,7 @@
     "@vue/babel-preset-jsx": "^1.1.2",
     "ts-loader": "^8.0.3",
     "vue-loader": "^15.9.3",
-    "vue-svg-loader": "^0.16.0",
+    "vue-svg-loader": "^0.17.0-beta.1",
     "vue-template-compiler": "^2.6.12"
   },
   "peerDependencies": {
@@ -72,7 +72,7 @@
     "ts-loader": ">=8",
     "typescript": ">=4",
     "vue-loader": ">=15",
-    "vue-svg-loader": ">=0",
+    "vue-svg-loader": ">=0.17.0-beta.1",
     "vue-template-compiler": ">=2"
   },
   "engines": {

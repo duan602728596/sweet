@@ -30,6 +30,9 @@ export default function(sweetConfig: SweetConfig, config: Config): void {
           .module
           .rule('svg')
           .test(/component\.svg$/)
+          .use('vue-loader')
+          .loader('vue-loader')
+          .end()
           .use('vue-svg-loader')
           .loader('vue-svg-loader');
       }
