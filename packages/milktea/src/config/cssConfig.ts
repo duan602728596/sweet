@@ -48,7 +48,7 @@ export function cssLoaderGetLocalIdent(
   loaderContext: any,
   localIdentName: string,
   localName: string,
-  options: { [key: string]: any }
+  options: any
 ): string {
   // node_modules 和 global文件直接返回className
   if (/(node_modules|global\.(css|less|sass|scss|styl(us)?))/i.test(loaderContext.resourcePath)) {
@@ -100,14 +100,12 @@ export function createCssOptions(
 /**
  * less-loader options
  * @param { object } modifyVars: less变量
- * @param { string | Function } prependData
- * @param { string | Function } appendData
+ * @param { string | Function } additionalData
  * @param { boolean } isDevelopment: 是否为开发环境
  */
 export function createLessOptions(
   modifyVars: object | undefined,
-  prependData: string | Function | undefined,
-  appendData: string | Function | undefined,
+  additionalData: string | Function | undefined,
   isDevelopment: boolean
 ): LoaderOptions {
   return {
@@ -115,8 +113,7 @@ export function createLessOptions(
       javascriptEnabled: true,
       modifyVars
     },
-    prependData,
-    appendData
+    additionalData
   };
 }
 

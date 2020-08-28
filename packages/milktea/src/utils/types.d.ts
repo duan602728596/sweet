@@ -56,16 +56,11 @@ export interface CSS {
 
 export interface LESS extends CSS {
   modifyVars?: object;
-  prependData?: string | Function;
-  appendData?: string | Function;
+  additionalData?: string | Function;
 }
 
 export interface SASS extends CSS {
   additionalData?: string | Function;
-  /** @deprecated */
-  prependData?: string | Function;
-  /** @deprecated */
-  data?: string | Function;
 }
 
 export type Mode = 'development' | 'production' | 'none';
