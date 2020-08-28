@@ -22,8 +22,8 @@
     "packages/*"
   ],
   "dependencies": {
-    "@storybook/cli": "^6.0.16",
-    "@storybook/react": "^6.0.16",
+    "@storybook/cli": "^6.0.20",
+    "@storybook/react": "^6.0.20",
     "@types/eslint": "^7",
     "@types/estree": "^0",
     "@types/koa": "^2",
@@ -49,20 +49,20 @@
     "@sweet-milktea/eslint-plugin": "*",
     "@sweet-milktea/milktea-cli": "*",
     "@sweet-milktea/util-tools": "*",
-    "@typescript-eslint/eslint-plugin": "^3.9.1",
-    "@typescript-eslint/parser": "^3.9.1",
+    "@typescript-eslint/eslint-plugin": "^3.10.1",
+    "@typescript-eslint/parser": "^3.10.1",
     "babel-loader": "^8.1.0",
     "chai": "^4.2.0",
-    "commitizen": "^4.1.2",
+    "commitizen": "^4.2.1",
     "cross-env": "^7.0.2",
-    "cz-conventional-changelog": "^3.2.0",
+    "cz-conventional-changelog": "^3.3.0",
     "es-module-path-case-check": "^1.5.0",
     "eslint": "^7.7.0",
     "eslint-plugin-react": "^7.20.6",
     "husky": "^4.2.5",
-    "lint-staged": "^10.2.11",
+    "lint-staged": "^10.2.13",
     "lodash": "^4.17.20",
-    "mocha": "^8.1.1"
+    "mocha": "^8.1.2"
   },
   "husky": {
     "hooks": {
