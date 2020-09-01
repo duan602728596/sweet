@@ -11,7 +11,7 @@ import './global.sass';
 
 // Vue.use(VueMeta);
 
-function server(url, context = {}, initialState = {}, renderToStream) {
+function server(url, context = {}, initialState = {}) {
   const cloneData = cloneDeep(initialState);
   const routers = createRouters();
 

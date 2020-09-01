@@ -2,6 +2,7 @@
   "name": "@sweet-milktea/vue-demo",
   "scripts": {
     "dll": "cross-env NODE_ENV=development milktea dll",
+    "start:no-ssr": "npm run clean && npm run clean:server && cross-env NODE_ENV=development milktea start --server",
     "start": "npm run clean && npm run clean:server && cross-env NODE_ENV=development milktea start --server --serverRender --serverRenderMemFs",
     "build": "npm run clean && npm run clean:server && cross-env NODE_ENV=production milktea build --serverRender",
     "clean": "rimraf ./dist",
@@ -35,6 +36,7 @@
     "@sweet-milktea/util-tools": "^0.16.3",
     "@vue/babel-plugin-jsx": "^1.0.0-rc.2",
     "@vue/compiler-sfc": "^3.0.0-rc.9",
+    "@vue/compiler-ssr": "^3.0.0-rc.9",
     "@vue/server-renderer": "^3.0.0-rc.9",
     "babel-plugin-import": "^1.13.0",
     "commitizen": "^4.2.1",
