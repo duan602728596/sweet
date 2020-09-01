@@ -6,14 +6,14 @@ export default function(info) {
     dll: [
       'vue',
       'vue-router',
-      'vuex',
-      'vue-meta',
-      'classnames',
-      '@vue/composition-api'
+      'vuex'
     ],
     entry: {
       index: [path.join(__dirname, 'src/index.js')],
       other: [path.join(__dirname, 'src/other.js')]
+    },
+    output: {
+      globalObject: 'window'
     },
     serverRender: true,
     serverEntry: {

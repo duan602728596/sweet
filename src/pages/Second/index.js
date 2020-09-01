@@ -1,3 +1,4 @@
+import { FolderOpenOutlined as IconFolderOpenOutlined } from '@ant-design/icons-vue';
 import Main from '../../layouts/Main/index';
 import Sider from '../../layouts/Sider/index';
 import Content from '../../layouts/Content/index';
@@ -18,7 +19,7 @@ const options = [
   {
     id: 'page-2',
     name: '导航菜单-2',
-    icon: 'folder-open',
+    icon: <IconFolderOpenOutlined />,
     children: [
       {
         id: 'page-2-0',

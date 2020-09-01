@@ -1,5 +1,5 @@
-import { defineComponent } from '@vue/composition-api';
-import { Layout, Icon, Menu, Dropdown, Avatar } from 'ant-design-vue';
+import { Layout, Menu, Dropdown, Avatar } from 'ant-design-vue';
+import { LogoutOutlined as IconLogoutOutlined, HomeOutlined as IconHomeOutlined } from '@ant-design/icons-vue';
 import style from './index.sass';
 
 /**
@@ -7,8 +7,8 @@ import style from './index.sass';
  * 顶部header布局
  * 显示logo、导航、登录人信息等
  */
-export default defineComponent({
-  setup: () => {
+export default {
+  setup() {
     return {
       // 渲染下拉菜单
       toolsOverlayRender() {
@@ -16,7 +16,7 @@ export default defineComponent({
           <Menu>
             <Menu.Item>
               <router-link to="/Login">
-                <Icon type="logout" />
+                <IconLogoutOutlined />
                 退出
               </router-link>
             </Menu.Item>
@@ -36,13 +36,13 @@ export default defineComponent({
           <Menu mode="horizontal" theme="dark">
             <Menu.Item key="index">
               <router-link to="/Index">
-                <Icon type="home" />
+                <IconHomeOutlined />
                 首页
               </router-link>
             </Menu.Item>
             <Menu.Item key="second">
               <router-link to="/Second">
-                <Icon type="bars" />
+                <IconHomeOutlined />
                 二级页
               </router-link>
             </Menu.Item>
@@ -60,4 +60,4 @@ export default defineComponent({
       </Layout.Header>
     );
   }
-});
+};

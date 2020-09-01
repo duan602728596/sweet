@@ -1,60 +1,66 @@
-import Vue from 'vue';
-import VueRouter from 'vue-router';
+import { createRouter } from 'vue-router';
+import createHistory from './createHistory';
 import Layout from '../layouts/Layout/index';
 import Login from '../pages/Login/index';
 import Index from '../pages/index';
 
-Vue.use(VueRouter);
-
 const SecondBundle = () => import(/* webpackChunkName: 'second' */'../pages/Second/index');
 
-const routers = new VueRouter({
-  mode: 'history',
-  routes: [
-    {
-      path: '/Login',
-      name: 'login',
-      component: Login
-    },
-    {
-      path: '/',
-      component: Layout,
-      children: [
+const routers = {};
+
+export function createRouters() {
+  if (!routers.routers) {
+    routers.routers = createRouter({
+      history: createHistory(),
+      routes: [
         {
-          path: '',
-          name: 'default',
-          redirect: 'Index'
+          path: '/Login',
+          name: 'login',
+          component: Login
         },
         {
-          path: 'Index',
-          name: 'index',
-          component: Index
-        },
-        {
-          path: 'Second',
-          name: 'second',
-          component: SecondBundle,
+          path: '/',
+          component: Layout,
           children: [
             {
-              path: 'Page1',
-              name: 'second-page1',
-              component: SecondBundle
+              path: '',
+              name: 'default',
+              redirect: 'Index'
             },
             {
-              path: 'Page2',
-              name: 'second-page2',
-              component: SecondBundle
+              path: 'Index',
+              name: 'index',
+              component: Index
             },
             {
-              path: 'Page3',
-              name: 'second-page3',
-              component: SecondBundle
+              path: 'Second',
+              name: 'second',
+              component: SecondBundle,
+              children: [
+                {
+                  path: 'Page1',
+                  name: 'second-page1',
+                  component: SecondBundle
+                },
+                {
+                  path: 'Page2',
+                  name: 'second-page2',
+                  component: SecondBundle
+                },
+                {
+                  path: 'Page3',
+                  name: 'second-page3',
+                  component: SecondBundle
+                }
+              ]
             }
           ]
         }
       ]
-    }
-  ]
-});
+    });
+  }
+
+  return routers.routers;
+}
 
 export default routers;

@@ -1,5 +1,4 @@
-import { defineComponent } from '@vue/composition-api';
-import { Layout, Menu, Icon } from 'ant-design-vue';
+import { Layout, Menu } from 'ant-design-vue';
 import style from './index.sass';
 
 /**
@@ -7,7 +6,7 @@ import style from './index.sass';
  * 页面左侧菜单
  * 渲染二级和三级菜单
  */
-export default defineComponent({
+export default {
   props: {
     options: Array
   },
@@ -44,13 +43,15 @@ export default defineComponent({
             const children = this.optionsView(item.children, index);
 
             return (
-              <Menu.SubMenu key={ item.id } name={ item.id }>
-                <template slot="title">
+              <Menu.SubMenu key={ item.id }
+                name={ item.id }
+                title={
                   <span>
-                    { item.icon ? <Icon type={ item.icon } /> : null }
+                    { item.icon }
                     <span>{ item.name }</span>
                   </span>
-                </template>
+                }
+              >
                 { children }
               </Menu.SubMenu>
             );
@@ -58,7 +59,7 @@ export default defineComponent({
             return (
               <Menu.Item key={ item.id } name={ item.id }>
                 <router-link to={ item.url }>
-                  { item.icon ? <Icon type={ item.icon } /> : null }
+                  { item.icon }
                   <span>{ item.name }</span>
                 </router-link>
               </Menu.Item>
@@ -82,4 +83,4 @@ export default defineComponent({
       </Layout.Sider>
     );
   }
-});
+};

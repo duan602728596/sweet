@@ -10,7 +10,7 @@ export default {
   render() {
     return (
       <Layout class={ style.main }>
-        { this.$slots.default }
+        { this.$slots.default() }
       </Layout>
     );
   }

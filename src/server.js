@@ -1,37 +1,31 @@
 require('source-map-support').install();
 
-import Vue from 'vue';
-import { createRenderer } from 'vue-server-renderer';
-import VueCompositionApi from '@vue/composition-api';
-import VueMeta from 'vue-meta';
+import { createSSRApp } from 'vue';
+import { renderToStream } from '@vue/server-renderer';
+// // import VueMeta from 'vue-meta';
 import { cloneDeep } from 'lodash-es';
 import App from './App';
 import { storeFactory } from './store/store';
-import routers from './router/routers';
+import { createRouters } from './router/routers';
 import './global.sass';
 
-Vue.use(VueCompositionApi);
-Vue.use(VueMeta);
+// Vue.use(VueMeta);
 
-const renderer = createRenderer();
-
-function server(url, context = {}, initialState = {}) {
+function server(url, context = {}, initialState = {}, renderToStream) {
   const cloneData = cloneDeep(initialState);
+  const routers = createRouters();
 
   /* app */
-  const app = new Vue({
-    store: storeFactory(cloneData),
-    router: routers,
-    render() {
-      return <App />;
-    }
-  });
+  const app = createSSRApp(<App />);
+
+  app.use(storeFactory(cloneData));
+  app.use(routers);
 
   routers.push(url);
 
   return new Promise((resolve, reject) => {
-    routers.onReady(() => {
-      resolve(renderer.renderToStream(app));
+    routers.isReady().then(() => {
+      resolve(renderToStream(app, context));
     });
   });
 }
