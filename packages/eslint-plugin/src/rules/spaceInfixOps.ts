@@ -17,7 +17,7 @@ export default createRule<Options, MessageIds>({
     },
     fixable: null,
     messages: {
-      TSSpaceInFixOps: 'Operator \'{{type}}\' must be spaced.'
+      TSSpaceInFixOps: "Operator '{{type}}' must be spaced."
     },
     schema: []
   },
