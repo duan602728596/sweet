@@ -16,7 +16,7 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
     ecmascript,
     typescript,
     jsx,
-    vue3,
+    vue2,
     presets,
     plugins,
     resetPresets,
@@ -98,12 +98,12 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
           .tap((options: LoaderOptions): LoaderOptions => {
             const mergeOptions: { [key: string]: any } = {};
 
-            if (vue3 && _.isNil(resetPlugins)) {
-              // 加载vue3的插件
-              mergeOptions.plugins = ['@vue/babel-plugin-jsx'];
-            } else if (!vue3 && _.isNil(resetPresets)) {
+            if (vue2 && _.isNil(resetPlugins)) {
               // 加载vue2的插件
               mergeOptions.presets = ['@vue/babel-preset-jsx'];
+            } else if (!vue2 && _.isNil(resetPresets)) {
+              // 加载vue3的插件
+              mergeOptions.plugins = ['@vue/babel-plugin-jsx'];
             }
 
             return _.mergeWith(options, mergeOptions, customizer);

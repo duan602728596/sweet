@@ -3,16 +3,18 @@ import * as Config from 'webpack-chain';
 import type { Use, LoaderOptions } from 'webpack-chain';
 import { customizer } from '../utils/utils';
 import { createBabelForTsOptions } from '../config/babelConfig';
-import type { SweetConfig, SweetOptions, TS } from '../utils/types';
+import type { SweetConfig, SweetOptions, TS, JS } from '../utils/types';
 
 /* ts 配置 */
 export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, config: Config): void {
-  const { ts }: SweetConfig = sweetConfig;
+  const { ts, js }: SweetConfig = sweetConfig;
   const frame: string | undefined = sweetConfig.frame;
 
   // 获取配置
   const tsOptions: TS = ts ?? {};
+  const jsOptions: JS = js ?? {};
   const { presets = [], plugins = [], exclude, include }: TS = tsOptions;
+  const { vue2 }: JS = jsOptions;
 
   const useConfig: object = {
     'babel-loader': {
@@ -58,10 +60,20 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
   config
     .when(frame === 'vue',
       (config: Config): void => {
+        const mergeOptions: { [key: string]: any } = {};
+
+        if (vue2) {
+          // 加载vue2的插件
+          mergeOptions.presets = ['@vue/babel-preset-jsx'];
+        } else {
+          // 加载vue3的插件
+          mergeOptions.plugins = ['@vue/babel-plugin-jsx'];
+        }
+
         configBabelUse
-          .tap((options: LoaderOptions): LoaderOptions => _.mergeWith(options, {
-            presets: ['@vue/babel-preset-jsx']
-          }, customizer));
+          .tap((options: LoaderOptions): LoaderOptions => {
+            return _.mergeWith(options, mergeOptions, customizer);
+          });
       }
     );
 
