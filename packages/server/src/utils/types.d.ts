@@ -2,6 +2,14 @@ import * as Koa from 'koa';
 import type { Compiler } from 'webpack';
 import type { IUnionFs } from 'unionfs';
 
+export interface Log {
+  type: 'file' | 'http';
+  pm2: boolean;
+  url: string;
+}
+
+export type LogLevel = 'debug' | 'info' | 'warn' | 'error' | 'silent';
+
 export interface ServerArgs {
   httpPort?: number;
   httpsPort?: number;
@@ -36,11 +44,3 @@ export interface SweetOptions extends DevServerArgs, ProServerArgs {
   basicPath: string;
   serverRenderEntry?: string;
 }
-
-export interface Log {
-  type: 'file' | 'http';
-  pm2: boolean;
-  url: string;
-}
-
-export type LogLevel = 'debug' | 'info' | 'warn' | 'error' | 'silent';
