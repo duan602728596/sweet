@@ -12,7 +12,7 @@ export default {
       stateLen,
 
       handleZanClick(event) {
-        const likeLen = store.getters['index/getLikeLen']();
+        const likeLen = store.store.getters['index/getLikeLen']();
 
         store.dispatch('index/setLikeLen', likeLen + 1);
         stateLen.value++;
@@ -21,7 +21,7 @@ export default {
   },
 
   render() {
-    const likeLen = store.getters['index/getLikeLen']();
+    const likeLen = store.store.getters['index/getLikeLen']();
 
     return (
       <article>

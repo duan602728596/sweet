@@ -2,7 +2,7 @@ import { createApp } from 'vue';
 // import VueMeta from 'vue-meta';
 import App from './App';
 import { storeFactory } from './store/store';
-import routers from './router/routers';
+import { createRouters } from './router/routers';
 import './global.sass';
 
 
@@ -10,7 +10,7 @@ import './global.sass';
 const app = createApp(App);
 
 app.use(storeFactory());
-app.use(routers);
+app.use(createRouters());
 // app.use(VueMeta);
 
 app.mount(document.getElementById('app'));

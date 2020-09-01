@@ -10,10 +10,10 @@ html
     link(rel='shortcut icon' href=require('./favicon.ico').default)
     title <%- title %>
   body
-    // div.app#app
-    | <%- render %>
-    script
-      | window.__INITIAL_STATE__ = <%- initialState %>;
+    div.app#app
+    // | <%- render %>
+    // script
+    //   | window.__INITIAL_STATE__ = <%- initialState %>;
 
     if htmlWebpackPlugin.options.mode === 'development'
       script(src=imports.dll)

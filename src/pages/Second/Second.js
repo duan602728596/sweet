@@ -2,7 +2,7 @@ import routers from '../../router/routers';
 
 export default {
   render() {
-    const { path: pathname } = routers.currentRoute.value;
+    const { path: pathname } = routers.routers.currentRoute.value;
 
     return (
       <div>
