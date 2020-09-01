@@ -34,11 +34,12 @@ function createRegisterConfig(): RegisterConfig {
     ],
     plugins: [
       ['@babel/plugin-proposal-decorators', { legacy: true }],               // 修饰器
+      '@babel/plugin-proposal-class-properties',                             // class 相关
       '@babel/plugin-proposal-do-expressions',                               // do {} 语法
       '@babel/plugin-proposal-export-default-from',                          // export module from 语法
+      '@babel/plugin-proposal-export-namespace-from',                        // export * as module from 语法
       ['@babel/plugin-proposal-pipeline-operator', { proposal: 'minimal' }], // 管道函数
       '@babel/plugin-proposal-throw-expressions',                            // var e = throw new Error(err) 语法
-      '@babel/plugin-syntax-class-properties',                               // 保留class语法
       '@babel/plugin-syntax-top-level-await',                                // top-level await
       [
         '@babel/plugin-transform-runtime',
