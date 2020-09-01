@@ -36,8 +36,7 @@ module.exports = {
         parser: '@babel/eslint-parser',
         requireConfigFile: false,
         babelOptions: {
-          presets: ['@vue/babel-preset-jsx'],
-          plugins: createBabelPlugins()
+          plugins: createBabelPlugins().concat(['@vue/babel-plugin-jsx'])
         }
       },
       plugins: ['vue'],
@@ -52,8 +51,7 @@ module.exports = {
       parserOptions: {
         requireConfigFile: false,
         babelOptions: {
-          presets: ['@vue/babel-preset-jsx'],
-          plugins: createBabelPlugins()
+          plugins: createBabelPlugins().concat(['@vue/babel-plugin-jsx'])
         }
       }
     }

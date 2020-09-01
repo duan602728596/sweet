@@ -1,7 +1,8 @@
+import routers from '../../router/routers';
+
 export default {
   render() {
-    const { current } = this.$router.history;
-    const { path: pathname } = current;
+    const { path: pathname } = routers.currentRoute.value;
 
     return (
       <div>

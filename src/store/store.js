@@ -1,22 +1,20 @@
-import Vue from 'vue';
 import Vuex from 'vuex';
 import modules from './modules';
 import formatModules from './formatModules';
 
-Vue.use(Vuex);
+const store = {};
 
-const store = {
-  store: null
-};
-
+/* 创建store */
 export function storeFactory(initialState = {}) {
-  store.store = new Vuex.Store({
-    state: initialState,
-    getters: {
-      getInitialStateData: (state) => (key) => state[key]
-    },
-    modules: formatModules(modules, initialState)
-  });
+  if (!store.store) {
+    new Vuex.Store({
+      state: initialState,
+      getters: {
+        getInitialStateData: (state) => (key) => state[key]
+      },
+      modules: formatModules(modules, initialState)
+    });
+  }
 
   return store.store;
 }

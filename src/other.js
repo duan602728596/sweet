@@ -1,15 +1,12 @@
-import Vue from 'vue';
+import { createApp } from 'vue';
 
-const index = new Vue({
-  el: '#app',
-  render() {
-    return (
-      <div class="app" id="app">
-        <p>This is other page.</p>
-      </div>
-    );
-  }
-});
+const app = createApp(
+  <div className="app" id="app">
+    <p>This is other page.</p>
+  </div>
+);
+
+app.mount(document.getElementById('app'));
 
 if (module.hot) {
   module.hot.accept();

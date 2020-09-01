@@ -11,7 +11,7 @@ export default {
   render() {
     return (
       <Layout.Content class={ style.content }>
-        { this.$slots.default }
+        { this.$slots.default() }
       </Layout.Content>
     );
   }
