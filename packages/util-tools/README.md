@@ -43,7 +43,7 @@ update(
 ```javascript
 import image2avif from '@sweet-milktea/util-tools/image2avif';
 
-image2webp(
+image2avif(
   './src',  // 入口文件夹
   './build' // 输出文件夹
 );
