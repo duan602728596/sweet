@@ -15,11 +15,14 @@ import { formatPath, getFiles } from './utils';
  *
  * @param { string } inputFile: 输入的图片文件
  * @param { string } outputFile: 输出的图片文件
+ * @param { boolean } hiddenLog: 隐藏日志
  */
-function toAvif(inputFile: string, outputFile: string): Promise<void> {
+function toAvif(inputFile: string, outputFile: string, hiddenLog?: boolean): Promise<void> {
   return new Promise((resolve: Function, reject: Function): void => {
     const handleOutput: (chunk: any) => void = function(chunk: any): void {
-      console.log(chunk.toString());
+      if (!hiddenLog) {
+        console.log(chunk.toString());
+      }
     };
 
     const child: ChildProcessWithoutNullStreams = spawn('avifenc', [
@@ -44,8 +47,9 @@ function toAvif(inputFile: string, outputFile: string): Promise<void> {
  * 图片批量转换成avif格式
  * @param { string } entry: 入口文件夹
  * @param { string } output: 输出文件夹
+ * @param { boolean } hiddenLog: 隐藏日志
  */
-async function image2avif(entry: string, output: string): Promise<void> {
+async function image2avif(entry: string, output: string, hiddenLog?: boolean): Promise<void> {
   const files: string[] = await getFiles(entry, '**/*.{jpg,jpeg,png,y4m}');
 
   for (const file of files) {
@@ -55,7 +59,7 @@ async function image2avif(entry: string, output: string): Promise<void> {
     const outputFile: string = formatPath(path.join(outputDir, `${ name }.avif`));
 
     await fse.ensureDir(outputDir);
-    await toAvif(inputFile, outputFile);
+    await toAvif(inputFile, outputFile, hiddenLog);
   }
 }
 
