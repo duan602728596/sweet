@@ -20,7 +20,7 @@ export default function(info) {
       server: [path.join(__dirname, 'src/server.js')]
     },
     serverExternals: [
-      function(context, request, callback) {
+      function({ context, request }, callback) {
         if (/^vue(-router|x)?$/.test(request) || /^@vue\//.test(request)) {
           callback(null, 'commonjs ' + request);
         } else {
