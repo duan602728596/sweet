@@ -19,6 +19,15 @@ export default function(info) {
     serverEntry: {
       server: [path.join(__dirname, 'src/server.js')]
     },
+    serverExternals: [
+      function(context, request, callback) {
+        if (/^vue(-router)?$/.test(request) || /^@vue\//.test(request)) {
+          callback(null, 'commonjs ' + request);
+        } else {
+          callback();
+        }
+      }
+    ],
     js: {
       plugins: [['import', { libraryName: 'ant-design-vue', libraryDirectory: 'es', style: true }]],
       exclude: /node_modules/

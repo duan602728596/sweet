@@ -1,5 +1,4 @@
 import { createRouter } from 'vue-router';
-import createHistory from './createHistory';
 import Layout from '../layouts/Layout/index';
 import Login from '../pages/Login/index';
 import Index from '../pages/index';
@@ -7,11 +6,12 @@ import Index from '../pages/index';
 const SecondBundle = () => import(/* webpackChunkName: 'second' */'../pages/Second/index');
 
 const routers = {};
+const history = require('./createHistory');
 
 export function createRouters() {
   if (!routers.routers) {
     routers.routers = createRouter({
-      history: createHistory(),
+      history: history(),
       routes: [
         {
           path: '/Login',

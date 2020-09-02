@@ -2,32 +2,28 @@ require('source-map-support').install();
 
 import { createSSRApp } from 'vue';
 import { renderToStream } from '@vue/server-renderer';
-// // import VueMeta from 'vue-meta';
+// import VueMeta from 'vue-meta';
 import { cloneDeep } from 'lodash-es';
 import App from './App';
 import { storeFactory } from './store/store';
 import { createRouters } from './router/routers';
 import './global.sass';
 
-// Vue.use(VueMeta);
-
-function server(url, context = {}, initialState = {}) {
+async function server(url, context = {}, initialState = {}) {
   const cloneData = cloneDeep(initialState);
   const routers = createRouters();
 
   /* app */
-  const app = createSSRApp(<App />);
+  const app = createSSRApp(App);
 
   app.use(storeFactory(cloneData));
   app.use(routers);
+  // app.use(VueMeta);
 
   routers.push(url);
+  await routers.isReady();
 
-  return new Promise((resolve, reject) => {
-    routers.isReady().then(() => {
-      resolve(renderToStream(app, context));
-    });
-  });
+  return renderToStream(app);
 }
 
 export default server;

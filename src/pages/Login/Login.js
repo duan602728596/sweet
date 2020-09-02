@@ -13,7 +13,7 @@ function Login() {
 
   // 登陆
   function handleLoginSubmit(value) {
-    routers.push('/');
+    routers.routers.push('/');
   }
 
   return (
