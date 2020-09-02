@@ -12,7 +12,7 @@ export default function(sweetConfig: SweetConfig, config: Config): void {
         config
           .module
           .rule('svg')
-          .test(/\.svg$/)
+          .test(/\.svg$/i)
           .use('@svgr/webpack')
           .loader('@svgr/webpack')
           .end()
@@ -29,7 +29,7 @@ export default function(sweetConfig: SweetConfig, config: Config): void {
         config
           .module
           .rule('svg')
-          .test(/component\.svg$/)
+          .test(/component\.svg$/i)
           .use('vue-loader')
           .loader('vue-loader')
           .end()
@@ -46,7 +46,7 @@ export default function(sweetConfig: SweetConfig, config: Config): void {
           .merge({
             module: {
               rule: {
-                svg: { issuer: /^.*\.(jsx?|tsx?|vue)$/ }
+                svg: { issuer: /^.*\.(jsx?|tsx?|vue)$/i }
               }
             }
           });

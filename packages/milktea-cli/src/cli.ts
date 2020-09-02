@@ -8,6 +8,7 @@ import argvBuild from './argv/argvBuild';
 import argvServer from './argv/argvServer';
 import argvUpdate from './argv/argvUpdate';
 import argvImage2WebP from './argv/argvImage2WebP';
+import argvImage2Avif from './argv/argvImage2Avif';
 import argvImageCompress from './argv/argvImageCompress';
 import argvImage2Icns from './argv/argvImage2Icns';
 import argvMedia2WebP from './argv/argvMedia2WebP';
@@ -20,6 +21,7 @@ const argv: object = yargs
   .command('server', '启动服务器', (): void => undefined, argvServer)
   .command('update', '工具：检查当前目录是否有依赖需要更新', (): void => undefined, argvUpdate)
   .command('image2webp', '工具：图片批量转换成webp格式', (): void => undefined, argvImage2WebP)
+  .command('image2avif', '工具：图片批量转换成avif格式', (): void => undefined, argvImage2Avif)
   .command('media2webp', '工具：图片、视频批量转换成webp格式', (): void => undefined, argvMedia2WebP)
   .command('imageCompress', '工具：图片批量压缩', (): void => undefined, argvImageCompress)
   .command('image2icns', '工具：图片转icns图标', (): void => undefined, argvImage2Icns)

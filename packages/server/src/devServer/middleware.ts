@@ -28,7 +28,11 @@ function middleware(app: Koa, router: Router, compiler: Compiler | undefined): v
       log: false
     };
     const devMiddlewareConfig: { [key: string]: any } = {
-      serverSideRender: true
+      serverSideRender: true,
+      mimeTypes: {
+        avif: 'image/avif',
+        avifs: 'image/avif-sequence'
+      }
     };
 
     app.use(connect(

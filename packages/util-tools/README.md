@@ -33,6 +33,22 @@ update(
 );
 ```
 
+## avif图片批量转换工具
+
+> 首先需要自行安装 [avifenc](https://github.com/AOMediaCodec/libavif) 。   
+> mac上使用brew安装`brew install joedrago/repo/avifenc`。
+
+使用方法：
+
+```javascript
+import image2avif from '@sweet-milktea/util-tools/image2avif';
+
+image2webp(
+  './src',  // 入口文件夹
+  './build' // 输出文件夹
+);
+```
+
 ## webp图片批量转换工具
 
 > 首先需要自行安装`imagemin-webp`、`imagemin-gif2webp`。   

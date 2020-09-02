@@ -31,7 +31,7 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
       module: {
         rule: {
           ts: {
-            test: /^.*\.tsx?$/,
+            test: /^.*\.tsx?$/i,
             use: useConfig,
             exclude: exclude ? (Array.isArray(exclude) ? exclude : [exclude]) : [],
             include: include ? (Array.isArray(include) ? include : [include]) : []
