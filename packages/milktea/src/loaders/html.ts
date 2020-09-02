@@ -9,7 +9,7 @@ export default function(sweetConfig: SweetConfig, config: Config): void {
   config
     .module
     .rule('html')
-    .test(/^.*\.pug$/)
+    .test(/^.*\.pug$/i)
     .use('pug-loader')
     .loader('pug-loader')
     .options({

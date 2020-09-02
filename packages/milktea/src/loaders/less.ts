@@ -24,7 +24,7 @@ export default function(sweetConfig: SweetConfig, config: Config): void {
       module: {
         rule: {
           less: {
-            test: /^.*\.(le|c)ss$/,
+            test: /^.*\.(le|c)ss$/i,
             exclude: exclude ? (Array.isArray(exclude) ? exclude : [exclude]) : [],
             include: include ? (Array.isArray(include) ? include : [include]) : []
           }

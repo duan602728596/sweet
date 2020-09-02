@@ -11,7 +11,7 @@ export default function(sweetConfig: SweetConfig, config: Config): void {
   config
     .module
     .rule('fontFile')
-    .test(/^.*\.(eot|ttf|woff2?)$/)
+    .test(/^.*\.(eot|ttf|woff2?)$/i)
     .use('file-loader')
     .loader('file-loader')
     .options( {

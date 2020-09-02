@@ -155,7 +155,7 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
       config
         .module
         .rule('vue')
-        .test(/^.*\.vue$/)
+        .test(/^.*\.vue$/i)
         .use('vue-loader')
         .loader('vue-loader');
     });
@@ -164,7 +164,7 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
   config
     .module
     .rule('dll')
-    .test(/\.sweet[\\/]dll[\\/]dll\.js/)
+    .test(/\.sweet[\\/]dll[\\/]dll\.js/i)
     .use('file-loader')
     .loader('file-loader')
     .options({
