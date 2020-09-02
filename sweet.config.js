@@ -36,7 +36,7 @@ export default function(info) {
       server: [path.join(__dirname, 'src/server.js')]
     },
     serverExternals: [
-      function(context, request, callback) {
+      function({ context, request }, callback) {
         if (/^react(-dom|-router(-dom)?)?|prop-types|@reduxjs\/toolkit|react-redux|reselect$/.test(request)) {
           callback(null, 'commonjs ' + request);
         } else {
