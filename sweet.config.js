@@ -21,7 +21,7 @@ export default function(info) {
     },
     serverExternals: [
       function(context, request, callback) {
-        if (/^vue(-router)?$/.test(request) || /^@vue\//.test(request)) {
+        if (/^vue(-router|x)?$/.test(request) || /^@vue\//.test(request)) {
           callback(null, 'commonjs ' + request);
         } else {
           callback();
