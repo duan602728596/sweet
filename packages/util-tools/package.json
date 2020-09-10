@@ -28,7 +28,7 @@
     "imagemin-gif2webp": "^3.0.0",
     "imagemin-gifsicle": "^7.0.0",
     "imagemin-jpegoptim": "^7.0.0",
-    "imagemin-pngquant": "^9.0.0",
+    "imagemin-pngquant": "^9.0.1",
     "imagemin-webp": "^6.0.0"
   },
   "peerDependencies": {
