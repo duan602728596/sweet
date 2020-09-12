@@ -45,7 +45,7 @@ export default function(sweetConfig: SweetConfig | null | undefined, sweetOption
       mode,
       devtool: serverDevtool ?? (isDevelopment ? 'eval-source-map' : 'source-map'),
       resolve: { extensions },
-      target: 'node',
+      target: ['node', 'node10'],
       performance: { hints: false },
       node: {
         __filename: true,
@@ -84,10 +84,7 @@ export default function(sweetConfig: SweetConfig | null | undefined, sweetOption
 
   const mergeConfiguration: Configuration = {
     entry: serverEntry,
-    output: {
-      ecmaVersion: 2015,
-      ...(serverOutput || {})
-    },
+    output: serverOutput,
     externals: serverExternals,
     resolve,
     // 添加其他的rules

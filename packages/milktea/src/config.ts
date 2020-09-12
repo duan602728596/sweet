@@ -48,6 +48,7 @@ export default function(sweetConfig: SweetConfig | null | undefined, sweetOption
     mode,
     devtool: devtool ?? (isDevelopment ? 'eval-source-map' : false),
     resolve: { extensions },
+    target: [ecmascript ? 'es2020' : 'es5'],
     performance: { hints: false }
   };
 
@@ -89,10 +90,7 @@ export default function(sweetConfig: SweetConfig | null | undefined, sweetOption
 
   const mergeConfiguration: Configuration = {
     entry,
-    output: {
-      ecmaVersion: ecmascript ? 2015 : 5,
-      ...(output || {})
-    },
+    output,
     externals,
     resolve,
     // 添加其他的rules

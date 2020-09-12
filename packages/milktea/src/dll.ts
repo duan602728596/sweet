@@ -34,6 +34,7 @@ export default function(sweetConfig: SweetConfig | null | undefined, sweetOption
       mode: 'development',
       devtool: isDevelopment ? 'inline-source-map' : false,
       resolve: { extensions },
+      target: [ecmascript ? 'es2020' : 'es5'],
       performance: { hints: false }
     });
 
@@ -94,9 +95,6 @@ export default function(sweetConfig: SweetConfig | null | undefined, sweetOption
 
   const mergeConfiguration: Configuration = {
     entry: dll?.length ? { dll } : undefined,
-    output: {
-      ecmaVersion: ecmascript ? 2015 : 5
-    },
     externals,
     resolve
   };
