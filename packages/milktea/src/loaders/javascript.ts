@@ -1,14 +1,16 @@
 import * as _ from 'lodash';
 import * as Config from 'webpack-chain';
 import type { Use, LoaderOptions } from 'webpack-chain';
-import { createBabelOptions, createPresetEnv, createPresetTypescript } from '../config/babelConfig';
+import { createBabelOptions, createPresetEnv, createPresetEnvInNode, createPresetTypescript } from '../config/babelConfig';
 import { customizer } from '../utils/utils';
 import type { SweetConfig, SweetOptions, JS } from '../utils/types';
 
 /* js 配置 */
 export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, config: Config): void {
   const { mode, js, frame, webpackLog = 'progress' }: SweetConfig = sweetConfig;
+  const { environment }: SweetOptions = sweetOptions;
   const isDevelopment: boolean = mode === 'development';
+  const isEnvServerSideRender: boolean = environment === 'server';
 
   // 获取配置
   const jsOptions: JS = js ?? {};
@@ -55,11 +57,14 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
 
   // ecmascript
   config
-    .when(!ecmascript && !resetPresets,
+    .when((!ecmascript || isEnvServerSideRender) && !resetPresets,
       (config: Config): void => {
         configBabelUse
           .tap((options: LoaderOptions): LoaderOptions => _.mergeWith(options, {
-            presets: [createPresetEnv(customTargets, (!webpackLog || webpackLog !== 'progress') && debug)]
+            presets: [
+              (isEnvServerSideRender ? createPresetEnvInNode : createPresetEnv)(
+                customTargets, (!webpackLog || webpackLog !== 'progress') && debug)
+            ]
           }, customizer));
       });
 

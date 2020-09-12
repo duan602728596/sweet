@@ -31,6 +31,13 @@ export function createTargets(): { browsers: Array<string> } {
   };
 }
 
+// @babel/preset-env node targets
+export function createNodeTargets(): { browsers: Array<string> } {
+  return {
+    browsers: ['node 10']
+  };
+}
+
 /**
  * @babel/preset-typescript
  * @param { boolean } isReact: react下使用React，vue下保持原输出
@@ -56,6 +63,28 @@ export function createPresetTypescript(isReact: boolean = true): Array<any> {
 export function createPresetEnv(customTargets: object | undefined, debug: boolean, notUseBuiltIns?: boolean): Array<any> {
   const options: { [key: string]: any } = {
     targets: customTargets ? customTargets : createTargets(),
+    debug,
+    modules: false,
+    useBuiltIns: notUseBuiltIns ? false : 'usage',
+    bugfixes: true
+  };
+
+  if (!notUseBuiltIns) {
+    options.corejs = 3;
+  }
+
+  return ['@babel/preset-env', options];
+}
+
+/**
+ * @babel/preset-env node
+ * @param { object | undefined } customTargets: 自定义@babel/preset-env的编译目标
+ * @param { boolean } debug: 是否debug
+ * @param { boolean } notUseBuiltIns: 不使用core-js
+ */
+export function createPresetEnvInNode(customTargets: object | undefined, debug: boolean, notUseBuiltIns?: boolean): Array<any> {
+  const options: { [key: string]: any } = {
+    targets: customTargets ? customTargets : createNodeTargets(),
     debug,
     modules: false,
     useBuiltIns: notUseBuiltIns ? false : 'usage',

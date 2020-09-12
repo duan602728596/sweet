@@ -2,11 +2,12 @@ import type { RuleSetRule, Entry, ResolveOptions, WebpackPluginInstance } from '
 import * as Config from 'webpack-chain';
 import type { CosmiconfigResult } from 'cosmiconfig/dist/types';
 
+export type Environment = 'dll' | 'client' | 'server';
+
 export interface SweetOptions {
   basicPath: string;
+  environment: Environment;
 }
-
-export type Environment = 'dll' | 'client' | 'server';
 
 export interface Info {
   environment: Environment;

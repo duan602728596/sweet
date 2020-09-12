@@ -12,11 +12,12 @@ type Config = SweetConfig | null | undefined;
 
 /* 基础配置 */
 const sweetOptions: SweetOptions = {
-  basicPath: process.cwd() // 主目录
+  basicPath: process.cwd(), // 主目录
+  environment: 'client'     // 当前环境
 };
 
 /* 获取配置 */
-function getConfig(environment: Environment, sweetConfig?: SweetConfigArgs): Config {
+function getConfig(environment: Environment, sweetConfig: SweetConfigArgs): Config {
   if (typeof sweetConfig === 'string') {
     const config: SweetConfig | ((info: Info) => SweetConfig) = configFile(sweetOptions, sweetConfig);
 
@@ -88,6 +89,8 @@ export function config(sweetConfig?: SweetConfigArgs, mode?: Mode, webpackLog?: 
 export function serverRenderConfig(sweetConfig?: SweetConfigArgs, mode?: Mode, webpackLog?: WebpackLog): Configuration {
   const config: Config = getConfig('server', sweetConfig);
 
+  sweetOptions.environment = 'server';
+
   if (config && mode) {
     config.mode = mode;
   }
@@ -106,6 +109,8 @@ export function serverRenderConfig(sweetConfig?: SweetConfigArgs, mode?: Mode, w
  */
 export function dllConfig(sweetConfig?: SweetConfigArgs, webpackLog?: WebpackLog): Configuration {
   const config: Config = getConfig('dll', sweetConfig);
+
+  sweetOptions.environment = 'dll';
 
   if (config && webpackLog) {
     config.webpackLog = webpackLog;
