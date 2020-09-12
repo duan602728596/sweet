@@ -33,7 +33,7 @@ function createJsRegisterLoader(): LoaderSync {
       plugins: createBabelPlugins(),
       cache: true,
       ignore: [/node_modules/],
-      extensions: ['.es6', '.es', '.jsx', '.js', '.mjs', '.tsx', '.ts']
+      extensions: ['.es6', '.es', '.jsx', '.js', '.mjs', 'cjs', '.tsx', '.ts']
     });
 
     return requireModule(filepath);
