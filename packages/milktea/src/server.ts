@@ -93,7 +93,14 @@ export default function(sweetConfig: SweetConfig | null | undefined, sweetOption
       rules
     },
     // 添加自定义的plugins
-    plugins
+    plugins,
+    experiments: {
+      outputModule: true,
+      syncWebAssembly: true,
+      topLevelAwait: true,
+      asset: true,
+      asyncWebAssembly: true
+    }
   };
 
   /* @ts-ignore 合并自定义配置 */

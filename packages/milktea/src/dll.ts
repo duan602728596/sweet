@@ -96,7 +96,14 @@ export default function(sweetConfig: SweetConfig | null | undefined, sweetOption
   const mergeConfiguration: Configuration = {
     entry: dll?.length ? { dll } : undefined,
     externals,
-    resolve
+    resolve,
+    experiments: {
+      outputModule: true,
+      syncWebAssembly: true,
+      topLevelAwait: true,
+      asset: true,
+      asyncWebAssembly: true
+    }
   };
 
   /* @ts-ignore 合并自定义配置 */
