@@ -20,11 +20,19 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
   const typescript: boolean | undefined = js?.typescript;
 
   // esm
-  config
-    .module
-    .rule('esm')
-    .test(/^.*\.m?js$/i)
-    .type('javascript/auto');
+  config.merge({
+    module: {
+      rule: {
+        esm: {
+          test: /^.*\.m?js$/i,
+          resolve: {
+            fullySpecified: false
+          },
+          type: 'javascript/auto'
+        }
+      }
+    }
+  });
 
   // js
   config

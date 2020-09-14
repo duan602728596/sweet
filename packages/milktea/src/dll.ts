@@ -47,6 +47,21 @@ export default function(sweetConfig: SweetConfig | null | undefined, sweetOption
     .libraryTarget('var')
     .globalObject('this');
 
+  // esm
+  config.merge({
+    module: {
+      rule: {
+        esm: {
+          test: /^.*\.m?js$/i,
+          resolve: {
+            fullySpecified: false
+          },
+          type: 'javascript/auto'
+        }
+      }
+    }
+  });
+
   // babel
   config
     .when(!ecmascript,
