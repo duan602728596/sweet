@@ -19,6 +19,13 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
   const isDevelopment: boolean = mode === 'development';
   const typescript: boolean | undefined = js?.typescript;
 
+  // esm
+  config
+    .module
+    .rule('esm')
+    .test(/^.*\.m?js$/i)
+    .type('javascript/auto');
+
   // js
   config
     .when(
