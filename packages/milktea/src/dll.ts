@@ -47,8 +47,11 @@ export default function(sweetConfig: SweetConfig | null | undefined, sweetOption
     .libraryTarget('var')
     .globalObject('this');
 
-  // esm TODO: webpack@5.0.0-beta.30
-  /*
+  /**
+   * TODO: [webpack@5.0.0-beta.30] 重写esm的加载方法
+   *   see issues: https://github.com/webpack/webpack/issues/11467
+   *               https://github.com/babel/babel/issues/12058
+   */
   config.merge({
     module: {
       rule: {
@@ -62,7 +65,6 @@ export default function(sweetConfig: SweetConfig | null | undefined, sweetOption
       }
     }
   });
-  */
 
   // babel
   config

@@ -19,8 +19,11 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
   const isDevelopment: boolean = mode === 'development';
   const typescript: boolean | undefined = js?.typescript;
 
-  // esm TODO: webpack@5.0.0-beta.30
-  /*
+  /**
+   * TODO: [webpack@5.0.0-beta.30] 重写esm的加载方法
+   *   see issues: https://github.com/webpack/webpack/issues/11467
+   *               https://github.com/babel/babel/issues/12058
+   */
   config.merge({
     module: {
       rule: {
@@ -34,7 +37,6 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
       }
     }
   });
-  */
 
   // js
   config
