@@ -115,11 +115,7 @@ export default function(sweetConfig: SweetConfig | null | undefined, sweetOption
     externals,
     resolve,
     experiments: {
-      outputModule: true,
-      syncWebAssembly: true,
-      topLevelAwait: true,
-      asset: true,
-      asyncWebAssembly: true
+      topLevelAwait: true
     }
   };
 
