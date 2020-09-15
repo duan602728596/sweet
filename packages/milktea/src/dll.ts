@@ -47,7 +47,8 @@ export default function(sweetConfig: SweetConfig | null | undefined, sweetOption
     .libraryTarget('var')
     .globalObject('this');
 
-  // esm
+  // esm TODO: webpack@5.0.0-beta.30
+  /*
   config.merge({
     module: {
       rule: {
@@ -61,6 +62,7 @@ export default function(sweetConfig: SweetConfig | null | undefined, sweetOption
       }
     }
   });
+  */
 
   // babel
   config

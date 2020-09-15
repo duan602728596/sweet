@@ -19,7 +19,8 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
   const isDevelopment: boolean = mode === 'development';
   const typescript: boolean | undefined = js?.typescript;
 
-  // esm
+  // esm TODO: webpack@5.0.0-beta.30
+  /*
   config.merge({
     module: {
       rule: {
@@ -33,6 +34,7 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
       }
     }
   });
+  */
 
   // js
   config
