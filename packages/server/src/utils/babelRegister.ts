@@ -54,7 +54,7 @@ function createRegisterConfig(): RegisterConfig {
     ],
     cache: true,
     ignore: [/node_modules/],
-    extensions: ['.es6', '.es', '.jsx', '.js', '.mjs', 'cjs', '.tsx', '.ts']
+    extensions: ['.es6', '.es', '.jsx', '.js', '.mjs', '.cjs', '.tsx', '.ts']
   };
 }
 
