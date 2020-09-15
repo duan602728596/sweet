@@ -104,7 +104,7 @@ export default function(sweetConfig: SweetConfig | null | undefined, sweetOption
   if (!__TODO_WEBPACK5_BETA30__) {
     mergeConfiguration.output ??= {};
     // @ts-ignore
-    mergeConfiguration.output.ecmaVersion = ecmascript ? 2015 : 5;
+    mergeConfiguration.output.ecmaVersion = 2015;
   }
 
   /* @ts-ignore 合并自定义配置 */

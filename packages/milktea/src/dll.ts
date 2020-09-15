@@ -35,7 +35,7 @@ export default function(sweetConfig: SweetConfig | null | undefined, sweetOption
       mode: 'development',
       devtool: isDevelopment ? 'inline-source-map' : false,
       resolve: { extensions },
-      target: [ecmascript ? 'es2020' : 'es5'],
+      target: __TODO_WEBPACK5_BETA30__ ? [ecmascript ? 'es2020' : 'es5'] : undefined, // TODO: 以后会删除
       performance: { hints: false }
     });
 
