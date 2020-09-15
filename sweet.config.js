@@ -13,7 +13,7 @@ export default function(info) {
       other: [path.join(__dirname, 'src/other.js')]
     },
     output: {
-      globalObject: 'window'
+      publicPath: '/'
     },
     serverRender: true,
     serverEntry: {
