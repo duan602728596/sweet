@@ -1,4 +1,4 @@
-import webpackLog from 'webpack-log';
+import * as webpackLog from 'webpack-log';
 
 /**
  * 创建日志
