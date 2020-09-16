@@ -6,7 +6,7 @@ function isWebpack5Beta30(): boolean {
   const versionArr: Array<string> = version.split(/-/);
 
   if (versionArr[1] && /beta\.[0-9]+/.test(versionArr[1])) {
-    const versionNumber: number = Number(version.replace(/^beta\./, ''));
+    const versionNumber: number = Number(versionArr[1].replace(/^beta\./, ''));
 
     return versionNumber >= 30;
   } else {
