@@ -1,7 +1,7 @@
-import { IncomingMessage } from 'http';
+import type { IncomingMessage } from 'http';
 import webpackDevMiddleware from 'webpack-dev-middleware';
-import { Context, Middleware } from 'koa';
-import { Compiler } from 'webpack';
+import type { Context, Middleware } from 'koa';
+import type { Compiler } from 'webpack';
 
 interface MiddlewareResponse {
   locals: any;
