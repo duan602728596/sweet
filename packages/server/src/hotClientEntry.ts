@@ -1,7 +1,6 @@
-import * as process from 'process';
-import * as querystring from 'querystring';
-import * as _ from 'lodash';
-import { webpackHmrPath } from './utils/utils';
+function isPlainObject<T = any>(entry: T): boolean {
+  return typeof entry === 'object' && Object.prototype.toString.call(entry) === '[object Object]';
+}
 
 type StandardEntry = {
   [key: string]: Array<string>;
@@ -15,14 +14,11 @@ type Entry = {
 
 const env: string = process.env.NODE_ENV ?? 'development';
 
-function hotEntry(name: string): string {
-  const query: string = querystring.stringify({
-    path: webpackHmrPath,
-    name,
-    noInfo: true
-  });
-
-  return `webpack-hot-middleware/client?${ query }`;
+function hotEntry(name: string): Array<string> {
+  return [
+    'webpack-hot-middleware/client?hot=true',
+    'webpack/hot/dev-server'
+  ];
 }
 
 /* 用于包装hmr的入口 */
@@ -31,25 +27,25 @@ function hotClientEntry(entry: Entry): StandardEntry | Entry {
 
   // string类型
   if (typeof entry === 'string') {
-    return { index: [hotEntry('index'), entry] };
+    return { index: hotEntry('index').concat([entry]) };
   }
 
   // 数组
   if (Array.isArray(entry)) {
-    return { index: [hotEntry('index'), ...entry] };
+    return { index: hotEntry('index').concat([...entry]) };
   }
 
   // object
-  if (_.isPlainObject(entry)) {
+  if (isPlainObject(entry)) {
     const result: StandardEntry = {};
 
     for (const key in entry) {
       const value: EntryPath = entry[key];
 
       if (Array.isArray(value)) {
-        result[key] = [hotEntry(key), ...value];
+        result[key] = hotEntry(key).concat([...value]);
       } else {
-        result[key] = [hotEntry(key), value];
+        result[key] = hotEntry(key).concat([value]);
       }
     }
 

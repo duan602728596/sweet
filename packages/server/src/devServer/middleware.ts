@@ -5,7 +5,7 @@ import * as body from 'koa-body';
 import { Compiler } from 'webpack';
 // import * as hotMiddleware from 'webpack-hot-middleware';
 import koaDevMiddleware from './koaDevMiddleware';
-import { webpackHmrPath } from '../utils/utils';
+// import { webpackHmrPath } from '../utils/utils';
 
 /**
  * 创建中间件
@@ -23,10 +23,11 @@ function middleware(app: Koa, router: Router, compiler: Compiler | undefined): v
 
   /* webpack热替换服务 */
   if (compiler !== undefined) {
-    const hotMiddlewareConfig: { [key: string]: any } = {
-      path: webpackHmrPath,
-      log: false
-    };
+    // TODO: webpack-hot-middleware
+    // const hotMiddlewareConfig: { [key: string]: any } = {
+    //   path: webpackHmrPath,
+    //   log: false
+    // };
     const devMiddlewareConfig: { [key: string]: any } = {
       serverSideRender: true,
       mimeTypes: {
@@ -35,6 +36,7 @@ function middleware(app: Koa, router: Router, compiler: Compiler | undefined): v
       }
     };
 
+    // TODO: webpack-hot-middleware
     // app.use(connect(
     //   hotMiddleware(compiler, hotMiddlewareConfig)
     // ));

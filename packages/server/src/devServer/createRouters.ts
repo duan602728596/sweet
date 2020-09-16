@@ -19,6 +19,7 @@ function createRouters(router: Router, sweetOptions: SweetOptions): void {
       ctx.state.routePath = ctxPath; // 保存旧的path
 
       // 重定向path，所有的路由都指向"/"
+      // TODO: webpack-hot-middleware
       if (ctxPath !== '/' && ctxPath !== webpackHmrPath && mimeType === false) {
         ctx.path = '/';
       }

@@ -155,5 +155,8 @@ export async function isExists(file: string): Promise<boolean> {
   }
 }
 
-/* webpack热替换地址 */
+/**
+ * webpack热替换地址
+ * TODO: webpack-hot-middleware
+ */
 export const webpackHmrPath: string = '/___WEBPACK_HMR___';
