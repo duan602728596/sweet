@@ -20,6 +20,10 @@ SockjsSession.prototype.decorateConnection = function(req: IncomingMessage): voi
   }
 };
 
+/**
+ * webpack-dev-middleware的koa实现
+ * https://github.com/webpack/webpack-dev-server/blob/master/lib/servers/SockJSServer.js
+ */
 class SockJSServer {
   // webpack stats配置
   static DEFAULT_STATS: Stats.ToJsonOptions = {
