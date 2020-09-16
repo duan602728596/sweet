@@ -15,12 +15,14 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
   const isDevelopment: boolean = mode === 'development';
 
   // 设置splitChunks配置
+  /* TODO: [webpack@5.0.0-beta.30]会导致错误
   config
     .optimization
     .splitChunks({
       chunks: asyncChunks ? 'async' : 'all',
       automaticNameDelimiter: '.'
     });
+   */
 
   // 设置minimizer的压缩插件
   config
