@@ -1,8 +1,9 @@
 /* 开发环境 服务器 */
 import './alias';
 import * as http from 'http';
+import type { Server } from 'http';
 import * as http2 from 'http2';
-import type { SecureServerOptions } from 'http2';
+import type { Http2SecureServer, SecureServerOptions } from 'http2';
 import * as process from 'process';
 import * as path from 'path';
 import * as fs from 'fs';
@@ -11,6 +12,7 @@ import * as Router from '@koa/router';
 import { createFsFromVolume, Volume, IFs } from 'memfs';
 import { patchRequire } from 'fs-monkey';
 import { Union, IUnionFs } from 'unionfs';
+import type { Compiler } from 'webpack';
 import middleware from './devServer/middleware';
 import createRouters from './devServer/createRouters';
 import getPort from './devServer/getPort';
@@ -20,6 +22,7 @@ import createRedirectToHttpsMiddleware from './utils/redirectToHttps';
 import createSweetOptionsMiddleware from './utils/createOptions';
 import createMock from './utils/createMock';
 import createHttpsCertificate, { HttpsCertificate } from './utils/createHttpsCertificate';
+import koaHmr from './devServer/hmr/hmr';
 import useRegister from './utils/babelRegister';
 import { formatPath, runningAtLog } from './utils/utils';
 import type { SweetOptions, DevServerArgs } from './utils/types';
@@ -144,11 +147,15 @@ async function devServer(args: DevServerArgs = {}): Promise<void> {
   /* 本地api */
   await createApi(sweetOptions, router, app, true);
 
-  /* http服务 */
-  http.createServer(app.callback())
-    .listen(sweetOptions.httpPort);
+  /* 热替换的server */
+  const hmrServer: Array<Server | Http2SecureServer> = [];
 
-  /* https服务 */
+  /* http服务 */
+  const httpServer: Server = http.createServer(app.callback());
+  let http2Server: Http2SecureServer | null = null;
+
+  hmrServer.push(httpServer);
+
   if (useHttps && keyFile && certFile) {
     const httpsConfig: SecureServerOptions = {
       allowHTTP1: true,
@@ -156,8 +163,20 @@ async function devServer(args: DevServerArgs = {}): Promise<void> {
       cert: certFile
     };
 
-    http2.createSecureServer(httpsConfig, app.callback())
-      .listen(sweetOptions.httpsPort);
+    http2Server = http2.createSecureServer(httpsConfig, app.callback());
+    hmrServer.push(http2Server);
+  }
+
+  app.use(koaHmr({
+    compiler: compiler as Compiler,
+    server: hmrServer
+  }));
+
+  // 初始化http服务
+  httpServer.listen(sweetOptions.httpPort);
+
+  if (http2Server) {
+    http2Server.listen(sweetOptions.httpsPort);
   }
 }
 

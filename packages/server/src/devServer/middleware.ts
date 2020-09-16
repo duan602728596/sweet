@@ -1,9 +1,9 @@
 import * as Koa from 'koa';
 import * as Router from '@koa/router';
 import * as body from 'koa-body';
-import connect = require('koa-connect');
+// import connect = require('koa-connect');
 import { Compiler } from 'webpack';
-import * as hotMiddleware from 'webpack-hot-middleware';
+// import * as hotMiddleware from 'webpack-hot-middleware';
 import koaDevMiddleware from './koaDevMiddleware';
 import { webpackHmrPath } from '../utils/utils';
 
@@ -35,9 +35,9 @@ function middleware(app: Koa, router: Router, compiler: Compiler | undefined): v
       }
     };
 
-    app.use(connect(
-      hotMiddleware(compiler, hotMiddlewareConfig)
-    ));
+    // app.use(connect(
+    //   hotMiddleware(compiler, hotMiddlewareConfig)
+    // ));
 
     app.use(koaDevMiddleware(compiler, devMiddlewareConfig));
   }

@@ -1,6 +1,8 @@
-[webpack-dev-server](https://github.com/webpack/webpack-dev-server)的客户端实现。   
+[webpack-dev-server](https://github.com/webpack/webpack-dev-server)的客户端代码。   
 
-源代码请参考[https://github.com/webpack/webpack-dev-server/tree/master/client-src](https://github.com/webpack/webpack-dev-server/tree/master/client-src)。
+源代码请参考[https://github.com/webpack/webpack-dev-server/tree/master/client-src](https://github.com/webpack/webpack-dev-server/tree/master/client-src)。   
+
+依赖了ansi-html、html-entities、ip、loglevel、sockjs、sockjs-client、strip-ansi、url、webpack-log。   
 
 ### webpack-dev-server LICENSE
 
