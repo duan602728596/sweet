@@ -66,7 +66,6 @@ export default function(info) {
     filesMap: true
   };
 
-  /*
   if (isDev) {
     config.resolve = {
       alias: {
@@ -74,7 +73,6 @@ export default function(info) {
       }
     };
   }
-  */
 
   return config;
 }
