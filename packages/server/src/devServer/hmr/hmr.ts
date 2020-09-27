@@ -8,6 +8,7 @@ import createLogger from './createLogger';
 type Options = {
   compiler: Compiler;
   server: Array<Server | Http2SecureServer>;
+  clientLogLevel?: 'silent' | 'trace' | 'debug' | 'info' | 'warn' | 'error';
 };
 
 /**
@@ -44,7 +45,7 @@ function koaHmr(options: Options): Middleware {
       }
     });
 
-    sock.sockWriteConnection(connection, 'logging', 'info');
+    sock.sockWriteConnection(connection, 'logging', options.clientLogLevel ?? 'warn');
     sock.sockWriteConnection(connection, 'hot');
     sock.sockWriteConnection(connection, 'liveReload'); // TODO: change condition at major version
 
