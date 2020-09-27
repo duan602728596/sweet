@@ -10,7 +10,7 @@ function isWebpack5Beta30(): boolean {
 
     return versionNumber >= 30;
   } else {
-    return false;
+    return true;
   }
 }
 
