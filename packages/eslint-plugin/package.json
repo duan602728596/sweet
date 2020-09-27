@@ -14,10 +14,10 @@
     "test": "cross-env NODE_ENV=test mocha ./test/test.js --timeout 180000"
   },
   "dependencies": {
-    "@typescript-eslint/eslint-plugin": "^4.1.1",
-    "@typescript-eslint/typescript-estree": "^4.1.1"
+    "@typescript-eslint/eslint-plugin": "^4.2.0",
+    "@typescript-eslint/typescript-estree": "^4.2.0"
   },
   "devDependencies": {
-    "eslint": "^7.9.0"
+    "eslint": "^7.10.0"
   }
 }
