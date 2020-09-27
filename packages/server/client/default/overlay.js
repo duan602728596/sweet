@@ -110,7 +110,8 @@ function clear() {
 function showMessage(messages) {
   ensureOverlayDivExists(function (div) {
     // Make it look similar to our terminal.
-    div.innerHTML = "<span style=\"color: #".concat(colors.red, "\">Failed to compile.</span><br><br>").concat(ansiHTML(entities.encode(messages[0])));
+    var text = ansiHTML(entities.encode(messages[0]));
+    div.innerHTML = "<span style=\"color: #".concat(colors.red, "\">Failed to compile.</span><br><br>").concat(text);
   });
 }
 

@@ -16,7 +16,7 @@ function reloadApp(_ref, _ref2) {
   }
 
   if (hot) {
-    log.info('[WDS] App hot update...');
+    log.info('App hot update...');
 
     var hotEmitter = require('webpack/hot/emitter');
 
@@ -47,7 +47,7 @@ function reloadApp(_ref, _ref2) {
 
   function applyReload(rootWindow, intervalId) {
     clearInterval(intervalId);
-    log.info('[WDS] App updated. Reloading...');
+    log.info('App updated. Reloading...');
     rootWindow.location.reload();
   }
 }

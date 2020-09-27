@@ -41,7 +41,7 @@ class SockJSServer {
   public sock: any;
   public compiler: Compiler;
   public sockets: Array<any>;
-  public _stats: any;
+  public stats: any;
 
   /**
    * @param { Function } log: 日志方法
@@ -82,7 +82,7 @@ class SockJSServer {
     this.sockets = [];
 
     // stats的缓存
-    this._stats = null;
+    this.stats = null;
 
     this.setupHooks();
   }
@@ -107,8 +107,8 @@ class SockJSServer {
       compile.tap(SockJSServer.NAME, invalidPlugin);
       invalid.tap(SockJSServer.NAME, invalidPlugin);
       done.tap(SockJSServer.NAME, (stats: Stats) => {
-        this._sendStats(this.getStats(stats));
-        this._stats = stats;
+        this.sendStats(this.getStats(stats));
+        this.stats = stats;
       });
     };
 
@@ -157,30 +157,8 @@ class SockJSServer {
     });
   }
 
-  _sendStatsConnection(connection: any, stats: any, force?: any): void {
-    const shouldEmit: boolean = !force
-      && stats
-      && (!stats.errors || stats.errors.length === 0)
-      && stats.assets
-      && stats.assets.every((asset: any): boolean => !asset.emitted);
-
-    if (shouldEmit) {
-      return this.sockWriteConnection(connection, 'still-ok');
-    }
-
-    this.sockWriteConnection(connection, 'hash', stats.hash);
-
-    if (stats.errors.length > 0) {
-      this.sockWriteConnection(connection, 'errors', stats.errors);
-    } else if (stats.warnings.length > 0) {
-      this.sockWriteConnection(connection, 'warnings', stats.warnings);
-    } else {
-      this.sockWriteConnection(connection, 'ok');
-    }
-  }
-
   // send stats to a socket or multiple sockets
-  _sendStats(stats: any, force?: any): void {
+  sendStats(stats: any, force?: any): void {
     const shouldEmit: boolean = !force
       && stats
       && (!stats.errors || stats.errors.length === 0)
@@ -199,6 +177,28 @@ class SockJSServer {
       this.sockWrite('warnings', stats.warnings);
     } else {
       this.sockWrite('ok');
+    }
+  }
+
+  sendStatsConnection(connection: any, stats: any, force?: any): void {
+    const shouldEmit: boolean = !force
+      && stats
+      && (!stats.errors || stats.errors.length === 0)
+      && stats.assets
+      && stats.assets.every((asset: any): boolean => !asset.emitted);
+
+    if (shouldEmit) {
+      return this.sockWriteConnection(connection, 'still-ok');
+    }
+
+    this.sockWriteConnection(connection, 'hash', stats.hash);
+
+    if (stats.errors.length > 0) {
+      this.sockWriteConnection(connection, 'errors', stats.errors);
+    } else if (stats.warnings.length > 0) {
+      this.sockWriteConnection(connection, 'warnings', stats.warnings);
+    } else {
+      this.sockWriteConnection(connection, 'ok');
     }
   }
 }

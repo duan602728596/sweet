@@ -44,18 +44,15 @@ function koaHmr(options: Options): Middleware {
       }
     });
 
-    sock.sockWriteConnection(connection, 'log-level', 'info');
-
+    sock.sockWriteConnection(connection, 'logging', 'info');
     sock.sockWriteConnection(connection, 'hot');
+    sock.sockWriteConnection(connection, 'liveReload'); // TODO: change condition at major version
 
-    // TODO: change condition at major version
-    sock.sockWriteConnection(connection, 'liveReload', true);
-
-    if (!sock._stats) {
+    if (!sock.stats) {
       return;
     }
 
-    sock._sendStatsConnection(connection, sock.getStats(sock._stats), true);
+    sock.sendStatsConnection(connection, sock.getStats(sock.stats), true);
   });
 
   return async function(ctx: Context, next: Function): Promise<void> {

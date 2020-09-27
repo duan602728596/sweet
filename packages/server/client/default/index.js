@@ -1,9 +1,11 @@
-'use strict';
+'use strict'; // webpack@5 doesn't inject node polyfill automatically
+
+window.global = window.global || window;
+window.process = window.process || {};
+window.process.env = window.process.env || {};
 /* global __resourceQuery WorkerGlobalScope self */
 
-/* eslint prefer-destructuring: off */
-
-var stripAnsi = require('strip-ansi');
+var stripAnsi = require('../transpiled-modules/strip-ansi');
 
 var socket = require('./socket');
 
@@ -45,14 +47,14 @@ if (typeof window !== 'undefined') {
 var onSocketMessage = {
   hot: function hot() {
     options.hot = true;
-    log.info('[WDS] Hot Module Replacement enabled.');
+    log.info('Hot Module Replacement enabled.');
   },
   liveReload: function liveReload() {
     options.liveReload = true;
-    log.info('[WDS] Live Reloading enabled.');
+    log.info('Live Reloading enabled.');
   },
   invalid: function invalid() {
-    log.info('[WDS] App updated. Recompiling...'); // fixes #1042. overlay doesn't clear if errors are fixed but warnings remain.
+    log.info('App updated. Recompiling...'); // fixes #1042. overlay doesn't clear if errors are fixed but warnings remain.
 
     if (options.useWarningOverlay || options.useErrorOverlay) {
       overlay.clear();
@@ -64,7 +66,7 @@ var onSocketMessage = {
     status.currentHash = _hash;
   },
   'still-ok': function stillOk() {
-    log.info('[WDS] Nothing changed.');
+    log.info('Nothing changed.');
 
     if (options.useWarningOverlay || options.useErrorOverlay) {
       overlay.clear();
@@ -72,7 +74,9 @@ var onSocketMessage = {
 
     sendMessage('StillOk');
   },
-  'log-level': function logLevel(level) {
+  logging: function logging(level) {
+    // this is needed because the HMR logger operate separately from
+    // dev server logger
     var hotCtx = require.context('webpack/hot', false, /^\.\/log$/);
 
     if (hotCtx.keys().indexOf('./log') !== -1) {
@@ -99,7 +103,7 @@ var onSocketMessage = {
   },
   'progress-update': function progressUpdate(data) {
     if (options.useProgress) {
-      log.info("[WDS] ".concat(data.percent, "% - ").concat(data.msg, "."));
+      log.info("".concat(data.percent, "% - ").concat(data.msg, "."));
     }
 
     sendMessage('Progress', data);
@@ -113,17 +117,16 @@ var onSocketMessage = {
 
     if (options.initial) {
       return options.initial = false;
-    } // eslint-disable-line no-return-assign
-
+    }
 
     reloadApp(options, status);
   },
   'content-changed': function contentChanged() {
-    log.info('[WDS] Content base changed. Reloading...');
+    log.info('Content base changed. Reloading...');
     self.location.reload();
   },
   warnings: function warnings(_warnings) {
-    log.warn('[WDS] Warnings while compiling.');
+    log.warn('Warnings while compiling.');
 
     var strippedWarnings = _warnings.map(function (warning) {
       return stripAnsi(warning);
@@ -141,13 +144,12 @@ var onSocketMessage = {
 
     if (options.initial) {
       return options.initial = false;
-    } // eslint-disable-line no-return-assign
-
+    }
 
     reloadApp(options, status);
   },
   errors: function errors(_errors) {
-    log.error('[WDS] Errors while compiling. Reload prevented.');
+    log.error('Errors while compiling. Reload prevented.');
 
     var strippedErrors = _errors.map(function (error) {
       return stripAnsi(error);
@@ -169,7 +171,7 @@ var onSocketMessage = {
     log.error(_error);
   },
   close: function close() {
-    log.error('[WDS] Disconnected!');
+    log.error('Disconnected!');
     sendMessage('Close');
   }
 };
