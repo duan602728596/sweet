@@ -71,7 +71,7 @@ class SockJSServer {
     // 挂载服务
     for (const serve of server) {
       this.sock.installHandlers(serve, {
-        prefix: '/sockjs-node'
+        prefix: '/ws'
       });
     }
 
