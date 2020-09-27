@@ -1,6 +1,6 @@
 import { requireModule } from './utils';
 
-/* TODO: 判断webpack版本是否为webpack@5.0.0-beta.30版本 */
+/* TODO: 判断webpack版本是否大于webpack@5.0.0-beta.30版本 */
 function isWebpack5Beta30(): boolean {
   const { version }: { version: string } = requireModule('webpack/package.json');
   const versionArr: Array<string> = version.split(/-/);
