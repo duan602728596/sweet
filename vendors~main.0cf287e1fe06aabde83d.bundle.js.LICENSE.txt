@@ -41,8 +41,13 @@ object-assign
  * Licensed under the MIT License.
  */
 
+<<<<<<< HEAD:vendors~main.0cf287e1fe06aabde83d.bundle.js.LICENSE.txt
 /** @license React v0.20.0-rc.2
  * scheduler.production.min.js
+=======
+/** @license React v0.0.0-2d131d782
+ * react-dom.production.min.js
+>>>>>>> bc076facb78c26d6916bca3f252c388369c5ab41:vendors~main.034c7e1e9d869def6273.bundle.js.LICENSE.txt
  *
  * Copyright (c) Facebook, Inc. and its affiliates.
  *
@@ -50,8 +55,13 @@ object-assign
  * LICENSE file in the root directory of this source tree.
  */
 
+<<<<<<< HEAD:vendors~main.0cf287e1fe06aabde83d.bundle.js.LICENSE.txt
 /** @license React v16.13.1
  * react-is.production.min.js
+=======
+/** @license React v0.0.0-2d131d782
+ * react.production.min.js
+>>>>>>> bc076facb78c26d6916bca3f252c388369c5ab41:vendors~main.034c7e1e9d869def6273.bundle.js.LICENSE.txt
  *
  * Copyright (c) Facebook, Inc. and its affiliates.
  *
@@ -59,8 +69,13 @@ object-assign
  * LICENSE file in the root directory of this source tree.
  */
 
+<<<<<<< HEAD:vendors~main.0cf287e1fe06aabde83d.bundle.js.LICENSE.txt
 /** @license React v17.0.0-rc.2
  * react-dom.production.min.js
+=======
+/** @license React v0.0.0-2d131d782
+ * scheduler.production.min.js
+>>>>>>> bc076facb78c26d6916bca3f252c388369c5ab41:vendors~main.034c7e1e9d869def6273.bundle.js.LICENSE.txt
  *
  * Copyright (c) Facebook, Inc. and its affiliates.
  *
@@ -68,8 +83,13 @@ object-assign
  * LICENSE file in the root directory of this source tree.
  */
 
+<<<<<<< HEAD:vendors~main.0cf287e1fe06aabde83d.bundle.js.LICENSE.txt
 /** @license React v17.0.0-rc.2
  * react.production.min.js
+=======
+/** @license React v16.13.1
+ * react-is.production.min.js
+>>>>>>> bc076facb78c26d6916bca3f252c388369c5ab41:vendors~main.034c7e1e9d869def6273.bundle.js.LICENSE.txt
  *
  * Copyright (c) Facebook, Inc. and its affiliates.
  *
