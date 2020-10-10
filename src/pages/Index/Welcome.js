@@ -14,7 +14,7 @@ export default {
       handleZanClick(event) {
         const likeLen = store.store.getters['index/getLikeLen']();
 
-        store.dispatch('index/setLikeLen', likeLen + 1);
+        store.store.dispatch('index/setLikeLen', likeLen + 1);
         stateLen.value++;
       }
     };
