@@ -84,9 +84,7 @@ export default function(sweetConfig: SweetConfig | null | undefined, sweetOption
 
   const mergeConfiguration: Configuration = {
     entry: serverEntry,
-    output: Object.assign({
-      ecmaVersion: 2015
-    }, serverOutput),
+    output: serverOutput,
     externals: serverExternals,
     resolve,
     // 添加其他的rules

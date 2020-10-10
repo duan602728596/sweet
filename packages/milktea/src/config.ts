@@ -90,9 +90,7 @@ export default function(sweetConfig: SweetConfig | null | undefined, sweetOption
 
   const mergeConfiguration: Configuration = {
     entry,
-    output: Object.assign({
-      ecmaVersion: ecmascript ? 2015 : 5
-    }, output),
+    output,
     externals,
     resolve,
     // 添加其他的rules
