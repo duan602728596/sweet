@@ -1,63 +1,20 @@
-import * as path from 'path';
 import * as sass from 'sass';
 import * as Fiber from 'fibers';
 import * as MiniCssExtractPlugin from 'mini-css-extract-plugin';
-import * as normalizePath from 'normalize-path';
-import * as cssesc from 'cssesc';
-import * as loaderUtils from 'loader-utils';
 import type { LoaderOptions } from 'webpack-chain';
 
-/**
- * TODO: css-loader的getLocalIdent函数，无法导出模块
- * https://github.com/webpack-contrib/css-loader/blob/master/src/utils.js#L49
- */
-const filenameReservedRegex: RegExp = /[<>:"/\\|?*\x00-\x1F]/g,
-  reControlChars: RegExp = /[\u0000-\u001f\u0080-\u009f]/g,
-  reRelativePath: RegExp = /^\.+/;
-
-export function cssLoaderGetLocalIdentFunc(
-  loaderContext: any,
-  localIdentName: string,
-  localName: string,
-  options: any
-): string {
-  const { context, hashPrefix }: any = options;
-  const { resourcePath }: any = loaderContext;
-  const request: string = normalizePath(path.relative(context, resourcePath));
-
-  options.content = `${ hashPrefix + request }\x00${ unescape(localName) }`;
-
-  // Using `[path]` placeholder outputs `/` we need escape their
-  // Also directories can contains invalid characters for css we need escape their too
-  return cssesc(
-    loaderUtils
-      .interpolateName(loaderContext, localIdentName, options)
-      // For `[hash]` placeholder
-      .replace(/^((-?[0-9])|--)/, '_$1')
-      .replace(filenameReservedRegex, '-')
-      .replace(reControlChars, '-')
-      .replace(reRelativePath, '-')
-      .replace(/\./g, '-'),
-    { isIdentifier: true }
-  ).replace(/\\\[local\\\]/gi, localName);
-}
-
-/* css-loader配置 */
-// css-loader的getLocalIdent函数
-export function cssLoaderGetLocalIdent(
-  loaderContext: any,
-  localIdentName: string,
-  localName: string,
-  options: any
-): string {
-  // node_modules 和 global文件直接返回className
-  if (/(node_modules|global\.(css|less|sass|scss|styl(us)?))/i.test(loaderContext.resourcePath)) {
-    return localName;
+// css-loader的mode
+// Callback must return "local", "global", or "pure" values
+function cssLoaderModeFunc(resourcePath: string): string {
+  if (/(pure\.(css|less|sass|scss|styl(us)?))/i.test(resourcePath)) {
+    return 'pure';
   }
 
-  const className: string = cssLoaderGetLocalIdentFunc(loaderContext, localIdentName, localName, options);
+  if (/(node_modules|global\.(css|less|sass|scss|styl(us)?))/i.test(resourcePath)) {
+    return 'global';
+  }
 
-  return className;
+  return 'local';
 }
 
 /**
@@ -89,8 +46,9 @@ export function createCssOptions(
 
   if (modules) {
     Object.assign(modulesOptions, {
+      mode: cssLoaderModeFunc,
       localIdentName: localIdentName ?? (isDevelopment ? '[path][name]__[local]___[hash:base64:6]' : '_[hash:base64:6]'),
-      getLocalIdent: getLocalIdent ?? cssLoaderGetLocalIdent
+      getLocalIdent
     });
   }
 
