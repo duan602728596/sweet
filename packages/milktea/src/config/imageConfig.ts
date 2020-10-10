@@ -18,7 +18,6 @@ export function createImageConfig(sweetConfig: SweetConfig): LoaderOptions {
   return {
     name: filename,
     limit: 8192,
-    emitFile: !serverRender,
-    esModule: true
+    emitFile: !serverRender
   };
 }

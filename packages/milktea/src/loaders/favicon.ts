@@ -13,7 +13,6 @@ export default function(sweetConfig: SweetConfig, config: Config): void {
     .loader('file-loader')
     .options({
       name: '[name].[ext]',
-      emitFile: !serverRender,
-      esModule: true
+      emitFile: !serverRender
     });
 }
