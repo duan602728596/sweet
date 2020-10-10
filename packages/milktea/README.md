@@ -109,7 +109,6 @@ module.exports = function(info) {
   * modifyVars `{ object }` : 注入less变量（参考less-loader）
   * additionalData `{ string | Function }` : （参考less-loader）
   * localIdentName `{ string }` : 配置localIdentName（参考css-loader）
-  * getLocalIdent `{ Function }` : 配置getLocalIdent（参考css-loader）
 * html `{ Array<object> }` : html配置（默认使用pug）
   * template `{ string }` : html模板文件地址
   * excludeChunks `{ Array<string> }` : 不包括的入口

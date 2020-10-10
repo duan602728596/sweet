@@ -54,7 +54,6 @@ export interface CSS {
   exclude?: RegExp;
   include?: RegExp;
   localIdentName?: string;
-  getLocalIdent?: Function;
 }
 
 export interface LESS extends CSS {

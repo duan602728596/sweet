@@ -33,22 +33,19 @@ export function createStyleLoader(isDevelopment: boolean): string | any {
  * @param { boolean } isDevelopment: 是否为开发环境
  * @param { boolean } serverRender: 是否为服务器端渲染
  * @param { string } localIdentName: localIdentName
- * @param { Function } getLocalIdent: getLocalIdent
  */
 export function createCssOptions(
   modules: boolean,
   isDevelopment: boolean,
   serverRender: boolean,
-  localIdentName?: string,
-  getLocalIdent?: Function
+  localIdentName?: string
 ): LoaderOptions {
   const modulesOptions: LoaderOptions = { exportOnlyLocals: serverRender };
 
   if (modules) {
     Object.assign(modulesOptions, {
       mode: cssLoaderModeFunc,
-      localIdentName: localIdentName ?? (isDevelopment ? '[path][name]__[local]___[hash:base64:6]' : '_[hash:base64:6]'),
-      getLocalIdent
+      localIdentName: localIdentName ?? (isDevelopment ? '[path][name]__[local]___[hash:base64:6]' : '_[hash:base64:6]')
     });
   }
 

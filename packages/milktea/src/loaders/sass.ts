@@ -14,8 +14,7 @@ export default function(sweetConfig: SweetConfig, config: Config): void {
     exclude,
     include,
     additionalData,
-    localIdentName,
-    getLocalIdent
+    localIdentName
   }: SASS = sassOptions;
 
   config
@@ -40,7 +39,7 @@ export default function(sweetConfig: SweetConfig, config: Config): void {
 
   // css-loader
   const sr: boolean = !!serverRender;
-  const cssLoaderOptions: LoaderOptions = createCssOptions(modules, isDevelopment, sr, localIdentName, getLocalIdent);
+  const cssLoaderOptions: LoaderOptions = createCssOptions(modules, isDevelopment, sr, localIdentName);
   const ScopedCssLoaderOptions: LoaderOptions = createCssOptions(false, isDevelopment, sr);
 
   // sass-loader
