@@ -88,6 +88,7 @@ module.exports = function(info) {
   * exclude `{ RegExp }` : exclude规则
   * include `{ RegExp }` : include规则
 * ts `{ object }` : typescript配置
+  * configFile `{ string }` : typescript的配置文件
   * presets `{ Array<any> }` : 自定义babel的presets
   * plugins `{ Array<any> }` : 自定义babel的plugins
   * exclude `{ RegExp }` : exclude规则

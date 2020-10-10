@@ -2,7 +2,7 @@ import * as _ from 'lodash';
 import * as Config from 'webpack-chain';
 import type { Use, LoaderOptions } from 'webpack-chain';
 import { customizer } from '../utils/utils';
-import { createBabelForTsOptions } from '../config/babelConfig';
+import { createBabelForTsOptions, createTypescriptOptions } from '../config/babelConfig';
 import type { SweetConfig, SweetOptions, TS, JS } from '../utils/types';
 
 /* ts 配置 */
@@ -13,7 +13,7 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
   // 获取配置
   const tsOptions: TS = ts ?? {};
   const jsOptions: JS = js ?? {};
-  const { presets = [], plugins = [], exclude, include }: TS = tsOptions;
+  const { configFile, presets = [], plugins = [], exclude, include }: TS = tsOptions;
   const { vue2 }: JS = jsOptions;
 
   const useConfig: object = {
@@ -22,7 +22,8 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
       options: createBabelForTsOptions(sweetOptions)
     },
     'ts-loader': {
-      loader: 'ts-loader'
+      loader: 'ts-loader',
+      options: createTypescriptOptions(configFile)
     }
   };
 

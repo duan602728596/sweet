@@ -41,6 +41,7 @@ export interface JS {
 }
 
 export interface TS {
+  configFile?: string;
   presets?: Array<any>;
   plugins?: Array<any>;
   exclude?: RegExp;

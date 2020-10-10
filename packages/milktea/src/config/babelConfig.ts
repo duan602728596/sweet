@@ -128,6 +128,20 @@ export function createBabelOptions(sweetOptions: SweetOptions, jsOptions: JS): L
 }
 
 /**
+ * ts-loader options
+ * @param { string | undefined } configFile
+ */
+export function createTypescriptOptions(configFile: string | undefined): LoaderOptions {
+  const options: LoaderOptions = {};
+
+  if (configFile) {
+    options.configFile = configFile;
+  }
+
+  return options;
+}
+
+/**
  * babel-loader for typescript
  * @param { SweetOptions } sweetOptions
  */
