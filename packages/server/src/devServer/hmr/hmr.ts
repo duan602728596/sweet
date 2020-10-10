@@ -57,8 +57,7 @@ function koaHmr(options: Options): Middleware {
   });
 
   return async function(ctx: Context, next: Function): Promise<void> {
-    ctx.state.sock = sock;
-    ctx.sock = sock;
+    ctx.state.sock = ctx.sock = sock;
 
     await next();
   };

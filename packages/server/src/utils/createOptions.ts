@@ -5,8 +5,7 @@ import type { SweetOptions } from './types';
 /* 注入ctx.state.sweetOptions */
 function createSweetOptionsMiddleware(app: Koa, sweetOptions: SweetOptions): void {
   app.use(async function(ctx: Context, next: Function): Promise<void> {
-    ctx.state.sweetOptions = sweetOptions;
-    ctx.sweetOptions = sweetOptions; // TODO: remove
+    ctx.state.sweetOptions = ctx.sweetOptions = sweetOptions;
 
     await next();
   });
