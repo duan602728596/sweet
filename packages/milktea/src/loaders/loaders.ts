@@ -10,7 +10,6 @@ import htmlLoader from './html';
 import imageLoader from './image';
 import svgLoader from './svg';
 import { formatLoader } from '../utils/utils';
-import __TODO_WEBPACK5_BETA30__ from '../utils/webpack5Beta30'; // TODO: 以后会删除
 import type { SweetConfig, SweetOptions, Loaders } from '../utils/types';
 
 /* loaders */
@@ -25,21 +24,19 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
    *   see issues: https://github.com/webpack/webpack/issues/11467
    *               https://github.com/babel/babel/issues/12058
    */
-  if (__TODO_WEBPACK5_BETA30__) {
-    config.merge({
-      module: {
-        rule: {
-          esm: {
-            test: /^.*\.m?js$/i,
-            resolve: {
-              fullySpecified: false
-            },
-            type: 'javascript/auto'
-          }
+  config.merge({
+    module: {
+      rule: {
+        esm: {
+          test: /^.*\.m?js$/i,
+          resolve: {
+            fullySpecified: false
+          },
+          type: 'javascript/auto'
         }
       }
-    });
-  }
+    }
+  });
 
   // js
   config

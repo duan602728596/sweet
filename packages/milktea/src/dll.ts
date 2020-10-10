@@ -9,7 +9,6 @@ import { handleDefaultProgress } from './plugins/handleProgress';
 import createHandleProgressBar from './plugins/handleProgressBar';
 import { babelCache, dllCache } from './config/cacheConfig';
 import { extensions } from './utils/utils';
-import __TODO_WEBPACK5_BETA30__ from './utils/webpack5Beta30'; // TODO: 以后会删除
 import type { SweetConfig, SweetOptions, JS } from './utils/types';
 
 /**
@@ -35,7 +34,7 @@ export default function(sweetConfig: SweetConfig | null | undefined, sweetOption
       mode: 'development',
       devtool: isDevelopment ? 'inline-source-map' : false,
       resolve: { extensions },
-      target: __TODO_WEBPACK5_BETA30__ ? [ecmascript ? 'es2020' : 'es5'] : undefined, // TODO: 以后会删除
+      target: ['web', ecmascript ? 'es2020' : 'es5'],
       performance: { hints: false }
     });
 
@@ -53,21 +52,19 @@ export default function(sweetConfig: SweetConfig | null | undefined, sweetOption
    *   see issues: https://github.com/webpack/webpack/issues/11467
    *               https://github.com/babel/babel/issues/12058
    */
-  if (__TODO_WEBPACK5_BETA30__) {
-    config.merge({
-      module: {
-        rule: {
-          esm: {
-            test: /^.*\.m?js$/i,
-            resolve: {
-              fullySpecified: false
-            },
-            type: 'javascript/auto'
-          }
+  config.merge({
+    module: {
+      rule: {
+        esm: {
+          test: /^.*\.m?js$/i,
+          resolve: {
+            fullySpecified: false
+          },
+          type: 'javascript/auto'
         }
       }
-    });
-  }
+    }
+  });
 
   // babel
   config

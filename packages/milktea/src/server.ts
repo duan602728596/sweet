@@ -8,7 +8,6 @@ import basicPlugins from './plugins/plugins';
 import optimization from './optimization/optimization';
 import { extensions } from './utils/utils';
 import { webpackServerCache } from './config/cacheConfig';
-import __TODO_WEBPACK5_BETA30__ from './utils/webpack5Beta30'; // TODO: 以后会删除
 import type { SweetConfig, SweetOptions } from './utils/types';
 
 /**
@@ -46,7 +45,7 @@ export default function(sweetConfig: SweetConfig | null | undefined, sweetOption
       mode,
       devtool: serverDevtool ?? (isDevelopment ? 'eval-source-map' : 'source-map'),
       resolve: { extensions },
-      target: __TODO_WEBPACK5_BETA30__ ? ['node', 'node10'] : 'node', // TODO: 以后会删除
+      target: ['node', 'node10'],
       performance: { hints: false },
       node: {
         __filename: true,
@@ -85,7 +84,9 @@ export default function(sweetConfig: SweetConfig | null | undefined, sweetOption
 
   const mergeConfiguration: Configuration = {
     entry: serverEntry,
-    output: serverOutput,
+    output: Object.assign({
+      ecmaVersion: 2015
+    }, serverOutput),
     externals: serverExternals,
     resolve,
     // 添加其他的rules
@@ -99,13 +100,6 @@ export default function(sweetConfig: SweetConfig | null | undefined, sweetOption
       topLevelAwait: true
     }
   };
-
-  // TODO: 以后会删除
-  if (!__TODO_WEBPACK5_BETA30__) {
-    mergeConfiguration.output ??= {};
-    // @ts-ignore
-    mergeConfiguration.output.ecmaVersion = 2015;
-  }
 
   /* @ts-ignore 合并自定义配置 */
   return merge(config.toConfig(), mergeConfiguration);
