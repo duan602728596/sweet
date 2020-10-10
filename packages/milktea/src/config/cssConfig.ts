@@ -5,7 +5,7 @@ import type { LoaderOptions } from 'webpack-chain';
 
 // css-loader的mode
 // Callback must return "local", "global", or "pure" values
-function cssLoaderModeFunc(resourcePath: string): string {
+function cssLoaderModeFunc(resourcePath: string): 'local' | 'global' | 'pure' {
   if (/(pure\.(css|less|sass|scss|styl(us)?))/i.test(resourcePath)) {
     return 'pure';
   }
