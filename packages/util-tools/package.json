@@ -24,13 +24,6 @@
     "lodash": "^4.17.20",
     "semver": "^7.3.2"
   },
-  "devDependencies": {
-    "imagemin-gif2webp": "^3.0.0",
-    "imagemin-gifsicle": "^7.0.0",
-    "imagemin-jpegoptim": "^7.0.0",
-    "imagemin-pngquant": "^9.0.1",
-    "imagemin-webp": "^6.0.0"
-  },
   "peerDependencies": {
     "imagemin-gif2webp": ">=3",
     "imagemin-gifsicle": ">=7",
