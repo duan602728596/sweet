@@ -63,6 +63,7 @@ export default function(sweetConfig: SweetConfig | null | undefined, sweetOption
   config
     .output
     .path(path.join(sweetOptions.basicPath, 'dist-server'))
+    .publicPath('')
     .filename('[name].js')
     .library('[name]')
     .libraryTarget('umd')
