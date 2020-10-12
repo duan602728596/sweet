@@ -4,7 +4,7 @@ import * as Router from '@koa/router';
 import * as mime from 'mime-types';
 import type { Context } from 'koa';
 import preRenderInit from './preDevRender';
-import { webpackHmrPath, isExists } from '../utils/utils';
+import { isExists } from '../utils/utils';
 import { SweetOptions } from '../utils/types';
 
 function createRouters(router: Router, sweetOptions: SweetOptions): void {
@@ -20,7 +20,7 @@ function createRouters(router: Router, sweetOptions: SweetOptions): void {
 
       // 重定向path，所有的路由都指向"/"
       // TODO: webpack-hot-middleware
-      if (ctxPath !== '/' && ctxPath !== webpackHmrPath && mimeType === false) {
+      if (ctxPath !== '/' && mimeType === false) {
         ctx.path = '/';
       }
 

@@ -1,11 +1,8 @@
 import * as Koa from 'koa';
 import * as Router from '@koa/router';
 import * as body from 'koa-body';
-// import connect = require('koa-connect');
 import { Compiler } from 'webpack';
-// import * as hotMiddleware from 'webpack-hot-middleware';
 import koaDevMiddleware from './koaDevMiddleware';
-// import { webpackHmrPath } from '../utils/utils';
 
 /**
  * 创建中间件
@@ -23,11 +20,6 @@ function middleware(app: Koa, router: Router, compiler: Compiler | undefined): v
 
   /* webpack热替换服务 */
   if (compiler !== undefined) {
-    // TODO: webpack-hot-middleware
-    // const hotMiddlewareConfig: { [key: string]: any } = {
-    //   path: webpackHmrPath,
-    //   log: false
-    // };
     const devMiddlewareConfig: { [key: string]: any } = {
       serverSideRender: true,
       mimeTypes: {
@@ -35,11 +27,6 @@ function middleware(app: Koa, router: Router, compiler: Compiler | undefined): v
         avifs: 'image/avif-sequence'
       }
     };
-
-    // TODO: webpack-hot-middleware
-    // app.use(connect(
-    //   hotMiddleware(compiler, hotMiddlewareConfig)
-    // ));
 
     app.use(koaDevMiddleware(compiler, devMiddlewareConfig));
   }

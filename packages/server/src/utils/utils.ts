@@ -203,9 +203,3 @@ export async function detectPort(port: number, ignorePort: Array<number> = []): 
 
   return newNumber;
 }
-
-/**
- * webpack热替换地址
- * TODO: webpack-hot-middleware
- */
-export const webpackHmrPath: string = '/___WEBPACK_HMR___';
