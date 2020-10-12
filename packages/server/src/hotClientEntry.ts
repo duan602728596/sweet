@@ -1,6 +1,4 @@
-function isPlainObject<T = any>(entry: T): boolean {
-  return typeof entry === 'object' && Object.prototype.toString.call(entry) === '[object Object]';
-}
+import * as _ from 'lodash';
 
 type StandardEntry = {
   [key: string]: Array<string>;
@@ -36,7 +34,7 @@ function hotClientEntry(entry: Entry): StandardEntry | Entry {
   }
 
   // object
-  if (isPlainObject(entry)) {
+  if (_.isPlainObject(entry)) {
     const result: StandardEntry = {};
 
     for (const key in entry) {
