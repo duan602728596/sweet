@@ -29,17 +29,6 @@ function argvStart(argv: Argv): void {
 
       const serverSideRenderConfig: Configuration = milktea.serverRenderConfig(argv.config, 'development', argv.webpackLog);
 
-      // koa-webpack需要output.publicPath
-      if (argv.server) {
-        if (!serverSideRenderConfig.output) {
-          serverSideRenderConfig.output = {};
-        }
-
-        if (!serverSideRenderConfig.output.publicPath) {
-          serverSideRenderConfig.output.publicPath = '/';
-        }
-      }
-
       serverRenderCompiler = webpack(serverSideRenderConfig);
 
       // 修改虚拟文件系统
