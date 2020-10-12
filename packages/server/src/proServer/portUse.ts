@@ -1,5 +1,5 @@
-import * as detectPort from 'detect-port';
 import * as chalk from 'chalk';
+import { portIsOccupied } from '../utils/utils';
 
 /**
  * 判断端口是否被占用
@@ -7,9 +7,9 @@ import * as chalk from 'chalk';
  * @param { 'http' | 'https' } type: 警告的类型
  */
 async function portUse(port: number, type: 'http' | 'https'): Promise<number> {
-  const usePort: number = await detectPort(port);
+  const isOccupied: boolean = await portIsOccupied(port);
 
-  if ((port !== usePort)) {
+  if (isOccupied) {
     const oldPort: string = chalk.bold(String(port));
     const text: string = chalk.red(` - ${ type }端口 ${ oldPort } 已被占用。`);
 
