@@ -193,7 +193,7 @@ export async function detectPort(port: number, ignorePort: Array<number> = []): 
   while (pt <= maxPort) {
     const portCanUse: boolean = await portIsOccupied(pt);
 
-    if (portCanUse && !ignorePort.includes(newNumber)) {
+    if (portCanUse && !ignorePort.includes(pt)) {
       newNumber = pt;
       break;
     } else {
