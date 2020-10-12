@@ -36,7 +36,7 @@
     "cosmiconfig": "^7.0.0",
     "css-loader": "^4.3.0",
     "fibers": "^5.0.0",
-    "file-loader": "^6.1.0",
+    "file-loader": "^6.1.1",
     "html-webpack-plugin": "^4.5.0",
     "less": "^3.12.2",
     "less-loader": "^7.0.2",
@@ -54,9 +54,9 @@
     "terser": "^5.3.4",
     "terser-webpack-plugin": "^4.2.3",
     "url-loader": "^4.1.1",
-    "webpack": "^5.0.0-rc.5",
+    "webpack": "^5.0.0",
     "webpack-chain": "^6.5.1",
-    "webpack-merge": "^5.1.4"
+    "webpack-merge": "^5.2.0"
   },
   "devDependencies": {
     "@vue/babel-plugin-jsx": "^1.0.0-rc.3",
