@@ -19,7 +19,16 @@ import type { SweetConfig, SweetOptions, JS } from './utils/types';
 export default function(sweetConfig: SweetConfig | null | undefined, sweetOptions: SweetOptions): Configuration {
   const config: Config = new Config();
   const sweetConfigCopy: SweetConfig = _.isPlainObject(sweetConfig) ? { ...sweetConfig } : {};
-  const { mode, dll, externals, resolve, chainWebpack, js, webpackLog = 'progress' }: SweetConfig = sweetConfigCopy;
+  const {
+    mode,
+    dll,
+    externals,
+    resolve,
+    chainWebpack,
+    js,
+    webpackLog = 'progress',
+    mjsExperiments
+  }: SweetConfig = sweetConfigCopy;
   const { ecmascript, targets: customTargets }: JS = js ?? {};
   const isDevelopment: boolean = mode === 'development';
 
@@ -48,23 +57,22 @@ export default function(sweetConfig: SweetConfig | null | undefined, sweetOption
     .globalObject('this');
 
   /**
-   * TODO: [webpack@5.0.0-beta.30] 重写esm的加载方法
-   *   see issues: https://github.com/webpack/webpack/issues/11467
-   *               https://github.com/babel/babel/issues/12058
+   * TODO: 重写esm的加载方法
+   *   see issues: https://github.com/webpack/webpack/issues/11467 https://github.com/babel/babel/issues/12058
    */
-  config.merge({
-    module: {
-      rule: {
-        esm: {
-          test: /^.*\.m?js$/i,
-          resolve: {
-            fullySpecified: false
-          },
-          type: 'javascript/auto'
+  if (mjsExperiments) {
+    config.merge({
+      module: {
+        rule: {
+          esm: {
+            test: /^.*\.m?js$/i,
+            resolve: { fullySpecified: false },
+            type: 'javascript/auto'
+          }
         }
       }
-    }
-  });
+    });
+  }
 
   // babel
   config
