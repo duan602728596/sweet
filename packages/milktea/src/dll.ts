@@ -27,7 +27,7 @@ export default function(sweetConfig: SweetConfig | null | undefined, sweetOption
     chainWebpack,
     js,
     webpackLog = 'progress',
-    mjsExperiments
+    disableMjsExperiments
   }: SweetConfig = sweetConfigCopy;
   const { ecmascript, targets: customTargets }: JS = js ?? {};
   const isDevelopment: boolean = mode === 'development';
@@ -60,7 +60,7 @@ export default function(sweetConfig: SweetConfig | null | undefined, sweetOption
    * TODO: 重写esm的加载方法
    *   see issues: https://github.com/webpack/webpack/issues/11467 https://github.com/babel/babel/issues/12058
    */
-  if (mjsExperiments) {
+  if (disableMjsExperiments) {
     config.merge({
       module: {
         rule: {

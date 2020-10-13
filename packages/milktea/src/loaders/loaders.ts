@@ -14,7 +14,7 @@ import type { SweetConfig, SweetOptions, Loaders } from '../utils/types';
 
 /* loaders */
 export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, config: Config): void {
-  const { frame, loaders: sweetConfigLoaders, mode, js, mjsExperiments }: SweetConfig = sweetConfig;
+  const { frame, loaders: sweetConfigLoaders, mode, js, disableMjsExperiments }: SweetConfig = sweetConfig;
   const loaders: Loaders = sweetConfigLoaders && _.isPlainObject(sweetConfigLoaders) ? sweetConfigLoaders : {};
   const isDevelopment: boolean = mode === 'development';
   const typescript: boolean | undefined = js?.typescript;
@@ -23,7 +23,7 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
    * TODO: 重写esm的加载方法
    *   see issues: https://github.com/webpack/webpack/issues/11467 https://github.com/babel/babel/issues/12058
    */
-  if (mjsExperiments) {
+  if (disableMjsExperiments) {
     config.merge({
       module: {
         rule: {
