@@ -5,13 +5,12 @@ import Index from '../pages/index';
 
 const SecondBundle = () => import(/* webpackChunkName: 'second' */'../pages/Second/index');
 
-const routers = {};
-const history = require('./createHistory');
+const router = {};
 
 export function createRouters() {
-  if (!routers.routers) {
-    routers.routers = createRouter({
-      history: history(),
+  if (Object.keys(router).length === 0) {
+    Object.assign(router, createRouter({
+      history: require('./createHistory')(),
       routes: [
         {
           path: '/Login',
@@ -57,10 +56,10 @@ export function createRouters() {
           ]
         }
       ]
-    });
+    }));
   }
 
-  return routers.routers;
+  return router;
 }
 
-export default routers;
+export default router;

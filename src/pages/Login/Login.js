@@ -1,7 +1,7 @@
 import { reactive } from 'vue';
 import { Form, Button, Input } from 'ant-design-vue';
 import { UserOutlined as IconUserOutlined, LockOutlined as IconLockOutlined } from '@ant-design/icons-vue';
-import routers from '../../router/routers';
+import router from '../../router/routers';
 import style from './login.sass';
 
 /* 登陆 */
@@ -13,7 +13,7 @@ function Login() {
 
   // 登陆
   function handleLoginSubmit(value) {
-    routers.routers.push('/');
+    router.push('/');
   }
 
   return (

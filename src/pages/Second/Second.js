@@ -1,8 +1,8 @@
-import routers from '../../router/routers';
+import router from '../../router/routers';
 
 export default {
   render() {
-    const { path: pathname } = routers.routers.currentRoute.value;
+    const { path: pathname } = router.currentRoute.value;
 
     return (
       <div>
