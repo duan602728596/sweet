@@ -26,8 +26,7 @@ export default function(sweetConfig: SweetConfig | null | undefined, sweetOption
     resolve,
     chainWebpack,
     js,
-    webpackLog = 'progress',
-    disableMjsExperiments
+    webpackLog = 'progress'
   }: SweetConfig = sweetConfigCopy;
   const { ecmascript, targets: customTargets }: JS = js ?? {};
   const isDevelopment: boolean = mode === 'development';
@@ -55,24 +54,6 @@ export default function(sweetConfig: SweetConfig | null | undefined, sweetOption
     .library('[name]_[hash:5]')
     .libraryTarget('var')
     .globalObject('this');
-
-  /**
-   * TODO: 重写esm的加载方法
-   *   see issues: https://github.com/webpack/webpack/issues/11467 https://github.com/babel/babel/issues/12058
-   */
-  if (disableMjsExperiments) {
-    config.merge({
-      module: {
-        rule: {
-          esm: {
-            test: /^.*\.m?js$/i,
-            resolve: { fullySpecified: false },
-            type: 'javascript/auto'
-          }
-        }
-      }
-    });
-  }
 
   // babel
   config

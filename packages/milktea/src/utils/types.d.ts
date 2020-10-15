@@ -95,8 +95,6 @@ export interface SweetConfig {
   frame?: Frame;
   chainWebpack?: (config: Config) => void;
   filesMap?: boolean | { [key: string]: string };
-  /** @deprecated */
-  disableMjsExperiments?: boolean;
   // ssr
   serverRender?: boolean;
   serverEntry?: Entry;
