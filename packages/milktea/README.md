@@ -79,7 +79,7 @@ module.exports = function(info) {
   * targets `{ object }` : 配置@babel/preset-env的编译目标
   * ecmascript `{ boolean }` : 是否编译到ecmascript的最新语法（即不使用@babel/preset-env，通常适用于node、nwjs和electron）
   * typescript `{ boolean }` : 是否使用typescript编译（即使用@babel/preset-typescript）
-  * [jsx](https://github.com/reactjs/rfcs/blob/createlement-rfc/text/0000-create-element-changes.md#summary) `{ boolean }` : babel-preset-react的runtime选项值为`automatic`，否则为`classic`。默认为false
+  * [jsx](https://github.com/reactjs/rfcs/blob/createlement-rfc/text/0000-create-element-changes.md#summary) `{ boolean }` : @babel/preset-react的runtime选项值为`automatic`，否则为`classic`。默认为false
   * vue2 `{ boolean }` : 加载vue2的插件（默认加载vue3的插件）。
   * presets `{ Array<any> }` : 自定义presets
   * plugins `{ Array<any> }` : 自定义plugins
