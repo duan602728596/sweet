@@ -16,11 +16,13 @@
   },
   "dependencies": {
     "@babel/core": "^7.12.0",
+    "@babel/plugin-proposal-class-static-block": "^7.12.0",
     "@babel/plugin-proposal-decorators": "^7.10.5",
     "@babel/plugin-proposal-do-expressions": "^7.10.4",
     "@babel/plugin-proposal-export-default-from": "^7.10.4",
     "@babel/plugin-proposal-pipeline-operator": "^7.10.5",
     "@babel/plugin-proposal-throw-expressions": "^7.10.4",
+    "@babel/plugin-syntax-module-string-names": "^7.12.0",
     "@babel/plugin-syntax-top-level-await": "^7.10.4",
     "@babel/plugin-transform-runtime": "^7.12.0",
     "@babel/preset-env": "^7.11.5",
