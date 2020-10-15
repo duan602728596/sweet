@@ -14,7 +14,7 @@ import argvImage2Icns from './argv/argvImage2Icns';
 import argvMedia2WebP from './argv/argvMedia2WebP';
 
 /* 获取参数 */
-const argv: object = yargs
+const argv: any = yargs
   .command('dll', '编译dll文件', (): void => undefined, argvDll)
   .command('start', '开发环境', (): void => undefined, argvStart)
   .command('build', '编译代码', (): void => undefined, argvBuild)
@@ -92,10 +92,6 @@ const argv: object = yargs
     serverRenderFile: {
       describe: '服务器端渲染的主模块文件',
       type: 'string'
-    },
-    serverRenderMemFs: {
-      describe: '服务器端渲染的文件使用内存文件系统输出',
-      type: 'boolean'
     },
     template: {
       describe: 'html模版的文件名',

@@ -31,7 +31,6 @@ export interface Argv {
   serverRender: boolean;
   serverRenderRoot: string;
   serverRenderFile: string;
-  serverRenderMemFs: boolean;
   template: string;
   renderType: string;
   // utils

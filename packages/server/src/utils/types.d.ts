@@ -1,6 +1,5 @@
 import * as Koa from 'koa';
 import type { Compiler } from 'webpack';
-import type { IUnionFs } from 'unionfs';
 
 export interface Log {
   type: 'file' | 'http';
@@ -16,7 +15,6 @@ export interface ServerArgs {
   serverRender?: boolean;
   serverRenderRoot?: string;
   serverRenderFile?: string;
-  serverRenderOutputFileSystem?: IUnionFs;
   env?: string;
   renderType?: 'ejs' | 'nunjucks';
   serverChain?: (app: Koa) => Promise<void>;

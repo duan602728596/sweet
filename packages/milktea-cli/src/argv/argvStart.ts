@@ -1,7 +1,6 @@
 import * as webpack from 'webpack';
 import type { Compiler, Configuration } from 'webpack';
 import * as _ from 'lodash';
-import type { IUnionFs } from 'unionfs';
 import { requireModule } from '../utils/utils';
 import type { Milktea, Argv } from '../utils/types';
 
@@ -19,8 +18,7 @@ function argvStart(argv: Argv): void {
 
   const compiler: Compiler = webpack(webpackConfig);
   let serverRenderCompiler: Compiler | null = null,
-    serverRenderWatching: any | null = null,
-    serverRenderOutputFileSystem: IUnionFs | null = null; // 内存文件系统
+    serverRenderWatching: any | null = null;
 
   if (!_.isNil(argv.serverRender)) {
     compiler.hooks.done.tap('sweet-milktea-build', function(): void {
@@ -30,13 +28,6 @@ function argvStart(argv: Argv): void {
       const serverSideRenderConfig: Configuration = milktea.serverRenderConfig(argv.config, 'development', argv.webpackLog);
 
       serverRenderCompiler = webpack(serverSideRenderConfig);
-
-      // 修改虚拟文件系统
-      if (argv.serverRenderMemFs && serverRenderOutputFileSystem) {
-        // @ts-ignore
-        serverRenderCompiler.outputFileSystem = serverRenderOutputFileSystem;
-      }
-
       serverRenderWatching = serverRenderCompiler.watch({
         aggregateTimeout: 500
       }, !argv.webpackLog || argv.webpackLog === 'progress' ? milktea.callbackOnlyError : milktea.callback);
@@ -56,10 +47,6 @@ function argvStart(argv: Argv): void {
     const redirectToHttps: boolean = argv.redirectToHttps;
     const useBabelRegister: boolean = argv.useBabelRegister;
 
-    if (argv.serverRenderMemFs) {
-      serverRenderOutputFileSystem = devServer['createMemFs']();
-    }
-
     devServer({
       compiler,
       httpPort,
@@ -71,8 +58,7 @@ function argvStart(argv: Argv): void {
       httpsKey,
       httpsCert,
       redirectToHttps,
-      useBabelRegister,
-      serverRenderOutputFileSystem
+      useBabelRegister
     });
   } else {
     const watching: any = compiler.watch({

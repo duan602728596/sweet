@@ -6,12 +6,8 @@ import * as http2 from 'http2';
 import type { Http2SecureServer, SecureServerOptions } from 'http2';
 import * as process from 'process';
 import * as path from 'path';
-import * as fs from 'fs';
 import * as Koa from 'koa';
 import * as Router from '@koa/router';
-import { createFsFromVolume, Volume, IFs } from 'memfs';
-import { patchRequire } from 'fs-monkey';
-import { Union, IUnionFs } from 'unionfs';
 import type { Compiler } from 'webpack';
 import middleware from './devServer/middleware';
 import createRouters from './devServer/createRouters';
@@ -43,7 +39,6 @@ const sweetOptions: SweetOptions = {
  * serverRender { boolean }: 开启服务器端渲染
  * serverRenderRoot { string }: 服务器端渲染的文件夹
  * serverRenderFile { string }: 服务器端渲染的主模块文件
- * serverRenderOutputFileSystem { IUnionFs }: 服务器端渲染输出的文件使用的内存文件系统
  * env { string }: 运行环境，可能的值为test（测试）
  * renderType { string }: html使用的渲染模板
  * serverChain { (app: Koa) => void }: 扩展koa中间件配置
@@ -64,7 +59,6 @@ async function devServer(args: DevServerArgs = {}): Promise<void> {
     serverRender,
     serverRenderRoot = 'dist-server',
     serverRenderFile = 'server.js',
-    serverRenderOutputFileSystem,
     env,
     renderType = 'ejs',
     serverChain,
@@ -87,7 +81,6 @@ async function devServer(args: DevServerArgs = {}): Promise<void> {
     serverRender,
     serverRenderRoot: formatPath(sweetOptions, serverRenderRoot),
     serverRenderFile,
-    serverRenderOutputFileSystem,
     env,
     renderType,
     serverChain,
@@ -179,17 +172,5 @@ async function devServer(args: DevServerArgs = {}): Promise<void> {
     http2Server.listen(sweetOptions.httpsPort);
   }
 }
-
-/* 创建一个内存文件系统 */
-devServer.createMemFs = function(): IUnionFs {
-  const ifs: IFs = createFsFromVolume(new Volume());
-  const ufs: IUnionFs = new Union();
-
-  ufs.use(ifs as any).use(fs);
-  ufs['join'] = path.join;
-  patchRequire(ufs);
-
-  return ufs;
-};
 
 export default devServer;
