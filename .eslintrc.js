@@ -71,6 +71,8 @@ module.exports = {
         ],
         // Extension Rules
         '@typescript-eslint/no-array-constructor': 'error', // 禁止使用new Array()，但是可以使用new Array<type>()
+        'no-use-before-define': 'off',
+        '@typescript-eslint/no-use-before-define': 'error', // 禁止定义前使用
         // @sweet-milktea/eslint-plugin
         '@sweet-milktea/space-before-blocks': 'error',
         '@sweet-milktea/space-infix-ops': 'error'
