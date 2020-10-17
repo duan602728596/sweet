@@ -17,7 +17,7 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
   const {
     ecmascript,
     typescript,
-    jsx,
+    jsx = true,
     vue2,
     presets,
     plugins,
