@@ -42,7 +42,6 @@ export default function(info) {
       }
     ],
     js: {
-      jsx: true,
       plugins,
       exclude: /node_modules/
     },
