@@ -1,6 +1,6 @@
-import * as path from 'path';
 import * as Config from 'webpack-chain';
 import * as TerserPlugin from 'terser-webpack-plugin';
+import * as CssMinimizerPlugin from 'css-minimizer-webpack-plugin';
 import type { SweetConfig, SweetOptions } from '../utils/types';
 
 interface TerserOptions {
@@ -32,11 +32,16 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
 
         config
           .optimization
-          .minimizer('minimizer')
+          // js代码压缩
+          .minimizer('terser-webpack-plugin')
           .use(TerserPlugin, [{
             extractComments: false,
             terserOptions
-          }]);
+          }])
+          .end()
+          // css代码压缩
+          .minimizer('css-minimizer-webpack-plugin')
+          .use(CssMinimizerPlugin);
       }
     );
 }
