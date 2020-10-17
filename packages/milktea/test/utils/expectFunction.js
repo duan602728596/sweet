@@ -2,7 +2,7 @@ import { expect } from 'chai';
 import webpack from 'webpack';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
-import VueLoaderPlugin from 'vue-loader/lib/plugin';
+import VueLoaderPlugin from 'vue-loader/dist/plugin';
 import TerserWebpackPlugin from 'terser-webpack-plugin';
 import CssMinimizerPlugin from 'css-minimizer-webpack-plugin';
 
