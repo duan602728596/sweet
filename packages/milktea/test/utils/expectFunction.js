@@ -2,9 +2,9 @@ import { expect } from 'chai';
 import webpack from 'webpack';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
-import OptimizeCssAssets from 'optimize-css-assets-webpack-plugin';
 import VueLoaderPlugin from 'vue-loader/lib/plugin';
 import TerserWebpackPlugin from 'terser-webpack-plugin';
+import CssMinimizerPlugin from 'css-minimizer-webpack-plugin';
 
 /* module属性 */
 export function expectModule(config, length) {
@@ -44,14 +44,13 @@ export function expectDevServerPlugins(config) {
 export function expectProPlugins(config) {
   return function() {
     expect(config.plugins).to.be.an('array');
-    expect(config.plugins).to.have.lengthOf(7);
+    expect(config.plugins).to.have.lengthOf(6);
     expect(config.plugins[0] instanceof webpack.IgnorePlugin).to.be.true;
     expect(config.plugins[1] instanceof webpack.DefinePlugin).to.be.true;
     expect(config.plugins[2] instanceof MiniCssExtractPlugin).to.be.true;
-    expect(config.plugins[3] instanceof OptimizeCssAssets).to.be.true;
-    expect(config.plugins[4] instanceof HtmlWebpackPlugin).to.be.true;
-    expect(config.plugins[5] instanceof VueLoaderPlugin).to.be.true;
-    expect(config.plugins[6] instanceof webpack.ProgressPlugin).to.be.true;
+    expect(config.plugins[3] instanceof HtmlWebpackPlugin).to.be.true;
+    expect(config.plugins[4] instanceof VueLoaderPlugin).to.be.true;
+    expect(config.plugins[5] instanceof webpack.ProgressPlugin).to.be.true;
   };
 }
 
@@ -59,29 +58,12 @@ export function expectProPlugins(config) {
 export function expectProServerPlugins(config) {
   return function() {
     expect(config.plugins).to.be.an('array');
-    expect(config.plugins).to.have.lengthOf(6);
+    expect(config.plugins).to.have.lengthOf(5);
     expect(config.plugins[0] instanceof webpack.IgnorePlugin).to.be.true;
     expect(config.plugins[1] instanceof webpack.DefinePlugin).to.be.true;
     expect(config.plugins[2] instanceof MiniCssExtractPlugin).to.be.true;
-    expect(config.plugins[3] instanceof OptimizeCssAssets).to.be.true;
-    expect(config.plugins[4] instanceof VueLoaderPlugin).to.be.true;
-    expect(config.plugins[5] instanceof webpack.ProgressPlugin).to.be.true;
-  };
-}
-
-/* 开发环境 optimization属性 */
-export function expectDevOptimization(config) {
-  return function() {
-    expect(config.optimization).to.be.undefined;
-  };
-}
-
-/* 生产环境 optimization属性 */
-export function expectProOptimization(config, isServer) {
-  return function() {
-    expect(config.optimization).to.be.an('object');
-    expect(config.optimization.splitChunks).to.eql(isServer ? undefined : { chunks: 'all', automaticNameDelimiter: '.' });
-    expect(config.optimization.minimizer[0] instanceof TerserWebpackPlugin).to.be.true;
+    expect(config.plugins[3] instanceof VueLoaderPlugin).to.be.true;
+    expect(config.plugins[4] instanceof webpack.ProgressPlugin).to.be.true;
   };
 }
 
@@ -93,6 +75,7 @@ export function expectOptimization(config, isPro, asyncChunks) {
 
     if (isPro) {
       expect(config.optimization.minimizer[0] instanceof TerserWebpackPlugin).to.be.true;
+      expect(config.optimization.minimizer[1] instanceof CssMinimizerPlugin).to.be.true;
     }
   };
 }
