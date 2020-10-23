@@ -11,31 +11,21 @@
     "lerna:install": "lerna bootstrap --force-local",
     "case-check": "case-check --dir=\"./\" --css --ext=\"md\"",
     "update": "milktea update",
-    "update:dev": "milktea update --__DEV__",
-    "docs:init": "sb init --type react",
-    "docs:start": "cross-env NODE_ENV=development start-storybook --config-dir docs -p 5060",
-    "docs:build": "npm run clean:docs && cross-env NODE_ENV=production build-storybook --config-dir docs",
-    "clean:docs": "rimraf storybook-static"
+    "update:dev": "milktea update --__DEV__"
   },
   "private": true,
   "workspaces": [
     "packages/*"
   ],
   "dependencies": {
-    "@storybook/cli": "^6.1.0-alpha.27",
-    "@storybook/react": "^6.1.0-alpha.27",
     "@types/eslint": "^7",
     "@types/estree": "^0",
     "@types/koa": "^2",
     "@types/lodash": "^4",
     "@types/node": "^14",
-    "github-markdown-css": "^4.0.0",
     "gulp": "^4.0.2",
     "gulp-typescript": "^6.0.0-alpha.1",
     "lerna": "^3.22.1",
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1",
-    "react-markdown": "^5.0.1",
     "rimraf": "^3.0.2",
     "typescript": "^4.0.3"
   },
