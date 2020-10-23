@@ -37,7 +37,7 @@ export default {
 };
 ```
 
-或者自行包装入口，path配置为`/___WEBPACK_HMR___`。
+或者自行包装入口。
 
 ```javascript
 export default {
