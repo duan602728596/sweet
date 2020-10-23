@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { Menu } from 'antd';
 import {
   FireOutlined as IconFireOutlined,
@@ -23,7 +23,7 @@ const navs = [
         name: '介绍'
       },
       {
-        id: 'sweet/quickStart',
+        id: 'sweet/quickstart',
         url: '/Sweet/QuickStart',
         name: '快速开始'
       }
@@ -47,7 +47,7 @@ const navs = [
         name: 'milktea'
       },
       {
-        id: 'packages/milktea-cli',
+        id: 'packages/milkteacli',
         url: '/Packages/MilkteaCli',
         name: 'milktea-cli'
       },
@@ -57,12 +57,12 @@ const navs = [
         name: 'server'
       },
       {
-        id: 'packages/server-log',
+        id: 'packages/serverlog',
         url: '/Packages/ServerLog',
         name: 'server-log'
       },
       {
-        id: 'packages/util-tools',
+        id: 'packages/utiltools',
         url: '/Packages/UtilTools',
         name: 'util-tools'
       }
@@ -73,6 +73,11 @@ const openKeys = navs.map((o) => o.id);
 
 /* 网站菜单 */
 function SlideMenu(props) {
+  const location = useLocation();
+  const selectedKey = location.pathname.toLocaleLowerCase().replace(/^\//, '');
+
+  console.log(selectedKey);
+
   // 渲染菜单
   function navRender(navsList) {
     const element = [];
@@ -108,7 +113,11 @@ function SlideMenu(props) {
     return element;
   }
 
-  return <Menu className={ style.menu } mode="inline" defaultOpenKeys={ openKeys }>{ navRender(navs) }</Menu>;
+  return (
+    <Menu className={ style.menu } mode="inline" defaultOpenKeys={ openKeys } selectedKeys={ [selectedKey] }>
+      { navRender(navs) }
+    </Menu>
+  );
 }
 
 export default SlideMenu;
