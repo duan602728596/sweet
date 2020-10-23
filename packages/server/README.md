@@ -42,7 +42,11 @@ export default {
 ```javascript
 export default {
   entry: {
-    index: [path.join(__dirname, 'src/index.js'), 'webpack-hot-middleware/client?path=/___WEBPACK_HMR___']
+    index: [
+      path.join(__dirname, 'src/index.js'),
+      '@sweet-milktea/server/client/default?hot=true',
+      'webpack/hot/dev-server'
+    ]
   }
 };
 ```
