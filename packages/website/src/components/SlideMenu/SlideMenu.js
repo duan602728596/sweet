@@ -76,8 +76,6 @@ function SlideMenu(props) {
   const location = useLocation();
   const selectedKey = location.pathname.toLocaleLowerCase().replace(/^\//, '');
 
-  console.log(selectedKey);
-
   // 渲染菜单
   function navRender(navsList) {
     const element = [];
