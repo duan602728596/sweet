@@ -1,5 +1,4 @@
 import PropTypes from 'prop-types';
-import { Route } from 'react-router-dom';
 import style from './layouts.sass';
 import SlideMenu from '../SlideMenu/SlideMenu';
 
