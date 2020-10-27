@@ -2,7 +2,7 @@ import type { IncomingMessage, Server } from 'http';
 import type { Http2SecureServer } from 'http2';
 import * as sockjs from 'sockjs';
 import { Session as SockjsSession } from 'sockjs/lib/transport';
-import type { Compiler, Stats, compilation } from 'webpack';
+import type { Compiler, Stats } from 'webpack';
 
 type ServerItem = Server | Http2SecureServer;
 
@@ -26,7 +26,7 @@ SockjsSession.prototype.decorateConnection = function(req: IncomingMessage): voi
  */
 class SockJSServer {
   // webpack stats配置
-  static DEFAULT_STATS: Stats.ToJsonOptions = {
+  static DEFAULT_STATS: any = {
     all: false,
     hash: true,
     assets: true,
@@ -88,8 +88,8 @@ class SockJSServer {
   }
 
   // 获取stats
-  getStats(statsObj: Stats): Stats.ToJsonOutput {
-    const stats: Stats.ToJsonOptions = SockJSServer.DEFAULT_STATS;
+  getStats(statsObj: Stats): any {
+    const stats: any = SockJSServer.DEFAULT_STATS;
 
     return statsObj.toJson(stats);
   }
@@ -102,7 +102,7 @@ class SockJSServer {
     };
 
     const addHooks: Function = (compiler: Compiler): void => {
-      const { compile, invalid, done }: compilation.CompilerHooks = compiler.hooks;
+      const { compile, invalid, done }: any = compiler.hooks;
 
       compile.tap(SockJSServer.NAME, invalidPlugin);
       invalid.tap(SockJSServer.NAME, invalidPlugin);
