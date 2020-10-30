@@ -1,26 +1,13 @@
-import type { IncomingMessage } from 'http';
+import type { IncomingMessage, ServerResponse } from 'http';
 import * as webpackDevMiddleware from 'webpack-dev-middleware';
 import type { Context, Middleware } from 'koa';
 import type { Compiler } from 'webpack';
 
-interface MiddlewareRequest {
-  get: Function;
-}
-
-interface MiddlewareResponse {
-  locals: any;
-  set: Function;
-  get: Function;
-  send: Function;
-  setHeader?: Function;
-  end?: Function;
-}
-
-function middleware(wdm: Function, req: IncomingMessage, res: MiddlewareResponse): Promise<number> {
-  const { send }: MiddlewareResponse = res;
+function middleware(wdm: Function, req: IncomingMessage, res: ServerResponse): Promise<number> {
+  const send: Function = res['send'];
 
   return new Promise((resolve: Function, reject: Function): void => {
-    res.send = res.end = function(): void {
+    res['send'] = function(): void {
       send.apply(this, arguments);
       resolve(0);
     };
@@ -40,15 +27,14 @@ function koaDevMiddleware(compiler: Compiler, options: { [key: string]: any }): 
 
     ctx.webpack = wdm;
 
-    // 创建兼容express的req
-    const expressReq: MiddlewareRequest = {
+    // 合并req和res
+    Object.assign(req, {
       get(): string {
         return ctx.request.get.apply(ctx, arguments);
       }
-    };
+    });
 
-    // 创建兼容express的res
-    const expressRes: MiddlewareResponse = {
+    Object.assign(res, {
       locals,
 
       // 设置响应头
@@ -56,7 +42,7 @@ function koaDevMiddleware(compiler: Compiler, options: { [key: string]: any }): 
         ctx.set.apply(ctx, arguments);
       },
 
-      // 获取请求头
+      // 获取响应头
       get(): string {
         return ctx.response.get.apply(ctx, arguments);
       },
@@ -65,17 +51,9 @@ function koaDevMiddleware(compiler: Compiler, options: { [key: string]: any }): 
       send(content: any): void {
         ctx.body = content;
       }
-    };
-
-    // 合并req和res
-    Object.assign(req, expressReq);
-    Object.assign(res, expressRes, {
-      setHeaders: expressRes.set,
-      setHeader: expressRes.set,
-      end: expressRes.send
     });
 
-    const runNext: number = await middleware(wdm, req, expressRes);
+    const runNext: number = await middleware(wdm, req, res);
 
     if (runNext) {
       await next();
