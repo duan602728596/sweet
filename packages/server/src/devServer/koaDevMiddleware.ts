@@ -1,7 +1,11 @@
 import type { IncomingMessage } from 'http';
-import webpackDevMiddleware from 'webpack-dev-middleware';
+import * as webpackDevMiddleware from 'webpack-dev-middleware';
 import type { Context, Middleware } from 'koa';
 import type { Compiler } from 'webpack';
+
+interface MiddlewareRequest {
+  get: Function;
+}
 
 interface MiddlewareResponse {
   locals: any;
@@ -31,10 +35,17 @@ function koaDevMiddleware(compiler: Compiler, options: { [key: string]: any }): 
   const wdm: Function = webpackDevMiddleware(compiler, options);
 
   async function koaMiddleware(ctx: Context, next: Function): Promise<void> {
-    const { req }: Context = ctx;
+    const { req, res }: Context = ctx;
     const locals: any = ctx.locals ?? ctx.state;
 
     ctx.webpack = wdm;
+
+    // 创建兼容express的req
+    const expressReq: MiddlewareRequest = {
+      get(): string {
+        return ctx.request.get.apply(ctx, arguments);
+      }
+    };
 
     // 创建兼容express的res
     const expressRes: MiddlewareResponse = {
@@ -47,7 +58,7 @@ function koaDevMiddleware(compiler: Compiler, options: { [key: string]: any }): 
 
       // 获取请求头
       get(): string {
-        return ctx.request.get.apply(ctx, arguments);
+        return ctx.response.get.apply(ctx, arguments);
       },
 
       // 设置返回值
@@ -56,8 +67,10 @@ function koaDevMiddleware(compiler: Compiler, options: { [key: string]: any }): 
       }
     };
 
-    // 兼容函数
-    Object.assign(expressRes, {
+    // 合并req和res
+    Object.assign(req, expressReq);
+    Object.assign(res, expressRes, {
+      setHeaders: expressRes.set,
       setHeader: expressRes.set,
       end: expressRes.send
     });
