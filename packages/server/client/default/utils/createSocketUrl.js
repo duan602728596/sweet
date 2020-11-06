@@ -1,7 +1,7 @@
 'use strict';
 /* global self */
 
-var url = require('url2');
+var url = require('url');
 
 var getCurrentScriptSource = require('./getCurrentScriptSource');
 
