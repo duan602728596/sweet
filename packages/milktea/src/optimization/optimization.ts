@@ -18,7 +18,8 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
     .optimization
     .splitChunks({
       chunks: asyncChunks ? 'async' : 'all',
-      automaticNameDelimiter: '.'
+      automaticNameDelimiter: '.',
+      minChunks: 2
     });
 
   // 设置minimizer的压缩插件
