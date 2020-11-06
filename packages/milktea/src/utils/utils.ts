@@ -7,6 +7,17 @@ export function requireModule(id: string): any {
   return 'default' in module ? module.default : module;
 }
 
+/* 判断模块是否存在 */
+export function moduleExists(id: string): boolean {
+  try {
+    require.resolve(id);
+
+    return true;
+  } catch (err) {
+    return false;
+  }
+}
+
 /* lodash.mergeWith合并函数 */
 export function customizer(objValue: any, srcValue: any): Array<any> | undefined {
   if (Array.isArray(objValue)) {
