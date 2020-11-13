@@ -10,8 +10,8 @@
     "eslint:no-fix": "eslint ./",
     "lerna:install": "lerna bootstrap --force-local",
     "case-check": "case-check --dir=\"./\" --css --ext=\"md\"",
-    "update": "milktea update",
-    "update:dev": "milktea update --__DEV__"
+    "updateVersion": "milktea update",
+    "updateVersion:dev": "milktea update --__DEV__"
   },
   "private": true,
   "workspaces": [
