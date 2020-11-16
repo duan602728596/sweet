@@ -1,11 +1,11 @@
 import { useRoutes } from 'react-router-dom';
 import Element from '../../components/Element/Element';
 import MarkDown from '../../components/MarkDown/MarkDown';
-import milkteaCli from '@sweet-milktea/milktea-cli/README.md';
-import milktea from '@sweet-milktea/milktea/README.md';
-import server from '@sweet-milktea/server/README.md';
-import serverLog from '@sweet-milktea/server-log/README.md';
-import utilTools from '@sweet-milktea/util-tools/README.md';
+import milkteaCli from '../../../../milktea-cli/README.md';
+import milktea from '../../../../milktea/README.md';
+import server from '../../../../server/README.md';
+import serverLog from '../../../../server-log/README.md';
+import utilTools from '../../../../util-tools/README.md';
 
 /* /Packages 路由 */
 function Index(props) {
