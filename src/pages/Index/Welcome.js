@@ -30,7 +30,7 @@ export default {
           欢迎
           <WelcomeSvgComponent class={ style.welcome } />
         </h1>
-        <p>如果你喜欢，你可以点个赞22。</p>
+        <p>如果你喜欢，你可以点个赞。</p>
         <div>
           <IconLikeOutlined class={ style.zan } role="button" aria-label="点赞" onClick={ this.handleZanClick } />
           <span class={ style.len }>{ this.likeLen } & { this.stateLen }</span>
