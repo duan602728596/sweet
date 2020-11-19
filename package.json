@@ -9,7 +9,7 @@
     "server": "milktea server --serverRender --redirectToHttps",
     "eslint": "eslint ./ --fix",
     "case-check": "case-check --dir=\"./\" --css",
-    "update": "milktea update"
+    "updateVersion": "milktea update"
   },
   "dependencies": {
     "@ant-design/icons": "^4.3.0",
@@ -17,7 +17,7 @@
     "@sweet-milktea/milktea-cli": "^1.0.0",
     "@sweet-milktea/server": "^1.1.2",
     "@sweet-milktea/server-log": "^0.6.6",
-    "antd": "^4.8.3",
+    "antd": "^4.8.4",
     "classnames": "^2.2.6",
     "core-js": "^3.7.0",
     "history": "^5.0.0",
@@ -35,7 +35,7 @@
   "devDependencies": {
     "@babel/eslint-parser": "^7.12.1",
     "@hot-loader/react-dom": "^17.0.0",
-    "@sweet-milktea/milktea": "^1.1.1",
+    "@sweet-milktea/milktea": "^1.1.2",
     "@sweet-milktea/util-tools": "^0.16.4",
     "babel-plugin-import": "^1.13.1",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
