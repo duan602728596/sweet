@@ -16,5 +16,7 @@ app.use(createRouters());
 app.mount(document.getElementById('app'));
 
 if (module.hot) {
-  module.hot.accept();
+  module.hot.accept('./App', function() {
+    app.mount(document.getElementById('app'));
+  });
 }
