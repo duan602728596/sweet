@@ -1,3 +1,4 @@
+import * as process from 'process';
 import * as _ from 'lodash';
 
 type StandardEntry = {
