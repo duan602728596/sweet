@@ -1,11 +1,12 @@
 import { reactive } from 'vue';
+import { useRouter } from 'vue-router';
 import { Form, Button, Input } from 'ant-design-vue';
 import { UserOutlined as IconUserOutlined, LockOutlined as IconLockOutlined } from '@ant-design/icons-vue';
-import router from '../../router/routers';
 import style from './login.sass';
 
 /* 登陆 */
 function Login() {
+  const router = useRouter();
   const form = reactive({
     username: undefined,
     password: undefined

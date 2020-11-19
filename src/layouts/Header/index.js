@@ -9,20 +9,22 @@ import style from './index.sass';
  */
 export default {
   setup() {
+    // 渲染下拉菜单
+    function toolsOverlayRender() {
+      return (
+        <Menu>
+          <Menu.Item>
+            <router-link to="/Login">
+              <IconLogoutOutlined />
+              退出
+            </router-link>
+          </Menu.Item>
+        </Menu>
+      );
+    }
+
     return {
-      // 渲染下拉菜单
-      toolsOverlayRender() {
-        return (
-          <Menu>
-            <Menu.Item>
-              <router-link to="/Login">
-                <IconLogoutOutlined />
-                退出
-              </router-link>
-            </Menu.Item>
-          </Menu>
-        );
-      }
+      toolsOverlayRender
     };
   },
 

@@ -1,5 +1,6 @@
 import { ConfigProvider } from 'ant-design-vue';
 import zhCN from 'ant-design-vue/es/locale-provider/zh_CN';
+import './global.sass';
 
 /* App */
 function App() {

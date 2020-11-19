@@ -8,8 +8,8 @@ const SecondBundle = () => import(/* webpackChunkName: 'second' */'../pages/Seco
 const router = {};
 
 export function createRouters() {
-  if (Object.keys(router).length === 0) {
-    Object.assign(router, createRouter({
+  if (!router.value) {
+    router.value = createRouter({
       history: require('./createHistory')(),
       routes: [
         {
@@ -56,10 +56,10 @@ export function createRouters() {
           ]
         }
       ]
-    }));
+    });
   }
 
-  return router;
+  return router.value;
 }
 
 export default router;

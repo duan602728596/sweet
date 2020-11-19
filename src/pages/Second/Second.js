@@ -1,15 +1,22 @@
-import router from '../../router/routers';
+import { computed } from 'vue';
+import { useRouter } from 'vue-router';
 
 export default {
-  render() {
-    const { path: pathname } = router.currentRoute.value;
+  setup() {
+    const router = useRouter();
 
+    return {
+      pathname: computed(() => router.currentRoute.value.path)
+    };
+  },
+
+  render() {
     return (
       <div>
         <p>这是一个二级页。</p>
         <p>
           路由：
-          { pathname }
+          { this.pathname }
         </p>
       </div>
     );
