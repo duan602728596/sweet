@@ -24,7 +24,9 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
     );
 
   // 热替换
-  config
-    .plugin('webpack.HotModuleReplacementPlugin')
-    .use(webpack.HotModuleReplacementPlugin);
+  if (!serverRender) {
+    config
+      .plugin('webpack.HotModuleReplacementPlugin')
+      .use(webpack.HotModuleReplacementPlugin);
+  }
 }
