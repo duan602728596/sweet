@@ -35,7 +35,7 @@ export function expectDevServerPlugins(config) {
     expect(config.plugins).to.have.lengthOf(3);
     expect(config.plugins[0] instanceof webpack.IgnorePlugin).to.be.true;
     expect(config.plugins[1] instanceof webpack.DefinePlugin).to.be.true;
-    expect(config.plugins[3] instanceof webpack.ProgressPlugin).to.be.true;
+    expect(config.plugins[2] instanceof webpack.ProgressPlugin).to.be.true;
   };
 }
 
