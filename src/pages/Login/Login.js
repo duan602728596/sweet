@@ -21,10 +21,10 @@ function Login() {
     <div class={ style.loginBox }>
       <Form class={ style.loginForm } model={ form } onFinish={ handleLoginSubmit }>
         <h1 class={ style.title }>系统登陆</h1>
-        <Form.Item name="username" rules={ [{ required: true, message: '请输入用户名' }] }>
+        <Form.Item class={ style.formInput } name="username" rules={ [{ required: true, message: '请输入用户名' }] }>
           <Input v-model={ [form.username, 'value'] } addonBefore={ <IconUserOutlined /> } />
         </Form.Item>
-        <Form.Item name="password" rules={ [{ required: true, message: '请输入密码' }] }>
+        <Form.Item class={ style.formInput } name="password" rules={ [{ required: true, message: '请输入密码' }] }>
           <Input type="password" v-model={ [form.password, 'value'] } addonBefore={ <IconLockOutlined /> } />
         </Form.Item>
         <div class={ style.btnBox }>
