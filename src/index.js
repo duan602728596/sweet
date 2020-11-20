@@ -5,18 +5,22 @@ import { storeFactory } from './store/store';
 import { createRouters } from './router/routers';
 import './global.sass';
 
-
 /* app */
-const app = createApp(App);
+function appInit() {
+  const app = createApp(App);
 
-app.use(storeFactory());
-app.use(createRouters());
-// app.use(VueMeta);
+  app.use(storeFactory());
+  app.use(createRouters());
+  // app.use(VueMeta);
 
-app.mount(document.getElementById('app'));
+  app.mount(document.getElementById('app'));
+}
+
+appInit();
 
 if (module.hot) {
+  // TODO: 暂时解决hmr失效的问题
   module.hot.accept('./App', function() {
-    app.mount(document.getElementById('app'));
+    appInit();
   });
 }
