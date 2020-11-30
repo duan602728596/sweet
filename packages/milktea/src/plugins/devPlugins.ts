@@ -6,8 +6,7 @@ import type { SweetConfig, SweetOptions } from '../utils/types';
 
 /* 开发环境插件 */
 export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, config: Config): void {
-  const dll: Array<string> | undefined = sweetConfig.dll;
-  const serverRender: boolean | undefined = sweetConfig.serverRender;
+  const { dll, serverRender, hot }: SweetConfig = sweetConfig;
   const isDll: boolean = !!(dll && Array.isArray(dll) && dll.length > 0 && !serverRender);
 
   // dll
@@ -23,8 +22,8 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
       }
     );
 
-  // 热替换
-  if (!serverRender) {
+  // 热替换 webpack5的HotModuleReplacementPlugin插件会生成无用的文件
+  if (hot) {
     config
       .plugin('webpack.HotModuleReplacementPlugin')
       .use(webpack.HotModuleReplacementPlugin);

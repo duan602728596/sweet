@@ -115,6 +115,7 @@ module.exports = function(info) {
 * frame `{ string }` : 值为`react`或`vue`，是否为react或vue模式，并自动注入loaders和plugins
 * chainWebpack `{ Function }` : 通过`webpack-chain`的API扩展或修改webpack配置
 * filesMap `{ boolean | object }` : 输出`filesMap.json`文件，记录了文件的映射。
+* hot `{ boolean }` : 添加**webpack.HotModuleReplacementPlugin**插件，开启热更新功能。 
 
 下面的配置是关于服务器端渲染的
 

@@ -95,6 +95,7 @@ export interface SweetConfig {
   frame?: Frame;
   chainWebpack?: (config: Config) => void;
   filesMap?: boolean | { [key: string]: string };
+  hot?: boolean;
   // ssr
   serverRender?: boolean;
   serverEntry?: Entry;
