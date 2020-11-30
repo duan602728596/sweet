@@ -17,7 +17,9 @@ import type { SweetConfig, SweetOptions } from './utils/types';
  */
 export default function(sweetConfig: SweetConfig | null | undefined, sweetOptions: SweetOptions): Configuration {
   const config: Config = new Config();
-  const sweetConfigCopy: SweetConfig | undefined = _.isPlainObject(sweetConfig) ? { ...sweetConfig } : {};
+  const sweetConfigCopy: SweetConfig | undefined = _.isPlainObject(sweetConfig) ? _.omit({ ...sweetConfig }, [
+    'hot'
+  ]) : {};
   const {
     mode,
     serverEntry,

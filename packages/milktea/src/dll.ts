@@ -24,7 +24,8 @@ export default function(sweetConfig: SweetConfig | null | undefined, sweetOption
     'serverOutput',
     'serverExternals',
     'serverDevtool',
-    'serverChainWebpack'
+    'serverChainWebpack',
+    'hot'
   ]) : {};
   const {
     mode,
