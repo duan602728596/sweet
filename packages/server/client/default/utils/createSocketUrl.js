@@ -41,6 +41,7 @@ function getSocketUrl(urlParts, loc) {
   var hostname = urlParts.hostname,
       protocol = urlParts.protocol,
       port = urlParts.port;
+  var isInaddrAny = hostname === '0.0.0.0' || hostname === '::';
 
   if (!port || port === '0') {
     port = loc.port;
@@ -50,7 +51,7 @@ function getSocketUrl(urlParts, loc) {
   // see: https://github.com/webpack/webpack-dev-server/pull/384
 
 
-  if ((hostname === '0.0.0.0' || hostname === '::') && loc.hostname && loc.protocol.indexOf('http') === 0) {
+  if (isInaddrAny && loc.hostname && loc.protocol.indexOf('http') === 0) {
     hostname = loc.hostname;
   } // `hostname` can be empty when the script path is relative. In that case, specifying
   // a protocol would result in an invalid URL.
@@ -58,7 +59,7 @@ function getSocketUrl(urlParts, loc) {
   // because the browser doesn't accept non-secure websockets.
 
 
-  if (hostname && hostname !== '127.0.0.1' && (loc.protocol === 'https:' || urlParts.hostname === '0.0.0.0')) {
+  if (hostname && hostname !== '127.0.0.1' && (loc.protocol === 'https:' || isInaddrAny)) {
     protocol = loc.protocol;
   } // all of these sock url params are optionally passed in through
   // resourceQuery, so we need to fall back to the default if

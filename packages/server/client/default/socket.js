@@ -7,8 +7,8 @@
 // this WebsocketClient is here as a default fallback,
 //  in case the client is not injected
 
-var Client = typeof __webpack_dev_server_client__ !== 'undefined' ? __webpack_dev_server_client__ : // eslint-disable-next-line import/no-unresolved
-require('../clients/SockJSClient');
+var Client = require('../clients/SockJSClient');
+
 var retries = 0;
 var client = null;
 
