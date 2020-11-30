@@ -34,14 +34,13 @@ class SockJSServer {
     errors: true,
     errorDetails: false
   };
-
   static NAME: string = 'koa-hmr'; // name
 
-  public log: { [key: string]: Function };
-  public sock: any;
-  public compiler: Compiler;
-  public sockets: Array<any>;
-  public stats: any;
+  public log: { [key: string]: Function }; // 日志
+  public sock: any;                        // sockjs服务
+  public compiler: Compiler;               // webpack compiler
+  public sockets: Array<any>;              // 当前的socket链接
+  public stats: any;                       // webpack stats
 
   /**
    * @param { Function } log: 日志方法
