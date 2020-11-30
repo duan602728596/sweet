@@ -18,7 +18,14 @@ import type { SweetConfig, SweetOptions, JS } from './utils/types';
  */
 export default function(sweetConfig: SweetConfig | null | undefined, sweetOptions: SweetOptions): Configuration {
   const config: Config = new Config();
-  const sweetConfigCopy: SweetConfig = _.isPlainObject(sweetConfig) ? { ...sweetConfig } : {};
+  const sweetConfigCopy: SweetConfig = _.isPlainObject(sweetConfig) ? _.omit({ ...sweetConfig }, [
+    'serverRender',
+    'serverEntry',
+    'serverOutput',
+    'serverExternals',
+    'serverDevtool',
+    'serverChainWebpack'
+  ]) : {};
   const {
     mode,
     dll,
@@ -30,11 +37,6 @@ export default function(sweetConfig: SweetConfig | null | undefined, sweetOption
   }: SweetConfig = sweetConfigCopy;
   const { ecmascript, targets: customTargets }: JS = js ?? {};
   const isDevelopment: boolean = mode === 'development';
-
-  // 格式化配置
-  if ('serverRender' in sweetConfigCopy) {
-    delete sweetConfigCopy.serverRender;
-  }
 
   // 合并配置
   config

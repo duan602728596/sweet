@@ -17,7 +17,14 @@ import type { SweetConfig, SweetOptions } from './utils/types';
  */
 export default function(sweetConfig: SweetConfig | null | undefined, sweetOptions: SweetOptions): Configuration {
   const config: Config = new Config();
-  const sweetConfigCopy: SweetConfig = _.isPlainObject(sweetConfig) ? { ...sweetConfig } : {};
+  const sweetConfigCopy: SweetConfig = _.isPlainObject(sweetConfig) ? _.omit({ ...sweetConfig }, [
+    'serverRender',
+    'serverEntry',
+    'serverOutput',
+    'serverExternals',
+    'serverDevtool',
+    'serverChainWebpack'
+  ]) : {};
   const {
     mode,
     entry,
@@ -34,11 +41,6 @@ export default function(sweetConfig: SweetConfig | null | undefined, sweetOption
   }: SweetConfig = sweetConfigCopy;
   const ecmascript: boolean | undefined = js?.ecmascript;
   const isDevelopment: boolean = mode === 'development';
-
-  // 格式化配置
-  if ('serverRender' in sweetConfigCopy) {
-    delete sweetConfigCopy.serverRender;
-  }
 
   // webpack配置
   const filename: string = isDevelopment ? '[name].js' : '[name]_[chunkhash:15].js';
