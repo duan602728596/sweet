@@ -8,7 +8,11 @@ import type { Milktea, Argv } from '../utils/types';
 function argvBuild(argv: Argv): void {
   const milktea: Milktea = requireModule('@sweet-milktea/milktea');
   const compiler: Compiler = webpack(
-    milktea.config(argv.config, 'production', argv.webpackLog)
+    milktea.config({
+      sweetConfig: argv.config,
+      mode: 'production',
+      webpackLog: argv.webpackLog
+    })
   );
 
   if (!_.isNil(argv.serverRender)) {

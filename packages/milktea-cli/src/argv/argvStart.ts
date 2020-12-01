@@ -6,8 +6,14 @@ import type { Milktea, Argv } from '../utils/types';
 
 /* start 命令 */
 function argvStart(argv: Argv): void {
+  const isServerEnv: boolean = !_.isNil(argv.server);
   const milktea: Milktea = requireModule('@sweet-milktea/milktea');
-  const webpackConfig: Configuration = milktea.config(argv.config, 'development', argv.webpackLog);
+  const webpackConfig: Configuration = milktea.config({
+    sweetConfig: argv.config,
+    mode: 'development',
+    webpackLog: argv.webpackLog,
+    hot: isServerEnv
+  });
 
   // hmr需要output.publicPath
   if (argv.server) {
@@ -25,7 +31,11 @@ function argvStart(argv: Argv): void {
       // ssr的钩子只执行一次
       if (serverRenderCompiler !== null && serverRenderWatching !== null) return;
 
-      const serverSideRenderConfig: Configuration = milktea.serverRenderConfig(argv.config, 'development', argv.webpackLog);
+      const serverSideRenderConfig: Configuration = milktea.serverRenderConfig({
+        sweetConfig: argv.config,
+        mode: 'development',
+        webpackLog: argv.webpackLog
+      });
 
       serverRenderCompiler = webpack(serverSideRenderConfig);
       serverRenderWatching = serverRenderCompiler.watch({
@@ -34,7 +44,7 @@ function argvStart(argv: Argv): void {
     });
   }
 
-  if (!_.isNil(argv.server)) {
+  if (isServerEnv) {
     const devServer: Function = requireModule('@sweet-milktea/server/devServer');
     const httpPort: number = argv.httpPort;
     const httpsPort: number = argv.httpsPort;

@@ -6,7 +6,12 @@ import type { Milktea, Argv } from '../utils/types';
 /* dll 命令 */
 function argvDll(argv: Argv): void {
   const milktea: Milktea = requireModule('@sweet-milktea/milktea');
-  const compiler: Compiler = webpack(milktea.dllConfig(argv.config, undefined, argv.webpackLog));
+  const compiler: Compiler = webpack(
+    milktea.dllConfig({
+      sweetConfig: argv.config,
+      webpackLog: argv.webpackLog
+    })
+  );
 
   compiler.run(!argv.webpackLog || argv.webpackLog === 'progress' ? milktea.callbackOnlyError : milktea.callback);
 }
