@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "@ant-design/icons": "^4.3.0",
-    "antd": "^4.8.5",
+    "antd": "^4.9.0",
     "github-markdown-css": "^4.0.0",
     "history": "^5.0.0",
     "prop-types": "^15.7.2",

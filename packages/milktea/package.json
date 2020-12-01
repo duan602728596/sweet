@@ -32,7 +32,7 @@
     "@babel/runtime-corejs3": "^7.12.5",
     "@bbkkbkk/files-map-webpack-plugin": "^1.0.1",
     "@svgr/webpack": "^5.5.0",
-    "babel-loader": "^8.2.1",
+    "babel-loader": "^8.2.2",
     "chalk": "^4.1.0",
     "core-js": "^3.8.0",
     "cosmiconfig": "^7.0.0",
@@ -65,7 +65,7 @@
   "devDependencies": {
     "@vue/babel-plugin-jsx": "^1.0.0-rc.3",
     "ts-loader": "^8.0.11",
-    "vue-loader": "^16.0.0",
+    "vue-loader": "^16.1.0",
     "vue-svg-loader": "^0.17.0-beta.2"
   },
   "peerDependencies": {
