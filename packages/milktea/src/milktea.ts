@@ -10,6 +10,13 @@ import type { SweetConfig, SweetOptions, Mode, WebpackLog, Environment, Info } f
 type SweetConfigArgs = SweetConfig | string | null | undefined;
 type Config = SweetConfig | null | undefined;
 
+interface FuncArgs {
+  sweetConfig?: SweetConfigArgs;
+  mode?: Mode;
+  webpackLog?: WebpackLog;
+  hot?: boolean;
+}
+
 /* 基础配置 */
 const sweetOptions: SweetOptions = {
   basicPath: process.cwd(), // 主目录
@@ -62,19 +69,26 @@ export function callback(err: Error, stats: Stats): void {
 
 /**
  * webpack配置
- * @param { SweetConfig | string | null | undefined } sweetConfig: webpack配置，覆盖文件，优先级最高
- * @param { string } mode: 开发环境，覆盖配置的开发环境
- * @param { string } webpackLog: 覆盖日志的显示
+ * @param { SweetConfig | string | null | undefined } args.sweetConfig: webpack配置，覆盖文件，优先级最高
+ * @param { string } args.mode: 开发环境，覆盖配置的开发环境
+ * @param { string } args.webpackLog: 覆盖日志的显示
  */
-export function config(sweetConfig?: SweetConfigArgs, mode?: Mode, webpackLog?: WebpackLog): Configuration {
+export function config(args: FuncArgs = {}): Configuration {
+  const { sweetConfig, mode, webpackLog, hot }: FuncArgs = args;
   const config: Config = getConfig('client', sweetConfig);
 
-  if (config && mode) {
-    config.mode = mode;
-  }
+  if (config) {
+    if (mode) {
+      config.mode = mode;
+    }
 
-  if (config && webpackLog) {
-    config.webpackLog = webpackLog;
+    if (webpackLog) {
+      config.webpackLog = webpackLog;
+    }
+
+    if (hot) {
+      config.hot = hot;
+    }
   }
 
   return webpackConfig(config, sweetOptions);
@@ -82,21 +96,24 @@ export function config(sweetConfig?: SweetConfigArgs, mode?: Mode, webpackLog?: 
 
 /**
  * 服务器端渲染的webpack配置
- * @param { SweetConfig | string | null | undefined } sweetConfig: webpack配置，覆盖文件，优先级最高
- * @param { string } mode: 开发环境，覆盖配置的开发环境
- * @param { string } webpackLog: 覆盖日志的显示
+ * @param { SweetConfig | string | null | undefined } args.sweetConfig: webpack配置，覆盖文件，优先级最高
+ * @param { string } args.mode: 开发环境，覆盖配置的开发环境
+ * @param { string } args.webpackLog: 覆盖日志的显示
  */
-export function serverRenderConfig(sweetConfig?: SweetConfigArgs, mode?: Mode, webpackLog?: WebpackLog): Configuration {
+export function serverRenderConfig(args: FuncArgs = {}): Configuration {
+  const { sweetConfig, mode, webpackLog }: FuncArgs = args;
   const config: Config = getConfig('server', sweetConfig);
 
   sweetOptions.environment = 'server';
 
-  if (config && mode) {
-    config.mode = mode;
-  }
+  if (config) {
+    if (mode) {
+      config.mode = mode;
+    }
 
-  if (config && webpackLog) {
-    config.webpackLog = webpackLog;
+    if (webpackLog) {
+      config.webpackLog = webpackLog;
+    }
   }
 
   return webpackServerRenderConfig(config, sweetOptions);
@@ -104,10 +121,11 @@ export function serverRenderConfig(sweetConfig?: SweetConfigArgs, mode?: Mode, w
 
 /**
  * webpack的dll文件配置
- * @param { SweetConfig | string | null | undefined } sweetConfig: webpack配置，覆盖文件，优先级最高
- * @param { string } webpackLog: 覆盖日志的显示
+ * @param { SweetConfig | string | null | undefined } args.sweetConfig: webpack配置，覆盖文件，优先级最高
+ * @param { string } args.webpackLog: 覆盖日志的显示
  */
-export function dllConfig(sweetConfig?: SweetConfigArgs, webpackLog?: WebpackLog): Configuration {
+export function dllConfig(args: FuncArgs = {}): Configuration {
+  const { sweetConfig, webpackLog }: FuncArgs = args;
   const config: Config = getConfig('dll', sweetConfig);
 
   sweetOptions.environment = 'dll';
