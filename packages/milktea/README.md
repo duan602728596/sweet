@@ -18,13 +18,19 @@ import {
   callbackOnlyError        // webpack的回调函数（只显示错误信息）
 } from '@sweet-milktea/milktea';
 
+// sweetConfig { SweetConfig | string | null | undefined }: webpack配置，覆盖文件，优先级最高
 // mode { string }: 开发模式 development，生产模式 production
 // webpackLog { 'progress' | 'stats' }: 日志输出类型。progress：进度条，stats：传统的输出方式。默认为progress
-const mode = 'development';
-
-const compiler = webpack(webpackConfig({
-  // 配置项
-}, mode, webpackLog));
+// hot { boolean }: 添加webpack.HotModuleReplacementPlugin插件，开启热更新功能
+const compiler = webpack(
+  webpackConfig({
+    // 配置项
+    sweetConfig: null,
+    mode: 'development',
+    webpackLog: 'progress',
+    hot: true
+  })
+);
 
 compiler.run(callback);
 ```
@@ -134,7 +140,7 @@ module.exports = function(info) {
 ### 关于typescript
 
 使用typescript，需要手动安装`typescript`和`ts-loader`。   
-如果`js.typescript`为`true`，则不会配置ts-loader，且ts配置无效。因为typescript编译使用的是babel。
+如果`js.typescript`为`true`，则不会配置ts-loader，且ts配置无效。因为这时typescript编译使用的是babel。
 
 ### info
 
@@ -174,7 +180,3 @@ import SvgComponent from './image.component.svg';
 ## 使用typescript
 
 在项目内添加`tsconfig.json`文件。
-
-## 关于node-sass
-
-node-sass如果安装失败，可以先到[https://github.com/sass/node-sass/releases](https://github.com/sass/node-sass/releases)下载**binding.node**文件，然后将该文件添加到**SASS_BINARY_PATH**环境变量内。

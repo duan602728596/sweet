@@ -72,6 +72,7 @@ export function callback(err: Error, stats: Stats): void {
  * @param { SweetConfig | string | null | undefined } args.sweetConfig: webpack配置，覆盖文件，优先级最高
  * @param { string } args.mode: 开发环境，覆盖配置的开发环境
  * @param { string } args.webpackLog: 覆盖日志的显示
+ * @param { boolean } args.hot: 添加webpack.HotModuleReplacementPlugin插件，开启热更新功能
  */
 export function config(args: FuncArgs = {}): Configuration {
   const { sweetConfig, mode, webpackLog, hot }: FuncArgs = args;
