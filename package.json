@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "@ant-design/icons": "^4.3.0",
-    "@reduxjs/toolkit": "^1.4.0",
+    "@reduxjs/toolkit": "^1.5.0",
     "@sweet-milktea/milktea-cli": "^1.2.0",
     "@sweet-milktea/server": "^1.1.2",
     "@sweet-milktea/server-log": "^0.6.6",
