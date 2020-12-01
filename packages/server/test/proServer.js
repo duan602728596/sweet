@@ -7,7 +7,7 @@ import toJson from './utils/toJson';
 import afterTest from './afterTest';
 
 // webpack配置
-const compiler = createCompiler('../src/index.js');
+const compiler = createCompiler('../src/index.js', 'production');
 
 // 编译文件
 function runBuild() {
