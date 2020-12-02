@@ -28,7 +28,6 @@ export default function(sweetConfig: SweetConfig | null | undefined, sweetOption
     'hot'
   ]) : {};
   const {
-    mode,
     dll,
     externals,
     resolve,
@@ -37,13 +36,12 @@ export default function(sweetConfig: SweetConfig | null | undefined, sweetOption
     webpackLog = 'progress'
   }: SweetConfig = sweetConfigCopy;
   const { ecmascript, targets: customTargets }: JS = js ?? {};
-  const isDevelopment: boolean = mode === 'development';
 
   // 合并配置
   config
     .merge({
       mode: 'development',
-      devtool: isDevelopment ? 'inline-source-map' : false,
+      devtool: 'inline-source-map',
       resolve: { extensions },
       target: ['web', ecmascript ? 'es2020' : 'es5'],
       performance: { hints: false }
