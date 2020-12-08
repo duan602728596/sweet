@@ -7,9 +7,8 @@
     "url": "git@github.com:duan602728596/sweet.git"
   },
   "scripts": {
-    "start": "npm run clean && cross-env NODE_ENV=development milktea start --server",
-    "build": "npm run clean && cross-env NODE_ENV=production milktea build",
-    "clean": "rimraf ./dist"
+    "start": "node clean && cross-env NODE_ENV=development milktea start --server",
+    "build": "node clean && cross-env NODE_ENV=production milktea build"
   },
   "dependencies": {
     "@ant-design/icons": "^4.3.0",

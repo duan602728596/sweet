@@ -1,0 +1,4 @@
+[submodule "packages/website/dist"]
+	path = packages/website/dist
+	url = https://github.com/duan602728596/sweet.git
+	branch = gh-pages
