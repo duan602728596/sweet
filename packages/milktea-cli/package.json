@@ -19,8 +19,8 @@
   },
   "dependencies": {
     "lodash": "^4.17.20",
-    "webpack": "^5.9.0",
-    "yargs": "^16.1.1"
+    "webpack": "^5.10.0",
+    "yargs": "^16.2.0"
   },
   "devDependencies": {
     "@sweet-milktea/milktea": "*",
@@ -29,8 +29,8 @@
     "@sweet-milktea/util-tools": "*"
   },
   "peerDependencies": {
-    "@sweet-milktea/milktea": ">=0",
-    "@sweet-milktea/server": ">=0",
+    "@sweet-milktea/milktea": ">=1",
+    "@sweet-milktea/server": ">=1",
     "@sweet-milktea/server-log": ">=0",
     "@sweet-milktea/util-tools": ">=0"
   },
