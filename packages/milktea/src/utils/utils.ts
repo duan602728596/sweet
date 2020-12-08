@@ -8,13 +8,33 @@ export function requireModule(id: string): any {
 }
 
 /* 判断模块是否存在 */
-export function moduleExists(id: string): boolean {
+export function moduleExists(id: string): string | false {
   try {
-    require.resolve(id);
-
-    return true;
+    return require.resolve(id);
   } catch (err) {
     return false;
+  }
+}
+
+type JudgeFunc = <T>(f: number) => boolean;
+
+/**
+ * 根据模块版本返回不同的值
+ * @param { string } id: 模块id
+ * @param { JudgeFunc } judgeFunc: 判断条件
+ * @param { T } fillReturn: 满足的时候返回
+ * @param { T } notFillReturn: 不满足的时候返回
+ */
+export function versionReturn<T>(id: string, judgeFunc: JudgeFunc, fillReturn: T, notFillReturn: T): T | undefined {
+  if (moduleExists(id) === false) return;
+
+  const { version }: { version: string } = requireModule(`${ id }/package.json`);
+  const firstVersion: number = Number(version.split(/\./g)[0]);
+
+  if (judgeFunc(firstVersion)) {
+    return fillReturn;
+  } else {
+    return notFillReturn;
   }
 }
 

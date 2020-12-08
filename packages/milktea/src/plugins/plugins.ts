@@ -7,7 +7,7 @@ import type { PluginClass } from 'webpack-chain';
 import * as HtmlWebpackPlugin from 'html-webpack-plugin';
 import * as FilesMapWebpackPlugin from '@bbkkbkk/files-map-webpack-plugin';
 import * as _ from 'lodash';
-import { requireModule } from '../utils/utils';
+import { requireModule, versionReturn } from '../utils/utils';
 import createHandleProgressBar from './handleProgressBar';
 import type { SweetConfig, SweetOptions, HtmlItem } from '../utils/types';
 
@@ -64,15 +64,18 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
   // vue-loader plugin插件的加载
   config.when(frame === 'vue',
     (config: Config): void => {
-      const { version }: { version: string } = requireModule('vue-loader/package.json');
-      const first: number = Number(version.split(/\./g)[0]);
-      const VueLoaderPlugin: PluginClass = first < 16
-        ? requireModule('vue-loader/lib/plugin')
-        : requireModule('vue-loader/dist/plugin');
+      const VueLoaderPlugin: string | undefined = versionReturn<string>(
+        'vue-loader',
+        (n: number): boolean => n >= 16,
+        'vue-loader/dist/plugin',
+        'vue-loader/lib/plugin'
+      );
 
-      config
-        .plugin('vue')
-        .use(VueLoaderPlugin);
+      if (VueLoaderPlugin) {
+        config
+          .plugin('vue-loader-plugin')
+          .use(requireModule(VueLoaderPlugin));
+      }
     }
   );
 
