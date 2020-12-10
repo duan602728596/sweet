@@ -15,7 +15,7 @@
     "test": "cross-env NODE_ENV=test mocha ./test/test.js --timeout 180000"
   },
   "dependencies": {
-    "@babel/core": "^7.12.9",
+    "@babel/core": "^7.12.10",
     "@babel/plugin-proposal-class-static-block": "^7.12.1",
     "@babel/plugin-proposal-decorators": "^7.12.1",
     "@babel/plugin-proposal-do-expressions": "^7.12.1",
@@ -24,11 +24,11 @@
     "@babel/plugin-proposal-throw-expressions": "^7.12.1",
     "@babel/plugin-syntax-module-string-names": "^7.12.1",
     "@babel/plugin-syntax-top-level-await": "^7.12.1",
-    "@babel/plugin-transform-runtime": "^7.12.1",
-    "@babel/preset-env": "^7.12.7",
-    "@babel/preset-react": "^7.12.7",
+    "@babel/plugin-transform-runtime": "^7.12.10",
+    "@babel/preset-env": "^7.12.10",
+    "@babel/preset-react": "^7.12.10",
     "@babel/preset-typescript": "^7.12.7",
-    "@babel/register": "^7.12.1",
+    "@babel/register": "^7.12.10",
     "@babel/runtime-corejs3": "^7.12.5",
     "@bbkkbkk/files-map-webpack-plugin": "^1.0.1",
     "@svgr/webpack": "^5.5.0",
@@ -57,7 +57,7 @@
     "url-loader": "^4.1.1",
     "webpack": "^5.10.0",
     "webpack-chain": "^6.5.1",
-    "webpack-merge": "^5.4.0"
+    "webpack-merge": "^5.4.1"
   },
   "optionalDependencies": {
     "fibers": "^5.0.0"
