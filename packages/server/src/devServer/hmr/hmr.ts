@@ -1,6 +1,6 @@
 import type { Server } from 'http';
 import type { Http2SecureServer } from 'http2';
-import type { Middleware, Context } from 'koa';
+import type { Middleware, Context, Next } from 'koa';
 import type { Compiler } from 'webpack';
 import SockJSServer from './SockJSServer';
 import createLogger from './createLogger';
@@ -56,7 +56,7 @@ function koaHmr(options: Options): Middleware {
     sock.sendStatsConnection(connection, sock.getStats(sock.stats), true);
   });
 
-  return async function(ctx: Context, next: Function): Promise<void> {
+  return async function(ctx: Context, next: Next): Promise<void> {
     ctx.state.sock = ctx.sock = sock;
 
     await next();

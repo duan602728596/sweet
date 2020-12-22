@@ -1,13 +1,13 @@
 import * as path from 'path';
 import type { ParsedPath } from 'path';
-import type { Context, Middleware } from 'koa';
+import type { Context, Middleware, Next } from 'koa';
 
 /**
  * 重写mime types
  * @param { object } mime: 重写的mime
  */
 function createRewriteMime(mime: { [key: string]: string } = {}): Middleware {
-  return async function(ctx: Context, next: Function): Promise<void> {
+  return async function(ctx: Context, next: Next): Promise<void> {
     await next();
 
     const parseResult: ParsedPath = path.parse(ctx.url);

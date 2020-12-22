@@ -1,6 +1,6 @@
 import type { IncomingMessage, ServerResponse } from 'http';
 import * as webpackDevMiddleware from 'webpack-dev-middleware';
-import type { Context, Middleware } from 'koa';
+import type { Context, Middleware, Next } from 'koa';
 import type { Compiler } from 'webpack';
 
 function middleware(wdm: Function, req: IncomingMessage, res: ServerResponse): Promise<number> {
@@ -21,7 +21,7 @@ function middleware(wdm: Function, req: IncomingMessage, res: ServerResponse): P
 function koaDevMiddleware(compiler: Compiler, options: { [key: string]: any }): Middleware {
   const wdm: Function = webpackDevMiddleware(compiler, options);
 
-  async function koaMiddleware(ctx: Context, next: Function): Promise<void> {
+  async function koaMiddleware(ctx: Context, next: Next): Promise<void> {
     const { req, res }: Context = ctx;
     const locals: any = ctx.locals ?? ctx.state;
 
