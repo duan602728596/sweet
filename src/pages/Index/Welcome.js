@@ -1,26 +1,14 @@
-import { useSelector, useDispatch } from 'react-redux';
-import { createSelector, createStructuredSelector } from 'reselect';
+import { Observer } from 'mobx-react';
 import { Typography } from 'antd';
 import { LikeFilled as IconLikeFilled } from '@ant-design/icons';
 import style from './welcome.sass';
-import { setLikeLen } from './reducers/reducers';
+import indexStore from './models/index';
 import welcome, { ReactComponent as WelcomeSvgComponent } from './images/welcome.svg';
 
-/* state */
-const state = createStructuredSelector({
-  likeLen: createSelector(
-    ({ index }) => index.likeLen,
-    (data) => data
-  )
-});
-
 function Welcome(props) {
-  const { likeLen } = useSelector(state);
-  const dispatch = useDispatch();
-
   // 点赞
   function handleZanClick(event) {
-    (likeLen + 1) |> setLikeLen |> dispatch;
+    indexStore.setLikeLen(indexStore.likeLen + 1);
   }
 
   return (
@@ -34,7 +22,9 @@ function Welcome(props) {
       </Typography.Paragraph>
       <div>
         <IconLikeFilled className={ style.zan } role="button" onClick={ handleZanClick } />
-        <span className={ style.len }>{ likeLen }</span>
+        <span className={ style.len }>
+          <Observer>{ () => indexStore.likeLen }</Observer>
+        </span>
       </div>
       <img className={ style.img } src={ require('./images/1R5031O0-17.jpg').default } />
     </Typography>

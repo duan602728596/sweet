@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { injectReducers } from '../../store/store';
 import Loading from '../../layouts/Loading/index';
 
 const map = new Map();
@@ -20,7 +19,7 @@ function asyncModuleNode(loader) {
 
       const Module = await loader();
 
-      setComponent(<Module.default injectReducers={ injectReducers } />);
+      setComponent(<Module.default />);
       setLoading(false);
       map.delete(loader);
     }
@@ -53,7 +52,7 @@ export async function preloadAll() {
     for (let i = 0, j = loaders.length; i < j; i++) {
       const Module = Modules[i].default;
 
-      map.set(loaders[i], <Module injectReducers={ injectReducers } />);
+      map.set(loaders[i], <Module />);
     }
   }
 }

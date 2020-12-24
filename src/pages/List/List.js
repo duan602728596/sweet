@@ -1,8 +1,10 @@
 import { useState } from 'react';
+import { Observer } from 'mobx-react';
 import { useSelector, useDispatch } from 'react-redux';
 import { createSelector, createStructuredSelector } from 'reselect';
 import { Button, Table, message } from 'antd';
 import { requestList } from './reducers/reducers';
+import listStore from './models/list';
 import style from './list.sass';
 
 /* state */
@@ -22,12 +24,8 @@ function List(props) {
   async function handleLoadDataClick(event) {
     setLoading(true);
 
-    const res = await dispatch(requestList({ num: 3 }));
-
-    if (res === true) {
-      message.success('success!');
-    }
-
+    await listStore.requestList();
+    message.success('success!');
     setLoading(false);
   }
 
@@ -39,7 +37,9 @@ function List(props) {
   return (
     <div>
       <Button className={ style.btn } onClick={ handleLoadDataClick }>加载数据</Button>
-      <Table columns={ columns } dataSource={ dataList } loading={ loading } rowKey="id" />
+      <Observer>
+        { () => <Table columns={ columns } dataSource={ listStore.dataList } loading={ loading } rowKey="id" /> }
+      </Observer>
     </div>
   );
 }
