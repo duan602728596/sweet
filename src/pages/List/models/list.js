@@ -18,7 +18,7 @@ class List {
   dataList = [];
 
   constructor() {
-    makeAutoObservable(this);
+    makeAutoObservable(this, undefined, { autoBind: true });
   }
 
   async requestList() {

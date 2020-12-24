@@ -4,7 +4,7 @@ class Index {
   likeLen = 0;
 
   constructor() {
-    makeAutoObservable(this);
+    makeAutoObservable(this, undefined, { autoBind: true });
   }
 
   ssrInit() {
