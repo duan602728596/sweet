@@ -16,6 +16,8 @@ export default function(info) {
       'react',
       'react-dom',
       'prop-types',
+      'mobx',
+      'mobx-react',
       'react-router',
       'react-router-dom',
       'history',
