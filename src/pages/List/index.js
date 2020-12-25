@@ -1,7 +1,9 @@
 import { Fragment } from 'react';
 import { Helmet } from 'react-helmet';
+import asyncLoadReducers from '../../store/asyncLoadReducers';
 import Main from '../../layouts/Main';
 import Content from '../../layouts/Content';
+import reducers from './reducers/reducers';
 import List from './List';
 
 function Index(props) {
@@ -19,4 +21,4 @@ function Index(props) {
   );
 }
 
-export default Index;
+export default asyncLoadReducers(reducers)(Index);
