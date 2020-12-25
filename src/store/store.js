@@ -7,16 +7,16 @@ const reducer = createReducer({});
 const asyncReducers = {}; // 异步的reducers
 
 /* store */
-const store = {};
+export let store;
 
 export function storeFactory(initialState = {}) {
   // 避免热替换导致redux的状态丢失
-  if (Object.keys(store).length === 0) {
+  if (!store) {
     /* store */
-    Object.assign(store, configureStore({
+    store = configureStore({
       reducer,
       preloadedState: initialState
-    }));
+    });
   }
 
   return store;
@@ -36,5 +36,3 @@ export function injectReducers(asyncReducer) {
   // 异步注入reducer
   store.replaceReducer(createReducer(asyncReducers));
 }
-
-export default store;

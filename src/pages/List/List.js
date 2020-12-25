@@ -24,7 +24,7 @@ function List(props) {
 
     const res = await dispatch(requestList({ num: 3 }));
 
-    if (res === true) {
+    if (res) {
       message.success('success!');
     }
 
