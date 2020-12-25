@@ -5,11 +5,11 @@ import Index from '../pages/index';
 
 const SecondBundle = () => import(/* webpackChunkName: 'second' */'../pages/Second/index');
 
-const router = {};
+let router;
 
 export function createRouters() {
-  if (!router.value) {
-    router.value = createRouter({
+  if (!router) {
+    router = createRouter({
       history: require('./createHistory')(),
       routes: [
         {
@@ -59,7 +59,5 @@ export function createRouters() {
     });
   }
 
-  return router.value;
+  return router;
 }
-
-export default router;

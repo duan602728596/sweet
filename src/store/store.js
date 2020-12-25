@@ -2,12 +2,12 @@ import Vuex from 'vuex';
 import modules from './modules';
 import formatModules from './formatModules';
 
-const store = {};
+export let store;
 
 /* 创建store */
 export function storeFactory(initialState = {}) {
-  if (!store.value) {
-    store.value = new Vuex.Store({
+  if (!store) {
+    store = new Vuex.Store({
       state: initialState,
       getters: {
         getInitialStateData: (state) => (key) => state[key]
@@ -16,7 +16,5 @@ export function storeFactory(initialState = {}) {
     });
   }
 
-  return store.value;
+  return store;
 }
-
-export default store;
