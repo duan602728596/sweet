@@ -2,7 +2,7 @@
   "name": "@sweet-milktea/react-demo",
   "scripts": {
     "dll": "cross-env NODE_ENV=development milktea dll",
-    "start": "npm run clean && npm run clean:server && cross-env NODE_ENV=development milktea start --server --serverRender",
+    "start": "npm run clean && npm run clean:server && cross-env NODE_ENV=development NODE_OPTIONS=\"--max_old_space_size=4096\" milktea start --server --serverRender",
     "build": "npm run clean && npm run clean:server && cross-env NODE_ENV=production milktea build --serverRender",
     "clean": "rimraf ./dist",
     "clean:server": "rimraf ./dist-server",
