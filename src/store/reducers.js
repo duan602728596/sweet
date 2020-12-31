@@ -1,15 +1,8 @@
-import { combineReducers } from '@reduxjs/toolkit';
 import indexReducers from '../pages/Index/reducers/reducers';
 
 /* reducers */
-const reducers = {
+export const reducers = {
   ...indexReducers
 };
 
-/* 创建reducer */
-export function createReducer(asyncReducers) {
-  return combineReducers({
-    ...reducers,
-    ...asyncReducers
-  });
-}
+export const asyncReducers = {}; // 异步的reducers

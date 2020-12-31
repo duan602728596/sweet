@@ -1,10 +1,9 @@
 /* 全局的store */
-import { configureStore } from '@reduxjs/toolkit';
-import { createReducer } from './reducers';
+import { configureStore, combineReducers } from '@reduxjs/toolkit';
+import { reducers, asyncReducers } from './reducers';
 
 /* reducer列表 */
-const reducer = createReducer({});
-const asyncReducers = {}; // 异步的reducers
+const reducer = combineReducers(reducers);
 
 /* store */
 export let store;
@@ -34,5 +33,8 @@ export function injectReducers(asyncReducer) {
   }
 
   // 异步注入reducer
-  store.replaceReducer(createReducer(asyncReducers));
+  store.replaceReducer(combineReducers({
+    ...reducers,
+    ...asyncReducers
+  }));
 }
