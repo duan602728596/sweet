@@ -65,7 +65,7 @@ export function createPresetTypescript(isReact: boolean = true): Array<any> {
  */
 export function createPresetEnv(customTargets: object | undefined, debug: boolean, notUseBuiltIns?: boolean): Array<any> {
   const options: { [key: string]: any } = {
-    targets: customTargets ? customTargets : createTargets(),
+    targets: customTargets ?? createTargets(),
     debug,
     modules: false,
     useBuiltIns: notUseBuiltIns ? false : 'usage',
@@ -87,7 +87,7 @@ export function createPresetEnv(customTargets: object | undefined, debug: boolea
  */
 export function createPresetEnvInNode(customTargets: object | undefined, debug: boolean, notUseBuiltIns?: boolean): Array<any> {
   const options: { [key: string]: any } = {
-    targets: customTargets ? customTargets : createNodeTargets(),
+    targets: customTargets ?? createNodeTargets(),
     debug,
     modules: false,
     useBuiltIns: notUseBuiltIns ? false : 'usage',
@@ -111,8 +111,8 @@ export function createBabelOptions(sweetOptions: SweetOptions, jsOptions: JS): L
 
   return {
     cacheDirectory: path.join(sweetOptions.basicPath, babelCache),
-    presets: resetPresets ? resetPresets : [],
-    plugins: resetPlugins ? resetPlugins : [
+    presets: resetPresets ?? [],
+    plugins: resetPlugins ?? [
       ...createBabelPlugins(),
       [
         '@babel/plugin-transform-runtime',

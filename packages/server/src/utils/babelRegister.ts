@@ -6,6 +6,8 @@ interface RegisterConfig {
   cache: boolean;
   ignore: Array<RegExp>;
   extensions: Array<string>;
+  configFile: boolean;
+  babelrc: boolean;
 }
 
 /* @babel/register的配置 */
@@ -56,7 +58,9 @@ function createRegisterConfig(): RegisterConfig {
     ],
     cache: true,
     ignore: [/node_modules/],
-    extensions: ['.es6', '.es', '.jsx', '.js', '.mjs', '.cjs', '.tsx', '.ts']
+    extensions: ['.es6', '.es', '.jsx', '.js', '.mjs', '.cjs', '.tsx', '.ts'],
+    configFile: false,
+    babelrc: false
   };
 }
 

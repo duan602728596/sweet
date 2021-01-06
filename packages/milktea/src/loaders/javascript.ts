@@ -2,7 +2,7 @@ import * as _ from 'lodash';
 import * as Config from 'webpack-chain';
 import type { Use, LoaderOptions } from 'webpack-chain';
 import { createBabelOptions, createPresetEnv, createPresetEnvInNode, createPresetTypescript } from '../config/babelConfig';
-import { customizer } from '../utils/utils';
+import { customizer, moduleExists, versionReturn } from '../utils/utils';
 import type { SweetConfig, SweetOptions, JS } from '../utils/types';
 
 /* js 配置 */
@@ -17,8 +17,6 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
   const {
     ecmascript,
     typescript,
-    jsx = true,
-    vue2,
     presets,
     plugins,
     resetPresets,
@@ -87,7 +85,7 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
         configBabelUse
           .tap((options: LoaderOptions): LoaderOptions => _.mergeWith(options, {
             presets: resetPresets ? [] : [['@babel/preset-react', {
-              runtime: jsx ? 'automatic' : 'classic',
+              runtime: moduleExists('react/jsx-runtime') ? 'automatic' : 'classic',
               development: isDevelopment
             }]],
             plugins: resetPlugins ? [] : ['react-hot-loader/babel']
@@ -100,19 +98,12 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
     .when(frame === 'vue',
       (config: Config): void => {
         configBabelUse
-          .tap((options: LoaderOptions): LoaderOptions => {
-            const mergeOptions: { [key: string]: any } = {};
-
-            if (vue2 && _.isNil(resetPlugins)) {
-              // 加载vue2的插件
-              mergeOptions.presets = ['@vue/babel-preset-jsx'];
-            } else if (!vue2 && _.isNil(resetPresets)) {
-              // 加载vue3的插件
-              mergeOptions.plugins = ['@vue/babel-plugin-jsx'];
-            }
-
-            return _.mergeWith(options, mergeOptions, customizer);
-          });
+          .tap((options: LoaderOptions): LoaderOptions => _.mergeWith(options, versionReturn<object>(
+            'vue',
+            (n: number): boolean => n >= 3,
+            { plugins: ['@vue/babel-plugin-jsx'] },
+            { presets: ['@vue/babel-preset-jsx'] }
+          ), customizer));
       }
     );
 

@@ -169,6 +169,7 @@ export function portIsOccupied(port: number): Promise<boolean> {
       server.close();
       resolve(true);
     });
+
     server.on('error', (err: Error): void => {
       server.close();
       resolve(false);

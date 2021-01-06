@@ -7,13 +7,13 @@
     "url": "git@github.com:duan602728596/sweet.git"
   },
   "scripts": {
-    "start": "npm run clean && cross-env NODE_ENV=development milktea start --server",
-    "build": "npm run clean && cross-env NODE_ENV=production milktea build",
-    "clean": "rimraf ./dist"
+    "start": "node clean && cross-env NODE_ENV=development milktea start --server",
+    "build": "node clean && cross-env NODE_ENV=production milktea build"
   },
   "dependencies": {
     "@ant-design/icons": "^4.3.0",
-    "antd": "^4.9.0",
+    "antd": "^4.9.4",
+    "domhandler": "^4.0.0",
     "github-markdown-css": "^4.0.0",
     "history": "^5.0.0",
     "prop-types": "^15.7.2",
@@ -25,7 +25,7 @@
     "react-showdown": "^2.1.0"
   },
   "devDependencies": {
-    "@hot-loader/react-dom": "^17.0.0",
+    "@hot-loader/react-dom": "^17.0.1",
     "@sweet-milktea/milktea": "*",
     "@sweet-milktea/milktea-cli": "*",
     "@sweet-milktea/server": "*",
