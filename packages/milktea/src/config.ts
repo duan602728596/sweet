@@ -58,7 +58,8 @@ export default function(sweetConfig: SweetConfig | null | undefined, sweetOption
   if (isDevelopment) {
     mergeConfig.cache = {
       type: 'filesystem',
-      cacheDirectory: path.join(sweetOptions.basicPath, webpackCache)
+      cacheDirectory: path.join(sweetOptions.basicPath, webpackCache),
+      store: 'pack'
     };
   }
 
