@@ -40,7 +40,8 @@ module.exports = /*#__PURE__*/function (_BaseClient) {
     _classCallCheck(this, SockJSClient);
 
     _this = _super.call(this);
-    _this.sock = new SockJS(url);
+    var sockUrl = url.replace(/^(?:chrome-extension|file)/i, 'http');
+    _this.sock = new SockJS(sockUrl);
 
     _this.sock.onerror = function (err) {
       log.error(err);
