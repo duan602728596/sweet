@@ -4,6 +4,9 @@ import type { ParsedPath } from 'path';
 import * as webpack from 'webpack';
 import * as Config from 'webpack-chain';
 import ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
+import type {
+  TypeScriptReporterOptions
+} from 'fork-ts-checker-webpack-plugin/lib/typescript-reporter/TypeScriptReporterOptions';
 import * as HtmlWebpackPlugin from 'html-webpack-plugin';
 import * as FilesMapWebpackPlugin from '@bbkkbkk/files-map-webpack-plugin';
 import * as _ from 'lodash';
@@ -47,15 +50,20 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
   envPlugins(sweetConfig, sweetOptions, config);
 
   // fork-ts-checker-webpack-plugin
+  const typescriptOptions: TypeScriptReporterOptions = {
+    mode: js?.typescript ? 'write-references' : 'write-tsbuildinfo',
+    extensions: { vue: frame === 'vue' }
+  };
+
+  if (ts?.configFile) {
+    typescriptOptions.configFile = ts.configFile;
+  }
+
   config
     .plugin('fork-ts-checker-webpack-plugin')
     .use(ForkTsCheckerWebpackPlugin, [{
       async: false,
-      typescript: {
-        configFile: ts?.configFile ?? 'tsconfig.json',
-        mode: js?.typescript ? 'write-references' : 'write-tsbuildinfo',
-        extensions: { vue: frame === 'vue' }
-      }
+      typescript: typescriptOptions
     }]);
 
   // html模板
