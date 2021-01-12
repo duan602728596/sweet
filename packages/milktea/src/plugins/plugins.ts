@@ -52,7 +52,8 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
   if (moduleExists('typescript')) {
     const typescriptOptions: TypeScriptReporterOptions = {
       mode: js?.typescript ? 'write-references' : 'write-tsbuildinfo',
-      extensions: { vue: frame === 'vue' }
+      extensions: { vue: frame === 'vue' },
+      typescriptPath: require.resolve('typescript')
     };
 
     if (ts?.configFile) {
