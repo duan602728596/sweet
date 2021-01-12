@@ -27,11 +27,6 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
   }: SweetConfig = sweetConfig;
   const isDevelopment: boolean = mode === 'development';
 
-  // 根据模式加载插件
-  const envPlugins: Function = isDevelopment
-    ? requireModule(path.join(__dirname, 'devPlugins'))
-    : requireModule(path.join(__dirname, 'proPlugins'));
-
   config
     // moment
     .plugin('webpack.IgnorePlugin')
@@ -46,7 +41,11 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
       'process.env.SWEET_SERVER_RENDER': !!serverRender // 判断是否为ssr渲染
     }]);
 
-  // env plugin
+  // env plugin - 根据模式加载插件
+  const envPlugins: Function = isDevelopment
+    ? requireModule(path.join(__dirname, 'devPlugins'))
+    : requireModule(path.join(__dirname, 'proPlugins'));
+
   envPlugins(sweetConfig, sweetOptions, config);
 
   // fork-ts-checker-webpack-plugin
