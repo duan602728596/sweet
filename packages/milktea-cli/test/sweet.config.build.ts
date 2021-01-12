@@ -14,6 +14,9 @@ export default function(info: object): object {
         include: /src/
       }
     },
+    ts: {
+      forkTsCheckerWebpackPlugin: false
+    },
     output: {
       path: path.join(__dirname, 'dist'),
       filename: '[name].build.js'

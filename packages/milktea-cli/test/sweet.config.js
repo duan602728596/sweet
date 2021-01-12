@@ -14,6 +14,9 @@ export default function(info) {
         include: /src/
       }
     },
+    ts: {
+      forkTsCheckerWebpackPlugin: false
+    },
     output: {
       path: path.join(__dirname, 'dist'),
       filename: '[name].js'

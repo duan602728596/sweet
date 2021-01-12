@@ -17,6 +17,9 @@ function createCompiler(entry, mode = 'development') {
           filename: '[name].js',
           publicPath: '/'
         },
+        ts: {
+          forkTsCheckerWebpackPlugin: false
+        },
         html: [{ template: path.join(__dirname, '../src/index.pug') }]
       },
       mode
