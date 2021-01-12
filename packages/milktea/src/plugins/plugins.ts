@@ -10,7 +10,7 @@ import type {
 import * as HtmlWebpackPlugin from 'html-webpack-plugin';
 import * as FilesMapWebpackPlugin from '@bbkkbkk/files-map-webpack-plugin';
 import * as _ from 'lodash';
-import { requireModule, versionReturn } from '../utils/utils';
+import { requireModule, versionReturn, moduleExists } from '../utils/utils';
 import createHandleProgressBar from './handleProgressBar';
 import type { SweetConfig, SweetOptions, HtmlItem } from '../utils/types';
 
@@ -49,21 +49,23 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
   envPlugins(sweetConfig, sweetOptions, config);
 
   // fork-ts-checker-webpack-plugin
-  const typescriptOptions: TypeScriptReporterOptions = {
-    mode: js?.typescript ? 'write-references' : 'write-tsbuildinfo',
-    extensions: { vue: frame === 'vue' }
-  };
+  if (moduleExists('typescript')) {
+    const typescriptOptions: TypeScriptReporterOptions = {
+      mode: js?.typescript ? 'write-references' : 'write-tsbuildinfo',
+      extensions: { vue: frame === 'vue' }
+    };
 
-  if (ts?.configFile) {
-    typescriptOptions.configFile = ts.configFile;
+    if (ts?.configFile) {
+      typescriptOptions.configFile = ts.configFile;
+    }
+
+    config
+      .plugin('fork-ts-checker-webpack-plugin')
+      .use(ForkTsCheckerWebpackPlugin, [{
+        async: false,
+        typescript: typescriptOptions
+      }]);
   }
-
-  config
-    .plugin('fork-ts-checker-webpack-plugin')
-    .use(ForkTsCheckerWebpackPlugin, [{
-      async: false,
-      typescript: typescriptOptions
-    }]);
 
   // html模板
   if (html && typeof Array.isArray(html) && !serverRender) {
