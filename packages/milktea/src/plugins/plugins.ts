@@ -3,7 +3,7 @@ import * as path from 'path';
 import type { ParsedPath } from 'path';
 import * as webpack from 'webpack';
 import * as Config from 'webpack-chain';
-import type { PluginClass } from 'webpack-chain';
+import ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 import * as HtmlWebpackPlugin from 'html-webpack-plugin';
 import * as FilesMapWebpackPlugin from '@bbkkbkk/files-map-webpack-plugin';
 import * as _ from 'lodash';
@@ -12,7 +12,16 @@ import createHandleProgressBar from './handleProgressBar';
 import type { SweetConfig, SweetOptions, HtmlItem } from '../utils/types';
 
 export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, config: Config): void {
-  const { mode, html, frame, serverRender, webpackLog = 'progress', filesMap }: SweetConfig = sweetConfig;
+  const {
+    mode,
+    html,
+    frame,
+    serverRender,
+    webpackLog = 'progress',
+    filesMap,
+    ts,
+    js
+  }: SweetConfig = sweetConfig;
   const isDevelopment: boolean = mode === 'development';
 
   // 根据模式加载插件
@@ -36,6 +45,17 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
 
   // env plugin
   envPlugins(sweetConfig, sweetOptions, config);
+
+  // fork-ts-checker-webpack-plugin
+  config
+    .plugin('fork-ts-checker-webpack-plugin')
+    .use(ForkTsCheckerWebpackPlugin, [{
+      async: false,
+      typescript: {
+        configFile: ts?.configFile ?? 'tsconfig.json',
+        mode: js?.typescript ? 'write-references' : 'write-tsbuildinfo'
+      }
+    }]);
 
   // html模板
   if (html && typeof Array.isArray(html) && !serverRender) {

@@ -134,7 +134,7 @@ export function createBabelOptions(sweetOptions: SweetOptions, jsOptions: JS): L
  * @param { string | undefined } configFile
  */
 export function createTypescriptOptions(configFile: string | undefined): LoaderOptions {
-  const options: LoaderOptions = {};
+  const options: LoaderOptions = { transpileOnly: true };
 
   if (configFile) {
     options.configFile = configFile;
