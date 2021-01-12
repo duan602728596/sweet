@@ -5,9 +5,8 @@ import type { SweetConfig, LESS } from '../utils/types';
 
 /* less & css 配置 */
 export default function(sweetConfig: SweetConfig, config: Config): void {
-  const { mode, css, frame, serverRender }: SweetConfig = sweetConfig;
+  const { mode, css = {}, frame, serverRender }: SweetConfig = sweetConfig;
   const isDevelopment: boolean = mode === 'development';
-  const cssOptions: LESS = css ?? {};
   const {
     publicPath,
     modules = true,
@@ -16,7 +15,7 @@ export default function(sweetConfig: SweetConfig, config: Config): void {
     modifyVars,
     additionalData,
     localIdentName
-  }: LESS = cssOptions;
+  }: LESS = css;
 
   config
     .merge({

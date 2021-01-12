@@ -17,7 +17,6 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
   const { frame, loaders: sweetConfigLoaders, mode, js }: SweetConfig = sweetConfig;
   const loaders: Loaders = sweetConfigLoaders && _.isPlainObject(sweetConfigLoaders) ? sweetConfigLoaders : {};
   const isDevelopment: boolean = mode === 'development';
-  const typescript: boolean | undefined = js?.typescript;
 
   // js
   config
@@ -35,7 +34,7 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
       });
 
   // ts（如果babel配置了typescript属性，则使用babel，而不使用typescript来编译）
-  if (!typescript) {
+  if (!js?.typescript) {
     config
       .when(
         !!loaders.ts,

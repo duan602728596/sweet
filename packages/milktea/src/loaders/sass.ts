@@ -5,9 +5,8 @@ import type { SweetConfig, SASS } from '../utils/types';
 
 /* sass 配置 */
 export default function(sweetConfig: SweetConfig, config: Config): void {
-  const { mode, sass, frame, serverRender }: SweetConfig = sweetConfig;
+  const { mode, sass = {}, frame, serverRender }: SweetConfig = sweetConfig;
   const isDevelopment: boolean = mode === 'development';
-  const sassOptions: SASS = sass ?? {};
   const {
     publicPath,
     modules = true,
@@ -15,7 +14,7 @@ export default function(sweetConfig: SweetConfig, config: Config): void {
     include,
     additionalData,
     localIdentName
-  }: SASS = sassOptions;
+  }: SASS = sass;
 
   config
     .merge({

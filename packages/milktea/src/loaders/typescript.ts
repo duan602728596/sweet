@@ -7,12 +7,8 @@ import type { SweetConfig, SweetOptions, TS } from '../utils/types';
 
 /* ts 配置 */
 export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, config: Config): void {
-  const { ts }: SweetConfig = sweetConfig;
-  const frame: string | undefined = sweetConfig.frame;
-
-  // 获取配置
-  const tsOptions: TS = ts ?? {};
-  const { configFile, presets = [], plugins = [], exclude, include }: TS = tsOptions;
+  const { ts = {}, frame }: SweetConfig = sweetConfig;
+  const { configFile, presets = [], plugins = [], exclude, include }: TS = ts;
 
   const useConfig: object = {
     'babel-loader': {
