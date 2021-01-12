@@ -61,7 +61,7 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
 
     config
       .plugin('fork-ts-checker-webpack-plugin')
-      .use(ForkTsCheckerWebpackPlugin, [{
+      .use(requireModule('fork-ts-checker-webpack-plugin'), [{
         async: false,
         typescript: typescriptOptions
       }]);
