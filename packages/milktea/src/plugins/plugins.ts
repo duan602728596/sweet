@@ -3,7 +3,6 @@ import * as path from 'path';
 import type { ParsedPath } from 'path';
 import * as webpack from 'webpack';
 import * as Config from 'webpack-chain';
-import ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 import type {
   TypeScriptReporterOptions
 } from 'fork-ts-checker-webpack-plugin/lib/typescript-reporter/TypeScriptReporterOptions';
