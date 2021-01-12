@@ -48,7 +48,7 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
   envPlugins(sweetConfig, sweetOptions, config);
 
   // fork-ts-checker-webpack-plugin
-  if (moduleExists('typescript')) {
+  if (moduleExists('typescript') && ts?.forkTsCheckerWebpackPlugin !== false) {
     const typescriptOptions: TypeScriptReporterOptions = {
       mode: js?.typescript ? 'write-references' : 'write-tsbuildinfo',
       extensions: { vue: frame === 'vue' },

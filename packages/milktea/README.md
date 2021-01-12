@@ -97,6 +97,7 @@ module.exports = function(info) {
   * plugins `{ Array<any> }` : 自定义babel的plugins
   * exclude `{ RegExp }` : exclude规则
   * include `{ RegExp }` : include规则
+  * forkTsCheckerWebpackPlugin `{ boolean }` : 设置为false时，关闭fork-ts-checker-webpack-plugin插件注入
 * sass `{ object }` : sass配置
   * publicPath `{ string }`
   * modules `{ boolean }` : 开启css-in-modules

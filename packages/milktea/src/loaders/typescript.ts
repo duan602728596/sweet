@@ -8,7 +8,7 @@ import type { SweetConfig, SweetOptions, TS } from '../utils/types';
 /* ts 配置 */
 export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, config: Config): void {
   const { ts = {}, frame }: SweetConfig = sweetConfig;
-  const { configFile, presets = [], plugins = [], exclude, include }: TS = ts;
+  const { configFile, presets = [], plugins = [], exclude, include, forkTsCheckerWebpackPlugin }: TS = ts;
 
   const useConfig: object = {
     'babel-loader': {
@@ -17,7 +17,7 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
     },
     'ts-loader': {
       loader: 'ts-loader',
-      options: createTypescriptOptions(configFile)
+      options: createTypescriptOptions(configFile, forkTsCheckerWebpackPlugin)
     }
   };
 

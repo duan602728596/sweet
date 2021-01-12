@@ -44,6 +44,7 @@ export interface TS {
   plugins?: Array<any>;
   exclude?: RegExp;
   include?: RegExp;
+  forkTsCheckerWebpackPlugin?: boolean;
 }
 
 export interface CSS {

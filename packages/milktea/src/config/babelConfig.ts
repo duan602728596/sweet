@@ -132,9 +132,15 @@ export function createBabelOptions(sweetOptions: SweetOptions, jsOptions: JS): L
 /**
  * ts-loader options
  * @param { string | undefined } configFile
+ * @param { boolean } forkTsCheckerWebpackPlugin
  */
-export function createTypescriptOptions(configFile: string | undefined): LoaderOptions {
-  const options: LoaderOptions = { transpileOnly: true };
+export function createTypescriptOptions(
+  configFile: string | undefined,
+  forkTsCheckerWebpackPlugin: boolean | undefined
+): LoaderOptions {
+  const options: LoaderOptions = {
+    transpileOnly: forkTsCheckerWebpackPlugin !== false
+  };
 
   if (configFile) {
     options.configFile = configFile;
