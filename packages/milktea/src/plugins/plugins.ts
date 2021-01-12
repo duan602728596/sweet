@@ -53,7 +53,8 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
       async: false,
       typescript: {
         configFile: ts?.configFile ?? 'tsconfig.json',
-        mode: js?.typescript ? 'write-references' : 'write-tsbuildinfo'
+        mode: js?.typescript ? 'write-references' : 'write-tsbuildinfo',
+        extensions: { vue: frame === 'vue' }
       }
     }]);
 
