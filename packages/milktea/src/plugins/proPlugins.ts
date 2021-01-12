@@ -13,7 +13,8 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
     .plugin('mini-css-extract-plugin')
     .use(MiniCssExtractPlugin, [{
       filename: '[name]_[chunkhash:15].css',
-      chunkFilename: '[name]_[chunkhash:15].css'
+      chunkFilename: '[name]_[chunkhash:15].css',
+      ignoreOrder: true
     }]);
 
   // 当环境为测试时，不使用输出插件
