@@ -19,7 +19,11 @@ function argvBuild(argv: Argv): void {
     // 正常编译完毕后，编译ssr需要的文件
     compiler.hooks.done.tapAsync('sweet-milktea-build', function(): void {
       const serverRenderCompiler: Compiler = webpack(
-        milktea.serverRenderConfig(argv.config, 'production', argv.webpackLog)
+        milktea.serverRenderConfig({
+          sweetConfig: argv.config,
+          mode: 'production',
+          webpackLog: argv.webpackLog
+        })
       );
 
       // 避免输出的log打断进度条
