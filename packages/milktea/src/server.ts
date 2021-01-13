@@ -57,8 +57,7 @@ export default function(sweetConfig: SweetConfig | null | undefined, sweetOption
       // 文件缓存
       cache: isDevelopment ? {
         type: 'filesystem',
-        cacheDirectory: path.join(sweetOptions.basicPath, webpackServerCache),
-        store: 'pack'
+        cacheDirectory: path.join(sweetOptions.basicPath, webpackServerCache)
       } : false
     });
 

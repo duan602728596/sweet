@@ -56,16 +56,29 @@ export default function(sweetConfig: SweetConfig | null | undefined, sweetOption
 
   // 文件缓存
   if (isDevelopment) {
-    mergeConfig.cache = {
-      type: 'filesystem',
-      cacheDirectory: path.join(sweetOptions.basicPath, webpackCache),
-      store: 'pack'
-    };
+    Object.assign(mergeConfig, {
+      cache: {
+        type: 'filesystem',
+        cacheDirectory: path.join(sweetOptions.basicPath, webpackCache)
+      }
+    });
   }
 
   // 日志
   if (webpackLog === 'progress') {
-    mergeConfig.infrastructureLogging = { level: 'warn' };
+    Object.assign(mergeConfig, {
+      infrastructureLogging: { level: 'warn' },
+      stats: { // webpack >= 5.13.0时，webpack-dev-middleware根据这个配置输出
+        colors: true,
+        assets: false,
+        entrypoints: false,
+        builtAt: false,
+        hash: false,
+        modules: false,
+        version: false,
+        timings: false
+      }
+    });
   }
 
   config.merge(mergeConfig);
