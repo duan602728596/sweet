@@ -4,9 +4,9 @@ import * as webpack from 'webpack';
 import type { Configuration } from 'webpack';
 import * as Config from 'webpack-chain';
 import { merge } from 'webpack-merge';
+import * as WebpackBar from 'webpackbar';
 import { createPresetEnv } from './config/babelConfig';
 import { handleDefaultProgress } from './plugins/handleProgress';
-import createHandleProgressBar from './plugins/handleProgressBar';
 import { babelCache, dllCache } from './config/cacheConfig';
 import { extensions } from './utils/utils';
 import type { SweetConfig, SweetOptions, JS } from './utils/types';
@@ -88,14 +88,22 @@ export default function(sweetConfig: SweetConfig | null | undefined, sweetOption
     .use(webpack.IgnorePlugin, [{
       resourceRegExp: /^\.\/locale$/,
       contextRegExp: /moment$/
-    }])
-    .end()
-    // 进度条
-    .plugin('webpack.ProgressPlugin')
-    .use(
-      webpack.ProgressPlugin,
-      [!webpackLog || webpackLog === 'progress' ? createHandleProgressBar(false) : handleDefaultProgress]
-    );
+    }]);
+
+  // 进度条
+  if (!webpackLog || webpackLog === 'progress') {
+    config
+      .plugin('webpackbar')
+      .use(WebpackBar, [{
+        name: 'dll',
+        color: 'green'
+      }]);
+
+  } else {
+    config
+      .plugin('webpack.ProgressPlugin')
+      .use(webpack.ProgressPlugin, [handleDefaultProgress]);
+  }
 
   /* chainWebpack: 通过webpack-chain的API扩展或修改webpack配置 */
   if (chainWebpack) {

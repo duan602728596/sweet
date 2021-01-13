@@ -8,9 +8,9 @@ import type {
 } from 'fork-ts-checker-webpack-plugin/lib/typescript-reporter/TypeScriptReporterOptions';
 import * as HtmlWebpackPlugin from 'html-webpack-plugin';
 import * as FilesMapWebpackPlugin from '@bbkkbkk/files-map-webpack-plugin';
+import * as WebpackBar from 'webpackbar';
 import * as _ from 'lodash';
 import { requireModule, versionReturn, moduleExists } from '../utils/utils';
-import createHandleProgressBar from './handleProgressBar';
 import type { SweetConfig, SweetOptions, HtmlItem } from '../utils/types';
 
 export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, config: Config): void {
@@ -114,8 +114,11 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
     .when(sweetConfig.frame !== 'test' && (!webpackLog || webpackLog === 'progress'),
       (config: Config): void => {
         config
-          .plugin('webpack.ProgressPlugin')
-          .use(webpack.ProgressPlugin, [createHandleProgressBar(!!serverRender)]);
+          .plugin('webpackbar')
+          .use(WebpackBar, [{
+            name: serverRender ? 'server' : 'client',
+            color: serverRender ? 'blue' : 'green'
+          }]);
       }
     );
 
