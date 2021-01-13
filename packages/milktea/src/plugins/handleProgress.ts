@@ -1,5 +1,4 @@
 import * as chalk from 'chalk';
-import * as _ from 'lodash';
 
 /**
  * 计算进度百分比
@@ -12,16 +11,17 @@ function calculateProgress(percentage: number): string {
   return pNumber[0];
 }
 
+/* 格式化dll的输出 */
+export function handleDllProgress(percentage: number, message: string, ...args: Array<string>): void {
+  console.info(chalk.white.bgGreen(`Dll: ${ calculateProgress(percentage) }%`), message, ...args);
+}
+
 /* 格式化输出 */
 export function handleDefaultProgress(percentage: number, message: string, ...args: Array<string>): void {
-  console.info(chalk.bgYellow(`${ calculateProgress(percentage) }%`), message, ...args);
+  console.info(chalk.white.bgGreen(`Client: ${ calculateProgress(percentage) }%`), message, ...args);
 }
 
 /* 服务端渲染的格式化输出 */
 export function handleServerRenderProgress(percentage: number, message: string, ...args: Array<string>): void {
-  const consoleArgs: string[] = _.transform(args, function(result: string[], value: string, index: number): void {
-    result.push(chalk.green(value));
-  }, []);
-
-  console.info(chalk.bgGreen(`${ calculateProgress(percentage) }%`), chalk.green(message), ...consoleArgs);
+  console.info(chalk.white.bgBlue(`Server: ${ calculateProgress(percentage) }%`), message, ...args);
 }

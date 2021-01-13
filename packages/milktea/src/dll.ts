@@ -6,7 +6,7 @@ import * as Config from 'webpack-chain';
 import { merge } from 'webpack-merge';
 import * as WebpackBar from 'webpackbar';
 import { createPresetEnv } from './config/babelConfig';
-import { handleDefaultProgress } from './plugins/handleProgress';
+import { handleDllProgress } from './plugins/handleProgress';
 import { babelCache, dllCache } from './config/cacheConfig';
 import { extensions } from './utils/utils';
 import type { SweetConfig, SweetOptions, JS } from './utils/types';
@@ -102,7 +102,7 @@ export default function(sweetConfig: SweetConfig | null | undefined, sweetOption
   } else {
     config
       .plugin('webpack.ProgressPlugin')
-      .use(webpack.ProgressPlugin, [handleDefaultProgress]);
+      .use(webpack.ProgressPlugin, [handleDllProgress]);
   }
 
   /* chainWebpack: 通过webpack-chain的API扩展或修改webpack配置 */
