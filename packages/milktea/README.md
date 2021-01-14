@@ -116,7 +116,7 @@ module.exports = function(info) {
   * localIdentName `{ string }` : 配置localIdentName（参考css-loader）
 * html `{ Array<object> }` : html配置（默认使用pug）
   * template `{ string }` : html模板文件地址
-  * excludeChunks `{ Array<string> }` : 不包括的入口
+  * 其他`html-webpack-plugin`的配置
 * frame `{ string }` : 值为`react`或`vue`，是否为react或vue模式，并自动注入loaders和plugins
 * chainWebpack `{ Function }` : 通过`webpack-chain`的API扩展或修改webpack配置
 * filesMap `{ boolean | object }` : 输出`filesMap.json`文件，记录了文件的映射。
