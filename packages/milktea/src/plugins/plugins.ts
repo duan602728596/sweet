@@ -7,11 +7,12 @@ import type {
   TypeScriptReporterOptions
 } from 'fork-ts-checker-webpack-plugin/lib/typescript-reporter/TypeScriptReporterOptions';
 import * as HtmlWebpackPlugin from 'html-webpack-plugin';
+import type { Options as HtmlWebpackPluginOptions } from 'html-webpack-plugin';
 import * as FilesMapWebpackPlugin from '@bbkkbkk/files-map-webpack-plugin';
 import * as WebpackBar from 'webpackbar';
 import * as _ from 'lodash';
 import { requireModule, versionReturn, moduleExists, isTsconfigJsonExists } from '../utils/utils';
-import type { SweetConfig, SweetOptions, HtmlItem } from '../utils/types';
+import type { SweetConfig, SweetOptions } from '../utils/types';
 
 export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, config: Config): void {
   const {
@@ -76,20 +77,23 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
     let index: number = 0;
 
     for (const item of html) {
-      const { template, excludeChunks, ...otherConfig }: HtmlItem = item;
-      const info: ParsedPath = path.parse(template);
+      const { template }: HtmlWebpackPluginOptions = item ?? {};
+      const options: HtmlWebpackPluginOptions = {
+        inject: true,
+        scriptLoading: 'blocking',
+        hash: !isDevelopment,
+        mode
+      };
+
+      if (template) {
+        const info: ParsedPath = path.parse(template);
+
+        options.filename = `${ info.name }.html`;
+      }
 
       config
         .plugin(`html-webpack-plugin: ${ index }`)
-        .use(HtmlWebpackPlugin, [{
-          inject: true,
-          template,
-          filename: `${ info.name }.html`,
-          excludeChunks,
-          mode,
-          hash: !isDevelopment,
-          ...otherConfig
-        }]);
+        .use(HtmlWebpackPlugin, [Object.assign(options, item)]);
 
       index += 1;
     }

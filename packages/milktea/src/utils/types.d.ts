@@ -1,6 +1,7 @@
 import type { RuleSetRule, Entry, ResolveOptions, WebpackPluginInstance } from 'webpack';
 import * as Config from 'webpack-chain';
 import type { CosmiconfigResult } from 'cosmiconfig/dist/types';
+import type { Options as HtmlWebpackPluginOptions } from 'html-webpack-plugin';
 
 export type Environment = 'dll' | 'client' | 'server';
 
@@ -67,11 +68,6 @@ export interface SASS extends CSS {
 export type Mode = 'development' | 'production' | 'none';
 export type Frame = 'react' | 'vue' | 'test';
 export type WebpackLog = 'progress' | 'stats';
-export type HtmlItem = {
-  [key: string]: any;
-  template: string;
-  excludeChunks: Array<string>;
-};
 
 export interface SweetConfig {
   mode?: Mode;
@@ -90,7 +86,7 @@ export interface SweetConfig {
   ts?: TS;
   sass?: SASS;
   css?: LESS;
-  html?: Array<HtmlItem>;
+  html?: Array<HtmlWebpackPluginOptions>;
   frame?: Frame;
   chainWebpack?: (config: Config) => void;
   filesMap?: boolean | { [key: string]: string };
