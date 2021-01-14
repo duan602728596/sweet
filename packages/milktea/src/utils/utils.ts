@@ -1,4 +1,7 @@
+import * as path from 'path';
+import * as fs from 'fs';
 import type { RuleSetRule } from 'webpack';
+import type { SweetOptions, TS } from './types';
 
 /* 模块导入 */
 export function requireModule(id: string): any {
@@ -36,6 +39,19 @@ export function versionReturn<T>(id: string, judgeFunc: JudgeFunc, fillReturn: T
   } else {
     return notFillReturn;
   }
+}
+
+/**
+ * 判断tsconfig.json文件是否存在
+ * @param { SweetOptions } sweetOptions
+ * @param { TS } ts
+ */
+export function isTsconfigJsonExists(sweetOptions: SweetOptions, ts?: TS): boolean {
+  const tsconfigJson: string = ts?.configFile ? (
+    path.isAbsolute(ts.configFile) ? ts.configFile : path.join(sweetOptions.basicPath, ts.configFile)
+  ) : path.join(sweetOptions.basicPath, 'tsconfig.json');
+
+  return fs.existsSync(tsconfigJson);
 }
 
 /* lodash.mergeWith合并函数 */

@@ -10,7 +10,7 @@ import * as HtmlWebpackPlugin from 'html-webpack-plugin';
 import * as FilesMapWebpackPlugin from '@bbkkbkk/files-map-webpack-plugin';
 import * as WebpackBar from 'webpackbar';
 import * as _ from 'lodash';
-import { requireModule, versionReturn, moduleExists } from '../utils/utils';
+import { requireModule, versionReturn, moduleExists, isTsconfigJsonExists } from '../utils/utils';
 import type { SweetConfig, SweetOptions, HtmlItem } from '../utils/types';
 
 export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, config: Config): void {
@@ -48,7 +48,11 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
   envPlugins(sweetConfig, sweetOptions, config);
 
   // fork-ts-checker-webpack-plugin
-  if (moduleExists('typescript') && ts?.forkTsCheckerWebpackPlugin !== false) {
+  if (
+    moduleExists('typescript')
+    && ts?.forkTsCheckerWebpackPlugin !== false
+    && isTsconfigJsonExists(sweetOptions, ts)
+  ) {
     const typescriptOptions: TypeScriptReporterOptions = {
       mode: js?.typescript ? 'write-references' : 'write-tsbuildinfo',
       extensions: { vue: frame === 'vue' },
