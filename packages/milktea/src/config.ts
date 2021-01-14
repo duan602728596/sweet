@@ -50,7 +50,7 @@ export default function(sweetConfig: SweetConfig | null | undefined, sweetOption
     mode,
     devtool: devtool ?? (isDevelopment ? 'eval-source-map' : false),
     resolve: { extensions },
-    target: ['web', ecmascript ? 'es2020' : 'es5'],
+    target: [ecmascript ? 'es2020' : 'es5'],
     performance: { hints: false }
   };
 

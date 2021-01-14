@@ -43,7 +43,7 @@ export default function(sweetConfig: SweetConfig | null | undefined, sweetOption
       mode: 'development',
       devtool: 'inline-source-map',
       resolve: { extensions },
-      target: ['web', ecmascript ? 'es2020' : 'es5'],
+      target: [ecmascript ? 'es2020' : 'es5'],
       performance: { hints: false }
     });
 
