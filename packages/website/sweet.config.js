@@ -19,6 +19,9 @@ export default function(info) {
       plugins,
       exclude: /node_modules|packages[\/]server/
     },
+    ts: {
+      forkTsCheckerWebpackPlugin: false
+    },
     sass: {
       include: /src/
     },
