@@ -89,6 +89,7 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
         const info: ParsedPath = path.parse(template);
 
         options.filename = `${ info.name }.html`;
+        options.chunks = [info.name];
       }
 
       config
