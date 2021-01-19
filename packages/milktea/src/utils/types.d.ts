@@ -1,19 +1,23 @@
-import type { RuleSetRule, Entry, ResolveOptions, WebpackPluginInstance } from 'webpack';
+import type { RuleSetRule, Entry, ResolveOptions, WebpackPluginInstance, Configuration } from 'webpack';
 import * as Config from 'webpack-chain';
 import type { CosmiconfigResult } from 'cosmiconfig/dist/types';
 import type { Options as HtmlWebpackPluginOptions } from 'html-webpack-plugin';
 
+/* 当前的编译环境 */
 export type Environment = 'dll' | 'client' | 'server';
 
+/* SweetOptions参数 */
 export interface SweetOptions {
   basicPath: string;
   environment: Environment;
 }
 
+/* sweet.config.js导出函数时，传递的参数 */
 export interface Info {
   environment: Environment;
 }
 
+/* config的loaders配置 */
 export interface Loaders {
   js?: RuleSetRule;
   ts?: RuleSetRule;
@@ -27,6 +31,7 @@ export interface Loaders {
   vue?: RuleSetRule;
 }
 
+/* js配置 */
 export interface JS {
   targets?: object;
   ecmascript?: boolean;
@@ -39,6 +44,7 @@ export interface JS {
   include?: RegExp;
 }
 
+/* typescript配置 */
 export interface TS {
   configFile?: string;
   presets?: Array<any>;
@@ -48,6 +54,7 @@ export interface TS {
   forkTsCheckerWebpackPlugin?: boolean;
 }
 
+/* css配置 */
 export interface CSS {
   publicPath?: string;
   modules?: boolean;
@@ -56,21 +63,23 @@ export interface CSS {
   localIdentName?: string;
 }
 
+/* less配置 */
 export interface LESS extends CSS {
   modifyVars?: object;
   additionalData?: string | Function;
 }
 
+/* sass配置 */
 export interface SASS extends CSS {
   additionalData?: string | Function;
 }
 
-export type Mode = 'development' | 'production' | 'none';
-export type Frame = 'react' | 'vue' | 'test';
-export type WebpackLog = 'progress' | 'stats';
+export type Frame = 'react' | 'vue' | 'test';  // 当前使用的组件
+export type WebpackLog = 'progress' | 'stats'; // 当前使用的进度条
 
+/* sweet.config.js的配置 */
 export interface SweetConfig {
-  mode?: Mode;
+  mode?: Configuration.mode;
   webpackLog?: WebpackLog;
   dll?: [string, ...string[]];
   entry?: Entry;
@@ -100,6 +109,7 @@ export interface SweetConfig {
   serverChainWebpack?: (config: Config) => void;
 }
 
+/* 获取配置文件 */
 export interface ExplorerSync {
   readonly search: (searchFrom?: string) => CosmiconfigResult;
   readonly load: (filepath: string) => CosmiconfigResult;
