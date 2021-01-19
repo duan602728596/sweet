@@ -74,12 +74,13 @@ export interface SASS extends CSS {
   additionalData?: string | Function;
 }
 
+export type Mode = Configuration.mode;
 export type Frame = 'react' | 'vue' | 'test';  // 当前使用的组件
 export type WebpackLog = 'progress' | 'stats'; // 当前使用的进度条
 
 /* sweet.config.js的配置 */
 export interface SweetConfig {
-  mode?: Configuration.mode;
+  mode?: Mode;
   webpackLog?: WebpackLog;
   dll?: [string, ...string[]];
   entry?: Entry;
