@@ -27,7 +27,7 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
     .when(!isDevelopment,
       (config: Config): void => {
         const terserOptions: TerserOptions = {
-          ecma: js?.ecmascript ? 2017 : 5,
+          ecma: js?.ecmascript ? 2020 : 5,
           safari10: true
         };
 
