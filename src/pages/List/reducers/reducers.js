@@ -19,9 +19,10 @@ export const requestList = createAsyncThunk('list/requestList', async function()
   return res;
 });
 
+const initialState = globalThis?.__INITIAL_STATE__;
 const { actions, reducer } = createSlice({
   name: 'list',
-  initialState: {
+  initialState: initialState?.list ?? {
     dataList: []
   },
   reducers: {},
