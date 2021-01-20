@@ -7,7 +7,7 @@ node_modules
 # packages
 packages/**/lib
 packages/**/node_modules
-packages/**/test/test.js
+packages/**/test/babelPresetSweet.js
 packages/**/test/dist
 packages/**/test/.dll
 packages/**/test/.babelCache
