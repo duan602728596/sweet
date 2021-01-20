@@ -1,3 +1,4 @@
+import * as process from 'process';
 import { defaultPlugins, moduleExists } from './utils';
 import type {
   BabelPresetSweetOptions as Options,
@@ -6,6 +7,8 @@ import type {
   ReactOptions,
   TypescriptOptions
 } from './types';
+
+const isDevelopment: boolean = process.env.NODE_ENV === 'development';
 
 function babelPresetSweet(api: any, options: Options = {}, dirname: string): BabelPresetSweet {
   const { env, typescript, react }: Options = options;
@@ -57,7 +60,7 @@ function babelPresetSweet(api: any, options: Options = {}, dirname: string): Bab
       '@babel/preset-react',
       {
         runtime: runtime ?? moduleExists('react/jsx-runtime') ? 'automatic' : 'classic',
-        development
+        development: development ?? isDevelopment
       }
     ]);
   }
