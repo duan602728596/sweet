@@ -1,8 +1,9 @@
 import * as webpack from 'webpack';
 import type { Compiler } from 'webpack';
 import * as _ from 'lodash';
+import type { Milktea } from '@sweet-milktea/milktea/src/utils/types';
 import { requireModule } from '../utils/utils';
-import type { Milktea, Argv } from '../utils/types';
+import type { Argv } from '../utils/types';
 
 /* build 命令 */
 function argvBuild(argv: Argv): void {
