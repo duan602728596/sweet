@@ -20,8 +20,6 @@ describe('babel-preset-sweet', function() {
     const c = {};
     const d = c?.e;`);
 
-    console.log(code);
-
     expect(code.includes('var a = 5;')).to.be.true;
     expect(code.includes('jsx')).to.be.true;
     expect(code.includes('void 0') && code.includes('null')).to.be.true;
