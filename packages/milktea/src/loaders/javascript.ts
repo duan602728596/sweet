@@ -84,7 +84,7 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
       if (isReact) {
         babelPlugins.push('react-hot-loader/babel'); // 判断是否加载react相关插件，热替换
       } else if (isVue) {
-        babelPlugins.push('@vue/babel-preset-jsx');  // 判断是否加载vue相关插件
+        babelPlugins.push('@vue/babel-plugin-jsx');  // 判断是否加载vue相关插件
       }
 
       return _.mergeWith(options, { presets: babelPresets, plugins: babelPlugins }, customizer);
