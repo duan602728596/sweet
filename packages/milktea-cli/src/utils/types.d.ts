@@ -1,20 +1,8 @@
-import type { Stats } from 'webpack';
-
-export interface CallbackFunction<T> {
-  (err?: Error, result?: T): any;
-}
-
-export interface Milktea {
-  dllConfig: Function;
-  config: Function;
-  serverRenderConfig: Function;
-  callback: CallbackFunction<Stats>;
-  callbackOnlyError: CallbackFunction<Stats>;
-}
+import type { WebpackLog } from '@sweet-milktea/milktea/src/utils/types';
 
 export interface Argv {
   config: string;
-  webpackLog: string;
+  webpackLog: WebpackLog;
   // server
   server: boolean;
   httpPort: number;

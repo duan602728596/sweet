@@ -1,4 +1,4 @@
-import type { RuleSetRule, Entry, ResolveOptions, WebpackPluginInstance, Configuration } from 'webpack';
+import type { RuleSetRule, Entry, ResolveOptions, WebpackPluginInstance, Configuration, Stats } from 'webpack';
 import * as Config from 'webpack-chain';
 import type { CosmiconfigResult } from 'cosmiconfig/dist/types';
 import type { Options as HtmlWebpackPluginOptions } from 'html-webpack-plugin';
@@ -101,4 +101,20 @@ export interface ExplorerSync {
   readonly clearLoadCache: () => void;
   readonly clearSearchCache: () => void;
   readonly clearCaches: () => void;
+}
+
+/* Milktea导出的文件 */
+interface FuncArgs {
+  sweetConfig?: SweetConfigArgs;
+  mode?: Mode;
+  webpackLog?: WebpackLog;
+  hot?: boolean;
+}
+
+export interface Milktea {
+  config(args: FuncArgs): Configuration;
+  serverRenderConfig(args: FuncArgs): Configuration;
+  dllConfig(args: FuncArgs): Configuration;
+  callback(err: Error, stats: Stats): void;
+  callbackOnlyError(err: Error, stats: Stats): void;
 }
