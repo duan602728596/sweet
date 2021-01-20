@@ -7,7 +7,7 @@ import { merge } from 'webpack-merge';
 import * as WebpackBar from 'webpackbar';
 import { handleDllProgress } from './plugins/handleProgress';
 import { dllCache } from './config/cacheConfig';
-import { extensions, requireModule } from './utils/utils';
+import { extensions } from './utils/utils';
 import type { SweetConfig, SweetOptions, JS } from './utils/types';
 
 /**
@@ -35,7 +35,7 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions): C
     js = {},
     webpackLog = 'progress'
   }: SweetConfig = SCFG;
-  const { ecmascript, targets: customTargets }: JS = js;
+  const { ecmascript }: JS = js;
 
   // 合并配置
   config
@@ -55,43 +55,6 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions): C
     .library('[name]_[hash:5]')
     .libraryTarget('var')
     .globalObject('this');
-
-  // babel
-  config
-    .when(!ecmascript,
-      (config: Config): void => {
-        const isReact: boolean = frame === 'react',
-          isVue: boolean = frame === 'vue';
-
-        config
-          .module
-          .rule('dll')
-          .use('babel-loader')
-          .loader('babel-loader')
-          .options({
-            presets: [[
-              requireModule('@sweet-milktea/babel-preset-sweet'),
-              {
-                env: {
-                  ecmascript,
-                  targets: customTargets,
-                  debug: !webpackLog || webpackLog !== 'progress'
-                },
-                typescript: {
-                  use: true,
-                  isReact: !isVue
-                },
-                react: {
-                  use: isReact
-                }
-              }
-            ]],
-            cacheDirectory: false,
-            configFile: false,
-            babelrc: false
-          });
-      }
-    );
 
   // plugin
   config
