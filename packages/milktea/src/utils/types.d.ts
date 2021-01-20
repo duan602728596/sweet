@@ -31,35 +31,33 @@ export interface Loaders {
   vue?: RuleSetRule;
 }
 
+interface ConfigRule {
+  exclude?: RegExp | Array<RegExp>;
+  include?: RegExp | Array<RegExp>;
+}
+
+interface ScriptRule extends ConfigRule {
+  presets?: Array<any>;
+  plugins?: Array<any>;
+}
+
 /* js配置 */
-export interface JS {
+export interface JS extends ScriptRule {
   targets?: object;
   ecmascript?: boolean;
   typescript?: boolean;
-  presets?: Array<any>;
-  plugins?: Array<any>;
-  resetPresets?: Array<any>;
-  resetPlugins?: Array<any>;
-  exclude?: RegExp;
-  include?: RegExp;
 }
 
 /* typescript配置 */
-export interface TS {
+export interface TS extends ScriptRule {
   configFile?: string;
-  presets?: Array<any>;
-  plugins?: Array<any>;
-  exclude?: RegExp;
-  include?: RegExp;
   forkTsCheckerWebpackPlugin?: boolean;
 }
 
 /* css配置 */
-export interface CSS {
+export interface CSS extends ConfigRule {
   publicPath?: string;
   modules?: boolean;
-  exclude?: RegExp;
-  include?: RegExp;
   localIdentName?: string;
 }
 

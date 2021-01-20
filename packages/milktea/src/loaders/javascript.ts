@@ -7,7 +7,7 @@ import type { SweetConfig, SweetOptions, JS } from '../utils/types';
 
 /* js 配置 */
 export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, config: Config): void {
-  const { mode, js, frame, webpackLog = 'progress' }: SweetConfig = sweetConfig;
+  const { mode, js = {}, frame, webpackLog = 'progress' }: SweetConfig = sweetConfig;
   const { environment }: SweetOptions = sweetOptions;
   const isDevelopment: boolean = mode === 'development';
   const isEnvServerSideRender: boolean = environment === 'server';
@@ -21,7 +21,7 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
     exclude,
     include,
     targets: customTargets
-  }: JS = js ?? {};
+  }: JS = js;
   const debug: boolean = frame === 'test' ? false : isDevelopment;
   const useTypescript: boolean = !!typescript;
 

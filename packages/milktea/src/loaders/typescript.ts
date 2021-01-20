@@ -1,7 +1,7 @@
 import * as _ from 'lodash';
 import * as Config from 'webpack-chain';
-import type { Use, LoaderOptions } from 'webpack-chain';
-import { customizer, versionReturn } from '../utils/utils';
+import type { LoaderOptions } from 'webpack-chain';
+import { customizer } from '../utils/utils';
 import { createBabelOptions, createTypescriptOptions } from '../config/babelConfig';
 import type { SweetConfig, SweetOptions, TS } from '../utils/types';
 
