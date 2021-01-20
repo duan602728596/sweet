@@ -9,5 +9,6 @@ exports.packageNames = [
   'server',
   'server-log',
   'util-tools',
-  'eslint-plugin'
+  'eslint-plugin',
+  'babel-preset-sweet'
 ];
