@@ -22,9 +22,7 @@ function cssLoaderModeFunc(resourcePath: string): 'local' | 'global' | 'pure' {
  * @param { boolean } isDevelopment: 是否为开发环境
  */
 export function createStyleLoader(isDevelopment: boolean): string | any {
-  return isDevelopment
-    ? 'style-loader'
-    : MiniCssExtractPlugin.loader;
+  return isDevelopment ? 'style-loader' : MiniCssExtractPlugin.loader;
 }
 
 /**

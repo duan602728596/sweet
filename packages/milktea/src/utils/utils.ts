@@ -18,28 +18,6 @@ export function moduleExists(id: string): string | false {
   }
 }
 
-type JudgeFunc = <T>(f: number) => boolean;
-
-/**
- * 根据模块版本返回不同的值
- * @param { string } id: 模块id
- * @param { JudgeFunc } judgeFunc: 判断条件
- * @param { T } fillReturn: 满足的时候返回
- * @param { T } notFillReturn: 不满足的时候返回
- */
-export function versionReturn<T>(id: string, judgeFunc: JudgeFunc, fillReturn: T, notFillReturn: T): T | undefined {
-  if (moduleExists(id) === false) return;
-
-  const { version }: { version: string } = requireModule(`${ id }/package.json`);
-  const firstVersion: number = Number(version.split(/\./g)[0]);
-
-  if (judgeFunc(firstVersion)) {
-    return fillReturn;
-  } else {
-    return notFillReturn;
-  }
-}
-
 /**
  * 判断tsconfig.json文件是否存在
  * @param { SweetOptions } sweetOptions

@@ -8,7 +8,6 @@ import configFile from './utils/configFile';
 import type { SweetConfig, SweetOptions, Mode, WebpackLog, Environment, Info } from './utils/types';
 
 type SweetConfigArgs = SweetConfig | string | null | undefined;
-type Config = SweetConfig | null | undefined;
 
 interface FuncArgs {
   sweetConfig?: SweetConfigArgs;
@@ -24,14 +23,17 @@ const sweetOptions: SweetOptions = {
 };
 
 /* 获取配置 */
-function getConfig(environment: Environment, sweetConfig: SweetConfigArgs): Config {
+function getConfig(environment: Environment, sweetConfig: SweetConfigArgs): SweetConfig {
   if (typeof sweetConfig === 'string') {
+    // 自定义配置文件路径
     const config: SweetConfig | ((info: Info) => SweetConfig) = configFile(sweetOptions, sweetConfig);
 
     return typeof config === 'function' ? config({ environment }) : config;
   } else if (_.isPlainObject(sweetConfig)) {
-    return sweetConfig;
+    // 自定义配置文件
+    return sweetConfig as SweetConfig;
   } else {
+    // 默认的配置文件
     const config: SweetConfig | ((info: Info) => SweetConfig) = configFile(sweetOptions);
 
     return typeof config === 'function' ? config({ environment }) : config;
@@ -76,7 +78,7 @@ export function callback(err: Error, stats: Stats): void {
  */
 export function config(args: FuncArgs = {}): Configuration {
   const { sweetConfig, mode, webpackLog, hot }: FuncArgs = args;
-  const config: Config = getConfig('client', sweetConfig);
+  const config: SweetConfig = getConfig('client', sweetConfig);
 
   if (config) {
     if (mode) {
@@ -103,7 +105,7 @@ export function config(args: FuncArgs = {}): Configuration {
  */
 export function serverRenderConfig(args: FuncArgs = {}): Configuration {
   const { sweetConfig, mode, webpackLog }: FuncArgs = args;
-  const config: Config = getConfig('server', sweetConfig);
+  const config: SweetConfig = getConfig('server', sweetConfig);
 
   sweetOptions.environment = 'server';
 
@@ -127,7 +129,7 @@ export function serverRenderConfig(args: FuncArgs = {}): Configuration {
  */
 export function dllConfig(args: FuncArgs = {}): Configuration {
   const { sweetConfig, webpackLog }: FuncArgs = args;
-  const config: Config = getConfig('dll', sweetConfig);
+  const config: SweetConfig = getConfig('dll', sweetConfig);
 
   sweetOptions.environment = 'dll';
 

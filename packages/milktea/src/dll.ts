@@ -12,12 +12,12 @@ import type { SweetConfig, SweetOptions, JS } from './utils/types';
 
 /**
  * webpack dll扩展配置
- * @param { SweetConfig | null | undefined } sweetConfig: 获取到的外部配置
+ * @param { SweetConfig } sweetConfig: 获取到的外部配置
  * @param { SweetOptions } sweetOptions: 内部挂载的一些配置
  */
-export default function(sweetConfig: SweetConfig | null | undefined, sweetOptions: SweetOptions): Configuration {
+export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions): Configuration {
   const config: Config = new Config();
-  const sweetConfigCopy: SweetConfig = _.isPlainObject(sweetConfig) ? _.omit({ ...sweetConfig }, [
+  const SCFG: SweetConfig = _.omit(sweetConfig, [
     'serverRender',
     'serverEntry',
     'serverOutput',
@@ -25,7 +25,7 @@ export default function(sweetConfig: SweetConfig | null | undefined, sweetOption
     'serverDevtool',
     'serverChainWebpack',
     'hot'
-  ]) : {};
+  ]);
   const {
     frame,
     dll,
@@ -34,7 +34,7 @@ export default function(sweetConfig: SweetConfig | null | undefined, sweetOption
     chainWebpack,
     js = {},
     webpackLog = 'progress'
-  }: SweetConfig = sweetConfigCopy;
+  }: SweetConfig = SCFG;
   const { ecmascript, targets: customTargets }: JS = js;
 
   // 合并配置

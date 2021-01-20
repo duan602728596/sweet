@@ -6,7 +6,6 @@ import type { SweetConfig, LESS } from '../utils/types';
 /* less & css 配置 */
 export default function(sweetConfig: SweetConfig, config: Config): void {
   const { mode, css = {}, frame, serverRender }: SweetConfig = sweetConfig;
-  const isDevelopment: boolean = mode === 'development';
   const {
     publicPath,
     modules = true,
@@ -16,6 +15,7 @@ export default function(sweetConfig: SweetConfig, config: Config): void {
     additionalData,
     localIdentName
   }: LESS = css;
+  const isDevelopment: boolean = mode === 'development';
 
   config
     .merge({
@@ -31,16 +31,15 @@ export default function(sweetConfig: SweetConfig, config: Config): void {
     });
 
   // style-loader options
-  const styleLoaderOptions: LoaderOptions = { esModule: true };
-
-  if (!isDevelopment) {
-    styleLoaderOptions.publicPath = publicPath;
-  }
+  const styleLoaderOptions: LoaderOptions = {
+    esModule: true,
+    publicPath
+  };
 
   // css-loader
-  const sr: boolean = !!serverRender;
-  const cssLoaderOptions: LoaderOptions = createCssOptions(modules, isDevelopment, sr, localIdentName);
-  const ScopedCssLoaderOptions: LoaderOptions = createCssOptions(false, isDevelopment, sr);
+  const ssr: boolean = !!serverRender;
+  const cssLoaderOptions: LoaderOptions = createCssOptions(modules, isDevelopment, ssr, localIdentName);
+  const ScopedCssLoaderOptions: LoaderOptions = createCssOptions(false, isDevelopment, ssr);
 
   // less-loader
   const lessLoaderOptions: LoaderOptions = createLessOptions(modifyVars, additionalData, isDevelopment);

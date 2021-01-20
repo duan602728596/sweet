@@ -12,19 +12,19 @@ import type { SweetConfig, SweetOptions } from './utils/types';
 
 /**
  * webpack 配置
- * @param { SweetConfig | null | undefined } sweetConfig: 获取到的外部配置
+ * @param { SweetConfig } sweetConfig: 获取到的外部配置
  * @param { SweetOptions } sweetOptions: 内部挂载的一些配置
  */
-export default function(sweetConfig: SweetConfig | null | undefined, sweetOptions: SweetOptions): Configuration {
+export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions): Configuration {
   const config: Config = new Config();
-  const sweetConfigCopy: SweetConfig = _.isPlainObject(sweetConfig) ? _.omit({ ...sweetConfig }, [
+  const SCFG: SweetConfig = _.omit(sweetConfig, [
     'serverRender',
     'serverEntry',
     'serverOutput',
     'serverExternals',
     'serverDevtool',
     'serverChainWebpack'
-  ]) : {};
+  ]);
   const {
     mode,
     entry,
@@ -38,7 +38,7 @@ export default function(sweetConfig: SweetConfig | null | undefined, sweetOption
     chainWebpack,
     js,
     webpackLog = 'progress'
-  }: SweetConfig = sweetConfigCopy;
+  }: SweetConfig = SCFG;
   const ecmascript: boolean | undefined = js?.ecmascript;
   const isDevelopment: boolean = mode === 'development';
 
@@ -92,13 +92,13 @@ export default function(sweetConfig: SweetConfig | null | undefined, sweetOption
     .globalObject('this');
 
   // loaders
-  loaders(sweetConfigCopy, sweetOptions, config);
+  loaders(SCFG, sweetOptions, config);
 
   // plugins
-  basicPlugins(sweetConfigCopy, sweetOptions, config);
+  basicPlugins(SCFG, sweetOptions, config);
 
   // optimization
-  optimization(sweetConfigCopy, sweetOptions, config, false);
+  optimization(SCFG, sweetOptions, config, false);
 
   /* chainWebpack: 通过webpack-chain的API扩展或修改webpack配置 */
   if (chainWebpack) {

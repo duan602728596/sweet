@@ -12,14 +12,12 @@ import type { SweetConfig, SweetOptions } from './utils/types';
 
 /**
  * webpack 服务器端渲染配置
- * @param { SweetConfig | null | undefined } sweetConfig: 获取到的外部配置
+ * @param { SweetConfig } sweetConfig: 获取到的外部配置
  * @param { SweetOptions } sweetOptions: 内部挂载的一些配置
  */
 export default function(sweetConfig: SweetConfig | null | undefined, sweetOptions: SweetOptions): Configuration {
   const config: Config = new Config();
-  const sweetConfigCopy: SweetConfig | undefined = _.isPlainObject(sweetConfig) ? _.omit({ ...sweetConfig }, [
-    'hot'
-  ]) : {};
+  const SCFG: SweetConfig = _.omit(sweetConfig, ['hot']);
   const {
     mode,
     serverEntry,
@@ -31,15 +29,8 @@ export default function(sweetConfig: SweetConfig | null | undefined, sweetOption
     plugins,
     serverDevtool,
     serverChainWebpack
-  }: SweetConfig = sweetConfigCopy;
+  }: SweetConfig = SCFG;
   const isDevelopment: boolean = mode === 'development';
-
-  // 格式化ecmascript配置
-  if (sweetConfigCopy.js && _.isPlainObject(sweetConfigCopy.js)) {
-    sweetConfigCopy.js.ecmascript = true;
-  } else {
-    sweetConfigCopy.js = { ecmascript: true };
-  }
 
   // 合并配置
   config
@@ -72,13 +63,13 @@ export default function(sweetConfig: SweetConfig | null | undefined, sweetOption
     .globalObject('this');
 
   // loaders
-  loaders(sweetConfigCopy, sweetOptions, config);
+  loaders(SCFG, sweetOptions, config);
 
   // plugins
-  basicPlugins(sweetConfigCopy, sweetOptions, config);
+  basicPlugins(SCFG, sweetOptions, config);
 
   // optimization
-  optimization(sweetConfigCopy, sweetOptions, config, true);
+  optimization(SCFG, sweetOptions, config, true);
 
   /* serverChainWebpack: 通过webpack-chain的API扩展或修改webpack配置 */
   if (serverChainWebpack) {

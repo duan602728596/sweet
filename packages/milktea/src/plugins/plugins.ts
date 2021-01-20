@@ -11,7 +11,7 @@ import type { Options as HtmlWebpackPluginOptions } from 'html-webpack-plugin';
 import * as FilesMapWebpackPlugin from '@bbkkbkk/files-map-webpack-plugin';
 import * as WebpackBar from 'webpackbar';
 import * as _ from 'lodash';
-import { requireModule, versionReturn, moduleExists, isTsconfigJsonExists } from '../utils/utils';
+import { requireModule, moduleExists, isTsconfigJsonExists } from '../utils/utils';
 import type { SweetConfig, SweetOptions } from '../utils/types';
 
 export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, config: Config): void {
@@ -103,18 +103,9 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
   // vue-loader plugin插件的加载
   config.when(frame === 'vue',
     (config: Config): void => {
-      const VueLoaderPlugin: string | undefined = versionReturn<string>(
-        'vue-loader',
-        (n: number): boolean => n >= 16,
-        'vue-loader/dist/plugin',
-        'vue-loader/lib/plugin'
-      );
-
-      if (VueLoaderPlugin) {
-        config
-          .plugin('vue-loader-plugin')
-          .use(requireModule(VueLoaderPlugin));
-      }
+      config
+        .plugin('vue-loader-plugin')
+        .use(requireModule('vue-loader/dist/plugin'));
     }
   );
 

@@ -6,7 +6,6 @@ import type { SweetConfig, SASS } from '../utils/types';
 /* sass 配置 */
 export default function(sweetConfig: SweetConfig, config: Config): void {
   const { mode, sass = {}, frame, serverRender }: SweetConfig = sweetConfig;
-  const isDevelopment: boolean = mode === 'development';
   const {
     publicPath,
     modules = true,
@@ -15,6 +14,7 @@ export default function(sweetConfig: SweetConfig, config: Config): void {
     additionalData,
     localIdentName
   }: SASS = sass;
+  const isDevelopment: boolean = mode === 'development';
 
   config
     .merge({
@@ -30,19 +30,17 @@ export default function(sweetConfig: SweetConfig, config: Config): void {
     });
 
   // style-loader options
-  const styleLoaderOptions: LoaderOptions = { esModule: true };
-
-  if (!isDevelopment) {
-    styleLoaderOptions.publicPath = publicPath;
-  }
+  const styleLoaderOptions: LoaderOptions = {
+    esModule: true,
+    publicPath
+  };
 
   // css-loader
-  const sr: boolean = !!serverRender;
-  const cssLoaderOptions: LoaderOptions = createCssOptions(modules, isDevelopment, sr, localIdentName);
-  const ScopedCssLoaderOptions: LoaderOptions = createCssOptions(false, isDevelopment, sr);
+  const ssr: boolean = !!serverRender;
+  const cssLoaderOptions: LoaderOptions = createCssOptions(modules, isDevelopment, ssr, localIdentName);
+  const ScopedCssLoaderOptions: LoaderOptions = createCssOptions(false, isDevelopment, ssr);
 
   // sass-loader
-  // TODO: 未来会移除 prependData和data 选项
   const sassLoaderOptions: LoaderOptions = createSassOptions(additionalData, isDevelopment);
 
   const sassRule: Rule = config

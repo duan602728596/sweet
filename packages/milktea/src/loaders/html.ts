@@ -3,7 +3,7 @@ import type { SweetConfig } from '../utils/types';
 
 /* html 配置 */
 export default function(sweetConfig: SweetConfig, config: Config): void {
-  const mode: string | undefined = sweetConfig.mode;
+  const { mode }: SweetConfig = sweetConfig;
   const isDevelopment: boolean = mode === 'development';
 
   config
