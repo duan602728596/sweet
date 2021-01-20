@@ -44,7 +44,6 @@ export interface TS extends ScriptRule {
 
 /* css配置 */
 export interface CSS extends ConfigRule {
-  publicPath?: string;
   modules?: boolean;
 }
 

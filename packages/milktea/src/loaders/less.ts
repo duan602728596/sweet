@@ -7,7 +7,6 @@ import type { SweetConfig, LESS } from '../utils/types';
 export default function(sweetConfig: SweetConfig, config: Config): void {
   const { mode, css = {}, frame, serverRender }: SweetConfig = sweetConfig;
   const {
-    publicPath,
     modules = true,
     exclude,
     include,
@@ -28,12 +27,6 @@ export default function(sweetConfig: SweetConfig, config: Config): void {
         }
       }
     });
-
-  // style-loader options
-  const styleLoaderOptions: LoaderOptions = {
-    esModule: true,
-    publicPath
-  };
 
   // css-loader
   const ssr: boolean = !!serverRender;
@@ -61,8 +54,7 @@ export default function(sweetConfig: SweetConfig, config: Config): void {
 
           oneOf
             .use('style')
-            .loader(vueStyleLoader)
-            .options(styleLoaderOptions);
+            .loader(vueStyleLoader);
         }
 
         oneOf
@@ -86,8 +78,7 @@ export default function(sweetConfig: SweetConfig, config: Config): void {
   if (!serverRender) {
     oneOf
       .use('style')
-      .loader(createStyleLoader(isDevelopment))
-      .options(styleLoaderOptions);
+      .loader(createStyleLoader(isDevelopment));
   }
 
   oneOf
