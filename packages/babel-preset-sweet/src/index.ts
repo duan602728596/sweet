@@ -20,6 +20,7 @@ function babelPresetSweet(api: any, options: Options = {}, dirname: string): Bab
 
   // 添加@babel/preset-env
   if (!ecmascript) {
+    const useBuiltInsValue: string | boolean = useBuiltIns ?? 'usage';
     const options: { [key: string]: any } = {
       targets: customTargets ?? {
         browsers: nodeEnv ? ['node 10'] : [
@@ -30,12 +31,12 @@ function babelPresetSweet(api: any, options: Options = {}, dirname: string): Bab
         ],
         debug,
         modules: modules ?? false,
-        useBuiltIns: useBuiltIns ?? 'usage',
+        useBuiltIns: useBuiltInsValue,
         bugfixes: true
       }
     };
 
-    if (useBuiltIns !== false) {
+    if (useBuiltInsValue) {
       options.corejs = 3;
     }
 

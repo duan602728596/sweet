@@ -7,4 +7,3 @@ register(babelConfig);
 require('./dll');
 require('./config');
 require('./server');
-require('./function');
