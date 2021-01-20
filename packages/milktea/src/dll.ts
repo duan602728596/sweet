@@ -5,10 +5,9 @@ import type { Configuration } from 'webpack';
 import * as Config from 'webpack-chain';
 import { merge } from 'webpack-merge';
 import * as WebpackBar from 'webpackbar';
-import { createPresetEnv } from './config/babelConfig';
 import { handleDllProgress } from './plugins/handleProgress';
-import { babelCache, dllCache } from './config/cacheConfig';
-import { extensions } from './utils/utils';
+import { dllCache } from './config/cacheConfig';
+import { extensions, requireModule } from './utils/utils';
 import type { SweetConfig, SweetOptions, JS } from './utils/types';
 
 /**
@@ -28,14 +27,15 @@ export default function(sweetConfig: SweetConfig | null | undefined, sweetOption
     'hot'
   ]) : {};
   const {
+    frame,
     dll,
     externals,
     resolve,
     chainWebpack,
-    js,
+    js = {},
     webpackLog = 'progress'
   }: SweetConfig = sweetConfigCopy;
-  const { ecmascript, targets: customTargets }: JS = js ?? {};
+  const { ecmascript, targets: customTargets }: JS = js;
 
   // 合并配置
   config
@@ -60,14 +60,33 @@ export default function(sweetConfig: SweetConfig | null | undefined, sweetOption
   config
     .when(!ecmascript,
       (config: Config): void => {
+        const isReact: boolean = frame === 'react',
+          isVue: boolean = frame === 'vue';
+
         config
           .module
           .rule('dll')
           .use('babel-loader')
           .loader('babel-loader')
           .options({
-            presets: [createPresetEnv(customTargets, false, true)],
-            cacheDirectory: path.join(sweetOptions.basicPath, babelCache),
+            presets: [[
+              requireModule('@sweet-milktea/babel-preset-sweet'),
+              {
+                env: {
+                  ecmascript,
+                  targets: customTargets,
+                  debug: !webpackLog || webpackLog !== 'progress'
+                },
+                typescript: {
+                  use: true,
+                  isReact: !isVue
+                },
+                react: {
+                  use: isReact
+                }
+              }
+            ]],
+            cacheDirectory: false,
             configFile: false,
             babelrc: false
           });

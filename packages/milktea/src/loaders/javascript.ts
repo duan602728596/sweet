@@ -68,7 +68,7 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
           env: {
             nodeEnv: isEnvServerSideRender,
             ecmascript,
-            customTargets,
+            targets: customTargets,
             debug: (!webpackLog || webpackLog !== 'progress') && debug
           },
           typescript: {

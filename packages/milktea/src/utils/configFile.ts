@@ -2,7 +2,6 @@ import * as fs from 'fs';
 import * as path from 'path';
 import { cosmiconfigSync, LoaderSync } from 'cosmiconfig';
 import type { CosmiconfigResult, Config } from 'cosmiconfig/dist/types';
-import { createBabelPlugins } from '../config/babelConfig';
 import { requireModule } from './utils';
 import type { SweetConfig, SweetOptions, ExplorerSync, Info } from './types';
 
@@ -10,27 +9,20 @@ import type { SweetConfig, SweetOptions, ExplorerSync, Info } from './types';
 function createJsRegisterLoader(): LoaderSync {
   return function jsRegisterLoader(filepath: string, content: string): Config | null {
     require('@babel/register')({
-      presets: [
-        [
-          '@babel/preset-env',
-          {
-            targets: {
-              browsers: ['node 10']
-            },
-            debug: false,
+      presets: [[
+        requireModule('@sweet-milktea/babel-preset-sweet'),
+        {
+          env: {
+            nodeEnv: true,
             modules: 'commonjs',
             useBuiltIns: false
-          }
-        ],
-        [
-          '@babel/preset-typescript',
-          {
-            allExtensions: true,
-            allowNamespaces: true
-          }
-        ]
-      ],
-      plugins: createBabelPlugins(),
+          },
+          typescript: {
+            use: true
+          },
+          transformRuntime: false
+        }
+      ]],
       cache: true,
       ignore: [/node_modules/],
       extensions: ['.es6', '.es', '.jsx', '.js', '.mjs', 'cjs', '.tsx', '.ts']

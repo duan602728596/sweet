@@ -4,6 +4,7 @@ export interface EnvOptions {
   ecmascript?: boolean;           // 编译到esnext
   targets?: object;               // 自定义babel的编译版本
   debug?: boolean;                // 开启debug信息
+  modules?: boolean | string;     // modules
   useBuiltIns?: boolean | string; // useBuiltIns
 }
 
@@ -25,6 +26,7 @@ export interface BabelPresetSweetOptions {
   env?: EnvOptions;
   typescript?: TypescriptOptions;
   react?: ReactOptions;
+  transformRuntime?: boolean;
 }
 
 export interface BabelPresetSweet {

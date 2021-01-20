@@ -18,19 +18,6 @@ export interface Info {
 }
 
 /* config的loaders配置 */
-export interface Loaders {
-  js?: RuleSetRule;
-  ts?: RuleSetRule;
-  sass?: RuleSetRule;
-  css?: RuleSetRule;
-  favicon?: RuleSetRule;
-  fontFile?: RuleSetRule;
-  html?: RuleSetRule;
-  image?: RuleSetRule;
-  svg?: RuleSetRule;
-  vue?: RuleSetRule;
-}
-
 interface ConfigRule {
   exclude?: RegExp | Array<RegExp>;
   include?: RegExp | Array<RegExp>;
@@ -86,7 +73,6 @@ export interface SweetConfig {
   externals?: { [key: string]: string };
   resolve?: ResolveOptions;
   devtool?: string;
-  loaders?: Loaders;
   rules?: Array<RuleSetRule>;
   noParse?: string | Function | RegExp | [string | Function | RegExp, ...(string | Function | RegExp)[]];
   plugins?: WebpackPluginInstance[];
