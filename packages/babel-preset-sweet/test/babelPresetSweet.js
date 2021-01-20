@@ -16,10 +16,15 @@ function transformCode(code, options) {
 describe('babel-preset-sweet', function() {
   it('build javascript', async function() {
     const { code } = await transformCode(`const a = 5;
-    const b = <div></div>;`);
+    const b = <div />;
+    const c = {};
+    const d = c?.e;`);
+
+    console.log(code);
 
     expect(code.includes('var a = 5;')).to.be.true;
     expect(code.includes('jsx')).to.be.true;
+    expect(code.includes('void 0') && code.includes('null')).to.be.true;
   });
 
   it('build ecmascript', async function() {
