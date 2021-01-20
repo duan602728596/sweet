@@ -86,13 +86,11 @@ module.exports = function(info) {
   * include `{ RegExp }` : include规则
   * forkTsCheckerWebpackPlugin `{ boolean }` : 设置为false时，关闭fork-ts-checker-webpack-plugin插件注入
 * sass `{ object }` : sass配置
-  * publicPath `{ string }`
   * modules `{ boolean }` : 开启css-in-modules
   * exclude `{ RegExp }` : exclude规则
   * include `{ RegExp }` : include规则
   * additionalData `{ string | Function }` : 注入sass变量（参考sass-loader）
 * css `{ object }` : css配置（默认使用less）
-  * publicPath `{ string }`
   * modules `{ boolean }` : 开启css-in-modules
   * exclude `{ RegExp }` : exclude规则
   * include `{ RegExp }` : include规则
