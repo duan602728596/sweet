@@ -12,7 +12,7 @@ const isDevelopment: boolean = process.env.NODE_ENV === 'development';
 
 function babelPresetSweet(api: any, options: Options = {}, dirname: string): BabelPresetSweet {
   const { env, typescript, react }: Options = options;
-  const { isNode, ecmascript, targets: customTargets, debug = false, useBuiltIns }: EnvOptions = env ?? {};
+  const { nodeEnv, ecmascript, targets: customTargets, debug = false, useBuiltIns }: EnvOptions = env ?? {};
   const { use: useTypescript, isReact = true }: TypescriptOptions = typescript ?? {};
   const { use: useReact = true, runtime, development = false }: ReactOptions = react ?? {};
 
@@ -23,7 +23,7 @@ function babelPresetSweet(api: any, options: Options = {}, dirname: string): Bab
       {
         corejs: { version: 3, proposals: true },
         helpers: true,
-        regenerator: isNode || !ecmascript,
+        regenerator: nodeEnv || !ecmascript,
         useESModules: true
       }
     ]
@@ -34,7 +34,7 @@ function babelPresetSweet(api: any, options: Options = {}, dirname: string): Bab
   if (!ecmascript) {
     const options: { [key: string]: any } = {
       targets: customTargets ?? {
-        browsers: isNode ? ['node 10'] : [
+        browsers: nodeEnv ? ['node 10'] : [
           'last 2 versions',
           'last 10 Chrome versions',
           'last 1 year',

@@ -1,6 +1,6 @@
 // @babel/preset-env的配置
 export interface EnvOptions {
-  isNode?: boolean;               // 是否为node环境
+  nodeEnv?: boolean;              // 是否为node环境
   ecmascript?: boolean;           // 编译到esnext
   targets?: object;               // 自定义babel的编译版本
   debug?: boolean;                // 开启debug信息

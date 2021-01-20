@@ -1,7 +1,7 @@
 import * as path from 'path';
 import type { LoaderOptions } from 'webpack-chain';
 import { babelCache } from './cacheConfig';
-import type { SweetOptions, JS } from '../utils/types';
+import type { SweetOptions } from '../utils/types';
 
 /* babel-loader配置 */
 
@@ -80,50 +80,14 @@ export function createPresetEnv(customTargets: object | undefined, debug: boolea
 }
 
 /**
- * @babel/preset-env node
- * @param { object | undefined } customTargets: 自定义@babel/preset-env的编译目标
- * @param { boolean } debug: 是否debug
- * @param { boolean } notUseBuiltIns: 不使用core-js
- */
-export function createPresetEnvInNode(customTargets: object | undefined, debug: boolean, notUseBuiltIns?: boolean): Array<any> {
-  const options: { [key: string]: any } = {
-    targets: customTargets ?? createNodeTargets(),
-    debug,
-    modules: false,
-    useBuiltIns: notUseBuiltIns ? false : 'usage',
-    bugfixes: true
-  };
-
-  if (!notUseBuiltIns) {
-    options.corejs = 3;
-  }
-
-  return ['@babel/preset-env', options];
-}
-
-/**
  * babel-loader options
  * @param { SweetOptions } sweetOptions
- * @param { JS } jsOptions: js配置
  */
-export function createBabelOptions(sweetOptions: SweetOptions, jsOptions: JS): LoaderOptions {
-  const { ecmascript, resetPresets, resetPlugins }: JS = jsOptions;
-
+export function createBabelOptions(sweetOptions: SweetOptions): LoaderOptions {
   return {
     cacheDirectory: path.join(sweetOptions.basicPath, babelCache),
-    presets: resetPresets ?? [],
-    plugins: resetPlugins ?? [
-      ...createBabelPlugins(),
-      [
-        '@babel/plugin-transform-runtime',
-        {
-          corejs: { version: 3, proposals: true },
-          helpers: true,
-          regenerator: !ecmascript,
-          useESModules: true
-        }
-      ]
-    ],
+    presets: [],
+    plugins: [],
     configFile: false,
     babelrc: false
   };
@@ -134,10 +98,7 @@ export function createBabelOptions(sweetOptions: SweetOptions, jsOptions: JS): L
  * @param { string | undefined } configFile
  * @param { boolean } forkTsCheckerWebpackPlugin
  */
-export function createTypescriptOptions(
-  configFile: string | undefined,
-  forkTsCheckerWebpackPlugin: boolean | undefined
-): LoaderOptions {
+export function createTypescriptOptions(configFile: string | undefined, forkTsCheckerWebpackPlugin: boolean | undefined): LoaderOptions {
   const options: LoaderOptions = {
     transpileOnly: forkTsCheckerWebpackPlugin !== false
   };

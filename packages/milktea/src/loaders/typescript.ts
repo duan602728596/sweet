@@ -2,24 +2,20 @@ import * as _ from 'lodash';
 import * as Config from 'webpack-chain';
 import type { Use, LoaderOptions } from 'webpack-chain';
 import { customizer, versionReturn } from '../utils/utils';
-import { createBabelForTsOptions, createTypescriptOptions } from '../config/babelConfig';
+import { createBabelOptions, createTypescriptOptions } from '../config/babelConfig';
 import type { SweetConfig, SweetOptions, TS } from '../utils/types';
 
 /* ts 配置 */
 export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, config: Config): void {
   const { ts = {}, frame }: SweetConfig = sweetConfig;
-  const { configFile, presets = [], plugins = [], exclude, include, forkTsCheckerWebpackPlugin }: TS = ts;
-
-  const useConfig: object = {
-    'babel-loader': {
-      loader: 'babel-loader',
-      options: createBabelForTsOptions(sweetOptions)
-    },
-    'ts-loader': {
-      loader: 'ts-loader',
-      options: createTypescriptOptions(configFile, forkTsCheckerWebpackPlugin)
-    }
-  };
+  const {
+    configFile,
+    presets: extraPresets,
+    plugins: extraPlugins,
+    exclude,
+    include,
+    forkTsCheckerWebpackPlugin
+  }: TS = ts;
 
   config
     .merge({
@@ -27,7 +23,16 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
         rule: {
           ts: {
             test: /^.*\.tsx?$/i,
-            use: useConfig,
+            use: {
+              'babel-loader': {
+                loader: 'babel-loader',
+                options: createBabelOptions(sweetOptions)
+              },
+              'ts-loader': {
+                loader: 'ts-loader',
+                options: createTypescriptOptions(configFile, forkTsCheckerWebpackPlugin)
+              }
+            },
             exclude: exclude ? (Array.isArray(exclude) ? exclude : [exclude]) : [],
             include: include ? (Array.isArray(include) ? include : [include]) : []
           }
@@ -35,41 +40,30 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
       }
     });
 
-  const configBabelUse: Use = config
+  config
     .module
     .rule('ts')
-    .use('babel-loader');
+    .use('babel-loader')
+    .tap((options: LoaderOptions): LoaderOptions => {
+      const isReact: boolean = frame === 'react',
+        isVue: boolean = frame === 'vue';
+      const babelPresets: Array<any> = [],
+        babelPlugins: Array<any> = [];
 
-  // 判断是否加载react相关插件，热替换
-  config
-    .when(frame === 'react',
-      (config: Config): void => {
-        configBabelUse
-          .tap((options: LoaderOptions): LoaderOptions => _.mergeWith(options, {
-            plugins: ['react-hot-loader/babel']
-          }, customizer));
+      if (Array.isArray(extraPresets)) {
+        babelPresets.push(...extraPresets);
       }
-    );
 
-  // 判断是否加载vue相关插件
-  config
-    .when(frame === 'vue',
-      (config: Config): void => {
-        configBabelUse
-          .tap((options: LoaderOptions): LoaderOptions => _.mergeWith(options, versionReturn<object>(
-            'vue',
-            (n: number): boolean => n >= 3,
-            { plugins: ['@vue/babel-plugin-jsx'] },
-            { presets: ['@vue/babel-preset-jsx'] }
-          ), customizer));
+      if (Array.isArray(extraPlugins)) {
+        babelPlugins.push(...extraPlugins);
       }
-    );
 
-  // 加载presets
-  configBabelUse
-    .tap((options: LoaderOptions): LoaderOptions => _.mergeWith(options, { presets }, customizer));
+      if (isReact) {
+        babelPlugins.push('react-hot-loader/babel'); // 判断是否加载react相关插件，热替换
+      } else if (isVue) {
+        babelPlugins.push('@vue/babel-preset-jsx');  // 判断是否加载vue相关插件
+      }
 
-  // 加载plugins
-  configBabelUse
-    .tap((options: LoaderOptions): LoaderOptions => _.mergeWith(options, { plugins }, customizer));
+      return _.mergeWith(options, { presets: babelPresets, plugins: babelPlugins }, customizer);
+    });
 }
