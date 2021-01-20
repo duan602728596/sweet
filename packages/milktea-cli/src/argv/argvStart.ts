@@ -2,6 +2,7 @@ import * as webpack from 'webpack';
 import type { Compiler, Configuration } from 'webpack';
 import * as _ from 'lodash';
 import type { Milktea } from '@sweet-milktea/milktea/src/utils/types';
+import type { DevServer } from '@sweet-milktea/server/src/utils/types';
 import { requireModule } from '../utils/utils';
 import type { Argv } from '../utils/types';
 
@@ -46,13 +47,13 @@ function argvStart(argv: Argv): void {
   }
 
   if (isServerEnv) {
-    const devServer: Function = requireModule('@sweet-milktea/server/devServer');
+    const devServer: DevServer = requireModule('@sweet-milktea/server/devServer');
     const httpPort: number = argv.httpPort;
     const httpsPort: number = argv.httpsPort;
     const serverRender: boolean = argv.serverRender;
     const serverRenderRoot: string = argv.serverRenderRoot;
     const serverRenderFile: string = argv.serverRenderFile;
-    const renderType: string = argv.renderType;
+    const renderType: 'ejs' | 'nunjucks' = argv.renderType;
     const httpsKey: string = argv.httpsKey;
     const httpsCert: string = argv.httpsCert;
     const redirectToHttps: boolean = argv.redirectToHttps;

@@ -1,9 +1,10 @@
+import type { ProServer } from '@sweet-milktea/server/src/utils/types';
 import { requireModule } from '../utils/utils';
 import type { Argv } from '../utils/types';
 
 /* server 命令 */
 function argvServer(argv: Argv): void {
-  const proServer: Function = requireModule('@sweet-milktea/server/proServer');
+  const proServer: ProServer = requireModule('@sweet-milktea/server/proServer');
   const httpPort: number = argv.httpPort;
   const httpsPort: number = argv.httpsPort;
   const serverRoot: string = argv.serverRoot;
@@ -11,7 +12,7 @@ function argvServer(argv: Argv): void {
   const serverRenderRoot: string = argv.serverRenderRoot;
   const serverRenderFile: string = argv.serverRenderFile;
   const template: string = argv.template;
-  const renderType: string = argv.renderType;
+  const renderType: 'ejs' | 'nunjucks' = argv.renderType;
   const log: boolean = argv.log;
   const logUrl: string = argv.logUrl;
   const logPm2: boolean = argv.logPm2;
@@ -31,7 +32,7 @@ function argvServer(argv: Argv): void {
     renderType,
     log: log ? {
       type: logUrl ? 'http' : 'file',
-      url: logUrl || undefined,
+      url: logUrl,
       pm2: logPm2
     } : undefined,
     httpsKey,

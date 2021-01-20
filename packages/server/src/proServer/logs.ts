@@ -12,7 +12,7 @@ function logs(app: Koa, log: Log, sweetOptions: SweetOptions): void {
     };
   } = serverLog(log.type, {
     pm2: log.pm2,
-    url: log.url,
+    url: log?.url,
     basicPath: sweetOptions.basicPath
   });
 

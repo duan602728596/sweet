@@ -4,7 +4,7 @@ import type { Compiler } from 'webpack';
 export interface Log {
   type: 'file' | 'http';
   pm2: boolean;
-  url: string;
+  url?: string;
 }
 
 export type LogLevel = 'debug' | 'info' | 'warn' | 'error' | 'silent';
@@ -42,3 +42,7 @@ export interface SweetOptions extends DevServerArgs, ProServerArgs {
   basicPath: string;
   serverRenderEntry?: string;
 }
+
+// 导出函数类型
+export type DevServer = (args: DevServerArgs) => Promise<void>;
+export type ProServer = (args: ProServerArgs) => Promise<void>;
