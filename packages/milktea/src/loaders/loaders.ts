@@ -1,4 +1,3 @@
-import * as _ from 'lodash';
 import * as Config from 'webpack-chain';
 import jsLoader from './javascript';
 import tsLoader from './typescript';
@@ -11,7 +10,12 @@ import imageLoader from './image';
 import svgLoader from './svg';
 import type { SweetConfig, SweetOptions } from '../utils/types';
 
-/* loaders */
+/**
+ * 添加loaders
+ * @param { SweetConfig } sweetConfig: 获取到的外部配置
+ * @param { SweetOptions } sweetOptions: 内部挂载的一些配置
+ * @param { Config } config: webpack-chain config
+ */
 export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, config: Config): void {
   const { frame, mode, js }: SweetConfig = sweetConfig;
   const isDevelopment: boolean = mode === 'development';

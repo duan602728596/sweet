@@ -14,6 +14,12 @@ import * as _ from 'lodash';
 import { requireModule, moduleExists, isTsconfigJsonExists } from '../utils/utils';
 import type { SweetConfig, SweetOptions } from '../utils/types';
 
+/**
+ * 添加插件
+ * @param { SweetConfig } sweetConfig: 获取到的外部配置
+ * @param { SweetOptions } sweetOptions: 内部挂载的一些配置
+ * @param { Config } config: webpack-chain config
+ */
 export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, config: Config): void {
   const {
     mode,
@@ -49,11 +55,7 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
   envPlugins(sweetConfig, sweetOptions, config);
 
   // fork-ts-checker-webpack-plugin
-  if (
-    moduleExists('typescript')
-    && ts?.forkTsCheckerWebpackPlugin !== false
-    && isTsconfigJsonExists(sweetOptions, ts)
-  ) {
+  if (sweetOptions.forkTsCheckerWebpackPlugin) {
     const typescriptOptions: TypeScriptReporterOptions = {
       mode: js?.typescript ? 'write-references' : 'write-tsbuildinfo',
       extensions: { vue: frame === 'vue' },

@@ -6,7 +6,7 @@ import { merge } from 'webpack-merge';
 import loaders from './loaders/loaders';
 import basicPlugins from './plugins/plugins';
 import optimization from './optimization/optimization';
-import { extensions } from './utils/utils';
+import { extensions, isTsconfigJsonExists, moduleExists } from './utils/utils';
 import { webpackCache } from './config/cacheConfig';
 import type { SweetConfig, SweetOptions } from './utils/types';
 
@@ -37,6 +37,7 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions): C
     devtool,
     chainWebpack,
     js,
+    ts,
     webpackLog = 'progress'
   }: SweetConfig = SCFG;
   const ecmascript: boolean | undefined = js?.ecmascript;
@@ -90,6 +91,12 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions): C
     .path(path.join(sweetOptions.basicPath, 'dist'))
     .filename(filename)
     .globalObject('this');
+
+  // forkTsCheckerWebpackPlugin配置
+  sweetOptions.forkTsCheckerWebpackPlugin = !!(
+    moduleExists('typescript')
+    && ts?.forkTsCheckerWebpackPlugin !== false
+    && isTsconfigJsonExists(sweetOptions, ts));
 
   // loaders
   loaders(SCFG, sweetOptions, config);

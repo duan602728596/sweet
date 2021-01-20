@@ -6,7 +6,7 @@ import { merge } from 'webpack-merge';
 import loaders from './loaders/loaders';
 import basicPlugins from './plugins/plugins';
 import optimization from './optimization/optimization';
-import { extensions } from './utils/utils';
+import { extensions, isTsconfigJsonExists, moduleExists } from './utils/utils';
 import { webpackServerCache } from './config/cacheConfig';
 import type { SweetConfig, SweetOptions } from './utils/types';
 
@@ -28,7 +28,8 @@ export default function(sweetConfig: SweetConfig | null | undefined, sweetOption
     noParse,
     plugins,
     serverDevtool,
-    serverChainWebpack
+    serverChainWebpack,
+    ts
   }: SweetConfig = SCFG;
   const isDevelopment: boolean = mode === 'development';
 
@@ -61,6 +62,12 @@ export default function(sweetConfig: SweetConfig | null | undefined, sweetOption
     .library('[name]')
     .libraryTarget('umd')
     .globalObject('this');
+
+  // forkTsCheckerWebpackPlugin配置
+  sweetOptions.forkTsCheckerWebpackPlugin = !!(
+    moduleExists('typescript')
+    && ts?.forkTsCheckerWebpackPlugin !== false
+    && isTsconfigJsonExists(sweetOptions, ts));
 
   // loaders
   loaders(SCFG, sweetOptions, config);

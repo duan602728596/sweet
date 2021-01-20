@@ -10,6 +10,7 @@ export type Environment = 'dll' | 'client' | 'server';
 export interface SweetOptions {
   basicPath: string;
   environment: Environment;
+  forkTsCheckerWebpackPlugin?: boolean;
 }
 
 /* sweet.config.js导出函数时，传递的参数 */

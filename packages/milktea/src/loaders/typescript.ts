@@ -13,8 +13,7 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
     presets: extraPresets,
     plugins: extraPlugins,
     exclude,
-    include,
-    forkTsCheckerWebpackPlugin
+    include
   }: TS = ts;
 
   config
@@ -30,7 +29,7 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
               },
               'ts-loader': {
                 loader: 'ts-loader',
-                options: createTypescriptOptions(configFile, forkTsCheckerWebpackPlugin)
+                options: createTypescriptOptions(configFile, sweetOptions.forkTsCheckerWebpackPlugin)
               }
             },
             exclude: exclude ? (Array.isArray(exclude) ? exclude : [exclude]) : [],

@@ -20,11 +20,11 @@ export function createBabelOptions(sweetOptions: SweetOptions): LoaderOptions {
 /**
  * ts-loader options
  * @param { string | undefined } configFile
- * @param { boolean } forkTsCheckerWebpackPlugin
+ * @param { boolean } forkTsCheckerWebpackPlugin: sweetOptions.forkTsCheckerWebpackPlugin
  */
 export function createTypescriptOptions(configFile?: string, forkTsCheckerWebpackPlugin?: boolean): LoaderOptions {
   const options: LoaderOptions = {
-    transpileOnly: forkTsCheckerWebpackPlugin !== false
+    transpileOnly: forkTsCheckerWebpackPlugin
   };
 
   if (configFile) {
