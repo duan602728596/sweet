@@ -28,12 +28,12 @@ function babelPresetSweet(api: any, options: Options = {}, dirname: string): Bab
           'last 10 Chrome versions',
           'last 1 year',
           'IE 11'
-        ],
-        debug,
-        modules: modules ?? false,
-        useBuiltIns: useBuiltInsValue,
-        bugfixes: true
-      }
+        ]
+      },
+      debug,
+      modules: modules ?? false,
+      useBuiltIns: useBuiltInsValue,
+      bugfixes: true
     };
 
     if (useBuiltInsValue) {
