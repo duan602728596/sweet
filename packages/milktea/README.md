@@ -67,17 +67,6 @@ module.exports = function(info) {
 * externals `{ object }` : 外部扩展（参考webpack）
 * resolve `{ object }` : 解析（参考webpack）
 * devtool `{ string }`: 设置SourceMap的类型
-* loaders: 重写loaders的默认规则
-  * js `{ object }` : 重写默认的javascript规则
-  * ts `{ object }` : 重写默认的typescript规则
-  * sass `{ object }` : 重写默认的sass规则
-  * css `{ object }` : 重写默认的css规则
-  * favicon `{ object }` : 重写网站图标的规则
-  * fontFile `{ object }` : 重写字体文件的规则
-  * html `{ object }` : 重写html的规则，默认为pug
-  * image `{ object }` : 重写图片文件的规则
-  * svg `{ object }` : 重写svg的规则
-  * vue `{ object }` : 重写vue的规则
 * rules `{ Array<object> }` : 自定义规则
 * noParse `RegExp | Array<RegExp> | Function` : 防止解析任何与给定正则表达式相匹配的文件（参考webpack）
 * plugins `{ Array<any> }` : 自定义webpack插件
@@ -87,8 +76,6 @@ module.exports = function(info) {
   * typescript `{ boolean }` : 是否使用typescript编译（即使用@babel/preset-typescript）
   * presets `{ Array<any> }` : 自定义presets
   * plugins `{ Array<any> }` : 自定义plugins
-  * resetPresets `{ Array<any> }` : 重写presets
-  * resetPlugins `{ Array<any> }` : 重写plugins
   * exclude `{ RegExp }` : exclude规则
   * include `{ RegExp }` : include规则
 * ts `{ object }` : typescript配置
@@ -104,8 +91,6 @@ module.exports = function(info) {
   * exclude `{ RegExp }` : exclude规则
   * include `{ RegExp }` : include规则
   * additionalData `{ string | Function }` : 注入sass变量（参考sass-loader）
-  * localIdentName `{ string }` : 配置localIdentName（参考css-loader）
-  * getLocalIdent `{ Function }` : 配置getLocalIdent（参考css-loader）
 * css `{ object }` : css配置（默认使用less）
   * publicPath `{ string }`
   * modules `{ boolean }` : 开启css-in-modules
@@ -113,7 +98,6 @@ module.exports = function(info) {
   * include `{ RegExp }` : include规则
   * modifyVars `{ object }` : 注入less变量（参考less-loader）
   * additionalData `{ string | Function }` : （参考less-loader）
-  * localIdentName `{ string }` : 配置localIdentName（参考css-loader）
 * html `{ Array<object> }` : html配置（默认使用pug）
   * template `{ string }` : html模板文件地址
   * 其他`html-webpack-plugin`的配置
@@ -133,8 +117,7 @@ module.exports = function(info) {
 
 ### 关于vue
 
-如果使用vue，需要手动安装`@vue/babel-helper-vue-jsx-merge-props`、`@vue/babel-preset-jsx` (vue2) 或 `@vue/babel-plugin-jsx`(vue3) ，
-`vue-loader`、`vue-svg-loader@0.17.0-beta.1`，`vue-template-compiler`(vue2) 或 `@vue/compiler-sfc`(vue3)。
+如果使用vue，需要手动安装`@vue/babel-plugin-jsx`(vue3) ，`vue-loader`、`vue-svg-loader@0.17.0-beta.1`，`@vue/compiler-sfc`(vue3)。
 
 ### 关于typescript
 

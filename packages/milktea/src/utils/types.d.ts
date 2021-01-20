@@ -46,7 +46,6 @@ export interface TS extends ScriptRule {
 export interface CSS extends ConfigRule {
   publicPath?: string;
   modules?: boolean;
-  localIdentName?: string;
 }
 
 /* less配置 */

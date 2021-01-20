@@ -12,8 +12,7 @@ export default function(sweetConfig: SweetConfig, config: Config): void {
     exclude,
     include,
     modifyVars,
-    additionalData,
-    localIdentName
+    additionalData
   }: LESS = css;
   const isDevelopment: boolean = mode === 'development';
 
@@ -38,7 +37,7 @@ export default function(sweetConfig: SweetConfig, config: Config): void {
 
   // css-loader
   const ssr: boolean = !!serverRender;
-  const cssLoaderOptions: LoaderOptions = createCssOptions(modules, isDevelopment, ssr, localIdentName);
+  const cssLoaderOptions: LoaderOptions = createCssOptions(modules, isDevelopment, ssr);
   const ScopedCssLoaderOptions: LoaderOptions = createCssOptions(false, isDevelopment, ssr);
 
   // less-loader

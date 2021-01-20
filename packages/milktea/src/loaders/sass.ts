@@ -11,8 +11,7 @@ export default function(sweetConfig: SweetConfig, config: Config): void {
     modules = true,
     exclude,
     include,
-    additionalData,
-    localIdentName
+    additionalData
   }: SASS = sass;
   const isDevelopment: boolean = mode === 'development';
 
@@ -37,7 +36,7 @@ export default function(sweetConfig: SweetConfig, config: Config): void {
 
   // css-loader
   const ssr: boolean = !!serverRender;
-  const cssLoaderOptions: LoaderOptions = createCssOptions(modules, isDevelopment, ssr, localIdentName);
+  const cssLoaderOptions: LoaderOptions = createCssOptions(modules, isDevelopment, ssr);
   const ScopedCssLoaderOptions: LoaderOptions = createCssOptions(false, isDevelopment, ssr);
 
   // sass-loader
