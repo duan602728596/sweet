@@ -1,5 +1,5 @@
 import { lazy, Suspense } from 'react';
-import { injectReducers } from '../../store/store';
+import { replaceReducer } from '../../store/store';
 import Loading from '../../layouts/Loading';
 
 /**
@@ -11,7 +11,7 @@ function asyncModule(loader) {
 
   return () => (
     <Suspense fallback={ <Loading /> }>
-      <Module injectReducers={ injectReducers } />
+      <Module replaceReducer={ replaceReducer } />
     </Suspense>
   );
 }

@@ -1,8 +1,30 @@
 import { useState, useEffect } from 'react';
-import { injectReducers } from '../../store/store';
+import { replaceReducer } from '../../store/store';
 import Loading from '../../layouts/Loading/index';
 
 const map = new Map();
+
+/* 加载所有模块 */
+export async function preloadAll() {
+  const loaders = [], queue = [];
+
+  map.forEach(function(value, key) {
+    if (!value) {
+      loaders.push(key);
+      queue.push(key());
+    }
+  });
+
+  if (loaders.length > 0) {
+    const Modules = await Promise.all(queue);
+
+    for (let i = 0, j = loaders.length; i < j; i++) {
+      const Module = Modules[i].default;
+
+      map.set(loaders[i], <Module replaceReducer={ replaceReducer } />);
+    }
+  }
+}
 
 /**
  * 异步加载、注入模块和reducer，用于服务端渲染，兼容浏览器端渲染
@@ -20,7 +42,7 @@ function asyncModuleNode(loader) {
 
       const Module = await loader();
 
-      setComponent(<Module.default injectReducers={ injectReducers } />);
+      setComponent(<Module.default replaceReducer={ replaceReducer } />);
       setLoading(false);
       map.delete(loader);
     }
@@ -35,27 +57,6 @@ function asyncModuleNode(loader) {
 
     return loading ? <Loading /> : component;
   };
-}
-
-export async function preloadAll() {
-  const loaders = [], queue = [];
-
-  map.forEach(function(value, key) {
-    if (!value) {
-      loaders.push(key);
-      queue.push(key());
-    }
-  });
-
-  if (loaders.length > 0) {
-    const Modules = await Promise.all(queue);
-
-    for (let i = 0, j = loaders.length; i < j; i++) {
-      const Module = Modules[i].default;
-
-      map.set(loaders[i], <Module injectReducers={ injectReducers } />);
-    }
-  }
 }
 
 export default asyncModuleNode;

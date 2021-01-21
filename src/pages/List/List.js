@@ -7,10 +7,7 @@ import style from './list.sass';
 
 /* state */
 const state = createStructuredSelector({
-  dataList: createSelector(
-    ({ list }) => list.dataList,
-    (data) => data
-  )
+  dataList: createSelector(({ list }) => list.dataList, (data) => data)
 });
 
 function List(props) {
