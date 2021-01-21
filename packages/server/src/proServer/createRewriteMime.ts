@@ -13,7 +13,7 @@ function createRewriteMime(mime: { [key: string]: string } = {}): Middleware {
     const parseResult: ParsedPath = path.parse(ctx.url);
     const ext: string = parseResult.ext.replace(/^\./, '');
 
-    if (ext in mime) {
+    if ((ext in mime) && (ctx.type !== mime[ext])) {
       ctx.type = mime[ext];
     }
   };
