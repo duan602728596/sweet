@@ -1,5 +1,3 @@
-const { createBabelPlugins } = require('@sweet-milktea/milktea/lib/config/babelConfig');
-
 module.exports = {
   env: {
     browser: true,
