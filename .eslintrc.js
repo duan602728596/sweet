@@ -1,5 +1,3 @@
-const { createBabelPlugins } = require('@sweet-milktea/milktea/lib/config/babelConfig');
-
 module.exports = {
   env: {
     browser: true,
@@ -36,7 +34,10 @@ module.exports = {
         parser: '@babel/eslint-parser',
         requireConfigFile: false,
         babelOptions: {
-          plugins: createBabelPlugins().concat(['@vue/babel-plugin-jsx'])
+          presets: [[
+            '@sweet-milktea/babel-preset-sweet',
+            { env: { ecmascript: true }, react: { use: false } }
+          ]]
         }
       },
       plugins: ['vue'],
@@ -51,7 +52,11 @@ module.exports = {
       parserOptions: {
         requireConfigFile: false,
         babelOptions: {
-          plugins: createBabelPlugins().concat(['@vue/babel-plugin-jsx'])
+          presets: [[
+            '@sweet-milktea/babel-preset-sweet',
+            { env: { ecmascript: true }, react: { use: false } }
+          ]],
+          plugins: ['@vue/babel-plugin-jsx']
         }
       }
     }
