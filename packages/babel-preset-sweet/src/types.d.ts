@@ -26,7 +26,6 @@ export interface BabelPresetSweetOptions {
   env?: EnvOptions;
   typescript?: TypescriptOptions;
   react?: ReactOptions;
-  transformRuntime?: boolean;
 }
 
 export interface BabelPresetSweet {

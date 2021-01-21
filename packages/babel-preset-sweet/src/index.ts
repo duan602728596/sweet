@@ -11,12 +11,23 @@ import type {
 const isDevelopment: boolean = process.env.NODE_ENV === 'development';
 
 function babelPresetSweet(api: any, options: Options = {}, dirname: string): BabelPresetSweet {
-  const { env, typescript, react, transformRuntime = true }: Options = options;
+  const { env, typescript, react }: Options = options;
   const { nodeEnv, ecmascript, targets: customTargets, debug, modules, useBuiltIns }: EnvOptions = env ?? {},
     { use: useTypescript, isReact = true }: TypescriptOptions = typescript ?? {},
     { use: useReact = true, runtime, development }: ReactOptions = react ?? {};
-  const plugins: Array<any> = [...defaultPlugins],
-    presets: Array<any> = [];
+  const presets: Array<any> = [],
+    plugins: Array<any> = [
+      ...defaultPlugins,
+      [
+        '@babel/plugin-transform-runtime',
+        {
+          corejs: { version: 3, proposals: true },
+          helpers: true,
+          regenerator: nodeEnv || !ecmascript,
+          useESModules: true
+        }
+      ]
+    ];
 
   // 添加@babel/preset-env
   if (!ecmascript) {
@@ -63,19 +74,6 @@ function babelPresetSweet(api: any, options: Options = {}, dirname: string): Bab
         jsxPragma: isReact ? 'React' : 'Preserve',
         allExtensions: true,
         allowNamespaces: true
-      }
-    ]);
-  }
-
-  // 添加
-  if (transformRuntime) {
-    plugins.push([
-      '@babel/plugin-transform-runtime',
-      {
-        corejs: { version: 3, proposals: true },
-        helpers: true,
-        regenerator: nodeEnv || !ecmascript,
-        useESModules: true
       }
     ]);
   }
