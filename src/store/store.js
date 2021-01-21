@@ -6,6 +6,7 @@ export let store;
 
 /* 创建store */
 export function storeFactory(initialState = {}) {
+  // store.replaceState
   if (!store) {
     store = new Vuex.Store({
       state: initialState,

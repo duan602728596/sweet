@@ -1,26 +1,24 @@
 import { createApp } from 'vue';
+import { createRouter, createWebHistory } from 'vue-router';
 // import VueMeta from 'vue-meta';
-import App from './App';
+import routes from './router/routers';
 import { storeFactory } from './store/store';
-import { createRouters } from './router/routers';
 import './global.sass';
 
+export const router = createRouter({
+  history: createWebHistory(),
+  routes
+});
+
 /* app */
-function appInit() {
-  const app = createApp(App);
+const app = createApp(() => <router-view />);
 
-  app.use(storeFactory());
-  app.use(createRouters());
-  // app.use(VueMeta);
+app.use(storeFactory());
+app.use(router);
+// app.use(VueMeta);
 
-  app.mount(document.getElementById('app'));
-}
-
-appInit();
+app.mount('#app');
 
 if (module.hot) {
-  // TODO: 暂时解决hmr失效的问题
-  module.hot.accept('./App', function() {
-    appInit();
-  });
+  module.hot.accept();
 }

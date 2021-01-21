@@ -1,3 +1,4 @@
+import ConfigProvider from '../../layouts/ConfigProvider';
 import Login from './Login';
 
 export default {
@@ -6,6 +7,8 @@ export default {
   },
 
   render() {
-    return <Login />;
+    return (
+      <Login />
+    );
   }
 };
