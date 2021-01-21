@@ -15,6 +15,7 @@ export default function(info) {
     entry: {
       index: [path.join(__dirname, 'src/index.js')]
     },
+    html: [{ template: path.join(__dirname, 'src/index.pug') }],
     js: {
       plugins,
       exclude: /node_modules|packages[\/]server/
@@ -25,7 +26,6 @@ export default function(info) {
     css: {
       include: /node_modules/
     },
-    html: [{ template: path.join(__dirname, 'src/index.pug') }],
     rules: [{
       test: /^.*\.md$/i,
       use: 'raw-loader'

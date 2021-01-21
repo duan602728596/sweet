@@ -1,8 +1,12 @@
 import { useRoutes } from 'react-router-dom';
 import Element from '../../components/Element/Element';
 import MarkDown from '../../components/MarkDown/MarkDown';
-import introduction from './introduction.md';
+import introduction from '../../../../../README.md';
 import quickStart from './quick-start.md';
+
+const introductionText = introduction
+  .replace('statics/logo.svg', 'https://raw.githubusercontent.com/duan602728596/sweet/master/statics/logo.svg')
+  .replace('statics/tsl.jpg', 'https://raw.githubusercontent.com/duan602728596/sweet/master/statics/tsl.jpg');
 
 /* /Sweet 路由 */
 function Index(props) {
@@ -11,7 +15,7 @@ function Index(props) {
       path: 'Introduction',
       element: (
         <Element title="介绍">
-          <MarkDown markdown={ introduction } />
+          <MarkDown markdown={ introductionText } />
         </Element>
       )
     },

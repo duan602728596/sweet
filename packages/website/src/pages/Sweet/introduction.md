@@ -16,3 +16,4 @@
 * [@sweet-milktea/server](https://github.com/duan602728596/sweet/tree/master/packages/server/README.md)
 * [@sweet-milktea/server-log](https://github.com/duan602728596/sweet/tree/master/packages/server-log/README.md)
 * [@sweet-milktea/util-tools](https://github.com/duan602728596/sweet/tree/master/packages/util-tools/README.md)
+* [@sweet-milktea/babel-preset-sweet](packages/babel-preset-sweet/README.md)

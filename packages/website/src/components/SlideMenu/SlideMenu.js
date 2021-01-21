@@ -65,6 +65,11 @@ const navs = [
         id: 'packages/utiltools',
         url: '/Packages/UtilTools',
         name: 'util-tools'
+      },
+      {
+        id: 'packages/babelpresetsweet',
+        url: '/Packages/BabelPresetSweet',
+        name: 'babel-preset-sweet'
       }
     ]
   }

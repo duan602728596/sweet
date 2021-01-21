@@ -1,22 +1,18 @@
 # [![](statics/logo.svg)](https://github.com/duan602728596/sweet)
 
-[![NPM version][milktea-image]][milktea-url]
-[![NPM version][milktea-cli-image]][milktea-cli-url]
-[![NPM version][server-image]][server-url]
-[![NPM version][server-log-image]][server-log-url]
-[![NPM version][util-tools-image]][util-tools-url]
-
 [milktea-image]: https://img.shields.io/npm/v/@sweet-milktea/milktea.svg
 [milktea-cli-image]: https://img.shields.io/npm/v/@sweet-milktea/milktea-cli.svg
 [server-image]: https://img.shields.io/npm/v/@sweet-milktea/server.svg
 [server-log-image]: https://img.shields.io/npm/v/@sweet-milktea/server-log.svg
 [util-tools-image]: https://img.shields.io/npm/v/@sweet-milktea/util-tools.svg
+[babel-preset-sweet]: https://img.shields.io/npm/v/@sweet-milktea/babel-preset-sweet.svg
 
 [milktea-url]: http://npmjs.org/package/@sweet-milktea/milktea
 [milktea-cli-url]: http://npmjs.org/package/@sweet-milktea/milktea-cli
 [server-url]: http://npmjs.org/package/@sweet-milktea/server
 [server-log-url]: http://npmjs.org/package/@sweet-milktea/server-log
 [util-tools-url]: http://npmjs.org/package/@sweet-milktea/util-tools
+[babel-preset-sweet-url]: http://npmjs.org/package/@sweet-milktea/babel-preset-sweet
 
 > 甜甜的奶茶，甜甜的......   
 > ![](statics/tsl.jpg)
@@ -34,8 +30,11 @@
 
 ## packages：
 
-* [@sweet-milktea/milktea](packages/milktea/README.md)
-* [@sweet-milktea/milktea-cli](packages/milktea-cli/README.md)
-* [@sweet-milktea/server](packages/server/README.md)
-* [@sweet-milktea/server-log](packages/server-log/README.md)
-* [@sweet-milktea/util-tools](packages/util-tools/README.md)
+| packages | version |
+| --- | --- |
+| [@sweet-milktea/milktea](packages/milktea/README.md) | [![NPM version][milktea-image]][milktea-url] |
+| [@sweet-milktea/milktea-cli](packages/milktea-cli/README.md) | [![NPM version][milktea-cli-image]][milktea-cli-url] |
+| [@sweet-milktea/server](packages/server/README.md) | [![NPM version][server-image]][server-url] |
+| [@sweet-milktea/server-log](packages/server-log/README.md) | [![NPM version][server-log-image]][server-log-url] |
+| [@sweet-milktea/util-tools](packages/util-tools/README.md) | [![NPM version][util-tools-image]][util-tools-url] |
+| [@sweet-milktea/babel-preset-sweet](packages/babel-preset-sweet/README.md) | [![NPM version][babel-preset-sweet]][babel-preset-sweet-url] |

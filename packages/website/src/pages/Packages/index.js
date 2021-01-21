@@ -6,6 +6,7 @@ import milktea from '../../../../milktea/README.md';
 import server from '../../../../server/README.md';
 import serverLog from '../../../../server-log/README.md';
 import utilTools from '../../../../util-tools/README.md';
+import babelPresetSweet from '../../../../babel-preset-sweet/README.md';
 
 /* /Packages 路由 */
 function Index(props) {
@@ -47,6 +48,14 @@ function Index(props) {
       element: (
         <Element title="util-tools">
           <MarkDown markdown={ utilTools } />
+        </Element>
+      )
+    },
+    {
+      path: 'BabelPresetSweet',
+      element: (
+        <Element title="babel-preset-sweet">
+          <MarkDown markdown={ babelPresetSweet } />
         </Element>
       )
     }
