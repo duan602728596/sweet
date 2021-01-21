@@ -11,11 +11,6 @@ describe('dll', function() {
   describe('dll', function() {
     const config = webpackDllConfig({ mode: 'development' }, sweetOptions);
 
-    it('module Configuration is correct', function() {
-      expect(config.module).to.be.an('object');
-      expect(config.module.rules).to.be.an('array');
-    });
-
     it('plugins Configuration is correct', function() {
       expect(config.plugins).to.be.an('array');
       expect(config.plugins).to.have.lengthOf(3);
