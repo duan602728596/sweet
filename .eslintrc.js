@@ -35,7 +35,10 @@ module.exports = {
       parserOptions: {
         requireConfigFile: false,
         babelOptions: {
-          presets: [['@sweet-milktea/babel-preset-sweet', { ecmascript: true }]]
+          presets: [[
+            '@sweet-milktea/babel-preset-sweet',
+            { env: { ecmascript: true } }
+          ]]
         }
       }
     }
