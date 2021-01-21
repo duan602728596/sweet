@@ -14,13 +14,11 @@ function createJsRegisterLoader(): LoaderSync {
         {
           env: {
             nodeEnv: true,
-            modules: 'commonjs',
-            useBuiltIns: false
+            modules: 'commonjs'
           },
           typescript: {
             use: true
-          },
-          transformRuntime: false
+          }
         }
       ]],
       cache: true,
