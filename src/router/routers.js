@@ -1,10 +1,11 @@
+import { createRouter, createWebHistory, createMemoryHistory } from 'vue-router';
 import Login from '../pages/Login';
 import Layout from '../layouts/Layout';
 import Index from '../pages/Index';
 
 const SecondBundle = () => import(/* webpackChunkName: 'second' */'../pages/Second/index');
 
-const routes = [
+const routesConfig = [
   { path: '/Login', name: 'login', component: Login },
   {
     path: '/',
@@ -26,4 +27,7 @@ const routes = [
   }
 ];
 
-export default routes;
+export const router = createRouter({
+  history: (typeof window === 'object' ? createWebHistory : createMemoryHistory)(),
+  routes: routesConfig
+});

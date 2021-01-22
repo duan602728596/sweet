@@ -2,20 +2,11 @@ require('source-map-support').install();
 
 import { createSSRApp } from 'vue';
 import { renderToStream } from '@vue/server-renderer';
-import { createRouter, createMemoryHistory } from 'vue-router';
 // import VueMeta from 'vue-meta';
 import { cloneDeep } from 'lodash-es';
-import routes from './router/routers';
+import { router } from './router/routers';
 import { storeFactory } from './store/store';
 import './global.sass';
-
-export const router = createRouter({
-  history: createMemoryHistory(),
-  routes
-});
-
-// <ConfigProvider locale={ zhCN }>
-//       </ConfigProvider>
 
 async function server(url, context = {}, initialState = {}) {
   const cloneData = cloneDeep(initialState);
