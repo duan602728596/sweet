@@ -1,4 +1,4 @@
-export default {
+const actions = {
   namespaced: true,
   state: {
     likeLen: 0
@@ -17,3 +17,5 @@ export default {
     }
   }
 };
+
+export default { index: actions };

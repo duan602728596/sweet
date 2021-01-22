@@ -2,13 +2,15 @@ require('source-map-support').install();
 
 import { createSSRApp } from 'vue';
 import { renderToStream } from '@vue/server-renderer';
-// import VueMeta from 'vue-meta';
 import { ConfigProvider } from 'ant-design-vue';
 import zhCN from 'ant-design-vue/es/locale/zh_CN';
+import { createHead } from '@vueuse/head';
 import { cloneDeep } from 'lodash-es';
 import { router } from './router/routers';
 import { storeFactory } from './store/store';
 import './global.sass';
+
+const head = createHead();
 
 async function server(url, context = {}, initialState = {}) {
   const cloneData = cloneDeep(initialState);
@@ -27,7 +29,7 @@ async function server(url, context = {}, initialState = {}) {
 
   app.use(storeFactory(cloneData));
   app.use(router);
-  // app.use(VueMeta);
+  app.use(head);
 
   router.push(url);
   await router.isReady();

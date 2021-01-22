@@ -1,10 +1,12 @@
 import { createApp } from 'vue';
-// import VueMeta from 'vue-meta';
 import { ConfigProvider } from 'ant-design-vue';
 import zhCN from 'ant-design-vue/es/locale/zh_CN';
+import { createHead } from '@vueuse/head';
 import { router } from './router/routers';
 import { storeFactory } from './store/store';
 import './global.sass';
+
+const head = createHead();
 
 /* app */
 const app = createApp(() => (
@@ -17,7 +19,7 @@ const app = createApp(() => (
 
 app.use(storeFactory());
 app.use(router);
-// app.use(VueMeta);
+app.use(head);
 
 app.mount('#app');
 

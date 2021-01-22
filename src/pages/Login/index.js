@@ -1,8 +1,12 @@
+import { computed } from 'vue';
+import { useHead } from '@vueuse/head';
 import Login from './Login';
 
 export default {
-  metaInfo: {
-    title: 'Webpack App - login'
+  setup() {
+    useHead({
+      title: computed(() => 'Webpack App - login')
+    });
   },
 
   render() {

@@ -6,7 +6,8 @@ export default function(info) {
     dll: [
       'vue',
       'vue-router',
-      'vuex'
+      'vuex',
+      '@vueuse/head'
     ],
     entry: {
       index: [path.join(__dirname, 'src/index.js')],

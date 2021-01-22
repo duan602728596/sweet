@@ -1,5 +1,5 @@
-import index from '../pages/Index/actions/index';
+import indexModules from '../pages/Index/actions/index';
 
-export default {
-  index
+export const modules = {
+  ...indexModules
 };

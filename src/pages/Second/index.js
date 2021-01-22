@@ -1,4 +1,6 @@
+import { computed } from 'vue';
 import { FolderOpenOutlined as IconFolderOpenOutlined } from '@ant-design/icons-vue';
+import { useHead } from '@vueuse/head';
 import Main from '../../layouts/Main/index';
 import Sider from '../../layouts/Sider/index';
 import Content from '../../layouts/Content/index';
@@ -36,8 +38,10 @@ const options = [
 ];
 
 export default {
-  metaInfo: {
-    title: 'Webpack App - second'
+  setup() {
+    useHead({
+      title: computed(() => 'Webpack App - second')
+    });
   },
 
   render() {
