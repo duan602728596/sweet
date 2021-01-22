@@ -1,5 +1,4 @@
 import { Layout } from 'ant-design-vue';
-import ConfigProvider from '../../layouts/ConfigProvider';
 import Header from '../Header/index';
 import Footer from '../Footer/index';
 import style from './index.sass';

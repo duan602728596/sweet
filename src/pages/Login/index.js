@@ -1,4 +1,3 @@
-import ConfigProvider from '../../layouts/ConfigProvider';
 import Login from './Login';
 
 export default {
