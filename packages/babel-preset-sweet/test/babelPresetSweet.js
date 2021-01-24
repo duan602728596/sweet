@@ -42,4 +42,15 @@ describe('babel-preset-sweet', function() {
 
     expect(code.includes('var a = 5;')).to.be.true;
   });
+
+  it('build transform-runtime', async function() {
+    const c = 'const isArray = Array.isArray([]);';
+    const { code: code0 } = await transformCode(c);
+    const { code: code1 } = await transformCode(c, {
+      env: { modules: 'commonjs' }
+    });
+
+    expect(code0.includes('import')).to.be.true;
+    expect(code1.includes('require')).to.be.true;
+  });
 });
