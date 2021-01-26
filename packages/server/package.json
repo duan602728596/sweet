@@ -48,7 +48,7 @@
     "nunjucks": "^3.2.2"
   },
   "peerDependencies": {
-    "@sweet-milktea/milktea": ">=1",
+    "@sweet-milktea/milktea": ">=2",
     "@sweet-milktea/server-log": ">=0",
     "nunjucks": ">=3"
   },
