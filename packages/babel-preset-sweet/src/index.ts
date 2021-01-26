@@ -15,6 +15,7 @@ function babelPresetSweet(api: any, options: Options = {}, dirname: string): Bab
   const { nodeEnv, ecmascript, targets: customTargets, debug, modules, useBuiltIns }: EnvOptions = env ?? {},
     { use: useTypescript, isReact = true }: TypescriptOptions = typescript ?? {},
     { use: useReact = true, runtime, development }: ReactOptions = react ?? {};
+  const envModules: string | boolean = modules ?? false; // @babel/preset-env的模块类型
   const presets: Array<any> = [],
     plugins: Array<any> = [
       ...defaultPlugins,
@@ -24,7 +25,7 @@ function babelPresetSweet(api: any, options: Options = {}, dirname: string): Bab
           corejs: { version: 3, proposals: true },
           helpers: true,
           regenerator: nodeEnv || !ecmascript,
-          useESModules: true
+          useESModules: envModules === false
         }
       ]
     ];
@@ -42,7 +43,7 @@ function babelPresetSweet(api: any, options: Options = {}, dirname: string): Bab
         ]
       },
       debug,
-      modules: modules ?? false,
+      modules: envModules,
       useBuiltIns: useBuiltInsValue,
       bugfixes: true
     };
@@ -59,7 +60,7 @@ function babelPresetSweet(api: any, options: Options = {}, dirname: string): Bab
     presets.push([
       '@babel/preset-react',
       {
-        runtime: runtime ?? moduleExists('react/jsx-runtime') ? 'automatic' : 'classic',
+        runtime: runtime ?? (moduleExists('react/jsx-runtime') ? 'automatic' : 'classic'),
         development: development ?? isDevelopment
       }
     ]);
