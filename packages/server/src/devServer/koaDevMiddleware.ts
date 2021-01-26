@@ -4,7 +4,7 @@ import type { Context, Middleware, Next } from 'koa';
 import type { Compiler } from 'webpack';
 
 function middleware(wdm: Function, req: IncomingMessage, res: ServerResponse): Promise<number> {
-  const send: Function = res['send'];
+  const send: (content: any) => void = res['send'];
 
   return new Promise((resolve: Function, reject: Function): void => {
     res['send'] = function(): void {
@@ -50,6 +50,11 @@ function koaDevMiddleware(compiler: Compiler, options: { [key: string]: any }): 
       // 设置返回值
       send(content: any): void {
         ctx.body = content;
+      },
+
+      // 设置status
+      status(code: number): void {
+        ctx.status = code;
       }
     });
 
