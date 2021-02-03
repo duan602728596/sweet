@@ -5,7 +5,7 @@ import { Button, Table, message } from 'antd';
 import { requestList } from './reducers/reducers';
 import style from './list.sass';
 
-/* state */
+/* redux selector */
 const selector = createStructuredSelector({
   dataList: createSelector(({ list }) => list.dataList, (data) => data)
 });

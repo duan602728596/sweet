@@ -6,7 +6,7 @@ import style from './welcome.sass';
 import { setLikeLen } from './reducers/reducers';
 import welcome, { ReactComponent as WelcomeSvgComponent } from './images/welcome.svg';
 
-/* state */
+/* redux selector */
 const selector = createStructuredSelector({
   likeLen: createSelector(
     ({ index }) => index.likeLen,
