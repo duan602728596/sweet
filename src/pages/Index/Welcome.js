@@ -7,7 +7,7 @@ import { setLikeLen } from './reducers/reducers';
 import welcome, { ReactComponent as WelcomeSvgComponent } from './images/welcome.svg';
 
 /* state */
-const state = createStructuredSelector({
+const selector = createStructuredSelector({
   likeLen: createSelector(
     ({ index }) => index.likeLen,
     (data) => data
@@ -15,7 +15,7 @@ const state = createStructuredSelector({
 });
 
 function Welcome(props) {
-  const { likeLen } = useSelector(state);
+  const { likeLen } = useSelector(selector);
   const dispatch = useDispatch();
 
   // 点赞
