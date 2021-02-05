@@ -8,16 +8,15 @@
     "clean:server": "rimraf ./dist-server",
     "server": "milktea server --serverRender --redirectToHttps",
     "eslint": "eslint ./ --fix",
-    "case-check": "case-check --dir=\"./\" --css",
     "updateVersion": "milktea update"
   },
   "dependencies": {
     "@ant-design/icons": "^4.4.0",
     "@reduxjs/toolkit": "^1.5.0",
     "@sweet-milktea/milktea-cli": "^2.0.0",
-    "@sweet-milktea/server": "^2.0.0",
+    "@sweet-milktea/server": "^2.0.1",
     "@sweet-milktea/server-log": "^0.6.6",
-    "antd": "^4.10.3",
+    "antd": "^4.12.2",
     "classnames": "^2.2.6",
     "history": "^5.0.0",
     "indexof": "^0.0.1",
@@ -32,7 +31,7 @@
     "source-map-support": "^0.5.19"
   },
   "devDependencies": {
-    "@babel/eslint-parser": "^7.12.1",
+    "@babel/eslint-parser": "^7.12.13",
     "@hot-loader/react-dom": "^17.0.1",
     "@sweet-milktea/milktea": "^2.0.0",
     "@sweet-milktea/util-tools": "^0.16.4",
@@ -41,8 +40,8 @@
     "commitizen": "^4.2.3",
     "cross-env": "^7.0.3",
     "cz-conventional-changelog": "^3.3.0",
-    "es-module-path-case-check": "^1.5.0",
-    "eslint": "^7.18.0",
+    "eslint": "^7.19.0",
+    "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-react": "^7.22.0",
     "husky": "^4.3.8",
     "lint-staged": "^10.5.3",
