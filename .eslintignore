@@ -13,6 +13,7 @@ packages/**/test/.dll
 packages/**/test/.babelCache
 packages/**/test/.terserCache
 packages/server/client/**
+packages/**/dist
 
 # docs
 storybook-static/*

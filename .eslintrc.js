@@ -20,7 +20,7 @@ module.exports = {
     },
     sourceType: 'module'
   },
-  plugins: ['react'],
+  plugins: ['react', 'import'],
   settings: {
     react: {
       version: 'detect'
@@ -35,6 +35,20 @@ module.exports = {
         createDefaultProgram: true
       },
       plugins: ['@typescript-eslint', '@sweet-milktea'],
+      settings: {
+        'import/parsers': {
+          '@typescript-eslint/parser': ['.ts', '.tsx']
+        },
+        'import/resolver': {
+          typescript: {
+            alwaysTryTypes: true,
+            project: 'tsconfig.json'
+          },
+          node: {
+            extensions: ['.js', '.jsx', '.cjs', '.mjs', '.ts', '.tsx']
+          }
+        }
+      },
       rules: {
         // Supported Rules
         '@typescript-eslint/explicit-function-return-type': 'error', // 函数必须返回值
@@ -259,6 +273,11 @@ module.exports = {
         afterOpening: 'never',
         beforeClosing: 'never'
       }
+    ],
+    // import
+    'import/no-unresolved': [ // 确保导入的模块可以解析为本地文件系统上的模块，如标准Node require.resolve行为所定义。
+      'error',
+      { commonjs: true }
     ]
   }
 };
