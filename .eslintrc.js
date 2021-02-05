@@ -20,7 +20,7 @@ module.exports = {
     },
     sourceType: 'module'
   },
-  plugins: ['react'],
+  plugins: ['react', 'import'],
   settings: {
     react: {
       version: 'detect'
@@ -231,6 +231,11 @@ module.exports = {
         afterOpening: 'never',
         beforeClosing: 'never'
       }
+    ],
+    // import
+    'import/no-unresolved': [ // 确保导入的模块可以解析为本地文件系统上的模块，如标准Node require.resolve行为所定义。
+      'error',
+      { commonjs: true }
     ]
   }
 };
