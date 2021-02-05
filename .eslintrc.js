@@ -24,6 +24,18 @@ module.exports = {
   settings: {
     react: {
       version: 'detect'
+    },
+    'import/parsers': {
+      '@typescript-eslint/parser': ['.ts', '.tsx']
+    },
+    'import/resolver': {
+      typescript: {
+        alwaysTryTypes: true,
+        project: 'tsconfig.json'
+      },
+      node: {
+        extensions: ['.js', '.jsx', '.cjs', '.mjs', '.ts', '.tsx']
+      }
     }
   },
   overrides: [
@@ -35,20 +47,6 @@ module.exports = {
         createDefaultProgram: true
       },
       plugins: ['@typescript-eslint', '@sweet-milktea'],
-      settings: {
-        'import/parsers': {
-          '@typescript-eslint/parser': ['.ts', '.tsx']
-        },
-        'import/resolver': {
-          typescript: {
-            alwaysTryTypes: true,
-            project: 'tsconfig.json'
-          },
-          node: {
-            extensions: ['.js', '.jsx', '.cjs', '.mjs', '.ts', '.tsx']
-          }
-        }
-      },
       rules: {
         // Supported Rules
         '@typescript-eslint/explicit-function-return-type': 'error', // 函数必须返回值
