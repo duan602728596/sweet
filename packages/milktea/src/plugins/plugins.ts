@@ -58,8 +58,12 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
   if (sweetOptions.forkTsCheckerWebpackPlugin) {
     const typescriptOptions: TypeScriptReporterOptions = {
       mode: js?.typescript ? 'write-references' : 'write-tsbuildinfo',
-      extensions: { vue: frame === 'vue' },
-      typescriptPath: require.resolve('typescript')
+      extensions: {
+        vue: {
+          enabled: frame === 'vue',
+          compiler: '@vue/compiler-sfc'
+        }
+      }
     };
 
     if (ts?.configFile) {
