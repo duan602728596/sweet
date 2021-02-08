@@ -11,8 +11,8 @@ const head = createHead();
 /* app */
 const app = createApp(() => (
   <div class="app" data-v-hmr="">
-    <ConfigProvider>
-      <router-view locale={ zhCN } />
+    <ConfigProvider locale={ zhCN }>
+      <router-view />
     </ConfigProvider>
   </div>
 ));
