@@ -11,8 +11,8 @@
     "build": "rimraf dist && cross-env NODE_ENV=production milktea build"
   },
   "dependencies": {
-    "@ant-design/icons": "^4.4.0",
-    "antd": "^4.12.2",
+    "@ant-design/icons": "^4.5.0",
+    "antd": "^4.12.3",
     "github-markdown-css": "^4.0.0",
     "history": "^5.0.0",
     "prop-types": "^15.7.2",

@@ -15,7 +15,7 @@
     "test": "cross-env NODE_ENV=test mocha ./test/test.js --timeout 180000"
   },
   "dependencies": {
-    "@babel/core": "^7.12.13",
+    "@babel/core": "^7.12.17",
     "@babel/register": "^7.12.13",
     "@bbkkbkk/http-proxy": "^1.17.0",
     "@koa/router": "^10.0.0",
@@ -33,19 +33,19 @@
     "koa-connect": "^2.1.0",
     "koa-static-cache": "^5.1.4",
     "lodash": "^4.17.20",
-    "mime-types": "^2.1.28",
+    "mime-types": "^2.1.29",
     "module-alias": "^2.2.2",
     "sockjs": "^0.3.21",
     "sockjs-client": "^1.5.0",
     "url": "^0.11.0",
-    "webpack": "^5.21.2",
+    "webpack": "^5.23.0",
     "webpack-dev-middleware": "^4.1.0",
     "webpack-log": "^3.0.1"
   },
   "devDependencies": {
     "@sweet-milktea/milktea": "*",
     "@sweet-milktea/server-log": "*",
-    "nunjucks": "^3.2.2"
+    "nunjucks": "^3.2.3"
   },
   "peerDependencies": {
     "@sweet-milktea/milktea": ">=2",

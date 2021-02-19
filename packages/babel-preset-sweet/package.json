@@ -23,14 +23,14 @@
     "@babel/plugin-proposal-throw-expressions": "^7.12.13",
     "@babel/plugin-syntax-module-string-names": "^7.12.13",
     "@babel/plugin-syntax-top-level-await": "^7.12.13",
-    "@babel/plugin-transform-runtime": "^7.12.15",
-    "@babel/preset-env": "^7.12.13",
+    "@babel/plugin-transform-runtime": "^7.12.17",
+    "@babel/preset-env": "^7.12.17",
     "@babel/preset-react": "^7.12.13",
-    "@babel/preset-typescript": "^7.12.13",
-    "@babel/runtime-corejs3": "^7.12.13",
-    "core-js": "^3.8.3"
+    "@babel/preset-typescript": "^7.12.17",
+    "@babel/runtime-corejs3": "^7.12.18",
+    "core-js": "^3.9.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.12.13"
+    "@babel/core": "^7.12.17"
   }
 }
