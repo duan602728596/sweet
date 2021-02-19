@@ -1,3 +1,4 @@
+import { defineComponent } from 'vue';
 import { Layout, Menu } from 'ant-design-vue';
 import style from './index.sass';
 
@@ -6,7 +7,7 @@ import style from './index.sass';
  * 页面左侧菜单
  * 渲染二级和三级菜单
  */
-export default {
+export default defineComponent({
   props: {
     options: Array
   },
@@ -86,4 +87,4 @@ export default {
       </Layout.Sider>
     );
   }
-};
+});

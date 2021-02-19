@@ -1,3 +1,4 @@
+import { defineComponent } from 'vue';
 import { Layout, Menu, Dropdown, Avatar } from 'ant-design-vue';
 import { LogoutOutlined as IconLogoutOutlined, HomeOutlined as IconHomeOutlined } from '@ant-design/icons-vue';
 import style from './index.sass';
@@ -7,7 +8,7 @@ import style from './index.sass';
  * 顶部header布局
  * 显示logo、导航、登录人信息等
  */
-export default {
+export default defineComponent({
   setup() {
     // 渲染下拉菜单
     function toolsOverlayRender() {
@@ -62,4 +63,4 @@ export default {
       </Layout.Header>
     );
   }
-};
+});

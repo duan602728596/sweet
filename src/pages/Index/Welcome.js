@@ -1,10 +1,10 @@
-import { ref, computed } from 'vue';
+import { defineComponent, ref, computed } from 'vue';
 import { useStore } from 'vuex';
 import { LikeOutlined as IconLikeOutlined } from '@ant-design/icons-vue';
 import style from './welcome.sass';
 import WelcomeSvgComponent from './images/welcome.component.svg';
 
-export default {
+export default defineComponent({
   setup() {
     const store = useStore();
     const stateLen = ref(0);
@@ -39,4 +39,4 @@ export default {
       </article>
     );
   }
-};
+});

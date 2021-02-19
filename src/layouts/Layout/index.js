@@ -1,3 +1,4 @@
+import { defineComponent } from 'vue';
 import { Layout } from 'ant-design-vue';
 import Header from '../Header/index';
 import Footer from '../Footer/index';
@@ -10,7 +11,7 @@ import style from './index.sass';
  * Footer 显示版权信息
  * Routers 根据路由渲染页面
  */
-export default {
+export default defineComponent({
   render() {
     return (
       <Layout class={ style.layout }>
@@ -20,4 +21,4 @@ export default {
       </Layout>
     );
   }
-};
+});

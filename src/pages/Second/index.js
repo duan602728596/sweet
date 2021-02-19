@@ -1,4 +1,4 @@
-import { computed } from 'vue';
+import { defineComponent, computed } from 'vue';
 import { FolderOpenOutlined as IconFolderOpenOutlined } from '@ant-design/icons-vue';
 import { useHead } from '@vueuse/head';
 import Main from '../../layouts/Main/index';
@@ -37,7 +37,7 @@ const options = [
   }
 ];
 
-export default {
+export default defineComponent({
   setup() {
     useHead({
       title: computed(() => 'Webpack App - second')
@@ -54,4 +54,4 @@ export default {
       </Main>
     );
   }
-};
+});

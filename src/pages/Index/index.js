@@ -1,10 +1,10 @@
-import { computed } from 'vue';
+import { defineComponent, computed } from 'vue';
 import { useHead } from '@vueuse/head';
 import Main from '../../layouts/Main/index';
 import Content from '../../layouts/Content/index';
 import Index from './Welcome';
 
-export default {
+export default defineComponent({
   setup() {
     useHead({
       title: computed(() => 'Webpack App')
@@ -20,4 +20,4 @@ export default {
       </Main>
     );
   }
-};
+});

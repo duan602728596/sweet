@@ -1,8 +1,8 @@
-import { computed } from 'vue';
+import { defineComponent, computed } from 'vue';
 import { useHead } from '@vueuse/head';
 import Login from './Login';
 
-export default {
+export default defineComponent({
   setup() {
     useHead({
       title: computed(() => 'Webpack App - login')
@@ -14,4 +14,4 @@ export default {
       <Login />
     );
   }
-};
+});
