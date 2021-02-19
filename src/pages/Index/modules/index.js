@@ -1,4 +1,4 @@
-const actions = {
+const module = {
   namespaced: true,
   state: {
     likeLen: 0
@@ -18,4 +18,4 @@ const actions = {
   }
 };
 
-export default { index: actions };
+export default { index: module };

@@ -1,4 +1,4 @@
-import indexModules from '../pages/Index/actions/index';
+import indexModules from '../pages/Index/modules/index';
 
 export const modules = {
   ...indexModules
