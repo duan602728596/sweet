@@ -8,8 +8,6 @@ const { actions, reducer } = createSlice({
   reducers: {
     setLikeLen(state, action) {
       state.likeLen = action.payload;
-
-      return state;
     }
   }
 });
