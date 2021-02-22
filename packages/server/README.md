@@ -136,7 +136,7 @@ export default {
 };
 ```
 
-url为需要匹配的路由，参考*path-to-regexp*。默认路由为`/(.*)`或`(.*)`。handler为当前路由匹配时执行的方法。   
+url为需要匹配的路由，参考*path-to-regexp*。`/(.*)`或`(.*)`匹配所有路由。handler为当前路由匹配时执行的方法。   
 
 在pug或html模板中，使用`<%- key %>`来标记占位的数据。其中`<%- render %>`表示服务器端渲染的数据，
 `<%- initialState %>`表示初始化数据，其他的占位数据同理。参考*ejs*。   
