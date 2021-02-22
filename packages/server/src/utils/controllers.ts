@@ -1,5 +1,6 @@
 import * as path from 'path';
 import * as glob from 'glob';
+import type { IOptions } from 'glob';
 import * as _ from 'lodash';
 import type { Context } from 'koa';
 import { requireModule, deleteCacheAndRequireModule, globPromise } from './utils';
@@ -44,7 +45,7 @@ export function pathArrayToMap(pathArr: Array<string>, basicPath: string, contro
 /* 获取函数 */
 export async function getControllersFiles(basicPath: string, controllersDir?: string): Promise<Map<string, string>> {
   const controllersInfo: ControllersInfo = getControllers(controllersDir);
-  let options: object = { cwd: basicPath };
+  let options: IOptions = { cwd: basicPath };
 
   // 绝对路径时移除cwd
   if (controllersInfo.isAbsolute) {
@@ -59,7 +60,7 @@ export async function getControllersFiles(basicPath: string, controllersDir?: st
 /* 获取函数 */
 export function getControllersFilesSync(basicPath: string, controllersDir?: string): Map<string, string> {
   const controllersInfo: ControllersInfo = getControllers(controllersDir);
-  let options: object = { cwd: basicPath };
+  let options: IOptions = { cwd: basicPath };
 
   // 绝对路径时移除cwd
   if (controllersInfo.isAbsolute) {
