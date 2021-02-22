@@ -29,7 +29,7 @@ function preRenderInit(sweetOptions: SweetOptions): Function {
     const data: any = await getControllerData(ctx, sweetOptions, controllersMap, folderPathFile, formatFile, true);
 
     // ssr渲染
-    const html: Buffer = ctx.body;
+    const html: Buffer = ctx.body as Buffer;
     const server: Function = deleteCacheAndRequireModule(serverRenderEntry);
     const result: Stream | string = await server(ctxPath, ctx, data.initialState);
     const render: string = isReadStream(result) ? (await readStream(result)).toString() : result;
