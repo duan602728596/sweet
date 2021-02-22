@@ -1,34 +1,26 @@
 import { Context } from 'koa';
 import * as Stream from 'stream';
-import {
-  formatTemplateData,
-  folderPathAnalyze,
-  filePathAnalyze,
-  requireModule,
-  isReadStream,
-  readStream
-} from '../utils/utils';
-import { getControllersFilesSync, getControllerData } from '../utils/controllers';
+import { pathToRegexp } from 'path-to-regexp';
+import * as _ from 'lodash';
+import { formatTemplateData, requireModule, isReadStream, readStream } from '../utils/utils';
+import { getControllersFilesSync } from '../utils/controllers';
 import createRenderEngine from '../utils/createRenderEngine';
-import { SweetOptions } from '../utils/types';
+import type { SweetOptions, ControllersModule } from '../utils/types';
 
 // 渲染新的html
 function preRenderInit(sweetOptions: SweetOptions): Function {
-  // 获取controllers文件
-  const basicPath: string = sweetOptions.basicPath;
-  const controllersMap: Map<string, string> = getControllersFilesSync(basicPath, sweetOptions.controllersDir);
+  const renderEngine: Function = createRenderEngine(sweetOptions.renderType); // 获取渲染器
+  const controllersModules: Array<ControllersModule> = getControllersFilesSync(sweetOptions); // 获取所有的controllers模块
 
-  return async function preRender(
-    ctxPath: string,
-    ctx: Context,
-    html: Buffer,
-    serverRenderEntry: string
-  ): Promise<string> {
+  return async function preRender(ctxPath: string, ctx: Context, html: Buffer, serverRenderEntry: string): Promise<string> {
     try {
-      const renderEngine: Function = createRenderEngine(sweetOptions.renderType);
-      const folderPathFile: string = folderPathAnalyze(ctxPath); // 格式化为：path/to/file，没有扩展名
-      const formatFile: string = filePathAnalyze(ctxPath);       // 格式化为：path.to.file，没有扩展名
-      const data: any = await getControllerData(ctx, sweetOptions, controllersMap, folderPathFile, formatFile, false);
+      // 获取数据
+      const index: number = _.findIndex(controllersModules, function(o: ControllersModule): boolean {
+        const regexp: RegExp = pathToRegexp(o.url);
+
+        return regexp.exec(ctxPath) !== null && regexp.exec(ctxPath) !== undefined;
+      });
+      const data: any = index >= 0 ? await controllersModules[index].handler(ctx, sweetOptions) : {};
 
       // ssr渲染
       const server: Function = requireModule(serverRenderEntry);

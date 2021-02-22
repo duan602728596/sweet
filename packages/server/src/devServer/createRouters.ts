@@ -50,7 +50,7 @@ function createRouters(router: Router, sweetOptions: SweetOptions): void {
       }
     } catch (err) {
       ctx.status = 500;
-      ctx.body = `<pre style="font-size: 14px">${ err.stack.toString() }</pre>`;
+      ctx.body = `<pre style="font-size: 14px; white-space: pre-wrap;">${ err.stack.toString() }</pre>`;
     }
   });
 }

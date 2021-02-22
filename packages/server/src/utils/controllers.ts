@@ -2,22 +2,22 @@ import * as path from 'path';
 import * as glob from 'glob';
 import type { IOptions } from 'glob';
 import * as _ from 'lodash';
-import type { Context } from 'koa';
 import { requireModule, deleteCacheAndRequireModule, globPromise } from './utils';
 import useRegister from './babelRegister';
-import type { SweetOptions } from './types';
+import type { SweetOptions, ControllersModule } from './types';
 
-const defaultControllers: string = 'controllers';
+const defaultControllers: string = 'controllers'; // 默认的controllers名
 
-/**
- * 获取controllers信息
- */
 interface ControllersInfo {
   isAbsolute: boolean;
   dir: string;
   controllers: string;
 }
 
+/**
+ * 获取controllers信息
+ * @param { string } controllersDir: controllers的文件夹名
+ */
 export function getControllers(controllersDir?: string): ControllersInfo {
   const isAbsolute: boolean = controllersDir ? path.isAbsolute(controllersDir) : false;
   const dir: string = controllersDir ?? defaultControllers;
@@ -27,25 +27,47 @@ export function getControllers(controllersDir?: string): ControllersInfo {
 }
 
 /**
- * 将路径转化成Map，key全部转换成小写
- * 小写用来兼容大小写查询，大写用来映射实际的文件
+ * 加载controllers目录下的模块
+ * @param { Array<string> } files: 文件名
+ * @param { SweetOptions } sweetOptions
+ * @param { ControllersInfo } controllersInfo
+ * @param { boolean } clearRequireModule: 是否清除缓存
  */
-export function pathArrayToMap(pathArr: Array<string>, basicPath: string, controllersInfo: ControllersInfo): Map<string, string> {
-  const map: Map<string, string> = new Map();
-  const replaceReg: RegExp = new RegExp(`^${ controllersInfo.dir.replace(/[\\/]/g, '[\/]') }[\/]`, 'ig');
+export function requireControllers(
+  files: Array<string>,
+  sweetOptions: SweetOptions,
+  controllersInfo: ControllersInfo,
+  clearRequireModule?: boolean
+): Array<ControllersModule> {
+  const result: Array<ControllersModule> = [],
+    defaultResult: Array<ControllersModule> = [];
 
-  return _.transform(pathArr, function(result: Map<string, string>, value: string, index: number): void {
-    const key: string = value.toLowerCase()
-      .replace(replaceReg, '');
+  for (const file of files) {
+    useRegister(sweetOptions);
 
-    result.set(key, controllersInfo.isAbsolute ? value : path.join(basicPath, value));
-  }, map);
+    const module: ControllersModule | undefined = (clearRequireModule ? deleteCacheAndRequireModule : requireModule)(
+      controllersInfo.isAbsolute ? file : path.join(sweetOptions.basicPath, file));
+
+    if (typeof module === 'object' && module.url && module.handler) {
+      if (module.url === '(.*)' || module.url === '/(.*)') {
+        defaultResult.push(module);
+      } else {
+        result.push(module);
+      }
+    }
+  }
+
+  return result.concat(defaultResult);
 }
 
-/* 获取函数 */
-export async function getControllersFiles(basicPath: string, controllersDir?: string): Promise<Map<string, string>> {
-  const controllersInfo: ControllersInfo = getControllers(controllersDir);
-  let options: IOptions = { cwd: basicPath };
+/**
+ * 获取controllers目录下的所有模块
+ * @param { SweetOptions } sweetOptions
+ * @param { boolean } clearRequireModule: 是否清除缓存
+ */
+export async function getControllersFiles(sweetOptions: SweetOptions, clearRequireModule?: boolean): Promise<Array<ControllersModule>> {
+  const controllersInfo: ControllersInfo = getControllers(sweetOptions.controllersDir);
+  let options: IOptions = { cwd: sweetOptions.basicPath };
 
   // 绝对路径时移除cwd
   if (controllersInfo.isAbsolute) {
@@ -54,13 +76,17 @@ export async function getControllersFiles(basicPath: string, controllersDir?: st
 
   const files: Array<string> = await globPromise(controllersInfo.controllers, options);
 
-  return pathArrayToMap(files, basicPath, controllersInfo);
+  return requireControllers(files, sweetOptions, controllersInfo, clearRequireModule);
 }
 
-/* 获取函数 */
-export function getControllersFilesSync(basicPath: string, controllersDir?: string): Map<string, string> {
-  const controllersInfo: ControllersInfo = getControllers(controllersDir);
-  let options: IOptions = { cwd: basicPath };
+/**
+ * 同步获取controllers目录下的所有模块
+ * @param { SweetOptions } sweetOptions
+ * @param { boolean } clearRequireModule: 是否清除缓存
+ */
+export function getControllersFilesSync(sweetOptions: SweetOptions, clearRequireModule?: boolean): Array<ControllersModule> {
+  const controllersInfo: ControllersInfo = getControllers(sweetOptions.controllersDir);
+  let options: IOptions = { cwd: sweetOptions.basicPath };
 
   // 绝对路径时移除cwd
   if (controllersInfo.isAbsolute) {
@@ -69,54 +95,5 @@ export function getControllersFilesSync(basicPath: string, controllersDir?: stri
 
   const files: Array<string> = glob.sync(controllersInfo.controllers, options);
 
-  return pathArrayToMap(files, basicPath, controllersInfo);
-}
-
-/**
- * 从controller中获取数据
- * @param { Context } ctx
- * @param { SweetOptions } sweetOptions
- * @param { Map<string, string> } controllersMap
- * @param { string } folderPathFile，path/to/file，没有扩展名
- * @param { string } formatFile，path.to.file，没有扩展名
- * @param { boolean } clearRequireModule: 是否清除缓存
- */
-export async function getControllerData(
-  ctx: Context,
-  sweetOptions: SweetOptions,
-  controllersMap: Map<string, string>,
-  folderPathFile: string,  // 查找文件夹
-  formatFile: string,      // 查找文件
-  clearRequireModule: boolean
-): Promise<any> {
-  // 文件的查找顺序
-  const findFiles: Array<string> = [
-    `${ folderPathFile }.ts`,
-    `${ folderPathFile }.tsx`,
-    `${ formatFile }.ts`,
-    `${ formatFile }.tsx`,
-    'default.ts',
-    'default.tsx',
-    `${ folderPathFile }.js`,
-    `${ formatFile }.js`,
-    'default.js'
-  ];
-  let data: any = {};
-
-  for (const findFile of findFiles) {
-    if (controllersMap.has(findFile)) {
-      const file: string | undefined = controllersMap.get(findFile);
-
-      if (file) {
-        useRegister(sweetOptions);
-
-        const module: Function = (clearRequireModule ? deleteCacheAndRequireModule : requireModule)(file);
-
-        data = await module(ctx, sweetOptions);
-        break;
-      }
-    }
-  }
-
-  return data;
+  return requireControllers(files, sweetOptions, controllersInfo, clearRequireModule);
 }

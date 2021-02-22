@@ -26,28 +26,6 @@ export function formatTemplateData(data: Dictionary<any>): object {
   }, {});
 }
 
-/* 格式化路径：分隔符为"/" */
-export function folderPathAnalyze(file: string): string {
-  const fileArr: Array<string> = _.without(file.split('/'), '');
-
-  if (fileArr.length === 0) {
-    return 'index';
-  } else {
-    return fileArr.join('/').toLowerCase();
-  }
-}
-
-/* 格式化路径：分隔符为"." */
-export function filePathAnalyze(file: string): string {
-  const fileArr: Array<string> = _.without(file.split('/'), '');
-
-  if (fileArr.length === 0) {
-    return 'index';
-  } else {
-    return fileArr.join('.').toLowerCase();
-  }
-}
-
 /* 设置默认api文件的地址 */
 export function defaultApiPath(basicPath: string): { ts: string; tsx: string; js: string } {
   return {
@@ -79,9 +57,10 @@ export function defaultMockPath(basicPath: string): { ts: string; tsx: string; j
 /* 清除模块缓存（只用于开发环境） */
 export function cleanRequireCache(id: any): void {
   const modulePath: string = require.resolve(id);
+  const main: NodeJS.Module | null | undefined = require.main ?? module.parent;
 
-  if (module.parent) {
-    module.parent.children.splice(module.parent.children.indexOf(id), 1);
+  if (main) {
+    main.children.splice(main.children.indexOf(id), 1);
   }
 
   delete require.cache[modulePath];

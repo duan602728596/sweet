@@ -1,20 +1,15 @@
 import type { Context } from 'koa';
 import * as Stream from 'stream';
-import {
-  formatTemplateData,
-  folderPathAnalyze,
-  filePathAnalyze,
-  deleteCacheAndRequireModule,
-  isReadStream,
-  readStream
-} from '../utils/utils';
-import { getControllersFiles, getControllerData } from '../utils/controllers';
+import { pathToRegexp } from 'path-to-regexp';
+import * as _ from 'lodash';
+import { formatTemplateData, deleteCacheAndRequireModule, isReadStream, readStream } from '../utils/utils';
+import { getControllersFiles } from '../utils/controllers';
 import createRenderEngine from '../utils/createRenderEngine';
-import type { SweetOptions } from '../utils/types';
+import type { SweetOptions, ControllersModule } from '../utils/types';
 
 // 渲染新的html
 function preRenderInit(sweetOptions: SweetOptions): Function {
-  const basicPath: string = sweetOptions.basicPath;
+  const renderEngine: Function = createRenderEngine(sweetOptions.renderType); // 获取渲染器
 
   /**
    * @param { string } ctxPath: 相对路径
@@ -22,11 +17,16 @@ function preRenderInit(sweetOptions: SweetOptions): Function {
    * @param { string } serverRenderEntry: ssr文件入口
    */
   return async function preRender(ctxPath: string, ctx: Context, serverRenderEntry: string): Promise<string> {
-    const renderEngine: Function = createRenderEngine(sweetOptions.renderType);
-    const folderPathFile: string = folderPathAnalyze(ctxPath); // 格式化为：path/to/file，没有扩展名
-    const formatFile: string = filePathAnalyze(ctxPath);       // 格式化为：path.to.file，没有扩展名
-    const controllersMap: Map<string, string> = await getControllersFiles(basicPath, sweetOptions.controllersDir);
-    const data: any = await getControllerData(ctx, sweetOptions, controllersMap, folderPathFile, formatFile, true);
+    // 获取所有的controllers模块
+    const controllersModules: Array<ControllersModule> = await getControllersFiles(sweetOptions, true);
+
+    // 获取数据
+    const index: number = _.findIndex(controllersModules, function(o: ControllersModule): boolean {
+      const regexp: RegExp = pathToRegexp(o.url);
+
+      return regexp.exec(ctxPath) !== null && regexp.exec(ctxPath) !== undefined;
+    });
+    const data: any = index >= 0 ? await controllersModules[index].handler(ctx, sweetOptions) : {};
 
     // ssr渲染
     const html: Buffer = ctx.body as Buffer;

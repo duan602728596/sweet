@@ -1,4 +1,5 @@
 import * as Koa from 'koa';
+import type { Context } from 'koa';
 import type { Compiler } from 'webpack';
 
 export interface Log {
@@ -41,6 +42,11 @@ export interface ProServerArgs extends ServerArgs {
 export interface SweetOptions extends DevServerArgs, ProServerArgs {
   basicPath: string;
   serverRenderEntry?: string;
+}
+
+export interface ControllersModule {
+  url: string;
+  handler(ctx: Context, sweetOptions: SweetOptions): any;
 }
 
 // 导出函数类型
