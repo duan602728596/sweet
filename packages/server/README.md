@@ -120,25 +120,26 @@ proServer({
 
 ## 服务器端渲染
 
-服务器端渲染需要你创建`controllers`文件夹，文件夹里面的规则为: 你的路由中的 **“/”** 替换为 **“.”**，或者为文件夹。
-比如`/Path/PathFile`，则需要创建`/Path.PathFile.ts`、`/Path.PathFile.js`文件
-或`/Path/PathFile.ts`、`/Path/PathFile.js`文件。   
+服务器端渲染需要你创建`controllers`文件夹，里面创建各个路由的js或ts文件。   
 
 在文件内，需要创建如下代码:
 
 ```javascript
-module.exports = async function(ctx, sweetOptions) {
-  return {
-    initialState, // 返回初始化的state
-    ...           // 你要返回的其他数据
-  };
-}
+export default {
+  url: '/Path/To',
+  async handler(ctx, sweetOptions) {
+    return {
+      initialState, // 返回初始化的state
+      ...           // 你要返回的其他数据
+    };
+  }
+};
 ```
+
+url为需要匹配的路由，参考*path-to-regexp*。默认路由为`/(.*)`或`(.*)`。handler为当前路由匹配时执行的方法。   
 
 在pug或html模板中，使用`<%- key %>`来标记占位的数据。其中`<%- render %>`表示服务器端渲染的数据，
 `<%- initialState %>`表示初始化数据，其他的占位数据同理。参考*ejs*。   
-
-如果路由找不到对应的interface文件，会自动寻找`default.ts`或`default.js`文件。你可以创建这个文件作为默认的interface文件。
 
 入口文件为：
 
