@@ -32,7 +32,7 @@
     "koa-compress": "^5.0.1",
     "koa-connect": "^2.1.0",
     "koa-static-cache": "^5.1.4",
-    "lodash": "^4.17.20",
+    "lodash": "^4.17.21",
     "mime-types": "^2.1.29",
     "module-alias": "^2.2.2",
     "path-to-regexp": "^6.2.0",
