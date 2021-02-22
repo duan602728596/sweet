@@ -9,7 +9,8 @@ import lernaJson from '../../../../../lerna.json';
 
 const introductionText = introduction
   .replace('statics/logo.svg', 'https://raw.githubusercontent.com/duan602728596/sweet/master/statics/logo.svg')
-  .replace('statics/tsl.jpg', 'https://raw.githubusercontent.com/duan602728596/sweet/master/statics/tsl.jpg');
+  .replace('statics/tsl.jpg', 'https://raw.githubusercontent.com/duan602728596/sweet/master/statics/tsl.jpg')
+  .replace(/<!--[\n\s]*(.|\n)*[\n\s]*-->/, '');
 
 /* /Sweet 路由 */
 function Index(props) {
