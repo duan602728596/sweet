@@ -32,13 +32,5 @@ export default function(info) {
     }]
   };
 
-  if (isDev) {
-    config.resolve = {
-      alias: {
-        'react-dom': '@hot-loader/react-dom'
-      }
-    };
-  }
-
   return config;
 }

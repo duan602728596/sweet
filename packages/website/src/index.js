@@ -1,9 +1,19 @@
 import { render } from 'react-dom';
-import App from './App';
+import { HashRouter } from 'react-router-dom';
+import { ConfigProvider } from 'antd';
+import zhCN from 'antd/es/locale-provider/zh_CN';
+import './global.sass';
+import Layouts from './components/Layouts/Layouts';
+import Routers from './router/Routers';
 
-/* app */
 render(
-  <App />,
+  <ConfigProvider locale={ zhCN }>
+    <HashRouter>
+      <Layouts>
+        <Routers />
+      </Layouts>
+    </HashRouter>
+  </ConfigProvider>,
   document.getElementById('app')
 );
 
