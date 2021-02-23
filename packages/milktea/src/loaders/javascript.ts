@@ -7,7 +7,7 @@ import type { SweetConfig, SweetOptions, JS } from '../utils/types';
 
 /* js 配置 */
 export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, config: Config): void {
-  const { mode, js = {}, frame, webpackLog = 'progress' }: SweetConfig = sweetConfig;
+  const { mode, js = {}, frame, hot, hotType = 'react-refresh', webpackLog = 'progress' }: SweetConfig = sweetConfig;
   const { environment }: SweetOptions = sweetOptions;
   const isDevelopment: boolean = mode === 'development';
   const isEnvServerSideRender: boolean = environment === 'server';
@@ -81,8 +81,15 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
         }
       ]);
 
-      if (isReact) {
-        babelPlugins.push('react-hot-loader/babel'); // 判断是否加载react相关插件，热替换
+      if (isReact && hot) {
+        // 判断是否加载react相关插件，热替换
+        if (hotType === 'react-refresh') {
+          if (isDevelopment) {
+            babelPlugins.push('react-refresh/babel');
+          }
+        } else {
+          babelPlugins.push('react-hot-loader/babel');
+        }
       } else if (isVue) {
         babelPlugins.push('@vue/babel-plugin-jsx');  // 判断是否加载vue相关插件
       }
