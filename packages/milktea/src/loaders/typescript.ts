@@ -7,7 +7,7 @@ import type { SweetConfig, SweetOptions, TS } from '../utils/types';
 
 /* ts 配置 */
 export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, config: Config): void {
-  const { ts = {}, frame }: SweetConfig = sweetConfig;
+  const { mode, ts = {}, frame, hot, hotType = 'react-refresh' }: SweetConfig = sweetConfig;
   const {
     configFile,
     presets: extraPresets,
@@ -15,6 +15,7 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
     exclude,
     include
   }: TS = ts;
+  const isDevelopment: boolean = mode === 'development';
 
   config
     .merge({
@@ -57,10 +58,17 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
         babelPlugins.push(...extraPlugins);
       }
 
-      if (isReact) {
-        babelPlugins.push('react-hot-loader/babel'); // 判断是否加载react相关插件，热替换
+      if (isReact && hot) {
+        // 判断是否加载react相关插件，热替换
+        if (hotType === 'react-refresh') {
+          if (isDevelopment) {
+            babelPlugins.push('react-refresh/babel');
+          }
+        } else {
+          babelPlugins.push('react-hot-loader/babel');
+        }
       } else if (isVue) {
-        babelPlugins.push('@vue/babel-plugin-jsx');  // 判断是否加载vue相关插件
+        babelPlugins.push('@vue/babel-plugin-jsx'); // 判断是否加载vue相关插件
       }
 
       return _.mergeWith(options, { presets: babelPresets, plugins: babelPlugins }, customizer);
