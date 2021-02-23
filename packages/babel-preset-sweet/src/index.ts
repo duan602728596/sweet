@@ -24,8 +24,7 @@ function babelPresetSweet(api: any, options: Options = {}, dirname: string): Bab
         {
           corejs: { version: 3, proposals: true },
           helpers: true,
-          regenerator: nodeEnv || !ecmascript,
-          useESModules: envModules === false
+          regenerator: nodeEnv || !ecmascript
         }
       ]
     ];
