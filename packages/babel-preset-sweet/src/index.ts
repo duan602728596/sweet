@@ -28,7 +28,7 @@ function babelPresetSweet(api: any, options: Options = {}, dirname: string): Bab
           helpers: true,
           regenerator: nodeEnv || !ecmascript,
           useESModules: envModules === false
-        }, versionCheck(transformRuntimePackageJson.version, 13) ? ['useESModules'] : [])
+        }, versionCheck(transformRuntimePackageJson.version, [7, 13]) ? ['useESModules'] : [])
       ]
     ];
 
