@@ -61,9 +61,7 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
       if (isReact && hot) {
         // 判断是否加载react相关插件，热替换
         if (hotType === 'react-refresh') {
-          if (isDevelopment) {
-            babelPlugins.push('react-refresh/babel');
-          }
+          isDevelopment && babelPlugins.push('react-refresh/babel');
         } else {
           babelPlugins.push('react-hot-loader/babel');
         }
