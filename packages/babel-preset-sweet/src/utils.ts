@@ -21,3 +21,28 @@ export function moduleExists(id: string): string | false {
     return false;
   }
 }
+
+/**
+ * 模块版本检查
+ * @param { string } version: 当前版本
+ * @param { number } minimumVersion: 最小版本
+ */
+export function versionCheck(version: string, minimumVersion: number): boolean {
+  const middleVersion: number = Number(version.split(/\./)[1]);
+
+  return middleVersion >= minimumVersion;
+}
+
+/**
+ * @param { object } obj
+ * @param { Array<string> } delKeys
+ */
+export function omit(obj: object, delKeys: Array<string>): object {
+  const shallowCopy: object = Object.assign({}, obj);
+
+  for (const delKey of delKeys) {
+    delete shallowCopy[delKey];
+  }
+
+  return shallowCopy;
+}
