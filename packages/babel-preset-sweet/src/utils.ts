@@ -43,17 +43,3 @@ export function versionCheck(version: string, minimumVersion: Array<number>): bo
 
   return result;
 }
-
-/**
- * @param { object } obj
- * @param { Array<string> } delKeys
- */
-export function omit(obj: object, delKeys: Array<string>): object {
-  const shallowCopy: object = Object.assign({}, obj);
-
-  for (const delKey of delKeys) {
-    delete shallowCopy[delKey];
-  }
-
-  return shallowCopy;
-}
