@@ -62,13 +62,5 @@ export default function(info) {
     filesMap: true
   };
 
-  if (isDev) {
-    config.resolve = {
-      alias: {
-        'react-dom': '@hot-loader/react-dom'
-      }
-    };
-  }
-
   return config;
 }
