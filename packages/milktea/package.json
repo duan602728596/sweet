@@ -20,7 +20,7 @@
     "@bbkkbkk/files-map-webpack-plugin": "^1.0.1",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.4.3",
     "@svgr/webpack": "^5.5.0",
-    "@sweet-milktea/babel-preset-sweet": "^2.0.1",
+    "@sweet-milktea/babel-preset-sweet": "^2.1.0",
     "babel-loader": "^8.2.2",
     "chalk": "^4.1.0",
     "cosmiconfig": "^7.0.0",
