@@ -29,7 +29,7 @@
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.12.17",
-    "@sweet-milktea/milktea": "^2.0.1",
+    "@sweet-milktea/milktea": "^2.1.0",
     "@sweet-milktea/util-tools": "^0.16.4",
     "@vue/babel-plugin-jsx": "^1.0.3",
     "@vue/compiler-sfc": "^3.0.5",
