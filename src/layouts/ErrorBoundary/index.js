@@ -18,6 +18,11 @@ class ErrorBoundary extends Component {
     info: undefined
   };
 
+  // TODO: 不加这个会编译错误
+  constructor() {
+    super();
+  }
+
   componentDidCatch(error, info) {
     this.setState({
       hasError: true,
