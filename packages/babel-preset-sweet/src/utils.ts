@@ -23,7 +23,7 @@ export function moduleExists(id: string): string | false {
 }
 
 /**
- * 模块版本检查
+ * 模块版本检查是否大于等于指定的最小版本号
  * @param { string } version: 当前版本
  * @param { Array<number> } minimumVersion: 最小版本
  */

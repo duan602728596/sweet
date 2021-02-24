@@ -1,4 +1,5 @@
 import * as process from 'process';
+import * as transformRuntimePackageJson from '@babel/plugin-transform-runtime/package.json';
 import { defaultPlugins, moduleExists, versionCheck } from './utils';
 import type {
   BabelPresetSweetOptions as Options,
@@ -16,7 +17,6 @@ function babelPresetSweet(api: any, options: Options = {}, dirname: string): Bab
     { use: useTypescript, isReact = true }: TypescriptOptions = typescript ?? {},
     { use: useReact = true, runtime, development }: ReactOptions = react ?? {};
   const envModules: string | boolean = modules ?? false; // @babel/preset-env的模块类型
-  const transformRuntimePackageJson: any = require('@babel/plugin-transform-runtime/package.json');
 
   const presets: Array<any> = [],
     plugins: Array<any> = [
