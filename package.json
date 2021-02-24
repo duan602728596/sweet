@@ -31,9 +31,8 @@
     "source-map-support": "^0.5.19"
   },
   "devDependencies": {
-    "@babel/eslint-parser": "^7.12.17",
-    "@hot-loader/react-dom": "^17.0.1",
-    "@sweet-milktea/milktea": "^2.0.1",
+    "@babel/eslint-parser": "^7.13.4",
+    "@sweet-milktea/milktea": "^2.1.0",
     "@sweet-milktea/util-tools": "^0.16.4",
     "babel-plugin-import": "^1.13.3",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
