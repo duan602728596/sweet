@@ -1,9 +1,9 @@
 import * as path from 'path';
 import type { ParsedPath } from 'path';
 import * as fs from 'fs';
-import * as Router from '@koa/router';
 import * as _ from 'lodash';
 import type { Context, Next } from 'koa';
+import type * as Router from '@koa/router';
 import preRenderInit from './preProRender';
 import { isExists } from '../utils/utils';
 import { SweetOptions } from '../utils/types';

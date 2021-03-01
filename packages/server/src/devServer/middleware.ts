@@ -1,7 +1,7 @@
-import * as Koa from 'koa';
-import * as Router from '@koa/router';
 import * as body from 'koa-body';
-import { Compiler } from 'webpack';
+import type { Compiler } from 'webpack';
+import type * as Koa from 'koa';
+import type * as Router from '@koa/router';
 import koaDevMiddleware from './koaDevMiddleware';
 
 /**

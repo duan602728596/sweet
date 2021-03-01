@@ -1,6 +1,6 @@
 import * as _ from 'lodash';
-import * as Koa from 'koa';
 import connect = require('koa-connect');
+import type * as Koa from 'koa';
 import { createProxyMiddleware, Options } from 'http-proxy-middleware';
 import { defaultProxyPath, requireModule, isExists } from './utils';
 import type { SweetOptions, LogLevel } from './types';

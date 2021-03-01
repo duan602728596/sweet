@@ -1,4 +1,4 @@
-import * as Koa from 'koa';
+import type * as Koa from 'koa';
 import { requireModule } from '../utils/utils';
 import { Log, SweetOptions } from '../utils/types';
 

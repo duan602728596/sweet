@@ -1,7 +1,7 @@
-import { Context } from 'koa';
 import * as Stream from 'stream';
 import { pathToRegexp } from 'path-to-regexp';
 import * as _ from 'lodash';
+import type { Context } from 'koa';
 import { formatTemplateData, requireModule, isReadStream, readStream } from '../utils/utils';
 import { getControllersFilesSync } from '../utils/controllers';
 import createRenderEngine from '../utils/createRenderEngine';

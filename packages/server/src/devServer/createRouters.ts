@@ -1,8 +1,8 @@
 import * as path from 'path';
 import { ParsedPath } from 'path';
-import * as Router from '@koa/router';
 import * as mime from 'mime-types';
 import type { Context, Next } from 'koa';
+import type * as Router from '@koa/router';
 import preRenderInit from './preDevRender';
 import { isExists } from '../utils/utils';
 import { SweetOptions } from '../utils/types';
