@@ -1,8 +1,10 @@
 import * as path from 'path';
 import { ParsedPath } from 'path';
+import * as fs from 'fs';
 import * as mime from 'mime-types';
 import type { Context, Next } from 'koa';
 import type * as Router from '@koa/router';
+import type { ViteDevServer } from 'vite';
 import preRenderInit from './preDevRender';
 import { isExists } from '../utils/utils';
 import { SweetOptions } from '../utils/types';
@@ -19,7 +21,7 @@ function createRouters(router: Router, sweetOptions: SweetOptions): void {
       ctx.state.routePath = ctxPath; // 保存旧的path
 
       // 重定向path，所有的路由都指向"/" TODO: webpack-hot-middleware
-      if (ctxPath !== '/' && mimeType === false) {
+      if (ctxPath !== '/' && mimeType === false && !sweetOptions.vite) {
         ctx.path = '/';
       }
 
@@ -27,6 +29,24 @@ function createRouters(router: Router, sweetOptions: SweetOptions): void {
 
       // 将path改回重定向前的值
       ctx.path = ctxPath;
+
+      if (sweetOptions.vite && !/^\/@/i.test(ctxPath)) {
+        const isHtml: boolean = /\.html$/i.test(ctxPath);
+        const viteRoot: string = (sweetOptions.compiler as ViteDevServer).config.root;
+        const htmlFile: string = path.join(viteRoot, ctxPath);
+
+        if (isHtml) {
+          if (fs.existsSync(htmlFile)) {
+            ctx.type === 'text/html';
+            ctx.body = await fs.promises.readFile(htmlFile, { encoding: 'utf8' });
+          }
+        } else {
+          const indexHtmlFile: string = path.join(viteRoot, 'index.html');
+
+          ctx.type === 'text/html';
+          ctx.body = await fs.promises.readFile(indexHtmlFile, { encoding: 'utf8' });
+        }
+      }
 
       // 服务器端渲染
       if (sweetOptions.serverRender && sweetOptions.serverRenderEntry && ctx.type === 'text/html') {
