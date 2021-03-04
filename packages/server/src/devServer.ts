@@ -163,10 +163,12 @@ async function devServer(args: DevServerArgs = {}): Promise<void> {
     hmrServer.push(http2Server);
   }
 
-  app.use(koaHmr({
-    compiler: compiler as Compiler,
-    server: hmrServer
-  }));
+  if (!vite) {
+    app.use(koaHmr({
+      compiler: compiler as Compiler,
+      server: hmrServer
+    }));
+  }
 
   // 初始化http服务
   httpServer.listen(sweetOptions.httpPort);
