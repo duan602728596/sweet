@@ -21,7 +21,7 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions): I
       }
     },
     build: {
-      outDir: path.join(basicCfg.root!, '../dist-server'),
+      outDir: path.join(basicCfg.root!, 'dist-server'),
       ssr: serverEntry,
       minify: true,
       sourcemap: true

@@ -11,8 +11,9 @@ import type { SweetConfig, SweetOptions } from './utils/types';
  */
 export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions): InlineConfig {
   const { mode, frame, vite, chainVite }: SweetConfig = sweetConfig;
+  const basicCfg: InlineConfig = basicConfig(sweetOptions);
 
-  const viteConfig: InlineConfig = _.merge(basicConfig(sweetOptions), {
+  const viteConfig: InlineConfig = _.merge(basicCfg, {
     mode,
     css: {
       modules: {
@@ -20,7 +21,7 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions): I
       }
     },
     build: {
-      outDir: path.join(__dirname, '../dist')
+      outDir: path.join(basicCfg.root!, 'dist')
     }
   });
 
