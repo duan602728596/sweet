@@ -69,23 +69,23 @@ export function callback(err: Error, stats: Stats): void {
  */
 export function config(args: FuncArgs = {}): Configuration {
   const { sweetConfig, mode, webpackLog, hot }: FuncArgs = args;
-  const config: SweetConfig = getConfig('client', sweetConfig);
+  const cfg: SweetConfig = getConfig('client', sweetConfig);
 
   if (config) {
     if (mode) {
-      config.mode = mode;
+      cfg.mode = mode;
     }
 
     if (webpackLog) {
-      config.webpackLog = webpackLog;
+      cfg.webpackLog = webpackLog;
     }
 
     if (hot) {
-      config.hot = hot;
+      cfg.hot = hot;
     }
   }
 
-  return webpackConfig(config, sweetOptions);
+  return webpackConfig(cfg, sweetOptions);
 }
 
 /**
@@ -96,21 +96,21 @@ export function config(args: FuncArgs = {}): Configuration {
  */
 export function serverRenderConfig(args: FuncArgs = {}): Configuration {
   const { sweetConfig, mode, webpackLog }: FuncArgs = args;
-  const config: SweetConfig = getConfig('server', sweetConfig);
+  const cfg: SweetConfig = getConfig('server', sweetConfig);
 
   sweetOptions.environment = 'server';
 
-  if (config) {
+  if (cfg) {
     if (mode) {
-      config.mode = mode;
+      cfg.mode = mode;
     }
 
     if (webpackLog) {
-      config.webpackLog = webpackLog;
+      cfg.webpackLog = webpackLog;
     }
   }
 
-  return webpackServerRenderConfig(config, sweetOptions);
+  return webpackServerRenderConfig(cfg, sweetOptions);
 }
 
 /**
@@ -120,15 +120,15 @@ export function serverRenderConfig(args: FuncArgs = {}): Configuration {
  */
 export function dllConfig(args: FuncArgs = {}): Configuration {
   const { sweetConfig, webpackLog }: FuncArgs = args;
-  const config: SweetConfig = getConfig('dll', sweetConfig);
+  const cfg: SweetConfig = getConfig('dll', sweetConfig);
 
   sweetOptions.environment = 'dll';
 
-  if (config && webpackLog) {
-    config.webpackLog = webpackLog;
+  if (cfg && webpackLog) {
+    cfg.webpackLog = webpackLog;
   }
 
-  return webpackDllConfig(config, sweetOptions);
+  return webpackDllConfig(cfg, sweetOptions);
 }
 
 export default {
