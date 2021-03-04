@@ -33,7 +33,7 @@ const sweetOptions: SweetOptions = {
 
 /**
  * args参数
- * compiler { object }: webpack的compiler
+ * compiler { object }: webpack的compiler或vite的ViteDevServer
  * httpPort { number }: http端口号
  * httpsPort { number }: https端口号
  * serverRender { boolean }: 开启服务器端渲染
@@ -50,6 +50,7 @@ const sweetOptions: SweetOptions = {
  * proxyFile { string }: 重新定义的proxy文件
  * mockFile { string }: 重新定义的mock文件
  * redirectToHttps { boolean }: 307重定向到https
+ * vite { boolean }: 是否为vite模式
  */
 async function devServer(args: DevServerArgs = {}): Promise<void> {
   const {
@@ -69,7 +70,8 @@ async function devServer(args: DevServerArgs = {}): Promise<void> {
     apiFile,
     proxyFile,
     mockFile,
-    redirectToHttps = false
+    redirectToHttps = false,
+    vite = false
   }: DevServerArgs = args;
 
   /* 合并配置项 */
@@ -80,7 +82,7 @@ async function devServer(args: DevServerArgs = {}): Promise<void> {
     compiler,
     serverRender,
     serverRenderRoot: formatPath(sweetOptions, serverRenderRoot),
-    serverRenderFile,
+    serverRenderFile: vite ? 'entry-server.js' : serverRenderFile,
     env,
     renderType,
     serverChain,
@@ -92,6 +94,7 @@ async function devServer(args: DevServerArgs = {}): Promise<void> {
     proxyFile,
     mockFile,
     redirectToHttps,
+    vite,
     httpPort: _httpPort,
     httpsPort: _httpsPort
   });
@@ -129,7 +132,7 @@ async function devServer(args: DevServerArgs = {}): Promise<void> {
   }
 
   /* 添加其他的中间件*/
-  await middleware(app, router, compiler);
+  await middleware(sweetOptions, app, router, compiler);
 
   /* 本地mock */
   await createMock(sweetOptions, router, true);

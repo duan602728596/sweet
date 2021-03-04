@@ -50,6 +50,7 @@ const sweetOptions: SweetOptions = {
  * proxyFile { string }: 重新定义的proxy文件
  * mockFile { string }: 重新定义的mock文件
  * redirectToHttps { boolean }: 307重定向到https
+ * vite { boolean }: 是否为vite模式
  */
 async function proServer(args: ProServerArgs = {}): Promise<void> {
   const {
@@ -71,7 +72,8 @@ async function proServer(args: ProServerArgs = {}): Promise<void> {
     apiFile,
     proxyFile,
     mockFile,
-    redirectToHttps = false
+    redirectToHttps = false,
+    vite = false
   }: ProServerArgs = args;
 
   /* 合并配置项 */
@@ -79,7 +81,7 @@ async function proServer(args: ProServerArgs = {}): Promise<void> {
     serverRoot: formatPath(sweetOptions, serverRoot),
     serverRender,
     serverRenderRoot: formatPath(sweetOptions, serverRenderRoot),
-    serverRenderFile,
+    serverRenderFile: vite ? 'entry-server.js' : serverRenderFile,
     env,
     template,
     renderType,
@@ -93,6 +95,7 @@ async function proServer(args: ProServerArgs = {}): Promise<void> {
     proxyFile,
     mockFile,
     redirectToHttps,
+    vite,
     httpPort: await portUse(httpPort, 'http'),
     httpsPort: await portUse(httpsPort, 'https')
   });

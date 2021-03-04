@@ -9,6 +9,7 @@ import * as _ from 'lodash';
 import type { Dictionary } from 'lodash';
 import * as internalIp from 'internal-ip';
 import * as chalk from 'chalk';
+import type { ViteDevServer } from 'vite';
 import type { SweetOptions } from './types';
 
 export const globPromise: (arg1: string, arg2?: glob.IOptions) => Promise<string[]> = util.promisify(glob);
@@ -71,6 +72,17 @@ export function requireModule(id: string): any {
   const module: { default: any } | any = require(id);
 
   return 'default' in module ? module.default : module;
+}
+
+/* vite模块导入 */
+export function requireViteModule(sweetOptions: SweetOptions): (id: string) => Promise<any> {
+  const ssrLoadModule: Function = (sweetOptions.compiler as ViteDevServer).ssrLoadModule;
+
+  return async function(id: string): Promise<any> {
+    const module: any = await ssrLoadModule(id);
+
+    return 'default' in module ? module.default : module;
+  };
 }
 
 /* 模块导入并且清除缓存 */

@@ -1,6 +1,7 @@
 import type * as Koa from 'koa';
 import type { Context } from 'koa';
 import type { Compiler } from 'webpack';
+import type { ViteDevServer } from 'vite';
 
 export interface Log {
   type: 'file' | 'http';
@@ -27,10 +28,11 @@ export interface ServerArgs {
   proxyFile?: string;
   mockFile?: string;
   redirectToHttps?: boolean;
+  vite?: boolean;
 }
 
 export interface DevServerArgs extends ServerArgs {
-  compiler?: Compiler;
+  compiler?: Compiler | ViteDevServer;
 }
 
 export interface ProServerArgs extends ServerArgs {
@@ -42,6 +44,7 @@ export interface ProServerArgs extends ServerArgs {
 export interface SweetOptions extends DevServerArgs, ProServerArgs {
   basicPath: string;
   serverRenderEntry?: string;
+  vite?: boolean;
 }
 
 export interface ControllersModule {
