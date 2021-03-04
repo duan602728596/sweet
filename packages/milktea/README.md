@@ -116,7 +116,7 @@ module.exports = function(info) {
 
 ### 关于vue
 
-如果使用vue，需要手动安装`@vue/babel-plugin-jsx`(vue3) ，`vue-loader`、`vue-svg-loader@0.17.0-beta.1`，`@vue/compiler-sfc`(vue3)。
+如果使用vue，需要手动安装`@vue/babel-plugin-jsx`(vue3)、`vue-loader`、`vue-svg-loader@0.17.0-beta.1`、`@vue/compiler-sfc`(vue3)。
 
 ### 关于typescript
 
