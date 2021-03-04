@@ -71,7 +71,7 @@ export function config(args: FuncArgs = {}): Configuration {
   const { sweetConfig, mode, webpackLog, hot }: FuncArgs = args;
   const cfg: SweetConfig = getConfig('client', sweetConfig);
 
-  if (config) {
+  if (cfg) {
     if (mode) {
       cfg.mode = mode;
     }
