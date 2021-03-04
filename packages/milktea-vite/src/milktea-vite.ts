@@ -86,3 +86,9 @@ export function serverRenderBuild(args: FuncArgs = {}): Promise<RollupOutput | R
 
   return viteBuild(viteSSRBuild(cfg, sweetOptions));
 }
+
+export default {
+  config,
+  build,
+  serverRenderBuild
+};

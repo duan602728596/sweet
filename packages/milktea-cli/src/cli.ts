@@ -4,7 +4,9 @@
 import * as yargs from 'yargs';
 import argvDll from './argv/argvDll';
 import argvStart from './argv/argvStart';
+import argvViteStart from './argv/argvViteStart';
 import argvBuild from './argv/argvBuild';
+import argvViteBuild from './argv/argvViteBuild';
 import argvServer from './argv/argvServer';
 import argvUpdate from './argv/argvUpdate';
 import argvImage2WebP from './argv/argvImage2WebP';
@@ -17,7 +19,9 @@ import argvMedia2WebP from './argv/argvMedia2WebP';
 const argv: any = yargs
   .command('dll', '编译dll文件', (): void => undefined, argvDll)
   .command('start', '开发环境', (): void => undefined, argvStart)
+  .command('vite-start', 'vite-开发环境', (): void => undefined, argvViteStart)
   .command('build', '编译代码', (): void => undefined, argvBuild)
+  .command('vite-build', 'vite-编译代码', (): void => undefined, argvViteBuild)
   .command('server', '启动服务器', (): void => undefined, argvServer)
   .command('update', '工具：检查当前目录是否有依赖需要更新', (): void => undefined, argvUpdate)
   .command('image2webp', '工具：图片批量转换成webp格式', (): void => undefined, argvImage2WebP)
@@ -100,6 +104,11 @@ const argv: any = yargs
     renderType: {
       describe: 'html使用的渲染模板，ejs 或 nunjucks。默认为ejs',
       type: 'string'
+    },
+    // vite
+    vite: {
+      describe: '使用vite',
+      type: 'boolean'
     },
     // image2webp & imageCompress & image2icns
     imageEntry: {

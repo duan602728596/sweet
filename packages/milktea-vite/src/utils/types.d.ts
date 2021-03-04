@@ -1,4 +1,5 @@
-import type { InlineConfig } from 'vite';
+import type { ViteDevServer, InlineConfig } from 'vite';
+import type { RollupOutput } from 'rollup';
 import type { CosmiconfigResult } from 'cosmiconfig';
 
 /* 当前的编译环境 */
@@ -43,4 +44,10 @@ export type SweetConfigArgs = SweetConfig | string | null | undefined;
 export interface FuncArgs {
   sweetConfig?: SweetConfigArgs;
   mode?: Mode;
+}
+
+export interface MilkVite {
+  config(args: FuncArgs): Promise<ViteDevServer>;
+  build(args: FuncArgs): Promise<RollupOutput | RollupOutput[]>;
+  serverRenderBuild(args: FuncArgs): Promise<RollupOutput | RollupOutput[]>;
 }

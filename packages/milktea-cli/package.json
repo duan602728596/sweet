@@ -24,12 +24,15 @@
   },
   "devDependencies": {
     "@sweet-milktea/milktea": "*",
+    "@sweet-milktea/milktea-vite": "*",
     "@sweet-milktea/server": "*",
     "@sweet-milktea/server-log": "*",
-    "@sweet-milktea/util-tools": "*"
+    "@sweet-milktea/util-tools": "*",
+    "vite": "^2.0.5"
   },
   "peerDependencies": {
     "@sweet-milktea/milktea": ">=2",
+    "@sweet-milktea/milktea-vite": ">=2",
     "@sweet-milktea/server": ">=2",
     "@sweet-milktea/server-log": ">=0",
     "@sweet-milktea/util-tools": ">=0"
