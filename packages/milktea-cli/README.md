@@ -20,10 +20,12 @@ milktea-cli是一个快速运行环境的工具。
   * `--serverRender`: 开启服务器端渲染。
   * `--serverRenderRoot`: 服务器端渲染的模块文件目录。默认为`dist-server`。
   * `--serverRenderFile`: 服务器渲染的主模块文件。默认为`server.js`。
+  * `--vite`: 使用vite。
 * `milktea build`: 编译代码。
   * `--config`: 选择一个配置文件。
   * `--serverRender`: 开启服务器端渲染。
   * `--webpackLog`: 日志输出类型。progress：进度条，stats：传统的输出方式。默认为progress。
+  * `--vite`: 使用vite。
 * `milktea server`: 启动生产环境的服务器。
   * `--config`: 选择一个配置文件。
   * `--httpPort`: http服务的端口号。开发环境（默认：5050）和服务器（默认：80）。
