@@ -104,7 +104,9 @@ export interface ExplorerSync {
 }
 
 /* Milktea导出的文件 */
-interface FuncArgs {
+export type SweetConfigArgs = SweetConfig | string | null | undefined;
+
+export interface FuncArgs {
   sweetConfig?: SweetConfigArgs;
   mode?: Mode;
   webpackLog?: WebpackLog;
