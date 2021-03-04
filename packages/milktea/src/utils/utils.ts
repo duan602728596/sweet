@@ -39,4 +39,4 @@ export function customizer(objValue: any, srcValue: any): Array<any> | undefined
 }
 
 /* extensions扩展名 */
-export const extensions: Array<string> = ['.js', '.jsx', '.mjs', 'cjs', '.json', '.wasm', '.ts', '.tsx', '.vue'];
+export const extensions: Array<string> = ['.mjs', '.ts', '.tsx', '.js', '.jsx', 'cjs', '.json', '.vue', '.wasm'];

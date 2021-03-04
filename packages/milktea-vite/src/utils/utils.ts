@@ -4,3 +4,6 @@ export function requireModule(id: string): any {
 
   return 'default' in module ? module.default : module;
 }
+
+/* extensions扩展名 */
+export const extensions: Array<string> = ['.mjs', '.ts', '.tsx', '.js', '.jsx', 'cjs', '.json', '.vue', '.wasm'];
