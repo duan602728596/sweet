@@ -30,7 +30,7 @@ function createRouters(router: Router, sweetOptions: SweetOptions): void {
       // 将path改回重定向前的值
       ctx.path = ctxPath;
 
-      if (sweetOptions.vite && !/^\/@/i.test(ctxPath)) {
+      if (sweetOptions.vite && !/^\/@/i.test(ctxPath) && /^\s*$/.test(ctx.type)) {
         const isHtml: boolean = /\.html$/i.test(ctxPath);
         const viteRoot: string = (sweetOptions.compiler as ViteDevServer).config.root;
         const htmlFile: string = path.join(viteRoot, ctxPath);
