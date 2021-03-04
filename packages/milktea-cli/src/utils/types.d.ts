@@ -21,7 +21,6 @@ export interface Argv {
   serverRenderFile: string;
   template: string;
   renderType: 'ejs' | 'nunjucks';
-  vite: boolean;
   // utils
   registry: number;
   imageEntry: string;
