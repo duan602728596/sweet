@@ -1,4 +1,5 @@
 import * as path from 'path';
+import { requireModule, moduleExists } from '../utils/utils';
 import type { InlineConfig } from 'vite';
 import type { SweetOptions } from '../utils/types';
 
@@ -14,6 +15,9 @@ export function basicConfig(sweetOptions: SweetOptions): InlineConfig {
       preprocessorOptions: {
         less: {
           javascriptEnabled: true
+        },
+        sass: {
+          fiber: moduleExists('fibers') ? requireModule('fibers') : false
         }
       }
     },
