@@ -21,7 +21,7 @@ function runServer() {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       resolve();
-    }, 15000);
+    }, 7000);
   });
 }
 

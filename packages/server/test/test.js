@@ -10,6 +10,7 @@ require('./testServer');
 /* test */
 require('./devServer');
 require('./devTsServer');
+require('./devViteServer');
 require('./proServer');
 
 setTimeout(() => {

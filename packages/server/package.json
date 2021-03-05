@@ -45,12 +45,14 @@
   },
   "devDependencies": {
     "@sweet-milktea/milktea": "*",
+    "@sweet-milktea/milktea-vite": "*",
     "@sweet-milktea/server-log": "*",
     "nunjucks": "^3.2.3",
     "vite": "^2.0.5"
   },
   "peerDependencies": {
     "@sweet-milktea/milktea": ">=2",
+    "@sweet-milktea/milktea-vite": ">=2",
     "@sweet-milktea/server-log": ">=0",
     "nunjucks": ">=3"
   },
