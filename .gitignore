@@ -26,6 +26,7 @@ packages/**/yarn.lock
 packages/**/yarn-error.log
 packages/**/build
 packages/**/dist
+packages/**/dist-server
 packages/**/.sweet
 
 # util-tools

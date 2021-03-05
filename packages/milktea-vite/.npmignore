@@ -15,5 +15,7 @@ src
 test
 tests
 tsconfig.json
+dist
+dist-server
 
 .DS_Store
