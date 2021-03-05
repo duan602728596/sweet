@@ -1,8 +1,9 @@
 import { useRoutes } from 'react-router-dom';
 import Element from '../../components/Element/Element';
 import MarkDown from '../../components/MarkDown/MarkDown';
-import milkteaCli from '../../../../milktea-cli/README.md';
 import milktea from '../../../../milktea/README.md';
+import milkteaCli from '../../../../milktea-cli/README.md';
+import milkteaVite from '../../../../milktea-vite/README.md';
 import server from '../../../../server/README.md';
 import serverLog from '../../../../server-log/README.md';
 import utilTools from '../../../../util-tools/README.md';
@@ -24,6 +25,14 @@ function Index(props) {
       element: (
         <Element title="milktea-cli">
           <MarkDown markdown={ milkteaCli } />
+        </Element>
+      )
+    },
+    {
+      path: 'MilkteaVite',
+      element: (
+        <Element title="milkteaVite">
+          <MarkDown markdown={ milkteaVite } />
         </Element>
       )
     },

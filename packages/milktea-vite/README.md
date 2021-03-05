@@ -9,14 +9,13 @@
 2. 在node内运行函数。
 
 ```javascript
-import webpack from 'webpack';
 import {
   config as viteConfig, // vite开发环境配置
   build as viteBuild,   // vite生产环境配置
   serverRenderBuild     // vite SSR生产环境配置
 } from '@sweet-milktea/milktea-vite';
 
-// sweetConfig { SweetConfig | string | null | undefined }: webpack配置，覆盖文件，优先级最高
+// sweetConfig { SweetConfig | string | null | undefined }: 覆盖文件，优先级最高
 // mode { string }: 开发模式 development，生产模式 production
 const vite = await viteConfig({
   // 配置项
@@ -50,7 +49,7 @@ module.exports = function(info) {
 ### 配置项
 
 * mode `{ string }` : 开发模式还是生产模式
-* frame `{ string }` : 值为`react`或`vue`，是否为react或vue模式，并自动注入loaders和plugins
+* frame `{ string }` : 值为`react`或`vue`，是否为react或vue模式，并自动修改默认配置，添加plugin
 * vite `{ object }` : vite配置，会合并到默认配置中
 * chainVite `{ Function }` : 通过扩展或修改vite配置
 
