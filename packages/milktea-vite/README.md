@@ -64,7 +64,7 @@ module.exports = function(info) {
 
 ### 关于typescript
 
-使用typescript，需要手动安装`typescript。   
+使用typescript，需要手动安装`typescript`。   
 
 ### info
 
