@@ -19,6 +19,7 @@
     "@babel/plugin-proposal-decorators": "^7.13.5",
     "@babel/plugin-proposal-do-expressions": "^7.12.13",
     "@babel/plugin-proposal-export-default-from": "^7.12.13",
+    "@babel/plugin-proposal-function-bind": "^7.12.13",
     "@babel/plugin-proposal-pipeline-operator": "^7.12.13",
     "@babel/plugin-proposal-throw-expressions": "^7.12.13",
     "@babel/plugin-syntax-module-string-names": "^7.12.13",
