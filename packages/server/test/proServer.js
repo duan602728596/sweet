@@ -25,8 +25,8 @@ function runServer() {
   proServer({
     env: 'test',
     serverRoot: 'test/dist',
-    httpPort: 5052,
-    httpsPort: 5053,
+    httpPort: 5060,
+    httpsPort: 5061,
     apiFile: path.join(__dirname, 'api/api.js'),
     proxyFile: path.join(__dirname, 'proxy/proxy.js')
   });
@@ -43,11 +43,11 @@ describe('production server', function() {
     await runBuild();
     await runServer();
 
-    const resHtml = await get('http://127.0.0.1:5052');
-    const resJs = await get('http://127.0.0.1:5052/index.js');
-    const resApi = await get('http://127.0.0.1:5052/api/test', true);
-    const resProxyGet = await get('http://127.0.0.1:5052/proxy/test/get?text=test', true);
-    const resProxyPost = await post('http://127.0.0.1:5052/proxy/test/post?text=test', {
+    const resHtml = await get('http://127.0.0.1:5060');
+    const resJs = await get('http://127.0.0.1:5060/index.js');
+    const resApi = await get('http://127.0.0.1:5060/api/test', true);
+    const resProxyGet = await get('http://127.0.0.1:5060/proxy/test/get?text=test', true);
+    const resProxyPost = await post('http://127.0.0.1:5060/proxy/test/post?text=test', {
       text: 'test'
     });
     const resMock0 = await get('http://127.0.0.1:5050/mock/api/test/0');
