@@ -1,8 +1,4 @@
-'use strict'; // webpack@5 doesn't inject node polyfill automatically
-
-window.global = window.global || window;
-window.process = window.process || {};
-window.process.env = window.process.env || {};
+'use strict';
 /* global __resourceQuery WorkerGlobalScope self */
 
 var stripAnsi = require('../transpiled-modules/strip-ansi');
@@ -129,7 +125,7 @@ var onSocketMessage = {
     log.warn('Warnings while compiling.');
 
     var strippedWarnings = _warnings.map(function (warning) {
-      return stripAnsi(warning);
+      return stripAnsi(warning.message ? warning.message : warning);
     });
 
     sendMessage('Warnings', strippedWarnings);
@@ -152,7 +148,7 @@ var onSocketMessage = {
     log.error('Errors while compiling. Reload prevented.');
 
     var strippedErrors = _errors.map(function (error) {
-      return stripAnsi(error);
+      return stripAnsi(error.message ? error.message : error);
     });
 
     sendMessage('Errors', strippedErrors);

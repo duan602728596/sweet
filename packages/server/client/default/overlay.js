@@ -4,9 +4,8 @@
 var ansiHTML = require('ansi-html');
 
 var _require = require('html-entities'),
-    AllHtmlEntities = _require.AllHtmlEntities;
+    encode = _require.encode;
 
-var entities = new AllHtmlEntities();
 var colors = {
   reset: ['transparent', 'transparent'],
   black: '181818',
@@ -111,7 +110,7 @@ function showMessage(messages) {
   ensureOverlayDivExists(function (div) {
     // Make it look similar to our terminal.
     var errorMessage = messages[0].message || messages[0];
-    var text = ansiHTML(entities.encode(errorMessage));
+    var text = ansiHTML(encode(errorMessage));
     div.innerHTML = "<span style=\"color: #".concat(colors.red, "\">Failed to compile.</span><br><br>").concat(text);
   });
 }
