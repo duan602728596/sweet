@@ -21,25 +21,3 @@ export function moduleExists(id: string): string | false {
     return false;
   }
 }
-
-/**
- * 模块版本检查是否大于等于指定的最小版本号
- * @param { string } version: 当前版本
- * @param { Array<number> } minimumVersion: 最小版本
- */
-export function versionCheck(version: string, minimumVersion: Array<number>): boolean {
-  const middleVersion: Array<string> = version.split(/\./);
-  let result: boolean = true;
-
-  for (let i: number = 0, j: number = minimumVersion.length; i < j; i++) {
-    const lVer: number = Number(middleVersion[i]);
-    const rVer: number = minimumVersion[i];
-
-    if (lVer !== rVer) {
-      result = lVer > rVer;
-      break;
-    }
-  }
-
-  return result;
-}
