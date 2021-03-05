@@ -24,7 +24,7 @@ function createCompiler(entry, mode = 'development') {
       },
       mode
     })
-  ); // TODO: 生产环境下编译会卡进程，导致无法输出文件，所以将mode的值"production"改为"development"
+  );
 
   return compiler;
 }
