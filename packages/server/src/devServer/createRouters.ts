@@ -41,10 +41,8 @@ function createRouters(router: Router, sweetOptions: SweetOptions): void {
             ctx.body = await fs.promises.readFile(htmlFile, { encoding: 'utf8' });
           }
         } else {
-          const indexHtmlFile: string = path.join(viteRoot, 'index.html');
-
           ctx.type === 'text/html';
-          ctx.body = await fs.promises.readFile(indexHtmlFile, { encoding: 'utf8' });
+          ctx.body = await fs.promises.readFile(path.join(viteRoot, 'index.html'), { encoding: 'utf8' });
         }
       }
 
