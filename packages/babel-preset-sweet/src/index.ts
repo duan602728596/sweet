@@ -1,6 +1,5 @@
 import * as process from 'process';
-import * as transformRuntimePackageJson from '@babel/plugin-transform-runtime/package.json';
-import { defaultPlugins, moduleExists, versionCheck } from './utils';
+import { defaultPlugins, moduleExists } from './utils';
 import type {
   BabelPresetSweetOptions as Options,
   BabelPresetSweet,
@@ -23,13 +22,11 @@ function babelPresetSweet(api: any, options: Options = {}, dirname: string): Bab
       ...defaultPlugins,
       [
         '@babel/plugin-transform-runtime',
-        Object.assign({
+        {
           corejs: { version: 3, proposals: true },
           helpers: true,
           regenerator: nodeEnv || !ecmascript
-        }, versionCheck(transformRuntimePackageJson.version, [7, 13]) ? undefined : {
-          useESModules: envModules === false
-        })
+        }
       ]
     ];
 

@@ -4,4 +4,3 @@ const babelConfig = require('../../../scripts/babelConfig');
 register(babelConfig);
 
 require('./babelPresetSweet');
-require('./utils');
