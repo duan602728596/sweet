@@ -51,7 +51,7 @@
     "husky": "^4.3.8",
     "lint-staged": "^10.5.4",
     "lodash": "^4.17.21",
-    "mocha": "^8.3.0"
+    "mocha": "^8.3.1"
   },
   "optionalDependencies": {
     "imagemin-gif2webp": ">=3",
