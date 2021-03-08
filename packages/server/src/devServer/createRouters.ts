@@ -33,14 +33,15 @@ function createRouters(router: Router, sweetOptions: SweetOptions): void {
       // 对vite路由的处理
       if (sweetOptions.vite && !/^\/@/i.test(ctxPath) && /^\s*$/.test(ctx.type)) {
         const isHtml: boolean = /\.html$/i.test(ctxPath);
-        const viteRoot: string = (sweetOptions.compiler as ViteDevServer).config.root;
+        const compiler: ViteDevServer = sweetOptions.compiler as ViteDevServer;
+        const viteRoot: string = compiler.config.root;
         const htmlFilepath: string = path.join(viteRoot, isHtml ? ctxPath : 'index.html');
 
         if (fs.existsSync(htmlFilepath)) {
           const html: string = await fs.promises.readFile(htmlFilepath, { encoding: 'utf8' });
 
           ctx.type === 'text/html';
-          ctx.body = await (sweetOptions.compiler as ViteDevServer).transformIndexHtml(ctxPath, html);
+          ctx.body = await compiler.transformIndexHtml(ctxPath, html);
         }
       }
 
