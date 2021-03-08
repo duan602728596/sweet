@@ -47,14 +47,14 @@ const navs = [
         name: 'milktea'
       },
       {
-        id: 'packages/milkteacli',
-        url: '/Packages/MilkteaCli',
-        name: 'milktea-cli'
-      },
-      {
         id: 'packages/milkteavite',
         url: '/Packages/MilkteaVite',
         name: 'milktea-vite'
+      },
+      {
+        id: 'packages/milkteacli',
+        url: '/Packages/MilkteaCli',
+        name: 'milktea-cli'
       },
       {
         id: 'packages/server',
