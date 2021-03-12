@@ -10,7 +10,6 @@ import AppRouters from './router/AppRouters';
 /* app */
 render(
   <Provider store={ storeFactory(window.__INITIAL_STATE__ || {}) }>
-
     <ConfigProvider locale={ zhCN }>
       <BrowserRouter>
         <AppRouters />
