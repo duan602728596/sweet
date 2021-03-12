@@ -2,6 +2,7 @@ import * as path from 'path';
 import * as _ from 'lodash';
 import type { Configuration } from 'webpack';
 import * as Config from 'webpack-chain';
+import type{ Output } from 'webpack-chain';
 import { merge } from 'webpack-merge';
 import loaders from './loaders/loaders';
 import basicPlugins from './plugins/plugins';
@@ -40,7 +41,7 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions): C
     ts,
     webpackLog = 'progress'
   }: SweetConfig = SCFG;
-  const ecmascript: boolean | undefined = js?.ecmascript;
+  const ecmascript: boolean = !!js?.ecmascript;
   const isDevelopment: boolean = mode === 'development';
 
   // webpack配置
@@ -90,7 +91,9 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions): C
     .publicPath('')
     .path(path.join(sweetOptions.basicPath, 'dist'))
     .filename(filename)
-    .globalObject('this');
+    .when(ecmascript, (output: Output): void => {
+      output.globalObject('globalThis');
+    });
 
   // forkTsCheckerWebpackPlugin配置
   sweetOptions.forkTsCheckerWebpackPlugin = !!(

@@ -61,7 +61,7 @@ export default function(sweetConfig: SweetConfig | null | undefined, sweetOption
     .filename('[name].js')
     .library('[name]')
     .libraryTarget('umd')
-    .globalObject('this');
+    .globalObject('globalThis');
 
   // forkTsCheckerWebpackPlugin配置
   sweetOptions.forkTsCheckerWebpackPlugin = !!(

@@ -3,6 +3,7 @@ import * as _ from 'lodash';
 import * as webpack from 'webpack';
 import type { Configuration } from 'webpack';
 import * as Config from 'webpack-chain';
+import type { Output } from 'webpack-chain';
 import { merge } from 'webpack-merge';
 import * as WebpackBar from 'webpackbar';
 import { handleDllProgress } from './plugins/handleProgress';
@@ -27,7 +28,6 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions): C
     'hot'
   ]);
   const {
-    frame,
     dll,
     externals,
     resolve,
@@ -35,7 +35,7 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions): C
     js = {},
     webpackLog = 'progress'
   }: SweetConfig = SCFG;
-  const { ecmascript }: JS = js;
+  const ecmascript: boolean = !!js.ecmascript;
 
   // 合并配置
   config
@@ -54,7 +54,9 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions): C
     .filename('[name].js')
     .library('[name]_[hash:5]')
     .libraryTarget('var')
-    .globalObject('this');
+    .when(ecmascript, (output: Output): void => {
+      output.globalObject('globalThis');
+    });
 
   // plugin
   config
