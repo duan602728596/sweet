@@ -5,7 +5,7 @@ import type { ViteDevServer } from 'vite';
 import type * as Koa from 'koa';
 import type * as Router from '@koa/router';
 import koaDevMiddleware from './koaDevMiddleware';
-import { SweetOptions } from '../utils/types';
+import type { SweetOptions } from '../utils/types';
 
 /**
  * 创建中间件

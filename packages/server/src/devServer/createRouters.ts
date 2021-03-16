@@ -7,7 +7,7 @@ import type * as Router from '@koa/router';
 import type { ViteDevServer } from 'vite';
 import preRenderInit from './preDevRender';
 import { isExists } from '../utils/utils';
-import { SweetOptions } from '../utils/types';
+import type { SweetOptions } from '../utils/types';
 
 function createRouters(router: Router, sweetOptions: SweetOptions): void {
   const preRender: Function = preRenderInit(sweetOptions);

@@ -1,6 +1,6 @@
 import type * as Koa from 'koa';
 import { requireModule } from '../utils/utils';
-import { Log, SweetOptions } from '../utils/types';
+import type { Log, SweetOptions } from '../utils/types';
 
 /* 添加日志中间件 */
 function logs(app: Koa, log: Log, sweetOptions: SweetOptions): void {

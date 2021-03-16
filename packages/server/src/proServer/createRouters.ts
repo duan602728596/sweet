@@ -6,7 +6,7 @@ import type { Context, Next } from 'koa';
 import type * as Router from '@koa/router';
 import preRenderInit from './preProRender';
 import { isExists } from '../utils/utils';
-import { SweetOptions } from '../utils/types';
+import type { SweetOptions } from '../utils/types';
 
 function createRouters(
   router: Router,
