@@ -1,4 +1,4 @@
-import * as Config from 'webpack-chain';
+import type * as Config from 'webpack-chain';
 import { createImageConfig } from '../config/imageConfig';
 import type { SweetConfig } from '../utils/types';
 

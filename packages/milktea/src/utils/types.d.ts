@@ -1,5 +1,5 @@
 import type { RuleSetRule, Entry, ResolveOptions, WebpackPluginInstance, Configuration, Stats } from 'webpack';
-import * as Config from 'webpack-chain';
+import type * as Config from 'webpack-chain';
 import type { CosmiconfigResult } from 'cosmiconfig/dist/types';
 import type { Options as HtmlWebpackPluginOptions } from 'html-webpack-plugin';
 

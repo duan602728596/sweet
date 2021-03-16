@@ -2,15 +2,15 @@
 import * as path from 'path';
 import type { ParsedPath } from 'path';
 import * as webpack from 'webpack';
-import * as Config from 'webpack-chain';
-import type {
-  TypeScriptReporterOptions
-} from 'fork-ts-checker-webpack-plugin/lib/typescript-reporter/TypeScriptReporterOptions';
 import * as HtmlWebpackPlugin from 'html-webpack-plugin';
 import type { Options as HtmlWebpackPluginOptions } from 'html-webpack-plugin';
 import * as FilesMapWebpackPlugin from '@bbkkbkk/files-map-webpack-plugin';
 import * as WebpackBar from 'webpackbar';
 import * as _ from 'lodash';
+import type * as Config from 'webpack-chain';
+import type {
+  TypeScriptReporterOptions
+} from 'fork-ts-checker-webpack-plugin/lib/typescript-reporter/TypeScriptReporterOptions';
 import { requireModule, moduleExists, isTsconfigJsonExists } from '../utils/utils';
 import type { SweetConfig, SweetOptions } from '../utils/types';
 

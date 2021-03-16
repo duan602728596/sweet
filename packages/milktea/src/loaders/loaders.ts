@@ -1,4 +1,4 @@
-import * as Config from 'webpack-chain';
+import type * as Config from 'webpack-chain';
 import jsLoader from './javascript';
 import tsLoader from './typescript';
 import sassLoader from './sass';

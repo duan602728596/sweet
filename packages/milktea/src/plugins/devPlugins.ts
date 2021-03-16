@@ -1,7 +1,7 @@
 import * as path from 'path';
 import * as webpack from 'webpack';
-import * as Config from 'webpack-chain';
 import * as ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin';
+import type * as Config from 'webpack-chain';
 import { dllCache } from '../config/cacheConfig';
 import type { SweetConfig, SweetOptions } from '../utils/types';
 

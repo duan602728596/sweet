@@ -1,4 +1,4 @@
-import * as Config from 'webpack-chain';
+import type * as Config from 'webpack-chain';
 import type { Rule, LoaderOptions } from 'webpack-chain';
 import { createStyleLoader, createCssOptions, createSassOptions } from '../config/cssConfig';
 import type { SweetConfig, SASS } from '../utils/types';
