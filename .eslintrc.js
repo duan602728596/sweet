@@ -38,6 +38,9 @@ module.exports = {
       }
     }
   },
+  globals: {
+    NodeJS: true
+  },
   overrides: [
     {
       files: ['*.ts', '*.tsx'],
