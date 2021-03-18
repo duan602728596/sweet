@@ -19,7 +19,6 @@
   },
   "dependencies": {
     "lodash": "^4.17.21",
-    "webpack": "^5.25.0",
     "yargs": "^16.2.0"
   },
   "devDependencies": {
@@ -28,7 +27,8 @@
     "@sweet-milktea/server": "*",
     "@sweet-milktea/server-log": "*",
     "@sweet-milktea/util-tools": "*",
-    "vite": "^2.0.5"
+    "vite": "^2.1.2",
+    "webpack": "^5.26.3"
   },
   "peerDependencies": {
     "@sweet-milktea/milktea": ">=2",
