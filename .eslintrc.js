@@ -39,7 +39,7 @@ module.exports = {
     }
   },
   globals: {
-    NodeJS: true
+    NodeJS: 'readonly'
   },
   overrides: [
     {
