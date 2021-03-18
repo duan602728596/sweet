@@ -17,17 +17,17 @@ const sweetOptions: SweetOptions = {
 function getConfig(environment: Environment, sweetConfig: SweetConfigArgs): SweetConfig {
   if (typeof sweetConfig === 'string') {
     // 自定义配置文件路径
-    const config: SweetConfig | ((info: Info) => SweetConfig) = configFile(sweetOptions, sweetConfig);
+    const cfg: SweetConfig | ((info: Info) => SweetConfig) = configFile(sweetOptions, sweetConfig);
 
-    return typeof config === 'function' ? config({ environment }) : config;
+    return typeof cfg === 'function' ? cfg({ environment }) : cfg;
   } else if (_.isPlainObject(sweetConfig)) {
     // 自定义配置文件
     return sweetConfig as SweetConfig;
   } else {
     // 默认的配置文件
-    const config: SweetConfig | ((info: Info) => SweetConfig) = configFile(sweetOptions);
+    const cfg: SweetConfig | ((info: Info) => SweetConfig) = configFile(sweetOptions);
 
-    return typeof config === 'function' ? config({ environment }) : config;
+    return typeof cfg === 'function' ? cfg({ environment }) : cfg;
   }
 }
 

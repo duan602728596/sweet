@@ -8,8 +8,8 @@ export default function(sweetConfig: SweetConfig, config: Config): void {
 
   config
     .when(frame === 'react',
-      (config: Config): void => {
-        config
+      (chainConfig: Config): void => {
+        chainConfig
           .module
           .rule('svg')
           .test(/\.svg$/i)
@@ -25,8 +25,8 @@ export default function(sweetConfig: SweetConfig, config: Config): void {
   // 当环境是vue时
   config
     .when(frame === 'vue',
-      (config: Config): void => {
-        config
+      (chainConfig: Config): void => {
+        chainConfig
           .module
           .rule('svg')
           .test(/component\.svg$/i)
@@ -41,8 +41,8 @@ export default function(sweetConfig: SweetConfig, config: Config): void {
   // issuer
   config
     .when(frame === 'react' || frame === 'vue',
-      (config: Config): void => {
-        config
+      (chainConfig: Config): void => {
+        chainConfig
           .merge({
             module: {
               rule: {

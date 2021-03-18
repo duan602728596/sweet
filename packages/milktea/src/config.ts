@@ -91,8 +91,8 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions): C
     .publicPath('')
     .path(path.join(sweetOptions.basicPath, 'dist'))
     .filename(filename)
-    .when(ecmascript, (output: Output): void => {
-      output.globalObject('globalThis');
+    .when(ecmascript, (chainConfigOutput: Output): void => {
+      chainConfigOutput.globalObject('globalThis');
     });
 
   // forkTsCheckerWebpackPlugin配置

@@ -31,7 +31,7 @@ function createJsRegisterLoader(): LoaderSync {
 }
 
 /* 获取配置文件 */
-function configFile(sweetOptions: SweetOptions, configFile?: string): SweetConfig | ((info: Info) => SweetConfig) {
+function getConfigFile(sweetOptions: SweetOptions, configFile?: string): SweetConfig | ((info: Info) => SweetConfig) {
   // @babel/register
   const jsRegisterLoader: LoaderSync = createJsRegisterLoader();
 
@@ -83,4 +83,4 @@ function configFile(sweetOptions: SweetOptions, configFile?: string): SweetConfi
   }
 }
 
-export default configFile;
+export default getConfigFile;

@@ -11,8 +11,8 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
 
   // dll
   config
-    .when(!!(dll && Array.isArray(dll) && dll.length > 0 && !serverRender), (config: Config): void => {
-      config
+    .when(!!(dll && Array.isArray(dll) && dll.length > 0 && !serverRender), (chainConfig: Config): void => {
+      chainConfig
         .plugin('DllReferencePlugin')
         .use(webpack.DllReferencePlugin, [{
           context: sweetOptions.basicPath,
@@ -22,16 +22,16 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
 
   // 热替换 webpack5的HotModuleReplacementPlugin插件会生成无用的文件
   config
-    .when(!!hot, (config: Config): void => {
-      config
+    .when(!!hot, (chainConfig: Config): void => {
+      chainConfig
         .plugin('webpack.HotModuleReplacementPlugin')
         .use(webpack.HotModuleReplacementPlugin);
     });
 
   // react-refresh-webpack-plugin
   config
-    .when(!!hot && frame === 'react' && hotType === 'react-refresh', (config: Config): void => {
-      config
+    .when(!!hot && frame === 'react' && hotType === 'react-refresh', (chainConfig: Config): void => {
+      chainConfig
         .plugin('react-refresh-webpack-plugin')
         .use(ReactRefreshWebpackPlugin, [{
           overlay: false

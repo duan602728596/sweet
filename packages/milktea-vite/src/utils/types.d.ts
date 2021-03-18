@@ -16,7 +16,7 @@ export interface Info {
   environment: Environment;
 }
 
-export type Mode = Configuration.mode;
+export type Mode = 'development' | 'production';
 export type Frame = 'react' | 'vue' | 'test'; // 当前使用的组件
 
 /* sweet.config.js的配置 */

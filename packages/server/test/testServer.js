@@ -2,13 +2,13 @@
 const http = require('http');
 const Koa = require('koa');
 const Router = require('@koa/router');
-const body = require('koa-body');
+const koaBody = require('koa-body');
 
 const app = new Koa();
 const router = new Router();
 
 /* body */
-app.use(body());
+app.use(koaBody());
 
 /* router */
 app.use(router.routes())
@@ -31,7 +31,6 @@ router.post('/post', function(ctx, next) {
     body: body.text
   };
 });
-
 
 http.createServer(app.callback())
   .listen(5054);

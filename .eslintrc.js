@@ -149,10 +149,7 @@ module.exports = {
     'no-label-var': 'error',                 // 禁用与变量同名的标签
     'no-shadow': [                           // 禁止变量声明覆盖外层作用域的变量
       'error',
-      {
-        builtinGlobals: true,
-        hoist: 'all'
-      }
+      { hoist: 'all' }
     ],
     'no-undef': 'error',                     // 禁用未声明的变量
     'no-use-before-define': 'error',         // 禁止定义前使用

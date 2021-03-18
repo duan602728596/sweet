@@ -58,6 +58,7 @@ export function defaultMockPath(basicPath: string): { ts: string; tsx: string; j
 /* 清除模块缓存（只用于开发环境） */
 export function cleanRequireCache(id: any): void {
   const modulePath: string = require.resolve(id);
+  /* global NodeJS */
   const main: NodeJS.Module | null | undefined = require.main ?? module.parent;
 
   if (main) {

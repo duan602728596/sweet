@@ -43,8 +43,8 @@ export default function(sweetConfig: SweetConfig, config: Config): void {
   // vue
   config
     .when(frame === 'vue',
-      (config: Config): void => {
-        const oneOf: Rule<Rule> = lessRule
+      (chainConfig: Config): void => {
+        const lessRuleOneOf: Rule<Rule> = lessRule
           .oneOf('vue')
           .resourceQuery(/scoped/);
 
@@ -52,12 +52,12 @@ export default function(sweetConfig: SweetConfig, config: Config): void {
         if (!serverRender) {
           const vueStyleLoader: string | any = createStyleLoader(isDevelopment);
 
-          oneOf
+          lessRuleOneOf
             .use('style')
             .loader(vueStyleLoader);
         }
 
-        oneOf
+        lessRuleOneOf
           // css
           .use('css')
           .loader('css-loader')

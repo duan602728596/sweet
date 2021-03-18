@@ -25,13 +25,13 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
   // 设置minimizer的压缩插件
   config
     .when(!isDevelopment,
-      (config: Config): void => {
+      (chainConfig: Config): void => {
         const terserOptions: TerserOptions = {
           ecma: js?.ecmascript ? 2020 : 5,
           safari10: true
         };
 
-        config
+        chainConfig
           .optimization
           // js代码压缩
           .minimizer('terser-webpack-plugin')

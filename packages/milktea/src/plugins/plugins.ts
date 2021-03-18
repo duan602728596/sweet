@@ -11,7 +11,7 @@ import type * as Config from 'webpack-chain';
 import type {
   TypeScriptReporterOptions
 } from 'fork-ts-checker-webpack-plugin/lib/typescript-reporter/TypeScriptReporterOptions';
-import { requireModule, moduleExists, isTsconfigJsonExists } from '../utils/utils';
+import { requireModule } from '../utils/utils';
 import type { SweetConfig, SweetOptions } from '../utils/types';
 
 /**
@@ -108,8 +108,8 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
 
   // vue-loader plugin插件的加载
   config.when(frame === 'vue',
-    (config: Config): void => {
-      config
+    (chainConfig: Config): void => {
+      chainConfig
         .plugin('vue-loader-plugin')
         .use(requireModule('vue-loader/dist/plugin'));
     }
@@ -118,8 +118,8 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
   // 当环境为测试时，不使用输出插件
   config
     .when(sweetConfig.frame !== 'test' && (!webpackLog || webpackLog === 'progress'),
-      (config: Config): void => {
-        config
+      (chainConfig: Config): void => {
+        chainConfig
           .plugin('webpackbar')
           .use(WebpackBar, [{
             name: serverRender ? 'server' : 'client',
@@ -132,8 +132,8 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
   config
     .when(
       _.isPlainObject(filesMap) || (filesMap === true),
-      (config: Config): void => {
-        config
+      (chainConfig: Config): void => {
+        chainConfig
           .plugin('files-map-webpack-plugin')
           .use(FilesMapWebpackPlugin, _.isPlainObject(filesMap) ? [filesMap] : undefined);
       }

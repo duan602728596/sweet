@@ -51,8 +51,8 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
 
   // vue
   config
-    .when(frame === 'vue', (config: Config): void => {
-      config
+    .when(frame === 'vue', (chainConfig: Config): void => {
+      chainConfig
         .module
         .rule('vue')
         .test(/^.*\.vue$/i)
