@@ -22,7 +22,7 @@
     "glob": "^7.1.6",
     "imagemin": "^7.0.1",
     "lodash": "^4.17.21",
-    "semver": "^7.3.4"
+    "semver": "^7.3.5"
   },
   "peerDependencies": {
     "imagemin-gif2webp": ">=3",
