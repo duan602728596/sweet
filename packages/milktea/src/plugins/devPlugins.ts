@@ -34,7 +34,10 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
       chainConfig
         .plugin('react-refresh-webpack-plugin')
         .use(ReactRefreshWebpackPlugin, [{
-          overlay: false
+          overlay: {
+            entry: require.resolve('@pmmmwh/react-refresh-webpack-plugin/client/ErrorOverlayEntry'),
+            module: require.resolve('@pmmmwh/react-refresh-webpack-plugin/overlay')
+          }
         }]);
     });
 }
