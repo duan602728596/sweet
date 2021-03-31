@@ -1,8 +1,8 @@
 import * as _ from 'lodash';
-import { SweetConfig, SweetOptions } from './utils/types';
 import type { InlineConfig } from 'vite';
 import { basicConfig } from './config/basicConfig';
 import { requireModule } from './utils/utils';
+import type { SweetConfig, SweetOptions } from './utils/types';
 
 /**
  * vite 配置

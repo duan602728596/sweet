@@ -1,6 +1,6 @@
 import * as path from 'path';
-import { requireModule, moduleExists } from '../utils/utils';
 import type { InlineConfig } from 'vite';
+import { requireModule, moduleExists } from '../utils/utils';
 import type { SweetOptions } from '../utils/types';
 
 /**
