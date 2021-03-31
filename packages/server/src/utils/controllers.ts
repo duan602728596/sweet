@@ -6,7 +6,7 @@ import { requireModule, deleteCacheAndRequireModule, globPromise } from './utils
 import useRegister from './babelRegister';
 import type { SweetOptions, ControllersModule } from './types';
 
-const defaultControllers: string = 'controllers'; // 默认的controllers名
+const DEFAULT_CONTROLLERS: string = 'controllers'; // 默认的controllers名
 
 interface ControllersInfo {
   isAbsolute: boolean;
@@ -20,7 +20,7 @@ interface ControllersInfo {
  */
 export function getControllers(controllersDir?: string): ControllersInfo {
   const isAbsolute: boolean = controllersDir ? path.isAbsolute(controllersDir) : false;
-  const dir: string = controllersDir ?? defaultControllers;
+  const dir: string = controllersDir ?? DEFAULT_CONTROLLERS;
   const controllers: string = path.join(dir, '**/*.{js,jsx,ts,tsx}');
 
   return { isAbsolute, dir, controllers };
