@@ -47,13 +47,12 @@ function koaHmr(options: Options): Middleware {
 
     sock.sockWriteConnection(connection, 'logging', options.clientLogLevel ?? 'warn');
     sock.sockWriteConnection(connection, 'hot');
-    sock.sockWriteConnection(connection, 'liveReload'); // TODO: change condition at major version
+    sock.sockWriteConnection(connection, 'liveReload');
+    sock.sockWriteConnection(connection, 'overlay', true);
 
-    if (!sock.stats) {
-      return;
+    if (sock.stats) {
+      sock.sendStatsConnection(connection, sock.getStats(sock.stats), true);
     }
-
-    sock.sendStatsConnection(connection, sock.getStats(sock.stats), true);
   });
 
   return async function(ctx: Context, next: Next): Promise<void> {
