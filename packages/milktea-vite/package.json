@@ -30,7 +30,7 @@
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^1.2.1",
-    "@vitejs/plugin-vue-jsx": "^1.1.2"
+    "@vitejs/plugin-vue-jsx": "^1.1.3"
   },
   "peerDependencies": {
     "@vitejs/plugin-vue": ">=1",
