@@ -85,6 +85,7 @@ export interface SweetConfig {
   filesMap?: boolean | { [key: string]: string };
   hot?: boolean;
   hotType?: 'react-refresh' | 'react-hot-loader';
+  socket?: 'sockjs' | 'ws';
   // ssr
   serverRender?: boolean;
   serverEntry?: Entry;
@@ -111,6 +112,7 @@ export interface FuncArgs {
   mode?: Mode;
   webpackLog?: WebpackLog;
   hot?: boolean;
+  socket?: 'sockjs' | 'ws';
 }
 
 export interface Milktea {

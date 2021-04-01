@@ -33,6 +33,7 @@ export interface ServerArgs {
 
 export interface DevServerArgs extends ServerArgs {
   compiler?: Compiler | ViteDevServer;
+  socket?: 'sockjs' | 'ws';
 }
 
 export interface ProServerArgs extends ServerArgs {

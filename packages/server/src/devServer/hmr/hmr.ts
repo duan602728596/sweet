@@ -3,7 +3,9 @@ import type { Http2SecureServer } from 'http2';
 import type { Middleware, Context, Next } from 'koa';
 import type { Compiler } from 'webpack';
 import SockJSServer from './SockJSServer';
+import WebSocketServer from './WebSocketServer';
 import createLogger from './createLogger';
+import type { SweetOptions } from '../../utils/types';
 
 type Options = {
   compiler: Compiler;
@@ -14,14 +16,16 @@ type Options = {
 /**
  * 创建koa中间件
  * @param { Options } options
+ * @param { SweetOptions } sweetOptions
  */
-function koaHmr(options: Options): Middleware {
+function koaHmr(options: Options, sweetOptions: SweetOptions): Middleware {
   const log: { [key: string]: Function } = createLogger();
-  const sock: SockJSServer = new SockJSServer({
-    compiler: options.compiler,
-    server: options.server,
-    log
-  });
+  const sock: SockJSServer | WebSocketServer
+    = new (sweetOptions.socket === 'ws' ? WebSocketServer : SockJSServer)({
+      compiler: options.compiler,
+      server: options.server,
+      log
+    });
 
   sock.onConnection((connection: Function, headers: { [key: string]: string }): void => {
     if (!connection) {

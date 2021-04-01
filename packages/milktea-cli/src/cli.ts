@@ -76,6 +76,10 @@ const argv: any = yargs
       describe: 'https证书文件地址配置',
       type: 'string'
     },
+    socket: {
+      describe: 'webpack服务的socket类型，sockjs或ws',
+      type: 'string'
+    },
     redirectToHttps: {
       describe: '重定向http到https',
       type: 'boolean'

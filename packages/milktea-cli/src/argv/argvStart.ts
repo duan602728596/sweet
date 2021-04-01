@@ -14,7 +14,8 @@ function argvStart(argv: Argv): void {
     sweetConfig: argv.config,
     mode: 'development',
     webpackLog: argv.webpackLog,
-    hot: isServerEnv
+    hot: isServerEnv,
+    socket: argv.socket
   });
 
   // hmr需要output.publicPath
@@ -58,6 +59,7 @@ function argvStart(argv: Argv): void {
     const httpsCert: string = argv.httpsCert;
     const redirectToHttps: boolean = argv.redirectToHttps;
     const useBabelRegister: boolean = argv.useBabelRegister;
+    const socket: 'sockjs' | 'ws' = argv.socket;
 
     devServer({
       compiler,
@@ -70,7 +72,8 @@ function argvStart(argv: Argv): void {
       httpsKey,
       httpsCert,
       redirectToHttps,
-      useBabelRegister
+      useBabelRegister,
+      socket
     });
   } else {
     const watching: any = compiler.watch({

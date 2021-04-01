@@ -7,8 +7,7 @@
 // this WebsocketClient is here as a default fallback,
 //  in case the client is not injected
 
-var Client = require('../clients/SockJSClient');
-
+var Client = process.env.SWEET_SOCKET === 'ws' ? require('../clients/WebsocketClient') : require('../clients/SockJSClient');
 var retries = 0;
 var client = null;
 

@@ -13,6 +13,7 @@ export interface Argv {
   logPm2: boolean;
   httpsKey: string;
   httpsCert: string;
+  socket: 'sockjs' | 'ws';
   redirectToHttps: boolean;
   useBabelRegister: boolean;
   // ssr

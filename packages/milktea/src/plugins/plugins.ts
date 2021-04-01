@@ -29,7 +29,8 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
     webpackLog = 'progress',
     filesMap,
     ts,
-    js
+    js,
+    socket
   }: SweetConfig = sweetConfig;
   const isDevelopment: boolean = mode === 'development';
 
@@ -44,7 +45,8 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
     // 注入环境变量
     .plugin('webpack.DefinePlugin-sweet-env')
     .use(webpack.DefinePlugin, [{
-      'process.env.SWEET_SERVER_RENDER': !!serverRender // 判断是否为ssr渲染
+      'process.env.SWEET_SERVER_RENDER': !!serverRender, // 判断是否为ssr渲染
+      'process.env.SWEET_SOCKET': `"${ socket === 'ws' ? 'ws' : 'sockjs' }"` // 连接的socket的类型
     }]);
 
   // env plugin - 根据模式加载插件

@@ -51,6 +51,7 @@ const sweetOptions: SweetOptions = {
  * mockFile { string }: 重新定义的mock文件
  * redirectToHttps { boolean }: 307重定向到https
  * vite { boolean }: 是否为vite模式
+ * socket { 'sockjs' | 'ws' }: socket的类型
  */
 async function devServer(args: DevServerArgs = {}): Promise<void> {
   const {
@@ -71,7 +72,8 @@ async function devServer(args: DevServerArgs = {}): Promise<void> {
     proxyFile,
     mockFile,
     redirectToHttps = false,
-    vite = false
+    vite = false,
+    socket
   }: DevServerArgs = args;
 
   /* 合并配置项 */
@@ -95,6 +97,7 @@ async function devServer(args: DevServerArgs = {}): Promise<void> {
     mockFile,
     redirectToHttps,
     vite,
+    socket,
     httpPort: _httpPort,
     httpsPort: _httpsPort
   });
@@ -167,7 +170,7 @@ async function devServer(args: DevServerArgs = {}): Promise<void> {
     app.use(koaHmr({
       compiler: compiler as Compiler,
       server: hmrServer
-    }));
+    }, sweetOptions));
   }
 
   // 初始化http服务

@@ -66,23 +66,17 @@ export function callback(err: Error, stats: Stats): void {
  * @param { string } args.mode: 开发环境，覆盖配置的开发环境
  * @param { string } args.webpackLog: 覆盖日志的显示
  * @param { boolean } args.hot: 添加webpack.HotModuleReplacementPlugin插件，开启热更新功能
+ * @param { 'sockjs' | 'ws' } args.socket: socket类型
  */
 export function config(args: FuncArgs = {}): Configuration {
-  const { sweetConfig, mode, webpackLog, hot }: FuncArgs = args;
+  const { sweetConfig, mode, webpackLog, hot, socket }: FuncArgs = args;
   const cfg: SweetConfig = getConfig('client', sweetConfig);
 
   if (cfg) {
-    if (mode) {
-      cfg.mode = mode;
-    }
-
-    if (webpackLog) {
-      cfg.webpackLog = webpackLog;
-    }
-
-    if (hot) {
-      cfg.hot = hot;
-    }
+    mode && (cfg.mode = mode);
+    webpackLog && (cfg.webpackLog = webpackLog);
+    hot && (cfg.hot = hot);
+    socket && (cfg.socket = socket);
   }
 
   return webpackConfig(cfg, sweetOptions);
@@ -101,13 +95,8 @@ export function serverRenderConfig(args: FuncArgs = {}): Configuration {
   sweetOptions.environment = 'server';
 
   if (cfg) {
-    if (mode) {
-      cfg.mode = mode;
-    }
-
-    if (webpackLog) {
-      cfg.webpackLog = webpackLog;
-    }
+    mode && (cfg.mode = mode);
+    webpackLog && (cfg.webpackLog = webpackLog);
   }
 
   return webpackServerRenderConfig(cfg, sweetOptions);
@@ -124,8 +113,8 @@ export function dllConfig(args: FuncArgs = {}): Configuration {
 
   sweetOptions.environment = 'dll';
 
-  if (cfg && webpackLog) {
-    cfg.webpackLog = webpackLog;
+  if (cfg) {
+    webpackLog && (cfg.webpackLog = webpackLog);
   }
 
   return webpackDllConfig(cfg, sweetOptions);
