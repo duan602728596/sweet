@@ -22,5 +22,6 @@ proxy/*
 build
 dist
 .sweet/*
+client-src
 
 .DS_Store

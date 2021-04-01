@@ -1,9 +1,10 @@
 'use strict';
-/* global __webpack_dev_server_client__ */
 
+/* global __webpack_dev_server_client__ */
 /* eslint-disable
   camelcase
 */
+
 // this WebsocketClient is here as a default fallback,
 //  in case the client is not injected
 
@@ -14,39 +15,46 @@ const Client =
     : // eslint-disable-next-line import/no-unresolved
       require('../clients/WebsocketClient');
 */
+
 // TODO: 根据环境变量加载socket服务
+const Client = process.env.SWEET_SOCKET === 'ws'
+  ? require('../clients/WebsocketClient')
+  : require('../clients/SockJSClient');
 
-var Client = process.env.SWEET_SOCKET === 'ws' ? require('../clients/WebsocketClient') : require('../clients/SockJSClient');
-var retries = 0;
-var client = null;
+let retries = 0;
+let client = null;
 
-var socket = function initSocket(url, handlers) {
+const socket = function initSocket(url, handlers) {
   client = new Client(url);
-  client.onOpen(function () {
+
+  client.onOpen(() => {
     retries = 0;
   });
-  client.onClose(function () {
+
+  client.onClose(() => {
     if (retries === 0) {
       handlers.close();
-    } // Try to reconnect.
+    }
 
+    // Try to reconnect.
+    client = null;
 
-    client = null; // After 10 retries stop trying, to prevent logspam.
-
+    // After 10 retries stop trying, to prevent logspam.
     if (retries <= 10) {
       // Exponentially increase timeout to reconnect.
       // Respectfully copied from the package `got`.
       // eslint-disable-next-line no-mixed-operators, no-restricted-properties
-      var retryInMs = 1000 * Math.pow(2, retries) + Math.random() * 100;
+      const retryInMs = 1000 * Math.pow(2, retries) + Math.random() * 100;
       retries += 1;
-      setTimeout(function () {
+
+      setTimeout(() => {
         socket(url, handlers);
       }, retryInMs);
     }
   });
-  client.onMessage(function (data) {
-    var msg = JSON.parse(data);
 
+  client.onMessage((data) => {
+    const msg = JSON.parse(data);
     if (handlers[msg.type]) {
       handlers[msg.type](msg.data);
     }
