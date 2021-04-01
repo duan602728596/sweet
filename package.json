@@ -14,8 +14,8 @@
   },
   "dependencies": {
     "@ant-design/icons-vue": "^6.0.1",
-    "@sweet-milktea/milktea-cli": "^2.2.0",
-    "@sweet-milktea/server": "^2.2.1",
+    "@sweet-milktea/milktea-cli": "^2.3.0",
+    "@sweet-milktea/server": "^2.3.0",
     "@sweet-milktea/server-log": "^0.6.6",
     "@vue/server-renderer": "^3.0.10",
     "@vueuse/head": "^0.5.1",
@@ -30,7 +30,7 @@
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.13.14",
-    "@sweet-milktea/milktea": "^2.2.1",
+    "@sweet-milktea/milktea": "^2.3.0",
     "@sweet-milktea/util-tools": "^0.16.4",
     "@vue/babel-plugin-jsx": "^1.0.4",
     "@vue/compiler-sfc": "^3.0.10",
