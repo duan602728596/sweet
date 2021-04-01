@@ -22,13 +22,15 @@ import {
 // mode { string }: 开发模式 development，生产模式 production
 // webpackLog { 'progress' | 'stats' }: 日志输出类型。progress：进度条，stats：传统的输出方式。默认为progress
 // hot { boolean }: 添加webpack.HotModuleReplacementPlugin插件，开启热更新功能
+// socket { 'sockjs' | 'ws' }: socket类型。默认为`sockjs`，也可以配置为`ws`。
 const compiler = webpack(
   webpackConfig({
     // 配置项
     sweetConfig: null,
     mode: 'development',
     webpackLog: 'progress',
-    hot: true
+    hot: true,
+    socket: 'sockjs'
   })
 );
 

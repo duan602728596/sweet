@@ -19,7 +19,8 @@ devServer({
   httpsKey,
   httpsCert,
   useBabelRegister,
-  redirectToHttps
+  redirectToHttps,
+  socket
 });
 ```
 
@@ -68,6 +69,7 @@ export default {
 * apiFile `{ string }` : 重新定义的api文件。
 * proxyFile `{ string }` : 重新定义的proxy文件。
 * redirectToHttps `{ boolean }` : 开启https的情况下，重定向http到https。
+* socket `{ 'sockjs' | 'ws' }` : socket类型。默认为`sockjs`，也可以配置为`ws`。
 
 ## 生产环境下运行服务
 
