@@ -1,7 +1,7 @@
 import type { IncomingMessage, Server } from 'http';
 import type { Http2SecureServer } from 'http2';
 import * as sockjs from 'sockjs';
-import type { Server as SockjsServer } from 'sockjs';
+import type { Server as SockjsServer, Connection as SockjsConnection } from 'sockjs';
 import { Session as SockjsSession } from 'sockjs/lib/transport';
 import type { Compiler } from 'webpack';
 import BasicServer, { ServerItem } from './BasicServer';
@@ -74,7 +74,7 @@ class SockJSServer extends BasicServer {
   }
 
   // 发送数据
-  send(connection: any, message: any): void {
+  send(connection: SockjsConnection, message: string): void {
     // prevent cases where the server is trying to send data while connection is closing
     if (connection.readyState !== 1) {
       return;
@@ -85,7 +85,7 @@ class SockJSServer extends BasicServer {
 
   // f should be passed the resulting connection and the connection headers
   onConnection(f: Function): void {
-    this.sockjsServer.on('connection', (connection: any): void => {
+    this.sockjsServer.on('connection', (connection: SockjsConnection): void => {
       f(connection, connection ? connection.headers : null);
     });
   }

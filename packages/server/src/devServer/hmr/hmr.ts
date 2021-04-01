@@ -2,6 +2,7 @@ import type { Server } from 'http';
 import type { Http2SecureServer } from 'http2';
 import type { Middleware, Context, Next } from 'koa';
 import type { Compiler } from 'webpack';
+import type { ServerConnection } from './BasicServer';
 import SockJSServer from './SockJSServer';
 import WebSocketServer from './WebSocketServer';
 import createLogger from './createLogger';
@@ -27,7 +28,7 @@ function koaHmr(options: Options, sweetOptions: SweetOptions): Middleware {
       log
     });
 
-  sock.onConnection((connection: Function, headers: { [key: string]: string }): void => {
+  sock.onConnection((connection: ServerConnection, headers: { [key: string]: string }): void => {
     if (!connection) {
       return;
     }
@@ -41,7 +42,7 @@ function koaHmr(options: Options, sweetOptions: SweetOptions): Middleware {
 
     sock.sockets.push(connection);
 
-    sock.onConnectionClose(connection, () => {
+    sock.onConnectionClose(connection, (): void => {
       const idx: number = sock.sockets.indexOf(connection);
 
       if (idx >= 0) {

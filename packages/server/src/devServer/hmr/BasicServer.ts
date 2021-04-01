@@ -1,8 +1,11 @@
 import type { Server } from 'http';
 import type { Http2SecureServer } from 'http2';
-import type { Compiler, Stats } from 'webpack';
+import type { Compiler, Stats, StatsCompilation } from 'webpack';
+import WebSocket = require('ws');
+import type { Connection as SockjsConnection } from 'sockjs';
 
 export type ServerItem = Server | Http2SecureServer;
+export type ServerConnection = WebSocket | SockjsConnection;
 
 /* 为sockjs服务和ws定义通用的方法 */
 class BasicServer {
@@ -18,11 +21,11 @@ class BasicServer {
 
   public log: { [key: string]: Function }; // 日志
   public compiler: Compiler;               // webpack compiler
-  public sockets: Array<any>;              // 当前的socket链接
+  public sockets: Array<ServerConnection>; // 当前的socket链接
   public stats: any;                       // webpack stats
 
   // 获取stats
-  getStats(statsObj: Stats): any {
+  getStats(statsObj: Stats): StatsCompilation {
     const stats: any = BasicServer.DEFAULT_STATS;
 
     return statsObj.toJson(stats);
@@ -31,7 +34,7 @@ class BasicServer {
   // webpack hooks
   setupHooks(): void {
     // Listening for events
-    const invalidPlugin: () => any = (): void => {
+    const invalidPlugin: () => void = (): void => {
       this.sockWrite('invalid');
     };
 
@@ -56,29 +59,29 @@ class BasicServer {
   }
 
   // 关闭连接
-  close(connection: any): void {
+  close(connection: ServerConnection): void {
     connection.close();
   }
 
   /* 定义连接事件 */
   // connection close
-  onConnectionClose(connection: any, f: Function): void {
+  onConnectionClose(connection: ServerConnection, f: () => void): void {
     connection.on('close', f);
   }
 
-  sockWriteConnection(connection: any, type: string, data?: any): void {
+  sockWriteConnection(connection: ServerConnection, type: string, data?: any): void {
     this.send(connection, JSON.stringify({ type, data }));
   }
 
   sockWrite(type: string, data?: any): void {
-    this.sockets.forEach((socket: any): void => {
+    this.sockets.forEach((socket: ServerConnection): void => {
       this.send(socket, JSON.stringify({ type, data }));
     });
   }
 
   // send stats to a socket or multiple sockets
-  sendStats(stats: any, force?: any): void {
-    const shouldEmit: boolean = !force
+  sendStats(stats: StatsCompilation, force?: any): void {
+    const shouldEmit: boolean | undefined = !force
       && stats
       && (!stats.errors || stats.errors.length === 0)
       && stats.assets
@@ -90,17 +93,17 @@ class BasicServer {
 
     this.sockWrite('hash', stats.hash);
 
-    if (stats.errors.length > 0) {
+    if (stats?.errors?.length) {
       this.sockWrite('errors', stats.errors);
-    } else if (stats.warnings.length > 0) {
+    } else if (stats?.warnings?.length) {
       this.sockWrite('warnings', stats.warnings);
     } else {
       this.sockWrite('ok');
     }
   }
 
-  sendStatsConnection(connection: any, stats: any, force?: any): void {
-    const shouldEmit: boolean = !force
+  sendStatsConnection(connection: ServerConnection, stats: StatsCompilation, force?: any): void {
+    const shouldEmit: boolean | undefined = !force
       && stats
       && (!stats.errors || stats.errors.length === 0)
       && stats.assets
@@ -112,9 +115,9 @@ class BasicServer {
 
     this.sockWriteConnection(connection, 'hash', stats.hash);
 
-    if (stats.errors.length > 0) {
+    if (stats?.errors?.length) {
       this.sockWriteConnection(connection, 'errors', stats.errors);
-    } else if (stats.warnings.length > 0) {
+    } else if (stats?.warnings?.length) {
       this.sockWriteConnection(connection, 'warnings', stats.warnings);
     } else {
       this.sockWriteConnection(connection, 'ok');
