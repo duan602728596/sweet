@@ -1,11 +1,11 @@
 import type { Server } from 'http';
 import type { Http2SecureServer } from 'http2';
 import type { Compiler, Stats, StatsCompilation } from 'webpack';
-import WebSocket = require('ws');
+import type * as ws from 'ws';
 import type { Connection as SockjsConnection } from 'sockjs';
 
 export type ServerItem = Server | Http2SecureServer;
-export type ServerConnection = WebSocket | SockjsConnection;
+export type ServerConnection = ws | SockjsConnection;
 
 /* 为sockjs服务和ws定义通用的方法 */
 class BasicServer {

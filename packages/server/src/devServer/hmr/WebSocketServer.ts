@@ -2,7 +2,6 @@ import type { Server, IncomingMessage } from 'http';
 import type { Http2SecureServer } from 'http2';
 import type { Socket } from 'net';
 import * as ws from 'ws';
-import WebSocket = require('ws');
 import type { Compiler } from 'webpack';
 import BasicServer, { ServerItem } from './BasicServer';
 
@@ -42,7 +41,7 @@ class WebSocketServer extends BasicServer {
           return;
         }
 
-        this.wsServer.handleUpgrade(req, sock, head, (connection: WebSocket): void => {
+        this.wsServer.handleUpgrade(req, sock, head, (connection: ws): void => {
           this.wsServer.emit('connection', connection, req);
         });
       });
@@ -53,7 +52,7 @@ class WebSocketServer extends BasicServer {
     });
 
     setInterval((): void => {
-      this.wsServer.clients.forEach((socket: WebSocket): void => {
+      this.wsServer.clients.forEach((socket: ws): void => {
         if (socket['isAlive'] === false) {
           return socket.terminate();
         }
@@ -86,7 +85,7 @@ class WebSocketServer extends BasicServer {
 
   // f should be passed the resulting connection and the connection headers
   onConnection(f: Function): void {
-    this.wsServer.on('connection', (connection: WebSocket, req: IncomingMessage): void => {
+    this.wsServer.on('connection', (connection: ws, req: IncomingMessage): void => {
       connection['isAlive'] = true;
       connection.on('pong', (): void => {
         connection['isAlive'] = true;
