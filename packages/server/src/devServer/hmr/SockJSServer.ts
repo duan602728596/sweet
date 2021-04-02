@@ -4,7 +4,7 @@ import * as sockjs from 'sockjs';
 import type { Server as SockjsServer, Connection as SockjsConnection } from 'sockjs';
 import { Session as SockjsSession } from 'sockjs/lib/transport';
 import type { Compiler } from 'webpack';
-import BasicServer, { ServerItem } from './BasicServer';
+import BasicServer, { ServerItem, ClientLogLevel } from './BasicServer';
 
 // Workaround for sockjs@~0.3.19
 // sockjs will remove Origin header, however Origin header is required for checking host.
@@ -29,11 +29,13 @@ class SockJSServer extends BasicServer {
 
   /**
    * @param { Function } log: 日志方法
+   * @param { ClientLogLevel } clientLogLevel: 日志等级
    * @param { Array<Server | Http2SecureServer> } server: http服务
    * @param { Compiler } compiler: webpack compiler
    */
-  constructor({ log, server, compiler }: {
+  constructor({ log, clientLogLevel, server, compiler }: {
     log: { [key: string]: Function };
+    clientLogLevel: ClientLogLevel;
     server: Array<ServerItem>;
     compiler: Compiler;
   }) {
@@ -41,6 +43,7 @@ class SockJSServer extends BasicServer {
 
     // 日志
     this.log = log;
+    this.clientLogLevel = clientLogLevel;
 
     // sock服务
     this.sockjsServer = sockjs.createServer({
@@ -71,6 +74,7 @@ class SockJSServer extends BasicServer {
     this.stats = null;
 
     this.setupHooks();
+    this.onConnection(this.handleSocketConnection);
   }
 
   // 发送数据

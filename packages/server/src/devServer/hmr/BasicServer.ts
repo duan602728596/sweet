@@ -6,6 +6,7 @@ import type { Connection as SockjsConnection } from 'sockjs';
 
 export type ServerItem = Server | Http2SecureServer;
 export type ServerConnection = ws | SockjsConnection;
+export type ClientLogLevel = 'silent' | 'trace' | 'debug' | 'info' | 'warn' | 'error';
 
 /* 为sockjs服务和ws定义通用的方法 */
 class BasicServer {
@@ -20,6 +21,7 @@ class BasicServer {
   static NAME: string = 'koa-hmr'; // name
 
   public log: { [key: string]: Function }; // 日志
+  public clientLogLevel: ClientLogLevel;   // 日志等级
   public compiler: Compiler;               // webpack compiler
   public sockets: Array<ServerConnection>; // 当前的socket链接
   public stats: any;                       // webpack stats
@@ -125,6 +127,39 @@ class BasicServer {
   }
 
   send(...args: any[]): void { /* loop */ }
+
+  // 连接
+  handleSocketConnection: Function = (connection: ServerConnection, headers: { [key: string]: string }): void => {
+    if (!connection) {
+      return;
+    }
+
+    if (!headers) {
+      this.log.warn(
+        'transportMode.server implementation must pass headers to the callback of onConnection(f) '
+        + 'via f(connection, headers) in order for clients to pass a headers security check'
+      );
+    }
+
+    this.sockets.push(connection);
+
+    this.onConnectionClose(connection, (): void => {
+      const idx: number = this.sockets.indexOf(connection);
+
+      if (idx >= 0) {
+        this.sockets.splice(idx, 1);
+      }
+    });
+
+    this.sockWriteConnection(connection, 'logging', this.clientLogLevel);
+    this.sockWriteConnection(connection, 'hot');
+    this.sockWriteConnection(connection, 'liveReload');
+    this.sockWriteConnection(connection, 'overlay', true);
+
+    if (this.stats) {
+      this.sendStatsConnection(connection, this.getStats(this.stats), true);
+    }
+  };
 }
 
 export default BasicServer;

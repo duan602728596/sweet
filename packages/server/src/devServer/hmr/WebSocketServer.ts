@@ -3,7 +3,7 @@ import type { Http2SecureServer } from 'http2';
 import type { Socket } from 'net';
 import * as ws from 'ws';
 import type { Compiler } from 'webpack';
-import BasicServer, { ServerItem } from './BasicServer';
+import BasicServer, { ServerItem, ClientLogLevel } from './BasicServer';
 
 const noop: Function = (): void => { /* noop */ };
 
@@ -12,15 +12,17 @@ const noop: Function = (): void => { /* noop */ };
  * https://github.com/webpack/webpack-dev-server/blob/master/lib/servers/WebsocketServer.js
  */
 class WebSocketServer extends BasicServer {
-  public wsServer: ws.Server; // sockjs服务
+  public wsServer: ws.Server; // websocket服务
 
   /**
    * @param { Function } log: 日志方法
+   * @param { ClientLogLevel } clientLogLevel: 日志等级
    * @param { Array<Server | Http2SecureServer> } server: http服务
    * @param { Compiler } compiler: webpack compiler
    */
-  constructor({ log, server, compiler }: {
+  constructor({ log, clientLogLevel, server, compiler }: {
     log: { [key: string]: Function };
+    clientLogLevel: ClientLogLevel;
     server: Array<ServerItem>;
     compiler: Compiler;
   }) {
@@ -28,6 +30,7 @@ class WebSocketServer extends BasicServer {
 
     // 日志
     this.log = log;
+    this.clientLogLevel = clientLogLevel;
 
     this.wsServer = new ws.Server({
       noServer: true,
@@ -72,6 +75,7 @@ class WebSocketServer extends BasicServer {
     this.stats = null;
 
     this.setupHooks();
+    this.onConnection(this.handleSocketConnection);
   }
 
   // 发送数据
