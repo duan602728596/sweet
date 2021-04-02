@@ -10,11 +10,13 @@ function createRewriteMime(mime: { [key: string]: string } = {}): Middleware {
   return async function(ctx: Context, next: Next): Promise<void> {
     await next();
 
-    const parseResult: ParsedPath = path.parse(ctx.url);
-    const ext: string = parseResult.ext.replace(/^\./, '');
+    if (!(ctx.type && ctx.type !== '')) {
+      const parseResult: ParsedPath = path.parse(ctx.url);
+      const ext: string = parseResult.ext.replace(/^\./, '');
 
-    if ((ext in mime) && (ctx.type !== mime[ext])) {
-      ctx.type = mime[ext];
+      if (ext in mime) {
+        ctx.type = mime[ext];
+      }
     }
   };
 }
