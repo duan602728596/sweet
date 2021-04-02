@@ -33,7 +33,8 @@ function middleware(app: Koa, router: Router, sweetOptions: SweetOptions): void 
 
   /* 缓存 */
   app.use(serve(sweetOptions.serverRoot, {
-    maxage: (60 ** 2) * 24 * 365 * 1_000
+    maxage: (60 ** 2) * 24 * 365 * 1_000,
+    index: false
   }));
 
   /* router */
