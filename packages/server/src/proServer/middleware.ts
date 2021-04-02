@@ -30,7 +30,7 @@ function middleware(app: Koa, router: Router, sweetOptions: SweetOptions): void 
     avifs: 'image/avif-sequence'
   }));
 
-  /* 缓存 */
+  /* 静态资源 */
   app.use(serve(sweetOptions.serverRoot, {
     maxage: (60 ** 2) * 24 * 365 * 1_000,
     index: false
