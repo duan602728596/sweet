@@ -23,7 +23,7 @@ function middleware(app: Koa, router: Router, sweetOptions: SweetOptions): void 
   app.use(body());
 
   /* 文件压缩 */
-  app.use(compress({}));
+  app.use(compress());
 
   /* avif */
   app.use(createRewriteMime({
