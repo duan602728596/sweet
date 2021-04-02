@@ -31,7 +31,6 @@ function middleware(sweetOptions: SweetOptions, app: Koa, router: Router, compil
       const devMiddlewareConfig: { [key: string]: any } = {
         serverSideRender: true,
         mimeTypes: {
-          avif: 'image/avif',
           avifs: 'image/avif-sequence'
         }
       };

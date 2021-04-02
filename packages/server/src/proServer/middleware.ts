@@ -27,8 +27,7 @@ function middleware(app: Koa, router: Router, sweetOptions: SweetOptions): void 
 
   /* avif */
   app.use(createRewriteMime({
-    avifs: 'image/avif-sequence',
-    avis: 'image/avif-sequence'
+    avifs: 'image/avif-sequence'
   }));
 
   /* 缓存 */
