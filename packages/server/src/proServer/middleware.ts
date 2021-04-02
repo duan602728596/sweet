@@ -1,8 +1,8 @@
-import * as Koa from 'koa';
-import * as Router from '@koa/router';
 import * as body from 'koa-body';
 import * as compress from 'koa-compress';
 import * as serve from 'koa-static';
+import type * as Koa from 'koa';
+import type * as Router from '@koa/router';
 import logs from './logs';
 import createRewriteMime from './createRewriteMime';
 import type { SweetOptions } from '../utils/types';
