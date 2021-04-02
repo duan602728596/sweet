@@ -2,7 +2,7 @@ import * as Koa from 'koa';
 import * as Router from '@koa/router';
 import * as body from 'koa-body';
 import * as compress from 'koa-compress';
-import * as staticCache from 'koa-static-cache';
+import * as serve from 'koa-static';
 import logs from './logs';
 import createRewriteMime from './createRewriteMime';
 import type { SweetOptions } from '../utils/types';
@@ -32,9 +32,8 @@ function middleware(app: Koa, router: Router, sweetOptions: SweetOptions): void 
   }));
 
   /* 缓存 */
-  app.use(staticCache(sweetOptions.serverRoot, {
-    maxAge: (60 ** 2) * 24 * 365,
-    filter: (file: string): boolean => !/^.*\.html$/.test(file)
+  app.use(serve(sweetOptions.serverRoot, {
+    maxage: (60 ** 2) * 24 * 365 * 1_000
   }));
 
   /* router */
