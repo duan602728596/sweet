@@ -2,6 +2,7 @@
 
 [milktea-image]: https://img.shields.io/npm/v/@sweet-milktea/milktea.svg
 [milktea-cli-image]: https://img.shields.io/npm/v/@sweet-milktea/milktea-cli.svg
+[milktea-vite-image]: https://img.shields.io/npm/v/@sweet-milktea/milktea-vite.svg
 [server-image]: https://img.shields.io/npm/v/@sweet-milktea/server.svg
 [server-log-image]: https://img.shields.io/npm/v/@sweet-milktea/server-log.svg
 [util-tools-image]: https://img.shields.io/npm/v/@sweet-milktea/util-tools.svg
@@ -9,6 +10,7 @@
 
 [milktea-url]: http://npmjs.org/package/@sweet-milktea/milktea
 [milktea-cli-url]: http://npmjs.org/package/@sweet-milktea/milktea-cli
+[milktea-vite-url]: http://npmjs.org/package/@sweet-milktea/milktea-vite
 [server-url]: http://npmjs.org/package/@sweet-milktea/server
 [server-log-url]: http://npmjs.org/package/@sweet-milktea/server-log
 [util-tools-url]: http://npmjs.org/package/@sweet-milktea/util-tools
@@ -34,6 +36,7 @@
 | --- | --- |
 | [@sweet-milktea/milktea](packages/milktea/README.md) | [![NPM version][milktea-image]][milktea-url] |
 | [@sweet-milktea/milktea-cli](packages/milktea-cli/README.md) | [![NPM version][milktea-cli-image]][milktea-cli-url] |
+| [@sweet-milktea/milktea-vite](packages/milktea-vite/README.md) | [![NPM version][milktea-vite-image]][milktea-vite-url] |
 | [@sweet-milktea/server](packages/server/README.md) | [![NPM version][server-image]][server-url] |
 | [@sweet-milktea/server-log](packages/server-log/README.md) | [![NPM version][server-log-image]][server-log-url] |
 | [@sweet-milktea/util-tools](packages/util-tools/README.md) | [![NPM version][util-tools-image]][util-tools-url] |
