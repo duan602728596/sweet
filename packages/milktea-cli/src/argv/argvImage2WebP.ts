@@ -6,6 +6,7 @@ import type { Argv } from '../utils/types';
 /* image2webp命令 */
 function argvImage2WebP(argv: Argv): void {
   const image2webp: Function = requireModule('@sweet-milktea/util-tools/image2webp');
+
   const cwd: string = process.cwd();
   const imageEntry: string = argv.imageEntry;
   const imageOutput: string = argv.imageOutput;

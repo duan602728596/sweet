@@ -7,7 +7,8 @@ import type { Argv } from '../utils/types';
 
 async function argvUpdate(argv: Argv): Promise<void> {
   const update: Function = requireModule('@sweet-milktea/util-tools/update');
-  const folders: Array<string> = [];
+
+  const folders: Array<string> = []; // 目录列表
 
   if (_.isNil(argv.__DEV__)) {
     folders.push(process.cwd());

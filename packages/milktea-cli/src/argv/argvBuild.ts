@@ -1,4 +1,4 @@
-import * as webpack from 'webpack';
+import type * as Webpack from 'webpack';
 import type { Compiler } from 'webpack';
 import * as _ from 'lodash';
 import type { Milktea } from '@sweet-milktea/milktea/src/utils/types';
@@ -7,7 +7,9 @@ import type { Argv } from '../utils/types';
 
 /* build 命令 */
 function argvBuild(argv: Argv): void {
+  const webpack: typeof Webpack = requireModule('webpack');
   const milktea: Milktea = requireModule('@sweet-milktea/milktea');
+
   const compiler: Compiler = webpack(
     milktea.config({
       sweetConfig: argv.config,

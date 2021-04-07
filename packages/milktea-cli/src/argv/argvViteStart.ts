@@ -7,6 +7,7 @@ import { requireModule } from '../utils/utils';
 /* vite-start 命令 */
 async function argvViteStart(argv: Argv): Promise<void> {
   const milkteaVite: MilkVite = requireModule('@sweet-milktea/milktea-vite');
+
   const vite: ViteDevServer = await milkteaVite.config({
     sweetConfig: argv.config,
     mode: 'development'

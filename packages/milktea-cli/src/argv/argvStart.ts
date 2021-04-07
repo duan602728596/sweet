@@ -1,4 +1,4 @@
-import * as webpack from 'webpack';
+import type * as Webpack from 'webpack';
 import type { Compiler, Configuration } from 'webpack';
 import * as _ from 'lodash';
 import type { Milktea } from '@sweet-milktea/milktea/src/utils/types';
@@ -8,8 +8,10 @@ import type { Argv } from '../utils/types';
 
 /* start 命令 */
 function argvStart(argv: Argv): void {
-  const isServerEnv: boolean = !_.isNil(argv.server);
+  const webpack: typeof Webpack = requireModule('webpack');
   const milktea: Milktea = requireModule('@sweet-milktea/milktea');
+
+  const isServerEnv: boolean = !_.isNil(argv.server);
   const webpackConfig: Configuration = milktea.config({
     sweetConfig: argv.config,
     mode: 'development',

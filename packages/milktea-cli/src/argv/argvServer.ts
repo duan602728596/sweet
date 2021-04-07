@@ -5,6 +5,7 @@ import type { Argv } from '../utils/types';
 /* server 命令 */
 function argvServer(argv: Argv): void {
   const proServer: ProServer = requireModule('@sweet-milktea/server/proServer');
+
   const httpPort: number = argv.httpPort;
   const httpsPort: number = argv.httpsPort;
   const serverRoot: string = argv.serverRoot;

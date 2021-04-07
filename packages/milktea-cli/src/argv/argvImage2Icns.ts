@@ -6,6 +6,7 @@ import type { Argv } from '../utils/types';
 /* image2icns命令 */
 function argvImage2Icns(argv: Argv): void {
   const image2icns: Function = requireModule('@sweet-milktea/util-tools/image2icns');
+
   const cwd: string = process.cwd();
   const imageEntry: string = argv.imageEntry;
   const imageOutput: string = argv.imageOutput;

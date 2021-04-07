@@ -6,6 +6,7 @@ import type { Argv } from '../utils/types';
 /* image2avif命令 */
 function argvImage2Avif(argv: Argv): void {
   const image2avif: Function = requireModule('@sweet-milktea/util-tools/image2avif');
+
   const cwd: string = process.cwd();
   const imageEntry: string = argv.imageEntry;
   const imageOutput: string = argv.imageOutput;
