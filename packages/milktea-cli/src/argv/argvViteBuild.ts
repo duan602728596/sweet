@@ -7,14 +7,16 @@ import { requireModule } from '../utils/utils';
 async function argvViteBuild(argv: Argv): Promise<void> {
   const milkteaVite: MilkVite = requireModule('@sweet-milktea/milktea-vite');
 
+  const { config, serverRender }: Argv = argv;
+
   await milkteaVite.build({
-    sweetConfig: argv.config,
+    sweetConfig: config,
     mode: 'production'
   });
 
-  if (!_.isNil(argv.serverRender)) {
+  if (!_.isNil(serverRender)) {
     await milkteaVite.serverRenderBuild({
-      sweetConfig: argv.config,
+      sweetConfig: config,
       mode: 'production'
     });
   }

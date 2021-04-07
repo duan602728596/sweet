@@ -7,11 +7,8 @@ import type { Argv } from '../utils/types';
 function argvImage2Icns(argv: Argv): void {
   const image2icns: Function = requireModule('@sweet-milktea/util-tools/image2icns');
 
+  const { imageEntry, imageOutput, size, retina }: Argv = argv;
   const cwd: string = process.cwd();
-  const imageEntry: string = argv.imageEntry;
-  const imageOutput: string = argv.imageOutput;
-  const size: number = argv.size;
-  const retina: number = argv.retina;
 
   image2icns(
     path.isAbsolute(imageEntry) ? imageEntry : path.join(cwd, imageEntry),

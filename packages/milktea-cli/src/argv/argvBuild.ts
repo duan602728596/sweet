@@ -10,33 +10,34 @@ function argvBuild(argv: Argv): void {
   const webpack: typeof Webpack = requireModule('webpack');
   const milktea: Milktea = requireModule('@sweet-milktea/milktea');
 
+  const { config, webpackLog, serverRender }: Argv = argv;
   const compiler: Compiler = webpack(
     milktea.config({
-      sweetConfig: argv.config,
+      sweetConfig: config,
       mode: 'production',
-      webpackLog: argv.webpackLog
+      webpackLog
     })
   );
 
-  if (!_.isNil(argv.serverRender)) {
+  if (!_.isNil(serverRender)) {
     // 正常编译完毕后，编译ssr需要的文件
     compiler.hooks.done.tapAsync('sweet-milktea-build', function(): void {
       const serverRenderCompiler: Compiler = webpack(
         milktea.serverRenderConfig({
-          sweetConfig: argv.config,
+          sweetConfig: config,
           mode: 'production',
-          webpackLog: argv.webpackLog
+          webpackLog
         })
       );
 
       // 避免输出的log打断进度条
-      serverRenderCompiler.run(!argv.webpackLog || argv.webpackLog === 'progress'
+      serverRenderCompiler.run(!webpackLog || webpackLog === 'progress'
         ? milktea.callbackOnlyError
         : milktea.callback);
     });
   }
 
-  compiler.run(!argv.webpackLog || argv.webpackLog === 'progress' ? milktea.callbackOnlyError : milktea.callback);
+  compiler.run(!webpackLog || webpackLog === 'progress' ? milktea.callbackOnlyError : milktea.callback);
 }
 
 export default argvBuild;

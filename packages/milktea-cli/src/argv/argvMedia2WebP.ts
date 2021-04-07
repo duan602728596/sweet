@@ -8,10 +8,9 @@ import type { Argv } from '../utils/types';
 function argvMedia2WebP(argv: Argv): void {
   const image2webp: Function = requireModule('@sweet-milktea/util-tools/image2webp');
 
+  const { imageEntry, imageOutput, ext: argvExt }: Argv = argv;
   const cwd: string = process.cwd();
-  const imageEntry: string = argv.imageEntry;
-  const imageOutput: string = argv.imageOutput;
-  const ext: string = argv.ext ?? '';
+  const ext: string = argvExt ?? '';
   const extArr: string[] = _.without(ext.split(','), '');
 
   image2webp(

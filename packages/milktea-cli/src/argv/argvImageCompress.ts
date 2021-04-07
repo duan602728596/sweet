@@ -7,9 +7,8 @@ import type { Argv } from '../utils/types';
 function imageCompress(argv: Argv): void {
   const image2webp: Function = requireModule('@sweet-milktea/util-tools/imageCompress');
 
+  const { imageEntry, imageOutput }: Argv = argv;
   const cwd: string = process.cwd();
-  const imageEntry: string = argv.imageEntry;
-  const imageOutput: string = argv.imageOutput;
 
   image2webp(
     path.isAbsolute(imageEntry) ? imageEntry : path.join(cwd, imageEntry),

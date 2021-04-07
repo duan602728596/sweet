@@ -9,14 +9,15 @@ function argvDll(argv: Argv): void {
   const webpack: typeof Webpack = requireModule('webpack');
   const milktea: Milktea = requireModule('@sweet-milktea/milktea');
 
+  const { config, webpackLog }: Argv = argv;
   const compiler: Compiler = webpack(
     milktea.dllConfig({
-      sweetConfig: argv.config,
-      webpackLog: argv.webpackLog
+      sweetConfig: config,
+      webpackLog
     })
   );
 
-  compiler.run(!argv.webpackLog || argv.webpackLog === 'progress' ? milktea.callbackOnlyError : milktea.callback);
+  compiler.run(!webpackLog || webpackLog === 'progress' ? milktea.callbackOnlyError : milktea.callback);
 }
 
 export default argvDll;
