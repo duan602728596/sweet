@@ -27,8 +27,8 @@
     "@sweet-milktea/server": "*",
     "@sweet-milktea/server-log": "*",
     "@sweet-milktea/util-tools": "*",
-    "vite": "^2.1.5",
-    "webpack": "^5.33.2"
+    "vite": "^2.2.1",
+    "webpack": "^5.35.0"
   },
   "peerDependencies": {
     "@sweet-milktea/milktea": ">=2",
