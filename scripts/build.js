@@ -7,15 +7,17 @@ const { dir, packageNames } = require('./config');
 
 const tsBuildConfig = {
   ...tsconfig.compilerOptions,
+  module: 'commonjs',
   skipLibCheck: true
 };
 
 function createProject(name) {
   const src = path.join(dir, name, 'src/**/*.ts');
+  const ignoreEsm = path.join(dir, name, 'src/**/*.esm.ts');
   const dist = path.join(dir, name, 'lib');
 
   return function() {
-    const result = gulp.src(src)
+    const result = gulp.src([src, `!${ ignoreEsm }`])
       .pipe(typescript(tsBuildConfig));
 
     return result.js.pipe(gulp.dest(dist));

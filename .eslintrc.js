@@ -39,7 +39,8 @@ module.exports = {
     }
   },
   globals: {
-    NodeJS: 'readonly'
+    NodeJS: 'readonly',
+    NodeRequire: 'readonly'
   },
   overrides: [
     {
