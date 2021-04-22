@@ -1,6 +1,6 @@
 import * as process from 'process';
 import { createServer, build as viteBuild, ViteDevServer } from 'vite';
-import type { RollupOutput } from 'rollup';
+import type { RollupOutput, RollupWatcher } from 'rollup';
 import * as _ from 'lodash';
 import configFile from './utils/configFile';
 import viteConfig from './config';
@@ -53,7 +53,7 @@ export function config(args: FuncArgs = {}): Promise<ViteDevServer> {
  * vite生产环境编译配置
  * @param { SweetConfig | string | null | undefined } args.sweetConfig: vite配置，覆盖文件，优先级最高
  */
-export function build(args: FuncArgs = {}): Promise<RollupOutput | RollupOutput[]> {
+export function build(args: FuncArgs = {}): Promise<RollupOutput | RollupOutput[] | RollupWatcher> {
   const { sweetConfig, mode }: FuncArgs = args;
   const cfg: SweetConfig = getConfig('client', sweetConfig);
 
@@ -72,7 +72,7 @@ export function build(args: FuncArgs = {}): Promise<RollupOutput | RollupOutput[
  * vite生产环境SSR编译配置
  * @param { SweetConfig | string | null | undefined } args.sweetConfig: vite配置，覆盖文件，优先级最高
  */
-export function serverRenderBuild(args: FuncArgs = {}): Promise<RollupOutput | RollupOutput[]> {
+export function serverRenderBuild(args: FuncArgs = {}): Promise<RollupOutput | RollupOutput[] | RollupWatcher> {
   const { sweetConfig, mode }: FuncArgs = args;
   const cfg: SweetConfig = getConfig('server', sweetConfig);
 

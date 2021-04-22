@@ -2,7 +2,7 @@ import { AST_NODE_TYPES } from '@typescript-eslint/typescript-estree/dist/ts-est
 import { createRule } from '@typescript-eslint/eslint-plugin/dist/util/createRule';
 import type { Rule, SourceCode, AST } from 'eslint';
 import * as ESTree from 'estree';
-import SYMBOLS from '../symbols';
+import { SYMBOLS, isASTToken } from '../utils';
 
 type Options = [];
 type MessageIds = 'TSInterfaceSpaceBeforeBlocks';
@@ -27,13 +27,13 @@ export default createRule<Options, MessageIds>({
 
     function checkTSInterfaceSpaceBeforeBlocks(node: ESTree.Node): void {
       const errTokens: Array<AST.Token> = [];
-      const token: AST.Token | null = sourceCode.getFirstToken(
+      const token: AST.Token | ESTree.Comment | null = sourceCode.getFirstToken(
         node, (o: AST.Token) => o.value === SYMBOLS.LEFT_CURLY_BRACKET);
 
-      if (token) {
-        const beforeToken: AST.Token | null = sourceCode.getTokenBefore(token);
+      if (isASTToken(token)) {
+        const beforeToken: AST.Token | ESTree.Comment | null = sourceCode.getTokenBefore(token);
 
-        if (beforeToken) {
+        if (isASTToken(beforeToken)) {
           const hasSpace: boolean = sourceCode.isSpaceBetweenTokens(beforeToken, token);
 
           if (!hasSpace) {
