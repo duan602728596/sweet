@@ -2,7 +2,7 @@ import { AST_NODE_TYPES } from '@typescript-eslint/typescript-estree/dist/ts-est
 import { createRule } from '@typescript-eslint/eslint-plugin/dist/util/createRule';
 import type { Rule, SourceCode, AST } from 'eslint';
 import * as ESTree from 'estree';
-import SYMBOLS from '../symbols';
+import { SYMBOLS, isASTToken } from '../utils';
 
 type Options = [string];
 type MessageIds = 'TypeSpaceInFixOps';
@@ -41,20 +41,20 @@ export default createRule<Options, MessageIds>({
 
     function checkTSTypeAliasDeclaration(node: ESTree.Node): void {
       const errTokens: Array<AST.Token> = [];
-      const token: AST.Token | null = sourceCode.getFirstToken(
+      const token: AST.Token | ESTree.Comment | null = sourceCode.getFirstToken(
         node, (o: AST.Token) => o.value === SYMBOLS.EQUAL);
 
-      if (token) {
-        const beforeToken: AST.Token | null = sourceCode.getTokenBefore(token),
-          afterToken: AST.Token | null = sourceCode.getTokenAfter(token);
+      if (isASTToken(token)) {
+        const beforeToken: AST.Token | ESTree.Comment | null = sourceCode.getTokenBefore(token),
+          afterToken: AST.Token | ESTree.Comment | null = sourceCode.getTokenAfter(token);
         let hasBeforeSpace: boolean = true,
           hasAfterSpace: boolean = true;
 
-        if (beforeToken) {
+        if (isASTToken(beforeToken)) {
           hasBeforeSpace = sourceCode.isSpaceBetweenTokens(beforeToken, token);
         }
 
-        if (afterToken) {
+        if (isASTToken(afterToken)) {
           hasAfterSpace = sourceCode.isSpaceBetweenTokens(token, afterToken);
         }
 
@@ -74,8 +74,8 @@ export default createRule<Options, MessageIds>({
         for (let i: number = 0; i < types.length - 1; i++) {
           const beforeToken: AST.Token = types[i],
             afterToken: AST.Token = types[i + 1],
-            betweenToken: Array<AST.Token> = sourceCode.getTokensBetween(beforeToken, afterToken),
-            token: AST.Token = betweenToken[0],
+            betweenToken: Array<AST.Token | ESTree.Comment> = sourceCode.getTokensBetween(beforeToken, afterToken),
+            token: AST.Token = betweenToken[0] as AST.Token,
             hasBeforeSpace: boolean = sourceCode.isSpaceBetweenTokens(beforeToken, token),
             hasAfterSpace: boolean = sourceCode.isSpaceBetweenTokens(token, afterToken);
 
