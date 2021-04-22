@@ -11,14 +11,12 @@ async function main() {
 
   for (const packageName of packageNames) {
     const packageDir = path.join(dir, packageName, 'lib');
+    const packageESMDir = path.join(dir, packageName, 'esm');
 
-    queue.push(rimrafPromise(packageDir));
-  }
-
-  for (const packageName of packageNames) {
-    const packageDir = path.join(dir, packageName, 'esm');
-
-    queue.push(rimrafPromise(packageDir));
+    queue.push(
+      rimrafPromise(packageDir),
+      rimrafPromise(packageESMDir)
+    );
   }
 
   await Promise.all(queue);
