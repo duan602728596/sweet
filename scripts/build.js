@@ -69,5 +69,4 @@ exports.default = gulp.series(
     ...createQueue('module', createProject, 'esm', tsESMBuildConfig)
   ),
   gulp.parallel(...createQueue('esm', createESMProject, 'esm', tsESMBuildConfig))
-
 );
