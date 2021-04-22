@@ -19,6 +19,8 @@ package.json.lerna_backup
 
 # packages
 packages/**/lib
+packages/**/esm/**/*.js
+!packages/**/esm/**/*.json
 packages/**/node_modules
 packages/**/npm-debug.log
 packages/**/package-lock.json

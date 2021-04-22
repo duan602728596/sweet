@@ -15,6 +15,12 @@ async function main() {
     queue.push(rimrafPromise(packageDir));
   }
 
+  for (const packageName of packageNames) {
+    const packageDir = path.join(dir, packageName, 'esm/**/*.js');
+
+    queue.push(rimrafPromise(packageDir));
+  }
+
   await Promise.all(queue);
 }
 

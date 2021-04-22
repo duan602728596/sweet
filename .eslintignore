@@ -6,6 +6,8 @@ node_modules
 
 # packages
 packages/**/lib
+packages/**/esm
+packages/**/esm/**/*.js
 packages/**/node_modules
 packages/**/test/babelPresetSweet.js
 packages/**/test/dist
