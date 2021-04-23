@@ -10,7 +10,7 @@
   "main": "cjs.js",
   "exports": {
     "import": "./esm/index.js",
-    "require": "./cjs.js"
+    "default": "./cjs.js"
   },
   "scripts": {
     "start": "npm run clean && cross-env NODE_ENV=development tsc --watch",
