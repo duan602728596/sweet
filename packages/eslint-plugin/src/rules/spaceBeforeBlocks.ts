@@ -1,7 +1,7 @@
 import { AST_NODE_TYPES } from '@typescript-eslint/typescript-estree/dist/ts-estree';
 import { createRule } from '@typescript-eslint/eslint-plugin/dist/util/createRule';
 import type { Rule, SourceCode, AST } from 'eslint';
-import * as ESTree from 'estree';
+import type * as ESTree from 'estree';
 import { SYMBOLS, isASTToken } from '../utils';
 
 type Options = [];
