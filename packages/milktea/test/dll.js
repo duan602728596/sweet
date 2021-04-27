@@ -8,8 +8,8 @@ const sweetOptions = {
 };
 
 describe('dll', function() {
-  describe('dll', function() {
-    const config = webpackDllConfig({ mode: 'development' }, sweetOptions);
+  describe('dll', async function() {
+    const config = await webpackDllConfig({ mode: 'development' }, sweetOptions);
 
     it('plugins Configuration is correct', function() {
       expect(config.plugins).to.be.an('array');

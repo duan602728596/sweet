@@ -8,8 +8,8 @@ const sweetOptions = {
 };
 
 describe('sever-render config', function() {
-  describe('react & development', function() {
-    const config = serverConfig({
+  describe('react & development', async function() {
+    const config = await serverConfig({
       serverRender: true,
       frame: 'react',
       mode: 'development',
@@ -28,8 +28,8 @@ describe('sever-render config', function() {
     it('optimization Configuration is correct', expectOptimization(config, false, true));
   });
 
-  describe('vue & production', function() {
-    const config = serverConfig({
+  describe('vue & production', async function() {
+    const config = await serverConfig({
       serverRender: true,
       frame: 'vue',
       mode: 'production',

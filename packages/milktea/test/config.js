@@ -7,8 +7,8 @@ const sweetOptions = {
 };
 
 describe('config', function() {
-  describe('react & development', function() {
-    const config = webpackConfig({
+  describe('react & development', async function() {
+    const config = await webpackConfig({
       frame: 'react',
       mode: 'development',
       loader: {
@@ -28,8 +28,8 @@ describe('config', function() {
     it('optimization Configuration is correct', expectOptimization(config));
   });
 
-  describe('vue & production', function() {
-    const config = webpackConfig({
+  describe('vue & production', async function() {
+    const config = await webpackConfig({
       frame: 'vue',
       mode: 'production',
       html: [{ template: 'index.tsx.pug' }],
