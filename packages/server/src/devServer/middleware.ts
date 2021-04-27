@@ -1,5 +1,6 @@
 import * as body from 'koa-body';
-import connect = require('koa-connect');
+// @ts-ignore
+import * as connect from 'koa-connect';
 import type { Compiler } from 'webpack';
 import type { ViteDevServer } from 'vite';
 import type * as Koa from 'koa';

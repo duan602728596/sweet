@@ -66,7 +66,7 @@ function createQueue(prefix, func, out, cfg) {
 exports.default = gulp.series(
   gulp.parallel(
     ...createQueue('commonjs', createProject, 'lib', tsBuildConfig),
-    ...createQueue('module', createProject, 'esm', tsESMBuildConfig)
+    ...createQueue('esm', createProject, 'esm', tsESMBuildConfig)
   ),
   gulp.parallel(...createQueue('esm', createESMProject, 'esm', tsESMBuildConfig))
 );

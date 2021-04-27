@@ -1,5 +1,6 @@
 import * as _ from 'lodash';
-import connect = require('koa-connect');
+// @ts-ignore
+import * as connect from 'koa-connect';
 import type * as Koa from 'koa';
 import { createProxyMiddleware, Options } from 'http-proxy-middleware';
 import { defaultProxyPath, requireModule, isExists } from './utils';
