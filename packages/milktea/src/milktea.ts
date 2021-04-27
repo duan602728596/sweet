@@ -79,7 +79,7 @@ export async function config(args: FuncArgs = {}): Promise<Configuration> {
     socket && (cfg.socket = socket);
   }
 
-  return webpackConfig(cfg, sweetOptions);
+  return await webpackConfig(cfg, sweetOptions);
 }
 
 /**
@@ -99,7 +99,7 @@ export async function serverRenderConfig(args: FuncArgs = {}): Promise<Configura
     webpackLog && (cfg.webpackLog = webpackLog);
   }
 
-  return webpackServerRenderConfig(cfg, sweetOptions);
+  return await webpackServerRenderConfig(cfg, sweetOptions);
 }
 
 /**

@@ -1,7 +1,6 @@
 import * as sass from 'sass';
 import * as MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import type { LoaderOptions } from 'webpack-chain';
-import { moduleExists, requireModule } from '../utils/utils';
 
 // css-loader的mode
 // Callback must return "local", "global", or "pure" values
@@ -72,7 +71,7 @@ export function createLessOptions(
 export function createSassOptions(additionalData: string | Function | undefined, isDevelopment: boolean): LoaderOptions {
   return {
     sassOptions: {
-      fiber: moduleExists('fibers') ? requireModule('fibers') : false
+      fiber: false
     },
     additionalData,
     implementation: sass

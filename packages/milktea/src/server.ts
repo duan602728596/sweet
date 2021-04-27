@@ -15,7 +15,7 @@ import type { SweetConfig, SweetOptions } from './utils/types';
  * @param { SweetConfig } sweetConfig: 获取到的外部配置
  * @param { SweetOptions } sweetOptions: 内部挂载的一些配置
  */
-export default function(sweetConfig: SweetConfig | null | undefined, sweetOptions: SweetOptions): Configuration {
+export default async function(sweetConfig: SweetConfig | null | undefined, sweetOptions: SweetOptions): Promise<Configuration> {
   const config: Config = new Config();
   const SCFG: SweetConfig = _.omit(sweetConfig, ['hot']);
   const {
@@ -67,13 +67,13 @@ export default function(sweetConfig: SweetConfig | null | undefined, sweetOption
   sweetOptions.forkTsCheckerWebpackPlugin = !!(
     moduleExists('typescript')
     && ts?.forkTsCheckerWebpackPlugin !== false
-    && isTsconfigJsonExists(sweetOptions, ts));
+    && (await isTsconfigJsonExists(sweetOptions, ts)));
 
   // loaders
-  loaders(SCFG, sweetOptions, config);
+  await loaders(SCFG, sweetOptions, config);
 
   // plugins
-  basicPlugins(SCFG, sweetOptions, config);
+  await basicPlugins(SCFG, sweetOptions, config);
 
   // optimization
   optimization(SCFG, sweetOptions, config, true);

@@ -6,7 +6,7 @@ import { customizer, requireModule } from '../utils/utils';
 import type { SweetConfig, SweetOptions, JS } from '../utils/types';
 
 /* js 配置 */
-export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, config: Config): void {
+export default async function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, config: Config): Promise<void> {
   const { mode, js = {}, frame, hot, hotType = 'react-refresh', webpackLog = 'progress' }: SweetConfig = sweetConfig;
   const {
     ecmascript,
@@ -42,6 +42,8 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
       }
     });
 
+  const babelPresetSweet: any = await requireModule('@sweet-milktea/babel-preset-sweet');
+
   config
     .module
     .rule('js')
@@ -61,7 +63,7 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
       }
 
       babelPresets.push([
-        requireModule('@sweet-milktea/babel-preset-sweet'),
+        babelPresetSweet,
         {
           env: {
             nodeEnv: isEnvServerSideRender,

@@ -2,17 +2,28 @@ import * as path from 'path';
 import * as fs from 'fs';
 import type { SweetOptions, TS } from './types';
 
+/* 判断文件是否存在 */
+export async function isExists(file: string): Promise<boolean> {
+  try {
+    await fs.promises.access(file);
+
+    return true;
+  } catch (err) {
+    return false;
+  }
+}
+
 /**
  * 判断tsconfig.json文件是否存在
  * @param { SweetOptions } sweetOptions
  * @param { TS } ts
  */
-export function isTsconfigJsonExists(sweetOptions: SweetOptions, ts?: TS): boolean {
+export function isTsconfigJsonExists(sweetOptions: SweetOptions, ts?: TS): Promise<boolean> {
   const tsconfigJson: string = ts?.configFile ? (
     path.isAbsolute(ts.configFile) ? ts.configFile : path.join(sweetOptions.basicPath, ts.configFile)
   ) : path.join(sweetOptions.basicPath, 'tsconfig.json');
 
-  return fs.existsSync(tsconfigJson);
+  return isExists(tsconfigJson);
 }
 
 /* lodash.mergeWith合并函数 */

@@ -20,7 +20,7 @@ import type { SweetConfig, SweetOptions } from '../utils/types';
  * @param { SweetOptions } sweetOptions: 内部挂载的一些配置
  * @param { Config } config: webpack-chain config
  */
-export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, config: Config): void {
+export default async function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, config: Config): Promise<void> {
   const {
     mode,
     html,
@@ -50,11 +50,11 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
     }]);
 
   // env plugin - 根据模式加载插件
-  const envPlugins: Function = isDevelopment
-    ? requireModule(path.join(__dirname, 'devPlugins'))
-    : requireModule(path.join(__dirname, 'proPlugins'));
+  const envPlugins: (...args: any) => Promise<void> = isDevelopment
+    ? await requireModule(path.join(__dirname, 'devPlugins'))
+    : await requireModule(path.join(__dirname, 'proPlugins'));
 
-  envPlugins(sweetConfig, sweetOptions, config);
+  await envPlugins(sweetConfig, sweetOptions, config);
 
   // fork-ts-checker-webpack-plugin
   if (sweetOptions.forkTsCheckerWebpackPlugin) {
@@ -74,7 +74,7 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
 
     config
       .plugin('fork-ts-checker-webpack-plugin')
-      .use(requireModule('fork-ts-checker-webpack-plugin'), [{
+      .use(await requireModule('fork-ts-checker-webpack-plugin'), [{
         async: false,
         typescript: typescriptOptions
       }]);
@@ -109,13 +109,11 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
   }
 
   // vue-loader plugin插件的加载
-  config.when(frame === 'vue',
-    (chainConfig: Config): void => {
-      chainConfig
-        .plugin('vue-loader-plugin')
-        .use(requireModule('vue-loader/dist/plugin'));
-    }
-  );
+  if (frame === 'vue') {
+    config
+      .plugin('vue-loader-plugin')
+      .use(await requireModule('vue-loader/dist/plugin'));
+  }
 
   // 当环境为测试时，不使用输出插件
   config
