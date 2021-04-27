@@ -96,9 +96,9 @@ export interface SweetConfig {
 }
 
 /* 获取配置文件 */
-export interface ExplorerSync {
-  readonly search: (searchFrom?: string) => CosmiconfigResult;
-  readonly load: (filepath: string) => CosmiconfigResult;
+export interface Explorer {
+  readonly search: (searchFrom?: string) => Promise<CosmiconfigResult>;
+  readonly load: (filepath: string) => Promise<CosmiconfigResult>;
   readonly clearLoadCache: () => void;
   readonly clearSearchCache: () => void;
   readonly clearCaches: () => void;
@@ -116,9 +116,9 @@ export interface FuncArgs {
 }
 
 export interface Milktea {
-  config(args: FuncArgs): Configuration;
-  serverRenderConfig(args: FuncArgs): Configuration;
-  dllConfig(args: FuncArgs): Configuration;
+  config(args: FuncArgs): Promise<Configuration>;
+  serverRenderConfig(args: FuncArgs): Promise<Configuration>;
+  dllConfig(args: FuncArgs): Promise<Configuration>;
   callback(err: Error, stats: Stats): void;
   callbackOnlyError(err: Error, stats: Stats): void;
 }

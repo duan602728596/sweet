@@ -4,8 +4,8 @@ import type { Configuration, Stats } from 'webpack';
 import webpackConfig from './config';
 import webpackServerRenderConfig from './server';
 import webpackDllConfig from './dll';
-import configFile from './utils/configFile';
-import type { SweetConfig, SweetOptions, Environment, Info, SweetConfigArgs, FuncArgs } from './utils/types';
+import configFile, { ConfigFile } from './utils/configFile';
+import type { SweetConfig, SweetOptions, Environment, SweetConfigArgs, FuncArgs } from './utils/types';
 
 /* 基础配置 */
 const sweetOptions: SweetOptions = {
@@ -14,10 +14,10 @@ const sweetOptions: SweetOptions = {
 };
 
 /* 获取配置 */
-function getConfig(environment: Environment, sweetConfig: SweetConfigArgs): SweetConfig {
+async function getConfig(environment: Environment, sweetConfig: SweetConfigArgs): Promise<SweetConfig> {
   if (typeof sweetConfig === 'string') {
     // 自定义配置文件路径
-    const cfg: SweetConfig | ((info: Info) => SweetConfig) = configFile(sweetOptions, sweetConfig);
+    const cfg: ConfigFile = await configFile(sweetOptions, sweetConfig);
 
     return typeof cfg === 'function' ? cfg({ environment }) : cfg;
   } else if (_.isPlainObject(sweetConfig)) {
@@ -25,7 +25,7 @@ function getConfig(environment: Environment, sweetConfig: SweetConfigArgs): Swee
     return sweetConfig as SweetConfig;
   } else {
     // 默认的配置文件
-    const cfg: SweetConfig | ((info: Info) => SweetConfig) = configFile(sweetOptions);
+    const cfg: ConfigFile = await configFile(sweetOptions);
 
     return typeof cfg === 'function' ? cfg({ environment }) : cfg;
   }
@@ -68,9 +68,9 @@ export function callback(err: Error, stats: Stats): void {
  * @param { boolean } args.hot: 添加webpack.HotModuleReplacementPlugin插件，开启热更新功能
  * @param { 'sockjs' | 'ws' } args.socket: socket类型
  */
-export function config(args: FuncArgs = {}): Configuration {
+export async function config(args: FuncArgs = {}): Promise<Configuration> {
   const { sweetConfig, mode, webpackLog, hot, socket }: FuncArgs = args;
-  const cfg: SweetConfig = getConfig('client', sweetConfig);
+  const cfg: SweetConfig = await getConfig('client', sweetConfig);
 
   if (cfg) {
     mode && (cfg.mode = mode);
@@ -88,9 +88,9 @@ export function config(args: FuncArgs = {}): Configuration {
  * @param { string } args.mode: 开发环境，覆盖配置的开发环境
  * @param { string } args.webpackLog: 覆盖日志的显示
  */
-export function serverRenderConfig(args: FuncArgs = {}): Configuration {
+export async function serverRenderConfig(args: FuncArgs = {}): Promise<Configuration> {
   const { sweetConfig, mode, webpackLog }: FuncArgs = args;
-  const cfg: SweetConfig = getConfig('server', sweetConfig);
+  const cfg: SweetConfig = await getConfig('server', sweetConfig);
 
   sweetOptions.environment = 'server';
 
@@ -107,9 +107,9 @@ export function serverRenderConfig(args: FuncArgs = {}): Configuration {
  * @param { SweetConfig | string | null | undefined } args.sweetConfig: webpack配置，覆盖文件，优先级最高
  * @param { string } args.webpackLog: 覆盖日志的显示
  */
-export function dllConfig(args: FuncArgs = {}): Configuration {
+export async function dllConfig(args: FuncArgs = {}): Promise<Configuration> {
   const { sweetConfig, webpackLog }: FuncArgs = args;
-  const cfg: SweetConfig = getConfig('dll', sweetConfig);
+  const cfg: SweetConfig = await getConfig('dll', sweetConfig);
 
   sweetOptions.environment = 'dll';
 

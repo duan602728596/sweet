@@ -5,13 +5,13 @@ import { requireModule } from '../utils/utils';
 import type { Argv } from '../utils/types';
 
 /* dll 命令 */
-function argvDll(argv: Argv): void {
+async function argvDll(argv: Argv): Promise<void> {
   const webpack: typeof Webpack = requireModule('webpack');
   const milktea: Milktea = requireModule('@sweet-milktea/milktea');
 
   const { config, webpackLog }: Argv = argv;
   const compiler: Compiler = webpack(
-    milktea.dllConfig({
+    await milktea.dllConfig({
       sweetConfig: config,
       webpackLog
     })

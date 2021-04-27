@@ -7,7 +7,7 @@ import { requireModule } from '../utils/utils';
 import type { Argv } from '../utils/types';
 
 /* start 命令 */
-function argvStart(argv: Argv): void {
+async function argvStart(argv: Argv): Promise<void> {
   const webpack: typeof Webpack = requireModule('webpack');
   const milktea: Milktea = requireModule('@sweet-milktea/milktea');
 
@@ -28,7 +28,7 @@ function argvStart(argv: Argv): void {
     useBabelRegister
   }: Argv = argv;
   const isServerEnv: boolean = !_.isNil(server);
-  const webpackConfig: Configuration = milktea.config({
+  const webpackConfig: Configuration = await milktea.config({
     sweetConfig: config,
     mode: 'development',
     webpackLog,
@@ -48,11 +48,11 @@ function argvStart(argv: Argv): void {
     serverRenderWatching: any | null = null;
 
   if (!_.isNil(serverRender)) {
-    compiler.hooks.done.tap('sweet-milktea-build', function(): void {
+    compiler.hooks.done.tapAsync('sweet-milktea-build', async function(): Promise<void> {
       // ssr的钩子只执行一次
       if (serverRenderCompiler !== null && serverRenderWatching !== null) return;
 
-      const serverSideRenderConfig: Configuration = milktea.serverRenderConfig({
+      const serverSideRenderConfig: Configuration = await milktea.serverRenderConfig({
         sweetConfig: config,
         mode: 'development',
         webpackLog

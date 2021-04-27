@@ -6,13 +6,13 @@ import { requireModule } from '../utils/utils';
 import type { Argv } from '../utils/types';
 
 /* build 命令 */
-function argvBuild(argv: Argv): void {
+async function argvBuild(argv: Argv): Promise<void> {
   const webpack: typeof Webpack = requireModule('webpack');
   const milktea: Milktea = requireModule('@sweet-milktea/milktea');
 
   const { config, webpackLog, serverRender }: Argv = argv;
   const compiler: Compiler = webpack(
-    milktea.config({
+    await milktea.config({
       sweetConfig: config,
       mode: 'production',
       webpackLog
@@ -21,9 +21,9 @@ function argvBuild(argv: Argv): void {
 
   if (!_.isNil(serverRender)) {
     // 正常编译完毕后，编译ssr需要的文件
-    compiler.hooks.done.tapAsync('sweet-milktea-build', function(): void {
+    compiler.hooks.done.tapAsync('sweet-milktea-build', async function(): Promise<void> {
       const serverRenderCompiler: Compiler = webpack(
-        milktea.serverRenderConfig({
+        await milktea.serverRenderConfig({
           sweetConfig: config,
           mode: 'production',
           webpackLog
