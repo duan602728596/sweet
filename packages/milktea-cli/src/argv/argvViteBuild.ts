@@ -1,11 +1,11 @@
 import * as _ from 'lodash';
 import { Argv } from '../utils/types';
 import type { MilkVite } from '@sweet-milktea/milktea-vite/src/utils/types';
-import { requireModule } from '../utils/utils';
+import { requireModule } from '../utils/moduleUtils';
 
 /* vite-build 命令 */
 async function argvViteBuild(argv: Argv): Promise<void> {
-  const milkteaVite: MilkVite = requireModule('@sweet-milktea/milktea-vite');
+  const milkteaVite: MilkVite = await requireModule('@sweet-milktea/milktea-vite');
 
   const { config, serverRender }: Argv = argv;
 

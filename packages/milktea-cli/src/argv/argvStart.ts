@@ -3,13 +3,13 @@ import type { Compiler, Configuration } from 'webpack';
 import * as _ from 'lodash';
 import type { Milktea } from '@sweet-milktea/milktea/src/utils/types';
 import type { DevServer } from '@sweet-milktea/server/src/utils/types';
-import { requireModule } from '../utils/utils';
+import { requireModule } from '../utils/moduleUtils';
 import type { Argv } from '../utils/types';
 
 /* start 命令 */
 async function argvStart(argv: Argv): Promise<void> {
-  const webpack: typeof Webpack = requireModule('webpack');
-  const milktea: Milktea = requireModule('@sweet-milktea/milktea');
+  const webpack: typeof Webpack = await requireModule('webpack');
+  const milktea: Milktea = await requireModule('@sweet-milktea/milktea');
 
   const {
     server,
@@ -38,7 +38,7 @@ async function argvStart(argv: Argv): Promise<void> {
 
   // hmr需要output.publicPath
   if (server) {
-    const hotClientEntry: Function = requireModule('@sweet-milktea/server/hotClientEntry');
+    const hotClientEntry: Function = await requireModule('@sweet-milktea/server/hotClientEntry');
 
     webpackConfig.entry = hotClientEntry(webpackConfig.entry);
   }
@@ -66,7 +66,7 @@ async function argvStart(argv: Argv): Promise<void> {
   }
 
   if (isServerEnv) {
-    const devServer: DevServer = requireModule('@sweet-milktea/server/devServer');
+    const devServer: DevServer = await requireModule('@sweet-milktea/server/devServer');
 
     devServer({
       compiler,

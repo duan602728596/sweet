@@ -1,11 +1,11 @@
 import * as process from 'process';
 import * as path from 'path';
-import { requireModule } from '../utils/utils';
+import { requireModule } from '../utils/moduleUtils';
 import type { Argv } from '../utils/types';
 
 /* image2avif命令 */
-function argvImage2Avif(argv: Argv): void {
-  const image2avif: Function = requireModule('@sweet-milktea/util-tools/image2avif');
+async function argvImage2Avif(argv: Argv): Promise<void> {
+  const image2avif: Function = await requireModule('@sweet-milktea/util-tools/image2avif');
 
   const { imageEntry, imageOutput }: Argv = argv;
   const cwd: string = process.cwd();

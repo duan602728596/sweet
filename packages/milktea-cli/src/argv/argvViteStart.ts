@@ -2,12 +2,12 @@ import type { ViteDevServer } from 'vite';
 import { Argv } from '../utils/types';
 import type { MilkVite } from '@sweet-milktea/milktea-vite/src/utils/types';
 import type { DevServer } from '@sweet-milktea/server/src/utils/types';
-import { requireModule } from '../utils/utils';
+import { requireModule } from '../utils/moduleUtils';
 
 /* vite-start 命令 */
 async function argvViteStart(argv: Argv): Promise<void> {
-  const milkteaVite: MilkVite = requireModule('@sweet-milktea/milktea-vite');
-  const devServer: DevServer = requireModule('@sweet-milktea/server/devServer');
+  const milkteaVite: MilkVite = await requireModule('@sweet-milktea/milktea-vite');
+  const devServer: DevServer = await requireModule('@sweet-milktea/server/devServer');
 
   const {
     config,

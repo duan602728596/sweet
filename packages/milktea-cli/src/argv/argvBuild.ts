@@ -2,13 +2,13 @@ import type * as Webpack from 'webpack';
 import type { Compiler } from 'webpack';
 import * as _ from 'lodash';
 import type { Milktea } from '@sweet-milktea/milktea/src/utils/types';
-import { requireModule } from '../utils/utils';
+import { requireModule } from '../utils/moduleUtils';
 import type { Argv } from '../utils/types';
 
 /* build 命令 */
 async function argvBuild(argv: Argv): Promise<void> {
-  const webpack: typeof Webpack = requireModule('webpack');
-  const milktea: Milktea = requireModule('@sweet-milktea/milktea');
+  const webpack: typeof Webpack = await requireModule('webpack');
+  const milktea: Milktea = await requireModule('@sweet-milktea/milktea');
 
   const { config, webpackLog, serverRender }: Argv = argv;
   const compiler: Compiler = webpack(

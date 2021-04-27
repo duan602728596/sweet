@@ -1,11 +1,11 @@
 import * as process from 'process';
 import * as path from 'path';
-import { requireModule } from '../utils/utils';
+import { requireModule } from '../utils/moduleUtils';
 import type { Argv } from '../utils/types';
 
 /* image2icns命令 */
-function argvImage2Icns(argv: Argv): void {
-  const image2icns: Function = requireModule('@sweet-milktea/util-tools/image2icns');
+async function argvImage2Icns(argv: Argv): Promise<void> {
+  const image2icns: Function = await requireModule('@sweet-milktea/util-tools/image2icns');
 
   const { imageEntry, imageOutput, size, retina }: Argv = argv;
   const cwd: string = process.cwd();

@@ -1,11 +1,11 @@
 import * as process from 'process';
 import * as path from 'path';
-import { requireModule } from '../utils/utils';
+import { requireModule } from '../utils/moduleUtils';
 import type { Argv } from '../utils/types';
 
 /* imageCompression命令 */
-function imageCompress(argv: Argv): void {
-  const image2webp: Function = requireModule('@sweet-milktea/util-tools/imageCompress');
+async function imageCompress(argv: Argv): Promise<void> {
+  const image2webp: Function = await requireModule('@sweet-milktea/util-tools/imageCompress');
 
   const { imageEntry, imageOutput }: Argv = argv;
   const cwd: string = process.cwd();

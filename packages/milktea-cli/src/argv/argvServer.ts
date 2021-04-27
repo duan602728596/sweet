@@ -1,10 +1,10 @@
 import type { ProServer } from '@sweet-milktea/server/src/utils/types';
-import { requireModule } from '../utils/utils';
+import { requireModule } from '../utils/moduleUtils';
 import type { Argv } from '../utils/types';
 
 /* server 命令 */
-function argvServer(argv: Argv): void {
-  const proServer: ProServer = requireModule('@sweet-milktea/server/proServer');
+async function argvServer(argv: Argv): Promise<void> {
+  const proServer: ProServer = await requireModule('@sweet-milktea/server/proServer');
 
   const {
     httpPort,
