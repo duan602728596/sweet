@@ -27,7 +27,7 @@ async function getConfig(environment: Environment, sweetConfig: SweetConfigArgs)
     // 默认的配置文件
     const cfg: ConfigFile = await configFile(sweetOptions);
 
-    return typeof cfg === 'function' ? cfg({ environment }) : cfg;
+    return typeof cfg === 'function' ? await cfg({ environment }) : cfg;
   }
 }
 

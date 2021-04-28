@@ -9,7 +9,7 @@ import type { SweetConfig, SweetOptions } from './utils/types';
  * @param { SweetConfig } sweetConfig: 获取到的外部配置
  * @param { SweetOptions } sweetOptions: 内部挂载的一些配置
  */
-export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions): InlineConfig {
+export default async function(sweetConfig: SweetConfig, sweetOptions: SweetOptions): Promise<InlineConfig> {
   const { mode, frame, vite, chainVite }: SweetConfig = sweetConfig;
 
   const viteConfig: InlineConfig = _.merge(basicConfig(sweetOptions), {
@@ -32,20 +32,20 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions): I
         jsxFragment: 'React.Fragment',
         jsxInject: "import * as React from 'react';"
       },
-      plugins: [requireModule('@vitejs/plugin-react-refresh')()]
+      plugins: [await requireModule('@vitejs/plugin-react-refresh')()]
     });
   } else if (frame === 'vue') {
     // 添加vue配置
     Object.assign(viteConfig, {
       plugins: [
-        requireModule('@vitejs/plugin-vue')(),
-        requireModule('@vitejs/plugin-vue-jsx')()
+        (await requireModule('@vitejs/plugin-vue'))(),
+        (await requireModule('@vitejs/plugin-vue-jsx'))()
       ]
     });
   }
 
   if (chainVite) {
-    chainVite(viteConfig);
+    await chainVite(viteConfig);
   }
 
   return _.merge(viteConfig, vite);

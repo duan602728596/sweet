@@ -16,7 +16,7 @@ import type { SweetConfig, SweetOptions, JS } from './utils/types';
  * @param { SweetConfig } sweetConfig: 获取到的外部配置
  * @param { SweetOptions } sweetOptions: 内部挂载的一些配置
  */
-export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions): Configuration {
+export default async function(sweetConfig: SweetConfig, sweetOptions: SweetOptions): Promise<Configuration> {
   const config: Config = new Config();
   const SCFG: SweetConfig = _.omit(sweetConfig, [
     'serverRender',
@@ -91,7 +91,7 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions): C
 
   /* chainWebpack: 通过webpack-chain的API扩展或修改webpack配置 */
   if (chainWebpack) {
-    chainWebpack(config);
+    await chainWebpack(config);
   }
 
   const mergeConfiguration: Configuration = {

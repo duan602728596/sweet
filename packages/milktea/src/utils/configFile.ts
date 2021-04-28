@@ -1,8 +1,7 @@
-import * as fs from 'fs';
 import * as path from 'path';
 import { cosmiconfig, Loader } from 'cosmiconfig';
 import type { CosmiconfigResult, Config } from 'cosmiconfig/dist/types';
-import { requireModule } from './utils';
+import { requireModule, isExists } from './utils';
 import type { SweetConfig, SweetOptions, Explorer, Info } from './types';
 
 /* 创建cosmiconfig的js加载器 */
@@ -68,7 +67,7 @@ async function getConfigFile(sweetOptions: SweetOptions, configFile?: string): P
       sweetConfigFile = path.join(sweetOptions.basicPath, configFile);
     }
 
-    if (fs.existsSync(sweetConfigFile)) {
+    if (await isExists(sweetConfigFile)) {
       return jsRegisterLoader(sweetConfigFile, '');
     } else {
       throw new Error(ERROR_MSG);

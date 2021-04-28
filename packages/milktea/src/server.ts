@@ -80,7 +80,7 @@ export default async function(sweetConfig: SweetConfig | null | undefined, sweet
 
   /* serverChainWebpack: 通过webpack-chain的API扩展或修改webpack配置 */
   if (serverChainWebpack) {
-    serverChainWebpack(config);
+    await serverChainWebpack(config);
   }
 
   const mergeConfiguration: Configuration = {

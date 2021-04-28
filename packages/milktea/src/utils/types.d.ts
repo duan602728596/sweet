@@ -81,7 +81,7 @@ export interface SweetConfig {
   css?: LESS;
   html?: Array<HtmlWebpackPluginOptions>;
   frame?: Frame;
-  chainWebpack?: (config: Config) => void;
+  chainWebpack?: (config: Config) => Promise<void>;
   filesMap?: boolean | { [key: string]: string };
   hot?: boolean;
   hotType?: 'react-refresh' | 'react-hot-loader';
@@ -92,7 +92,7 @@ export interface SweetConfig {
   serverOutput?: any;
   serverExternals?: { [key: string]: string };
   serverDevtool?: string;
-  serverChainWebpack?: (config: Config) => void;
+  serverChainWebpack?: (config: Config) => Promise<void>;
 }
 
 /* 获取配置文件 */

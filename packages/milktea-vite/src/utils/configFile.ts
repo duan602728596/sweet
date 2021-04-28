@@ -1,16 +1,16 @@
 import * as fs from 'fs';
 import * as path from 'path';
-import { cosmiconfigSync, LoaderSync } from 'cosmiconfig';
+import { cosmiconfig, Loader } from 'cosmiconfig';
 import type { CosmiconfigResult, Config } from 'cosmiconfig/dist/types';
-import { requireModule } from './utils';
-import type { SweetConfig, SweetOptions, ExplorerSync } from './types';
+import { requireModule, isExists } from './utils';
+import type { SweetConfig, SweetOptions, Explorer, Info } from './types';
 
 /* 创建cosmiconfig的js加载器 */
-function createJsRegisterLoader(): LoaderSync {
-  return function jsRegisterLoader(filepath: string, content: string): Config | null {
-    require('@babel/register')({
+function createJsRegisterLoader(): Loader {
+  return async function jsRegisterLoader(filepath: string, content: string): Promise<Config | null> {
+    (await requireModule('@babel/register'))({
       presets: [[
-        requireModule('@sweet-milktea/babel-preset-sweet'),
+        await requireModule('@sweet-milktea/babel-preset-sweet'),
         {
           env: {
             nodeEnv: true,
@@ -26,20 +26,22 @@ function createJsRegisterLoader(): LoaderSync {
       extensions: ['.es6', '.es', '.jsx', '.js', '.mjs', 'cjs', '.tsx', '.ts']
     });
 
-    return requireModule(filepath);
+    return await requireModule(filepath);
   };
 }
 
+export type ConfigFile = SweetConfig | ((info: Info) => SweetConfig);
+
 /* 获取配置文件 */
-function getConfigFile(sweetOptions: SweetOptions, configFile?: string): SweetConfig | (() => SweetConfig) {
+async function getConfigFile(sweetOptions: SweetOptions, configFile?: string): Promise<ConfigFile> {
   // @babel/register
-  const jsRegisterLoader: LoaderSync = createJsRegisterLoader();
+  const jsRegisterLoader: Loader = createJsRegisterLoader();
 
   // 配置文件加载器
   const MODULE_NAME: string = 'sweet';
   const ERROR_MSG: string = 'Please configure the .sweetrc.js or sweet.config.js file first.';
 
-  const explorerSync: ExplorerSync = cosmiconfigSync(MODULE_NAME, {
+  const explorer: Explorer = await cosmiconfig(MODULE_NAME, {
     searchPlaces: [
       `${ MODULE_NAME }.config.ts`,
       `${ MODULE_NAME }.config.tsx`,
@@ -66,14 +68,14 @@ function getConfigFile(sweetOptions: SweetOptions, configFile?: string): SweetCo
       sweetConfigFile = path.join(sweetOptions.basicPath, configFile);
     }
 
-    if (fs.existsSync(sweetConfigFile)) {
+    if (await isExists(sweetConfigFile)) {
       return jsRegisterLoader(sweetConfigFile, '');
     } else {
       throw new Error(ERROR_MSG);
     }
   } else {
     // 加载默认的配置文件
-    const searchResult: CosmiconfigResult = explorerSync.search();
+    const searchResult: CosmiconfigResult = await explorer.search();
 
     if (searchResult === null) {
       throw new Error(ERROR_MSG);

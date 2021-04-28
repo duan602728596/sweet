@@ -112,7 +112,7 @@ export default async function(sweetConfig: SweetConfig, sweetOptions: SweetOptio
 
   /* chainWebpack: 通过webpack-chain的API扩展或修改webpack配置 */
   if (chainWebpack) {
-    chainWebpack(config);
+    await chainWebpack(config);
   }
 
   const mergeConfiguration: Configuration = {

@@ -1,14 +1,11 @@
-/* 模块导入 */
-export function requireModule(id: string): any {
-  const module: { default: any } | any = require(id);
+import * as fs from 'fs';
 
-  return 'default' in module ? module.default : module;
-}
-
-/* 判断模块是否存在 */
-export function moduleExists(id: string): string | false {
+/* 判断文件是否存在 */
+export async function isExists(file: string): Promise<boolean> {
   try {
-    return require.resolve(id);
+    await fs.promises.access(file);
+
+    return true;
   } catch (err) {
     return false;
   }
@@ -16,3 +13,5 @@ export function moduleExists(id: string): string | false {
 
 /* extensions扩展名 */
 export const extensions: Array<string> = ['.mjs', '.ts', '.tsx', '.js', '.jsx', 'cjs', '.json', '.vue', '.wasm'];
+
+export { requireModule, moduleExists } from './moduleUtils';

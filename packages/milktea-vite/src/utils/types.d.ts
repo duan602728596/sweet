@@ -26,13 +26,13 @@ export interface SweetConfig {
   vite?: InlineConfig;
   // ssr
   serverEntry?: boolean;
-  chainVite?: (config: InlineConfig) => void;
+  chainVite?: (config: InlineConfig) => Promise<void>;
 }
 
 /* 获取配置文件 */
-export interface ExplorerSync {
-  readonly search: (searchFrom?: string) => CosmiconfigResult;
-  readonly load: (filepath: string) => CosmiconfigResult;
+export interface Explorer {
+  readonly search: (searchFrom?: string) => Promise<CosmiconfigResult>;
+  readonly load: (filepath: string) => Promise<CosmiconfigResult>;
   readonly clearLoadCache: () => void;
   readonly clearSearchCache: () => void;
   readonly clearCaches: () => void;
