@@ -19,7 +19,7 @@ async function getConfig(environment: Environment, sweetConfig: SweetConfigArgs)
     // 自定义配置文件路径
     const cfg: ConfigFile = await configFile(sweetOptions, sweetConfig);
 
-    return typeof cfg === 'function' ? cfg({ environment }) : cfg;
+    return typeof cfg === 'function' ? await cfg({ environment }) : cfg;
   } else if (_.isPlainObject(sweetConfig)) {
     // 自定义配置文件
     return sweetConfig as SweetConfig;
