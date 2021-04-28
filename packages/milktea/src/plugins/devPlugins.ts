@@ -8,7 +8,7 @@ import type { SweetConfig, SweetOptions } from '../utils/types';
 
 /* 开发环境插件 */
 export default async function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, config: Config): Promise<void> {
-  const { dll, serverRender, frame, hot, hotType = 'react-refresh' }: SweetConfig = sweetConfig;
+  const { dll, serverRender, frame, hot }: SweetConfig = sweetConfig;
 
   // dll
   const isDll: boolean = !!(dll && Array.isArray(dll) && dll.length > 0 && !serverRender);
@@ -31,7 +31,7 @@ export default async function(sweetConfig: SweetConfig, sweetOptions: SweetOptio
     });
 
   // react-refresh-webpack-plugin
-  const isReactRefresh: boolean = !!hot && frame === 'react' && hotType === 'react-refresh';
+  const isReactRefresh: boolean = !!hot && frame === 'react';
 
   if (isReactRefresh) {
     config

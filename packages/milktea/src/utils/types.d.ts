@@ -84,7 +84,6 @@ export interface SweetConfig {
   chainWebpack?: (config: Config) => Promise<void>;
   filesMap?: boolean | { [key: string]: string };
   hot?: boolean;
-  hotType?: 'react-refresh' | 'react-hot-loader';
   socket?: 'sockjs' | 'ws';
   // ssr
   serverRender?: boolean;

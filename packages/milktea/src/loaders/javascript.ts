@@ -7,7 +7,7 @@ import type { SweetConfig, SweetOptions, JS } from '../utils/types';
 
 /* js 配置 */
 export default async function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, config: Config): Promise<void> {
-  const { mode, js = {}, frame, hot, hotType = 'react-refresh', webpackLog = 'progress' }: SweetConfig = sweetConfig;
+  const { mode, js = {}, frame, hot, webpackLog = 'progress' }: SweetConfig = sweetConfig;
   const {
     ecmascript,
     typescript,
@@ -83,11 +83,7 @@ export default async function(sweetConfig: SweetConfig, sweetOptions: SweetOptio
 
       if (isReact && hot) {
         // 判断是否加载react相关插件，热替换
-        if (hotType === 'react-refresh') {
-          isDevelopment && babelPlugins.push('react-refresh/babel');
-        } else {
-          babelPlugins.push('react-hot-loader/babel');
-        }
+        isDevelopment && babelPlugins.push('react-refresh/babel');
       } else if (isVue) {
         babelPlugins.push('@vue/babel-plugin-jsx'); // 判断是否加载vue相关插件
       }

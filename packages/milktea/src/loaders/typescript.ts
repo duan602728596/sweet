@@ -7,7 +7,7 @@ import type { SweetConfig, SweetOptions, TS } from '../utils/types';
 
 /* ts 配置 */
 export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, config: Config): void {
-  const { mode, ts = {}, frame, hot, hotType = 'react-refresh' }: SweetConfig = sweetConfig;
+  const { mode, ts = {}, frame, hot }: SweetConfig = sweetConfig;
   const {
     configFile,
     presets: extraPresets,
@@ -60,11 +60,7 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
 
       if (isReact && hot) {
         // 判断是否加载react相关插件，热替换
-        if (hotType === 'react-refresh') {
-          isDevelopment && babelPlugins.push('react-refresh/babel');
-        } else {
-          babelPlugins.push('react-hot-loader/babel');
-        }
+        isDevelopment && babelPlugins.push('react-refresh/babel');
       } else if (isVue) {
         babelPlugins.push('@vue/babel-plugin-jsx'); // 判断是否加载vue相关插件
       }
