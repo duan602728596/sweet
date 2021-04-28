@@ -40,7 +40,7 @@ async function createProxy(sweetOptions: SweetOptions, app: Koa, isDevelopment: 
 
     for (const findFile of findFiles) {
       if (await isExists(findFile)) {
-        const module: any = requireModule(findFile);
+        const module: any = await requireModule(findFile);
 
         if (_.isPlainObject(module)) {
           await addMiddleware(app, module, isDevelopment, env);

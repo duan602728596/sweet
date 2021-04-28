@@ -8,8 +8,8 @@ import createRenderEngine from '../utils/createRenderEngine';
 import type { SweetOptions, ControllersModule } from '../utils/types';
 
 // 渲染新的html
-function preRenderInit(sweetOptions: SweetOptions): Function {
-  const renderEngine: Function = createRenderEngine(sweetOptions.renderType); // 获取渲染器
+async function preRenderInit(sweetOptions: SweetOptions): Promise<Function> {
+  const renderEngine: Function = await createRenderEngine(sweetOptions.renderType); // 获取渲染器
   const getSSRDataFunc: Function = sweetOptions.vite
     ? requireViteModule(sweetOptions)
     : deleteCacheAndRequireModule;

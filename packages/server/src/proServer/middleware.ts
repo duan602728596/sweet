@@ -13,10 +13,10 @@ import type { SweetOptions } from '../utils/types';
  * @param { Router } router: @koa/router实例
  * @param { SweetOptions } sweetOptions: 配置
  */
-function middleware(app: Koa, router: Router, sweetOptions: SweetOptions): void {
+async function middleware(app: Koa, router: Router, sweetOptions: SweetOptions): Promise<void> {
   /* 日志 */
   if (sweetOptions.log) {
-    logs(app, sweetOptions.log, sweetOptions);
+    await logs(app, sweetOptions.log, sweetOptions);
   }
 
   /* post body */

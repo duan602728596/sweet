@@ -55,25 +55,6 @@ export function defaultMockPath(basicPath: string): { ts: string; tsx: string; j
   };
 }
 
-/* 清除模块缓存（只用于开发环境） */
-export function cleanRequireCache(id: any): void {
-  const modulePath: string = require.resolve(id);
-  const main: NodeJS.Module | null | undefined = require.main ?? module.parent;
-
-  if (main) {
-    main.children.splice(main.children.indexOf(id), 1);
-  }
-
-  delete require.cache[modulePath];
-}
-
-/* 模块导入 */
-export function requireModule(id: string): any {
-  const module: { default: any } | any = require(id);
-
-  return 'default' in module ? module.default : module;
-}
-
 /* vite模块导入 */
 export function requireViteModule(sweetOptions: SweetOptions): (id: string) => Promise<any> {
   const ssrLoadModule: Function = (sweetOptions.compiler as ViteDevServer).ssrLoadModule;
@@ -83,13 +64,6 @@ export function requireViteModule(sweetOptions: SweetOptions): (id: string) => P
 
     return 'default' in module ? module.default : module;
   };
-}
-
-/* 模块导入并且清除缓存 */
-export function deleteCacheAndRequireModule(id: string): any {
-  cleanRequireCache(id);
-
-  return requireModule(id);
 }
 
 /* 判断是否为readStream */
@@ -195,3 +169,5 @@ export async function detectPort(port: number, ignorePort: Array<number> = []): 
 
   return newNumber;
 }
+
+export { requireModule, moduleExists, deleteCacheAndRequireModule } from './moduleUtils';

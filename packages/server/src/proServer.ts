@@ -133,13 +133,13 @@ async function proServer(args: ProServerArgs = {}): Promise<void> {
   }
 
   /* 添加其他的中间件 */
-  middleware(app, router, sweetOptions);
+  await middleware(app, router, sweetOptions);
 
   /* 本地mock */
   await createMock(sweetOptions, router, true);
 
   /* 创建路由 */
-  createRouters(
+  await createRouters(
     router,
     sweetOptions,
     !!sweetOptions.serverRender,

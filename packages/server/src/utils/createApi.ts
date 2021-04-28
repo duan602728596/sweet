@@ -19,8 +19,8 @@ async function createApi(sweetOptions: SweetOptions, router: Router, app: Koa, i
     for (const findFile of findFiles) {
       if (await isExists(findFile)) {
         const routers: Function = isDevelopment
-          ? deleteCacheAndRequireModule(findFile)
-          : requireModule(findFile);
+          ? await deleteCacheAndRequireModule(findFile)
+          : await requireModule(findFile);
 
         await routers(router, sweetOptions, app);
         break;

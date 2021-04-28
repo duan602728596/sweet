@@ -11,12 +11,12 @@ interface RegisterConfig {
 }
 
 /* 使用@babel/register */
-function useRegister(sweetOptions: SweetOptions): void {
+async function useRegister(sweetOptions: SweetOptions): Promise<void> {
   if (sweetOptions.useBabelRegister) {
     const config: RegisterConfig = {
       presets: [
         [
-          requireModule('@sweet-milktea/babel-preset-sweet'),
+          await requireModule('@sweet-milktea/babel-preset-sweet'),
           {
             env: {
               nodeEnv: true,
@@ -40,7 +40,7 @@ function useRegister(sweetOptions: SweetOptions): void {
       config.ignore.push(new RegExp(sweetOptions.serverRenderRoot, 'ig'));
     }
 
-    require('@babel/register')(config);
+    (await requireModule('@babel/register'))(config);
   }
 }
 

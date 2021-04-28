@@ -1,8 +1,8 @@
 import * as ejs from 'ejs';
 import { requireModule } from './utils';
 
-function createNunjucksRender(): Function {
-  const nunjucks: { [key: string]: any } = requireModule('nunjucks');
+async function createNunjucksRender(): Promise<Function> {
+  const nunjucks: { [key: string]: any } = await requireModule('nunjucks');
 
   nunjucks.configure({
     autoescape: false
@@ -12,9 +12,9 @@ function createNunjucksRender(): Function {
 }
 
 /* 创建html的渲染器 */
-function createRenderEngine(type: string | undefined): Function {
+async function createRenderEngine(type: string | undefined): Promise<Function> {
   if (type === 'nunjucks') {
-    return createNunjucksRender();
+    return await createNunjucksRender();
   } else {
     return ejs.render;
   }

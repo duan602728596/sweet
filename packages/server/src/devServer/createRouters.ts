@@ -9,8 +9,8 @@ import preRenderInit from './preDevRender';
 import { isExists } from '../utils/utils';
 import type { SweetOptions } from '../utils/types';
 
-function createRouters(router: Router, sweetOptions: SweetOptions): void {
-  const preRender: Function = preRenderInit(sweetOptions);
+async function createRouters(router: Router, sweetOptions: SweetOptions): Promise<void> {
+  const preRender: Function = await preRenderInit(sweetOptions);
 
   /* webpack 重定向 */
   router.get(/^\/.*/, async (ctx: Context, next: Next): Promise<void> => {

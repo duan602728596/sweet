@@ -1,5 +1,4 @@
 import * as path from 'path';
-import * as glob from 'glob';
 import type { IOptions } from 'glob';
 import * as _ from 'lodash';
 import { requireModule, deleteCacheAndRequireModule, globPromise } from './utils';
@@ -33,19 +32,19 @@ export function getControllers(controllersDir?: string): ControllersInfo {
  * @param { ControllersInfo } controllersInfo
  * @param { boolean } clearRequireModule: 是否清除缓存
  */
-export function requireControllers(
+export async function requireControllers(
   files: Array<string>,
   sweetOptions: SweetOptions,
   controllersInfo: ControllersInfo,
   clearRequireModule?: boolean
-): Array<ControllersModule> {
+): Promise<Array<ControllersModule>> {
   const result: Array<ControllersModule> = [],
     defaultResult: Array<ControllersModule> = [];
 
   for (const file of files) {
-    useRegister(sweetOptions);
+    await useRegister(sweetOptions);
 
-    const module: ControllersModule | undefined = (clearRequireModule ? deleteCacheAndRequireModule : requireModule)(
+    const module: ControllersModule | undefined = await (clearRequireModule ? deleteCacheAndRequireModule : requireModule)(
       controllersInfo.isAbsolute ? file : path.join(sweetOptions.basicPath, file));
 
     if (typeof module === 'object' && module.url && module.handler) {
@@ -75,25 +74,6 @@ export async function getControllersFiles(sweetOptions: SweetOptions, clearRequi
   }
 
   const files: Array<string> = await globPromise(controllersInfo.controllers, options);
-
-  return requireControllers(files, sweetOptions, controllersInfo, clearRequireModule);
-}
-
-/**
- * 同步获取controllers目录下的所有模块
- * @param { SweetOptions } sweetOptions
- * @param { boolean } clearRequireModule: 是否清除缓存
- */
-export function getControllersFilesSync(sweetOptions: SweetOptions, clearRequireModule?: boolean): Array<ControllersModule> {
-  const controllersInfo: ControllersInfo = getControllers(sweetOptions.controllersDir);
-  let options: IOptions = { cwd: sweetOptions.basicPath };
-
-  // 绝对路径时移除cwd
-  if (controllersInfo.isAbsolute) {
-    options = _.omit(options, ['cwd']);
-  }
-
-  const files: Array<string> = glob.sync(controllersInfo.controllers, options);
 
   return requireControllers(files, sweetOptions, controllersInfo, clearRequireModule);
 }

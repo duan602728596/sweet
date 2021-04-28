@@ -3,14 +3,14 @@ import { pathToRegexp } from 'path-to-regexp';
 import * as _ from 'lodash';
 import type { Context } from 'koa';
 import { formatTemplateData, requireModule, isReadStream, readStream } from '../utils/utils';
-import { getControllersFilesSync } from '../utils/controllers';
+import { getControllersFiles } from '../utils/controllers';
 import createRenderEngine from '../utils/createRenderEngine';
 import type { SweetOptions, ControllersModule } from '../utils/types';
 
 // 渲染新的html
-function preRenderInit(sweetOptions: SweetOptions): Function {
-  const renderEngine: Function = createRenderEngine(sweetOptions.renderType); // 获取渲染器
-  const controllersModules: Array<ControllersModule> = getControllersFilesSync(sweetOptions); // 获取所有的controllers模块
+async function preRenderInit(sweetOptions: SweetOptions): Promise<Function> {
+  const renderEngine: Function = await createRenderEngine(sweetOptions.renderType); // 获取渲染器
+  const controllersModules: Array<ControllersModule> = await getControllersFiles(sweetOptions); // 获取所有的controllers模块
 
   return async function preRender(ctxPath: string, ctx: Context, html: Buffer, serverRenderEntry: string): Promise<string> {
     try {

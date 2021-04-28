@@ -3,8 +3,9 @@ import { requireModule } from '../utils/utils';
 import type { Log, SweetOptions } from '../utils/types';
 
 /* 添加日志中间件 */
-function logs(app: Koa, log: Log, sweetOptions: SweetOptions): void {
-  const serverLog: Function = requireModule('@sweet-milktea/server-log');
+async function logs(app: Koa, log: Log, sweetOptions: SweetOptions): Promise<void> {
+  const serverLog: Function = await requireModule('@sweet-milktea/server-log');
+
   const { accessLogger, logger }: {
     accessLogger: Function;
     logger: {

@@ -8,15 +8,15 @@ import preRenderInit from './preProRender';
 import { isExists } from '../utils/utils';
 import type { SweetOptions } from '../utils/types';
 
-function createRouters(
+async function createRouters(
   router: Router,
   sweetOptions: SweetOptions,
   serverRender: boolean,
   serverRenderEntry: string,
   serverRoot: string,
   template: string
-): void {
-  const preRender: Function = preRenderInit(sweetOptions);
+): Promise<void> {
+  const preRender: Function = await preRenderInit(sweetOptions);
 
   /* index路由 */
   router.get(/^\/.*/, async (ctx: Context, next: Next): Promise<void> => {

@@ -62,8 +62,8 @@ async function createMock(sweetOptions: SweetOptions, router: Router, isDevelopm
     for (const findFile of findFiles) {
       if (await isExists(findFile)) {
         const mockModule: MockModule = isDevelopment
-          ? deleteCacheAndRequireModule(findFile)
-          : requireModule(findFile);
+          ? await deleteCacheAndRequireModule(findFile)
+          : await requireModule(findFile);
 
         if (isMockFunc(mockModule)) {
           const mock: Mock = await mockModule(sweetOptions);
