@@ -7,7 +7,56 @@
     "type": "git",
     "url": "git@github.com:duan602728596/sweet.git"
   },
-  "main": "cjs.js",
+  "exports": {
+    "./image2avif": {
+      "import": "./esm/image2avif.js",
+      "default": "./image2avif.js"
+    },
+    "./image2avif.js": {
+      "import": "./esm/image2avif.js",
+      "default": "./image2avif.js"
+    },
+    "./image2icns": {
+      "import": "./esm/image2icns.js",
+      "default": "./image2icns.js"
+    },
+    "./image2icns.js": {
+      "import": "./esm/image2icns.js",
+      "default": "./image2icns.js"
+    },
+    "./image2webp": {
+      "import": "./esm/image2webp.js",
+      "default": "./image2webp.js"
+    },
+    "./image2webp.js": {
+      "import": "./esm/image2webp.js",
+      "default": "./image2webp.js"
+    },
+    "./imageCompress": {
+      "import": "./esm/imageCompress.js",
+      "default": "./imageCompress.js"
+    },
+    "./imageCompress.js": {
+      "import": "./esm/imageCompress.js",
+      "default": "./imageCompress.js"
+    },
+    "./media2webp": {
+      "import": "./esm/media2webp.js",
+      "default": "./media2webp.js"
+    },
+    "./media2webp.js": {
+      "import": "./esm/media2webp.js",
+      "default": "./media2webp.js"
+    },
+    "./update": {
+      "import": "./esm/update.js",
+      "default": "./update.js"
+    },
+    "./update.js": {
+      "import": "./esm/update.js",
+      "default": "./update.js"
+    }
+  },
   "scripts": {
     "start": "npm run clean && cross-env NODE_ENV=development tsc --watch",
     "build": "npm run clean && cross-env NODE_ENV=production tsc",

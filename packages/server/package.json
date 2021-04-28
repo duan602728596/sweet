@@ -8,6 +8,36 @@
     "url": "git@github.com:duan602728596/sweet.git"
   },
   "main": "cjs.js",
+  "exports": {
+    ".": {
+      "import": "./esm/server.js",
+      "default": "./lib/cjs.js"
+    },
+    "./devServer": {
+      "import": "./esm/devServer.js",
+      "default": "./devServer.js"
+    },
+    "./devServer.js": {
+      "import": "./esm/devServer.js",
+      "default": "./devServer.js"
+    },
+    "./proServer": {
+      "import": "./esm/proServer.js",
+      "default": "./proServer.js"
+    },
+    "./proServer.js": {
+      "import": "./esm/proServer.js",
+      "default": "./proServer.js"
+    },
+    "./hotClientEntry": {
+      "import": "./esm/hotClientEntry.js",
+      "default": "./hotClientEntry.js"
+    },
+    "./hotClientEntry.js": {
+      "import": "./esm/hotClientEntry.js",
+      "default": "./hotClientEntry.js"
+    }
+  },
   "scripts": {
     "start": "npm run clean && cross-env NODE_ENV=development tsc --watch",
     "build": "npm run clean && cross-env NODE_ENV=production tsc",

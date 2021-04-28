@@ -9,7 +9,11 @@
   },
   "main": "lib/cli.js",
   "bin": {
-    "milktea": "lib/cli.js"
+    "milktea": "esm/cli.js"
+  },
+  "exports": {
+    "import": "./esm/cli.js",
+    "default": "./lib/cli.js"
   },
   "scripts": {
     "start": "npm run clean && cross-env NODE_ENV=development tsc --watch",

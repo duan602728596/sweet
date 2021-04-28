@@ -8,6 +8,38 @@
     "url": "git@github.com:duan602728596/sweet.git"
   },
   "main": "lib/milktea.js",
+  "exports": {
+    ".": {
+      "import": "./esm/milktea.js",
+      "default": "./lib/milktea.js"
+    },
+    "./esm/milktea": {
+      "import": "./esm/milktea.js",
+      "default": "./lib/milktea.js"
+    },
+    "./esm/milktea.js": {
+      "import": "./esm/milktea.js",
+      "default": "./lib/milktea.js"
+    },
+    "./esm/dll": {
+      "import": "./esm/dll.js"
+    },
+    "./esm/dll.js": {
+      "import": "./esm/dll.js"
+    },
+    "./esm/config": {
+      "import": "./esm/config.js"
+    },
+    "./esm/config.js": {
+      "import": "./esm/config.js"
+    },
+    "./esm/server": {
+      "import": "./esm/server.js"
+    },
+    "./esm/server.js": {
+      "import": "./esm/server.js"
+    }
+  },
   "scripts": {
     "start": "npm run clean && cross-env NODE_ENV=development tsc --watch",
     "build": "npm run clean && cross-env NODE_ENV=production tsc",
