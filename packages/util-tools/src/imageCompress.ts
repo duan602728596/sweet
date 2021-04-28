@@ -1,5 +1,5 @@
 import * as path from 'path';
-import * as imageMin from 'imagemin';
+import imageMin from './utils/imagemin';
 import type { Options as PngOptions } from 'imagemin-pngquant';
 import { requireModule, formatPath } from './utils/utils';
 
