@@ -1,6 +1,6 @@
 import * as path from 'path';
 import * as imageMin from 'imagemin';
-import { requireModule, formatPath } from './utils';
+import { requireModule, formatPath } from './utils/utils';
 
 interface Options {
   img?: object;

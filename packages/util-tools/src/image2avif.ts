@@ -2,7 +2,7 @@ import * as path from 'path';
 import type { ParsedPath } from 'path';
 import { spawn, ChildProcessWithoutNullStreams } from 'child_process';
 import * as fse from 'fs-extra';
-import { formatPath, getFiles } from './utils';
+import { formatPath, getFiles } from './utils/utils';
 
 /**
  * 转换成avif
