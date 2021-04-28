@@ -48,9 +48,6 @@
     "webpack-merge": "^5.7.3",
     "webpackbar": "^5.0.0-3"
   },
-  "optionalDependencies": {
-    "fibers": "^5.0.0"
-  },
   "devDependencies": {
     "@vue/babel-plugin-jsx": "^1.0.5",
     "ts-loader": "^9.1.0",
