@@ -51,8 +51,8 @@ export default async function(sweetConfig: SweetConfig, sweetOptions: SweetOptio
 
   // env plugin - 根据模式加载插件
   const envPlugins: (...args: any) => Promise<void> = isDevelopment
-    ? await requireModule(path.join(__dirname, 'devPlugins'))
-    : await requireModule(path.join(__dirname, 'proPlugins'));
+    ? await requireModule(path.join(__dirname, 'devPlugins.js'))
+    : await requireModule(path.join(__dirname, 'proPlugins.js'));
 
   await envPlugins(sweetConfig, sweetOptions, config);
 
