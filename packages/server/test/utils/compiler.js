@@ -4,9 +4,9 @@ import { config as webpackConfig } from '@sweet-milktea/milktea';
 import hotClientEntry from '../../hotClientEntry';
 
 // 创建webpack配置
-function createCompiler(entry, mode = 'development') {
+async function createCompiler(entry, mode = 'development') {
   const compiler = webpack(
-    webpackConfig({
+    await webpackConfig({
       sweetConfig: {
         frame: 'test',
         entry: hotClientEntry({

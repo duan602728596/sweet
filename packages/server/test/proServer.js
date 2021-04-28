@@ -6,11 +6,11 @@ import { get, post } from './utils/reqData';
 import toJson from './utils/toJson';
 import afterTest from './afterTest';
 
-// webpack配置
-const compiler = createCompiler('../src/index.js', 'production');
-
 // 编译文件
-function runBuild() {
+async function runBuild() {
+  // webpack配置
+  const compiler = await createCompiler('../src/index.js', 'production');
+
   compiler.run(() => undefined);
 
   return new Promise((resolve, reject) => {

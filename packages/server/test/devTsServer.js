@@ -5,11 +5,11 @@ import createCompiler from './utils/compiler';
 import { get, post } from './utils/reqData';
 import toJson from './utils/toJson';
 
-// webpack配置
-const compiler = createCompiler('../srcTs/index.ts');
-
 // 运行开发环境服务
-function runServer() {
+async function runServer() {
+  // webpack配置
+  const compiler = await createCompiler('../srcTs/index.ts');
+
   devServer({
     compiler,
     env: 'test',
