@@ -48,7 +48,7 @@ async function argvStart(argv: Argv): Promise<void> {
     serverRenderWatching: any | null = null;
 
   if (!_.isNil(serverRender)) {
-    compiler.hooks.done.tapAsync('sweet-milktea-build', async function(): Promise<void> {
+    compiler.hooks.done.tap('sweet-milktea-build', async function(): Promise<void> {
       // ssr的钩子只执行一次
       if (serverRenderCompiler !== null && serverRenderWatching !== null) return;
 

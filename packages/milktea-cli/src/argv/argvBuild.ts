@@ -21,7 +21,7 @@ async function argvBuild(argv: Argv): Promise<void> {
 
   if (!_.isNil(serverRender)) {
     // 正常编译完毕后，编译ssr需要的文件
-    compiler.hooks.done.tapAsync('sweet-milktea-build', async function(): Promise<void> {
+    compiler.hooks.done.tap('sweet-milktea-build', async function(): Promise<void> {
       const serverRenderCompiler: Compiler = webpack(
         await milktea.serverRenderConfig({
           sweetConfig: config,
