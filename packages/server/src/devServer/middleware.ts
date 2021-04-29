@@ -2,8 +2,8 @@ import body from 'koa-body';
 import connect from 'koa-connect';
 import type { Compiler } from 'webpack';
 import type { ViteDevServer } from 'vite';
-import type * as Koa from 'koa';
-import type * as Router from '@koa/router';
+import type Koa from 'koa';
+import type Router from '@koa/router';
 import koaDevMiddleware from './koaDevMiddleware';
 import type { SweetOptions } from '../utils/types';
 

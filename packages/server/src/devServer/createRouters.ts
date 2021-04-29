@@ -3,7 +3,7 @@ import { ParsedPath } from 'path';
 import * as fs from 'fs';
 import mime from 'mime-types';
 import type { Context, Next } from 'koa';
-import type * as Router from '@koa/router';
+import type Router from '@koa/router';
 import type { ViteDevServer } from 'vite';
 import preRenderInit from './preDevRender';
 import { isExists } from '../utils/utils';

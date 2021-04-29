@@ -68,6 +68,7 @@ export function requireViteModule(sweetOptions: SweetOptions): (id: string) => P
 
 /* 判断是否为readStream */
 export function isReadStream(input: string | Stream): input is Stream {
+  // @ts-ignore
   return typeof input === 'object' && input instanceof Stream;
 }
 

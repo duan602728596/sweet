@@ -1,6 +1,6 @@
 import TerserPlugin from 'terser-webpack-plugin';
 import CssMinimizerPlugin from 'css-minimizer-webpack-plugin';
-import type * as Config from 'webpack-chain';
+import type Config from 'webpack-chain';
 import type { SweetConfig, SweetOptions } from '../utils/types';
 
 interface TerserOptions {

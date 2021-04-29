@@ -1,5 +1,5 @@
-import type * as Koa from 'koa';
-import type * as Router from '@koa/router';
+import type Koa from 'koa';
+import type Router from '@koa/router';
 import { defaultApiPath, deleteCacheAndRequireModule, requireModule, isExists } from './utils';
 import type { SweetOptions } from './types';
 

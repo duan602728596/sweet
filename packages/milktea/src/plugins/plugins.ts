@@ -7,7 +7,7 @@ import type { Options as HtmlWebpackPluginOptions } from 'html-webpack-plugin';
 import FilesMapWebpackPlugin from '@bbkkbkk/files-map-webpack-plugin';
 import WebpackBar from 'webpackbar';
 import _ from 'lodash';
-import type * as Config from 'webpack-chain';
+import type Config from 'webpack-chain';
 import type {
   TypeScriptReporterOptions
 } from 'fork-ts-checker-webpack-plugin/lib/typescript-reporter/TypeScriptReporterOptions';

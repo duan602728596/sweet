@@ -1,4 +1,4 @@
-import type * as Webpack from 'webpack';
+import type Webpack from 'webpack';
 import type { Compiler } from 'webpack';
 import type { Milktea } from '@sweet-milktea/milktea/src/utils/types';
 import { requireModule } from '../utils/moduleUtils';

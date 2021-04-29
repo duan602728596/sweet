@@ -1,5 +1,5 @@
 import type { AST } from 'eslint';
-import type * as ESTree from 'estree';
+import type ESTree from 'estree';
 
 export const SYMBOLS: { [key: string]: string } = {
   OR: '|',

@@ -1,4 +1,4 @@
-import type * as Koa from 'koa';
+import type Koa from 'koa';
 import type { Context } from 'koa';
 import type { Compiler } from 'webpack';
 import type { ViteDevServer } from 'vite';

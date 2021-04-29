@@ -1,7 +1,7 @@
 import type { Server } from 'http';
 import type { Http2SecureServer } from 'http2';
 import type { Compiler, Stats, StatsCompilation } from 'webpack';
-import type * as ws from 'ws';
+import type ws from 'ws';
 import type { Connection as SockjsConnection } from 'sockjs';
 
 export type ServerItem = Server | Http2SecureServer;

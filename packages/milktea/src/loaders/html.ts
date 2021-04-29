@@ -1,4 +1,4 @@
-import type * as Config from 'webpack-chain';
+import type Config from 'webpack-chain';
 import type { SweetConfig } from '../utils/types';
 
 /* html 配置 */

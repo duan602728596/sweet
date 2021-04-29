@@ -1,5 +1,5 @@
 import * as url from 'url';
-import type * as Koa from 'koa';
+import type Koa from 'koa';
 import type { Context } from 'koa';
 import type { SweetOptions } from './types';
 

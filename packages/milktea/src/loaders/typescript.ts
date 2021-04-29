@@ -1,5 +1,5 @@
 import _ from 'lodash';
-import type * as Config from 'webpack-chain';
+import type Config from 'webpack-chain';
 import type { LoaderOptions } from 'webpack-chain';
 import { customizer } from '../utils/utils';
 import { createBabelOptions, createTypescriptOptions } from '../config/babelConfig';

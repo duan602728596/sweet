@@ -1,6 +1,6 @@
 import _ from 'lodash';
 import type { Context } from 'koa';
-import type * as Router from '@koa/router';
+import type Router from '@koa/router';
 import { defaultMockPath, deleteCacheAndRequireModule, requireModule, isExists } from './utils';
 import type { SweetOptions } from './types';
 

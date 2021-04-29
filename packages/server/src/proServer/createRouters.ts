@@ -3,7 +3,7 @@ import type { ParsedPath } from 'path';
 import * as fs from 'fs';
 import _ from 'lodash';
 import type { Context, Next } from 'koa';
-import type * as Router from '@koa/router';
+import type Router from '@koa/router';
 import preRenderInit from './preProRender';
 import { isExists } from '../utils/utils';
 import type { SweetOptions } from '../utils/types';

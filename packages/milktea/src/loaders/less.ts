@@ -1,4 +1,4 @@
-import type * as Config from 'webpack-chain';
+import type Config from 'webpack-chain';
 import type { Rule, LoaderOptions } from 'webpack-chain';
 import { createStyleLoader, createCssOptions, createLessOptions } from '../config/cssConfig';
 import type { SweetConfig, LESS } from '../utils/types';
