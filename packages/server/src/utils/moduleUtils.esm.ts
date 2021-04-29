@@ -22,7 +22,7 @@ export function moduleExists(id: string): string | false {
 
 /* 模块导入并且清除缓存 */
 export async function deleteCacheAndRequireModule(id: string): Promise<any> {
-  const idAndTime: string = `${ id }?${ new Date().getTime() }`;
+  const idAndTime: string = `${ id }?t=${ new Date().getTime() }`;
 
   return await requireModule(idAndTime);
 }

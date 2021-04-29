@@ -52,8 +52,10 @@ export default async function(sweetConfig: SweetConfig, sweetOptions: SweetOptio
     .output
     .path(path.join(sweetOptions.basicPath, dllCache))
     .filename('[name].js')
-    .library('[name]_[hash:5]')
-    .libraryTarget('var')
+    .library({
+      name: '[name]_[hash:5]',
+      type: 'var'
+    } as any)
     .when(ecmascript, (output: Output): void => {
       output.globalObject('globalThis');
     });

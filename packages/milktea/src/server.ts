@@ -59,8 +59,10 @@ export default async function(sweetConfig: SweetConfig | null | undefined, sweet
     .path(path.join(sweetOptions.basicPath, 'dist-server'))
     .publicPath('')
     .filename('[name].js')
-    .library('[name]')
-    .libraryTarget('umd')
+    .library({
+      name: '[name]',
+      type: 'umd'
+    } as any)
     .globalObject('globalThis');
 
   // forkTsCheckerWebpackPlugin配置
