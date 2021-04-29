@@ -14,12 +14,10 @@
       "default": "./lib/milktea-vite.js"
     },
     "./esm/milktea-vite": {
-      "import": "./esm/milktea-vite.js",
-      "default": "./lib/milktea-vite.js"
+      "import": "./esm/milktea-vite.js"
     },
     "./esm/milktea-vite.js": {
-      "import": "./esm/milktea-vite.js",
-      "default": "./lib/milktea-vite.js"
+      "import": "./esm/milktea-vite.js"
     },
     "./esm/build": {
       "import": "./esm/build.js"

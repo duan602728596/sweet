@@ -9,7 +9,8 @@
   },
   "main": "lib/cli.js",
   "bin": {
-    "milktea": "esm/cli.js"
+    "milktea": "lib/cli.js",
+    "milktea-esm": "esm/cli.js"
   },
   "exports": {
     "import": "./esm/cli.js",

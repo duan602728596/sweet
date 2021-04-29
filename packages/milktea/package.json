@@ -14,12 +14,10 @@
       "default": "./lib/milktea.js"
     },
     "./esm/milktea": {
-      "import": "./esm/milktea.js",
-      "default": "./lib/milktea.js"
+      "import": "./esm/milktea.js"
     },
     "./esm/milktea.js": {
-      "import": "./esm/milktea.js",
-      "default": "./lib/milktea.js"
+      "import": "./esm/milktea.js"
     },
     "./esm/dll": {
       "import": "./esm/dll.js"

@@ -36,6 +36,9 @@
     "./hotClientEntry.js": {
       "import": "./esm/hotClientEntry.js",
       "default": "./hotClientEntry.js"
+    },
+    "./esm/server.js": {
+      "import": "./esm/server.js"
     }
   },
   "scripts": {
