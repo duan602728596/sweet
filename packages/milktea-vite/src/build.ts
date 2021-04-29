@@ -1,5 +1,5 @@
 import * as path from 'path';
-import * as _ from 'lodash';
+import _ from 'lodash';
 import type { InlineConfig } from 'vite';
 import { basicConfig } from './config/basicConfig';
 import type { SweetConfig, SweetOptions } from './utils/types';

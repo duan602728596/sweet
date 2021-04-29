@@ -1,5 +1,5 @@
-import * as webpack from 'webpack';
-import * as MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import webpack from 'webpack';
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import type * as Config from 'webpack-chain';
 import { handleDefaultProgress, handleServerRenderProgress } from './handleProgress';
 import type { SweetConfig, SweetOptions } from '../utils/types';

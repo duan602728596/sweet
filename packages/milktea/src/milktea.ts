@@ -1,5 +1,5 @@
 import * as process from 'process';
-import * as _ from 'lodash';
+import _ from 'lodash';
 import type { Configuration, Stats } from 'webpack';
 import webpackConfig from './config';
 import webpackServerRenderConfig from './server';
@@ -18,16 +18,18 @@ async function getConfig(environment: Environment, sweetConfig: SweetConfigArgs)
   if (typeof sweetConfig === 'string') {
     // 自定义配置文件路径
     const cfg: ConfigFile = await configFile(sweetOptions, sweetConfig);
+    const module: ConfigFile = 'default' in cfg ? cfg['default'] : cfg;
 
-    return typeof cfg === 'function' ? await cfg({ environment }) : cfg;
+    return typeof module === 'function' ? await module({ environment }) : module;
   } else if (_.isPlainObject(sweetConfig)) {
     // 自定义配置文件
     return sweetConfig as SweetConfig;
   } else {
     // 默认的配置文件
     const cfg: ConfigFile = await configFile(sweetOptions);
+    const module: ConfigFile = 'default' in cfg ? cfg['default'] : cfg;
 
-    return typeof cfg === 'function' ? await cfg({ environment }) : cfg;
+    return typeof module === 'function' ? await module({ environment }) : module;
   }
 }
 

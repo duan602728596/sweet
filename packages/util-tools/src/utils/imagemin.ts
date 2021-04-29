@@ -1,3 +1,3 @@
-import * as imageMin from 'imagemin';
+import imageMin from 'imagemin';
 
 export default imageMin;

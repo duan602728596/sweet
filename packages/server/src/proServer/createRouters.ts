@@ -1,7 +1,7 @@
 import * as path from 'path';
 import type { ParsedPath } from 'path';
 import * as fs from 'fs';
-import * as _ from 'lodash';
+import _ from 'lodash';
 import type { Context, Next } from 'koa';
 import type * as Router from '@koa/router';
 import preRenderInit from './preProRender';

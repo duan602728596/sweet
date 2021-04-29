@@ -1,6 +1,6 @@
 import type { IncomingMessage, Server } from 'http';
 import type { Http2SecureServer } from 'http2';
-import * as sockjs from 'sockjs';
+import sockjs from 'sockjs';
 import type { Server as SockjsServer, Connection as SockjsConnection } from 'sockjs';
 import { Session as SockjsSession } from 'sockjs/lib/transport';
 import type { Compiler } from 'webpack';

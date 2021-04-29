@@ -1,7 +1,7 @@
 import * as path from 'path';
-import * as _ from 'lodash';
+import _ from 'lodash';
 import type { Configuration } from 'webpack';
-import * as Config from 'webpack-chain';
+import Config from 'webpack-chain';
 import { merge } from 'webpack-merge';
 import loaders from './loaders/loaders';
 import basicPlugins from './plugins/plugins';
@@ -100,6 +100,5 @@ export default async function(sweetConfig: SweetConfig | null | undefined, sweet
     }
   };
 
-  /* @ts-ignore 合并自定义配置 */
   return merge(config.toConfig(), mergeConfiguration);
 }

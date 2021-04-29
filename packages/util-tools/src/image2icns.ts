@@ -1,5 +1,5 @@
 import * as fs from 'fs';
-import * as fse from 'fs-extra';
+import fse from 'fs-extra';
 import { Icns, IcnsImage, OSType } from '@fiahfy/icns';
 
 /* 解析osType */

@@ -4,11 +4,11 @@ import * as fs from 'fs';
 import * as Stream from 'stream';
 import * as net from 'net';
 import type { Server as NetServer } from 'net';
-import * as glob from 'glob';
-import * as _ from 'lodash';
+import glob from 'glob';
+import _ from 'lodash';
 import type { Dictionary } from 'lodash';
-import * as internalIp from 'internal-ip';
-import * as chalk from 'chalk';
+import internalIp from 'internal-ip';
+import chalk from 'chalk';
 import type { ViteDevServer } from 'vite';
 import type { SweetOptions } from './types';
 

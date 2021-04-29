@@ -1,7 +1,7 @@
 import * as path from 'path';
 import type { ParsedPath } from 'path';
-import * as fse from 'fs-extra';
-import * as ffmpeg from 'fluent-ffmpeg';
+import fse from 'fs-extra';
+import ffmpeg from 'fluent-ffmpeg';
 import { formatPath, getFiles } from './utils/utils';
 
 const defaultExt: string[] = ['gif', 'png', 'jpg', 'jpeg'];

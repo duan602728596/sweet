@@ -1,11 +1,11 @@
 import * as path from 'path';
-import * as _ from 'lodash';
-import * as webpack from 'webpack';
+import _ from 'lodash';
+import webpack from 'webpack';
 import type { Configuration } from 'webpack';
-import * as Config from 'webpack-chain';
+import Config from 'webpack-chain';
 import type { Output } from 'webpack-chain';
 import { merge } from 'webpack-merge';
-import * as WebpackBar from 'webpackbar';
+import WebpackBar from 'webpackbar';
 import { handleDllProgress } from './plugins/handleProgress';
 import { dllCache } from './config/cacheConfig';
 import { extensions } from './utils/utils';
@@ -103,6 +103,5 @@ export default async function(sweetConfig: SweetConfig, sweetOptions: SweetOptio
     }
   };
 
-  /* @ts-ignore 合并自定义配置 */
   return merge(config.toConfig(), mergeConfiguration);
 }

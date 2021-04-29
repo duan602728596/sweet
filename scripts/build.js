@@ -88,7 +88,10 @@ async function addJsExt() {
       const textArr = text.split(/\n/);
 
       textArr.forEach(function(value, index) {
-        if ((/^import /.test(value) || /^export {/.test(value)) && /from '\./.test(value)) {
+        if (
+          (/^import /.test(value) || /^export {/.test(value))
+          && (/from '\./.test(value) || /import '\./.test(value) || /from 'sockjs\/lib/.test(value))
+        ) {
           const newValue = value.replace(/';$/, ".js';");
 
           textArr[index] = newValue;

@@ -1,4 +1,4 @@
-import * as ejs from 'ejs';
+import ejs from 'ejs';
 import { requireModule } from './utils';
 
 async function createNunjucksRender(): Promise<Function> {

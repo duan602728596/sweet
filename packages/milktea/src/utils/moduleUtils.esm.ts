@@ -1,3 +1,4 @@
+import * as path from 'path';
 import { createRequire } from 'module';
 
 // esm需要创建require
@@ -17,4 +18,13 @@ export function moduleExists(id: string): string | false {
   } catch (err) {
     return false;
   }
+}
+
+/* 加载插件 */
+export function requirePlugin(id: string): Promise<any> {
+  return requireModule(path.join(
+    path.dirname(import.meta.url.replace(/^file:/, '')),
+    '../plugins',
+    id)
+  );
 }

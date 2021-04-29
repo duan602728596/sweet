@@ -1,4 +1,3 @@
-import * as fs from 'fs';
 import * as path from 'path';
 import { cosmiconfig, Loader } from 'cosmiconfig';
 import type { CosmiconfigResult, Config } from 'cosmiconfig/dist/types';

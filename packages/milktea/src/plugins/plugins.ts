@@ -1,17 +1,17 @@
 /* 插件配置 */
 import * as path from 'path';
 import type { ParsedPath } from 'path';
-import * as webpack from 'webpack';
-import * as HtmlWebpackPlugin from 'html-webpack-plugin';
+import webpack from 'webpack';
+import HtmlWebpackPlugin from 'html-webpack-plugin';
 import type { Options as HtmlWebpackPluginOptions } from 'html-webpack-plugin';
-import * as FilesMapWebpackPlugin from '@bbkkbkk/files-map-webpack-plugin';
-import * as WebpackBar from 'webpackbar';
-import * as _ from 'lodash';
+import FilesMapWebpackPlugin from '@bbkkbkk/files-map-webpack-plugin';
+import WebpackBar from 'webpackbar';
+import _ from 'lodash';
 import type * as Config from 'webpack-chain';
 import type {
   TypeScriptReporterOptions
 } from 'fork-ts-checker-webpack-plugin/lib/typescript-reporter/TypeScriptReporterOptions';
-import { requireModule } from '../utils/utils';
+import { requireModule, requirePlugin } from '../utils/utils';
 import type { SweetConfig, SweetOptions } from '../utils/types';
 
 /**
@@ -51,8 +51,8 @@ export default async function(sweetConfig: SweetConfig, sweetOptions: SweetOptio
 
   // env plugin - 根据模式加载插件
   const envPlugins: (...args: any) => Promise<void> = isDevelopment
-    ? await requireModule(path.join(__dirname, 'devPlugins.js'))
-    : await requireModule(path.join(__dirname, 'proPlugins.js'));
+    ? await requirePlugin('devPlugins.js')
+    : await requirePlugin('proPlugins.js');
 
   await envPlugins(sweetConfig, sweetOptions, config);
 

@@ -1,4 +1,4 @@
-import * as _ from 'lodash';
+import _ from 'lodash';
 import { Argv } from '../utils/types';
 import type { MilkVite } from '@sweet-milktea/milktea-vite/src/utils/types';
 import { requireModule } from '../utils/moduleUtils';

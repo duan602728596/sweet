@@ -3,10 +3,10 @@ import * as https from 'https';
 import type { RequestOptions } from 'https';
 import type { ClientRequest, IncomingMessage } from 'http';
 import * as path from 'path';
-import * as _ from 'lodash';
+import _ from 'lodash';
 import type { Dictionary } from 'lodash';
-import * as semver from 'semver';
-import * as chalk from 'chalk';
+import semver from 'semver';
+import chalk from 'chalk';
 
 interface DistTags {
   latest?: string;

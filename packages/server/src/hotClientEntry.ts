@@ -1,5 +1,5 @@
 import * as process from 'process';
-import * as _ from 'lodash';
+import _ from 'lodash';
 
 type StandardEntry = {
   [key: string]: Array<string>;
@@ -15,7 +15,7 @@ const env: string = process.env.NODE_ENV ?? 'development';
 
 function hotEntry(name: string): Array<string> {
   return [
-    `@sweet-milktea/server/client/default?hot=true&name=${ name }`,
+    '@sweet-milktea/server/client/default/index.js',
     'webpack/hot/dev-server'
   ];
 }

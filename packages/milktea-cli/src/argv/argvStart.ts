@@ -1,6 +1,6 @@
 import type * as Webpack from 'webpack';
 import type { Compiler, Configuration } from 'webpack';
-import * as _ from 'lodash';
+import _ from 'lodash';
 import type { Milktea } from '@sweet-milktea/milktea/src/utils/types';
 import type { DevServer } from '@sweet-milktea/server/src/utils/types';
 import { requireModule } from '../utils/moduleUtils';

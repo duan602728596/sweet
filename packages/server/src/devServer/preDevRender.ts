@@ -1,6 +1,6 @@
 import type * as Stream from 'stream';
 import { pathToRegexp } from 'path-to-regexp';
-import * as _ from 'lodash';
+import _ from 'lodash';
 import type { Context } from 'koa';
 import { formatTemplateData, deleteCacheAndRequireModule, requireViteModule, isReadStream, readStream } from '../utils/utils';
 import { getControllersFiles } from '../utils/controllers';

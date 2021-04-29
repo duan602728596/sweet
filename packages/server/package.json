@@ -39,6 +39,15 @@
     },
     "./esm/server.js": {
       "import": "./esm/server.js"
+    },
+    "./client/default": {
+      "import": "./client/default/index.js"
+    },
+    "./client/default/index": {
+      "import": "./client/default/index.js"
+    },
+    "./client/default/index.js": {
+      "import": "./client/default/index.js"
     }
   },
   "scripts": {

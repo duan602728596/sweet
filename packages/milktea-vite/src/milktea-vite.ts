@@ -1,6 +1,6 @@
 import * as process from 'process';
 import { createServer, build as viteBuild, ViteDevServer } from 'vite';
-import * as _ from 'lodash';
+import _ from 'lodash';
 import type { RollupOutput, RollupWatcher } from 'rollup';
 import configFile, { ConfigFile } from './utils/configFile';
 import viteConfig from './config';

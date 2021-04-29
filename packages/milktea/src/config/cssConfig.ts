@@ -1,5 +1,5 @@
-import * as sass from 'sass';
-import * as MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import sass from 'sass';
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import type { LoaderOptions } from 'webpack-chain';
 
 // css-loader的mode

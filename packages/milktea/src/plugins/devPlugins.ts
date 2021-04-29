@@ -1,6 +1,6 @@
 import * as path from 'path';
-import * as webpack from 'webpack';
-import * as ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin';
+import webpack from 'webpack';
+import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin';
 import type * as Config from 'webpack-chain';
 import { requireModule, moduleExists } from '../utils/utils';
 import { dllCache } from '../config/cacheConfig';

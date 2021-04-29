@@ -1,7 +1,7 @@
 import * as path from 'path';
 import { ParsedPath } from 'path';
 import * as fs from 'fs';
-import * as mime from 'mime-types';
+import mime from 'mime-types';
 import type { Context, Next } from 'koa';
 import type * as Router from '@koa/router';
 import type { ViteDevServer } from 'vite';

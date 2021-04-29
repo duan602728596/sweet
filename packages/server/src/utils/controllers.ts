@@ -1,6 +1,6 @@
 import * as path from 'path';
 import type { IOptions } from 'glob';
-import * as _ from 'lodash';
+import _ from 'lodash';
 import { requireModule, deleteCacheAndRequireModule, globPromise } from './utils';
 import useRegister from './babelRegister';
 import type { SweetOptions, ControllersModule } from './types';

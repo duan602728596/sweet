@@ -1,5 +1,5 @@
 import type { IncomingMessage, ServerResponse } from 'http';
-import * as webpackDevMiddleware from 'webpack-dev-middleware';
+import webpackDevMiddleware from 'webpack-dev-middleware';
 import type { Context, Middleware, Next } from 'koa';
 import type { Compiler } from 'webpack';
 

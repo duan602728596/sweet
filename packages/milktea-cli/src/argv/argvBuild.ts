@@ -1,6 +1,6 @@
 import type * as Webpack from 'webpack';
 import type { Compiler } from 'webpack';
-import * as _ from 'lodash';
+import _ from 'lodash';
 import type { Milktea } from '@sweet-milktea/milktea/src/utils/types';
 import { requireModule } from '../utils/moduleUtils';
 import type { Argv } from '../utils/types';
