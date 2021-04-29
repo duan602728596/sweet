@@ -22,7 +22,7 @@ export function moduleExists(id: string): string | false {
 }
 
 /* 加载插件 */
-export function requirePlugin(id: string): Promise<any> {
+export function requirePlugins(id: string): Promise<any> {
   return requireModule(path.join(
     path.dirname(import.meta.url.replace(/^file:/, '')),
     '../plugins',
