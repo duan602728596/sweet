@@ -1,4 +1,5 @@
 import * as path from 'path';
+import * as fs from 'fs';
 
 /* 模块导入 */
 export function requireModule(id: string): any | Promise<any> {
@@ -17,6 +18,11 @@ export function moduleExists(id: string): string | false {
 }
 
 /* 加载插件 */
-export function requirePlugin(id: string): Promise<any> {
+export function requirePlugins(id: string): Promise<any> {
   return requireModule(path.join(__dirname, '../plugins', id));
+}
+
+/* 加载json */
+export function requireJson(id: string): Promise<any> {
+  return requireModule(id);
 }

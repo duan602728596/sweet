@@ -2,7 +2,7 @@ import * as path from 'path';
 import webpack from 'webpack';
 import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin';
 import type * as Config from 'webpack-chain';
-import { requireModule, moduleExists } from '../utils/utils';
+import { requireModule, moduleExists, requireJson } from '../utils/utils';
 import { dllCache } from '../config/cacheConfig';
 import type { SweetConfig, SweetOptions } from '../utils/types';
 
@@ -18,7 +18,7 @@ export default async function(sweetConfig: SweetConfig, sweetOptions: SweetOptio
       .plugin('DllReferencePlugin')
       .use(webpack.DllReferencePlugin, [{
         context: sweetOptions.basicPath,
-        manifest: await requireModule(path.join(sweetOptions.basicPath, dllCache, 'manifest.json'))
+        manifest: await requireJson(path.join(sweetOptions.basicPath, dllCache, 'manifest.json'))
       }]);
   }
 

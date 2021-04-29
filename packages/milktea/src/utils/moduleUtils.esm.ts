@@ -1,4 +1,5 @@
 import * as path from 'path';
+import * as fs from 'fs';
 import { createRequire } from 'module';
 
 // esm需要创建require
@@ -27,4 +28,13 @@ export function requirePlugin(id: string): Promise<any> {
     '../plugins',
     id)
   );
+}
+
+/* 加载json */
+export async function requireJson(id: string): Promise<any> {
+  const data: string = await fs.promises.readFile(id, {
+    encoding: 'utf8'
+  });
+
+  return JSON.parse(data);
 }
