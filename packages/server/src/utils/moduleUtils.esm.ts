@@ -5,10 +5,10 @@ const require: NodeRequire = createRequire(import.meta.url);
 
 /* 模块导入 */
 export async function requireModule(id: string): Promise<any> {
-  const module: { default: any } | any = await import(id);
-  const dModule: any = 'default' in module ? module['default'] : module;
+  const asyncModule: { default: any } | any = await import(id);
+  const module: any = 'default' in asyncModule ? asyncModule['default'] : asyncModule;
 
-  return 'default' in dModule ? dModule.default : dModule;
+  return 'default' in module ? module.default : module;
 }
 
 /* 判断模块是否存在 */
