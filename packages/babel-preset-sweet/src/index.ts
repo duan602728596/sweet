@@ -12,6 +12,7 @@ const isDevelopment: boolean = process.env.NODE_ENV === 'development';
 
 /* 默认加载的插件 */
 export const defaultPlugins: Array<any> = [
+  '@babel/plugin-proposal-async-do-expressions',                           // async do {} 语法
   ['@babel/plugin-proposal-decorators', { decoratorsBeforeExport: true }], // 修饰器
   '@babel/plugin-proposal-class-static-block',                             // class static块
   '@babel/plugin-proposal-class-properties',                               // class 相关
