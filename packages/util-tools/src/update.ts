@@ -7,6 +7,7 @@ import _ from 'lodash';
 import type { Dictionary } from 'lodash';
 import semver from 'semver';
 import chalk from 'chalk';
+import { requireJson } from './utils/utils';
 
 interface DistTags {
   latest?: string;
@@ -233,7 +234,7 @@ async function start(folder: string, registry: number, findPeerDependencies: boo
       dependencies: Dictionary<string>;
       devDependencies: Dictionary<string>;
       peerDependencies: Dictionary<string>;
-    } = require(path.join(folder, 'package.json'));
+    } = await requireJson(path.join(folder, 'package.json'));
     const dependencies: Array<PackageItem> | null = 'dependencies' in packageJson
       ? objectToArray(packageJson.dependencies) : null;
     const devDependencies: Array<PackageItem> | null = 'devDependencies' in packageJson

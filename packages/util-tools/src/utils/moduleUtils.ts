@@ -4,3 +4,8 @@ export function requireModule(id: string): any | Promise<any> {
 
   return 'default' in module ? module.default : module;
 }
+
+/* 加载json */
+export function requireJson(id: string): Promise<any> {
+  return requireModule(id);
+}

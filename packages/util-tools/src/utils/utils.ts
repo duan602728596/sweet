@@ -18,4 +18,4 @@ export function getFiles(cwd: string, file: string): Promise<string[]> {
   return globPromise(file, { cwd });
 }
 
-export { requireModule } from './moduleUtils';
+export { requireModule, requireJson } from './moduleUtils';
