@@ -86,7 +86,7 @@ milktea-esm：以esm模式启动。
 在esm模式下加载typescript，你需要安装ts-node，然后使用如下方式启动：
 
 ```
-NODE_ENV=development TS_NODE_TRANSPILE_ONLY=true NODE_OPTIONS="--loader ts-node/esm" milktea-esm start --server
+TS_NODE_TRANSPILE_ONLY=true TS_NODE_PROJECT=tsconfig.ts-node.json NODE_OPTIONS="--loader ts-node/esm" milktea-esm start
 ```
 
 具体原因参考ts-node的[issues](https://github.com/TypeStrong/ts-node/issues/1007)。
