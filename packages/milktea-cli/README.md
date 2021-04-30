@@ -4,6 +4,9 @@ milktea-cli是一个快速运行环境的工具。
 
 ## 命令
 
+milktea：以cjs模式启动。   
+milktea-esm：以esm模式启动。
+
 * `milktea dll`: 编译开发环境下使用的dll文件。
   * `--config`: 选择一个配置文件。
   * `--webpackLog`: 日志输出类型。progress：进度条，stats：传统的输出方式。默认为progress。

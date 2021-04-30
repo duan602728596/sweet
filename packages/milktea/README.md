@@ -24,7 +24,7 @@ import {
 // hot { boolean }: 添加webpack.HotModuleReplacementPlugin插件，开启热更新功能
 // socket { 'sockjs' | 'ws' }: socket类型。默认为`sockjs`，也可以配置为`ws`。
 const compiler = webpack(
-  webpackConfig({
+  await webpackConfig({
     // 配置项
     sweetConfig: null,
     mode: 'development',
@@ -105,7 +105,6 @@ module.exports = function(info) {
 * chainWebpack `{ Function }` : 通过`webpack-chain`的API扩展或修改webpack配置
 * filesMap `{ boolean | object }` : 输出`filesMap.json`文件，记录了文件的映射
 * hot `{ boolean }` : 添加**webpack.HotModuleReplacementPlugin**插件，开启热更新功能
-* hotType `{ 'react-refresh' | 'react-hot-loader' }` : 热替换类型，只对react模式生效。默认为react-refresh
 
 下面的配置是关于服务器端渲染的
 
