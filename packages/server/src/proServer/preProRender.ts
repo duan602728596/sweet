@@ -23,7 +23,7 @@ async function preRenderInit(sweetOptions: SweetOptions): Promise<Function> {
       const data: any = index >= 0 ? await controllersModules[index].handler(ctx, sweetOptions) : {};
 
       // ssr渲染
-      const server: Function = requireModule(serverRenderEntry);
+      const server: Function = await requireModule(serverRenderEntry);
       const result: Stream | string
         = await ('default' in server ? server['default'] : server)(ctxPath, ctx, data.initialState);
       const render: string = isReadStream(result) ? (await readStream(result)).toString() : result;

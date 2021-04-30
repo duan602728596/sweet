@@ -60,8 +60,7 @@ export default async function(sweetConfig: SweetConfig | null | undefined, sweet
     .publicPath('')
     .filename('[name].js')
     .library({
-      name: '[name]',
-      type: 'umd'
+      type: 'commonjs'
     } as any)
     .globalObject('globalThis');
 
