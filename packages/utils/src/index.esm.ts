@@ -95,3 +95,13 @@ export async function isFileExists(file: string): Promise<boolean> {
     return false;
   }
 }
+
+export default {
+  requireModule,
+  requireCommonjsModule,
+  requireJson,
+  moduleExists,
+  cleanRequireCache,
+  deleteCacheAndRequireModule,
+  isFileExists
+};
