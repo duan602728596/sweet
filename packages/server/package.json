@@ -1,6 +1,6 @@
 {
   "name": "@sweet-milktea/server",
-  "version": "2.3.1",
+  "version": "3.0.0-beta.0",
   "description": "webpack服务和web服务",
   "homepage": "https://github.com/duan602728596/sweet",
   "repository": {
@@ -57,17 +57,17 @@
     "test": "cross-env NODE_ENV=test mocha ./test/test.js --timeout 180000"
   },
   "dependencies": {
-    "@babel/core": "^7.13.16",
+    "@babel/core": "^7.14.0",
     "@babel/register": "^7.13.16",
     "@bbkkbkk/http-proxy": "^1.17.0",
     "@koa/router": "^10.0.0",
-    "@sweet-milktea/babel-preset-sweet": "^2.2.0",
+    "@sweet-milktea/babel-preset-sweet": "^3.0.0-beta.0",
     "ansi-html": "^0.0.7",
     "chalk": "^4.1.1",
     "ejs": "^3.1.6",
     "glob": "^7.1.6",
     "html-entities": "^2.3.2",
-    "http-proxy-middleware": "^1.2.0",
+    "http-proxy-middleware": "^1.3.1",
     "internal-ip": "^6.2.0",
     "koa": "^2.13.1",
     "koa-body": "^4.2.0",
@@ -90,16 +90,16 @@
     "@sweet-milktea/milktea-vite": "*",
     "@sweet-milktea/server-log": "*",
     "nunjucks": "^3.2.3",
-    "vite": "^2.2.1",
-    "webpack": "^5.35.0"
+    "vite": "^2.2.3",
+    "webpack": "^5.36.1"
   },
   "peerDependencies": {
-    "@sweet-milktea/milktea": ">=2",
-    "@sweet-milktea/milktea-vite": ">=2",
-    "@sweet-milktea/server-log": ">=0",
+    "@sweet-milktea/milktea": ">=3",
+    "@sweet-milktea/milktea-vite": ">=3",
+    "@sweet-milktea/server-log": ">=3",
     "nunjucks": ">=3"
   },
   "engines": {
-    "node": ">=10"
+    "node": ">=12"
   }
 }

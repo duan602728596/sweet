@@ -1,6 +1,6 @@
 {
   "name": "@sweet-milktea/util-tools",
-  "version": "0.16.4",
+  "version": "3.0.0-beta.0",
   "description": "通用工具函数",
   "homepage": "https://github.com/duan602728596/sweet",
   "repository": {
@@ -82,6 +82,6 @@
     "imagemin-webp": ">=6"
   },
   "engines": {
-    "node": ">=10"
+    "node": ">=12"
   }
 }
