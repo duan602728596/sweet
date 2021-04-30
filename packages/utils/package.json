@@ -1,0 +1,22 @@
+{
+  "name": "@sweet-milktea/utils",
+  "version": "3.0.0-beta.0",
+  "homepage": "https://github.com/duan602728596/sweet",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:duan602728596/sweet.git"
+  },
+  "exports": {
+    "import": "./esm/index.js",
+    "default": "./lib/index.js"
+  },
+  "scripts": {
+    "start": "npm run clean && cross-env NODE_ENV=development tsc --watch",
+    "build": "npm run clean && cross-env NODE_ENV=production tsc",
+    "clean": "rimraf ./lib",
+    "test": "cross-env NODE_ENV=test mocha test/test.js --timeout 180000"
+  },
+  "engines": {
+    "node": ">=12"
+  }
+}
