@@ -14,4 +14,4 @@ export async function isExists(file: string): Promise<boolean> {
 /* extensions扩展名 */
 export const extensions: Array<string> = ['.mjs', '.ts', '.tsx', '.js', '.jsx', 'cjs', '.json', '.vue', '.wasm'];
 
-export { requireModule, moduleExists } from './moduleUtils';
+export { requireModule } from './moduleUtils';

@@ -24,7 +24,7 @@ export function moduleExists(id: string): string | false {
 /* 加载插件 */
 export function requirePlugins(id: string): Promise<any> {
   return requireModule(path.join(
-    path.dirname(import.meta.url.replace(/^file:/, '')),
+    path.dirname(import.meta.url.replace(/^file:\/{2}/, '')),
     '../plugins',
     id)
   );

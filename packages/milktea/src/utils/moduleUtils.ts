@@ -1,5 +1,4 @@
 import * as path from 'path';
-import * as fs from 'fs';
 
 /* 模块导入 */
 export function requireModule(id: string): any | Promise<any> {
