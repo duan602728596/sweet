@@ -15,7 +15,7 @@
     "start": "npm run clean && cross-env NODE_ENV=development tsc --watch",
     "build": "npm run clean && cross-env NODE_ENV=production tsc",
     "clean": "rimraf ./lib",
-    "test": "cross-env NODE_ENV=test mocha test/test.js --timeout 180000"
+    "test": "cross-env NODE_ENV=test mocha test/test.mjs --timeout 180000"
   },
   "engines": {
     "node": ">=12"
