@@ -25,6 +25,13 @@ function createJsRegisterLoader(): Loader {
       extensions: ['.es6', '.es', '.jsx', '.js', '.mjs', 'cjs', '.tsx', '.ts']
     });
 
+    /*
+    TODO:
+      加载配置文件仍然使用commonjs的方法，无论是否在esm环境下启动。
+      如果在esm模式下加载typescript，你需要安装ts-node，然后使用如下方式启动：
+      `TS_NODE_PROJECT=tsconfig.ts-node.json NODE_OPTIONS="--loader ts-node/esm" milktea-esm start`
+      具体原因参考ts-node的[issues]：https://github.com/TypeStrong/ts-node/issues/1007
+     */
     return requireCommonjsModule(filepath);
   };
 }
