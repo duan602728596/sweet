@@ -7,11 +7,12 @@ import type { Options as HtmlWebpackPluginOptions } from 'html-webpack-plugin';
 import FilesMapWebpackPlugin from '@bbkkbkk/files-map-webpack-plugin';
 import WebpackBar from 'webpackbar';
 import _ from 'lodash';
+import { requireModule } from '@sweet-milktea/utils';
 import type Config from 'webpack-chain';
 import type {
   TypeScriptReporterOptions
 } from 'fork-ts-checker-webpack-plugin/lib/typescript-reporter/TypeScriptReporterOptions';
-import { requireModule, requirePlugins } from '../utils/utils';
+import requirePlugins from '../utils/requirePlugins';
 import type { SweetConfig, SweetOptions } from '../utils/types';
 
 /**

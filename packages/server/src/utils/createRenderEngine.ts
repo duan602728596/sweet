@@ -1,5 +1,5 @@
 import ejs from 'ejs';
-import { requireModule } from './utils';
+import { requireModule } from '@sweet-milktea/utils';
 
 async function createNunjucksRender(): Promise<Function> {
   const nunjucks: { [key: string]: any } = await requireModule('nunjucks');

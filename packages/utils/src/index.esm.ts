@@ -81,3 +81,17 @@ export function deleteCacheAndRequireModule(id: string, exportAll?: boolean): an
 
   return requireCommonjsModule(id, exportAll);
 }
+
+/**
+ * 判断文件是否存在
+ * @param { string } file: 文件路径
+ */
+export async function isFileExists(file: string): Promise<boolean> {
+  try {
+    await fs.promises.access(file);
+
+    return true;
+  } catch (err) {
+    return false;
+  }
+}

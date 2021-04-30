@@ -7,7 +7,7 @@ import _ from 'lodash';
 import type { Dictionary } from 'lodash';
 import semver from 'semver';
 import chalk from 'chalk';
-import { requireJson } from './utils/utils';
+import { requireJson } from '@sweet-milktea/utils';
 
 interface DistTags {
   latest?: string;

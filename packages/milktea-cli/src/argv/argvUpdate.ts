@@ -2,7 +2,7 @@ import * as path from 'path';
 import * as fs from 'fs';
 import * as process from 'process';
 import _ from 'lodash';
-import { requireModule } from '../utils/moduleUtils';
+import { requireModule } from '@sweet-milktea/utils';
 import type { Argv } from '../utils/types';
 
 async function argvUpdate(argv: Argv): Promise<void> {

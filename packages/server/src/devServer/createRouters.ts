@@ -2,11 +2,12 @@ import * as path from 'path';
 import { ParsedPath } from 'path';
 import * as fs from 'fs';
 import mime from 'mime-types';
+import { isFileExists } from '@sweet-milktea/utils';
 import type { Context, Next } from 'koa';
 import type Router from '@koa/router';
 import type { ViteDevServer } from 'vite';
 import preRenderInit from './preDevRender';
-import { isExists } from '../utils/utils';
+
 import type { SweetOptions } from '../utils/types';
 
 async function createRouters(router: Router, sweetOptions: SweetOptions): Promise<void> {
@@ -55,7 +56,7 @@ async function createRouters(router: Router, sweetOptions: SweetOptions): Promis
           const name: string = `${ parseResult.name }.js`;
           const entry: string = path.join(sweetOptions.serverRenderRoot, name);
 
-          if (await isExists(entry)) {
+          if (await isFileExists(entry)) {
             ctx.body = await preRender(ctxPath, ctx, entry);
           }
 

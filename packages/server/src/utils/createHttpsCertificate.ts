@@ -1,6 +1,6 @@
 import * as path from 'path';
 import * as fs from 'fs';
-import { isExists } from './utils';
+import { isFileExists } from '@sweet-milktea/utils';
 import type { SweetOptions } from './types';
 
 export type HttpsCertificate = [boolean, Buffer | undefined, Buffer | undefined];
@@ -11,7 +11,7 @@ async function createHttpsCertificate(sweetOptions: SweetOptions, httpsKey: stri
     path.isAbsolute(httpsKey) ? httpsKey : path.join(sweetOptions.basicPath, httpsKey),
     path.isAbsolute(httpsCert) ? httpsCert : path.join(sweetOptions.basicPath, httpsCert)
   ];
-  const useHttps: boolean = (await isExists(key)) && (await isExists(cert));
+  const useHttps: boolean = (await isFileExists(key)) && (await isFileExists(cert));
   const [keyFile, certFile]: [Buffer | undefined, Buffer | undefined] = useHttps
     ? await Promise.all([fs.promises.readFile(key), fs.promises.readFile(cert)])
     : [undefined, undefined];

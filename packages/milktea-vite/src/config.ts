@@ -1,7 +1,7 @@
 import _ from 'lodash';
+import { requireModule } from '@sweet-milktea/utils';
 import type { InlineConfig } from 'vite';
 import { basicConfig } from './config/basicConfig';
-import { requireModule } from './utils/utils';
 import type { SweetConfig, SweetOptions } from './utils/types';
 
 /**

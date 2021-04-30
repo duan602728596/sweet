@@ -2,7 +2,7 @@ import * as path from 'path';
 import webpack from 'webpack';
 import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin';
 import type Config from 'webpack-chain';
-import { moduleExists, requireJson } from '../utils/utils';
+import { moduleExists, requireJson } from '@sweet-milktea/utils';
 import { dllCache } from '../config/cacheConfig';
 import type { SweetConfig, SweetOptions } from '../utils/types';
 

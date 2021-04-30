@@ -1,7 +1,8 @@
 import * as path from 'path';
-import imageMin from './utils/imagemin';
+import { requireModule } from '@sweet-milktea/utils';
 import type { Options as PngOptions } from 'imagemin-pngquant';
-import { requireModule, formatPath } from './utils/utils';
+import imageMin from './utils/imagemin';
+import { formatPath } from './utils/utils';
 
 interface CompressOptions {
   png?: PngOptions;

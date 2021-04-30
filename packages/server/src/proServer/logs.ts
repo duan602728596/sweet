@@ -1,5 +1,5 @@
 import type Koa from 'koa';
-import { requireModule } from '../utils/utils';
+import { requireModule } from '@sweet-milktea/utils';
 import type { Log, SweetOptions } from '../utils/types';
 
 /* 添加日志中间件 */

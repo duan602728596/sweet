@@ -3,10 +3,11 @@ import _ from 'lodash';
 import type { Configuration } from 'webpack';
 import Config from 'webpack-chain';
 import { merge } from 'webpack-merge';
+import { moduleExists } from '@sweet-milktea/utils';
 import loaders from './loaders/loaders';
 import basicPlugins from './plugins/plugins';
 import optimization from './optimization/optimization';
-import { extensions, isTsconfigJsonExists, moduleExists } from './utils/utils';
+import { extensions, isTsconfigJsonExists } from './utils/utils';
 import { webpackServerCache } from './config/cacheConfig';
 import type { SweetConfig, SweetOptions } from './utils/types';
 
@@ -66,7 +67,7 @@ export default async function(sweetConfig: SweetConfig | null | undefined, sweet
 
   // forkTsCheckerWebpackPlugin配置
   sweetOptions.forkTsCheckerWebpackPlugin = !!(
-    moduleExists('typescript')
+    (moduleExists('typescript') as string | boolean)
     && ts?.forkTsCheckerWebpackPlugin !== false
     && (await isTsconfigJsonExists(sweetOptions, ts)));
 

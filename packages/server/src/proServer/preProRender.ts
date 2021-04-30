@@ -1,8 +1,9 @@
 import type * as Stream from 'stream';
 import { pathToRegexp } from 'path-to-regexp';
 import _ from 'lodash';
+import { requireModule } from '@sweet-milktea/utils';
 import type { Context } from 'koa';
-import { formatTemplateData, requireModule, isReadStream, readStream } from '../utils/utils';
+import { formatTemplateData, isReadStream, readStream } from '../utils/utils';
 import { getControllersFiles } from '../utils/controllers';
 import createRenderEngine from '../utils/createRenderEngine';
 import type { SweetOptions, ControllersModule } from '../utils/types';

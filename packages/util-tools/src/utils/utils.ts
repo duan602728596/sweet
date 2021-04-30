@@ -17,5 +17,3 @@ export function formatPath(p: string): string {
 export function getFiles(cwd: string, file: string): Promise<string[]> {
   return globPromise(file, { cwd });
 }
-
-export { requireModule, requireJson } from './moduleUtils';

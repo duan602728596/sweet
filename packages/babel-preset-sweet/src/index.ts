@@ -1,5 +1,5 @@
 import * as process from 'process';
-import moduleExists from './moduleExists';
+import { moduleExists } from '@sweet-milktea/utils';
 import type {
   BabelPresetSweetOptions as Options,
   BabelPresetSweet,

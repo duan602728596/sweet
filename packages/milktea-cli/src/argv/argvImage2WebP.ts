@@ -1,6 +1,6 @@
 import * as process from 'process';
 import * as path from 'path';
-import { requireModule } from '../utils/moduleUtils';
+import { requireModule } from '@sweet-milktea/utils';
 import type { Argv } from '../utils/types';
 
 /* image2webp命令 */

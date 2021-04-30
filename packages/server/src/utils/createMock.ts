@@ -1,7 +1,8 @@
 import _ from 'lodash';
 import type { Context } from 'koa';
 import type Router from '@koa/router';
-import { defaultMockPath, deleteCacheAndRequireModule, requireModule, isExists } from './utils';
+import { requireCommonjsModule, deleteCacheAndRequireModule, isFileExists } from '@sweet-milktea/utils';
+import { defaultMockPath } from './utils';
 import type { SweetOptions } from './types';
 
 type KoaFunc = (ctx: Context, next: Function) => void | Promise<void>;
@@ -60,10 +61,10 @@ async function createMock(sweetOptions: SweetOptions, router: Router, isDevelopm
     }
 
     for (const findFile of findFiles) {
-      if (await isExists(findFile)) {
+      if (await isFileExists(findFile)) {
         const mockModule: MockModule = isDevelopment
           ? await deleteCacheAndRequireModule(findFile)
-          : await requireModule(findFile);
+          : await requireCommonjsModule(findFile);
 
         if (isMockFunc(mockModule)) {
           const mock: Mock = await mockModule(sweetOptions);

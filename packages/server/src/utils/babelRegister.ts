@@ -1,4 +1,4 @@
-import { requireModule } from './utils';
+import { requireModule } from '@sweet-milktea/utils';
 import type { SweetOptions } from './types';
 
 interface RegisterConfig {

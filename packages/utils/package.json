@@ -6,9 +6,10 @@
     "type": "git",
     "url": "git@github.com:duan602728596/sweet.git"
   },
+  "main": "cjs.js",
   "exports": {
     "import": "./esm/index.js",
-    "default": "./lib/index.js"
+    "default": "./cjs.js"
   },
   "scripts": {
     "start": "npm run clean && cross-env NODE_ENV=development tsc --watch",

@@ -2,10 +2,11 @@ import * as path from 'path';
 import type { ParsedPath } from 'path';
 import * as fs from 'fs';
 import _ from 'lodash';
+import { isFileExists } from '@sweet-milktea/utils';
 import type { Context, Next } from 'koa';
 import type Router from '@koa/router';
 import preRenderInit from './preProRender';
-import { isExists } from '../utils/utils';
+
 import type { SweetOptions } from '../utils/types';
 
 async function createRouters(
@@ -41,7 +42,7 @@ async function createRouters(
           const name: string = `${ parseResult.name }.js`;
           const entry: string = path.join(sweetOptions.serverRenderRoot, name);
 
-          ctx.body = (serverRender && (await isExists(entry))) ? await preRender(ctxPath, ctx, body, entry) : body;
+          ctx.body = (serverRender && (await isFileExists(entry))) ? await preRender(ctxPath, ctx, body, entry) : body;
 
           return;
         }

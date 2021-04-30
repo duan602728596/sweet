@@ -2,7 +2,8 @@ import _ from 'lodash';
 import connect from 'koa-connect';
 import type Koa from 'koa';
 import { createProxyMiddleware, Options } from 'http-proxy-middleware';
-import { defaultProxyPath, requireModule, isExists } from './utils';
+import { requireCommonjsModule, isFileExists } from '@sweet-milktea/utils';
+import { defaultProxyPath } from './utils';
 import type { SweetOptions, LogLevel } from './types';
 
 type ProxyConfig = { [key: string]: Options };
@@ -38,8 +39,8 @@ async function createProxy(sweetOptions: SweetOptions, app: Koa, isDevelopment: 
     }
 
     for (const findFile of findFiles) {
-      if (await isExists(findFile)) {
-        const module: any = await requireModule(findFile);
+      if (await isFileExists(findFile)) {
+        const module: any = await requireCommonjsModule(findFile);
 
         if (_.isPlainObject(module)) {
           await addMiddleware(app, module, isDevelopment, env);

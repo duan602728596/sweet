@@ -1,8 +1,9 @@
 import _ from 'lodash';
 import type Config from 'webpack-chain';
 import type { LoaderOptions } from 'webpack-chain';
+import { requireModule } from '@sweet-milktea/utils';
 import { createBabelOptions } from '../config/babelConfig';
-import { customizer, requireModule } from '../utils/utils';
+import { customizer } from '../utils/utils';
 import type { SweetConfig, SweetOptions, JS } from '../utils/types';
 
 /* js 配置 */

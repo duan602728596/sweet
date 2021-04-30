@@ -1,6 +1,7 @@
 import * as path from 'path';
+import { requireModule } from '@sweet-milktea/utils';
 import imageMin from './utils/imagemin';
-import { requireModule, formatPath } from './utils/utils';
+import { formatPath } from './utils/utils';
 
 interface Options {
   img?: object;

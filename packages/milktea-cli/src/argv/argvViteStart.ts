@@ -1,8 +1,8 @@
 import type { ViteDevServer } from 'vite';
 import { Argv } from '../utils/types';
+import { requireModule } from '@sweet-milktea/utils';
 import type { MilkVite } from '@sweet-milktea/milktea-vite/src/utils/types';
 import type { DevServer } from '@sweet-milktea/server/src/utils/types';
-import { requireModule } from '../utils/moduleUtils';
 
 /* vite-start 命令 */
 async function argvViteStart(argv: Argv): Promise<void> {

@@ -111,17 +111,6 @@ export async function runningAtLog(sweetOptions: SweetOptions, displayHttps: boo
   console.log(`\n${ chalk.blue(logs.join('\n')) }\n`);
 }
 
-/* 判断文件是否存在 */
-export async function isExists(file: string): Promise<boolean> {
-  try {
-    await fs.promises.access(file);
-
-    return true;
-  } catch (err) {
-    return false;
-  }
-}
-
 /**
  * 检查端口占用情况
  * @param { number } port: 检查的端口
@@ -169,5 +158,3 @@ export async function detectPort(port: number, ignorePort: Array<number> = []): 
 
   return newNumber;
 }
-
-export { requireModule, moduleExists, deleteCacheAndRequireModule } from './moduleUtils';

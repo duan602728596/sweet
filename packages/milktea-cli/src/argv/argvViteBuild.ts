@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import { Argv } from '../utils/types';
+import { requireModule } from '@sweet-milktea/utils';
 import type { MilkVite } from '@sweet-milktea/milktea-vite/src/utils/types';
-import { requireModule } from '../utils/moduleUtils';
 
 /* vite-build 命令 */
 async function argvViteBuild(argv: Argv): Promise<void> {
