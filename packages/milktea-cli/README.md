@@ -80,3 +80,13 @@ milktea-esm：以esm模式启动。
   * `--imageOutput`: 输出icns图标文件。
   * `--size`: icns图标的尺寸。
   * `--retina`: 1k屏或2k屏。
+  
+## 在使用typescript的情况下，在esm模式下启动
+
+在esm模式下加载typescript，你需要安装ts-node，然后使用如下方式启动：
+
+```
+NODE_ENV=development TS_NODE_TRANSPILE_ONLY=true NODE_OPTIONS="--loader ts-node/esm" milktea-esm start --server
+```
+
+具体原因参考ts-node的[issues](https://github.com/TypeStrong/ts-node/issues/1007)。

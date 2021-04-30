@@ -97,7 +97,8 @@
     "@sweet-milktea/milktea": ">=3",
     "@sweet-milktea/milktea-vite": ">=3",
     "@sweet-milktea/server-log": ">=3",
-    "nunjucks": ">=3"
+    "nunjucks": ">=3",
+    "ts-node": "^9.1.1"
   },
   "engines": {
     "node": ">=12"
