@@ -40,14 +40,14 @@
     "./esm/server.js": {
       "import": "./esm/server.js"
     },
-    "./client/default": {
-      "import": "./client/default/index.js"
+    "./client": {
+      "import": "./client/index.js"
     },
-    "./client/default/index": {
-      "import": "./client/default/index.js"
+    "./client/index": {
+      "import": "./client/index.js"
     },
-    "./client/default/index.js": {
-      "import": "./client/default/index.js"
+    "./client/index.js": {
+      "import": "./client/index.js"
     }
   },
   "scripts": {

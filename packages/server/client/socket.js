@@ -12,11 +12,10 @@ const Client =
   typeof __webpack_dev_server_client__ !== 'undefined'
     ? __webpack_dev_server_client__
     : // eslint-disable-next-line import/no-unresolved
-      require('../clients/WebsocketClient');
+      require('./clients/WebsocketClient');
 */
-// TODO: 根据环境变量加载socket服务
 
-var Client = process.env.SWEET_SOCKET === 'ws' ? require('../clients/WebsocketClient') : require('../clients/SockJSClient');
+var Client = process.env.SWEET_SOCKET === 'ws' ? require('./clients/WebsocketClient') : require('./clients/SockJSClient');
 var retries = 0;
 var client = null;
 

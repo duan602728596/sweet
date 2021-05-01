@@ -1,5 +1,4 @@
 'use strict';
-/* global WorkerGlobalScope self */
 
 var _require = require('./log'),
     log = _require.log;
