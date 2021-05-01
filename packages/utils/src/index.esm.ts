@@ -15,7 +15,7 @@ export async function requireModule(id: string, exportAll?: boolean): Promise<an
     return module;
   }
 
-  return 'default' in module ? module.default : module;
+  return (typeof module === 'object' && 'default' in module) ? module.default : module;
 }
 
 /**

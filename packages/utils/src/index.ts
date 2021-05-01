@@ -12,7 +12,7 @@ export function requireModule(id: string, exportAll?: boolean): any | Promise<an
     return module;
   }
 
-  return 'default' in module ? module.default : module;
+  return (typeof module === 'object' && 'default' in module) ? module.default : module;
 }
 
 /* 导入commonjs模块，cjs下和requireModule的行为相同 */
