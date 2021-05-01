@@ -1,13 +1,17 @@
 import path from 'path';
+import fs from 'fs';
 import { expect } from 'chai';
 import {
   requireModule,
   requireCommonjsModule,
-  requireJson
+  requireJson,
+  deleteCacheAndRequireModule
 } from '../esm/index.js';
 
 const __dirname = path.dirname(
   decodeURIComponent(import.meta.url.replace(/^file:\/{2}/, '')));
+
+const cacheJs = path.join(__dirname, '.cache.js');
 
 describe('esm test', function() {
   it('requireModule test', async function() {
@@ -35,5 +39,23 @@ describe('esm test', function() {
       "filename": "json",
       "data": 12
     });
+  });
+
+  it('deleteCacheAndRequireModule test', async function() {
+    await fs.promises.writeFile(cacheJs, 'module.exports = { a: 1 };');
+
+    const m1 = await deleteCacheAndRequireModule(cacheJs);
+
+    expect(m1).to.eql({ a: 1 });
+
+    await fs.promises.writeFile(cacheJs, 'module.exports = { a: 2 };');
+
+    const m2 = await deleteCacheAndRequireModule(cacheJs);
+
+    expect(m2).to.eql({ a: 2 });
+  });
+
+  after(async function() {
+    await fs.promises.rm(cacheJs);
   });
 });
