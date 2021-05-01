@@ -30,7 +30,7 @@ export function requireCommonjsModule(id: string, exportAll?: boolean): any | Pr
     return module;
   }
 
-  return 'default' in module ? module.default : module;
+  return (typeof module === 'object' && 'default' in module) ? module.default : module;
 }
 
 /**
