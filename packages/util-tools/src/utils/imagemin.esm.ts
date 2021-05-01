@@ -1,3 +1,3 @@
-import imageMin from 'imagemin-v8';
+import imageMin from 'imagemin';
 
 export default imageMin;
