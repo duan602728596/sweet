@@ -12,7 +12,8 @@
     "default": "./cjs.js"
   },
   "scripts": {
-    "test": "cross-env NODE_ENV=test mocha ./test/test.js --timeout 180000"
+    "test": "cross-env NODE_ENV=test mocha ./test/test.js --timeout 180000",
+    "updateVersion": "milktea-esm update"
   },
   "dependencies": {
     "@typescript-eslint/eslint-plugin": "^4.22.0",

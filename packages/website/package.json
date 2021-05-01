@@ -9,7 +9,9 @@
   "scripts": {
     "start": "rimraf dist && cross-env NODE_ENV=development milktea start --server",
     "build": "rimraf dist && cross-env NODE_ENV=production milktea build",
-    "start:esm": "rimraf dist && cross-env NODE_ENV=development milktea-esm start --server"
+    "start:esm": "rimraf dist && cross-env NODE_ENV=development milktea-esm start --server",
+    "build:esm": "rimraf dist && cross-env NODE_ENV=production milktea-esm build",
+    "updateVersion": "milktea-esm update"
   },
   "dependencies": {
     "@ant-design/icons": "^4.6.2",
