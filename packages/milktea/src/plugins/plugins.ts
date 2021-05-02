@@ -113,7 +113,7 @@ export default async function(sweetConfig: SweetConfig, sweetOptions: SweetOptio
   if (frame === 'vue') {
     config
       .plugin('vue-loader-plugin')
-      .use(await requireModule('vue-loader/dist/plugin'));
+      .use(await requireModule('vue-loader/dist/plugin.js'));
   }
 
   // 当环境为测试时，不使用输出插件
