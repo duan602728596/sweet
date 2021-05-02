@@ -8,7 +8,7 @@ import FilesMapWebpackPlugin from '@bbkkbkk/files-map-webpack-plugin';
 import WebpackBar from 'webpackbar';
 import _ from 'lodash';
 import { requireModule } from '@sweet-milktea/utils';
-import type Config from 'webpack-chain';
+import Config, { PluginClass } from 'webpack-chain';
 import type {
   TypeScriptReporterOptions
 } from 'fork-ts-checker-webpack-plugin/lib/typescript-reporter/TypeScriptReporterOptions';
@@ -111,9 +111,11 @@ export default async function(sweetConfig: SweetConfig, sweetOptions: SweetOptio
 
   // vue-loader plugin插件的加载
   if (frame === 'vue') {
+    const vueLoaderPlugin: PluginClass = await requireModule('vue-loader/dist/plugin.js');
+
     config
       .plugin('vue-loader-plugin')
-      .use(await requireModule('vue-loader/dist/plugin.js'));
+      .use('default' in vueLoaderPlugin ? vueLoaderPlugin['default'] : vueLoaderPlugin);
   }
 
   // 当环境为测试时，不使用输出插件
