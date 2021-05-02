@@ -39,8 +39,7 @@
     "@sweet-milktea/milktea-vite": ">=3",
     "@sweet-milktea/server": ">=3",
     "@sweet-milktea/server-log": ">=3",
-    "@sweet-milktea/util-tools": ">=3",
-    "ts-node": "^9.1.1"
+    "@sweet-milktea/util-tools": ">=3"
   },
   "engines": {
     "node": ">=12"
