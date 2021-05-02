@@ -2,14 +2,14 @@
   "name": "@sweet-milktea/vue-demo",
   "scripts": {
     "dll": "cross-env NODE_ENV=development milktea dll",
-    "start": "npm run clean && npm run clean:server && cross-env NODE_ENV=development milktea start --server --serverRender",
-    "build": "npm run clean && npm run clean:server && cross-env NODE_ENV=production milktea build --serverRender",
+    "start": "npm run clean && npm run clean:server && cross-env NODE_ENV=development milktea-esm start --server --serverRender",
+    "build": "npm run clean && npm run clean:server && cross-env NODE_ENV=production milktea-esm build --serverRender",
     "clean": "rimraf ./dist",
     "clean:server": "rimraf ./dist-server",
-    "server": "milktea server --serverRender --redirectToHttps",
+    "server": "milktea-esm server --serverRender --redirectToHttps",
     "eslint": "eslint ./ --ext .js,.jsx,.vue --fix",
     "case-check": "case-check --dir=\"./\" --css",
-    "updateVersion": "milktea update",
+    "updateVersion": "milktea-esm update",
     "prepare": "husky install"
   },
   "dependencies": {
