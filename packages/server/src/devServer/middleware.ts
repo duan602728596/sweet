@@ -4,7 +4,7 @@ import type { Compiler } from 'webpack';
 import type { ViteDevServer } from 'vite';
 import type Koa from 'koa';
 import type Router from '@koa/router';
-import koaDevMiddleware from './koaDevMiddleware';
+import requireKoaDevMiddleware from './requireKoaDevMiddleware';
 import type { SweetOptions } from '../utils/types';
 
 /**
@@ -14,7 +14,12 @@ import type { SweetOptions } from '../utils/types';
  * @param { Router } router: @koa/router实例
  * @param { Compiler } compiler: webpack compiler
  */
-function middleware(sweetOptions: SweetOptions, app: Koa, router: Router, compiler: Compiler | ViteDevServer | undefined): void {
+async function middleware(
+  sweetOptions: SweetOptions,
+  app: Koa,
+  router: Router,
+  compiler: Compiler | ViteDevServer | undefined
+): Promise<void> {
   /* post body */
   app.use(body());
 
@@ -35,7 +40,7 @@ function middleware(sweetOptions: SweetOptions, app: Koa, router: Router, compil
         }
       };
 
-      app.use(koaDevMiddleware(compiler as Compiler, devMiddlewareConfig));
+      app.use((await requireKoaDevMiddleware('koaDevMiddleware.js'))(compiler as Compiler, devMiddlewareConfig));
     }
   }
 }
