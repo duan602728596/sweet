@@ -4,8 +4,8 @@
   "license": "MIT",
   "homepage": "https://github.com/duan602728596/sweet",
   "scripts": {
-    "build": "npm run clean && gulp --gulpfile ./scripts/build.js",
-    "clean": "node ./scripts/clean",
+    "build": "npm run clean && NODE_OPTIONS=\"--experimental-json-modules\" gulp --gulpfile ./scripts/build.mjs",
+    "clean": "node ./scripts/clean.mjs",
     "eslint": "eslint ./ --fix",
     "eslint:no-fix": "eslint ./",
     "lerna:install": "lerna bootstrap --force-local",

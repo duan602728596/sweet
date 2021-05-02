@@ -19,7 +19,7 @@ export default function(info: object): object {
     },
     output: {
       path: path.join(__dirname, 'dist'),
-      filename: '[name].build.js'
+      filename: '[name].build.mjs'
     }
   };
 }

@@ -1,13 +1,13 @@
 /* gulp配置文件，编译packages下的所有文件 */
-const util = require('util');
-const path = require('path');
-const fs = require('fs');
-const gulp = require('gulp');
-const typescript = require('gulp-typescript');
-const rename = require('gulp-rename');
-const glob = require('glob');
-const tsconfig = require('../tsconfig.json');
-const { dir, packageNames } = require('./config');
+import util from 'util';
+import path from 'path';
+import fs from 'fs';
+import gulp from 'gulp';
+import typescript from 'gulp-typescript';
+import rename from 'gulp-rename';
+import glob from 'glob';
+import tsconfig from '../tsconfig.json';
+import { dir, packageNames } from './config.mjs';
 
 const globPromise = util.promisify(glob);
 
@@ -103,7 +103,7 @@ async function addJsExt() {
   }
 }
 
-exports.default = gulp.series(
+export default gulp.series(
   gulp.parallel(
     ...createQueue('commonjs', createProject, 'lib', tsBuildConfig),
     ...createQueue('esm'.padEnd(8), createProject, 'esm', tsESMBuildConfig)

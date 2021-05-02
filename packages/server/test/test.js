@@ -1,6 +1,6 @@
 const process = require('process');
 const register = require('@babel/register');
-const babelConfig = require('../../../scripts/babelConfig');
+const babelConfig = require('../../../scripts/babelConfig.mjs');
 
 register(babelConfig);
 

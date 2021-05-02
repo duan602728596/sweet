@@ -1,8 +1,8 @@
 /* 清除已编译的代码 */
-const util = require('util');
-const path = require('path');
-const rimraf = require('rimraf');
-const { dir, packageNames } = require('./config');
+import util from 'util';
+import path from 'path';
+import rimraf from 'rimraf';
+import { dir, packageNames } from './config.mjs';
 
 const rimrafPromise = util.promisify(rimraf);
 

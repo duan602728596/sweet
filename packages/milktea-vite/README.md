@@ -4,7 +4,7 @@
 
 ## 如何使用
 
-1. 在工程目录下创建`.sweetrc.js`或`sweet.config.js`文件，然后通过cli工具运行。（支持typescript，即`.sweetrc.ts`或`sweet.config.ts`文件）
+1. 在工程目录下创建`.sweetrc.js`或`sweet.config.mjs`文件，然后通过cli工具运行。（支持typescript，即`.sweetrc.ts`或`sweet.config.ts`文件）
 
 2. 在node内运行函数。
 

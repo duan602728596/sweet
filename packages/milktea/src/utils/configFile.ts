@@ -45,7 +45,7 @@ async function getConfigFile(sweetOptions: SweetOptions, configFile?: string): P
 
   // 配置文件加载器
   const MODULE_NAME: string = 'sweet';
-  const ERROR_MSG: string = 'Please configure the .sweetrc.js or sweet.config.js file first.';
+  const ERROR_MSG: string = 'Please configure the .sweetrc.js or sweet.config.mjs file first.';
 
   const explorer: Explorer = await cosmiconfig(MODULE_NAME, {
     searchPlaces: [
