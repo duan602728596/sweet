@@ -32,7 +32,7 @@ export default async function(sweetConfig: SweetConfig, sweetOptions: SweetOptio
         jsxFragment: 'React.Fragment',
         jsxInject: "import * as React from 'react';"
       },
-      plugins: [await requireModule('@vitejs/plugin-react-refresh')()]
+      plugins: [(await requireModule('@vitejs/plugin-react-refresh'))()]
     });
   } else if (frame === 'vue') {
     // 添加vue配置

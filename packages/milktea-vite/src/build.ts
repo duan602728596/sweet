@@ -1,5 +1,6 @@
 import * as path from 'path';
 import _ from 'lodash';
+import { requireModule } from '@sweet-milktea/utils';
 import type { InlineConfig } from 'vite';
 import { basicConfig } from './config/basicConfig';
 import type { SweetConfig, SweetOptions } from './utils/types';
@@ -31,6 +32,14 @@ export default async function(sweetConfig: SweetConfig, sweetOptions: SweetOptio
         jsxFragment: 'React.Fragment',
         jsxInject: "import * as React from 'react';"
       }
+    });
+  } else if (frame === 'vue') {
+    // 添加vue配置
+    Object.assign(viteConfig, {
+      plugins: [
+        (await requireModule('@vitejs/plugin-vue'))(),
+        (await requireModule('@vitejs/plugin-vue-jsx'))()
+      ]
     });
   }
 
