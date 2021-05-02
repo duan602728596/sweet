@@ -19,6 +19,10 @@ function Index(props) {
     if (value === 'v1') {
       window.open('https://duan602728596.github.io/sweet/v1/#/Sweet/Introduction');
     }
+
+    if (value === 'v2') {
+      window.open('https://duan602728596.github.io/sweet/v2/#/Sweet/Introduction');
+    }
   }
 
   const routes = useRoutes([
@@ -33,6 +37,7 @@ function Index(props) {
               onSelect={ handleOpenOldWebSite }
             >
               <Select.Option value={ lernaJson.version }>{ lernaJson.version }</Select.Option>
+              <Select.Option value="v2">v2</Select.Option>
               <Select.Option value="v1">v1</Select.Option>
             </Select>
           </div>
