@@ -53,11 +53,20 @@ async function getConfigFile(sweetOptions: SweetOptions, configFile?: string): P
       `${ MODULE_NAME }.config.tsx`,
       `.${ MODULE_NAME }rc.ts`,
       `.${ MODULE_NAME }rc.tsx`,
+      `${ MODULE_NAME }.config.mjs`,
+      `.${ MODULE_NAME }rc.mjs`,
       `${ MODULE_NAME }.config.js`,
-      `.${ MODULE_NAME }rc.js`
+      `.${ MODULE_NAME }rc.js`,
+      `${ MODULE_NAME }.config.cjs`,
+      `.${ MODULE_NAME }rc.cjs`,
+      `${ MODULE_NAME }.config.jsx`,
+      `.${ MODULE_NAME }rc.jsx`
     ],
     loaders: {
+      '.mjs': jsRegisterLoader,
       '.js': jsRegisterLoader,
+      '.cjs': jsRegisterLoader,
+      '.jsx': jsRegisterLoader,
       '.ts': jsRegisterLoader,
       '.tsx': jsRegisterLoader
     },
