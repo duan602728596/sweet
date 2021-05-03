@@ -66,7 +66,7 @@
     "imagemin-webp": ">=6"
   },
   "lint-staged": {
-    "**/*.{js,jsx,ts,tsx}": "eslint"
+    "**/*.{js,jsx,mjs,cjs,ts,tsx}": "eslint"
   },
   "config": {
     "commitizen": {
