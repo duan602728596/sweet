@@ -53,8 +53,7 @@ function addMockRouter(router: Router, mock: Mock): void {
  */
 async function createMock(sweetOptions: SweetOptions, router: Router, isDevelopment: boolean): Promise<void> {
   try {
-    const defaultMock: { ts: string; tsx: string; js: string } = defaultMockPath(sweetOptions.basicPath);
-    const findFiles: Array<string> = [defaultMock.ts, defaultMock.tsx, defaultMock.js];
+    const findFiles: Array<string> = defaultMockPath(sweetOptions.basicPath);
 
     if (sweetOptions.mockFile) {
       findFiles.unshift(sweetOptions.mockFile);

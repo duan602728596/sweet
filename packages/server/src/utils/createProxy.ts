@@ -31,8 +31,7 @@ function addMiddleware(app: Koa, proxyConfig: ProxyConfig, isDevelopment: boolea
  */
 async function createProxy(sweetOptions: SweetOptions, app: Koa, isDevelopment: boolean, env?: string): Promise<void> {
   try {
-    const defaultProxy: { ts: string; tsx: string; js: string; json: string } = defaultProxyPath(sweetOptions.basicPath);
-    const findFiles: Array<string> = [defaultProxy.ts, defaultProxy.tsx, defaultProxy.js, defaultProxy.json];
+    const findFiles: Array<string> = defaultProxyPath(sweetOptions.basicPath);
 
     if (sweetOptions.proxyFile) {
       findFiles.unshift(sweetOptions.proxyFile);

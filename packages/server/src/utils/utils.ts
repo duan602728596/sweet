@@ -27,32 +27,21 @@ export function formatTemplateData(data: Dictionary<any>): object {
   }, {});
 }
 
+const exts: Array<string> = ['ts', 'tsx', 'mjs', 'js', 'cjs', 'jsx'];
+
 /* 设置默认api文件的地址 */
-export function defaultApiPath(basicPath: string): { ts: string; tsx: string; js: string } {
-  return {
-    ts: path.join(basicPath, 'api/api.ts'),
-    tsx: path.join(basicPath, 'api/api.tsx'),
-    js: path.join(basicPath, 'api/api.js')
-  };
+export function defaultApiPath(basicPath: string): Array<string> {
+  return exts.map((o: string) => path.join(basicPath, `api/api.${ o }`));
 }
 
 /* 设置默认的proxy代理的地址 */
-export function defaultProxyPath(basicPath: string): { ts: string; tsx: string; js: string; json: string } {
-  return {
-    ts: path.join(basicPath, 'proxy/proxy.ts'),
-    tsx: path.join(basicPath, 'proxy/proxy.tsx'),
-    js: path.join(basicPath, 'proxy/proxy.js'),
-    json: path.join(basicPath, 'proxy/proxy.json')
-  };
+export function defaultProxyPath(basicPath: string): Array<string> {
+  return exts.map((o: string) => path.join(basicPath, `proxy/proxy.${ o }`));
 }
 
 /* 设置默认的mock的地址 */
-export function defaultMockPath(basicPath: string): { ts: string; tsx: string; js: string } {
-  return {
-    ts: path.join(basicPath, 'mock/mock.ts'),
-    tsx: path.join(basicPath, 'mock/mock.tsx'),
-    js: path.join(basicPath, 'mock/mock.js')
-  };
+export function defaultMockPath(basicPath: string): Array<string> {
+  return exts.map((o: string) => path.join(basicPath, `mock/mock.${ o }`));
 }
 
 /* vite模块导入 */
