@@ -25,7 +25,7 @@ function run() {
 }
 
 describe('args: build', function() {
-  it('should index.build.mjs is existing', async function() {
+  it('should index.build.js is existing', async function() {
     await run();
 
     expect(fs.existsSync(path.join(__dirname, 'dist/index.build.mjs'))).to.be.true;
