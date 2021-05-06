@@ -12,7 +12,7 @@ import Config, { PluginClass } from 'webpack-chain';
 import type {
   TypeScriptReporterOptions
 } from 'fork-ts-checker-webpack-plugin/lib/typescript-reporter/TypeScriptReporterOptions';
-import requirePlugins from '../utils/requirePlugins';
+import requirePlugins from './requirePlugins';
 import type { SweetConfig, SweetOptions } from '../utils/types';
 
 /**
