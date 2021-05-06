@@ -66,7 +66,7 @@
     "@sweet-milktea/utils": "^3.0.0-beta.0",
     "chalk": "^4.1.1",
     "fluent-ffmpeg": "^2.1.2",
-    "fs-extra": "^9.1.0",
+    "fs-extra": "^10.0.0",
     "glob": "^7.1.6",
     "imagemin": "^8.0.0",
     "imagemin-v7": "npm:imagemin@^7",

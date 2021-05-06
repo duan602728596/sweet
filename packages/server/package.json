@@ -89,7 +89,7 @@
     "@sweet-milktea/milktea-vite": "*",
     "@sweet-milktea/server-log": "*",
     "nunjucks": "^3.2.3",
-    "vite": "^2.2.3",
+    "vite": "^2.2.4",
     "webpack": "^5.36.2"
   },
   "peerDependencies": {
