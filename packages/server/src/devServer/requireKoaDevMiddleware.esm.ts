@@ -1,8 +1,7 @@
 import * as path from 'path';
-import { requireModule } from '@sweet-milktea/utils';
+import { requireModule, metaHelper } from '@sweet-milktea/utils';
 
-const __dirname: string = path.dirname(
-  decodeURIComponent(import.meta.url.replace(/^file:\/{2}/, '')));
+const { __dirname }: { __filename: string; __dirname: string } = metaHelper(import.meta.url);
 
 /* 加载插件 */
 function requireKoaDevMiddleware(id: string): Promise<any> {
