@@ -10,5 +10,5 @@ export const SYMBOLS: { [key: string]: string } = {
 
 /* 判断是否为AST.Token */
 export function isASTToken(token: AST.Token | ESTree.Comment | null): token is AST.Token {
-  return !token;
+  return token !== null;
 }
