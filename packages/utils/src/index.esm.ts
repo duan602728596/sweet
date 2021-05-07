@@ -1,4 +1,6 @@
 import * as fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
 import { createRequire } from 'module';
 
 const require: NodeRequire = createRequire(import.meta.url); // esm需要创建require
@@ -96,6 +98,17 @@ export async function isFileExists(file: string): Promise<boolean> {
   }
 }
 
+/**
+ * 从import.meta.url中解析__filename和__dirname
+ * @param metaUrl
+ */
+export function metaHelper(metaUrl: string): { __filename: string; __dirname: string } {
+  const __filename: string = fileURLToPath(metaUrl);
+  const __dirname: string = path.dirname(__filename);
+
+  return { __filename, __dirname };
+}
+
 export default {
   requireModule,
   requireCommonjsModule,
@@ -103,5 +116,6 @@ export default {
   moduleExists,
   cleanRequireCache,
   deleteCacheAndRequireModule,
-  isFileExists
+  isFileExists,
+  metaHelper
 };
