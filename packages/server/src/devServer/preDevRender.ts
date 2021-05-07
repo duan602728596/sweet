@@ -1,7 +1,7 @@
 import type * as Stream from 'stream';
 import { pathToRegexp } from 'path-to-regexp';
 import _ from 'lodash';
-import { deleteCacheAndRequireModule } from '@sweet-milktea/utils';
+import { requireModuleWithoutCache } from '@sweet-milktea/utils';
 import type { Context } from 'koa';
 import { formatTemplateData, requireViteModule, isReadStream, readStream } from '../utils/utils';
 import { getControllersFiles } from '../utils/controllers';
@@ -13,7 +13,7 @@ async function preRenderInit(sweetOptions: SweetOptions): Promise<Function> {
   const renderEngine: Function = await createRenderEngine(sweetOptions.renderType); // 获取渲染器
   const getSSRDataFunc: Function = sweetOptions.vite
     ? requireViteModule(sweetOptions)
-    : deleteCacheAndRequireModule;
+    : requireModuleWithoutCache;
 
   /**
    * @param { string } ctxPath: 相对路径

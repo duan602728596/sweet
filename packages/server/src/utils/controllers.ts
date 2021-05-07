@@ -1,7 +1,7 @@
 import * as path from 'path';
 import type { IOptions } from 'glob';
 import _ from 'lodash';
-import { requireCommonjsModule, deleteCacheAndRequireModule } from '@sweet-milktea/utils';
+import { requireCommonjsModule, requireModuleWithoutCache } from '@sweet-milktea/utils';
 import { globPromise } from './utils';
 import useRegister from './babelRegister';
 import type { SweetOptions, ControllersModule } from './types';
@@ -46,7 +46,7 @@ export async function requireControllers(
     await useRegister(sweetOptions);
 
     const module: ControllersModule | undefined = await (clearRequireModule
-      ? deleteCacheAndRequireModule
+      ? requireModuleWithoutCache
       : requireCommonjsModule
     )(controllersInfo.isAbsolute ? file : path.join(sweetOptions.basicPath, file));
 

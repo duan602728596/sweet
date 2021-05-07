@@ -1,4 +1,4 @@
-import { requireCommonjsModule, deleteCacheAndRequireModule, isFileExists } from '@sweet-milktea/utils';
+import { requireCommonjsModule, requireModuleWithoutCache, isFileExists } from '@sweet-milktea/utils';
 import type Koa from 'koa';
 import type Router from '@koa/router';
 import { defaultApiPath } from './utils';
@@ -19,7 +19,7 @@ async function createApi(sweetOptions: SweetOptions, router: Router, app: Koa, i
     for (const findFile of findFiles) {
       if (await isFileExists(findFile)) {
         const routers: Function = isDevelopment
-          ? await deleteCacheAndRequireModule(findFile)
+          ? await requireModuleWithoutCache(findFile)
           : await requireCommonjsModule(findFile);
 
         await routers(router, sweetOptions, app);
