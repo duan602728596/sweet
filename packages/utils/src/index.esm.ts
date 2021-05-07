@@ -25,7 +25,7 @@ export async function requireModule(id: string, exportAll?: boolean): Promise<an
  * @param { string } id: 模块名称
  * @param { boolean } exportAll: 导出所有模块
  */
-export function requireCommonjsModule(id: string, exportAll?: boolean): any | Promise<any> {
+export function requireCommonjsModule(id: string, exportAll?: boolean): any {
   const module: { default: any } | any = require(id);
 
   if (exportAll) {
@@ -48,18 +48,6 @@ export async function requireJson(id: string): Promise<any> {
 }
 
 /**
- * 判断模块是否存在
- * @param { string } id: 模块名称
- */
-export function moduleExists(id: string): string | false {
-  try {
-    return require.resolve(id);
-  } catch (err) {
-    return false;
-  }
-}
-
-/**
  * 清除模块缓存
  * @param { string } id: 模块名称
  */
@@ -78,10 +66,27 @@ export function cleanRequireCache(id: any): void {
  * @param { string } id: 模块名称
  * @param { boolean } exportAll: 导出所有模块
  */
-export function deleteCacheAndRequireModule(id: string, exportAll?: boolean): any | Promise<any> {
+export function requireModuleWithoutCache(id: string, exportAll?: boolean): any {
   cleanRequireCache(id);
 
   return requireCommonjsModule(id, exportAll);
+}
+
+/**
+ * @deprecated
+ */
+export const deleteCacheAndRequireModule: typeof requireModuleWithoutCache = requireModuleWithoutCache;
+
+/**
+ * 判断模块是否存在
+ * @param { string } id: 模块名称
+ */
+export function moduleExists(id: string): string | false {
+  try {
+    return require.resolve(id);
+  } catch (err) {
+    return false;
+  }
 }
 
 /**
@@ -100,7 +105,7 @@ export async function isFileExists(file: string): Promise<boolean> {
 
 /**
  * 从import.meta.url中解析__filename和__dirname
- * @param metaUrl
+ * @param { string } metaUrl
  */
 export function metaHelper(metaUrl: string): { __filename: string; __dirname: string } {
   const __filename: string = fileURLToPath(metaUrl);
@@ -113,9 +118,10 @@ export default {
   requireModule,
   requireCommonjsModule,
   requireJson,
-  moduleExists,
   cleanRequireCache,
   deleteCacheAndRequireModule,
+  requireModuleWithoutCache,
+  moduleExists,
   isFileExists,
   metaHelper
 };

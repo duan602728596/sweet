@@ -5,7 +5,7 @@ import fs from 'fs';
  * @param { string } id: 模块名称
  * @param { boolean } exportAll: 导出所有模块
  */
-export function requireModule(id: string, exportAll?: boolean): any | Promise<any> {
+export function requireModule(id: string, exportAll?: boolean): any {
   const module: { default: any } | any = require(id);
 
   if (exportAll) {
@@ -22,20 +22,8 @@ export const requireCommonjsModule: typeof requireModule = requireModule;
  * 加载json文件
  * @param { string } id: 模块名称
  */
-export function requireJson(id: string): any | Promise<any> {
+export function requireJson(id: string): any {
   return requireModule(id);
-}
-
-/**
- * 判断模块是否存在
- * @param { string } id: 模块名称
- */
-export function moduleExists(id: string): string | false {
-  try {
-    return require.resolve(id);
-  } catch (err) {
-    return false;
-  }
 }
 
 /**
@@ -57,10 +45,27 @@ export function cleanRequireCache(id: any): void {
  * @param { string } id: 模块名称
  * @param { boolean } exportAll: 导出所有模块
  */
-export function deleteCacheAndRequireModule(id: string, exportAll?: boolean): any | Promise<any> {
+export function requireModuleWithoutCache(id: string, exportAll?: boolean): any {
   cleanRequireCache(id);
 
   return requireModule(id, exportAll);
+}
+
+/**
+ * @deprecated
+ */
+export const deleteCacheAndRequireModule: typeof requireModuleWithoutCache = requireModuleWithoutCache;
+
+/**
+ * 判断模块是否存在
+ * @param { string } id: 模块名称
+ */
+export function moduleExists(id: string): string | false {
+  try {
+    return require.resolve(id);
+  } catch (err) {
+    return false;
+  }
 }
 
 /**
@@ -81,8 +86,9 @@ export default {
   requireModule,
   requireCommonjsModule,
   requireJson,
-  moduleExists,
   cleanRequireCache,
   deleteCacheAndRequireModule,
+  requireModuleWithoutCache,
+  moduleExists,
   isFileExists
 };
