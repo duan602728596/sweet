@@ -69,7 +69,6 @@
     "fs-extra": "^10.0.0",
     "glob": "^7.1.6",
     "imagemin": "^8.0.0",
-    "imagemin-v7": "npm:imagemin@^7",
     "lodash": "^4.17.21",
     "semver": "^7.3.5"
   },

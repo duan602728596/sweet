@@ -1,3 +1,7 @@
 import imageMin from 'imagemin';
 
-export default imageMin;
+function getImageMin(): typeof imageMin {
+  return imageMin;
+}
+
+export default getImageMin;

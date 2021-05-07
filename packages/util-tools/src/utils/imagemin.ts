@@ -1,3 +1,9 @@
-import imageMin from 'imagemin-v7';
+import type imageMin from 'imagemin';
 
-export default imageMin;
+async function getImageMin(): Promise<typeof imageMin> {
+  const imageMinModule: any = await import('imagemin');
+
+  return imageMinModule.default;
+}
+
+export default getImageMin;
