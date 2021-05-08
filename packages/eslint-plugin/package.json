@@ -20,6 +20,6 @@
     "@typescript-eslint/typescript-estree": "^4.22.1"
   },
   "devDependencies": {
-    "eslint": "^7.25.0"
+    "eslint": "^7.26.0"
   }
 }
