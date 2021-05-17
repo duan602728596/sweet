@@ -3,6 +3,7 @@ node_modules
 
 # project
 ./utils
+.yarn
 
 # packages
 packages/**/lib
