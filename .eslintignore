@@ -1,9 +1,9 @@
 # node
 node_modules
+.yarn
 
 # project
 ./utils
-.yarn
 
 # packages
 packages/**/lib
