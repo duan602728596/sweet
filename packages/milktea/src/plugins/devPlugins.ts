@@ -23,18 +23,17 @@ export default async function(sweetConfig: SweetConfig, sweetOptions: SweetOptio
   }
 
   // 热替换 webpack5的HotModuleReplacementPlugin插件会生成无用的文件
-  config
-    .when(!!hot, (chainConfig: Config): void => {
-      chainConfig
-        .plugin('webpack.HotModuleReplacementPlugin')
-        .use(webpack.HotModuleReplacementPlugin);
-    });
+  config.when(!!hot, (chainConfig: Config): void => {
+    chainConfig
+      .plugin('webpack.HotModuleReplacementPlugin')
+      .use(webpack.HotModuleReplacementPlugin);
+  });
 
   // react-refresh-webpack-plugin
   const isReactRefresh: boolean = !!hot && frame === 'react';
 
-  if (isReactRefresh) {
-    config
+  config.when(!!hot && frame === 'react', (chainConfig: Config): void => {
+    chainConfig
       .plugin('react-refresh-webpack-plugin')
       .use(ReactRefreshWebpackPlugin, [{
         overlay: {
@@ -42,5 +41,5 @@ export default async function(sweetConfig: SweetConfig, sweetOptions: SweetOptio
           module: moduleExists('@pmmmwh/react-refresh-webpack-plugin/overlay')
         }
       }]);
-  }
+  });
 }

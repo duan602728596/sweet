@@ -119,17 +119,16 @@ export default async function(sweetConfig: SweetConfig, sweetOptions: SweetOptio
   }
 
   // 当环境为测试时，不使用输出插件
-  config
-    .when(sweetConfig.frame !== 'test' && (!webpackLog || webpackLog === 'progress'),
-      (chainConfig: Config): void => {
-        chainConfig
-          .plugin('webpackbar')
-          .use(WebpackBar, [{
-            name: serverRender ? 'server' : 'client',
-            color: serverRender ? 'blue' : 'green'
-          }]);
-      }
-    );
+  config.when(
+    sweetConfig.frame !== 'test' && (!webpackLog || webpackLog === 'progress'),
+    (chainConfig: Config): void => {
+      chainConfig
+        .plugin('webpackbar')
+        .use(WebpackBar, [{
+          name: serverRender ? 'server' : 'client',
+          color: serverRender ? 'blue' : 'green'
+        }]);
+    });
 
   // files-map-webpack-plugin
   config

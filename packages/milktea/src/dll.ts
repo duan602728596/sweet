@@ -84,7 +84,6 @@ export default async function(sweetConfig: SweetConfig, sweetOptions: SweetOptio
         name: 'dll',
         color: 'green'
       }]);
-
   } else {
     config
       .plugin('webpack.ProgressPlugin')
@@ -101,7 +100,8 @@ export default async function(sweetConfig: SweetConfig, sweetOptions: SweetOptio
     externals,
     resolve,
     experiments: {
-      topLevelAwait: true
+      topLevelAwait: true,
+      outputModule: true
     }
   };
 

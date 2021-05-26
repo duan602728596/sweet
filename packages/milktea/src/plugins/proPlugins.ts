@@ -18,16 +18,13 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
     }]);
 
   // 当环境为测试时，不使用输出插件
-  config
-    .when(sweetConfig.frame !== 'test' && webpackLog === 'stats',
-      (chainConfig: Config): void => {
-        chainConfig
-          .plugin('webpack.ProgressPlugin')
-          .use(webpack.ProgressPlugin, [
-            serverRender
-              ? handleServerRenderProgress
-              : handleDefaultProgress
-          ]);
-      }
-    );
+  config.when(sweetConfig.frame !== 'test' && webpackLog === 'stats', (chainConfig: Config): void => {
+    chainConfig
+      .plugin('webpack.ProgressPlugin')
+      .use(webpack.ProgressPlugin, [
+        serverRender
+          ? handleServerRenderProgress
+          : handleDefaultProgress
+      ]);
+  });
 }
