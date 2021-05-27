@@ -18,7 +18,7 @@
   },
   "dependencies": {
     "@babel/plugin-proposal-async-do-expressions": "^7.14.0",
-    "@babel/plugin-proposal-class-static-block": "^7.13.11",
+    "@babel/plugin-proposal-class-static-block": "^7.14.3",
     "@babel/plugin-proposal-decorators": "^7.14.2",
     "@babel/plugin-proposal-do-expressions": "^7.14.0",
     "@babel/plugin-proposal-export-default-from": "^7.12.13",
@@ -27,7 +27,7 @@
     "@babel/plugin-proposal-throw-expressions": "^7.12.13",
     "@babel/plugin-syntax-module-string-names": "^7.12.13",
     "@babel/plugin-syntax-top-level-await": "^7.12.13",
-    "@babel/plugin-transform-runtime": "^7.14.2",
+    "@babel/plugin-transform-runtime": "^7.14.3",
     "@babel/preset-env": "^7.14.2",
     "@babel/preset-react": "^7.13.13",
     "@babel/preset-typescript": "^7.13.0",

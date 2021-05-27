@@ -43,7 +43,7 @@
     "updateVersion": "milktea-esm update"
   },
   "dependencies": {
-    "@babel/core": "^7.14.2",
+    "@babel/core": "^7.14.3",
     "@babel/register": "^7.13.16",
     "@sweet-milktea/babel-preset-sweet": "^3.0.0",
     "@sweet-milktea/utils": "^3.0.0",
@@ -51,8 +51,8 @@
     "cosmiconfig": "^7.0.0",
     "less": "^4.1.1",
     "lodash": "^4.17.21",
-    "sass": "^1.32.13",
-    "vite": "^2.3.2"
+    "sass": "^1.34.0",
+    "vite": "^2.3.4"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^1.2.2",

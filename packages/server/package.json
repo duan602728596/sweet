@@ -55,7 +55,7 @@
     "updateVersion": "milktea-esm update"
   },
   "dependencies": {
-    "@babel/core": "^7.14.2",
+    "@babel/core": "^7.14.3",
     "@babel/register": "^7.13.16",
     "@bbkkbkk/http-proxy": "^1.17.0",
     "@koa/router": "^10.0.0",
@@ -80,17 +80,17 @@
     "sockjs": "^0.3.21",
     "sockjs-client": "^1.5.1",
     "url": "^0.11.0",
-    "webpack-dev-middleware": "^4.2.0",
+    "webpack-dev-middleware": "^4.3.0",
     "webpack-log": "^3.0.2",
-    "ws": "^7.4.5"
+    "ws": "^7.4.6"
   },
   "devDependencies": {
     "@sweet-milktea/milktea": "^3.0.0",
     "@sweet-milktea/milktea-vite": "^3.0.0",
     "@sweet-milktea/server-log": "^3.0.0",
     "nunjucks": "^3.2.3",
-    "vite": "^2.3.2",
-    "webpack": "^5.37.0"
+    "vite": "^2.3.4",
+    "webpack": "^5.37.1"
   },
   "peerDependencies": {
     "@sweet-milktea/milktea": ">=3",
