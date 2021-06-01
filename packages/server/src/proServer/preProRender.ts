@@ -25,6 +25,8 @@ async function preRenderInit(sweetOptions: SweetOptions): Promise<Function> {
 
       // ssr渲染
       const server: Function = await requireModule(serverRenderEntry);
+
+      // TODO: 由于编译和模块加载的原因，有可能出现module.default.default的情况
       const result: Stream | string
         = await ('default' in server ? server['default'] : server)(ctxPath, ctx, data.initialState);
       const render: string = isReadStream(result) ? (await readStream(result)).toString() : result;
