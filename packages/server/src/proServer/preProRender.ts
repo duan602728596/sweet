@@ -3,7 +3,7 @@ import { pathToRegexp } from 'path-to-regexp';
 import _ from 'lodash';
 import { requireModule } from '@sweet-milktea/utils';
 import type { Context } from 'koa';
-import { formatTemplateData, isReadStream, readStream } from '../utils/utils';
+import { formatTemplateData, isReadStream, readStream, __fixModuleImportDefaultDefault } from '../utils/utils';
 import { getControllersFiles } from '../utils/controllers';
 import createRenderEngine from '../utils/createRenderEngine';
 import type { SweetOptions, ControllersModule } from '../utils/types';
@@ -24,11 +24,8 @@ async function preRenderInit(sweetOptions: SweetOptions): Promise<Function> {
       const data: any = index >= 0 ? await controllersModules[index].handler(ctx, sweetOptions) : {};
 
       // ssr渲染
-      const server: Function = await requireModule(serverRenderEntry);
-
-      // TODO: 由于编译和模块加载的原因，有可能出现module.default.default的情况
-      const result: Stream | string
-        = await ('default' in server ? server['default'] : server)(ctxPath, ctx, data.initialState);
+      const server: Function = __fixModuleImportDefaultDefault(await requireModule(serverRenderEntry));
+      const result: Stream | string = await server(ctxPath, ctx, data.initialState);
       const render: string = isReadStream(result) ? (await readStream(result)).toString() : result;
 
       return renderEngine(html.toString(), formatTemplateData({

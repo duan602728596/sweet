@@ -147,3 +147,11 @@ export async function detectPort(port: number, ignorePort: Array<number> = []): 
 
   return newNumber;
 }
+
+/**
+ * TODO: @babel/register会将es6模块编译出exports.default，
+ *       加载时会出现module.default.default的情况
+ */
+export function __fixModuleImportDefaultDefault<T = any>(data: T | { default: T }): T {
+  return 'default' in data ? data['default'] : data;
+}
