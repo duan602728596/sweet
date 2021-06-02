@@ -52,11 +52,11 @@
     "less": "^4.1.1",
     "lodash": "^4.17.21",
     "sass": "^1.34.0",
-    "vite": "^2.3.4"
+    "vite": "^2.3.6"
   },
   "devDependencies": {
-    "@vitejs/plugin-vue": "^1.2.2",
-    "@vitejs/plugin-vue-jsx": "^1.1.4"
+    "@vitejs/plugin-vue": "^1.2.3",
+    "@vitejs/plugin-vue-jsx": "^1.1.5"
   },
   "peerDependencies": {
     "@vitejs/plugin-vue": ">=1",
