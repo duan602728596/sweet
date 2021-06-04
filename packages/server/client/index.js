@@ -46,9 +46,8 @@ var defaultOptions = {
   hotReload: true,
   liveReload: false,
   initial: true,
-  useWarningOverlay: false,
-  useErrorOverlay: false,
-  useProgress: false
+  progress: false,
+  overlay: false
 };
 var parsedResourceQuery = parseURL(__resourceQuery);
 var options = defaultOptions; // Handle Node.js legacy format and `new URL()`
@@ -113,9 +112,9 @@ var onSocketMessage = {
     log.info('Live Reloading enabled.');
   },
   invalid: function invalid() {
-    log.info('App updated. Recompiling...'); // fixes #1042. overlay doesn't clear if errors are fixed but warnings remain.
+    log.info('App updated. Recompiling...'); // Fixes #1042. overlay doesn't clear if errors are fixed but warnings remain.
 
-    if (options.useWarningOverlay || options.useErrorOverlay) {
+    if (options.overlay) {
       overlay.clear();
     }
 
@@ -124,43 +123,37 @@ var onSocketMessage = {
   hash: function hash(_hash) {
     status.currentHash = _hash;
   },
+  logging: setAllLogLevel,
+  overlay: function overlay(value) {
+    if (typeof document === 'undefined') {
+      return;
+    }
+
+    options.overlay = value;
+  },
+  progress: function progress(_progress) {
+    options.progress = _progress;
+  },
+  'progress-update': function progressUpdate(data) {
+    if (options.progress) {
+      log.info("".concat(data.pluginName ? "[".concat(data.pluginName, "] ") : '').concat(data.percent, "% - ").concat(data.msg, "."));
+    }
+
+    sendMessage('Progress', data);
+  },
   'still-ok': function stillOk() {
     log.info('Nothing changed.');
 
-    if (options.useWarningOverlay || options.useErrorOverlay) {
+    if (options.overlay) {
       overlay.clear();
     }
 
     sendMessage('StillOk');
   },
-  logging: setAllLogLevel,
-  overlay: function overlay(value) {
-    if (typeof document !== 'undefined') {
-      if (typeof value === 'boolean') {
-        options.useWarningOverlay = false;
-        options.useErrorOverlay = value;
-      } else if (value) {
-        options.useWarningOverlay = value.warnings;
-        options.useErrorOverlay = value.errors;
-      }
-    }
-  },
-  progress: function progress(_progress) {
-    if (typeof document !== 'undefined') {
-      options.useProgress = _progress;
-    }
-  },
-  'progress-update': function progressUpdate(data) {
-    if (options.useProgress) {
-      log.info("".concat(data.percent, "% - ").concat(data.msg, "."));
-    }
-
-    sendMessage('Progress', data);
-  },
   ok: function ok() {
     sendMessage('Ok');
 
-    if (options.useWarningOverlay || options.useErrorOverlay) {
+    if (options.overlay) {
       overlay.clear();
     }
 
@@ -170,8 +163,13 @@ var onSocketMessage = {
 
     reloadApp(options, status);
   },
-  'content-changed': function contentChanged() {
-    log.info('Content base changed. Reloading...');
+  // TODO: remove in v5 in favor of 'static-changed'
+  'content-changed': function contentChanged(file) {
+    log.info("".concat(file ? "\"".concat(file, "\"") : 'Content', " from static directory was changed. Reloading..."));
+    self.location.reload();
+  },
+  'static-changed': function staticChanged(file) {
+    log.info("".concat(file ? "\"".concat(file, "\"") : 'Content', " from static directory was changed. Reloading..."));
     self.location.reload();
   },
   warnings: function warnings(_warnings) {
@@ -187,7 +185,9 @@ var onSocketMessage = {
       log.warn(strippedWarnings[i]);
     }
 
-    if (options.useWarningOverlay) {
+    var needShowOverlay = typeof options.overlay === 'boolean' ? options.overlay : options.overlay && options.overlay.warnings;
+
+    if (needShowOverlay) {
       overlay.showMessage(_warnings);
     }
 
@@ -210,7 +210,9 @@ var onSocketMessage = {
       log.error(strippedErrors[i]);
     }
 
-    if (options.useErrorOverlay) {
+    var needShowOverlay = typeof options.overlay === 'boolean' ? options.overlay : options.overlay && options.overlay.errors;
+
+    if (needShowOverlay) {
       overlay.showMessage(_errors);
     }
 

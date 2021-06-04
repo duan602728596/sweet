@@ -8,17 +8,8 @@ function createSocketURL(parsedURL) {
   var auth = parsedURL.auth,
       hostname = parsedURL.hostname,
       protocol = parsedURL.protocol,
-      port = parsedURL.port;
-
-  var getURLSearchParam = function getURLSearchParam(name) {
-    if (parsedURL.searchParams) {
-      return parsedURL.searchParams.get(name);
-    }
-
-    return parsedURL.query && parsedURL.query[name];
-  }; // Node.js module parses it as `::`
+      port = parsedURL.port; // Node.js module parses it as `::`
   // `new URL(urlString, [baseURLstring])` parses it as '[::]'
-
 
   var isInAddrAny = hostname === '0.0.0.0' || hostname === '::' || hostname === '[::]'; // check ipv4 and ipv6 `all hostname`
   // why do we need this check?
@@ -27,8 +18,12 @@ function createSocketURL(parsedURL) {
 
   if (isInAddrAny && self.location.hostname && self.location.protocol.indexOf('http') === 0) {
     hostname = self.location.hostname;
+  }
+
+  if (protocol === 'auto:') {
+    protocol = self.location.protocol;
   } // `hostname` can be empty when the script path is relative. In that case, specifying a protocol would result in an invalid URL.
-  // When https is used in the app, secure websockets are always necessary because the browser doesn't accept non-secure websockets.
+  // When https is used in the app, secure web sockets are always necessary because the browser doesn't accept non-secure web sockets.
 
 
   if (hostname && isInAddrAny && self.location.protocol === 'https:') {
@@ -57,17 +52,22 @@ function createSocketURL(parsedURL) {
   // All of these sock url params are optionally passed in through resourceQuery,
   // so we need to fall back to the default if they are not provided
 
-  var socketURLHostname = (getURLSearchParam('host') || hostname || 'localhost').replace(/^\[(.*)\]$/, '$1');
+  var socketURLHostname = (hostname || 'localhost').replace(/^\[(.*)\]$/, '$1');
 
   if (!port || port === '0') {
     port = self.location.port;
   }
 
-  var socketURLPort = getURLSearchParam('port') || port; // If path is provided it'll be passed in via the resourceQuery as a
+  var socketURLPort = port; // If path is provided it'll be passed in via the resourceQuery as a
   // query param so it has to be parsed out of the querystring in order for the
   // client to open the socket to the correct location.
 
-  var socketURLPathname = getURLSearchParam('path') || '/ws';
+  var socketURLPathname = '/ws';
+
+  if (parsedURL.pathname && !parsedURL.fromCurrentScript) {
+    socketURLPathname = parsedURL.pathname;
+  }
+
   return url.format({
     protocol: socketURLProtocol,
     auth: socketURLAuth,

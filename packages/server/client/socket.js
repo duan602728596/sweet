@@ -4,16 +4,7 @@
 /* eslint-disable
   camelcase
 */
-// this WebsocketClient is here as a default fallback,
-//  in case the client is not injected
-
-/*
-const Client =
-  typeof __webpack_dev_server_client__ !== 'undefined'
-    ? __webpack_dev_server_client__
-    : // eslint-disable-next-line import/no-unresolved
-      require('./clients/WebsocketClient');
-*/
+// this WebsocketClient is here as a default fallback, in case the client is not injected
 
 var Client = process.env.SWEET_SOCKET === 'ws' ? require('./clients/WebsocketClient') : require('./clients/SockJSClient');
 var retries = 0;
@@ -44,10 +35,10 @@ var socket = function initSocket(url, handlers) {
     }
   });
   client.onMessage(function (data) {
-    var msg = JSON.parse(data);
+    var message = JSON.parse(data);
 
-    if (handlers[msg.type]) {
-      handlers[msg.type](msg.data);
+    if (handlers[message.type]) {
+      handlers[message.type](message.data);
     }
   });
 };
