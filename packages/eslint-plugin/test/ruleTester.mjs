@@ -1,5 +1,5 @@
 import eslint from 'eslint';
-import options from './options';
+import options from './options.mjs';
 
 const { RuleTester } = eslint;
 

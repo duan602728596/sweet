@@ -1,7 +1,7 @@
-import ruleTester from '../ruleTester';
-import interfaceSpaceBeforeBlocks from '../../lib/rules/spaceBeforeBlocks';
+import ruleTester from '../ruleTester.mjs';
+import interfaceSpaceBeforeBlocks from '../../lib/rules/spaceBeforeBlocks.js';
 
-ruleTester.run('space-before-blocks', interfaceSpaceBeforeBlocks, {
+ruleTester.run('space-before-blocks', interfaceSpaceBeforeBlocks.default, {
   valid: [
     `interface Interface {
        name: string;

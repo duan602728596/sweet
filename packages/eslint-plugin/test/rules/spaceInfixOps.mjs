@@ -1,7 +1,7 @@
-import ruleTester from '../ruleTester';
-import typeSpaceInfixOps from '../../lib/rules/spaceInfixOps';
+import ruleTester from '../ruleTester.mjs';
+import typeSpaceInfixOps from '../../lib/rules/spaceInfixOps.js';
 
-ruleTester.run('space-infix-ops', typeSpaceInfixOps, {
+ruleTester.run('space-infix-ops', typeSpaceInfixOps.default, {
   valid: [
     'type Data = number | string;',
     'export type Func = (args: Array<string>) => void;',
