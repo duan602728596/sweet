@@ -1,0 +1,2 @@
+/* test */
+import './serverLog.mjs';

@@ -2,10 +2,12 @@ import process from 'process';
 import path from 'path';
 import fs from 'fs';
 import { expect } from 'chai';
-import serverLog from '../lib/index';
-import afterTest from './afterTest';
+import { metaHelper } from '@sweet-milktea/utils';
+import serverLog from '../lib/index.js';
+import afterTest from './afterTest.mjs';
 
-const { accessLogger, logger } = serverLog('file', {
+const { __dirname } = metaHelper(import.meta.url);
+const { accessLogger, logger } = serverLog.default('file', {
   basicPath: path.join(process.cwd(), 'test')
 });
 
