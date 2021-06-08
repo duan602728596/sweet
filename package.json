@@ -37,7 +37,6 @@
   "devDependencies": {
     "@babel/core": "^7.14.3",
     "@babel/eslint-parser": "^7.14.4",
-    "@babel/register": "^7.13.16",
     "@sweet-milktea/eslint-plugin": "*",
     "@sweet-milktea/milktea-cli": "^3.0.0",
     "@sweet-milktea/util-tools": "^3.0.0",
