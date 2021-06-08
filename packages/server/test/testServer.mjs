@@ -1,8 +1,8 @@
 /* 测试服务 */
-const http = require('http');
-const Koa = require('koa');
-const Router = require('@koa/router');
-const koaBody = require('koa-body');
+import http from 'http';
+import Koa from 'koa';
+import Router from '@koa/router';
+import koaBody from 'koa-body';
 
 const app = new Koa();
 const router = new Router();

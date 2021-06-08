@@ -1,32 +1,22 @@
 import path from 'path';
 import { expect } from 'chai';
-import proServer from '../proServer';
-import createCompiler from './utils/compiler';
-import { get, post } from './utils/reqData';
-import toJson from './utils/toJson';
-import afterTest from './afterTest';
+import { metaHelper } from '@sweet-milktea/utils';
+import devServer from '../devServer.js';
+import createCompiler from './utils/compiler.mjs';
+import { get, post } from './utils/reqData.mjs';
+import toJson from './utils/toJson.mjs';
 
-// 编译文件
-async function runBuild() {
+const { __dirname } = metaHelper(import.meta.url);
+
+// 运行开发环境服务
+async function runServer() {
   // webpack配置
-  const compiler = await createCompiler('../src/index.js', 'production');
+  const compiler = await createCompiler('../srcTs/index.ts');
 
-  compiler.run(() => undefined);
-
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      resolve();
-    }, 15000);
-  });
-}
-
-// 运行生产环境服务
-function runServer() {
-  proServer({
+  devServer({
+    compiler,
     env: 'test',
-    serverRoot: 'test/dist',
-    httpPort: 5060,
-    httpsPort: 5061,
+    httpPort: 5051,
     apiFile: path.join(__dirname, 'api/api.js'),
     proxyFile: path.join(__dirname, 'proxy/proxy.js')
   });
@@ -34,20 +24,19 @@ function runServer() {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       resolve();
-    }, 3000);
+    }, 7000);
   });
 }
 
-describe('production server', function() {
+describe('development server use typescript', function() {
   it('should response status code is 200', async function() {
-    await runBuild();
     await runServer();
 
-    const resHtml = await get('http://127.0.0.1:5060');
-    const resJs = await get('http://127.0.0.1:5060/index.js');
-    const resApi = await get('http://127.0.0.1:5060/api/test', true);
-    const resProxyGet = await get('http://127.0.0.1:5060/proxy/test/get?text=test', true);
-    const resProxyPost = await post('http://127.0.0.1:5060/proxy/test/post?text=test', {
+    const resHtml = await get('http://127.0.0.1:5051');
+    const resJs = await get('http://127.0.0.1:5051/index.js');
+    const resApi = await get('http://127.0.0.1:5051/api/test', true);
+    const resProxyGet = await get('http://127.0.0.1:5051/proxy/test/get?text=test', true);
+    const resProxyPost = await post('http://127.0.0.1:5051/proxy/test/post?text=test', {
       text: 'test'
     });
     const resMock0 = await get('http://127.0.0.1:5050/mock/api/test/0');
@@ -83,6 +72,4 @@ describe('production server', function() {
       value: 3
     });
   });
-
-  after(afterTest);
 });

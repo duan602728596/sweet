@@ -1,8 +1,11 @@
 import path from 'path';
 import { expect } from 'chai';
 import milkteaVite from '@sweet-milktea/milktea-vite';
-import devServer from '../devServer';
-import { get } from './utils/reqData';
+import { metaHelper } from '@sweet-milktea/utils';
+import devServer from '../devServer.js';
+import { get } from './utils/reqData.mjs';
+
+const { __dirname } = metaHelper(import.meta.url);
 
 // 运行开发环境的vite服务
 function runServer(compiler) {

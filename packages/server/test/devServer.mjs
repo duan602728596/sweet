@@ -1,9 +1,12 @@
 import path from 'path';
 import { expect } from 'chai';
-import devServer from '../devServer';
-import createCompiler from './utils/compiler';
-import { get, post } from './utils/reqData';
-import toJson from './utils/toJson';
+import { metaHelper } from '@sweet-milktea/utils';
+import devServer from '../devServer.js';
+import createCompiler from './utils/compiler.mjs';
+import { get, post } from './utils/reqData.mjs';
+import toJson from './utils/toJson.mjs';
+
+const { __dirname } = metaHelper(import.meta.url);
 
 // 运行开发环境服务
 async function runServer() {

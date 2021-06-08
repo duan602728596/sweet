@@ -1,7 +1,10 @@
 import path from 'path';
 import webpack from 'webpack';
 import { config as webpackConfig } from '@sweet-milktea/milktea';
-import hotClientEntry from '../../hotClientEntry';
+import { metaHelper } from '@sweet-milktea/utils';
+import hotClientEntry from '../../hotClientEntry.js';
+
+const { __dirname } = metaHelper(import.meta.url);
 
 // 创建webpack配置
 async function createCompiler(entry, mode = 'development') {
@@ -28,6 +31,5 @@ async function createCompiler(entry, mode = 'development') {
 
   return compiler;
 }
-
 
 export default createCompiler;
