@@ -3,9 +3,11 @@ import fs from 'fs';
 import util from 'util';
 import { expect } from 'chai';
 import rimraf from 'rimraf';
-import { build, serverRenderBuild } from '../lib/milktea-vite';
+import { metaHelper, requireCommonjsModule } from '@sweet-milktea/utils';
+import { build, serverRenderBuild } from '../lib/milktea-vite.js';
 
 const rimrafPromise = util.promisify(rimraf);
+const { __dirname } = metaHelper(import.meta.url);
 
 const root = path.join(__dirname, 'root');
 const dist = path.join(__dirname, 'dist');
@@ -40,9 +42,9 @@ describe('build and server', function() {
     });
 
     // eslint-disable-next-line import/no-unresolved
-    const server = require('./dist-server/entry-server');
+    const server = requireCommonjsModule(path.join(__dirname, './dist-server/entry-server'));
 
-    expect(server.default()).to.be.a('string');
+    expect(server()).to.be.a('string');
     expect(fs.existsSync(path.join(__dirname, 'dist'))).to.be.true;
   });
 
