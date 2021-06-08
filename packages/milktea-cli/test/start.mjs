@@ -2,13 +2,15 @@ import childProcess from 'child_process';
 import fs from 'fs';
 import path from 'path';
 import { expect } from 'chai';
-import afterTest from './afterTest';
+import afterTest from './afterTest.mjs';
+import { metaHelper } from '@sweet-milktea/utils';
 
+const { __dirname } = metaHelper(import.meta.url);
 const index = path.join(__dirname, 'dist/index.js');
 
 function run() {
   const cli = path.join(__dirname, '../lib/cli');
-  const config = path.join(__dirname, './sweet.config.mjs');
+  const config = path.join(__dirname, './sweet.config.js');
 
   return new Promise((resolve, reject) => {
     const child = childProcess.spawn('node', [cli, 'start', '--config', config], {

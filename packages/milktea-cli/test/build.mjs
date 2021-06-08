@@ -2,13 +2,16 @@ import childProcess from 'child_process';
 import fs from 'fs';
 import path from 'path';
 import { expect } from 'chai';
+import { metaHelper } from '@sweet-milktea/utils';
+
+const { __dirname } = metaHelper(import.meta.url);
 
 function run() {
   const cli = path.join(__dirname, '../lib/cli');
-  const config = path.join(__dirname, './sweet.config.mjs');
+  const config = path.join(__dirname, './sweet.config.build.ts');
 
   return new Promise((resolve, reject) => {
-    const child = childProcess.spawn('node', [cli, 'dll', '--config', config], {
+    const child = childProcess.spawn('node', [cli, 'build', '--config', config], {
       cwd: __dirname
     });
 
@@ -24,11 +27,10 @@ function run() {
   });
 }
 
-describe('args: dll', function() {
-  it('should dll.mjs and manifest.json files is existing', async function() {
+describe('args: build', function() {
+  it('should index.build.js is existing', async function() {
     await run();
 
-    expect(fs.existsSync(path.join(__dirname, '.sweet/dll/dll.mjs'))).to.be.true;
-    expect(fs.existsSync(path.join(__dirname, '.sweet/dll/manifest.json'))).to.be.true;
+    expect(fs.existsSync(path.join(__dirname, 'dist/index.build.js'))).to.be.true;
   });
 });
