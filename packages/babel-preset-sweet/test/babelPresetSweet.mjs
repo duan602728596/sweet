@@ -8,7 +8,7 @@ const transformPromise = promisify(transform);
 async function transformCode(code, options) {
   return transformPromise(code, {
     presets: [
-      [(await import('../cjs.js')).default, options]
+      [(await import('../esm/index.js')).default, options]
     ]
   });
 }
