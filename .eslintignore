@@ -10,7 +10,7 @@ packages/**/lib
 packages/**/esm
 packages/**/esm/**/*.js
 packages/**/node_modules
-packages/**/test/babelPresetSweet.js
+packages/**/test/babelPresetSweet.mjs
 packages/**/test/dist
 packages/**/test/.dll
 packages/**/test/.babelCache

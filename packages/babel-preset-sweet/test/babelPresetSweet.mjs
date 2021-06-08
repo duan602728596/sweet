@@ -5,10 +5,10 @@ import { expect } from 'chai';
 const transformPromise = promisify(transform);
 
 /* 编译代码 */
-function transformCode(code, options) {
+async function transformCode(code, options) {
   return transformPromise(code, {
     presets: [
-      [require('../cjs'), options]
+      [(await import('../cjs.js')).default, options]
     ]
   });
 }
