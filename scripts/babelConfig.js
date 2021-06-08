@@ -12,5 +12,7 @@ module.exports = {
       }
     ]
   ],
-  cache: false
+  cache: false,
+  ignore: [/node_modules/],
+  extensions: ['.jsx', '.js', 'cjs']
 };
