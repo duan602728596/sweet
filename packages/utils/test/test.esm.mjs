@@ -5,12 +5,11 @@ import {
   requireModule,
   requireCommonjsModule,
   requireJson,
-  deleteCacheAndRequireModule
+  deleteCacheAndRequireModule,
+  metaHelper
 } from '../esm/index.js';
 
-const __dirname = path.dirname(
-  decodeURIComponent(import.meta.url.replace(/^file:\/{2}/, '')));
-
+const { __dirname } = metaHelper(import.meta.url);
 const cacheJs = path.join(__dirname, '.cache.js');
 
 describe('esm test', function() {
@@ -36,8 +35,8 @@ describe('esm test', function() {
     const m = await requireJson(path.join(__dirname, 'esmUtils/json.json'));
 
     expect(m).to.eql({
-      "filename": "json",
-      "data": 12
+      filename: 'json',
+      data: 12
     });
   });
 
