@@ -1,7 +1,10 @@
 import fs from 'fs';
 import path from 'path';
 import { expect } from 'chai';
-import image2icns from '../../image2icns';
+import { metaHelper } from '@sweet-milktea/utils';
+import image2icns from '../../image2icns.js';
+
+const { __dirname } = metaHelper(import.meta.url);
 
 describe('image2icns', function() {
   it('should has a icns picture file', async function() {

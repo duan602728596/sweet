@@ -1,7 +1,10 @@
 import fs from 'fs';
 import path from 'path';
 import { expect } from 'chai';
-import image2avif from '../../image2avif';
+import { metaHelper } from '@sweet-milktea/utils';
+import image2avif from '../../image2avif.js';
+
+const { __dirname } = metaHelper(import.meta.url);
 
 describe('image2avif', function() {
   it('should has avif picture files', async function() {

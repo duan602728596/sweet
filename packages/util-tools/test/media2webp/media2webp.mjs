@@ -1,8 +1,11 @@
 import fs from 'fs';
 import path from 'path';
 import { expect } from 'chai';
-import media2webp from '../../media2webp';
-import afterTest from '../afterTest';
+import { metaHelper } from '@sweet-milktea/utils';
+import media2webp from '../../media2webp.js';
+import afterTest from '../afterTest.mjs';
+
+const { __dirname } = metaHelper(import.meta.url);
 
 describe('media2webp', function() {
   it('should has webp picture files', async function() {

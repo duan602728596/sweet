@@ -1,6 +1,9 @@
 import path from 'path';
 import { expect } from 'chai';
-import update from '../../update';
+import { metaHelper } from '@sweet-milktea/utils';
+import update from '../../update.js';
+
+const { __dirname } = metaHelper(import.meta.url);
 
 describe('update', function() {
   it('update', async function() {

@@ -1,7 +1,10 @@
 import fs from 'fs';
 import path from 'path';
 import { expect } from 'chai';
-import imageCompression from '../../imageCompress';
+import { metaHelper } from '@sweet-milktea/utils';
+import imageCompression from '../../imageCompress.js';
+
+const { __dirname } = metaHelper(import.meta.url);
 
 describe('imageCompression', function() {
   it('should has a jpg picture file, a png picture file and a gif picture file', async function() {
