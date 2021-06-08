@@ -5,7 +5,7 @@ import { expect } from 'chai';
 
 function run() {
   const cli = path.join(__dirname, '../lib/cli');
-  const config = path.join(__dirname, './sweet.config.js');
+  const config = path.join(__dirname, './sweet.config.mjs');
 
   return new Promise((resolve, reject) => {
     const child = childProcess.spawn('node', [cli, 'dll', '--config', config], {
@@ -25,10 +25,10 @@ function run() {
 }
 
 describe('args: dll', function() {
-  it('should dll.js and manifest.json files is existing', async function() {
+  it('should dll.mjs and manifest.json files is existing', async function() {
     await run();
 
-    expect(fs.existsSync(path.join(__dirname, '.sweet/dll/dll.js'))).to.be.true;
+    expect(fs.existsSync(path.join(__dirname, '.sweet/dll/dll.mjs'))).to.be.true;
     expect(fs.existsSync(path.join(__dirname, '.sweet/dll/manifest.json'))).to.be.true;
   });
 });

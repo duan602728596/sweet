@@ -22,7 +22,7 @@ milktea-esm：以esm模式启动。
   * `--webpackLog`: 日志输出类型。progress：进度条，stats：传统的输出方式。默认为progress。
   * `--serverRender`: 开启服务器端渲染。
   * `--serverRenderRoot`: 服务器端渲染的模块文件目录。默认为`dist-server`。
-  * `--serverRenderFile`: 服务器渲染的主模块文件。默认为`server.js`。
+  * `--serverRenderFile`: 服务器渲染的主模块文件。默认为`server.mjs`。
   * `--socket`: socket类型。默认为`sockjs`，也可以配置为`ws`。
 * `milktea vite-start`: 运行vite的开发环境。
   * `--config`: 选择一个配置文件。
@@ -34,7 +34,7 @@ milktea-esm：以esm模式启动。
   * `--useBabelRegister`: 使用`@babel/register`来加载api文件和controllers文件。
   * `--serverRender`: 开启服务器端渲染。
   * `--serverRenderRoot`: 服务器端渲染的模块文件目录。默认为`dist-server`。
-  * `--serverRenderFile`: 服务器渲染的主模块文件。默认为`entry-server.js`。
+  * `--serverRenderFile`: 服务器渲染的主模块文件。默认为`entry-server.mjs`。
 * `milktea build`: 使用vite编译代码。
   * `--config`: 选择一个配置文件。
   * `--serverRender`: 开启服务器端渲染。
@@ -56,7 +56,7 @@ milktea-esm：以esm模式启动。
   * `--useBabelRegister`: 使用`@babel/register`来加载api文件和controllers文件。
   * `--serverRender`: 开启服务器端渲染。
   * `--serverRenderRoot`: 服务器端渲染的模块文件目录。默认为`dist-server`。 
-  * `--serverRenderFile`: 服务器端渲染的主模块文件。默认为`server.js`。运行使用vite编译的模块，需要修改为`entry-server.js`。
+  * `--serverRenderFile`: 服务器端渲染的主模块文件。默认为`server.mjs`。运行使用vite编译的模块，需要修改为`entry-server.mjs`。
   * `--template`: html模版的文件名。默认为`index.html`。
   * `--renderType`：html使用的渲染模板，`ejs`或`nunjucks`。默认为`ejs`。
 * `milktea update`: 查看是否有依赖包需要更新。

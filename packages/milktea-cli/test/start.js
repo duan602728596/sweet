@@ -8,7 +8,7 @@ const index = path.join(__dirname, 'dist/index.js');
 
 function run() {
   const cli = path.join(__dirname, '../lib/cli');
-  const config = path.join(__dirname, './sweet.config.js');
+  const config = path.join(__dirname, './sweet.config.mjs');
 
   return new Promise((resolve, reject) => {
     const child = childProcess.spawn('node', [cli, 'start', '--config', config], {

@@ -1,7 +1,7 @@
 import process from 'process';
 import { expect } from 'chai';
 import webpack from 'webpack';
-import webpackDllConfig from '../lib/dll';
+import webpackDllConfig from '../lib/dll.js';
 
 const sweetOptions = {
   basicPath: process.cwd()
@@ -9,7 +9,7 @@ const sweetOptions = {
 
 describe('dll', function() {
   describe('dll', async function() {
-    const config = await webpackDllConfig({ mode: 'development' }, sweetOptions);
+    const config = await webpackDllConfig.default({ mode: 'development' }, sweetOptions);
 
     it('plugins Configuration is correct', function() {
       expect(config.plugins).to.be.an('array');

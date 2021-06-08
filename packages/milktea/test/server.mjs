@@ -1,7 +1,12 @@
 import process from 'process';
 import { expect } from 'chai';
-import serverConfig from '../lib/server';
-import { expectModule, expectDevServerPlugins, expectProServerPlugins, expectOptimization } from './utils/expectFunction';
+import serverConfig from '../lib/server.js';
+import {
+  expectModule,
+  expectDevServerPlugins,
+  expectProServerPlugins,
+  expectOptimization
+} from './utils/expectFunction.mjs';
 
 const sweetOptions = {
   basicPath: process.cwd()
@@ -9,7 +14,7 @@ const sweetOptions = {
 
 describe('sever-render config', function() {
   describe('react & development', async function() {
-    const config = await serverConfig({
+    const config = await serverConfig.default({
       serverRender: true,
       frame: 'react',
       mode: 'development',
@@ -29,7 +34,7 @@ describe('sever-render config', function() {
   });
 
   describe('vue & production', async function() {
-    const config = await serverConfig({
+    const config = await serverConfig.default({
       serverRender: true,
       frame: 'vue',
       mode: 'production',

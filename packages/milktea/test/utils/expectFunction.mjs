@@ -2,11 +2,10 @@ import { expect } from 'chai';
 import webpack from 'webpack';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
-import VueLoaderPlugin from 'vue-loader/dist/plugin';
+import VueLoaderPlugin from 'vue-loader/dist/plugin.js';
 import TerserWebpackPlugin from 'terser-webpack-plugin';
 import CssMinimizerPlugin from 'css-minimizer-webpack-plugin';
 import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin';
-import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
 import WebpackBar from 'webpackbar';
 
 /* module属性 */
@@ -52,7 +51,7 @@ export function expectProPlugins(config) {
     expect(config.plugins[1] instanceof webpack.DefinePlugin).to.be.true;
     expect(config.plugins[2] instanceof MiniCssExtractPlugin).to.be.true;
     expect(config.plugins[3] instanceof HtmlWebpackPlugin).to.be.true;
-    expect(config.plugins[4] instanceof VueLoaderPlugin).to.be.true;
+    expect(config.plugins[4] instanceof VueLoaderPlugin.default).to.be.true;
     expect(config.plugins[5] instanceof WebpackBar).to.be.true;
   };
 }
@@ -65,7 +64,7 @@ export function expectProServerPlugins(config) {
     expect(config.plugins[0] instanceof webpack.IgnorePlugin).to.be.true;
     expect(config.plugins[1] instanceof webpack.DefinePlugin).to.be.true;
     expect(config.plugins[2] instanceof MiniCssExtractPlugin).to.be.true;
-    expect(config.plugins[3] instanceof VueLoaderPlugin).to.be.true;
+    expect(config.plugins[3] instanceof VueLoaderPlugin.default).to.be.true;
     expect(config.plugins[4] instanceof WebpackBar).to.be.true;
   };
 }

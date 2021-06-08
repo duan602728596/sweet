@@ -1,6 +1,6 @@
 import process from 'process';
-import webpackConfig from '../lib/config';
-import { expectModule, expectDevPlugins, expectProPlugins, expectOptimization } from './utils/expectFunction';
+import webpackConfig from '../lib/config.js';
+import { expectModule, expectDevPlugins, expectProPlugins, expectOptimization } from './utils/expectFunction.mjs';
 
 const sweetOptions = {
   basicPath: process.cwd()
@@ -8,7 +8,7 @@ const sweetOptions = {
 
 describe('config', function() {
   describe('react & development', async function() {
-    const config = await webpackConfig({
+    const config = await webpackConfig.default({
       frame: 'react',
       mode: 'development',
       loader: {
@@ -29,7 +29,7 @@ describe('config', function() {
   });
 
   describe('vue & production', async function() {
-    const config = await webpackConfig({
+    const config = await webpackConfig.default({
       frame: 'vue',
       mode: 'production',
       html: [{ template: 'index.tsx.pug' }],
