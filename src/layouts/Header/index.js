@@ -42,26 +42,30 @@ function Header(props) {
       <div className={ style.logo }>平台LOGO</div>
       {/* 导航 */}
       <nav className={ style.nav }>
-        <Menu className={ style.menu } mode="horizontal" theme="dark" selectedKeys={ [selectKeys()] }>
-          <Menu.Item key="index">
-            <Link to="/Index">
-              <IconHomeOutlined />
-              首页
-            </Link>
-          </Menu.Item>
-          <Menu.Item key="second">
-            <Link to="/Second">
-              <IconBarsOutlined />
-              二级页
-            </Link>
-          </Menu.Item>
-          <Menu.Item key="list">
-            <Link to="/List">
-              <IconBarsOutlined />
-              列表
-            </Link>
-          </Menu.Item>
-        </Menu>
+        {
+          typeof window === 'object' && (
+            <Menu className={ style.menu } mode="horizontal" theme="dark" selectedKeys={ [selectKeys()] }>
+              <Menu.Item key="index">
+                <Link to="/Index">
+                  <IconHomeOutlined />
+                  首页
+                </Link>
+              </Menu.Item>
+              <Menu.Item key="second">
+                <Link to="/Second">
+                  <IconBarsOutlined />
+                  二级页
+                </Link>
+              </Menu.Item>
+              <Menu.Item key="list">
+                <Link to="/List">
+                  <IconBarsOutlined />
+                  列表
+                </Link>
+              </Menu.Item>
+            </Menu>
+          )
+        }
       </nav>
       {/* 工具 */}
       <div className={ style.tools }>
