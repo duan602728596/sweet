@@ -36,14 +36,14 @@ export default defineComponent({
         <div class={ style.logo }>平台LOGO</div>
         {/* 导航 */}
         <nav class={ style.nav }>
-          <Menu mode="horizontal" theme="dark">
-            <Menu.Item key="index">
+          <Menu class={ style.navMenu } mode="horizontal" theme="dark">
+            <Menu.Item key="index" class={ style.navMenuItem }>
               <router-link to="/Index">
                 <IconHomeOutlined />
                 首页
               </router-link>
             </Menu.Item>
-            <Menu.Item key="second">
+            <Menu.Item key="second" class={ style.navMenuItem }>
               <router-link to="/Second">
                 <IconHomeOutlined />
                 二级页
