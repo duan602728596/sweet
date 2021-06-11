@@ -6,7 +6,7 @@ import type { Argv } from '../utils/types';
 
 /* media2webp命令 */
 async function argvMedia2WebP(argv: Argv): Promise<void> {
-  const image2webp: Function = await requireModule('@sweet-milktea/util-tools/image2webp');
+  const image2webp: Function = await requireModule('@sweet-milktea/util-tools/media2webp');
 
   const { imageEntry, imageOutput, ext: argvExt }: Argv = argv;
   const cwd: string = process.cwd();
