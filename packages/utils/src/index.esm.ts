@@ -1,6 +1,6 @@
 import * as fs from 'fs';
 import * as path from 'path';
-import { fileURLToPath } from 'url';
+import { fileURLToPath, pathToFileURL } from 'url';
 import { createRequire } from 'module';
 
 const require: NodeRequire = createRequire(import.meta.url); // esm需要创建require
@@ -11,7 +11,8 @@ const require: NodeRequire = createRequire(import.meta.url); // esm需要创建r
  * @param { boolean } exportAll: 导出所有模块
  */
 export async function requireModule(id: string, exportAll?: boolean): Promise<any> {
-  const module: { default: any } | any = await import(id);
+  const fileUrl: string = id.includes('file://') ? id : pathToFileURL(id).href;
+  const module: { default: any } | any = await import(fileUrl);
 
   if (exportAll) {
     return module;
