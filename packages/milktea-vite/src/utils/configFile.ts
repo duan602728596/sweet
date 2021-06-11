@@ -25,7 +25,15 @@ function createJsRegisterLoader(): Loader {
       extensions: ['.es6', '.es', '.jsx', '.js', '.mjs', 'cjs', '.tsx', '.ts']
     });
 
-    return requireCommonjsModule(filepath);
+    let module: any;
+
+    try {
+      module = requireCommonjsModule(filepath);
+    } catch (err) {
+      module = requireModule(filepath);
+    }
+
+    return module;
   };
 }
 
