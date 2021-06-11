@@ -3,6 +3,7 @@
   "description": "🍩一个webpack开发和生产环境的通用配置解决方案。",
   "license": "MIT",
   "homepage": "https://github.com/duan602728596/sweet",
+  "type": "module",
   "scripts": {
     "build": "npm run clean && NODE_OPTIONS=\"--experimental-json-modules\" gulp --gulpfile ./scripts/build.mjs",
     "clean": "node ./scripts/clean.mjs",
