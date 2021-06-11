@@ -84,6 +84,7 @@ milktea-esm：以esm模式启动。
 ## esm模式下，加载typescript配置文件
 
 如果在esm模式下加载typescript配置文件，你需要安装ts-node，然后使用如下方式启动：
+
 ```shell
 TS_NODE_PROJECT=tsconfig.ts-node.json NODE_OPTIONS="--loader ts-node/esm" milktea-esm start
 ```
