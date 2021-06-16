@@ -1,6 +1,6 @@
 import type { ViteDevServer, InlineConfig } from 'vite';
 import type { RollupOutput } from 'rollup';
-import type { CosmiconfigResult } from 'cosmiconfig';
+import type { CosmiconfigResult } from 'cosmiconfig/dist/types';
 
 /* 当前的编译环境 */
 export type Environment = 'client' | 'server';
