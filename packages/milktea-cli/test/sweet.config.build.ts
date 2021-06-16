@@ -7,14 +7,7 @@ export default function(info: object): object {
     entry: {
       index: [path.join(__dirname, 'src/index.js')]
     },
-    loaders: {
-      js: {
-        test: /.*\.jsx?$/,
-        use: ['babel-loader'],
-        include: /src/
-      }
-    },
-    ts: {
+    typescript: {
       forkTsCheckerWebpackPlugin: false
     },
     output: {

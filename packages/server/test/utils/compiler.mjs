@@ -20,7 +20,7 @@ async function createCompiler(entry, mode = 'development') {
           filename: '[name].js',
           publicPath: '/'
         },
-        ts: {
+        typescript: {
           forkTsCheckerWebpackPlugin: false
         },
         html: [{ template: path.join(__dirname, '../src/index.pug') }]
