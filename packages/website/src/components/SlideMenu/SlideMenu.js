@@ -15,7 +15,7 @@ const navs = [
     id: 'sweet',
     url: '/Sweet',
     name: 'sweet',
-    icon: <IconFireOutlined />,
+    icon: <IconFireOutlined className={ style.marginRight10 } />,
     children: [
       {
         id: 'sweet/introduction',
@@ -33,13 +33,13 @@ const navs = [
     id: 'demo',
     url: '/Demo',
     name: 'Demo',
-    icon: <IconDeploymentUnitOutlined />
+    icon: <IconDeploymentUnitOutlined className={ style.marginRight10 } />
   },
   {
     id: 'packages',
     url: '/Packages',
     name: 'Packages',
-    icon: <IconPartitionOutlined />,
+    icon: <IconPartitionOutlined className={ style.marginRight10 } />,
     children: [
       {
         id: 'packages/milktea',
