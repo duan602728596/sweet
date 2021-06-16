@@ -15,9 +15,7 @@ export function basicConfig(sweetOptions: SweetOptions): InlineConfig {
         less: {
           javascriptEnabled: true
         },
-        sass: {
-          fiber: false
-        }
+        sass: {}
       }
     },
     build: {
