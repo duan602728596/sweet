@@ -11,7 +11,7 @@ const require: NodeRequire = createRequire(import.meta.url); // esm需要创建r
  * @param { boolean } exportAll: 导出所有模块
  */
 export async function requireModule(id: string, exportAll?: boolean): Promise<any> {
-  const fileUrl: string = id.includes('file://') ? id : pathToFileURL(id).href;
+  const fileUrl: string = (!id.includes('file://') && path.isAbsolute(id)) ? pathToFileURL(id).href : id;
   const module: { default: any } | any = await import(fileUrl);
 
   if (exportAll) {

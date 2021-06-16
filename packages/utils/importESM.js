@@ -1,3 +1,4 @@
+const path = require('path');
 const { pathToFileURL } = require('url');
 
 /**
@@ -6,7 +7,7 @@ const { pathToFileURL } = require('url');
  * @return { Promise<any> }
  */
 function importESM(id) {
-  const fileUrl = id.includes('file://') ? id : pathToFileURL(id).href;
+  const fileUrl = (!id.includes('file://') && path.isAbsolute(id)) ? pathToFileURL(id).href : id;
 
   return import(fileUrl);
 }
