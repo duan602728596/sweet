@@ -2,6 +2,7 @@ import _ from 'lodash';
 import { requireModule } from '@sweet-milktea/utils';
 import type { InlineConfig } from 'vite';
 import { basicConfig } from './config/basicConfig';
+import { addTsChecker } from './utils/tsChecker';
 import type { SweetConfig, SweetOptions } from './utils/types';
 
 /**
@@ -10,8 +11,7 @@ import type { SweetConfig, SweetOptions } from './utils/types';
  * @param { SweetOptions } sweetOptions: 内部挂载的一些配置
  */
 export default async function(sweetConfig: SweetConfig, sweetOptions: SweetOptions): Promise<InlineConfig> {
-  const { mode, frame, vite, chainVite }: SweetConfig = sweetConfig;
-
+  const { mode, frame, vite, chainVite, ts }: SweetConfig = sweetConfig;
   const viteConfig: InlineConfig = _.merge(basicConfig(sweetOptions), {
     mode,
     css: {
@@ -43,6 +43,9 @@ export default async function(sweetConfig: SweetConfig, sweetOptions: SweetOptio
       ]
     });
   }
+
+  // 添加typescript的检查插件
+  await addTsChecker(sweetOptions, viteConfig, ts);
 
   if (chainVite) {
     await chainVite(viteConfig);

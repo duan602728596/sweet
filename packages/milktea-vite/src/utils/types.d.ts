@@ -9,6 +9,7 @@ export type Environment = 'client' | 'server';
 export interface SweetOptions {
   basicPath: string;
   environment: Environment;
+  tsChecker?: boolean; // typescript需要检查
 }
 
 /* sweet.config.js导出函数时，传递的参数 */
@@ -19,11 +20,17 @@ export interface Info {
 export type Mode = 'development' | 'production';
 export type Frame = 'react' | 'vue' | 'test'; // 当前使用的组件
 
+interface TS {
+  configFile?: string;
+  tsChecker?: boolean;
+}
+
 /* sweet.config.js的配置 */
 export interface SweetConfig {
   mode?: Mode;
   frame?: Frame;
   vite?: InlineConfig;
+  ts?: TS;
   // ssr
   serverEntry?: boolean;
   chainVite?: (config: InlineConfig) => Promise<void>;
