@@ -52,7 +52,7 @@ module.exports = function(info) {
 * frame `{ string }` : 值为`react`或`vue`，是否为react或vue模式，并自动修改默认配置，添加plugin
 * vite `{ object }` : vite配置，会合并到默认配置中
 * chainVite `{ Function }` : 通过扩展或修改vite配置
-* ts `{ object }` : typescript配置
+* typescript(ts) `{ object }` : typescript配置
   * configFile `{ string }` : typescript的配置文件
   * tsChecker `{ boolean }` : 设置为false时，关闭vite-plugin-checker插件注入
 
