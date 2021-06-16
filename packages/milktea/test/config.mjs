@@ -11,12 +11,6 @@ describe('config', function() {
     const config = await webpackConfig.default({
       frame: 'react',
       mode: 'development',
-      loader: {
-        js: {
-          test: /.*\.jsx?/,
-          use: ['babel-loader', 'ts-loader']
-        }
-      },
       html: [{ template: 'index.tsx.pug' }],
       hot: true
     }, sweetOptions);
