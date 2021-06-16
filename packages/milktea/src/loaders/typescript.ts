@@ -7,14 +7,14 @@ import type { SweetConfig, SweetOptions, TSOptions } from '../utils/types';
 
 /* ts 配置 */
 export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, config: Config): void {
-  const { mode, ts = {}, frame, hot }: SweetConfig = sweetConfig;
+  const { mode, typescript = {}, frame, hot }: SweetConfig = sweetConfig;
   const {
     configFile,
     presets: extraPresets,
     plugins: extraPlugins,
     exclude,
     include
-  }: TSOptions = ts;
+  }: TSOptions = typescript;
   const isDevelopment: boolean = mode === 'development';
 
   config

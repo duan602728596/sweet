@@ -8,7 +8,7 @@ import type { SweetConfig, SweetOptions, JSOptions } from '../utils/types';
 
 /* js 配置 */
 export default async function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, config: Config): Promise<void> {
-  const { mode, js = {}, frame, hot, webpackLog = 'progress' }: SweetConfig = sweetConfig;
+  const { mode, javascript = {}, frame, hot, webpackLog = 'progress' }: SweetConfig = sweetConfig;
   const {
     ecmascript,
     typescript,
@@ -17,7 +17,7 @@ export default async function(sweetConfig: SweetConfig, sweetOptions: SweetOptio
     exclude,
     include,
     targets: customTargets
-  }: JSOptions = js;
+  }: JSOptions = javascript;
   const { environment }: SweetOptions = sweetOptions;
   const isDevelopment: boolean = mode === 'development';
   const isEnvServerSideRender: boolean = environment === 'server';

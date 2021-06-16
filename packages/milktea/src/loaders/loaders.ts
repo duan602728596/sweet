@@ -17,14 +17,14 @@ import type { SweetConfig, SweetOptions } from '../utils/types';
  * @param { Config } config: webpack-chain config
  */
 export default async function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, config: Config): Promise<void> {
-  const { frame, mode, js }: SweetConfig = sweetConfig;
+  const { frame, mode, javascript }: SweetConfig = sweetConfig;
   const isDevelopment: boolean = mode === 'development';
 
-  // js
+  // javascript
   await jsLoader(sweetConfig, sweetOptions, config);
 
-  // ts（如果babel配置了typescript属性，则使用babel，而不使用typescript来编译）
-  if (!js?.typescript) {
+  // typescript（如果babel配置了typescript属性，则使用babel，而不使用typescript来编译）
+  if (!javascript?.typescript) {
     tsLoader(sweetConfig, sweetOptions, config);
   }
 

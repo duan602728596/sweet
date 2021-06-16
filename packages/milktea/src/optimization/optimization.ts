@@ -10,7 +10,7 @@ interface TerserOptions {
 
 /* 配置optimization属性 */
 export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, config: Config, asyncChunks?: boolean): void {
-  const { mode = 'development', js }: SweetConfig = sweetConfig;
+  const { mode = 'development', javascript }: SweetConfig = sweetConfig;
   const isDevelopment: boolean = mode === 'development';
 
   // 设置splitChunks配置
@@ -25,7 +25,7 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
   // 设置minimizer的压缩插件
   config.when(!isDevelopment, (chainConfig: Config): void => {
     const terserOptions: TerserOptions = {
-      ecma: js?.ecmascript ? 2020 : 5,
+      ecma: javascript?.ecmascript ? 2020 : 5,
       safari10: true
     };
 

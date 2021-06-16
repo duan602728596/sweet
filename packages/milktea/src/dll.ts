@@ -8,8 +8,8 @@ import { merge } from 'webpack-merge';
 import WebpackBar from 'webpackbar';
 import { handleDllProgress } from './plugins/handleProgress';
 import { dllCache } from './config/cacheConfig';
-import { extensions } from './utils/utils';
-import type { SweetConfig, SweetOptions, JS } from './utils/types';
+import { extensions, changeSweetConfig } from './utils/utils';
+import type { SweetConfig, SweetOptions } from './utils/types';
 
 /**
  * webpack dll扩展配置
@@ -17,6 +17,8 @@ import type { SweetConfig, SweetOptions, JS } from './utils/types';
  * @param { SweetOptions } sweetOptions: 内部挂载的一些配置
  */
 export default async function(sweetConfig: SweetConfig, sweetOptions: SweetOptions): Promise<Configuration> {
+  changeSweetConfig(sweetConfig);
+
   const config: Config = new Config();
   const SCFG: SweetConfig = _.omit(sweetConfig, [
     'serverRender',
@@ -32,10 +34,10 @@ export default async function(sweetConfig: SweetConfig, sweetOptions: SweetOptio
     externals,
     resolve,
     chainWebpack,
-    js = {},
+    javascript,
     webpackLog = 'progress'
   }: SweetConfig = SCFG;
-  const ecmascript: boolean = !!js.ecmascript;
+  const ecmascript: boolean = !!javascript?.ecmascript;
 
   // 合并配置
   config

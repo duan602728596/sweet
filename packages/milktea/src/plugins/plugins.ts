@@ -29,7 +29,7 @@ export default async function(sweetConfig: SweetConfig, sweetOptions: SweetOptio
     serverRender,
     webpackLog = 'progress',
     filesMap,
-    ts,
+    typescript,
     js,
     socket
   }: SweetConfig = sweetConfig;
@@ -69,8 +69,8 @@ export default async function(sweetConfig: SweetConfig, sweetOptions: SweetOptio
       }
     };
 
-    if (ts?.configFile) {
-      typescriptOptions.configFile = ts.configFile;
+    if (typescript?.configFile) {
+      typescriptOptions.configFile = typescript.configFile;
     }
 
     config

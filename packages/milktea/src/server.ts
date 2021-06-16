@@ -7,7 +7,7 @@ import { moduleExists } from '@sweet-milktea/utils';
 import loaders from './loaders/loaders';
 import basicPlugins from './plugins/plugins';
 import optimization from './optimization/optimization';
-import { extensions, isTsconfigJsonExists } from './utils/utils';
+import { extensions, isTsconfigJsonExists, changeSweetConfig } from './utils/utils';
 import { webpackServerCache } from './config/cacheConfig';
 import type { SweetConfig, SweetOptions } from './utils/types';
 
@@ -16,7 +16,9 @@ import type { SweetConfig, SweetOptions } from './utils/types';
  * @param { SweetConfig } sweetConfig: 获取到的外部配置
  * @param { SweetOptions } sweetOptions: 内部挂载的一些配置
  */
-export default async function(sweetConfig: SweetConfig | null | undefined, sweetOptions: SweetOptions): Promise<Configuration> {
+export default async function(sweetConfig: SweetConfig, sweetOptions: SweetOptions): Promise<Configuration> {
+  changeSweetConfig(sweetConfig);
+
   const config: Config = new Config();
   const SCFG: SweetConfig = _.omit(sweetConfig, ['hot']);
   const {
@@ -30,7 +32,7 @@ export default async function(sweetConfig: SweetConfig | null | undefined, sweet
     plugins,
     serverDevtool,
     serverChainWebpack,
-    ts
+    typescript
   }: SweetConfig = SCFG;
   const isDevelopment: boolean = mode === 'development';
 
@@ -68,8 +70,8 @@ export default async function(sweetConfig: SweetConfig | null | undefined, sweet
   // forkTsCheckerWebpackPlugin配置
   sweetOptions.forkTsCheckerWebpackPlugin = !!(
     (moduleExists('typescript') as string | boolean)
-    && ts?.forkTsCheckerWebpackPlugin !== false
-    && (await isTsconfigJsonExists(sweetOptions, ts)));
+    && typescript?.forkTsCheckerWebpackPlugin !== false
+    && (await isTsconfigJsonExists(sweetOptions, typescript)));
 
   // loaders
   await loaders(SCFG, sweetOptions, config);
