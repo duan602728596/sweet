@@ -102,8 +102,7 @@ export default async function(sweetConfig: SweetConfig, sweetOptions: SweetOptio
     externals,
     resolve,
     experiments: {
-      topLevelAwait: true,
-      outputModule: true
+      topLevelAwait: true
     }
   };
 
