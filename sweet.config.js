@@ -3,12 +3,14 @@ import path from 'path';
 export default function(info) {
   return {
     frame: 'vue',
+    /*
     dll: [
       'vue',
       'vue-router',
       'vuex',
       '@vueuse/head'
     ],
+    */
     entry: {
       index: [path.join(__dirname, 'src/index.js')],
       other: [path.join(__dirname, 'src/other.js')]
