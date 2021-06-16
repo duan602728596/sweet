@@ -5,6 +5,8 @@ import { customizer } from '../utils/utils';
 import { createBabelOptions, createTypescriptOptions } from '../config/babelConfig';
 import type { SweetConfig, SweetOptions, TSOptions } from '../utils/types';
 
+const RULE_NAME: string = 'typescript';
+
 /* ts 配置 */
 export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, config: Config): void {
   const { mode, typescript = {}, frame, hot }: SweetConfig = sweetConfig;
@@ -21,7 +23,7 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
     .merge({
       module: {
         rule: {
-          ts: {
+          [RULE_NAME]: {
             test: /^.*\.tsx?$/i,
             use: {
               'babel-loader': {
@@ -42,7 +44,7 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
 
   config
     .module
-    .rule('ts')
+    .rule(RULE_NAME)
     .use('babel-loader')
     .tap((options: LoaderOptions): LoaderOptions => {
       const isReact: boolean = frame === 'react',

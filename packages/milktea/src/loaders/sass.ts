@@ -3,6 +3,8 @@ import type { Rule, LoaderOptions } from 'webpack-chain';
 import { createStyleLoader, createCssOptions, createSassOptions } from '../config/cssConfig';
 import type { SweetConfig, SASS } from '../utils/types';
 
+const RULE_NAME: string = 'sass';
+
 /* sass 配置 */
 export default function(sweetConfig: SweetConfig, config: Config): void {
   const { mode, sass = {}, frame, serverRender }: SweetConfig = sweetConfig;
@@ -18,7 +20,7 @@ export default function(sweetConfig: SweetConfig, config: Config): void {
     .merge({
       module: {
         rule: {
-          sass: {
+          [RULE_NAME]: {
             test: /^.*\.s(a|c)ss$/i,
             exclude: exclude ? (Array.isArray(exclude) ? exclude : [exclude]) : [],
             include: include ? (Array.isArray(include) ? include : [include]) : []
@@ -33,11 +35,8 @@ export default function(sweetConfig: SweetConfig, config: Config): void {
   const ScopedCssLoaderOptions: LoaderOptions = createCssOptions(false, isDevelopment, ssr);
 
   // sass-loader
+  const sassRule: Rule = config.module.rule(RULE_NAME);
   const sassLoaderOptions: LoaderOptions = createSassOptions(additionalData, isDevelopment);
-
-  const sassRule: Rule = config
-    .module
-    .rule('sass');
 
   // vue
   config
@@ -70,8 +69,7 @@ export default function(sweetConfig: SweetConfig, config: Config): void {
     );
 
   // basic
-  const oneOf: Rule<Rule> = sassRule
-    .oneOf('basic');
+  const oneOf: Rule<Rule> = sassRule.oneOf('basic');
 
   // style
   if (!serverRender) {

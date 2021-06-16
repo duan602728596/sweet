@@ -63,7 +63,7 @@ export default async function(sweetConfig: SweetConfig, sweetOptions: SweetOptio
   // 加载dll文件
   config
     .module
-    .rule('dll')
+    .rule('webpack-dll')
     .test(/\.sweet[\\/]dll[\\/]dll\.js/i)
     .use('file-loader')
     .loader('file-loader')

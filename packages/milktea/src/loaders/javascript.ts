@@ -6,6 +6,8 @@ import { createBabelOptions } from '../config/babelConfig';
 import { customizer } from '../utils/utils';
 import type { SweetConfig, SweetOptions, JSOptions } from '../utils/types';
 
+const RULE_NAME: string = 'javascript';
+
 /* js 配置 */
 export default async function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, config: Config): Promise<void> {
   const { mode, javascript = {}, frame, hot, webpackLog = 'progress' }: SweetConfig = sweetConfig;
@@ -28,7 +30,7 @@ export default async function(sweetConfig: SweetConfig, sweetOptions: SweetOptio
     .merge({
       module: {
         rule: {
-          js: {
+          [RULE_NAME]: {
             test: useTypescript ? /^.*\.(m|c)?(j|t)sx?$/i : /^.*\.(m|c)?jsx?$/i,
             use: {
               'babel-loader': {
@@ -47,7 +49,7 @@ export default async function(sweetConfig: SweetConfig, sweetOptions: SweetOptio
 
   config
     .module
-    .rule('js')
+    .rule(RULE_NAME)
     .use('babel-loader')
     .tap((options: LoaderOptions): LoaderOptions => {
       const isReact: boolean = frame === 'react',
@@ -95,7 +97,7 @@ export default async function(sweetConfig: SweetConfig, sweetOptions: SweetOptio
   // 排除dll文件，dll文件使用file-loader加载
   config
     .module
-    .rule('js')
+    .rule(RULE_NAME)
     .exclude
     .add(/\.sweet[\\/]dll[\\/]dll\.js/);
 }

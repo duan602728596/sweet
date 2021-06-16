@@ -3,6 +3,8 @@ import type { Rule, LoaderOptions } from 'webpack-chain';
 import { createStyleLoader, createCssOptions, createLessOptions } from '../config/cssConfig';
 import type { SweetConfig, LESS } from '../utils/types';
 
+const RULE_NAME: string = 'less';
+
 /* less & css 配置 */
 export default function(sweetConfig: SweetConfig, config: Config): void {
   const { mode, css = {}, frame, serverRender }: SweetConfig = sweetConfig;
@@ -19,7 +21,7 @@ export default function(sweetConfig: SweetConfig, config: Config): void {
     .merge({
       module: {
         rule: {
-          less: {
+          [RULE_NAME]: {
             test: /^.*\.(le|c)ss$/i,
             exclude: exclude ? (Array.isArray(exclude) ? exclude : [exclude]) : [],
             include: include ? (Array.isArray(include) ? include : [include]) : []
@@ -34,11 +36,8 @@ export default function(sweetConfig: SweetConfig, config: Config): void {
   const ScopedCssLoaderOptions: LoaderOptions = createCssOptions(false, isDevelopment, ssr);
 
   // less-loader
+  const lessRule: Rule = config.module.rule(RULE_NAME);
   const lessLoaderOptions: LoaderOptions = createLessOptions(modifyVars, additionalData, isDevelopment);
-
-  const lessRule: Rule = config
-    .module
-    .rule('less');
 
   // vue
   config
@@ -53,42 +52,41 @@ export default function(sweetConfig: SweetConfig, config: Config): void {
           const vueStyleLoader: string | any = createStyleLoader(isDevelopment);
 
           lessRuleOneOf
-            .use('style')
+            .use('style-loader')
             .loader(vueStyleLoader);
         }
 
         lessRuleOneOf
           // css
-          .use('css')
+          .use('css-loader')
           .loader('css-loader')
           .options(ScopedCssLoaderOptions)
           .end()
           // less
-          .use('less')
+          .use('less-loader')
           .loader('less-loader')
           .options(lessLoaderOptions);
       }
     );
 
   // basic
-  const oneOf: Rule<Rule> = lessRule
-    .oneOf('basic');
+  const oneOf: Rule<Rule> = lessRule.oneOf('basic');
 
   // style
   if (!serverRender) {
     oneOf
-      .use('style')
+      .use('style-loader')
       .loader(createStyleLoader(isDevelopment));
   }
 
   oneOf
     // css
-    .use('css')
+    .use('css-loader')
     .loader('css-loader')
     .options(cssLoaderOptions)
     .end()
     // less
-    .use('less')
+    .use('less-loader')
     .loader('less-loader')
     .options(lessLoaderOptions);
 }
