@@ -20,7 +20,7 @@ export interface Info {
 export type Mode = 'development' | 'production';
 export type Frame = 'react' | 'vue' | 'test'; // 当前使用的组件
 
-interface TS {
+interface TSOptions {
   configFile?: string;
   tsChecker?: boolean;
 }
@@ -30,7 +30,7 @@ export interface SweetConfig {
   mode?: Mode;
   frame?: Frame;
   vite?: InlineConfig;
-  ts?: TS;
+  ts?: TSOptions;
   // ssr
   serverEntry?: boolean;
   chainVite?: (config: InlineConfig) => Promise<void>;

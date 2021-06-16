@@ -3,7 +3,7 @@ import type Config from 'webpack-chain';
 import type { LoaderOptions } from 'webpack-chain';
 import { customizer } from '../utils/utils';
 import { createBabelOptions, createTypescriptOptions } from '../config/babelConfig';
-import type { SweetConfig, SweetOptions, TS } from '../utils/types';
+import type { SweetConfig, SweetOptions, TSOptions } from '../utils/types';
 
 /* ts 配置 */
 export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, config: Config): void {
@@ -14,7 +14,7 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
     plugins: extraPlugins,
     exclude,
     include
-  }: TS = ts;
+  }: TSOptions = ts;
   const isDevelopment: boolean = mode === 'development';
 
   config

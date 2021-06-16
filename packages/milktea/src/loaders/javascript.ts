@@ -4,7 +4,7 @@ import type { LoaderOptions } from 'webpack-chain';
 import { requireModule } from '@sweet-milktea/utils';
 import { createBabelOptions } from '../config/babelConfig';
 import { customizer } from '../utils/utils';
-import type { SweetConfig, SweetOptions, JS } from '../utils/types';
+import type { SweetConfig, SweetOptions, JSOptions } from '../utils/types';
 
 /* js 配置 */
 export default async function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, config: Config): Promise<void> {
@@ -17,7 +17,7 @@ export default async function(sweetConfig: SweetConfig, sweetOptions: SweetOptio
     exclude,
     include,
     targets: customTargets
-  }: JS = js;
+  }: JSOptions = js;
   const { environment }: SweetOptions = sweetOptions;
   const isDevelopment: boolean = mode === 'development';
   const isEnvServerSideRender: boolean = environment === 'server';

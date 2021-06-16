@@ -30,14 +30,14 @@ interface ScriptRule extends ConfigRule {
 }
 
 /* js配置 */
-export interface JS extends ScriptRule {
+export interface JSOptions extends ScriptRule {
   targets?: object;
   ecmascript?: boolean;
   typescript?: boolean;
 }
 
 /* typescript配置 */
-export interface TS extends ScriptRule {
+export interface TSOptions extends ScriptRule {
   configFile?: string;
   forkTsCheckerWebpackPlugin?: boolean;
 }
@@ -75,8 +75,8 @@ export interface SweetConfig {
   rules?: Array<RuleSetRule>;
   noParse?: string | Function | RegExp | [string | Function | RegExp, ...(string | Function | RegExp)[]];
   plugins?: WebpackPluginInstance[];
-  js?: JS;
-  ts?: TS;
+  js?: JSOptions;
+  ts?: TSOptions;
   sass?: SASS;
   css?: LESS;
   html?: Array<HtmlWebpackPluginOptions>;
