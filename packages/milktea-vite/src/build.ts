@@ -45,7 +45,7 @@ export default async function(sweetConfig: SweetConfig, sweetOptions: SweetOptio
   }
 
   // 添加typescript的检查插件
-  await addTsChecker(sweetOptions, viteConfig, ts);
+  await addTsChecker(sweetOptions, viteConfig, frame, ts);
 
   if (chainVite) {
     await chainVite(viteConfig);

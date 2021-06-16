@@ -1,7 +1,7 @@
 import * as path from 'path';
 import { isFileExists, moduleExists, requireModule } from '@sweet-milktea/utils';
 import type { InlineConfig } from 'vite';
-import type { SweetOptions, TS } from './types';
+import type { SweetOptions, TS, Frame } from './types';
 
 /**
  * 判断tsconfig.json文件是否存在
@@ -26,14 +26,23 @@ export async function tsChecker(sweetOptions: SweetOptions, ts?: TS): Promise<bo
   return sweetOptions.tsChecker;
 }
 
-/* 添加插件 */
-export async function addTsChecker(sweetOptions: SweetOptions, viteConfig: InlineConfig, ts?: TS): Promise<void> {
+/**
+ * 添加插件
+ * @param { SweetOptions } sweetOptions
+ * @param { InlineConfig } viteConfig
+ * @param { Frame } frame: frame为vue时，配置vueTsc
+ * @param { TS } ts
+ */
+export async function addTsChecker(sweetOptions: SweetOptions, viteConfig: InlineConfig, frame?: Frame, ts?: TS): Promise<void> {
   if (await tsChecker(sweetOptions, ts)) {
     viteConfig.plugins ??= [];
     viteConfig.plugins.push(
       (await requireModule('vite-plugin-checker'))({
-        root: sweetOptions.basicPath,
-        tsconfigPath: ts?.configFile ?? 'tsconfig.json'
+        typescript: {
+          root: sweetOptions.basicPath,
+          tsconfigPath: ts?.configFile ?? 'tsconfig.json'
+        },
+        vueTsc: frame === 'vue'
       })
     );
   }
