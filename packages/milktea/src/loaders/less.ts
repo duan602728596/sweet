@@ -1,7 +1,7 @@
 import type Config from 'webpack-chain';
 import type { Rule, LoaderOptions } from 'webpack-chain';
 import { createStyleLoader, createCssOptions, createLessOptions } from '../config/cssConfig';
-import type { SweetConfig, LESS } from '../utils/types';
+import type { SweetConfig, LessOptions } from '../utils/types';
 
 const RULE_NAME: string = 'less';
 
@@ -14,7 +14,7 @@ export default function(sweetConfig: SweetConfig, config: Config): void {
     include,
     modifyVars,
     additionalData
-  }: LESS = css;
+  }: LessOptions = css;
   const isDevelopment: boolean = mode === 'development';
 
   config

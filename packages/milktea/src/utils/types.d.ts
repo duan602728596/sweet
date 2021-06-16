@@ -43,18 +43,18 @@ export interface TSOptions extends ScriptRule {
 }
 
 /* css配置 */
-export interface CSS extends ConfigRule {
+export interface CSSOptions extends ConfigRule {
   modules?: boolean;
 }
 
 /* less配置 */
-export interface LESS extends CSS {
+export interface LessOptions extends CSSOptions {
   modifyVars?: object;
   additionalData?: string | Function;
 }
 
 /* sass配置 */
-export interface SASS extends CSS {
+export interface SassOptions extends CSSOptions {
   additionalData?: string | Function;
 }
 
@@ -81,8 +81,8 @@ export interface SweetConfig {
   /* @deprecated */
   ts?: TSOptions;
   typescript?: TSOptions;
-  sass?: SASS;
-  css?: LESS;
+  sass?: SassOptions;
+  css?: LessOptions;
   html?: Array<HtmlWebpackPluginOptions>;
   frame?: Frame;
   chainWebpack?: (config: Config) => Promise<void>;

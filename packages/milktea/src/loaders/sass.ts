@@ -1,7 +1,7 @@
 import type Config from 'webpack-chain';
 import type { Rule, LoaderOptions } from 'webpack-chain';
 import { createStyleLoader, createCssOptions, createSassOptions } from '../config/cssConfig';
-import type { SweetConfig, SASS } from '../utils/types';
+import type { SweetConfig, SassOptions } from '../utils/types';
 
 const RULE_NAME: string = 'sass';
 
@@ -13,7 +13,7 @@ export default function(sweetConfig: SweetConfig, config: Config): void {
     exclude,
     include,
     additionalData
-  }: SASS = sass;
+  }: SassOptions = sass;
   const isDevelopment: boolean = mode === 'development';
 
   config
