@@ -4,6 +4,7 @@ import { requireModule } from '@sweet-milktea/utils';
 import type { InlineConfig } from 'vite';
 import { basicConfig } from './config/basicConfig';
 import { addTsChecker } from './utils/tsChecker';
+import { changeSweetConfig } from './utils/utils';
 import type { SweetConfig, SweetOptions } from './utils/types';
 
 /**
@@ -12,6 +13,8 @@ import type { SweetConfig, SweetOptions } from './utils/types';
  * @param { SweetOptions } sweetOptions: 内部挂载的一些配置
  */
 export default async function(sweetConfig: SweetConfig, sweetOptions: SweetOptions): Promise<InlineConfig> {
+  changeSweetConfig(sweetConfig);
+
   const { mode, frame, vite, chainVite, ts }: SweetConfig = sweetConfig;
   const viteConfig: InlineConfig = _.merge(basicConfig(sweetOptions), {
     mode,

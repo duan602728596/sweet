@@ -30,7 +30,9 @@ export interface SweetConfig {
   mode?: Mode;
   frame?: Frame;
   vite?: InlineConfig;
+  /* @deprecated */
   ts?: TSOptions;
+  typescript?: TSOptions;
   // ssr
   serverEntry?: boolean;
   chainVite?: (config: InlineConfig) => Promise<void>;
