@@ -16,8 +16,8 @@
     "updateVersion": "milktea-esm update"
   },
   "dependencies": {
-    "@typescript-eslint/eslint-plugin": "^4.26.1",
-    "@typescript-eslint/typescript-estree": "^4.26.1"
+    "@typescript-eslint/eslint-plugin": "^4.27.0",
+    "@typescript-eslint/typescript-estree": "^4.27.0"
   },
   "devDependencies": {
     "eslint": "^7.28.0"
