@@ -37,7 +37,7 @@ export async function addTsChecker(sweetOptions: SweetOptions, viteConfig: Inlin
   if (await tsChecker(sweetOptions, ts)) {
     viteConfig.plugins ??= [];
     viteConfig.plugins.push(
-      (await requireModule('vite-plugin-checker'))({
+      (await requireModule('vite-plugin-checker', false)).default({
         typescript: {
           root: sweetOptions.basicPath,
           tsconfigPath: ts?.configFile ?? 'tsconfig.json'
