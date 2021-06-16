@@ -72,7 +72,7 @@ module.exports = function(info) {
 * rules `{ Array<object> }` : 自定义规则
 * noParse `RegExp | Array<RegExp> | Function` : 防止解析任何与给定正则表达式相匹配的文件（参考webpack）
 * plugins `{ Array<any> }` : 自定义webpack插件
-* js `{ object }` : javascript配置
+* javascript(js) `{ object }` : javascript配置
   * targets `{ object }` : 配置@babel/preset-env的编译目标
   * ecmascript `{ boolean }` : 是否编译到ecmascript的最新语法（即不使用@babel/preset-env，通常适用于node、nwjs和electron）
   * typescript `{ boolean }` : 是否使用typescript编译（即使用@babel/preset-typescript）
@@ -80,7 +80,7 @@ module.exports = function(info) {
   * plugins `{ Array<any> }` : 自定义plugins
   * exclude `{ RegExp }` : exclude规则
   * include `{ RegExp }` : include规则
-* ts `{ object }` : typescript配置
+* typescript(ts) `{ object }` : typescript配置
   * configFile `{ string }` : typescript的配置文件
   * presets `{ Array<any> }` : 自定义babel的presets
   * plugins `{ Array<any> }` : 自定义babel的plugins
