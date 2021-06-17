@@ -15,5 +15,5 @@ html
     script
        | window.__INITIAL_STATE__ = <%- initialState %>;
 
-    //- if htmlWebpackPlugin.options.mode === 'development'
+    if htmlWebpackPlugin.options.mode === 'development'
       script(src=imports.dll)

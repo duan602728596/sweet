@@ -3,14 +3,12 @@ import path from 'path';
 export default function(info) {
   return {
     frame: 'vue',
-    /*
     dll: [
       'vue',
       'vue-router',
       'vuex',
       '@vueuse/head'
     ],
-    */
     entry: {
       index: [path.join(__dirname, 'src/index.js')],
       other: [path.join(__dirname, 'src/other.js')]
@@ -31,7 +29,8 @@ export default function(info) {
         }
       }
     ],
-    js: {
+    javascript: {
+      ecmascript: true,
       plugins: [['import', { libraryName: 'ant-design-vue', libraryDirectory: 'es', style: true }]],
       exclude: /node_modules/
     },
