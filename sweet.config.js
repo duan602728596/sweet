@@ -12,7 +12,6 @@ export default function(info) {
 
   const config = {
     frame: 'react',
-    /*
     dll: [
       'react',
       'react-dom',
@@ -25,7 +24,6 @@ export default function(info) {
       'history',
       'react-helmet'
     ],
-    */
     entry: {
       index: [path.join(__dirname, 'src/index.js')],
       other: [path.join(__dirname, 'src/other.js')]
@@ -43,7 +41,8 @@ export default function(info) {
         }
       }
     ],
-    js: {
+    javascript: {
+      ecmascript: true,
       plugins,
       exclude: /node_modules/
     },
