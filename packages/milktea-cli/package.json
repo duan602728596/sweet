@@ -18,7 +18,7 @@
   },
   "scripts": {
     "test": "cross-env NODE_ENV=test mocha ./test/test.mjs --timeout 60000",
-    "updateVersion": "milktea-esm update"
+    "update-version": "milktea-esm update"
   },
   "dependencies": {
     "@sweet-milktea/utils": "^3.0.2",

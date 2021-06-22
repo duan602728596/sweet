@@ -14,7 +14,7 @@
   },
   "scripts": {
     "test": "cross-env NODE_ENV=test mocha ./test/test.mjs --timeout 180000",
-    "updateVersion": "milktea-esm update"
+    "update-version": "milktea-esm update"
   },
   "dependencies": {
     "@bbkkbkk/koa-log4": "^2.3.4",

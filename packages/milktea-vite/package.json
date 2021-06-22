@@ -40,7 +40,7 @@
   },
   "scripts": {
     "test": "cross-env NODE_ENV=test mocha ./test/test.mjs --timeout 180000",
-    "updateVersion": "milktea-esm update"
+    "update-version": "milktea-esm update"
   },
   "dependencies": {
     "@babel/core": "^7.14.6",
