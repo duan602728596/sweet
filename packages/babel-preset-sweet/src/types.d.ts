@@ -26,6 +26,7 @@ export interface BabelPresetSweetOptions {
   env?: EnvOptions;
   typescript?: TypescriptOptions;
   react?: ReactOptions;
+  polyfill?: boolean;
 }
 
 export interface BabelPresetSweet {
