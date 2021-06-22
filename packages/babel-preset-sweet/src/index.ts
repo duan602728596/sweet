@@ -92,14 +92,14 @@ function babelPresetSweet(api: any, options: Options = {}, dirname: string): Bab
       [
         'babel-plugin-polyfill-corejs3',
         {
-          method: 'usage-pure',
+          method: 'usage-global',
           targets: babelBuildTargets
         }
       ],
       [
         'babel-plugin-polyfill-es-shims',
         {
-          method: 'usage-pure',
+          method: 'usage-global',
           targets: babelBuildTargets
         }
       ]
