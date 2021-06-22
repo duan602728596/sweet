@@ -53,4 +53,14 @@ describe('babel-preset-sweet', function() {
     expect(code0.includes('import')).to.be.true;
     expect(code1.includes('require')).to.be.true;
   });
+
+  it('build polyfill', async function() {
+    const c = "globalThis.a = 5; 'Hello, world.'.replaceAll(/,/, ''); ";
+    const { code: code0 } = await transformCode(c, {
+      polyfill: true
+    });
+
+    expect(code0.includes('globalthis')).to.be.true;
+    expect(code0.includes('string.prototype.replaceall')).to.be.true;
+  });
 });
