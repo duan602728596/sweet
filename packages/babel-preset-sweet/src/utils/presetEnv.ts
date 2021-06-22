@@ -1,8 +1,6 @@
 interface PresetEnvOptionsArgs {
-  ecmascript?: boolean;
+  babelBuildTargets: object;
   useBuiltIns?: boolean | string;
-  customTargets?: object;
-  nodeEnv?: boolean;
   debug?: boolean;
   envModules: string | boolean;
   polyfill?: boolean;
@@ -10,41 +8,25 @@ interface PresetEnvOptionsArgs {
 
 /* @babel/preset-env */
 function presetEnv(options: PresetEnvOptionsArgs): [string, { [key: string]: any }] {
-  const { ecmascript, useBuiltIns, customTargets, nodeEnv, debug, envModules, polyfill }: PresetEnvOptionsArgs = options;
+  const { babelBuildTargets, useBuiltIns, debug, envModules, polyfill }: PresetEnvOptionsArgs = options;
   const useBuiltInsValue: string | boolean = useBuiltIns ?? 'usage';
 
-  // 编译目标
-  let targets: object;
-
-  if (customTargets) {
-    targets = customTargets;
-  } else {
-    if (ecmascript) {
-      targets = {
-        browsers: nodeEnv ? ['node 14'] : ['last 3 Chrome versions']
-      };
-    } else {
-      targets = {
-        browsers: nodeEnv ? ['node 10'] : [
-          'last 10 versions',
-          'last 10 Chrome versions',
-          'last 1 year',
-          'IE 11'
-        ]
-      };
-    }
-  }
-
+  // @babel/preset-env的配置
   const presetEnvOptions: { [key: string]: any } = {
-    targets,
+    targets: babelBuildTargets,
     debug,
     modules: envModules,
-    useBuiltIns: useBuiltInsValue,
     bugfixes: true
   };
 
-  if (useBuiltInsValue) {
-    presetEnvOptions.corejs = 3;
+  if (!polyfill) {
+    Object.assign(presetEnvOptions, {
+      useBuiltIns: useBuiltInsValue
+    });
+
+    if (useBuiltInsValue) {
+      presetEnvOptions.corejs = 3;
+    }
   }
 
   return ['@babel/preset-env', presetEnvOptions];

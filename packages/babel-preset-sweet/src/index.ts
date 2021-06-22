@@ -20,6 +20,28 @@ function babelPresetSweet(api: any, options: Options = {}, dirname: string): Bab
     { use: useReact = true, runtime, development }: ReactOptions = react ?? {};
   const envModules: string | boolean = modules ?? false; // @babel/preset-env的模块类型
 
+  // 编译目标
+  let babelBuildTargets: object;
+
+  if (customTargets) {
+    babelBuildTargets = customTargets;
+  } else {
+    if (ecmascript) {
+      babelBuildTargets = {
+        browsers: nodeEnv ? ['node 14'] : ['last 3 Chrome versions']
+      };
+    } else {
+      babelBuildTargets = {
+        browsers: nodeEnv ? ['node 10'] : [
+          'last 10 versions',
+          'last 10 Chrome versions',
+          'last 1 year',
+          'IE 11'
+        ]
+      };
+    }
+  }
+
   const presets: Array<any> = [];
   const plugins: Array<any> = defaultPlugins.concat([
     transformRuntime({
@@ -32,10 +54,8 @@ function babelPresetSweet(api: any, options: Options = {}, dirname: string): Bab
   // 添加@babel/preset-env
   presets.push(
     presetEnv({
-      ecmascript,
+      babelBuildTargets,
       useBuiltIns,
-      customTargets,
-      nodeEnv,
       debug,
       envModules,
       polyfill
@@ -64,6 +84,26 @@ function babelPresetSweet(api: any, options: Options = {}, dirname: string): Bab
         allowNamespaces: true
       }
     ]);
+  }
+
+  // 添加babel-plugin-polyfill-{name}相关插件
+  if (polyfill) {
+    plugins.push(
+      [
+        'babel-plugin-polyfill-corejs3',
+        {
+          method: 'usage-pure',
+          targets: babelBuildTargets
+        }
+      ],
+      [
+        'babel-plugin-polyfill-es-shims',
+        {
+          method: 'usage-pure',
+          targets: babelBuildTargets
+        }
+      ]
+    );
   }
 
   return { presets, plugins };

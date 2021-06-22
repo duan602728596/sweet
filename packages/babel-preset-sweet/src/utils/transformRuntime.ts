@@ -8,6 +8,10 @@ interface TransformRuntimeOptionsArgs {
 function transformRuntime(options: TransformRuntimeOptionsArgs): string | [string, { [key: string]: any }] {
   const { ecmascript, nodeEnv, polyfill }: TransformRuntimeOptionsArgs = options;
 
+  if (polyfill) {
+    return '@babel/plugin-transform-runtime';
+  }
+
   return [
     '@babel/plugin-transform-runtime',
     {
