@@ -33,6 +33,7 @@ interface ScriptRule extends ConfigRule {
 export interface JSOptions extends ScriptRule {
   targets?: object;
   ecmascript?: boolean;
+  polyfill?: boolean;
   typescript?: boolean;
 }
 

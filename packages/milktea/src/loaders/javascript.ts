@@ -13,6 +13,7 @@ export default async function(sweetConfig: SweetConfig, sweetOptions: SweetOptio
   const { mode, javascript = {}, frame, hot, webpackLog = 'progress' }: SweetConfig = sweetConfig;
   const {
     ecmascript,
+    polyfill,
     typescript,
     presets: extraPresets,
     plugins: extraPlugins,
@@ -80,7 +81,8 @@ export default async function(sweetConfig: SweetConfig, sweetOptions: SweetOptio
           },
           react: {
             use: isReact
-          }
+          },
+          polyfill
         }
       ]);
 
