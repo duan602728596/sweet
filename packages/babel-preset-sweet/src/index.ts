@@ -35,14 +35,14 @@ function babelPresetSweet(api: any, options: Options = {}, dirname: string): Bab
   const envModules: string | boolean = modules ?? false; // @babel/preset-env的模块类型
 
   const presets: Array<any> = [];
-  const plugins: Array<any> = defaultPlugins.concat([
+  const plugins: Array<any> = defaultPlugins.concat([[
     '@babel/plugin-transform-runtime',
     {
       corejs: { version: 3, proposals: true },
       helpers: true,
       regenerator: !(nodeEnv || ecmascript)
     }
-  ]);
+  ]]);
 
   // 添加@babel/preset-env
   if (!ecmascript) {
