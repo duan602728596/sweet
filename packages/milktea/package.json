@@ -48,7 +48,7 @@
     "@bbkkbkk/files-map-webpack-plugin": "^1.1.0",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.4.3",
     "@svgr/webpack": "^5.5.0",
-    "@sweet-milktea/babel-preset-sweet": "^3.0.0",
+    "@sweet-milktea/babel-preset-sweet": "^3.0.5",
     "@sweet-milktea/utils": "^3.0.2",
     "babel-loader": "^8.2.2",
     "chalk": "^4.1.1",
