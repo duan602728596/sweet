@@ -69,7 +69,7 @@ async function argvStart(argv: Argv): Promise<void> {
     const devServer: DevServer = await requireModule('@sweet-milktea/server/devServer');
 
     devServer({
-      compiler,
+      compiler: compiler as any,
       httpPort,
       httpsPort,
       serverRender,
