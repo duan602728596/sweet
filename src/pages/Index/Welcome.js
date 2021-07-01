@@ -4,7 +4,7 @@ import { Typography } from 'antd';
 import { LikeFilled as IconLikeFilled } from '@ant-design/icons';
 import style from './welcome.sass';
 import { setLikeLen } from './reducers/reducers';
-import welcome, { ReactComponent as WelcomeSvgComponent } from './images/welcome.svg';
+import WelcomeSvgComponent from './images/welcome.component.svg';
 
 /* redux selector */
 const selector = createStructuredSelector({
@@ -36,7 +36,7 @@ function Welcome(props) {
         <IconLikeFilled className={ style.zan } role="button" onClick={ handleZanClick } />
         <span className={ style.len }>{ likeLen }</span>
       </div>
-      <img className={ style.img } src={ require('./images/1R5031O0-17.jpg').default } />
+      <img className={ style.img } src={ require('./images/1R5031O0-17.jpg') } />
     </Typography>
   );
 }
