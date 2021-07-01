@@ -35,7 +35,7 @@ function List(props) {
 
   return (
     <div>
-      <Button className={ style.btn } onClick={ handleLoadDataClick }>加载数据</Button>
+      <Button className={ style.btn } onClick={ handleLoadDataClick }>加载数据1231</Button>
       <Table columns={ columns } dataSource={ dataList } loading={ loading } rowKey="id" />
     </div>
   );
