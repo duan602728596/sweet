@@ -5,14 +5,10 @@ var url = require('url'); // We handle legacy API that is Node.js specific, and 
 
 
 function createSocketURL(parsedURL) {
-  var auth = parsedURL.auth,
-      hostname = parsedURL.hostname,
-      protocol = parsedURL.protocol,
-      port = parsedURL.port; // Node.js module parses it as `::`
+  var hostname = parsedURL.hostname; // Node.js module parses it as `::`
   // `new URL(urlString, [baseURLstring])` parses it as '[::]'
 
-  var isInAddrAny = hostname === '0.0.0.0' || hostname === '::' || hostname === '[::]'; // check ipv4 and ipv6 `all hostname`
-  // why do we need this check?
+  var isInAddrAny = hostname === '0.0.0.0' || hostname === '::' || hostname === '[::]'; // why do we need this check?
   // hostname n/a for file protocol (example, when using electron, ionic)
   // see: https://github.com/webpack/webpack-dev-server/pull/384
 
@@ -20,47 +16,43 @@ function createSocketURL(parsedURL) {
     hostname = self.location.hostname;
   }
 
-  if (protocol === 'auto:') {
-    protocol = self.location.protocol;
-  } // `hostname` can be empty when the script path is relative. In that case, specifying a protocol would result in an invalid URL.
-  // When https is used in the app, secure web sockets are always necessary because the browser doesn't accept non-secure web sockets.
+  var socketURLProtocol = parsedURL.protocol || 'ws:'; // When https is used in the app, secure web sockets are always necessary because the browser doesn't accept non-secure web sockets.
 
-
-  if (hostname && isInAddrAny && self.location.protocol === 'https:') {
-    protocol = self.location.protocol;
+  if (socketURLProtocol === 'auto:' || hostname && isInAddrAny && self.location.protocol === 'https:') {
+    socketURLProtocol = self.location.protocol;
   }
 
-  var socketURLProtocol = protocol.replace(/^(?:http|.+-extension|file)/i, 'ws'); // `new URL(urlString, [baseURLstring])` doesn't have `auth` property
+  socketURLProtocol = socketURLProtocol.replace(/^(?:http|.+-extension|file)/i, 'ws');
+  var socketURLAuth = ''; // `new URL(urlString, [baseURLstring])` doesn't have `auth` property
   // Parse authentication credentials in case we need them
 
   if (parsedURL.username) {
-    auth = parsedURL.username; // Since HTTP basic authentication does not allow empty username,
+    socketURLAuth = parsedURL.username; // Since HTTP basic authentication does not allow empty username,
     // we only include password if the username is not empty.
 
     if (parsedURL.password) {
       // Result: <username>:<password>
-      auth = auth.concat(':', parsedURL.password);
+      socketURLAuth = socketURLAuth.concat(':', parsedURL.password);
     }
-  }
-
-  var socketURLAuth = auth; // In case the host is a raw IPv6 address, it can be enclosed in
+  } // In case the host is a raw IPv6 address, it can be enclosed in
   // the brackets as the brackets are needed in the final URL string.
   // Need to remove those as url.format blindly adds its own set of brackets
   // if the host string contains colons. That would lead to non-working
   // double brackets (e.g. [[::]]) host
   //
-  // All of these sock url params are optionally passed in through resourceQuery,
+  // All of these web socket url params are optionally passed in through resourceQuery,
   // so we need to fall back to the default if they are not provided
 
-  var socketURLHostname = (hostname || 'localhost').replace(/^\[(.*)\]$/, '$1');
 
-  if (!port || port === '0') {
-    port = self.location.port;
-  }
+  var socketURLHostname = (hostname || self.location.hostname || 'localhost').replace(/^\[(.*)\]$/, '$1');
+  var socketURLPort = parsedURL.port;
 
-  var socketURLPort = port; // If path is provided it'll be passed in via the resourceQuery as a
+  if (!socketURLPort || socketURLPort === '0') {
+    socketURLPort = self.location.port;
+  } // If path is provided it'll be passed in via the resourceQuery as a
   // query param so it has to be parsed out of the querystring in order for the
   // client to open the socket to the correct location.
+
 
   var socketURLPathname = '/ws';
 

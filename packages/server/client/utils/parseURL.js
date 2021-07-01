@@ -5,17 +5,15 @@ var url = require('url');
 var getCurrentScriptSource = require('./getCurrentScriptSource');
 
 function parseURL(resourceQuery) {
-  var options;
+  var options = {};
 
   if (typeof resourceQuery === 'string' && resourceQuery !== '') {
-    // If this bundle is inlined, use the resource query to get the correct url.
-    // for backward compatibility we supports:
-    // - ?ws://0.0.0.0:8096&3Flogging=info
-    // - ?ws%3A%2F%2F192.168.0.5%3A8080%2F%3Flogging%3Dinfo
-    // Also we support `http` and `https` for backward compatibility too
-    options = url.parse(decodeURIComponent(resourceQuery // strip leading `?` from query string to get a valid URL
-    .substr(1) // replace first `&` with `?` to have a valid query string
-    .replace('&', '?')), true);
+    var searchParams = resourceQuery.substr(1).split('&');
+
+    for (var i = 0; i < searchParams.length; i++) {
+      var pair = searchParams[i].split('=');
+      options[pair[0]] = decodeURIComponent(pair[1]);
+    }
   } else {
     // Else, get the url from the <script> this file was called with.
     var scriptSource = getCurrentScriptSource();

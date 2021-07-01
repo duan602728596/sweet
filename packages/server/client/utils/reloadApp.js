@@ -4,13 +4,12 @@ var _require = require('./log'),
     log = _require.log;
 
 function reloadApp(_ref, _ref2) {
-  var hotReload = _ref.hotReload,
-      hot = _ref.hot,
+  var hot = _ref.hot,
       liveReload = _ref.liveReload;
   var isUnloading = _ref2.isUnloading,
       currentHash = _ref2.currentHash;
 
-  if (isUnloading || !hotReload) {
+  if (isUnloading) {
     return;
   }
 
