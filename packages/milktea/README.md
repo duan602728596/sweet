@@ -133,23 +133,19 @@ info是当前环境的信息。
 
 ## 引入svg
 
-### react
-
-```javascript
-import svgUrl, { ReactComponent as SvgComponent } from './image.svg';
-// svgUrl：svg的图片地址
-// SvgComponent：svg作为react组件
-```
-
-### vue
-
-在vue项目中，如果svg文件匹配`*.component.svg`，则文件作为vue组件引入，否则作为图片地址引入。
+在react或vue项目中，如果svg文件匹配`*.component.svg`，则文件作为组件引入，否则作为图片地址引入。
 
 ```javascript
 import svgUrl from './image.svg';
 import SvgComponent from './image.component.svg';
 // svgUrl：svg的图片地址
 // SvgComponent：svg作为vue组件
+export default function(props) {
+  return [
+    <img key="0" src={ svgUrl } />,
+    <SvgComponent key="1" />
+  ];
+}
 ```
 
 ## [api、服务器端渲染](https://github.com/duan602728596/sweet/blob/master/packages/server/README.md)
