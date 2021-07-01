@@ -65,10 +65,11 @@ export default async function(sweetConfig: SweetConfig, sweetOptions: SweetOptio
     .module
     .rule('webpack-dll')
     .test(/\.sweet[\\/]dll[\\/]dll\.js/i)
-    .use('file-loader')
-    .loader('file-loader')
-    .options({
-      name: isDevelopment ? '[name]_[hash:5].[ext]' : '[hash:15].[ext]',
-      outputPath: 'dll/'
+    .merge({
+      type: 'asset/resource',
+      generator: {
+        filename: isDevelopment ? '__[name]_[hash:5]__[ext]' : '__[hash:15]__[ext]',
+        emit: !sweetConfig.serverRender
+      }
     });
 }
