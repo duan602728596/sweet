@@ -103,7 +103,7 @@ async function devServer(args: DevServerArgs = {}): Promise<void> {
   });
 
   /* @babel/register */
-  useRegister(sweetOptions);
+  await useRegister(sweetOptions);
 
   /* 添加新的配置项 */
   if (sweetOptions.serverRenderRoot && sweetOptions.serverRenderFile) {

@@ -106,7 +106,7 @@ async function proServer(args: ProServerArgs = {}): Promise<void> {
   }
 
   /* @babel/register */
-  useRegister(sweetOptions);
+  await useRegister(sweetOptions);
 
   /* https服务 */
   const [useHttps, keyFile, certFile]: HttpsCertificate = await createHttpsCertificate(sweetOptions, httpsKey, httpsCert);
