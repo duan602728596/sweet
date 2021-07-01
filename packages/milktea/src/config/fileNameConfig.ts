@@ -6,7 +6,7 @@ const devFilename: string = '[name]_[hash:5]',
  * @param { boolean } isDevelopment: 是否为开发环境
  */
 function createFileName(isDevelopment: boolean): string {
-  return `${ isDevelopment ? devFilename : proFilename }.[ext]`;
+  return `${ isDevelopment ? devFilename : proFilename }[ext]`;
 }
 
 export default createFileName;

@@ -4,18 +4,15 @@ import type { SweetConfig } from '../utils/types';
 
 /* 字体静态文件配置 */
 export default function(sweetConfig: SweetConfig, config: Config): void {
-  const { mode, serverRender }: SweetConfig = sweetConfig;
-  const isDevelopment: boolean = mode === 'development';
-  const filename: string = createFileName(isDevelopment);
-
   config
     .module
     .rule('fontFile')
     .test(/^.*\.(eot|ttf|woff2?)$/i)
-    .use('file-loader')
-    .loader('file-loader')
-    .options( {
-      name: filename,
-      emitFile: !serverRender
+    .merge({
+      type: 'asset/resource',
+      generator: {
+        filename: createFileName(sweetConfig.mode === 'development'),
+        emit: !sweetConfig.serverRender
+      }
     });
 }
