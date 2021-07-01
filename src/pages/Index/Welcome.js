@@ -35,7 +35,7 @@ export default defineComponent({
           <IconLikeOutlined class={ style.zan } role="button" aria-label="点赞" onClick={ this.handleZanClick } />
           <span class={ style.len }>{ this.likeLen } & { this.stateLen }</span>
         </div>
-        <img class={ style.img } src={ require('./images/1R5031O0-17.jpg').default } />
+        <img class={ style.img } src={ require('./images/1R5031O0-17.jpg') } />
       </article>
     );
   }
