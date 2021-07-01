@@ -12,13 +12,9 @@ export default function(sweetConfig: SweetConfig, config: Config): void {
         chainConfig
           .module
           .rule('svg')
-          .test(/\.svg$/i)
+          .test(/component\.svg$/i)
           .use('@svgr/webpack')
-          .loader('@svgr/webpack')
-          .end()
-          .use('url-loader')
-          .loader('url-loader')
-          .options(createImageConfig(sweetConfig));
+          .loader('@svgr/webpack');
       }
     );
 
