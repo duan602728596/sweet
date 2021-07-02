@@ -1,6 +1,5 @@
 import * as util from 'util';
 import * as path from 'path';
-import * as fs from 'fs';
 import * as Stream from 'stream';
 import * as net from 'net';
 import type { Server as NetServer } from 'net';
@@ -10,6 +9,7 @@ import type { Dictionary } from 'lodash';
 import internalIp from 'internal-ip';
 import chalk from 'chalk';
 import type { ViteDevServer } from 'vite';
+import { requireCommonjsModule, requireModule } from '@sweet-milktea/utils';
 import type { SweetOptions } from './types';
 
 export const globPromise: (arg1: string, arg2?: glob.IOptions) => Promise<string[]> = util.promisify(glob);
@@ -154,4 +154,20 @@ export async function detectPort(port: number, ignorePort: Array<number> = []): 
  */
 export function __fixModuleImportDefaultDefault<T = any>(data: T | { default: T }): T {
   return 'default' in data ? data['default'] : data;
+}
+
+/**
+ * 加载模块，当commonjs加载失败时，使用import()加载
+ * @param { string } findFile
+ */
+export async function __require<T>(findFile: string): Promise<T> {
+  let modules: T;
+
+  try {
+    modules = await requireCommonjsModule(findFile);
+  } catch {
+    modules = await requireModule(findFile);
+  }
+
+  return modules;
 }

@@ -2,11 +2,12 @@ import _ from 'lodash';
 import connect from 'koa-connect';
 import type Koa from 'koa';
 import { createProxyMiddleware, Options } from 'http-proxy-middleware';
-import { requireCommonjsModule, isFileExists } from '@sweet-milktea/utils';
-import { defaultProxyPath } from './utils';
+import { isFileExists } from '@sweet-milktea/utils';
+import { defaultProxyPath, __require } from './utils';
 import type { SweetOptions, LogLevel } from './types';
 
 type ProxyConfig = { [key: string]: Options };
+type ProxyConfigModule = ProxyConfig | ((sweetOptions: SweetOptions, app: Koa) => Promise<ProxyConfig>);
 
 /* 添加代理中间件 */
 function addMiddleware(app: Koa, proxyConfig: ProxyConfig, isDevelopment: boolean, env?: string): void {
@@ -39,12 +40,12 @@ async function createProxy(sweetOptions: SweetOptions, app: Koa, isDevelopment: 
 
     for (const findFile of findFiles) {
       if (await isFileExists(findFile)) {
-        const module: any = await requireCommonjsModule(findFile);
+        const proxyModule: ProxyConfigModule = await __require<ProxyConfigModule>(findFile);
 
-        if (_.isPlainObject(module)) {
-          await addMiddleware(app, module, isDevelopment, env);
-        } else if (typeof module === 'function') {
-          const proxyConfig: ProxyConfig = await module(sweetOptions, app);
+        if (_.isPlainObject(proxyModule)) {
+          await addMiddleware(app, proxyModule as ProxyConfig, isDevelopment, env);
+        } else if (typeof proxyModule === 'function') {
+          const proxyConfig: ProxyConfig = await proxyModule(sweetOptions, app);
 
           await addMiddleware(app, proxyConfig, isDevelopment, env);
         }
