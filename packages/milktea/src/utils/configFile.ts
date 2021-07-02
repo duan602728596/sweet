@@ -32,15 +32,15 @@ function createJsRegisterLoader(): Loader {
      *   `TS_NODE_PROJECT=tsconfig.ts-node.json NODE_OPTIONS="--loader ts-node/esm" milktea-esm start`
      *   具体原因参考ts-node的[issues]：https://github.com/TypeStrong/ts-node/issues/1007
      */
-    let module: any;
+    let modules: Config | null;
 
     try {
-      module = requireCommonjsModule(filepath);
+      modules = requireCommonjsModule(filepath);
     } catch (err) {
-      module = requireModule(filepath);
+      modules = requireModule(filepath);
     }
 
-    return module;
+    return modules;
   };
 }
 

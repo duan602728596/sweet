@@ -25,15 +25,15 @@ function createJsRegisterLoader(): Loader {
       extensions: ['.es6', '.es', '.jsx', '.js', '.mjs', 'cjs', '.tsx', '.ts']
     });
 
-    let module: any;
+    let modules: Config | null;
 
     try {
-      module = requireCommonjsModule(filepath);
+      modules = requireCommonjsModule(filepath);
     } catch (err) {
-      module = requireModule(filepath);
+      modules = requireModule(filepath);
     }
 
-    return module;
+    return modules;
   };
 }
 
