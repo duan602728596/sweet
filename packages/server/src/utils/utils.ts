@@ -49,9 +49,9 @@ export function requireViteModule(sweetOptions: SweetOptions): (id: string) => P
   const ssrLoadModule: Function = (sweetOptions.compiler as ViteDevServer).ssrLoadModule;
 
   return async function(id: string): Promise<any> {
-    const module: any = await ssrLoadModule(id);
+    const modules: any = await ssrLoadModule(id);
 
-    return 'default' in module ? module.default : module;
+    return 'default' in modules ? modules.default : modules;
   };
 }
 

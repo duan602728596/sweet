@@ -45,16 +45,16 @@ export async function requireControllers(
   for (const file of files) {
     await useRegister(sweetOptions);
 
-    const module: ControllersModule | undefined = await (clearRequireModule
+    const modules: ControllersModule | undefined = await (clearRequireModule
       ? requireModuleWithoutCache
       : requireCommonjsModule
     )(controllersInfo.isAbsolute ? file : path.join(sweetOptions.basicPath, file));
 
-    if (typeof module === 'object' && module.url && module.handler) {
-      if (module.url === '(.*)' || module.url === '/(.*)') {
-        defaultResult.push(module);
+    if (typeof modules === 'object' && modules.url && modules.handler) {
+      if (modules.url === '(.*)' || modules.url === '/(.*)') {
+        defaultResult.push(modules);
       } else {
-        result.push(module);
+        result.push(modules);
       }
     }
   }
