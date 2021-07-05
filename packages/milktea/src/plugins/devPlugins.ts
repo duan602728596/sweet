@@ -15,7 +15,7 @@ export default async function(sweetConfig: SweetConfig, sweetOptions: SweetOptio
 
   if (isDll) {
     config
-      .plugin('DllReferencePlugin')
+      .plugin('webpack.DllReferencePlugin')
       .use(webpack.DllReferencePlugin, [{
         manifest: await requireJson(path.join(sweetOptions.basicPath, dllCache, 'manifest.json'))
       }]);
