@@ -30,7 +30,7 @@
     "@sweet-milktea/milktea-vite": "^3.0.3",
     "@sweet-milktea/server": "^3.1.1",
     "@sweet-milktea/server-log": "^3.0.0",
-    "@sweet-milktea/util-tools": "^3.0.0",
+    "@sweet-milktea/util-tools": "^3.1.1",
     "vite": "^2.4.0",
     "webpack": "^5.42.1"
   },
