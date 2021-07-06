@@ -133,7 +133,7 @@ function command(yargs: any): any {
       },
       // update
       registry: {
-        describe: 'Npm包信息地址。0：Npm，1：Yarn，2：CNpm',
+        describe: 'Npm包信息地址。0：Npm，1：Yarn，2：CNpm，3：腾讯npm镜像',
         type: 'number'
       },
       peerDependencies: {
