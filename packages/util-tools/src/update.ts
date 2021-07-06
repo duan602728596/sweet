@@ -50,9 +50,10 @@ function space(length: number = 1): string {
 
 /* npm包信息地址 */
 const packageHost: string[] = [
-  'registry.npmjs.org',   // npm
-  'registry.yarnpkg.com', // yarn
-  'r.cnpmjs.org'          // cnpm
+  'registry.npmjs.org',       // npm
+  'registry.yarnpkg.com',     // yarn
+  'r.cnpmjs.org',             // cnpm
+  'mirrors.cloud.tencent.com' // 腾讯npm镜像
 ];
 
 /**
@@ -61,13 +62,14 @@ const packageHost: string[] = [
  * @param { number } registry
  */
 function requestPackageInfo(packageName: string, registry: number = 0): Promise<PackageInformation> {
+  const requestPath: string = `${ registry === 3 ? '/npm' : '' }/${ packageName }`;
   const options: RequestOptions = {
     protocol: 'https:',
     hostname: packageHost[registry],
     port: null,
     method: 'GET',
     headers: { Accept: 'application/vnd.npm.install-v1+json; q=1.0, application/json; q=0.8, */*' },
-    path: `/${ packageName }`,
+    path: requestPath,
     timeout: 15000
   };
 
@@ -287,7 +289,7 @@ async function start(folder: string, registry: number, findPeerDependencies: boo
 
 /**
  * @param { Array<string> } folders: 目录的数组
- * @param { number } registry: Npm包信息地址。0：Npm，1：Yarn，2：CNpm
+ * @param { number } registry: Npm包信息地址。0：Npm，1：Yarn，2：CNpm，3：腾讯npm镜像
  * @param { boolean } findPeerDependencies: 是否查找peerDependencies内的包
  * @param { boolean } test: 是否为测试环境
  */
