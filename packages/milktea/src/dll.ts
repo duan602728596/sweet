@@ -7,7 +7,7 @@ import type { Output } from 'webpack-chain';
 import { merge } from 'webpack-merge';
 import WebpackBar from 'webpackbar';
 import { handleDllProgress } from './plugins/handleProgress';
-import { dllCache } from './config/cacheConfig';
+import CacheConfig from './config/cacheConfig';
 import { extensions, changeSweetConfig } from './utils/utils';
 import type { SweetConfig, SweetOptions } from './utils/types';
 
@@ -52,7 +52,7 @@ export default async function(sweetConfig: SweetConfig, sweetOptions: SweetOptio
   // 设置文件输出
   config
     .output
-    .path(path.join(sweetOptions.basicPath, dllCache))
+    .path(path.join(sweetOptions.basicPath, CacheConfig.Dll))
     .filename('[name].js')
     .library({
       name: '[name]_[hash:5]',
@@ -67,7 +67,7 @@ export default async function(sweetConfig: SweetConfig, sweetOptions: SweetOptio
     // dll
     .plugin('webpack.DllPlugin')
     .use(webpack.DllPlugin, [{
-      path: path.join(sweetOptions.basicPath, dllCache, 'manifest.json'),
+      path: path.join(sweetOptions.basicPath, CacheConfig.Dll, 'manifest.json'),
       name: '[name]_[hash:5]'
     }])
     .end()

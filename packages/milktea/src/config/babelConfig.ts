@@ -1,6 +1,6 @@
 import * as path from 'path';
 import type { LoaderOptions } from 'webpack-chain';
-import { babelCache } from './cacheConfig';
+import CacheConfig from './cacheConfig';
 import type { SweetOptions } from '../utils/types';
 
 /**
@@ -9,7 +9,7 @@ import type { SweetOptions } from '../utils/types';
  */
 export function createBabelOptions(sweetOptions: SweetOptions): LoaderOptions {
   return {
-    cacheDirectory: path.join(sweetOptions.basicPath, babelCache),
+    cacheDirectory: path.join(sweetOptions.basicPath, CacheConfig.Babel),
     presets: [],
     plugins: [],
     configFile: false,

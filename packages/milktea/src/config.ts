@@ -9,7 +9,7 @@ import loaders from './loaders/loaders';
 import basicPlugins from './plugins/plugins';
 import optimization from './optimization/optimization';
 import { extensions, isTsconfigJsonExists, changeSweetConfig } from './utils/utils';
-import { webpackCache } from './config/cacheConfig';
+import CacheConfig from './config/cacheConfig';
 import type { SweetConfig, SweetOptions } from './utils/types';
 
 /**
@@ -64,7 +64,7 @@ export default async function(sweetConfig: SweetConfig, sweetOptions: SweetOptio
     Object.assign(mergeConfig, {
       cache: {
         type: 'filesystem',
-        cacheDirectory: path.join(sweetOptions.basicPath, webpackCache)
+        cacheDirectory: path.join(sweetOptions.basicPath, CacheConfig.Webpack)
       }
     });
   }

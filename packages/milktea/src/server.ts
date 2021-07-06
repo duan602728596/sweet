@@ -8,7 +8,7 @@ import loaders from './loaders/loaders';
 import basicPlugins from './plugins/plugins';
 import optimization from './optimization/optimization';
 import { extensions, isTsconfigJsonExists, changeSweetConfig } from './utils/utils';
-import { webpackServerCache } from './config/cacheConfig';
+import CacheConfig from './config/cacheConfig';
 import type { SweetConfig, SweetOptions } from './utils/types';
 
 /**
@@ -52,7 +52,7 @@ export default async function(sweetConfig: SweetConfig, sweetOptions: SweetOptio
       // 文件缓存
       cache: isDevelopment ? {
         type: 'filesystem',
-        cacheDirectory: path.join(sweetOptions.basicPath, webpackServerCache)
+        cacheDirectory: path.join(sweetOptions.basicPath, CacheConfig.WebpackServer)
       } : false
     });
 

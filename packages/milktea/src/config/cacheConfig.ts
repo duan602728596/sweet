@@ -1,8 +1,9 @@
 /* 缓存文件配置 */
-export const babelCache: string = '.sweet/cache/babel';
+enum CacheConfig {
+  Babel = '.sweet/cache/babel',
+  Dll = '.sweet/dll',
+  Webpack = '.sweet/cache/webpack',
+  WebpackServer = '.sweet/cache/webpackServer'
+}
 
-export const dllCache: string = '.sweet/dll';
-
-export const webpackCache: string = '.sweet/cache/webpack';
-
-export const webpackServerCache: string = '.sweet/cache/webpackServer';
+export default CacheConfig;
