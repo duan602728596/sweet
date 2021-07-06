@@ -2,7 +2,7 @@ import * as path from 'path';
 import type { ParsedPath } from 'path';
 import { spawn, ChildProcessWithoutNullStreams } from 'child_process';
 import fse from 'fs-extra';
-import { requireModule } from '@sweet-milktea/utils';
+import { requireModule, moduleExists } from '@sweet-milktea/utils';
 import type Sharp from 'sharp';
 import { formatPath, getFiles } from './utils/utils';
 
@@ -72,7 +72,7 @@ async function image2avif(entry: string, output: string, type?: 'avifenc' | 'sha
 
     await fse.ensureDir(outputDir);
 
-    if (type === 'avifenc') {
+    if (type === 'avifenc' || moduleExists('sharp') === false) {
       await toAvif(inputFile, outputFile, hiddenLog);
     } else {
       await toAvifUseSharp(inputFile, outputFile);
