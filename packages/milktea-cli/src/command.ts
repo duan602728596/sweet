@@ -106,7 +106,7 @@ function command(yargs: any): any {
         describe: 'html使用的渲染模板，ejs 或 nunjucks。默认为ejs',
         type: 'string'
       },
-      // image2webp & imageCompress & image2icns
+      // image2webp & imageCompress & image2avif & image2icns
       imageEntry: {
         describe: '需要批量转换或压缩的图片所在的文件夹，或要转换成icns图标的图片文件',
         type: 'string'
@@ -117,6 +117,10 @@ function command(yargs: any): any {
       },
       ext: {
         describe: '其他批量转换成webp的图片或视频扩展名（扩展名用 “,” 分隔）',
+        type: 'string'
+      },
+      converter: {
+        describe: '使用的avif转换器，sharp或avifenc',
         type: 'string'
       },
       size: {

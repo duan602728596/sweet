@@ -26,6 +26,7 @@ export interface Argv {
   registry: number;
   imageEntry: string;
   imageOutput: string;
+  converter: 'avifenc' | 'sharp';
   ext: string;
   size: number;
   retina: number;

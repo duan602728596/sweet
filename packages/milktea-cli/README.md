@@ -68,6 +68,7 @@ milktea-esm：以esm模式启动。
 * `milktea image2avif`: 将图片批量转换成`*.avif`格式。
   * `--imageEntry`: 源图片文件夹。
   * `--imageOutput`: 输出文件夹。
+  * `--converter`: 使用的转换器。`sharp`或`avifenc`。
 * `milktea media2webp`: 将图片、视频批量转换成`*.webp`格式（首先需要自行安装`ffmpeg`）。
   * `--imageEntry`: 源图片文件夹。
   * `--imageOutput`: 输出文件夹。
