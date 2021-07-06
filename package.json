@@ -62,7 +62,8 @@
     "imagemin-gifsicle": ">=7",
     "imagemin-jpegoptim": ">=7",
     "imagemin-pngquant": ">=9",
-    "imagemin-webp": ">=6"
+    "imagemin-webp": ">=6",
+    "sharp": ">=0"
   },
   "lint-staged": {
     "**/*.{js,jsx,mjs,cjs,ts,tsx}": "eslint"

@@ -2,12 +2,12 @@ import * as path from 'path';
 import type { ParsedPath } from 'path';
 import { spawn, ChildProcessWithoutNullStreams } from 'child_process';
 import fse from 'fs-extra';
+import { requireModule } from '@sweet-milktea/utils';
+import type Sharp from 'sharp';
 import { formatPath, getFiles } from './utils/utils';
 
 /**
- * 转换成avif
- *
- * https://reachlightspeed.com/blog/using-the-new-high-performance-avif-image-format-on-the-web-today/
+ * 转换成avif：https://reachlightspeed.com/blog/using-the-new-high-performance-avif-image-format-on-the-web-today/
  *
  * If you are comfortable in the command line, you can use the offical AOMedia library, libavif, to encode/decode AVIF files.
  * Also, if you're a macOS user with Homebrew, you can quickly install a pre-built version using brew install joedrago/repo/avifenc,
@@ -44,12 +44,24 @@ function toAvif(inputFile: string, outputFile: string, hiddenLog?: boolean): Pro
 }
 
 /**
+ * 转换成avif，使用sharp
+ * @param { string } inputFile: 输入的图片文件
+ * @param { string } outputFile: 输出的图片文件
+ */
+export async function toAvifUseSharp(inputFile: string, outputFile: string): Promise<void> {
+  const sharp: typeof Sharp = await requireModule('sharp');
+
+  await sharp(inputFile).toFile(outputFile);
+}
+
+/**
  * 图片批量转换成avif格式
  * @param { string } entry: 入口文件夹
  * @param { string } output: 输出文件夹
+ * @param { 'avifenc' | 'sharp' } type: 转换的底层依赖
  * @param { boolean } hiddenLog: 隐藏日志
  */
-async function image2avif(entry: string, output: string, hiddenLog?: boolean): Promise<void> {
+async function image2avif(entry: string, output: string, type?: 'avifenc' | 'sharp', hiddenLog?: boolean): Promise<void> {
   const files: string[] = await getFiles(entry, '**/*.{jpg,jpeg,png,y4m}');
 
   for (const file of files) {
@@ -59,7 +71,12 @@ async function image2avif(entry: string, output: string, hiddenLog?: boolean): P
     const outputFile: string = formatPath(path.join(outputDir, `${ name }.avif`));
 
     await fse.ensureDir(outputDir);
-    await toAvif(inputFile, outputFile, hiddenLog);
+
+    if (type === 'avifenc') {
+      await toAvif(inputFile, outputFile, hiddenLog);
+    } else {
+      await toAvifUseSharp(inputFile, outputFile);
+    }
   }
 }
 
