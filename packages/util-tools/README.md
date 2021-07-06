@@ -35,8 +35,8 @@ update(
 
 ## avif图片批量转换工具
 
-> 首先需要自行安装 [avifenc](https://github.com/AOMediaCodec/libavif) 。   
-> mac上使用brew安装`brew install joedrago/repo/avifenc`。
+> 首先需要自行安装`sharp`模块，
+> 或者安装 [avifenc](https://github.com/AOMediaCodec/libavif) （mac上使用brew安装`brew install joedrago/repo/avifenc`）。
 
 使用方法：
 
@@ -44,8 +44,9 @@ update(
 import image2avif from '@sweet-milktea/util-tools/image2avif';
 
 image2avif(
-  './src',  // 入口文件夹
-  './build' // 输出文件夹
+  './src',   // 入口文件夹
+  './build', // 输出文件夹
+  'sharp'    // sharp或avifenc
 );
 ```
 
