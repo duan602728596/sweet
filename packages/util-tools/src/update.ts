@@ -62,10 +62,11 @@ const packageHost: string[] = [
  * @param { number } registry
  */
 function requestPackageInfo(packageName: string, registry: number = 0): Promise<PackageInformation> {
-  const requestPath: string = `${ registry === 3 ? '/npm' : '' }/${ packageName }`;
+  const registryIndex: number = registry >= packageHost.length ? 0 : registry;
+  const requestPath: string = `${ registryIndex === 3 ? '/npm' : '' }/${ packageName }`;
   const options: RequestOptions = {
     protocol: 'https:',
-    hostname: packageHost[registry],
+    hostname: packageHost[registryIndex],
     port: null,
     method: 'GET',
     headers: { Accept: 'application/vnd.npm.install-v1+json; q=1.0, application/json; q=0.8, */*' },
