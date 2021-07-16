@@ -10,6 +10,7 @@ import basicPlugins from './plugins/plugins';
 import optimization from './optimization/optimization';
 import { extensions, isTsconfigJsonExists, changeSweetConfig } from './utils/utils';
 import CacheConfig from './config/cacheConfig';
+import createFileName from './config/fileNameConfig';
 import type { SweetConfig, SweetOptions } from './utils/types';
 
 /**
@@ -46,9 +47,6 @@ export default async function(sweetConfig: SweetConfig, sweetOptions: SweetOptio
   }: SweetConfig = SCFG;
   const ecmascript: boolean = !!javascript?.ecmascript;
   const isDevelopment: boolean = mode === 'development';
-
-  // webpack配置
-  const filename: string = isDevelopment ? '[name].js' : '[name]_[chunkhash:15].js';
 
   // 合并配置
   const mergeConfig: { [key: string]: any } = {
@@ -93,7 +91,8 @@ export default async function(sweetConfig: SweetConfig, sweetOptions: SweetOptio
     .output
     .publicPath('')
     .path(path.join(sweetOptions.basicPath, 'dist'))
-    .filename(filename)
+    .filename(isDevelopment ? '[name].js' : '[name]_[chunkhash:15].js')
+    .merge({ assetModuleFilename: createFileName(isDevelopment) })
     .when(ecmascript, (chainConfigOutput: Output): void => {
       chainConfigOutput.globalObject('globalThis');
     });

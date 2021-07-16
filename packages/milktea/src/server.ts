@@ -9,6 +9,7 @@ import basicPlugins from './plugins/plugins';
 import optimization from './optimization/optimization';
 import { extensions, isTsconfigJsonExists, changeSweetConfig } from './utils/utils';
 import CacheConfig from './config/cacheConfig';
+import createFileName from './config/fileNameConfig';
 import type { SweetConfig, SweetOptions } from './utils/types';
 
 /**
@@ -65,7 +66,8 @@ export default async function(sweetConfig: SweetConfig, sweetOptions: SweetOptio
     .library({
       type: 'commonjs'
     } as any)
-    .globalObject('globalThis');
+    .globalObject('globalThis')
+    .merge({ assetModuleFilename: createFileName(isDevelopment) });
 
   // forkTsCheckerWebpackPlugin配置
   sweetOptions.forkTsCheckerWebpackPlugin = !!(
