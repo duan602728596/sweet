@@ -53,7 +53,7 @@
     "babel-loader": "^8.2.2",
     "chalk": "^4.1.1",
     "cosmiconfig": "^7.0.0",
-    "css-loader": "^5.2.6",
+    "css-loader": "^6.1.0",
     "css-minimizer-webpack-plugin": "^3.0.2",
     "fork-ts-checker-webpack-plugin": "^6.2.12",
     "html-webpack-plugin": "^5.3.2",
@@ -64,12 +64,12 @@
     "pug": "^3.0.2",
     "pug-loader": "^2.4.0",
     "react-refresh": "^0.10.0",
-    "sass": "^1.35.1",
+    "sass": "^1.35.2",
     "sass-loader": "^12.1.0",
-    "style-loader": "^3.0.0",
+    "style-loader": "^3.1.0",
     "terser": "^5.7.1",
     "terser-webpack-plugin": "^5.1.4",
-    "webpack": "^5.42.1",
+    "webpack": "^5.45.1",
     "webpack-chain": "^6.5.1",
     "webpack-merge": "^5.8.0",
     "webpackbar": "^5.0.0-3"
@@ -77,7 +77,7 @@
   "devDependencies": {
     "@vue/babel-plugin-jsx": "^1.0.6",
     "ts-loader": "^9.2.3",
-    "vue-loader": "^16.3.0",
+    "vue-loader": "^16.3.1",
     "vue-svg-loader": "^0.17.0-beta.2"
   },
   "peerDependencies": {
