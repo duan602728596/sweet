@@ -29,9 +29,9 @@
     "remark-gfm": "^1.0.0"
   },
   "devDependencies": {
-    "@sweet-milktea/milktea": "*",
-    "@sweet-milktea/milktea-cli": "*",
-    "@sweet-milktea/server": "*",
+    "@sweet-milktea/milktea": "^3.1.0",
+    "@sweet-milktea/milktea-cli": "^3.1.1",
+    "@sweet-milktea/server": "^3.1.1",
     "babel-plugin-import": "^1.13.3",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24"
   }
