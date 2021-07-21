@@ -1,0 +1,34 @@
+name: Build gh-pages CI
+on:
+  push:
+    branches:
+      - ghpages-build
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [16.x]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          ref: ghpages-build
+          persist-credentials: false
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+      - run: cd packages/website
+      - run: npm install --legacy-peer-deps=true
+      - run: npm run build
+      - name: Deploy
+        uses: JamesIves/github-pages-deploy-action@4.1.4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: gh-pages
+          folder: packages/website/dist
+          silent: true
+          clean-exclude: |
+            v1
+            v2
