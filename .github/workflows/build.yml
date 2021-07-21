@@ -29,6 +29,6 @@ jobs:
           branch: gh-pages
           folder: packages/website/dist
           silent: true
-          clean-exclude: |
+          clean-exclude: |-
             v1
             v2
