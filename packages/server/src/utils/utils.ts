@@ -4,8 +4,6 @@ import * as Stream from 'stream';
 import * as net from 'net';
 import type { Server as NetServer } from 'net';
 import glob from 'glob';
-import _ from 'lodash';
-import type { Dictionary } from 'lodash';
 import internalIp from 'internal-ip';
 import chalk from 'chalk';
 import type { ViteDevServer } from 'vite';
@@ -15,15 +13,17 @@ import type { SweetOptions } from './types';
 export const globPromise: (arg1: string, arg2?: glob.IOptions) => Promise<string[]> = util.promisify(glob);
 
 /* 格式化数据 */
-export function formatTemplateData(data: Dictionary<any>): object {
-  return _.transform(data, function(result: object, value: any, key: string): void {
-    let item: any = value;
+export function formatTemplateData(data: { [key: string]: any }): object {
+  return Object.keys(data).reduce(function(result: object, key: string): object {
+    let item: any = data[key];
 
     if (typeof item === 'object') {
       item = JSON.stringify(item);
     }
 
     result[key] = item;
+
+    return result;
   }, {});
 }
 

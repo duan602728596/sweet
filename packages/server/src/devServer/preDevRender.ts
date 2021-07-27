@@ -1,6 +1,5 @@
 import type * as Stream from 'stream';
 import { pathToRegexp } from 'path-to-regexp';
-import _ from 'lodash';
 import { requireModuleWithoutCache } from '@sweet-milktea/utils';
 import type { Context } from 'koa';
 import { formatTemplateData, requireViteModule, isReadStream, readStream, __fixModuleImportDefaultDefault } from '../utils/utils';
@@ -25,7 +24,7 @@ async function preRenderInit(sweetOptions: SweetOptions): Promise<Function> {
     const controllersModules: Array<ControllersModule> = await getControllersFiles(sweetOptions, true);
 
     // 获取数据
-    const index: number = _.findIndex(controllersModules, function(o: ControllersModule): boolean {
+    const index: number = controllersModules.findIndex(function(o: ControllersModule): boolean {
       const regexp: RegExp = pathToRegexp(o.url);
 
       return regexp.exec(ctxPath) !== null && regexp.exec(ctxPath) !== undefined;

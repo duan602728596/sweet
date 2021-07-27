@@ -22,7 +22,7 @@ function isMockFunc(mockModule: MockModule): mockModule is MockFunc {
 function addMockRouter(router: Router, mock: Mock): void {
   for (const key in mock) {
     // 拆分，解析方法
-    const formatData: string[] = _.without(key.split(/\s+/), '');
+    const formatData: string[] = key.split(/\s+/).filter((o: string): boolean => o !== '');
     let method: string = 'get';
     let uri: string = '';
 
