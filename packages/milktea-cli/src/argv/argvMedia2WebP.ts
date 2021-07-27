@@ -1,6 +1,5 @@
 import * as process from 'process';
 import * as path from 'path';
-import _ from 'lodash';
 import { requireModule } from '@sweet-milktea/utils';
 import type { Argv } from '../utils/types';
 
@@ -11,7 +10,7 @@ async function argvMedia2WebP(argv: Argv): Promise<void> {
   const { imageEntry, imageOutput, ext: argvExt }: Argv = argv;
   const cwd: string = process.cwd();
   const ext: string = argvExt ?? '';
-  const extArr: string[] = _.without(ext.split(','), '');
+  const extArr: string[] = ext.split(',').filter((o: string): boolean => o !== '');
 
   image2webp(
     path.isAbsolute(imageEntry) ? imageEntry : path.join(cwd, imageEntry),
