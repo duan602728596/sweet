@@ -3,8 +3,6 @@ import * as https from 'https';
 import type { RequestOptions } from 'https';
 import type { ClientRequest, IncomingMessage } from 'http';
 import * as path from 'path';
-import _ from 'lodash';
-import type { Dictionary } from 'lodash';
 import semver from 'semver';
 import chalk from 'chalk';
 import { requireJson } from '@sweet-milktea/utils';
@@ -30,17 +28,21 @@ interface PackageItem {
   error?: boolean;
 }
 
+interface Dictionary<T> {
+  [key: string]: T;
+}
+
 /**
  * 对象转数组
  * @param { object } obj: 对象
  */
 function objectToArray(obj: Dictionary<string>): Array<PackageItem> {
-  return _.transform(obj, function(result: Array<PackageItem>, value: string, key: string): void {
-    result.push({
+  return Object.keys(obj).map(function(key: string, index: number): PackageItem {
+    return {
       name: key,        // 包的名称
       version: obj[key] // 包的当前版本号
-    });
-  }, []);
+    };
+  });
 }
 
 /* 空格输出 */
