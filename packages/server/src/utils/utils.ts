@@ -14,8 +14,8 @@ export const globPromise: (arg1: string, arg2?: glob.IOptions) => Promise<string
 
 /* 格式化数据 */
 export function formatTemplateData(data: { [key: string]: any }): object {
-  return Object.keys(data).reduce(function(result: object, key: string): object {
-    let item: any = data[key];
+  return Object.entries(data).reduce(function(result: object, [key, value]: [string, any]): object {
+    let item: any = value;
 
     if (typeof item === 'object') {
       item = JSON.stringify(item);
