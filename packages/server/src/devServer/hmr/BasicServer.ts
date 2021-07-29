@@ -9,7 +9,7 @@ export type ServerConnection = ws | SockjsConnection;
 export type ClientLogLevel = 'silent' | 'trace' | 'debug' | 'info' | 'warn' | 'error';
 
 /* 为sockjs服务和ws定义通用的方法 */
-class BasicServer {
+abstract class BasicServer {
   static DEFAULT_STATS: any = {
     all: false,
     hash: true,
@@ -25,6 +25,8 @@ class BasicServer {
   public compiler: Compiler;               // webpack compiler
   public sockets: Array<ServerConnection>; // 当前的socket链接
   public stats: any;                       // webpack stats
+
+  abstract send(connection: any, message: string): void;
 
   // 获取stats
   getStats(statsObj: Stats): StatsCompilation {
@@ -125,8 +127,6 @@ class BasicServer {
       this.sockWriteConnection(connection, 'ok');
     }
   }
-
-  send(...args: any[]): void { /* loop */ }
 
   // 连接
   handleSocketConnection: Function = (connection: ServerConnection, headers: { [key: string]: string }): void => {
