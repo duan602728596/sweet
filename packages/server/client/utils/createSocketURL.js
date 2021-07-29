@@ -1,29 +1,26 @@
-'use strict';
-
-var url = require('url'); // We handle legacy API that is Node.js specific, and a newer API that implements the same WHATWG URL Standard used by web browsers
+import url from "url"; // We handle legacy API that is Node.js specific, and a newer API that implements the same WHATWG URL Standard used by web browsers
 // Please look at https://nodejs.org/api/url.html#url_url_strings_and_url_objects
-
 
 function createSocketURL(parsedURL) {
   var hostname = parsedURL.hostname; // Node.js module parses it as `::`
   // `new URL(urlString, [baseURLstring])` parses it as '[::]'
 
-  var isInAddrAny = hostname === '0.0.0.0' || hostname === '::' || hostname === '[::]'; // why do we need this check?
+  var isInAddrAny = hostname === "0.0.0.0" || hostname === "::" || hostname === "[::]"; // why do we need this check?
   // hostname n/a for file protocol (example, when using electron, ionic)
   // see: https://github.com/webpack/webpack-dev-server/pull/384
 
-  if (isInAddrAny && self.location.hostname && self.location.protocol.indexOf('http') === 0) {
+  if (isInAddrAny && self.location.hostname && self.location.protocol.indexOf("http") === 0) {
     hostname = self.location.hostname;
   }
 
-  var socketURLProtocol = parsedURL.protocol || 'ws:'; // When https is used in the app, secure web sockets are always necessary because the browser doesn't accept non-secure web sockets.
+  var socketURLProtocol = parsedURL.protocol || "ws:"; // When https is used in the app, secure web sockets are always necessary because the browser doesn't accept non-secure web sockets.
 
-  if (socketURLProtocol === 'auto:' || hostname && isInAddrAny && self.location.protocol === 'https:') {
+  if (socketURLProtocol === "auto:" || hostname && isInAddrAny && self.location.protocol === "https:") {
     socketURLProtocol = self.location.protocol;
   }
 
-  socketURLProtocol = socketURLProtocol.replace(/^(?:http|.+-extension|file)/i, 'ws');
-  var socketURLAuth = ''; // `new URL(urlString, [baseURLstring])` doesn't have `auth` property
+  socketURLProtocol = socketURLProtocol.replace(/^(?:http|.+-extension|file)/i, "ws");
+  var socketURLAuth = ""; // `new URL(urlString, [baseURLstring])` doesn't have `auth` property
   // Parse authentication credentials in case we need them
 
   if (parsedURL.username) {
@@ -32,7 +29,7 @@ function createSocketURL(parsedURL) {
 
     if (parsedURL.password) {
       // Result: <username>:<password>
-      socketURLAuth = socketURLAuth.concat(':', parsedURL.password);
+      socketURLAuth = socketURLAuth.concat(":", parsedURL.password);
     }
   } // In case the host is a raw IPv6 address, it can be enclosed in
   // the brackets as the brackets are needed in the final URL string.
@@ -44,17 +41,17 @@ function createSocketURL(parsedURL) {
   // so we need to fall back to the default if they are not provided
 
 
-  var socketURLHostname = (hostname || self.location.hostname || 'localhost').replace(/^\[(.*)\]$/, '$1');
+  var socketURLHostname = (hostname || self.location.hostname || "localhost").replace(/^\[(.*)\]$/, "$1");
   var socketURLPort = parsedURL.port;
 
-  if (!socketURLPort || socketURLPort === '0') {
+  if (!socketURLPort || socketURLPort === "0") {
     socketURLPort = self.location.port;
   } // If path is provided it'll be passed in via the resourceQuery as a
   // query param so it has to be parsed out of the querystring in order for the
   // client to open the socket to the correct location.
 
 
-  var socketURLPathname = '/ws';
+  var socketURLPathname = "/ws";
 
   if (parsedURL.pathname && !parsedURL.fromCurrentScript) {
     socketURLPathname = parsedURL.pathname;
@@ -70,4 +67,4 @@ function createSocketURL(parsedURL) {
   });
 }
 
-module.exports = createSocketURL;
+export default createSocketURL;

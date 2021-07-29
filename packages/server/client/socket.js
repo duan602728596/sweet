@@ -1,12 +1,10 @@
-'use strict';
 /* global __webpack_dev_server_client__ */
-
-/* eslint-disable
-  camelcase
-*/
 // this WebsocketClient is here as a default fallback, in case the client is not injected
 
+/* eslint-disable camelcase */
 var Client = process.env.SWEET_SOCKET === 'ws' ? require('./clients/WebsocketClient') : require('./clients/SockJSClient');
+/* eslint-enable camelcase */
+
 var retries = 0;
 var client = null;
 
@@ -43,4 +41,4 @@ var socket = function initSocket(url, handlers) {
   });
 };
 
-module.exports = socket;
+export default socket;

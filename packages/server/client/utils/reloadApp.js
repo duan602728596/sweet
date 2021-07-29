@@ -1,7 +1,5 @@
-'use strict';
-
-var _require = require('./log'),
-    log = _require.log;
+import hotEmitter from "webpack/hot/emitter.js";
+import { log } from "./log.js";
 
 function reloadApp(_ref, _ref2) {
   var hot = _ref.hot,
@@ -13,23 +11,30 @@ function reloadApp(_ref, _ref2) {
     return;
   }
 
-  if (hot) {
-    log.info('App hot update...');
+  function applyReload(rootWindow, intervalId) {
+    clearInterval(intervalId);
+    log.info("App updated. Reloading...");
+    rootWindow.location.reload();
+  }
 
-    var hotEmitter = require('webpack/hot/emitter');
+  var search = self.location.search.toLowerCase();
+  var allowToHot = search.indexOf("webpack-dev-server-hot=false") === -1;
+  var allowToLiveReload = search.indexOf("webpack-dev-server-live-reload=false") === -1;
 
-    hotEmitter.emit('webpackHotUpdate', currentHash);
+  if (hot && allowToHot) {
+    log.info("App hot update...");
+    hotEmitter.emit("webpackHotUpdate", currentHash);
 
-    if (typeof self !== 'undefined' && self.window) {
+    if (typeof self !== "undefined" && self.window) {
       // broadcast update to window
-      self.postMessage("webpackHotUpdate".concat(currentHash), '*');
+      self.postMessage("webpackHotUpdate".concat(currentHash), "*");
     }
   } // allow refreshing the page only if liveReload isn't disabled
-  else if (liveReload) {
+  else if (liveReload && allowToLiveReload) {
       var rootWindow = self; // use parent window for reload (in case we're in an iframe with no valid src)
 
       var intervalId = self.setInterval(function () {
-        if (rootWindow.location.protocol !== 'about:') {
+        if (rootWindow.location.protocol !== "about:") {
           // reload immediately if protocol is valid
           applyReload(rootWindow, intervalId);
         } else {
@@ -42,12 +47,6 @@ function reloadApp(_ref, _ref2) {
         }
       });
     }
-
-  function applyReload(rootWindow, intervalId) {
-    clearInterval(intervalId);
-    log.info('App updated. Reloading...');
-    rootWindow.location.reload();
-  }
 }
 
-module.exports = reloadApp;
+export default reloadApp;

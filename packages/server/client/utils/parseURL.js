@@ -1,17 +1,14 @@
-'use strict';
-
-var url = require('url');
-
-var getCurrentScriptSource = require('./getCurrentScriptSource');
+import url from "url";
+import getCurrentScriptSource from "./getCurrentScriptSource.js";
 
 function parseURL(resourceQuery) {
   var options = {};
 
-  if (typeof resourceQuery === 'string' && resourceQuery !== '') {
-    var searchParams = resourceQuery.substr(1).split('&');
+  if (typeof resourceQuery === "string" && resourceQuery !== "") {
+    var searchParams = resourceQuery.substr(1).split("&");
 
     for (var i = 0; i < searchParams.length; i++) {
-      var pair = searchParams[i].split('=');
+      var pair = searchParams[i].split("=");
       options[pair[0]] = decodeURIComponent(pair[1]);
     }
   } else {
@@ -43,4 +40,4 @@ function parseURL(resourceQuery) {
   return options;
 }
 
-module.exports = parseURL;
+export default parseURL;

@@ -1,22 +1,18 @@
-'use strict';
-
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
-var SockJS = require('../modules/sockjs-client');
+import SockJS from "../modules/sockjs-client/index.js";
+import { log } from "../utils/log.js";
 
-var _require = require('../utils/log'),
-    log = _require.log;
-
-module.exports = /*#__PURE__*/function () {
+var SockJSClient = /*#__PURE__*/function () {
   function SockJSClient(url) {
     _classCallCheck(this, SockJSClient);
 
     // SockJS requires `http` and `https` protocols
-    this.sock = new SockJS(url.replace(/^ws:/i, 'http:').replace(/^wss:/i, 'https:'));
+    this.sock = new SockJS(url.replace(/^ws:/i, "http:").replace(/^wss:/i, "https:"));
 
     this.sock.onerror = function (error) {
       log.error(error);
@@ -45,3 +41,5 @@ module.exports = /*#__PURE__*/function () {
 
   return SockJSClient;
 }();
+
+export { SockJSClient as default };

@@ -1,29 +1,16 @@
-'use strict';
-/* global __resourceQuery WorkerGlobalScope */
-
-var webpackHotLog = require('webpack/hot/log');
-
-var stripAnsi = require('./modules/strip-ansi');
-
-var parseURL = require('./utils/parseURL');
-
-var socket = require('./socket');
-
-var overlay = require('./overlay');
-
-var _require = require('./utils/log'),
-    log = _require.log,
-    setLogLevel = _require.setLogLevel;
-
-var sendMessage = require('./utils/sendMessage');
-
-var reloadApp = require('./utils/reloadApp');
-
-var createSocketURL = require('./utils/createSocketURL');
-
+/* global __resourceQuery */
+import webpackHotLog from "webpack/hot/log.js";
+import stripAnsi from "./modules/strip-ansi/index.js";
+import parseURL from "./utils/parseURL.js";
+import socket from "./socket.js";
+import { show, hide } from "./overlay.js";
+import { log, setLogLevel } from "./utils/log.js";
+import sendMessage from "./utils/sendMessage.js";
+import reloadApp from "./utils/reloadApp.js";
+import createSocketURL from "./utils/createSocketURL.js";
 var status = {
   isUnloading: false,
-  currentHash: ''
+  currentHash: ""
 };
 var options = {
   hot: false,
@@ -40,7 +27,7 @@ if (parsedResourceQuery.logging) {
 
 function setAllLogLevel(level) {
   // This is needed because the HMR logger operate separately from dev server logger
-  webpackHotLog.setLogLevel(level === 'verbose' || level === 'log' ? 'info' : level);
+  webpackHotLog.setLogLevel(level === "verbose" || level === "log" ? "info" : level);
   setLogLevel(level);
 }
 
@@ -48,33 +35,41 @@ if (options.logging) {
   setAllLogLevel(options.logging);
 }
 
-self.addEventListener('beforeunload', function () {
+self.addEventListener("beforeunload", function () {
   status.isUnloading = true;
 });
 var onSocketMessage = {
   hot: function hot() {
-    options.hot = true;
-    log.info('Hot Module Replacement enabled.');
-  },
-  liveReload: function liveReload() {
-    options.liveReload = true;
-    log.info('Live Reloading enabled.');
-  },
-  invalid: function invalid() {
-    log.info('App updated. Recompiling...'); // Fixes #1042. overlay doesn't clear if errors are fixed but warnings remain.
-
-    if (options.overlay) {
-      overlay.hide();
+    if (parsedResourceQuery.hot === "false") {
+      return;
     }
 
-    sendMessage('Invalid');
+    options.hot = true;
+    log.info("Hot Module Replacement enabled.");
+  },
+  liveReload: function liveReload() {
+    if (parsedResourceQuery["live-reload"] === "false") {
+      return;
+    }
+
+    options.liveReload = true;
+    log.info("Live Reloading enabled.");
+  },
+  invalid: function invalid() {
+    log.info("App updated. Recompiling..."); // Fixes #1042. overlay doesn't clear if errors are fixed but warnings remain.
+
+    if (options.overlay) {
+      hide();
+    }
+
+    sendMessage("Invalid");
   },
   hash: function hash(_hash) {
     status.currentHash = _hash;
   },
   logging: setAllLogLevel,
   overlay: function overlay(value) {
-    if (typeof document === 'undefined') {
+    if (typeof document === "undefined") {
       return;
     }
 
@@ -83,27 +78,27 @@ var onSocketMessage = {
   progress: function progress(_progress) {
     options.progress = _progress;
   },
-  'progress-update': function progressUpdate(data) {
+  "progress-update": function progressUpdate(data) {
     if (options.progress) {
-      log.info("".concat(data.pluginName ? "[".concat(data.pluginName, "] ") : '').concat(data.percent, "% - ").concat(data.msg, "."));
+      log.info("".concat(data.pluginName ? "[".concat(data.pluginName, "] ") : "").concat(data.percent, "% - ").concat(data.msg, "."));
     }
 
-    sendMessage('Progress', data);
+    sendMessage("Progress", data);
   },
-  'still-ok': function stillOk() {
-    log.info('Nothing changed.');
+  "still-ok": function stillOk() {
+    log.info("Nothing changed.");
 
     if (options.overlay) {
-      overlay.hide();
+      hide();
     }
 
-    sendMessage('StillOk');
+    sendMessage("StillOk");
   },
   ok: function ok() {
-    sendMessage('Ok');
+    sendMessage("Ok");
 
     if (options.overlay) {
-      overlay.hide();
+      hide();
     }
 
     if (options.initial) {
@@ -113,31 +108,31 @@ var onSocketMessage = {
     reloadApp(options, status);
   },
   // TODO: remove in v5 in favor of 'static-changed'
-  'content-changed': function contentChanged(file) {
-    log.info("".concat(file ? "\"".concat(file, "\"") : 'Content', " from static directory was changed. Reloading..."));
+  "content-changed": function contentChanged(file) {
+    log.info("".concat(file ? "\"".concat(file, "\"") : "Content", " from static directory was changed. Reloading..."));
     self.location.reload();
   },
-  'static-changed': function staticChanged(file) {
-    log.info("".concat(file ? "\"".concat(file, "\"") : 'Content', " from static directory was changed. Reloading..."));
+  "static-changed": function staticChanged(file) {
+    log.info("".concat(file ? "\"".concat(file, "\"") : "Content", " from static directory was changed. Reloading..."));
     self.location.reload();
   },
   warnings: function warnings(_warnings) {
-    log.warn('Warnings while compiling.');
+    log.warn("Warnings while compiling.");
 
     var strippedWarnings = _warnings.map(function (warning) {
       return stripAnsi(warning.message ? warning.message : warning);
     });
 
-    sendMessage('Warnings', strippedWarnings);
+    sendMessage("Warnings", strippedWarnings);
 
     for (var i = 0; i < strippedWarnings.length; i++) {
       log.warn(strippedWarnings[i]);
     }
 
-    var needShowOverlay = typeof options.overlay === 'boolean' ? options.overlay : options.overlay && options.overlay.warnings;
+    var needShowOverlay = typeof options.overlay === "boolean" ? options.overlay : options.overlay && options.overlay.warnings;
 
     if (needShowOverlay) {
-      overlay.show(_warnings, 'warnings');
+      show(_warnings, "warnings");
     }
 
     if (options.initial) {
@@ -147,22 +142,22 @@ var onSocketMessage = {
     reloadApp(options, status);
   },
   errors: function errors(_errors) {
-    log.error('Errors while compiling. Reload prevented.');
+    log.error("Errors while compiling. Reload prevented.");
 
     var strippedErrors = _errors.map(function (error) {
       return stripAnsi(error.message ? error.message : error);
     });
 
-    sendMessage('Errors', strippedErrors);
+    sendMessage("Errors", strippedErrors);
 
     for (var i = 0; i < strippedErrors.length; i++) {
       log.error(strippedErrors[i]);
     }
 
-    var needShowOverlay = typeof options.overlay === 'boolean' ? options.overlay : options.overlay && options.overlay.errors;
+    var needShowOverlay = typeof options.overlay === "boolean" ? options.overlay : options.overlay && options.overlay.errors;
 
     if (needShowOverlay) {
-      overlay.show(_errors, 'errors');
+      show(_errors, "errors");
     }
 
     options.initial = false;
@@ -171,8 +166,8 @@ var onSocketMessage = {
     log.error(_error);
   },
   close: function close() {
-    log.error('Disconnected!');
-    sendMessage('Close');
+    log.error("Disconnected!");
+    sendMessage("Close");
   }
 };
 var socketURL = createSocketURL(parsedResourceQuery);
