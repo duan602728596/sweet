@@ -14,7 +14,10 @@ export function storeFactory(initialState = {}) {
     /* store */
     store = configureStore({
       reducer,
-      preloadedState: initialState
+      preloadedState: initialState,
+      middleware(getDefaultMiddleware) {
+        return getDefaultMiddleware();
+      }
     });
   }
 
