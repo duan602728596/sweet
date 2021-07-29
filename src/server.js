@@ -30,7 +30,6 @@ async function server(url, context = {}, initialState = {}) {
         </ConfigProvider>
       </div>
     </div>
-
   ));
 
   app.use(storeFactory(cloneData));
