@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "@ant-design/icons": "^4.6.2",
-    "antd": "^4.16.7",
+    "antd": "^4.16.9",
     "github-markdown-css": "^4.0.0",
     "history": "^5.0.0",
     "prop-types": "^15.7.2",
