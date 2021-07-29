@@ -4,7 +4,7 @@ import type { Middleware, Context, Next } from 'koa';
 import type { Compiler } from 'webpack';
 import type { ClientLogLevel } from './BasicServer';
 import SockJSServer from './SockJSServer';
-import WebSocketServer from './WebSocketServer';
+import WSServer from './WSServer';
 import createLogger from './createLogger';
 import type { SweetOptions } from '../../utils/types';
 
@@ -21,7 +21,7 @@ type Options = {
  */
 function koaHmr(options: Options, sweetOptions: SweetOptions): Middleware {
   const log: { [key: string]: Function } = createLogger();
-  const sock: SockJSServer | WebSocketServer = new (sweetOptions.socket === 'ws' ? WebSocketServer : SockJSServer)({
+  const sock: SockJSServer | WSServer = new (sweetOptions.socket === 'ws' ? WSServer : SockJSServer)({
     compiler: options.compiler,
     server: options.server,
     log,

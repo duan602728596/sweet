@@ -1,11 +1,11 @@
 import type { Server } from 'http';
 import type { Http2SecureServer } from 'http2';
 import type { Compiler, Stats, StatsCompilation } from 'webpack';
-import type ws from 'ws';
+import type WebSocket from 'ws';
 import type { Connection as SockjsConnection } from 'sockjs';
 
 export type ServerItem = Server | Http2SecureServer;
-export type ServerConnection = ws | SockjsConnection;
+export type ServerConnection = WebSocket | SockjsConnection;
 export type ClientLogLevel = 'silent' | 'trace' | 'debug' | 'info' | 'warn' | 'error';
 
 /* 为sockjs服务和ws定义通用的方法 */

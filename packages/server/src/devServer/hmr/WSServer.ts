@@ -1,7 +1,7 @@
 import type { Server, IncomingMessage } from 'http';
 import type { Http2SecureServer } from 'http2';
 import type { Socket } from 'net';
-import ws from 'ws';
+import WebSocket, { WebSocketServer } from 'ws';
 import type { Compiler } from 'webpack';
 import BasicServer, { ServerItem, ClientLogLevel } from './BasicServer';
 
@@ -11,8 +11,8 @@ const noop: Function = (): void => { /* noop */ };
  * webpack-dev-middleware的koa实现，使用ws
  * https://github.com/webpack/webpack-dev-server/blob/master/lib/servers/WebsocketServer.js
  */
-class WebSocketServer extends BasicServer {
-  public wsServer: ws.Server; // websocket服务
+class WSServer extends BasicServer {
+  public wsServer: WebSocketServer; // websocket服务
 
   /**
    * @param { Function } log: 日志方法
@@ -32,7 +32,7 @@ class WebSocketServer extends BasicServer {
     this.log = log;
     this.clientLogLevel = clientLogLevel;
 
-    this.wsServer = new ws.Server({
+    this.wsServer = new WebSocketServer({
       noServer: true,
       path: '/ws'
     });
@@ -44,7 +44,7 @@ class WebSocketServer extends BasicServer {
           return;
         }
 
-        this.wsServer.handleUpgrade(req, sock, head, (connection: ws): void => {
+        this.wsServer.handleUpgrade(req, sock, head, (connection: WebSocket): void => {
           this.wsServer.emit('connection', connection, req);
         });
       });
@@ -55,7 +55,7 @@ class WebSocketServer extends BasicServer {
     });
 
     setInterval((): void => {
-      this.wsServer.clients.forEach((socket: ws): void => {
+      this.wsServer.clients.forEach((socket: WebSocket): void => {
         if (socket['isAlive'] === false) {
           return socket.terminate();
         }
@@ -89,7 +89,7 @@ class WebSocketServer extends BasicServer {
 
   // f should be passed the resulting connection and the connection headers
   onConnection(f: Function): void {
-    this.wsServer.on('connection', (connection: ws, req: IncomingMessage): void => {
+    this.wsServer.on('connection', (connection: WebSocket, req: IncomingMessage): void => {
       connection['isAlive'] = true;
       connection.on('pong', (): void => {
         connection['isAlive'] = true;
@@ -100,4 +100,4 @@ class WebSocketServer extends BasicServer {
   }
 }
 
-export default WebSocketServer;
+export default WSServer;
