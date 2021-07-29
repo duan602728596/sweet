@@ -65,8 +65,8 @@ function koaDevMiddleware(compiler: Compiler, options: { [key: string]: any }): 
     }
   }
 
-  Object.keys(wdm).forEach((key: string): void => {
-    koaMiddleware[key] = wdm[key];
+  Object.entries(wdm).forEach(function([key, value]: [string, any], index: number): void {
+    koaMiddleware[key] = value;
   });
 
   return koaMiddleware;
