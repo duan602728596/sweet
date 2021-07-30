@@ -59,7 +59,7 @@
     "@babel/register": "^7.14.5",
     "@bbkkbkk/http-proxy": "^1.17.0",
     "@koa/router": "^10.1.0",
-    "@sweet-milktea/babel-preset-sweet": "^3.0.5",
+    "@sweet-milktea/babel-preset-sweet": "^3.1.1",
     "@sweet-milktea/utils": "^3.0.2",
     "ansi-html": "^0.0.7",
     "chalk": "^4.1.1",
