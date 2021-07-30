@@ -32,7 +32,7 @@
     "@sweet-milktea/server-log": "^3.0.0",
     "@sweet-milktea/util-tools": "^3.1.1",
     "vite": "^2.4.4",
-    "webpack": "^5.47.0"
+    "webpack": "^5.47.1"
   },
   "peerDependencies": {
     "@sweet-milktea/milktea": ">=3",
