@@ -35,7 +35,7 @@ function babelPresetSweet(api: any, options: Options = {}, dirname: string): Bab
         browsers: nodeEnv ? ['node 10'] : [
           'last 10 versions',
           'last 2 year',
-          'Edge 13'
+          'Edge 16'
         ]
       };
     }
