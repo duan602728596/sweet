@@ -1,5 +1,5 @@
 import * as path from 'path';
-import { omit } from 'lodash';
+import _ from 'lodash';
 import type { Configuration } from 'webpack';
 import Config from 'webpack-chain';
 import type{ Output } from 'webpack-chain';
@@ -22,7 +22,7 @@ export default async function(sweetConfig: SweetConfig, sweetOptions: SweetOptio
   changeSweetConfig(sweetConfig);
 
   const config: Config = new Config();
-  const SCFG: SweetConfig = omit(sweetConfig, [
+  const SCFG: SweetConfig = _.omit(sweetConfig, [
     'serverRender',
     'serverEntry',
     'serverOutput',

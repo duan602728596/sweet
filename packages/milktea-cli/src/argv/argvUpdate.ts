@@ -1,7 +1,7 @@
 import * as path from 'path';
 import * as fs from 'fs';
 import * as process from 'process';
-import { isNil } from 'lodash';
+import _ from 'lodash';
 import { requireModule } from '@sweet-milktea/utils';
 import type { Argv } from '../utils/types';
 
@@ -11,7 +11,7 @@ async function argvUpdate(argv: Argv): Promise<void> {
   const { __DEV__, registry: argvRegistry, peerDependencies, __PACKAGES__ }: Argv = argv;
   const folders: Array<string> = []; // 目录列表
 
-  if (isNil(__DEV__)) {
+  if (_.isNil(__DEV__)) {
     folders.push(process.cwd());
   } else {
     const packages: string = path.join(process.cwd(), __PACKAGES__ ?? 'packages');
@@ -26,7 +26,7 @@ async function argvUpdate(argv: Argv): Promise<void> {
     }
   }
 
-  const registry: number = isNil(argvRegistry) ? 0 : argvRegistry;
+  const registry: number = _.isNil(argvRegistry) ? 0 : argvRegistry;
 
   await update(folders, registry, peerDependencies ?? false);
 }

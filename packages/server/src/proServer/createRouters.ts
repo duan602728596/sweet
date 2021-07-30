@@ -1,7 +1,7 @@
 import * as path from 'path';
 import type { ParsedPath } from 'path';
 import * as fs from 'fs';
-import { isNil } from 'lodash';
+import _ from 'lodash';
 import { isFileExists } from '@sweet-milktea/utils';
 import type { Context, Next } from 'koa';
 import type Router from '@koa/router';
@@ -28,7 +28,7 @@ async function createRouters(
 
       await next();
 
-      if (ctx.type === '' && isNil(ctx.body)) {
+      if (ctx.type === '' && _.isNil(ctx.body)) {
         const isHtml: boolean = /\.html$/i.test(ctxPath);
         const tpPath: string = isHtml ? ctxPath : template;
         const body: Buffer = await fs.promises.readFile(path.join(serverRoot, tpPath));

@@ -1,4 +1,4 @@
-import { mergeWith } from 'lodash';
+import _ from 'lodash';
 import type Config from 'webpack-chain';
 import type { LoaderOptions } from 'webpack-chain';
 import { requireModule } from '@sweet-milktea/utils';
@@ -93,7 +93,7 @@ export default async function(sweetConfig: SweetConfig, sweetOptions: SweetOptio
         babelPlugins.push('@vue/babel-plugin-jsx'); // 判断是否加载vue相关插件
       }
 
-      return mergeWith(options, { presets: babelPresets, plugins: babelPlugins }, customizer);
+      return _.mergeWith(options, { presets: babelPresets, plugins: babelPlugins }, customizer);
     });
 
   // 排除dll文件，dll文件使用asset-modules加载

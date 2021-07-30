@@ -1,6 +1,6 @@
-import { isNil } from 'lodash';
 import type Webpack from 'webpack';
 import type { Compiler, Configuration } from 'webpack';
+import _ from 'lodash';
 import { requireModule } from '@sweet-milktea/utils';
 import type { Milktea } from '@sweet-milktea/milktea/src/utils/types';
 import type { DevServer } from '@sweet-milktea/server/src/utils/types';
@@ -27,7 +27,7 @@ async function argvStart(argv: Argv): Promise<void> {
     redirectToHttps,
     useBabelRegister
   }: Argv = argv;
-  const isServerEnv: boolean = !isNil(server);
+  const isServerEnv: boolean = !_.isNil(server);
   const webpackConfig: Configuration = await milktea.config({
     sweetConfig: config,
     mode: 'development',
@@ -47,7 +47,7 @@ async function argvStart(argv: Argv): Promise<void> {
   let serverRenderCompiler: Compiler | null = null,
     serverRenderWatching: any | null = null;
 
-  if (!isNil(serverRender)) {
+  if (!_.isNil(serverRender)) {
     compiler.hooks.done.tap('sweet-milktea-build', async function(): Promise<void> {
       // ssr的钩子只执行一次
       if (serverRenderCompiler !== null && serverRenderWatching !== null) return;

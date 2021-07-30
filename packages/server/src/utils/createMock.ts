@@ -1,4 +1,4 @@
-import { isPlainObject } from 'lodash';
+import _ from 'lodash';
 import type { Context } from 'koa';
 import type Router from '@koa/router';
 import { isFileExists } from '@sweet-milktea/utils';
@@ -11,7 +11,7 @@ type MockFunc = (sweetOptions: SweetOptions) => Mock | Promise<Mock>;
 type MockModule = Mock | MockFunc;
 
 function isMock(mockModule: MockModule): mockModule is Mock {
-  return isPlainObject(mockModule);
+  return _.isPlainObject(mockModule);
 }
 
 function isMockFunc(mockModule: MockModule): mockModule is MockFunc {

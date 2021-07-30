@@ -6,7 +6,7 @@ import HtmlWebpackPlugin from 'html-webpack-plugin';
 import type { Options as HtmlWebpackPluginOptions } from 'html-webpack-plugin';
 import FilesMapWebpackPlugin from '@bbkkbkk/files-map-webpack-plugin';
 import WebpackBar from 'webpackbar';
-import { isPlainObject } from 'lodash';
+import _ from 'lodash';
 import { requireModule } from '@sweet-milktea/utils';
 import Config, { PluginClass } from 'webpack-chain';
 import type {
@@ -133,11 +133,11 @@ export default async function(sweetConfig: SweetConfig, sweetOptions: SweetOptio
   // files-map-webpack-plugin
   config
     .when(
-      isPlainObject(filesMap) || (filesMap === true),
+      _.isPlainObject(filesMap) || (filesMap === true),
       (chainConfig: Config): void => {
         chainConfig
           .plugin('files-map-webpack-plugin')
-          .use(FilesMapWebpackPlugin, isPlainObject(filesMap) ? [filesMap] : undefined);
+          .use(FilesMapWebpackPlugin, _.isPlainObject(filesMap) ? [filesMap] : undefined);
       }
     );
 }

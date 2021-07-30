@@ -1,4 +1,4 @@
-import { merge } from 'lodash';
+import _ from 'lodash';
 import { requireModule } from '@sweet-milktea/utils';
 import type { InlineConfig } from 'vite';
 import { basicConfig } from './config/basicConfig';
@@ -15,7 +15,7 @@ export default async function(sweetConfig: SweetConfig, sweetOptions: SweetOptio
   changeSweetConfig(sweetConfig);
 
   const { mode, frame, vite, chainVite, ts }: SweetConfig = sweetConfig;
-  const viteConfig: InlineConfig = merge(basicConfig(sweetOptions), {
+  const viteConfig: InlineConfig = _.merge(basicConfig(sweetOptions), {
     mode,
     css: {
       modules: {
@@ -54,5 +54,5 @@ export default async function(sweetConfig: SweetConfig, sweetOptions: SweetOptio
     await chainVite(viteConfig);
   }
 
-  return merge(viteConfig, vite);
+  return _.merge(viteConfig, vite);
 }
