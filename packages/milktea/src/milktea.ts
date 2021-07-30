@@ -1,5 +1,5 @@
 import * as process from 'process';
-import _ from 'lodash';
+import { isPlainObject } from 'lodash';
 import type { Configuration, Stats } from 'webpack';
 import webpackConfig from './config';
 import webpackServerRenderConfig from './server';
@@ -21,7 +21,7 @@ async function getConfig(environment: Environment, sweetConfig: SweetConfigArgs)
     const modules: ConfigFile = 'default' in cfg ? cfg['default'] : cfg;
 
     return typeof modules === 'function' ? await modules({ environment }) : modules;
-  } else if (_.isPlainObject(sweetConfig)) {
+  } else if (isPlainObject(sweetConfig)) {
     // 自定义配置文件
     return sweetConfig as SweetConfig;
   } else {

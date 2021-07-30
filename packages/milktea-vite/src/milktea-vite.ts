@@ -1,6 +1,6 @@
 import * as process from 'process';
 import { createServer, build as viteBuild, ViteDevServer } from 'vite';
-import _ from 'lodash';
+import { isPlainObject } from 'lodash';
 import type { RollupOutput, RollupWatcher } from 'rollup';
 import configFile, { ConfigFile } from './utils/configFile';
 import viteConfig from './config';
@@ -21,7 +21,7 @@ async function getConfig(environment: Environment, sweetConfig: SweetConfigArgs)
     const cfg: ConfigFile = await configFile(sweetOptions, sweetConfig);
 
     return typeof cfg === 'function' ? await cfg({ environment }) : cfg;
-  } else if (_.isPlainObject(sweetConfig)) {
+  } else if (isPlainObject(sweetConfig)) {
     // 自定义配置文件
     return sweetConfig as SweetConfig;
   } else {

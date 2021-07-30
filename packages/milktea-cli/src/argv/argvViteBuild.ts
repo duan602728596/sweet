@@ -1,6 +1,6 @@
-import _ from 'lodash';
-import { Argv } from '../utils/types';
+import { isNil } from 'lodash';
 import { requireModule } from '@sweet-milktea/utils';
+import type { Argv } from '../utils/types';
 import type { MilkVite } from '@sweet-milktea/milktea-vite/src/utils/types';
 
 /* vite-build 命令 */
@@ -14,7 +14,7 @@ async function argvViteBuild(argv: Argv): Promise<void> {
     mode: 'production'
   });
 
-  if (!_.isNil(serverRender)) {
+  if (!isNil(serverRender)) {
     await milkteaVite.serverRenderBuild({
       sweetConfig: config,
       mode: 'production'

@@ -1,5 +1,5 @@
 import * as process from 'process';
-import _ from 'lodash';
+import { isPlainObject } from 'lodash';
 
 type StandardEntry = {
   [key: string]: Array<string>;
@@ -35,7 +35,7 @@ function hotClientEntry(entry: Entry): StandardEntry | Entry {
   }
 
   // object
-  if (_.isPlainObject(entry)) {
+  if (isPlainObject(entry)) {
     const result: StandardEntry = {};
 
     for (const key in entry) {

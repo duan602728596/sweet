@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import { mergeWith } from 'lodash';
 import type Config from 'webpack-chain';
 import type { LoaderOptions } from 'webpack-chain';
 import { customizer } from '../utils/utils';
@@ -67,6 +67,6 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
         babelPlugins.push('@vue/babel-plugin-jsx'); // 判断是否加载vue相关插件
       }
 
-      return _.mergeWith(options, { presets: babelPresets, plugins: babelPlugins }, customizer);
+      return mergeWith(options, { presets: babelPresets, plugins: babelPlugins }, customizer);
     });
 }

@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import { isPlainObject } from 'lodash';
 import connect from 'koa-connect';
 import type Koa from 'koa';
 import { createProxyMiddleware, Options } from 'http-proxy-middleware';
@@ -42,7 +42,7 @@ async function createProxy(sweetOptions: SweetOptions, app: Koa, isDevelopment: 
       if (await isFileExists(findFile)) {
         const proxyModule: ProxyConfigModule = await __require<ProxyConfigModule>(findFile);
 
-        if (_.isPlainObject(proxyModule)) {
+        if (isPlainObject(proxyModule)) {
           await addMiddleware(app, proxyModule as ProxyConfig, isDevelopment, env);
         } else if (typeof proxyModule === 'function') {
           const proxyConfig: ProxyConfig = await proxyModule(sweetOptions, app);

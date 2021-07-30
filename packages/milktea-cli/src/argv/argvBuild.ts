@@ -1,6 +1,6 @@
 import type Webpack from 'webpack';
 import type { Compiler } from 'webpack';
-import _ from 'lodash';
+import { isNil } from 'lodash';
 import { requireModule } from '@sweet-milktea/utils';
 import type { Milktea } from '@sweet-milktea/milktea/src/utils/types';
 import type { Argv } from '../utils/types';
@@ -19,7 +19,7 @@ async function argvBuild(argv: Argv): Promise<void> {
     })
   );
 
-  if (!_.isNil(serverRender)) {
+  if (!isNil(serverRender)) {
     // 正常编译完毕后，编译ssr需要的文件
     compiler.hooks.done.tap('sweet-milktea-build', async function(): Promise<void> {
       const serverRenderCompiler: Compiler = webpack(
