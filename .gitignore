@@ -10,7 +10,6 @@ yarn-error.log
 .yarnrc
 .yarn/*
 !.yarn/releases
-.pnp.js
 
 # webstorm
 .idea
