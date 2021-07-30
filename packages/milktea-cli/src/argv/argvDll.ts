@@ -1,6 +1,6 @@
+import { requireModule } from '@sweet-milktea/utils';
 import type Webpack from 'webpack';
 import type { Compiler } from 'webpack';
-import { requireModule } from '@sweet-milktea/utils';
 import type { Milktea } from '@sweet-milktea/milktea/src/utils/types';
 import type { Argv } from '../utils/types';
 
