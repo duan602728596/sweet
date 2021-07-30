@@ -34,9 +34,8 @@ function babelPresetSweet(api: any, options: Options = {}, dirname: string): Bab
       babelBuildTargets = {
         browsers: nodeEnv ? ['node 10'] : [
           'last 10 versions',
-          'last 10 Chrome versions',
-          'last 1 year',
-          'IE 11'
+          'last 2 year',
+          'Edge 13'
         ]
       };
     }
