@@ -90,9 +90,9 @@ class WSServer extends BasicServer {
   // f should be passed the resulting connection and the connection headers
   onConnection(f: Function): void {
     this.wsServer.on('connection', (connection: WebSocket, req: IncomingMessage): void => {
-      connection['isAlive'] = true;
+      connection.isAlive = true;
       connection.on('pong', (): void => {
-        connection['isAlive'] = true;
+        connection.isAlive = true;
       });
 
       f(connection, req.headers);
