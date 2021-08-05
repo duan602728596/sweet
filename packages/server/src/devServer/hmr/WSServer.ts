@@ -56,11 +56,11 @@ class WSServer extends BasicServer {
 
     setInterval((): void => {
       this.wsServer.clients.forEach((socket: WebSocket): void => {
-        if (socket['isAlive'] === false) {
+        if (socket.isAlive === false) {
           return socket.terminate();
         }
 
-        socket['isAlive'] = false;
+        socket.isAlive = false;
         socket.ping(noop);
       });
     }, 30_000);
