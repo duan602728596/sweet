@@ -23,21 +23,21 @@
     "@babel/plugin-proposal-do-expressions": "^7.14.5",
     "@babel/plugin-proposal-export-default-from": "^7.14.5",
     "@babel/plugin-proposal-function-bind": "^7.14.5",
-    "@babel/plugin-proposal-pipeline-operator": "^7.14.8",
+    "@babel/plugin-proposal-pipeline-operator": "^7.15.0",
     "@babel/plugin-proposal-throw-expressions": "^7.14.5",
     "@babel/plugin-syntax-module-string-names": "^7.12.13",
     "@babel/plugin-syntax-top-level-await": "^7.14.5",
-    "@babel/plugin-transform-runtime": "^7.14.5",
-    "@babel/preset-env": "^7.14.8",
+    "@babel/plugin-transform-runtime": "^7.15.0",
+    "@babel/preset-env": "^7.15.0",
     "@babel/preset-react": "^7.14.5",
-    "@babel/preset-typescript": "^7.14.5",
-    "@babel/runtime-corejs3": "^7.14.8",
+    "@babel/preset-typescript": "^7.15.0",
+    "@babel/runtime-corejs3": "^7.14.9",
     "@sweet-milktea/utils": "^3.0.2",
     "babel-plugin-polyfill-corejs3": "^0.2.4",
     "babel-plugin-polyfill-es-shims": "^0.3.0",
-    "core-js": "^3.16.0"
+    "core-js": "^3.16.1"
   },
   "devDependencies": {
-    "@babel/core": "^7.14.8"
+    "@babel/core": "^7.15.0"
   }
 }
