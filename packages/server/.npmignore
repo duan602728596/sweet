@@ -23,5 +23,6 @@ build
 dist
 .sweet/*
 client-src
+client/.gitattributes
 
 .DS_Store
