@@ -1,1 +1,2 @@
 packages/server/client/**/*.js linguist-detectable=false
+.yarn/**                       linguist-detectable=false
