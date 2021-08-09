@@ -1,0 +1,3 @@
+packages/server/client/**/*.js linguist-detectable=false
+.yarn/**/*.*                   linguist-detectable=false
+.eslintrc.cjs                  linguist-detectable=false
