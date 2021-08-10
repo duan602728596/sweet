@@ -23,10 +23,10 @@ abstract class BasicServer {
   public log: { [key: string]: Function }; // 日志
   public clientLogLevel: ClientLogLevel;   // 日志等级
   public compiler: Compiler;               // webpack compiler
-  public sockets: Array<ServerConnection>; // 当前的socket链接
+  public clients: Set<ServerConnection>;   // 当前的socket链接
   public stats: any;                       // webpack stats
 
-  abstract send(connection: any, message: string): void;
+  abstract send(client: any, message: string): void;
 
   // 获取stats
   getStats(statsObj: Stats): StatsCompilation {
@@ -73,13 +73,13 @@ abstract class BasicServer {
     connection.on('close', f);
   }
 
-  sockWriteConnection(connection: ServerConnection, type: string, data?: any): void {
-    this.send(connection, JSON.stringify({ type, data }));
+  sockWriteConnection(client: ServerConnection, type: string, data?: any): void {
+    this.send(client, JSON.stringify({ type, data }));
   }
 
   sockWrite(type: string, data?: any): void {
-    this.sockets.forEach((socket: ServerConnection): void => {
-      this.send(socket, JSON.stringify({ type, data }));
+    this.clients.forEach((client: ServerConnection): void => {
+      this.send(client, JSON.stringify({ type, data }));
     });
   }
 
@@ -88,8 +88,7 @@ abstract class BasicServer {
     const shouldEmit: boolean | undefined = !force
       && stats
       && (!stats.errors || stats.errors.length === 0)
-      && stats.assets
-      && stats.assets.every((asset: any): boolean => !asset.emitted);
+      && stats?.assets?.every((asset: any): boolean => !asset.emitted);
 
     if (shouldEmit) {
       return this.sockWrite('still-ok');
@@ -106,7 +105,7 @@ abstract class BasicServer {
     }
   }
 
-  sendStatsConnection(connection: ServerConnection, stats: StatsCompilation, force?: any): void {
+  sendStatsConnection(client: ServerConnection, stats: StatsCompilation, force?: any): void {
     const shouldEmit: boolean | undefined = !force
       && stats
       && (!stats.errors || stats.errors.length === 0)
@@ -114,50 +113,36 @@ abstract class BasicServer {
       && stats.assets.every((asset: any): boolean => !asset.emitted);
 
     if (shouldEmit) {
-      return this.sockWriteConnection(connection, 'still-ok');
+      return this.sockWriteConnection(client, 'still-ok');
     }
 
-    this.sockWriteConnection(connection, 'hash', stats.hash);
+    this.sockWriteConnection(client, 'hash', stats.hash);
 
     if (stats?.errors?.length) {
-      this.sockWriteConnection(connection, 'errors', stats.errors);
+      this.sockWriteConnection(client, 'errors', stats.errors);
     } else if (stats?.warnings?.length) {
-      this.sockWriteConnection(connection, 'warnings', stats.warnings);
+      this.sockWriteConnection(client, 'warnings', stats.warnings);
     } else {
-      this.sockWriteConnection(connection, 'ok');
+      this.sockWriteConnection(client, 'ok');
     }
   }
 
   // 连接
-  handleSocketConnection: Function = (connection: ServerConnection, headers: { [key: string]: string }): void => {
-    if (!connection) {
-      return;
-    }
+  handleSocketConnection: Function = (client: ServerConnection, headers: { [key: string]: string }): void => {
+    this.clients.add(client);
 
-    if (!headers) {
-      this.log.warn(
-        'transportMode.server implementation must pass headers to the callback of onConnection(f) '
-        + 'via f(connection, headers) in order for clients to pass a headers security check'
-      );
-    }
-
-    this.sockets.push(connection);
-
-    this.onConnectionClose(connection, (): void => {
-      const idx: number = this.sockets.indexOf(connection);
-
-      if (idx >= 0) {
-        this.sockets.splice(idx, 1);
-      }
+    this.onConnectionClose(client, (): void => {
+      this.clients.delete(client);
     });
 
-    this.sockWriteConnection(connection, 'logging', this.clientLogLevel);
-    this.sockWriteConnection(connection, 'hot');
-    this.sockWriteConnection(connection, 'liveReload');
-    this.sockWriteConnection(connection, 'overlay', true);
+    this.sockWriteConnection(client, 'logging', this.clientLogLevel);
+    this.sockWriteConnection(client, 'hot');
+    this.sockWriteConnection(client, 'liveReload');
+    this.sockWriteConnection(client, 'progress', true);
+    this.sockWriteConnection(client, 'overlay', true);
 
     if (this.stats) {
-      this.sendStatsConnection(connection, this.getStats(this.stats), true);
+      this.sendStatsConnection(client, this.getStats(this.stats), true);
     }
   };
 }

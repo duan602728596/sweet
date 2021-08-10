@@ -4,7 +4,7 @@ import type { Socket } from 'net';
 import WebSocket from 'ws';
 import type { Compiler } from 'webpack';
 import { WebSocketServer } from './ws';
-import BasicServer, { ServerItem, ClientLogLevel } from './BasicServer';
+import BasicServer, { ServerItem, ServerConnection, ClientLogLevel } from './BasicServer';
 
 const noop: Function = (): void => { /* noop */ };
 
@@ -14,6 +14,7 @@ const noop: Function = (): void => { /* noop */ };
  */
 class WSServer extends BasicServer {
   public wsServer: WebSocketServer; // websocket服务
+  public pingTimer: NodeJS.Timer;
 
   /**
    * @param { Function } log: 日志方法
@@ -55,7 +56,7 @@ class WSServer extends BasicServer {
       this.log.error(err.message);
     });
 
-    setInterval((): void => {
+    this.pingTimer = setInterval((): void => {
       this.wsServer.clients.forEach((socket: WebSocket): void => {
         if (socket.isAlive === false) {
           return socket.terminate();
@@ -70,33 +71,39 @@ class WSServer extends BasicServer {
     this.compiler = compiler;
 
     // 当前的sock连接
-    this.sockets = [];
+    this.clients = new Set<ServerConnection>();
 
     // stats的缓存
     this.stats = null;
 
     this.setupHooks();
     this.onConnection(this.handleSocketConnection);
+    this.wsServer.on('close', this.handleServerClose);
   }
 
+  // 关闭
+  handleServerClose: Function = (): void => {
+    clearInterval(this.pingTimer);
+    this.clients.clear();
+  };
+
   // 发送数据
-  send(connection: WebSocket, message: string): void {
-    if (connection.readyState !== 1) {
+  send(client: WebSocket, message: string): void {
+    if (client.readyState !== 1) {
       return;
     }
 
-    connection.send(message);
+    client.send(message);
   }
 
-  // f should be passed the resulting connection and the connection headers
   onConnection(f: Function): void {
-    this.wsServer.on('connection', (connection: WebSocket, req: IncomingMessage): void => {
-      connection.isAlive = true;
-      connection.on('pong', (): void => {
-        connection.isAlive = true;
+    this.wsServer.on('connection', (client: WebSocket, req: IncomingMessage): void => {
+      client.isAlive = true;
+      client.on('pong', (): void => {
+        client.isAlive = true;
       });
 
-      f(connection, req.headers);
+      f(client, req.headers);
     });
   }
 }

@@ -4,7 +4,7 @@ import sockjs from 'sockjs';
 import type { Server as SockjsServer, Connection as SockjsConnection } from 'sockjs';
 import { Session as SockjsSession } from 'sockjs/lib/transport';
 import type { Compiler } from 'webpack';
-import BasicServer, { ServerItem, ClientLogLevel } from './BasicServer';
+import BasicServer, { ServerItem, ServerConnection, ClientLogLevel } from './BasicServer';
 
 // Workaround for sockjs@~0.3.19
 // sockjs will remove Origin header, however Origin header is required for checking host.
@@ -68,29 +68,39 @@ class SockJSServer extends BasicServer {
     this.compiler = compiler;
 
     // 当前的sock连接
-    this.sockets = [];
+    this.clients = new Set<ServerConnection>();
 
     // stats的缓存
     this.stats = null;
 
     this.setupHooks();
     this.onConnection(this.handleSocketConnection);
+    this.sockjsServer.on('close', this.handleServerClose);
   }
 
+  // 关闭
+  handleServerClose: Function = (): void => {
+    this.clients.forEach((o: ServerConnection): void => o.close());
+    this.clients.clear();
+  };
+
   // 发送数据
-  send(connection: SockjsConnection, message: string): void {
+  send(client: SockjsConnection, message: string): void {
     // prevent cases where the server is trying to send data while connection is closing
-    if (connection.readyState !== 1) {
+    if (client.readyState !== 1) {
       return;
     }
 
-    connection.write(message);
+    client.write(message);
   }
 
   // f should be passed the resulting connection and the connection headers
   onConnection(f: Function): void {
-    this.sockjsServer.on('connection', (connection: SockjsConnection): void => {
-      f(connection, connection ? connection.headers : null);
+    this.sockjsServer.on('connection', (client: SockjsConnection): void => {
+      client['send'] = client.write;
+      client['terminate'] = client.close;
+
+      f(client, client.headers);
     });
   }
 }
