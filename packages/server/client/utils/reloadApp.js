@@ -31,22 +31,22 @@ function reloadApp(_ref, _ref2) {
     }
   } // allow refreshing the page only if liveReload isn't disabled
   else if (liveReload && allowToLiveReload) {
-      var rootWindow = self; // use parent window for reload (in case we're in an iframe with no valid src)
+    var rootWindow = self; // use parent window for reload (in case we're in an iframe with no valid src)
 
-      var intervalId = self.setInterval(function () {
-        if (rootWindow.location.protocol !== "about:") {
-          // reload immediately if protocol is valid
+    var intervalId = self.setInterval(function () {
+      if (rootWindow.location.protocol !== "about:") {
+        // reload immediately if protocol is valid
+        applyReload(rootWindow, intervalId);
+      } else {
+        rootWindow = rootWindow.parent;
+
+        if (rootWindow.parent === rootWindow) {
+          // if parent equals current window we've reached the root which would continue forever, so trigger a reload anyways
           applyReload(rootWindow, intervalId);
-        } else {
-          rootWindow = rootWindow.parent;
-
-          if (rootWindow.parent === rootWindow) {
-            // if parent equals current window we've reached the root which would continue forever, so trigger a reload anyways
-            applyReload(rootWindow, intervalId);
-          }
         }
-      });
-    }
+      }
+    });
+  }
 }
 
 export default reloadApp;

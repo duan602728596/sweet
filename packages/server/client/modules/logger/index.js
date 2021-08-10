@@ -91,61 +91,33 @@ function _createClass(Constructor, protoProps, staticProps) {
 }
 
 var LogType = Object.freeze({
-  error:
-  /** @type {"error"} */
-  "error",
+  error: "error",
   // message, c style arguments
-  warn:
-  /** @type {"warn"} */
-  "warn",
+  warn: "warn",
   // message, c style arguments
-  info:
-  /** @type {"info"} */
-  "info",
+  info: "info",
   // message, c style arguments
-  log:
-  /** @type {"log"} */
-  "log",
+  log: "log",
   // message, c style arguments
-  debug:
-  /** @type {"debug"} */
-  "debug",
+  debug: "debug",
   // message, c style arguments
-  trace:
-  /** @type {"trace"} */
-  "trace",
+  trace: "trace",
   // no arguments
-  group:
-  /** @type {"group"} */
-  "group",
+  group: "group",
   // [label]
-  groupCollapsed:
-  /** @type {"groupCollapsed"} */
-  "groupCollapsed",
+  groupCollapsed: "groupCollapsed",
   // [label]
-  groupEnd:
-  /** @type {"groupEnd"} */
-  "groupEnd",
+  groupEnd: "groupEnd",
   // [label]
-  profile:
-  /** @type {"profile"} */
-  "profile",
+  profile: "profile",
   // [profileName]
-  profileEnd:
-  /** @type {"profileEnd"} */
-  "profileEnd",
+  profileEnd: "profileEnd",
   // [profileName]
-  time:
-  /** @type {"time"} */
-  "time",
+  time: "time",
   // name, time as [seconds, nanoseconds]
-  clear:
-  /** @type {"clear"} */
-  "clear",
+  clear: "clear",
   // no arguments
-  status:
-  /** @type {"status"} */
-  "status" // message, arguments
+  status: "status" // message, arguments
 
 });
 exports.LogType = LogType;

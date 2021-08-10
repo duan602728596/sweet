@@ -2,38 +2,46 @@
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
 
-/***/ "./node_modules/ansi-regex/index.js":
+/***/ "./node_modules/strip-ansi/index.js":
 /*!******************************************!*\
-  !*** ./node_modules/ansi-regex/index.js ***!
+  !*** ./node_modules/strip-ansi/index.js ***!
   \******************************************/
-/***/ (function(module) {
+/***/ (function(__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) {
 
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": function() { return /* binding */ stripAnsi; }
+/* harmony export */ });
+/* harmony import */ var ansi_regex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ansi-regex */ "./node_modules/strip-ansi/node_modules/ansi-regex/index.js");
 
+function stripAnsi(string) {
+  if (typeof string !== 'string') {
+    throw new TypeError("Expected a `string`, got `".concat(typeof string, "`"));
+  }
 
-module.exports = function () {
+  return string.replace((0,ansi_regex__WEBPACK_IMPORTED_MODULE_0__.default)(), '');
+}
+
+/***/ }),
+
+/***/ "./node_modules/strip-ansi/node_modules/ansi-regex/index.js":
+/*!******************************************************************!*\
+  !*** ./node_modules/strip-ansi/node_modules/ansi-regex/index.js ***!
+  \******************************************************************/
+/***/ (function(__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": function() { return /* binding */ ansiRegex; }
+/* harmony export */ });
+function ansiRegex() {
   var _ref = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
       _ref$onlyFirst = _ref.onlyFirst,
       onlyFirst = _ref$onlyFirst === void 0 ? false : _ref$onlyFirst;
 
   var pattern = ["[\\u001B\\u009B][[\\]()#;?]*(?:(?:(?:[a-zA-Z\\d]*(?:;[-a-zA-Z\\d\\/#&.:=?%@~_]*)*)?\\u0007)", '(?:(?:\\d{1,4}(?:;\\d{0,4})*)?[\\dA-PR-TZcf-ntqry=><~]))'].join('|');
   return new RegExp(pattern, onlyFirst ? undefined : 'g');
-};
-
-/***/ }),
-
-/***/ "./node_modules/strip-ansi/index.js":
-/*!******************************************!*\
-  !*** ./node_modules/strip-ansi/index.js ***!
-  \******************************************/
-/***/ (function(module, __unused_webpack_exports, __webpack_require__) {
-
-
-
-var ansiRegex = __webpack_require__(/*! ansi-regex */ "./node_modules/ansi-regex/index.js");
-
-module.exports = function (string) {
-  return typeof string === 'string' ? string.replace(ansiRegex(), '') : string;
-};
+}
 
 /***/ })
 
@@ -64,18 +72,6 @@ module.exports = function (string) {
 /******/ 	}
 /******/ 	
 /************************************************************************/
-/******/ 	/* webpack/runtime/compat get default export */
-/******/ 	!function() {
-/******/ 		// getDefaultExport function for compatibility with non-harmony modules
-/******/ 		__webpack_require__.n = function(module) {
-/******/ 			var getter = module && module.__esModule ?
-/******/ 				function() { return module['default']; } :
-/******/ 				function() { return module; };
-/******/ 			__webpack_require__.d(getter, { a: getter });
-/******/ 			return getter;
-/******/ 		};
-/******/ 	}();
-/******/ 	
 /******/ 	/* webpack/runtime/define property getters */
 /******/ 	!function() {
 /******/ 		// define getter functions for harmony exports
@@ -113,9 +109,8 @@ var __webpack_exports__ = {};
   \************************************************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var strip_ansi__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! strip-ansi */ "./node_modules/strip-ansi/index.js");
-/* harmony import */ var strip_ansi__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(strip_ansi__WEBPACK_IMPORTED_MODULE_0__);
 
-/* harmony default export */ __webpack_exports__["default"] = ((strip_ansi__WEBPACK_IMPORTED_MODULE_0___default()));
+/* harmony default export */ __webpack_exports__["default"] = (strip_ansi__WEBPACK_IMPORTED_MODULE_0__.default);
 }();
 var __webpack_export_target__ = exports;
 for(var i in __webpack_exports__) __webpack_export_target__[i] = __webpack_exports__[i];
