@@ -45,7 +45,7 @@
   "dependencies": {
     "@babel/core": "^7.15.0",
     "@babel/register": "^7.14.5",
-    "@bbkkbkk/files-map-webpack-plugin": "^1.1.0",
+    "@bbkkbkk/files-map-webpack-plugin": "^2.0.0",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.4.3",
     "@svgr/webpack": "^5.5.0",
     "@sweet-milktea/babel-preset-sweet": "^3.1.1",
