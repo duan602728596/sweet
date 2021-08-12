@@ -29,8 +29,6 @@ export default async function(sweetConfig: SweetConfig, sweetOptions: SweetOptio
   });
 
   // react-refresh-webpack-plugin
-  const isReactRefresh: boolean = !!hot && frame === 'react';
-
   config.when(!!hot && frame === 'react', (chainConfig: Config): void => {
     chainConfig
       .plugin('react-refresh-webpack-plugin')
