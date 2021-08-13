@@ -30,7 +30,7 @@
     "@babel/preset-env": "^7.15.0",
     "@babel/preset-react": "^7.14.5",
     "@babel/preset-typescript": "^7.15.0",
-    "@babel/runtime-corejs3": "^7.14.9",
+    "@babel/runtime-corejs3": "^7.15.3",
     "@sweet-milktea/utils": "^3.0.2",
     "babel-plugin-polyfill-corejs3": "^0.2.4",
     "babel-plugin-polyfill-es-shims": "^0.3.0",
