@@ -11,9 +11,7 @@ export default async function(sweetConfig: SweetConfig, sweetOptions: SweetOptio
   const { dll, serverRender, frame, hot }: SweetConfig = sweetConfig;
 
   // dll
-  const isDll: boolean = !!(dll && Array.isArray(dll) && dll.length > 0 && !serverRender);
-
-  if (isDll) {
+  if (dll && Array.isArray(dll) && dll.length > 0 && !serverRender) {
     config
       .plugin('webpack.DllReferencePlugin')
       .use(webpack.DllReferencePlugin, [{
