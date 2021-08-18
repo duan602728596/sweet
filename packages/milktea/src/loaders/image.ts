@@ -6,7 +6,7 @@ export default function(sweetConfig: SweetConfig, config: Config): void {
   config
     .module
     .rule('image')
-    .test(/^.*\.(jpe?g|png|gif|webp|avifs?|avis)|(?<!component)\.svg$/i)
+    .test(/^.*\.(jpe?g|png|gif|webp|avifs?|avis)|(?<!component)\.svgz?$/i)
     .merge({
       type: 'asset',
       generator: {

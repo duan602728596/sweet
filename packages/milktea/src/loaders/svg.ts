@@ -11,7 +11,7 @@ export default function(sweetConfig: SweetConfig, config: Config): void {
         chainConfig
           .module
           .rule('svg')
-          .test(/component\.svg$/i)
+          .test(/component\.svgz?$/i)
           .use('@svgr/webpack')
           .loader('@svgr/webpack');
       }
@@ -24,7 +24,7 @@ export default function(sweetConfig: SweetConfig, config: Config): void {
         chainConfig
           .module
           .rule('svg')
-          .test(/component\.svg$/i)
+          .test(/component\.svgz?$/i)
           .use('vue-loader')
           .loader('vue-loader')
           .end()
