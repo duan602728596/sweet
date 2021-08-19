@@ -23,15 +23,15 @@
   "dependencies": {
     "@sweet-milktea/utils": "^3.0.2",
     "lodash": "^4.17.21",
-    "yargs": "^17.1.0"
+    "yargs": "^17.1.1"
   },
   "devDependencies": {
-    "@sweet-milktea/milktea": "^3.1.0",
+    "@sweet-milktea/milktea": "^3.1.2",
     "@sweet-milktea/milktea-vite": "^3.0.3",
-    "@sweet-milktea/server": "^3.1.1",
+    "@sweet-milktea/server": "^3.1.2",
     "@sweet-milktea/server-log": "^3.0.0",
     "@sweet-milktea/util-tools": "^3.1.1",
-    "vite": "^2.4.4",
+    "vite": "^2.5.0",
     "webpack": "^5.50.0"
   },
   "peerDependencies": {
