@@ -58,7 +58,7 @@
     "@babel/core": "^7.15.0",
     "@babel/register": "^7.15.3",
     "@bbkkbkk/http-proxy": "^1.17.0",
-    "@koa/router": "^10.1.0",
+    "@koa/router": "^10.1.1",
     "@sweet-milktea/babel-preset-sweet": "^3.1.1",
     "@sweet-milktea/utils": "^3.0.2",
     "ansi-html": "^0.0.7",
@@ -90,7 +90,7 @@
     "@sweet-milktea/server-log": "^3.0.0",
     "nunjucks": "^3.2.3",
     "vite": "^2.5.0",
-    "webpack": "^5.50.0"
+    "webpack": "^5.51.1"
   },
   "peerDependencies": {
     "@sweet-milktea/milktea": ">=3",
