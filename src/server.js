@@ -1,7 +1,7 @@
 require('source-map-support').install();
 
 import { createSSRApp } from 'vue';
-import { renderToStream } from '@vue/server-renderer';
+import { renderToNodeStream } from '@vue/server-renderer';
 import { ConfigProvider } from 'ant-design-vue';
 import zhCN from 'ant-design-vue/es/locale/zh_CN';
 import { createHead } from '@vueuse/head';
@@ -39,7 +39,7 @@ async function server(url, context = {}, initialState = {}) {
   router.push(url);
   await router.isReady();
 
-  return renderToStream(app);
+  return renderToNodeStream(app);
 }
 
 export default server;
