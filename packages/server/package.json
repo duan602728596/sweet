@@ -78,18 +78,18 @@
     "module-alias": "^2.2.2",
     "path-to-regexp": "^6.2.0",
     "sockjs": "^0.3.21",
-    "sockjs-client": "^1.5.1",
+    "sockjs-client": "^1.5.2",
     "url": "^0.11.0",
     "webpack-dev-middleware": "^5.0.0",
     "webpack-log": "^3.0.2",
-    "ws": "^8.2.0"
+    "ws": "^8.2.1"
   },
   "devDependencies": {
     "@sweet-milktea/milktea": "^3.1.2",
     "@sweet-milktea/milktea-vite": "^3.0.3",
     "@sweet-milktea/server-log": "^3.0.0",
     "nunjucks": "^3.2.3",
-    "vite": "^2.5.0",
+    "vite": "^2.5.1",
     "webpack": "^5.51.1"
   },
   "peerDependencies": {
