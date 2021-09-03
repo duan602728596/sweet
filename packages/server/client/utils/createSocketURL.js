@@ -13,7 +13,7 @@ function createSocketURL(parsedURL) {
     hostname = self.location.hostname;
   }
 
-  var socketURLProtocol = parsedURL.protocol || "ws:"; // When https is used in the app, secure web sockets are always necessary because the browser doesn't accept non-secure web sockets.
+  var socketURLProtocol = parsedURL.protocol || self.location.protocol; // When https is used in the app, secure web sockets are always necessary because the browser doesn't accept non-secure web sockets.
 
   if (socketURLProtocol === "auto:" || hostname && isInAddrAny && self.location.protocol === "https:") {
     socketURLProtocol = self.location.protocol;

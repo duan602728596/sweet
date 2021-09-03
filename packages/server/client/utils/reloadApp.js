@@ -1,13 +1,28 @@
+/* global __webpack_hash__ */
 import hotEmitter from "webpack/hot/emitter.js";
 import { log } from "./log.js";
 
-function reloadApp(_ref, _ref2) {
+function reloadApp(_ref, status) {
   var hot = _ref.hot,
       liveReload = _ref.liveReload;
-  var isUnloading = _ref2.isUnloading,
-      currentHash = _ref2.currentHash;
 
-  if (isUnloading) {
+  if (status.isUnloading) {
+    return;
+  } // TODO Workaround for webpack v4, `__webpack_hash__` is not replaced without HotModuleReplacement plugin
+
+
+  var webpackHash = // eslint-disable-next-line camelcase
+  typeof __webpack_hash__ !== "undefined" ? // eslint-disable-next-line camelcase
+  __webpack_hash__ : status.previousHash || "";
+  var isInitial = status.currentHash.indexOf(webpackHash) === 0;
+
+  if (isInitial) {
+    var isLegacyInitial = webpackHash === "" && hot === false && liveReload === true;
+
+    if (isLegacyInitial) {
+      status.previousHash = status.currentHash;
+    }
+
     return;
   }
 
@@ -23,11 +38,11 @@ function reloadApp(_ref, _ref2) {
 
   if (hot && allowToHot) {
     log.info("App hot update...");
-    hotEmitter.emit("webpackHotUpdate", currentHash);
+    hotEmitter.emit("webpackHotUpdate", status.currentHash);
 
     if (typeof self !== "undefined" && self.window) {
       // broadcast update to window
-      self.postMessage("webpackHotUpdate".concat(currentHash), "*");
+      self.postMessage("webpackHotUpdate".concat(status.currentHash), "*");
     }
   } // allow refreshing the page only if liveReload isn't disabled
   else if (liveReload && allowToLiveReload) {

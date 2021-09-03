@@ -1,4 +1,4 @@
-/* global __resourceQuery */
+/* global __resourceQuery, __webpack_hash__ */
 import webpackHotLog from "webpack/hot/log.js";
 import stripAnsi from "./modules/strip-ansi/index.js";
 import parseURL from "./utils/parseURL.js";
@@ -10,16 +10,28 @@ import reloadApp from "./utils/reloadApp.js";
 import createSocketURL from "./utils/createSocketURL.js";
 var status = {
   isUnloading: false,
-  currentHash: ""
-};
+  // TODO Workaround for webpack v4, `__webpack_hash__` is not replaced without HotModuleReplacement
+  // eslint-disable-next-line camelcase
+  currentHash: typeof __webpack_hash__ !== "undefined" ? __webpack_hash__ : ""
+}; // console.log(__webpack_hash__);
+
 var options = {
   hot: false,
   liveReload: false,
-  initial: true,
   progress: false,
   overlay: false
 };
 var parsedResourceQuery = parseURL(__resourceQuery);
+
+if (parsedResourceQuery.hot === "true") {
+  options.hot = true;
+  log.info("Hot Module Replacement enabled.");
+}
+
+if (parsedResourceQuery["live-reload"] === "true") {
+  options.liveReload = true;
+  log.info("Live Reloading enabled.");
+}
 
 if (parsedResourceQuery.logging) {
   options.logging = parsedResourceQuery.logging;
@@ -101,10 +113,6 @@ var onSocketMessage = {
       hide();
     }
 
-    if (options.initial) {
-      return options.initial = false;
-    }
-
     reloadApp(options, status);
   },
   // TODO: remove in v5 in favor of 'static-changed'
@@ -135,10 +143,6 @@ var onSocketMessage = {
       show(_warnings, "warnings");
     }
 
-    if (options.initial) {
-      return options.initial = false;
-    }
-
     reloadApp(options, status);
   },
   errors: function errors(_errors) {
@@ -159,14 +163,12 @@ var onSocketMessage = {
     if (needShowOverlay) {
       show(_errors, "errors");
     }
-
-    options.initial = false;
   },
   error: function error(_error) {
     log.error(_error);
   },
   close: function close() {
-    log.error("Disconnected!");
+    log.info("Disconnected!");
     sendMessage("Close");
   }
 };
