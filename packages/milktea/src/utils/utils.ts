@@ -23,7 +23,7 @@ export function customizer(objValue: any, srcValue: any): Array<any> | undefined
 }
 
 /* extensions扩展名 */
-export const extensions: Array<string> = ['.mjs', '.ts', '.tsx', '.js', '.jsx', 'cjs', '.json', '.vue', '.wasm'];
+export const extensions: Array<string> = ['.ts', '.tsx', '.js', '.mjs', '.cjs', '.jsx', '.vue', '.wasm', '.json'];
 
 /* 重新赋值 */
 export function changeSweetConfig(sweetConfig: SweetConfig): void {

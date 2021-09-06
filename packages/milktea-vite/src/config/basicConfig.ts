@@ -22,7 +22,7 @@ export function basicConfig(sweetOptions: SweetOptions): InlineConfig {
       assetsDir: ''
     },
     resolve: {
-      extensions: ['.mjs', '.ts', '.tsx', '.js', '.jsx', 'cjs', '.json', '.vue', '.wasm']
+      extensions: ['.ts', '.tsx', '.js', '.mjs', '.cjs', '.jsx', '.vue', '.wasm', '.json']
     }
   };
 }
