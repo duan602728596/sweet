@@ -36,7 +36,7 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
       .use(TerserPlugin, [{
         extractComments: false,
         terserOptions
-      }])
+      }] as any)
       .end()
       // css代码压缩
       .minimizer('css-minimizer-webpack-plugin')
