@@ -90,11 +90,14 @@ async function addJsExt() {
       textArr.forEach(function(value, index) {
         if (
           (/^import /.test(value) || /^export {/.test(value))
-          && (/from '\./.test(value) || /import '\./.test(value) || /from 'sockjs\/lib/.test(value))
+          && (
+            /from '\./.test(value)
+            || /import '\./.test(value)
+            || /from 'sockjs\/lib/.test(value) // sockjs
+            || /from '@typescript-eslint\/eslint-plugin\/dist/.test(value) // typescript-eslint
+          )
         ) {
-          const newValue = value.replace(/';$/, ".js';");
-
-          textArr[index] = newValue;
+          textArr[index] = value.replace(/';$/, ".js';");
         }
       });
 
