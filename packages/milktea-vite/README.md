@@ -53,8 +53,8 @@ module.exports = function(info) {
 * vite `{ object }` : vite配置，会合并到默认配置中
 * chainVite `{ Function }` : 通过扩展或修改vite配置
 * typescript(ts) `{ object }` : typescript配置
-  * configFile `{ string }` : typescript的配置文件
-  * tsChecker `{ boolean }` : 设置为false时，关闭vite-plugin-checker插件注入
+    * configFile `{ string }` : typescript的配置文件
+    * tsChecker `{ boolean }` : 设置为false时，关闭vite-plugin-checker插件注入
 
 下面的配置是关于服务器端渲染的
 

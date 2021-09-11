@@ -73,35 +73,35 @@ module.exports = function(info) {
 * noParse `RegExp | Array<RegExp> | Function` : 防止解析任何与给定正则表达式相匹配的文件（参考webpack）
 * plugins `{ Array<any> }` : 自定义webpack插件
 * javascript(js) `{ object }` : javascript配置
-  * targets `{ object }` : 配置@babel/preset-env的编译目标
-  * ecmascript `{ boolean }` : 是否编译到ecmascript的最新语法（即不使用@babel/preset-env，通常适用于node、nwjs和electron）
-  * polyfill `{ boolean }` : 使用babel-plugin-polyfill-{name}相关插件
-  * typescript `{ boolean }` : 是否使用typescript编译（即使用@babel/preset-typescript）
-  * presets `{ Array<any> }` : 自定义presets
-  * plugins `{ Array<any> }` : 自定义plugins
-  * exclude `{ RegExp }` : exclude规则
-  * include `{ RegExp }` : include规则
+    * targets `{ object }` : 配置@babel/preset-env的编译目标
+    * ecmascript `{ boolean }` : 是否编译到ecmascript的最新语法（即不使用@babel/preset-env，通常适用于node、nwjs和electron）
+    * polyfill `{ boolean }` : 使用babel-plugin-polyfill-{name}相关插件
+    * typescript `{ boolean }` : 是否使用typescript编译（即使用@babel/preset-typescript）
+    * presets `{ Array<any> }` : 自定义presets
+    * plugins `{ Array<any> }` : 自定义plugins
+    * exclude `{ RegExp }` : exclude规则
+    * include `{ RegExp }` : include规则
 * typescript(ts) `{ object }` : typescript配置
-  * configFile `{ string }` : typescript的配置文件
-  * presets `{ Array<any> }` : 自定义babel的presets
-  * plugins `{ Array<any> }` : 自定义babel的plugins
-  * exclude `{ RegExp }` : exclude规则
-  * include `{ RegExp }` : include规则
-  * forkTsCheckerWebpackPlugin `{ boolean }` : 设置为false时，关闭fork-ts-checker-webpack-plugin插件注入
+    * configFile `{ string }` : typescript的配置文件
+    * presets `{ Array<any> }` : 自定义babel的presets
+    * plugins `{ Array<any> }` : 自定义babel的plugins
+    * exclude `{ RegExp }` : exclude规则
+    * include `{ RegExp }` : include规则
+    * forkTsCheckerWebpackPlugin `{ boolean }` : 设置为false时，关闭fork-ts-checker-webpack-plugin插件注入
 * sass `{ object }` : sass配置
-  * modules `{ boolean }` : 开启css-in-modules
-  * exclude `{ RegExp }` : exclude规则
-  * include `{ RegExp }` : include规则
-  * additionalData `{ string | Function }` : 注入sass变量（参考sass-loader）
+    * modules `{ boolean }` : 开启css-in-modules
+    * exclude `{ RegExp }` : exclude规则
+    * include `{ RegExp }` : include规则
+    * additionalData `{ string | Function }` : 注入sass变量（参考sass-loader）
 * css `{ object }` : css配置（默认使用less）
-  * modules `{ boolean }` : 开启css-in-modules
-  * exclude `{ RegExp }` : exclude规则
-  * include `{ RegExp }` : include规则
-  * modifyVars `{ object }` : 注入less变量（参考less-loader）
-  * additionalData `{ string | Function }` : （参考less-loader）
+    * modules `{ boolean }` : 开启css-in-modules
+    * exclude `{ RegExp }` : exclude规则
+    * include `{ RegExp }` : include规则
+    * modifyVars `{ object }` : 注入less变量（参考less-loader）
+    * additionalData `{ string | Function }` : （参考less-loader）
 * html `{ Array<object> }` : html配置（默认使用pug）
-  * template `{ string }` : html模板文件地址
-  * 其他`html-webpack-plugin`的配置
+    * template `{ string }` : html模板文件地址
+    * 其他`html-webpack-plugin`的配置
 * frame `{ string }` : 值为`react`或`vue`，是否为react或vue模式，并自动注入loaders和plugins
 * chainWebpack `{ Function }` : 通过`webpack-chain`的API扩展或修改webpack配置
 * filesMap `{ boolean | object }` : 输出`filesMap.json`文件，记录了文件的映射

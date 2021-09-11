@@ -104,9 +104,9 @@ proServer({
 * serverRenderFile `{ string }` : 服务器端渲染的主模块文件。默认为`server.mjs`。
 * renderType `{ string }` : html使用的渲染模板，`ejs`或`nunjucks`。默认为`ejs`。**如果使用`nunjucks`，请自行下载依赖**。
 * log `{ object }` : 日志配置。
-  * type `{ 'file' | 'http' }` : 日志类型，本地*file* 或 远程接口*http*。
-  * pm2 `{ boolean }` : 服务是否在pm2状态下运行。
-  * url `{ string }` : 日志的远程接口。
+    * type `{ 'file' | 'http' }` : 日志类型，本地*file* 或 远程接口*http*。
+    * pm2 `{ boolean }` : 服务是否在pm2状态下运行。
+    * url `{ string }` : 日志的远程接口。
 * serverChain `{ (app: Koa) => Promise<void> }` : 扩展koa中间件配置。
 * httpsKey `{ string }` : 配置https的证书（*.key）。
 * httpsCert `{ string }` : 配置https的证书（*.crt）。
