@@ -19,7 +19,7 @@
 > 甜甜的奶茶，甜甜的......   
 > ![](statics/tsl.jpg)
 
-[sweet](https://github.com/duan602728596/sweet) 是一个webpack开发和生产环境的通用配置解决方案。
+[sweet](https://github.com/duan602728596/sweet) 是一个webpack、vite开发和生产环境的通用配置解决方案。
 
 ## 特点：
 

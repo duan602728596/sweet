@@ -5442,7 +5442,7 @@ module.exports = {
   \***************************************************/
 /***/ (function(module) {
 
-module.exports = '1.5.2';
+module.exports = '1.5.1';
 
 /***/ }),
 
@@ -6105,9 +6105,8 @@ function plural(ms, msAbs, n, name) {
 
 var required = __webpack_require__(/*! requires-port */ "./node_modules/requires-port/index.js"),
     qs = __webpack_require__(/*! querystringify */ "./node_modules/querystringify/index.js"),
-    slashes = /^[A-Za-z][A-Za-z0-9+-.]*:\/\//,
-    protocolre = /^([a-z][a-z0-9.+-]*:)?(\/\/)?([\\/]+)?([\S\s]*)/i,
-    windowsDriveLetter = /^[a-zA-Z]:/,
+    slashes = /^[A-Za-z][A-Za-z0-9+-.]*:[\\/]+/,
+    protocolre = /^([a-z][a-z0-9.+-]*:)?([\\/]{1,})?([\S\s]*)/i,
     whitespace = "[\\x09\\x0A\\x0B\\x0C\\x0D\\x20\\xA0\\u1680\\u180E\\u2000\\u2001\\u2002\\u2003\\u2004\\u2005\\u2006\\u2007\\u2008\\u2009\\u200A\\u202F\\u205F\\u3000\\u2028\\u2029\\uFEFF]",
     left = new RegExp('^' + whitespace + '+');
 /**
@@ -6137,9 +6136,9 @@ function trimLeft(str) {
 
 var rules = [['#', 'hash'], // Extract from the back.
 ['?', 'query'], // Extract from the back.
-function sanitize(address, url) {
+function sanitize(address) {
   // Sanitize what is left of the address
-  return isSpecial(url.protocol) ? address.replace(/\\/g, '/') : address;
+  return address.replace('\\', '/');
 }, ['/', 'pathname'], // Extract from the back.
 ['@', 'auth', 1], // Extract from the front.
 [NaN, 'host', undefined, 1, 1], // Set left over value.
@@ -6203,18 +6202,6 @@ function lolcation(loc) {
   return finaldestination;
 }
 /**
- * Check whether a protocol scheme is special.
- *
- * @param {String} The protocol scheme of the URL
- * @return {Boolean} `true` if the protocol scheme is special, else `false`
- * @private
- */
-
-
-function isSpecial(scheme) {
-  return scheme === 'file:' || scheme === 'ftp:' || scheme === 'http:' || scheme === 'https:' || scheme === 'ws:' || scheme === 'wss:';
-}
-/**
  * @typedef ProtocolExtract
  * @type Object
  * @property {String} protocol Protocol matched in the URL, in lowercase.
@@ -6226,57 +6213,20 @@ function isSpecial(scheme) {
  * Extract protocol information from a URL with/without double slash ("//").
  *
  * @param {String} address URL we want to extract from.
- * @param {Object} location
  * @return {ProtocolExtract} Extracted information.
  * @private
  */
 
 
-function extractProtocol(address, location) {
+function extractProtocol(address) {
   address = trimLeft(address);
-  location = location || {};
-  var match = protocolre.exec(address);
-  var protocol = match[1] ? match[1].toLowerCase() : '';
-  var forwardSlashes = !!match[2];
-  var otherSlashes = !!match[3];
-  var slashesCount = 0;
-  var rest;
-
-  if (forwardSlashes) {
-    if (otherSlashes) {
-      rest = match[2] + match[3] + match[4];
-      slashesCount = match[2].length + match[3].length;
-    } else {
-      rest = match[2] + match[4];
-      slashesCount = match[2].length;
-    }
-  } else {
-    if (otherSlashes) {
-      rest = match[3] + match[4];
-      slashesCount = match[3].length;
-    } else {
-      rest = match[4];
-    }
-  }
-
-  if (protocol === 'file:') {
-    if (slashesCount >= 2) {
-      rest = rest.slice(2);
-    }
-  } else if (isSpecial(protocol)) {
-    rest = match[4];
-  } else if (protocol) {
-    if (forwardSlashes) {
-      rest = rest.slice(2);
-    }
-  } else if (slashesCount >= 2 && isSpecial(location.protocol)) {
-    rest = match[4];
-  }
-
+  var match = protocolre.exec(address),
+      protocol = match[1] ? match[1].toLowerCase() : '',
+      slashes = !!(match[2] && match[2].length >= 2),
+      rest = match[2] && match[2].length === 1 ? '/' + match[3] : match[3];
   return {
     protocol: protocol,
-    slashes: forwardSlashes || isSpecial(protocol),
-    slashesCount: slashesCount,
+    slashes: slashes,
     rest: rest
   };
 }
@@ -6369,7 +6319,7 @@ function Url(address, location, parser) {
   // Extract protocol information before running the instructions.
   //
 
-  extracted = extractProtocol(address || '', location);
+  extracted = extractProtocol(address || '');
   relative = !extracted.protocol && !extracted.slashes;
   url.slashes = extracted.slashes || relative && location.slashes;
   url.protocol = extracted.protocol || location.protocol || '';
@@ -6378,15 +6328,13 @@ function Url(address, location, parser) {
   // component.
   //
 
-  if (extracted.protocol === 'file:' && (extracted.slashesCount !== 2 || windowsDriveLetter.test(address)) || !extracted.slashes && (extracted.protocol || extracted.slashesCount < 2 || !isSpecial(url.protocol))) {
-    instructions[3] = [/(.*)/, 'pathname'];
-  }
+  if (!extracted.slashes) instructions[3] = [/(.*)/, 'pathname'];
 
   for (; i < instructions.length; i++) {
     instruction = instructions[i];
 
     if (typeof instruction === 'function') {
-      address = instruction(address, url);
+      address = instruction(address);
       continue;
     }
 
@@ -6435,7 +6383,7 @@ function Url(address, location, parser) {
   //
 
 
-  if (url.pathname.charAt(0) !== '/' && isSpecial(url.protocol)) {
+  if (url.pathname.charAt(0) !== '/' && url.hostname) {
     url.pathname = '/' + url.pathname;
   } //
   // We should not add port numbers if they are already the default port number
@@ -6460,7 +6408,7 @@ function Url(address, location, parser) {
     url.password = instruction[1] || '';
   }
 
-  url.origin = url.protocol !== 'file:' && isSpecial(url.protocol) && url.host ? url.protocol + '//' + url.host : 'null'; //
+  url.origin = url.protocol && url.host && url.protocol !== 'file:' ? url.protocol + '//' + url.host : 'null'; //
   // The href is just the compiled result.
   //
 
@@ -6550,7 +6498,7 @@ function set(part, value, fn) {
     if (ins[4]) url[ins[1]] = url[ins[1]].toLowerCase();
   }
 
-  url.origin = url.protocol !== 'file:' && isSpecial(url.protocol) && url.host ? url.protocol + '//' + url.host : 'null';
+  url.origin = url.protocol && url.host && url.protocol !== 'file:' ? url.protocol + '//' + url.host : 'null';
   url.href = url.toString();
   return url;
 }
@@ -6569,7 +6517,7 @@ function toString(stringify) {
       url = this,
       protocol = url.protocol;
   if (protocol && protocol.charAt(protocol.length - 1) !== ':') protocol += ':';
-  var result = protocol + (url.slashes || isSpecial(url.protocol) ? '//' : '');
+  var result = protocol + (url.slashes ? '//' : '');
 
   if (url.username) {
     result += url.username;

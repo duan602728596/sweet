@@ -137,9 +137,9 @@ var onSocketMessage = {
       log.warn(strippedWarnings[i]);
     }
 
-    var needShowOverlay = typeof options.overlay === "boolean" ? options.overlay : options.overlay && options.overlay.warnings;
+    var needShowOverlayForWarnings = typeof options.overlay === "boolean" ? options.overlay : options.overlay && options.overlay.warnings;
 
-    if (needShowOverlay) {
+    if (needShowOverlayForWarnings) {
       show(_warnings, "warnings");
     }
 
@@ -158,9 +158,9 @@ var onSocketMessage = {
       log.error(strippedErrors[i]);
     }
 
-    var needShowOverlay = typeof options.overlay === "boolean" ? options.overlay : options.overlay && options.overlay.errors;
+    var needShowOverlayForErrors = typeof options.overlay === "boolean" ? options.overlay : options.overlay && options.overlay.errors;
 
-    if (needShowOverlay) {
+    if (needShowOverlayForErrors) {
       show(_errors, "errors");
     }
   },
@@ -169,6 +169,11 @@ var onSocketMessage = {
   },
   close: function close() {
     log.info("Disconnected!");
+
+    if (options.overlay) {
+      hide();
+    }
+
     sendMessage("Close");
   }
 };
