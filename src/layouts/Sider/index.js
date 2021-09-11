@@ -47,7 +47,7 @@ function Sider(props) {
             title={
               <span>
                 { item.icon }
-                { item.name }
+                <span>{ item.name }</span>
               </span>
             }
           >
