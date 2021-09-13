@@ -18,6 +18,10 @@
   "workspaces": [
     "packages/*"
   ],
+  "packageManager": "yarn@3.0.2",
+  "engines": {
+    "pm": "yarn@^3.0.2"
+  },
   "dependencies": {
     "@types/eslint": "^7",
     "@types/estree": "^0",
@@ -71,6 +75,5 @@
     "commitizen": {
       "path": "cz-conventional-changelog"
     }
-  },
-  "packageManager": "yarn@3.0.2"
+  }
 }
