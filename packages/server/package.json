@@ -51,8 +51,7 @@
     }
   },
   "scripts": {
-    "test": "cross-env NODE_ENV=test mocha ./test/test.mjs --timeout 180000",
-    "update-version": "milktea-esm update"
+    "test": "cross-env NODE_ENV=test mocha ./test/test.mjs --timeout 180000"
   },
   "dependencies": {
     "@babel/core": "^7.15.5",
@@ -88,6 +87,8 @@
     "@sweet-milktea/milktea": "^3.1.3",
     "@sweet-milktea/milktea-vite": "^3.1.3",
     "@sweet-milktea/server-log": "^3.0.0",
+    "cross-env": "*",
+    "mocha": "*",
     "nunjucks": "^3.2.3",
     "vite": "^2.5.6",
     "webpack": "^5.52.1"

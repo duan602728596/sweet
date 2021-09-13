@@ -17,8 +17,7 @@
     "default": "./lib/cli.js"
   },
   "scripts": {
-    "test": "cross-env NODE_ENV=test mocha ./test/test.mjs --timeout 60000",
-    "update-version": "milktea-esm update"
+    "test": "cross-env NODE_ENV=test mocha ./test/test.mjs --timeout 60000"
   },
   "dependencies": {
     "@sweet-milktea/utils": "^3.0.2",
@@ -31,6 +30,8 @@
     "@sweet-milktea/server": "^3.1.3",
     "@sweet-milktea/server-log": "^3.0.0",
     "@sweet-milktea/util-tools": "^3.1.1",
+    "cross-env": "*",
+    "mocha": "*",
     "vite": "^2.5.6",
     "webpack": "^5.52.1"
   },

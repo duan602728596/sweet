@@ -39,8 +39,7 @@
     }
   },
   "scripts": {
-    "test": "cross-env NODE_ENV=test mocha ./test/test.mjs --timeout 180000",
-    "update-version": "milktea-esm update"
+    "test": "cross-env NODE_ENV=test mocha ./test/test.mjs --timeout 180000"
   },
   "dependencies": {
     "@babel/core": "^7.15.5",
@@ -76,6 +75,8 @@
   },
   "devDependencies": {
     "@vue/babel-plugin-jsx": "^1.0.7",
+    "cross-env": "*",
+    "mocha": "*",
     "ts-loader": "^9.2.5",
     "vue-loader": "^16.5.0",
     "vue-svg-loader": "^0.17.0-beta.2"

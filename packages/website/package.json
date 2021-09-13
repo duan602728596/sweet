@@ -7,12 +7,9 @@
     "url": "git@github.com:duan602728596/sweet.git"
   },
   "scripts": {
-    "start": "rimraf dist && cross-env NODE_ENV=development milktea start --server",
-    "build": "rimraf dist && cross-env NODE_ENV=production milktea build",
-    "start:esm": "rimraf dist && cross-env NODE_ENV=development milktea-esm start --server",
-    "build:esm": "rimraf dist && cross-env NODE_ENV=production milktea-esm build",
-    "build:ci": "NODE_ENV=production milktea-esm build",
-    "update-version": "milktea-esm update"
+    "start": "rimraf dist && cross-env NODE_ENV=development milktea-esm start --server",
+    "build": "rimraf dist && cross-env NODE_ENV=production milktea-esm build",
+    "build:ci": "NODE_ENV=production milktea-esm build"
   },
   "dependencies": {
     "@ant-design/icons": "^4.6.4",
@@ -32,6 +29,8 @@
     "@sweet-milktea/milktea-cli": "*",
     "@sweet-milktea/server": "*",
     "babel-plugin-import": "^1.13.3",
-    "babel-plugin-transform-react-remove-prop-types": "^0.4.24"
+    "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
+    "cross-env": "*",
+    "rimraf": "*"
   }
 }

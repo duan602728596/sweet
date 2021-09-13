@@ -39,8 +39,7 @@
     }
   },
   "scripts": {
-    "test": "cross-env NODE_ENV=test mocha ./test/test.mjs --timeout 180000",
-    "update-version": "milktea-esm update"
+    "test": "cross-env NODE_ENV=test mocha ./test/test.mjs --timeout 180000"
   },
   "dependencies": {
     "@babel/core": "^7.15.5",
@@ -57,7 +56,9 @@
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^1.6.2",
-    "@vitejs/plugin-vue-jsx": "^1.1.8"
+    "@vitejs/plugin-vue-jsx": "^1.1.8",
+    "cross-env": "*",
+    "mocha": "*"
   },
   "peerDependencies": {
     "@vitejs/plugin-vue": ">=1",

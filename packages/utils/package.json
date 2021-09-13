@@ -18,6 +18,10 @@
   "scripts": {
     "test": "cross-env NODE_ENV=test mocha test/test.mjs --timeout 180000"
   },
+  "devDependencies": {
+    "cross-env": "*",
+    "mocha": "*"
+  },
   "engines": {
     "node": ">=12"
   }

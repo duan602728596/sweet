@@ -13,13 +13,16 @@
     "default": "./lib/index.js"
   },
   "scripts": {
-    "test": "cross-env NODE_ENV=test mocha ./test/test.mjs --timeout 180000",
-    "update-version": "milktea-esm update"
+    "test": "cross-env NODE_ENV=test mocha ./test/test.mjs --timeout 180000"
   },
   "dependencies": {
     "@bbkkbkk/koa-log4": "^2.3.4",
     "@log4js-node/logfaces-http": "^1.0.0",
     "log4js": "^6.3.0"
+  },
+  "devDependencies": {
+    "cross-env": "*",
+    "mocha": "*"
   },
   "engines": {
     "node": ">=12"
