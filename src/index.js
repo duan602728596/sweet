@@ -1,4 +1,4 @@
-import { render } from 'react-dom';
+import { createRoot } from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { ConfigProvider } from 'antd';
@@ -8,15 +8,16 @@ import './global.sass';
 import AppRouters from './router/AppRouters';
 
 /* app */
-render(
+const root = createRoot(document.getElementById('app'));
+
+root.render(
   <Provider store={ storeFactory(window.__INITIAL_STATE__ || {}) }>
     <ConfigProvider locale={ zhCN }>
       <BrowserRouter>
         <AppRouters />
       </BrowserRouter>
     </ConfigProvider>
-  </Provider>,
-  document.getElementById('app')
+  </Provider>
 );
 
 if (module.hot) {

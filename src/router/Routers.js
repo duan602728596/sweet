@@ -1,5 +1,5 @@
 import { useRoutes } from 'react-router-dom';
-import asyncModule from './asyncModule/index';
+import asyncModule from './asyncModule';
 import Index from '../pages/Index/index';
 
 const SecondBundle = asyncModule(() => import(/* webpackChunkName: 'second' */ '../pages/Second/index'));

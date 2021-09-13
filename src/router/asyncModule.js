@@ -1,6 +1,6 @@
 import { lazy, Suspense } from 'react';
-import { replaceReducer } from '../../store/store';
-import Loading from '../../layouts/Loading';
+import { replaceReducer } from '../store/store';
+import Loading from '../layouts/Loading';
 
 /**
  * 异步加载、注入模块和reducer
