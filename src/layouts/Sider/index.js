@@ -47,7 +47,7 @@ function Sider(props) {
             title={
               <span>
                 { item.icon }
-                { item.name }
+                <span>{ item.name }</span>
               </span>
             }
           >
@@ -71,9 +71,13 @@ function Sider(props) {
   return (
     <ErrorBoundary>
       <Layout.Sider className={ style.sider }>
-        <Menu theme="light" mode="inline" defaultSelectedKeys={ getSelectKey(options) } style={{ borderRight: 'none' }}>
-          { menu(options) }
-        </Menu>
+        {
+          typeof window === 'object' && (
+            <Menu theme="light" mode="inline" defaultSelectedKeys={ getSelectKey(options) } style={{ borderRight: 'none' }}>
+              { menu(options) }
+            </Menu>
+          )
+        }
       </Layout.Sider>
     </ErrorBoundary>
   );
