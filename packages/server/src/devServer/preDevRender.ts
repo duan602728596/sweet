@@ -19,7 +19,7 @@ async function preRenderInit(sweetOptions: SweetOptions): Promise<Function> {
    * @param { Context } ctx: koa ctx
    * @param { string } serverRenderEntry: ssr文件入口
    */
-  return async function preRender(ctxPath: string, ctx: Context, serverRenderEntry: string): Promise<string> {
+  return async function preRender(ctxPath: string, ctx: Context, serverRenderEntry: string): Promise<void> {
     // 获取所有的controllers模块
     const controllersModules: Array<ControllersModule> = await getControllersFiles(sweetOptions, true);
 
@@ -37,10 +37,13 @@ async function preRenderInit(sweetOptions: SweetOptions): Promise<Function> {
     const result: Stream | string = await server(ctxPath, ctx, data.initialState);
     const render: string = isReadStream(result) ? (await readStream(result)).toString() : result;
 
-    return renderEngine(html.toString(), formatTemplateData({
+    // response body TODO: 为将来的pipeToNodeWritable做准备
+    const responseBody: string = renderEngine(html.toString(), formatTemplateData({
       render,
       ...data
     }));
+
+    ctx.body = responseBody;
   };
 }
 

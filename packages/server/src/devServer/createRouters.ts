@@ -57,13 +57,13 @@ async function createRouters(router: Router, sweetOptions: SweetOptions): Promis
           const entry: string = path.join(sweetOptions.serverRenderRoot, name);
 
           if (await isFileExists(entry)) {
-            ctx.body = await preRender(ctxPath, ctx, entry);
+            await preRender(ctxPath, ctx, entry);
           }
 
           return;
         }
 
-        ctx.body = await preRender(ctxPath, ctx, sweetOptions.serverRenderEntry);
+        await preRender(ctxPath, ctx, sweetOptions.serverRenderEntry);
       }
     } catch (err) {
       ctx.status = 500;

@@ -42,12 +42,20 @@ async function createRouters(
           const name: string = `${ parseResult.name }.js`;
           const entry: string = path.join(sweetOptions.serverRenderRoot, name);
 
-          ctx.body = (serverRender && (await isFileExists(entry))) ? await preRender(ctxPath, ctx, body, entry) : body;
+          if (serverRender && (await isFileExists(entry))) {
+            await preRender(ctxPath, ctx, body, entry);
+          } else {
+            ctx.body = body;
+          }
 
           return;
         }
 
-        ctx.body = serverRender ? await preRender(ctxPath, ctx, body, serverRenderEntry) : body;
+        if (serverRender) {
+          await preRender(ctxPath, ctx, body, serverRenderEntry);
+        } else {
+          ctx.body = body;
+        }
       }
     } catch (err) {
       ctx.status = 500;

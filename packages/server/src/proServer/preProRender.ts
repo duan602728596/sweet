@@ -12,7 +12,7 @@ async function preRenderInit(sweetOptions: SweetOptions): Promise<Function> {
   const renderEngine: Function = await createRenderEngine(sweetOptions.renderType); // 获取渲染器
   const controllersModules: Array<ControllersModule> = await getControllersFiles(sweetOptions); // 获取所有的controllers模块
 
-  return async function preRender(ctxPath: string, ctx: Context, html: Buffer, serverRenderEntry: string): Promise<string> {
+  return async function preRender(ctxPath: string, ctx: Context, html: Buffer, serverRenderEntry: string): Promise<void> {
     try {
       // 获取数据
       const index: number = controllersModules.findIndex(function(o: ControllersModule): boolean {
@@ -27,14 +27,18 @@ async function preRenderInit(sweetOptions: SweetOptions): Promise<Function> {
       const result: Stream | string = await server(ctxPath, ctx, data.initialState);
       const render: string = isReadStream(result) ? (await readStream(result)).toString() : result;
 
-      return renderEngine(html.toString(), formatTemplateData({
+      // response body TODO: 为将来的pipeToNodeWritable做准备
+      const responseBody: string = renderEngine(html.toString(), formatTemplateData({
         render,
         ...data
       }));
+
+      ctx.body = responseBody;
     } catch (err) {
       console.error(err);
 
-      return '';
+      ctx.status = 500;
+      ctx.body = `<pre style="font-size: 14px; white-space: pre-wrap;">${ err.stack.toString() }</pre>`;
     }
   };
 }
