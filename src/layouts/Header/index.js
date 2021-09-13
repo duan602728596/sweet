@@ -40,13 +40,13 @@ export default defineComponent({
             <Menu.Item key="index" class={ style.navMenuItem }>
               <router-link to="/Index">
                 <IconHomeOutlined />
-                首页
+                <span>首页</span>
               </router-link>
             </Menu.Item>
             <Menu.Item key="second" class={ style.navMenuItem }>
               <router-link to="/Second">
                 <IconHomeOutlined />
-                二级页
+                <span>二级页</span>
               </router-link>
             </Menu.Item>
           </Menu>
