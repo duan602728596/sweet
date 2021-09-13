@@ -35,9 +35,9 @@ export default async function(sweetConfig: SweetConfig, sweetOptions: SweetOptio
     // 添加react配置
     Object.assign(viteConfig, {
       esbuild: {
-        jsxFactory: 'React.createElement',
-        jsxFragment: 'React.Fragment',
-        jsxInject: "import * as React from 'react';"
+        jsxFactory: '_jsx',
+        jsxFragment: '_Fragment',
+        jsxInject: "import { createElement as _jsx, Fragment as _Fragment } from 'react';"
       }
     });
   } else if (frame === 'vue') {
