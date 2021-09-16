@@ -63,7 +63,7 @@
     "pug": "^3.0.2",
     "pug-loader": "^2.4.0",
     "react-refresh": "^0.10.0",
-    "sass": "^1.39.2",
+    "sass": "^1.41.0",
     "sass-loader": "^12.1.0",
     "style-loader": "^3.2.1",
     "terser": "^5.7.2",
