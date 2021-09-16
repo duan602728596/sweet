@@ -3,6 +3,7 @@ import _ from 'lodash';
 import { requireModule } from '@sweet-milktea/utils';
 import type { InlineConfig } from 'vite';
 import { basicConfig } from './config/basicConfig';
+import { esbuildReact, vueVitePlugin } from './config/jsx';
 import { addTsChecker } from './utils/tsChecker';
 import { changeSweetConfig } from './utils/utils';
 import type { SweetConfig, SweetOptions } from './utils/types';
@@ -34,19 +35,12 @@ export default async function(sweetConfig: SweetConfig, sweetOptions: SweetOptio
   if (frame === 'react') {
     // 添加react配置
     Object.assign(viteConfig, {
-      esbuild: {
-        jsxFactory: '_jsx',
-        jsxFragment: '_Fragment',
-        jsxInject: "import { createElement as _jsx, Fragment as _Fragment } from 'react';"
-      }
+      esbuild: esbuildReact
     });
   } else if (frame === 'vue') {
     // 添加vue配置
     Object.assign(viteConfig, {
-      plugins: [
-        (await requireModule('@vitejs/plugin-vue'))(),
-        (await requireModule('@vitejs/plugin-vue-jsx'))()
-      ]
+      plugins: vueVitePlugin()
     });
   }
 
