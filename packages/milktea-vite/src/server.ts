@@ -40,7 +40,7 @@ export default async function(sweetConfig: SweetConfig, sweetOptions: SweetOptio
   } else if (frame === 'vue') {
     // 添加vue配置
     Object.assign(viteConfig, {
-      plugins: vueVitePlugin()
+      plugins: await vueVitePlugin()
     });
   }
 
