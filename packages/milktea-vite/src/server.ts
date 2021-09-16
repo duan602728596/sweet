@@ -1,6 +1,5 @@
 import * as path from 'path';
 import _ from 'lodash';
-import { requireModule } from '@sweet-milktea/utils';
 import type { InlineConfig } from 'vite';
 import { basicConfig } from './config/basicConfig';
 import { esbuildReact, vueVitePlugin } from './config/jsx';
