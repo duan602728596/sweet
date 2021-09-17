@@ -20,7 +20,7 @@ export default async function(sweetConfig: SweetConfig, sweetOptions: SweetOptio
   changeSweetConfig(sweetConfig);
 
   const config: Config = new Config();
-  const SCFG: SweetConfig = _.omit(sweetConfig, [
+  const sweetConfigModified: SweetConfig = _.omit(sweetConfig, [
     'serverRender',
     'serverEntry',
     'serverOutput',
@@ -36,7 +36,7 @@ export default async function(sweetConfig: SweetConfig, sweetOptions: SweetOptio
     chainWebpack,
     javascript,
     webpackLog = 'progress'
-  }: SweetConfig = SCFG;
+  }: SweetConfig = sweetConfigModified;
   const ecmascript: boolean = !!javascript?.ecmascript;
 
   // 合并配置

@@ -22,7 +22,7 @@ export default async function(sweetConfig: SweetConfig, sweetOptions: SweetOptio
   changeSweetConfig(sweetConfig);
 
   const config: Config = new Config();
-  const SCFG: SweetConfig = _.omit(sweetConfig, [
+  const sweetConfigModified: SweetConfig = _.omit(sweetConfig, [
     'serverRender',
     'serverEntry',
     'serverOutput',
@@ -44,7 +44,7 @@ export default async function(sweetConfig: SweetConfig, sweetOptions: SweetOptio
     javascript,
     typescript,
     webpackLog = 'progress'
-  }: SweetConfig = SCFG;
+  }: SweetConfig = sweetConfigModified;
   const ecmascript: boolean = !!javascript?.ecmascript;
   const isDevelopment: boolean = mode === 'development';
 
@@ -104,13 +104,13 @@ export default async function(sweetConfig: SweetConfig, sweetOptions: SweetOptio
     && (await isTsconfigJsonExists(sweetOptions, typescript)));
 
   // loaders
-  await loaders(SCFG, sweetOptions, config);
+  await loaders(sweetConfigModified, sweetOptions, config);
 
   // plugins
-  await basicPlugins(SCFG, sweetOptions, config);
+  await basicPlugins(sweetConfigModified, sweetOptions, config);
 
   // optimization
-  optimization(SCFG, sweetOptions, config, false);
+  optimization(sweetConfigModified, sweetOptions, config, false);
 
   /* chainWebpack: 通过webpack-chain的API扩展或修改webpack配置 */
   if (chainWebpack) {
