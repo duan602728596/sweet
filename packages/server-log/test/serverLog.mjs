@@ -1,6 +1,6 @@
-import process from 'process';
-import path from 'path';
-import fs from 'fs';
+import process from 'node:process';
+import path from 'node:path';
+import fs from 'node:fs';
 import { expect } from 'chai';
 import { metaHelper } from '@sweet-milktea/utils';
 import serverLog from '../lib/index.js';

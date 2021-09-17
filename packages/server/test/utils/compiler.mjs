@@ -1,4 +1,4 @@
-import path from 'path';
+import path from 'node:path';
 import webpack from 'webpack';
 import { config as webpackConfig } from '@sweet-milktea/milktea';
 import { metaHelper } from '@sweet-milktea/utils';

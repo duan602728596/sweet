@@ -1,6 +1,6 @@
-import childProcess from 'child_process';
-import fs from 'fs';
-import path from 'path';
+import childProcess from 'node:child_process';
+import fs from 'node:fs';
+import path from 'node:path';
 import { expect } from 'chai';
 import { metaHelper } from '@sweet-milktea/utils';
 

@@ -1,4 +1,4 @@
-import process from 'process';
+import process from 'node:process';
 import { expect } from 'chai';
 import serverConfig from '../lib/server.js';
 import {

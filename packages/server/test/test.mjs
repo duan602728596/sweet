@@ -1,4 +1,4 @@
-import process from 'process';
+import process from 'node:process';
 
 /* 测试服务 */
 import './testServer.mjs';

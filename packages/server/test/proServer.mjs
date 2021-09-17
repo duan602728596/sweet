@@ -1,4 +1,4 @@
-import path from 'path';
+import path from 'node:path';
 import { expect } from 'chai';
 import { metaHelper } from '@sweet-milktea/utils';
 import proServer from '../proServer.js';

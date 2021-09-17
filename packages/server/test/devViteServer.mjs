@@ -1,4 +1,4 @@
-import path from 'path';
+import path from 'node:path';
 import { expect } from 'chai';
 import milkteaVite from '@sweet-milktea/milktea-vite';
 import { metaHelper } from '@sweet-milktea/utils';

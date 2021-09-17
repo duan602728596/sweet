@@ -1,5 +1,5 @@
-import fs from 'fs';
-import path from 'path';
+import fs from 'node:fs';
+import path from 'node:path';
 import { expect } from 'chai';
 import { metaHelper } from '@sweet-milktea/utils';
 import image2icns from '../../image2icns.js';

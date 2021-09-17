@@ -1,6 +1,6 @@
 /* 清除已编译的代码 */
-import util from 'util';
-import path from 'path';
+import util from 'node:util';
+import path from 'node:path';
 import rimraf from 'rimraf';
 import { dir, packageNames } from './config.mjs';
 

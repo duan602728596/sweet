@@ -1,4 +1,4 @@
-import process from 'process';
+import process from 'node:process';
 import webpackConfig from '../lib/config.js';
 import { expectModule, expectDevPlugins, expectProPlugins, expectOptimization } from './utils/expectFunction.mjs';
 

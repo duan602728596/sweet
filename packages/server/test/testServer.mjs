@@ -1,5 +1,5 @@
 /* 测试服务 */
-import http from 'http';
+import http from 'node:http';
 import Koa from 'koa';
 import Router from '@koa/router';
 import koaBody from 'koa-body';

@@ -1,6 +1,6 @@
-import path from 'path';
-import fs from 'fs';
-import util from 'util';
+import path from 'node:path';
+import fs from 'node:fs';
+import util from 'node:util';
 import { expect } from 'chai';
 import rimraf from 'rimraf';
 import { metaHelper, requireCommonjsModule } from '@sweet-milktea/utils';

@@ -1,4 +1,4 @@
-import process from 'process';
+import process from 'node:process';
 import { expect } from 'chai';
 import webpack from 'webpack';
 import webpackDllConfig from '../lib/dll.js';

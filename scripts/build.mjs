@@ -1,7 +1,7 @@
 /* gulp配置文件，编译packages下的所有文件 */
-import util from 'util';
-import path from 'path';
-import fs from 'fs';
+import util from 'node:util';
+import path from 'node:path';
+import fs from 'node:fs';
 import gulp from 'gulp';
 import typescript from 'gulp-typescript';
 import rename from 'gulp-rename';

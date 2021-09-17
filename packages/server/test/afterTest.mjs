@@ -1,5 +1,5 @@
-import util from 'util';
-import path from 'path';
+import util from 'node:util';
+import path from 'node:path';
 import rimraf from 'rimraf';
 import { metaHelper } from '@sweet-milktea/utils';
 
