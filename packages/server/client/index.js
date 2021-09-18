@@ -77,6 +77,7 @@ var onSocketMessage = {
     sendMessage("Invalid");
   },
   hash: function hash(_hash) {
+    status.previousHash = status.currentHash;
     status.currentHash = _hash;
   },
   logging: setAllLogLevel,

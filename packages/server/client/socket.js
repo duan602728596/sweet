@@ -1,12 +1,7 @@
 /* global __webpack_dev_server_client__ */
 import WebSocketClient from './clients/WebSocketClient.js';
-import SockJSClient from './clients/SockJSClient.js'; // this WebsocketClient is here as a default fallback, in case the client is not injected
-
-/* eslint-disable camelcase */
-
+import SockJSClient from './clients/SockJSClient.js';
 var Client = process.env.SWEET_SOCKET === 'ws' ? WebSocketClient : SockJSClient;
-/* eslint-enable camelcase */
-
 var retries = 0;
 var client = null;
 
