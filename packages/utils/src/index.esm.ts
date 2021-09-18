@@ -109,10 +109,10 @@ export async function isFileExists(file: string): Promise<boolean> {
  * @param { string } metaUrl
  */
 export function metaHelper(metaUrl: string): { __filename: string; __dirname: string } {
-  const __filename: string = fileURLToPath(metaUrl);
-  const __dirname: string = path.dirname(__filename);
+  const filename: string = fileURLToPath(metaUrl);
+  const dirname: string = path.dirname(filename);
 
-  return { __filename, __dirname };
+  return { __filename: filename, __dirname: dirname };
 }
 
 export default {
