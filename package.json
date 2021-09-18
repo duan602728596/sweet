@@ -40,7 +40,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.15.5",
-    "@babel/eslint-parser": "^7.15.4",
+    "@babel/eslint-parser": "^7.15.7",
     "@sweet-milktea/eslint-plugin": "*",
     "@sweet-milktea/milktea-cli": "^3.1.1",
     "@sweet-milktea/util-tools": "^3.1.1",
@@ -54,7 +54,7 @@
     "eslint-import-resolver-node": "^0.3.6",
     "eslint-import-resolver-typescript": "^2.5.0",
     "eslint-plugin-import": "^2.24.2",
-    "eslint-plugin-react": "^7.25.1",
+    "eslint-plugin-react": "^7.25.2",
     "husky": "^7.0.2",
     "lint-staged": "^11.1.2",
     "lodash": "^4.17.21",
