@@ -1,5 +1,6 @@
 import * as process from 'process';
 import { moduleExists } from '@sweet-milktea/utils';
+import type { PluginItem } from '@babel/core';
 import defaultPlugins from './utils/defaultPlugins';
 import presetEnv from './utils/presetEnv';
 import transformRuntime from './utils/transformRuntime';
@@ -41,8 +42,8 @@ function babelPresetSweet(api: any, options: Options = {}, dirname: string): Bab
     }
   }
 
-  const presets: Array<any> = [];
-  const plugins: Array<any> = defaultPlugins.concat([
+  const presets: Array<PluginItem> = [];
+  const plugins: Array<PluginItem> = defaultPlugins.concat([
     transformRuntime({
       ecmascript,
       nodeEnv,

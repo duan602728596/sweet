@@ -1,3 +1,5 @@
+import type { PluginItem } from '@babel/core';
+
 interface TransformRuntimeOptionsArgs {
   ecmascript?: boolean;
   nodeEnv?: boolean;
@@ -5,7 +7,7 @@ interface TransformRuntimeOptionsArgs {
 }
 
 /* @babel/plugin-transform-runtime */
-function transformRuntime(options: TransformRuntimeOptionsArgs): string | [string, { [key: string]: any }] {
+function transformRuntime(options: TransformRuntimeOptionsArgs): PluginItem {
   const { ecmascript, nodeEnv, polyfill }: TransformRuntimeOptionsArgs = options;
 
   if (polyfill) {

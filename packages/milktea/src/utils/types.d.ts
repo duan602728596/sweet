@@ -1,5 +1,6 @@
 import type { RuleSetRule, Entry, ResolveOptions, WebpackPluginInstance, Configuration, Stats } from 'webpack';
 import type Config from 'webpack-chain';
+import type { PluginItem } from '@babel/core';
 import type { CosmiconfigResult } from 'cosmiconfig/dist/types';
 import type { Options as HtmlWebpackPluginOptions } from 'html-webpack-plugin';
 
@@ -25,8 +26,8 @@ interface ConfigRule {
 }
 
 interface ScriptRule extends ConfigRule {
-  presets?: Array<any>;
-  plugins?: Array<any>;
+  presets?: Array<PluginItem>;
+  plugins?: Array<PluginItem>;
 }
 
 /* js配置 */

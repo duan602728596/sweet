@@ -1,5 +1,7 @@
+import type { PluginItem } from '@babel/core';
+
 /* 默认加载的插件 */
-const defaultPlugins: Array<any> = [
+const defaultPlugins: Array<PluginItem> = [
   '@babel/plugin-proposal-async-do-expressions',  // async do {} 语法
   ['@babel/plugin-proposal-decorators', { decoratorsBeforeExport: true }], // 修饰器
   '@babel/plugin-proposal-class-static-block',    // class static块

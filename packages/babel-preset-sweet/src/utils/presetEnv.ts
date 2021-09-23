@@ -1,3 +1,5 @@
+import type { PluginItem } from '@babel/core';
+
 interface PresetEnvOptionsArgs {
   babelBuildTargets: object;
   useBuiltIns?: boolean | string;
@@ -7,7 +9,7 @@ interface PresetEnvOptionsArgs {
 }
 
 /* @babel/preset-env */
-function presetEnv(options: PresetEnvOptionsArgs): [string, { [key: string]: any }] {
+function presetEnv(options: PresetEnvOptionsArgs): PluginItem {
   const { babelBuildTargets, useBuiltIns, debug, envModules, polyfill }: PresetEnvOptionsArgs = options;
   const useBuiltInsValue: string | boolean = useBuiltIns ?? 'usage';
 

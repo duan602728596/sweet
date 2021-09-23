@@ -23,6 +23,7 @@
     "pm": "yarn@^3.0.2"
   },
   "dependencies": {
+    "@types/babel__core": "^7",
     "@types/eslint": "^7",
     "@types/estree": "^0",
     "@types/koa": "^2",

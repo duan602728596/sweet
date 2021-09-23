@@ -1,7 +1,8 @@
 import _ from 'lodash';
+import { requireModule } from '@sweet-milktea/utils';
 import type Config from 'webpack-chain';
 import type { LoaderOptions } from 'webpack-chain';
-import { requireModule } from '@sweet-milktea/utils';
+import type { PluginItem } from '@babel/core';
 import { createBabelOptions } from '../config/babelConfig';
 import { customizer } from '../utils/utils';
 import type { SweetConfig, SweetOptions, JSOptions } from '../utils/types';
@@ -55,8 +56,8 @@ export default async function(sweetConfig: SweetConfig, sweetOptions: SweetOptio
     .tap((options: LoaderOptions): LoaderOptions => {
       const isReact: boolean = frame === 'react',
         isVue: boolean = frame === 'vue';
-      const babelPresets: Array<any> = [],
-        babelPlugins: Array<any> = [];
+      const babelPresets: Array<PluginItem> = [],
+        babelPlugins: Array<PluginItem> = [];
 
       if (Array.isArray(extraPresets)) {
         babelPresets.push(...extraPresets);

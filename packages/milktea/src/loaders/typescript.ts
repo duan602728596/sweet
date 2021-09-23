@@ -1,6 +1,7 @@
 import _ from 'lodash';
 import type Config from 'webpack-chain';
 import type { LoaderOptions } from 'webpack-chain';
+import type { PluginItem } from '@babel/core';
 import { customizer } from '../utils/utils';
 import { createBabelOptions, createTypescriptOptions } from '../config/babelConfig';
 import type { SweetConfig, SweetOptions, TSOptions } from '../utils/types';
@@ -49,8 +50,8 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
     .tap((options: LoaderOptions): LoaderOptions => {
       const isReact: boolean = frame === 'react',
         isVue: boolean = frame === 'vue';
-      const babelPresets: Array<any> = [],
-        babelPlugins: Array<any> = [];
+      const babelPresets: Array<PluginItem> = [],
+        babelPlugins: Array<PluginItem> = [];
 
       if (Array.isArray(extraPresets)) {
         babelPresets.push(...extraPresets);
