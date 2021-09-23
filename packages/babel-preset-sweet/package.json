@@ -31,9 +31,9 @@
     "@babel/preset-typescript": "^7.15.0",
     "@babel/runtime-corejs3": "^7.15.4",
     "@sweet-milktea/utils": "^3.0.2",
-    "babel-plugin-polyfill-corejs3": "^0.2.4",
-    "babel-plugin-polyfill-es-shims": "^0.3.0",
-    "core-js": "^3.17.3"
+    "babel-plugin-polyfill-corejs3": "^0.2.5",
+    "babel-plugin-polyfill-es-shims": "^0.4.0",
+    "core-js": "^3.18.0"
   },
   "devDependencies": {
     "@babel/core": "^7.15.5",
