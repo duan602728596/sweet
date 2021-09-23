@@ -5,20 +5,16 @@ import { createRequire } from 'module';
 
 const require: NodeRequire = createRequire(import.meta.url); // esm需要创建require
 
+interface ModuleExport {
+  readonly default: unknown;
+}
+
 /**
- * 模块导入
- * @param { string } id: 模块名称
- * @param { boolean } exportAll: 导出所有模块
+ * 判断为module
+ * @param { ModuleExport | unknown } module
  */
-export async function requireModule(id: string, exportAll?: boolean): Promise<any> {
-  const fileUrl: string = (!id.includes('file://') && path.isAbsolute(id)) ? pathToFileURL(id).href : id;
-  const module: { default: any } | any = await import(fileUrl);
-
-  if (exportAll) {
-    return module;
-  }
-
-  return (typeof module === 'object' && 'default' in module) ? module.default : module;
+function isModule(module: ModuleExport | unknown): module is ModuleExport {
+  return typeof module === 'object';
 }
 
 /**
@@ -26,21 +22,37 @@ export async function requireModule(id: string, exportAll?: boolean): Promise<an
  * @param { string } id: 模块名称
  * @param { boolean } exportAll: 导出所有模块
  */
-export function requireCommonjsModule(id: string, exportAll?: boolean): any {
-  const module: { default: any } | any = require(id);
+export async function requireModule(id: string, exportAll?: boolean): Promise<unknown> {
+  const fileUrl: string = (!id.includes('file://') && path.isAbsolute(id)) ? pathToFileURL(id).href : id;
+  const module: ModuleExport | unknown = await import(fileUrl);
 
   if (exportAll) {
     return module;
   }
 
-  return (typeof module === 'object' && 'default' in module) ? module.default : module;
+  return (isModule(module) && 'default' in module) ? module.default : module;
+}
+
+/**
+ * 模块导入
+ * @param { string } id: 模块名称
+ * @param { boolean } exportAll: 导出所有模块
+ */
+export function requireCommonjsModule(id: string, exportAll?: boolean): unknown {
+  const module: ModuleExport | unknown = require(id);
+
+  if (exportAll) {
+    return module;
+  }
+
+  return (isModule(module) && 'default' in module) ? module.default : module;
 }
 
 /**
  * 加载json
  * @param { string } id: 模块名称
  */
-export async function requireJson(id: string): Promise<any> {
+export async function requireJson(id: string): Promise<unknown> {
   const data: string = await fs.promises.readFile(id, {
     encoding: 'utf8'
   });
@@ -52,11 +64,11 @@ export async function requireJson(id: string): Promise<any> {
  * 清除模块缓存
  * @param { string } id: 模块名称
  */
-export function cleanRequireCache(id: any): void {
+export function cleanRequireCache(id: string): void {
   const modulePath: string = require.resolve(id);
 
   if (require.main) {
-    require.main.children.splice(require.main.children.indexOf(id), 1);
+    require.main.children.splice(require.main.children.indexOf(id as any), 1);
   }
 
   delete require.cache[modulePath];
@@ -67,7 +79,7 @@ export function cleanRequireCache(id: any): void {
  * @param { string } id: 模块名称
  * @param { boolean } exportAll: 导出所有模块
  */
-export function requireModuleWithoutCache(id: string, exportAll?: boolean): any {
+export function requireModuleWithoutCache(id: string, exportAll?: boolean): unknown {
   cleanRequireCache(id);
 
   return requireCommonjsModule(id, exportAll);
