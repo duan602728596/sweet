@@ -1,3 +1,5 @@
+import type { PluginItem } from '@babel/core';
+
 // @babel/preset-env的配置
 export interface EnvOptions {
   nodeEnv?: boolean;              // 是否为node环境
@@ -30,6 +32,6 @@ export interface BabelPresetSweetOptions {
 }
 
 export interface BabelPresetSweet {
-  presets: Array<any>;
-  plugins: Array<any>;
+  presets: Array<PluginItem>;
+  plugins: Array<PluginItem>;
 }
