@@ -13,9 +13,9 @@ import type { SweetOptions } from './types';
 export const globPromise: (arg1: string, arg2?: glob.IOptions) => Promise<string[]> = util.promisify(glob);
 
 /* 格式化数据 */
-export function formatTemplateData(data: { [key: string]: any }): object {
-  return Object.entries(data).reduce(function(result: object, [key, value]: [string, any]): object {
-    let item: any = value;
+export function formatTemplateData(data: { [key: string]: unknown }): object {
+  return Object.entries(data).reduce(function(result: object, [key, value]: [string, unknown]): object {
+    let item: unknown = value;
 
     if (typeof item === 'object') {
       item = JSON.stringify(item);

@@ -13,6 +13,8 @@ import type {
   TypeScriptReporterOptions
 } from 'fork-ts-checker-webpack-plugin/lib/typescript-reporter/TypeScriptReporterOptions';
 import requirePlugins from './requirePlugins';
+import type DevPlugin from './devPlugins';
+import type ProPlugin from './proPlugins';
 import type { SweetConfig, SweetOptions } from '../utils/types';
 
 /**
@@ -51,9 +53,9 @@ export default async function(sweetConfig: SweetConfig, sweetOptions: SweetOptio
     }]);
 
   // env plugin - 根据模式加载插件
-  const envPlugins: (...args: any) => Promise<void> = isDevelopment
-    ? await requirePlugins('devPlugins.js')
-    : await requirePlugins('proPlugins.js');
+  const envPlugins: typeof DevPlugin | typeof ProPlugin = isDevelopment
+    ? await requirePlugins<typeof DevPlugin>('devPlugins.js')
+    : await requirePlugins<typeof ProPlugin>('proPlugins.js');
 
   await envPlugins(sweetConfig, sweetOptions, config);
 

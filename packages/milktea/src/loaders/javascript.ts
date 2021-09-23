@@ -2,7 +2,7 @@ import _ from 'lodash';
 import { requireModule } from '@sweet-milktea/utils';
 import type Config from 'webpack-chain';
 import type { LoaderOptions } from 'webpack-chain';
-import type { PluginItem } from '@babel/core';
+import type { PluginItem, PluginTarget } from '@babel/core';
 import { createBabelOptions } from '../config/babelConfig';
 import { customizer } from '../utils/utils';
 import type { SweetConfig, SweetOptions, JSOptions } from '../utils/types';
@@ -47,7 +47,7 @@ export default async function(sweetConfig: SweetConfig, sweetOptions: SweetOptio
       }
     });
 
-  const babelPresetSweet: any = await requireModule('@sweet-milktea/babel-preset-sweet');
+  const babelPresetSweet: PluginTarget = await requireModule('@sweet-milktea/babel-preset-sweet');
 
   config
     .module

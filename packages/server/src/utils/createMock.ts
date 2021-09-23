@@ -6,7 +6,7 @@ import { defaultMockPath, __require } from './utils';
 import type { SweetOptions } from './types';
 
 type KoaFunc = (ctx: Context, next: Function) => void | Promise<void>;
-type Mock = { [key: string]: any | KoaFunc };
+type Mock = { [key: string]: unknown | KoaFunc };
 type MockFunc = (sweetOptions: SweetOptions) => Mock | Promise<Mock>;
 type MockModule = Mock | MockFunc;
 
