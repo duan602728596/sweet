@@ -33,7 +33,7 @@ async function middleware(
       app.use(connect((compiler as ViteDevServer).middlewares));
     } else {
       // 异步加载webpack热替换服务
-      app.use((await requireKoaDevMiddleware('koaDevMiddleware.js'))(
+      app.use((await requireKoaDevMiddleware<Function>('koaDevMiddleware.js'))(
         compiler as Compiler,
         {
           serverSideRender: true,
