@@ -19,7 +19,7 @@ import { formatPath, getFiles } from './utils/utils';
  */
 function toAvif(inputFile: string, outputFile: string, hiddenLog?: boolean): Promise<void> {
   return new Promise((resolve: Function, reject: Function): void => {
-    const handleOutput: (chunk: any) => void = function(chunk: any): void {
+    const handleOutput: (chunk: Buffer) => void = function(chunk: Buffer): void {
       if (!hiddenLog) {
         console.log(chunk.toString());
       }

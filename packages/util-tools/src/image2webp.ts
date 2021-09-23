@@ -14,7 +14,7 @@ interface Options {
  * @param { string } output: 输出文件夹
  * @param { Options } options: 图片转换的质量或配置
  */
-async function image2webp(entry: string, output: string, options: Options = {}): Promise<any> {
+async function image2webp(entry: string, output: string, options: Options = {}): Promise<void> {
   const imgOptions: object = { quality: 70 }; // 图片转换配置
   const gifOptions: object = { quality: 70 }; // gif转换配置
 
