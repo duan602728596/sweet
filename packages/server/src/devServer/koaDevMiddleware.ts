@@ -18,6 +18,7 @@ function middleware(wdm: Function, req: IncomingMessage, res: ServerResponse): P
   });
 }
 
+/* webpack热替换服务，使用异步加载 */
 function koaDevMiddleware(compiler: Compiler, options: { [key: string]: any }): Middleware {
   const wdm: Function = webpackDevMiddleware(compiler, options);
 
@@ -65,7 +66,7 @@ function koaDevMiddleware(compiler: Compiler, options: { [key: string]: any }): 
     }
   }
 
-  Object.entries(wdm).forEach(function([key, value]: [string, any], index: number): void {
+  Object.entries(wdm).forEach(function([key, value]: [string, unknown], index: number): void {
     koaMiddleware[key] = value;
   });
 

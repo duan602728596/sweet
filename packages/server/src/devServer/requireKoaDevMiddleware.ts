@@ -2,7 +2,7 @@ import * as path from 'path';
 import { requireModule } from '@sweet-milktea/utils';
 
 /* 加载插件 */
-function requireKoaDevMiddleware(id: string): any {
+function requireKoaDevMiddleware(id: string): unknown {
   return requireModule(path.join(__dirname, id));
 }
 

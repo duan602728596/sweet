@@ -32,15 +32,16 @@ async function middleware(
       // vite服务
       app.use(connect((compiler as ViteDevServer).middlewares));
     } else {
-      // webpack热替换服务
-      const devMiddlewareConfig: { [key: string]: any } = {
-        serverSideRender: true,
-        mimeTypes: {
-          avifs: 'image/avif-sequence'
+      // 异步加载webpack热替换服务
+      app.use((await requireKoaDevMiddleware('koaDevMiddleware.js'))(
+        compiler as Compiler,
+        {
+          serverSideRender: true,
+          mimeTypes: {
+            avifs: 'image/avif-sequence'
+          }
         }
-      };
-
-      app.use((await requireKoaDevMiddleware('koaDevMiddleware.js'))(compiler as Compiler, devMiddlewareConfig));
+      ));
     }
   }
 }

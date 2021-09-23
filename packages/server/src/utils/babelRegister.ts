@@ -1,8 +1,9 @@
 import { requireModule } from '@sweet-milktea/utils';
+import type { PluginItem } from '@babel/core';
 import type { SweetOptions } from './types';
 
 interface RegisterConfig {
-  presets: Array<any>;
+  presets: Array<PluginItem>;
   cache: boolean;
   ignore: Array<RegExp>;
   extensions: Array<string>;
