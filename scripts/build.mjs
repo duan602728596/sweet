@@ -4,6 +4,7 @@ import path from 'node:path';
 import fs from 'node:fs';
 import gulp from 'gulp';
 import typescript from 'gulp-typescript';
+import modifier from 'gulp-modifier';
 import rename from 'gulp-rename';
 import glob from 'glob';
 import tsconfig from '../tsconfig.json';
@@ -22,6 +23,27 @@ const tsESMBuildConfig = {
   skipLibCheck: true
 };
 
+/* 修改文件的内容 */
+function addJsExt(contents, p) {
+  const contentsArr = contents.split(/\n/);
+
+  contentsArr.forEach(function(value, index) {
+    if (
+      (/^import /.test(value) || /^export {/.test(value))
+      && (
+        /from '\./.test(value)
+        || /import '\./.test(value)
+        || /from 'sockjs\/lib/.test(value) // sockjs
+        || /from '@typescript-eslint\/eslint-plugin\/dist/.test(value) // typescript-eslint
+      )
+    ) {
+      contentsArr[index] = value.replace(/';$/, ".js';");
+    }
+  });
+
+  return contentsArr.join('\n');
+}
+
 function createProject(name, out, cfg) {
   const src = path.join(dir, name, 'src/**/*.ts');
   const ignoreEsm = path.join(dir, name, 'src/**/*.esm.ts');
@@ -31,7 +53,13 @@ function createProject(name, out, cfg) {
     const result = gulp.src([src, `!${ ignoreEsm }`])
       .pipe(typescript(cfg));
 
-    return result.js.pipe(gulp.dest(dist));
+    if (out === 'esm') {
+      return result.js
+        .pipe(modifier(addJsExt))
+        .pipe(gulp.dest(dist));
+    } else {
+      return result.js.pipe(gulp.dest(dist));
+    }
   };
 }
 
@@ -44,6 +72,7 @@ function createESMProject(name, out, cfg) {
       .pipe(typescript(cfg));
 
     return result.js
+      .pipe(modifier(addJsExt))
       .pipe(rename(function(p) {
         p.basename = p.basename.replace(/\.esm$/, '');
       }))
@@ -78,39 +107,11 @@ async function writeTypeModulePackageJsonFile() {
   }
 }
 
-/* 添加文件扩展名 */
-async function addJsExt() {
-  for (const name of packageNames) {
-    const files = await globPromise(path.join(dir, name, 'esm/**/*.js'));
-
-    for (const file of files) {
-      const text = await fs.promises.readFile(file, { encoding: 'utf8' });
-      const textArr = text.split(/\n/);
-
-      textArr.forEach(function(value, index) {
-        if (
-          (/^import /.test(value) || /^export {/.test(value))
-          && (
-            /from '\./.test(value)
-            || /import '\./.test(value)
-            || /from 'sockjs\/lib/.test(value) // sockjs
-            || /from '@typescript-eslint\/eslint-plugin\/dist/.test(value) // typescript-eslint
-          )
-        ) {
-          textArr[index] = value.replace(/';$/, ".js';");
-        }
-      });
-
-      await fs.promises.writeFile(file, textArr.join('\n'));
-    }
-  }
-}
-
 export default gulp.series(
   gulp.parallel(
     ...createQueue('commonjs', createProject, 'lib', tsBuildConfig),
     ...createQueue('esm'.padEnd(8), createProject, 'esm', tsESMBuildConfig)
   ),
   gulp.parallel(...createQueue('esm file', createESMProject, 'esm', tsESMBuildConfig)),
-  gulp.parallel(writeTypeModulePackageJsonFile, addJsExt)
+  writeTypeModulePackageJsonFile
 );
