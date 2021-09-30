@@ -67,7 +67,7 @@
     "html-entities": "^2.3.2",
     "http-proxy-middleware": "^2.0.1",
     "internal-ip": "^6.2.0",
-    "koa": "^2.13.1",
+    "koa": "^2.13.3",
     "koa-body": "^4.2.0",
     "koa-compress": "^5.1.0",
     "koa-connect": "^2.1.0",
@@ -79,7 +79,7 @@
     "sockjs": "^0.3.21",
     "sockjs-client": "^1.5.2",
     "url": "^0.11.0",
-    "webpack-dev-middleware": "^5.1.0",
+    "webpack-dev-middleware": "^5.2.1",
     "webpack-log": "^3.0.2",
     "ws": "^8.2.2"
   },
@@ -90,8 +90,8 @@
     "cross-env": "*",
     "mocha": "*",
     "nunjucks": "^3.2.3",
-    "vite": "^2.5.10",
-    "webpack": "^5.53.0"
+    "vite": "^2.6.1",
+    "webpack": "^5.55.1"
   },
   "peerDependencies": {
     "@sweet-milktea/milktea": ">=3",
