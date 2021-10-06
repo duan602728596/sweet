@@ -73,7 +73,7 @@
     "koa-connect": "^2.1.0",
     "koa-static": "^5.0.0",
     "lodash": "^4.17.21",
-    "mime-types": "^2.1.32",
+    "mime-types": "^2.1.33",
     "module-alias": "^2.2.2",
     "path-to-regexp": "^6.2.0",
     "sockjs": "^0.3.21",
@@ -81,7 +81,7 @@
     "url": "^0.11.0",
     "webpack-dev-middleware": "^5.2.1",
     "webpack-log": "^3.0.2",
-    "ws": "^8.2.2"
+    "ws": "^8.2.3"
   },
   "devDependencies": {
     "@sweet-milktea/milktea": "^3.1.3",
