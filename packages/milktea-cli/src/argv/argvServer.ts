@@ -1,5 +1,5 @@
 import { requireModule } from '@sweet-milktea/utils';
-import type { ProServer } from '@sweet-milktea/server/src/utils/types';
+import type { ProServer } from '../../../server/src/utils/types';
 import type { Argv } from '../utils/types';
 
 /* server 命令 */

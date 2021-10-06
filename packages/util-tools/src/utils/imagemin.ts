@@ -1,9 +1,7 @@
-import importESM from '@sweet-milktea/utils/importESM';
 import type imageMin from 'imagemin';
 
-// TODO: https://github.com/microsoft/TypeScript/issues/43329
 async function getImageMin(): Promise<typeof imageMin> {
-  const imageMinModule: { default: typeof imageMin } = await importESM('imagemin');
+  const imageMinModule: { default: typeof imageMin } = await import('imagemin');
 
   return imageMinModule.default;
 }

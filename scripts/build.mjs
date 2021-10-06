@@ -2,21 +2,26 @@
 import path from 'node:path';
 import fs from 'node:fs';
 import gulp from 'gulp';
-import typescript from 'gulp-typescript';
+import gulpTypescript from 'gulp-typescript';
 import modifier from 'gulp-modifier';
 import rename from 'gulp-rename';
+import typescript from 'typescript';
+import _ from 'lodash';
 import tsconfig from '../tsconfig.json';
 import { dir, packageNames } from './config.mjs';
 
-const tsBuildConfig = {
+/* typescript编译配置 */
+const tsBuildConfig = _.omit({
   ...tsconfig.compilerOptions,
-  module: 'commonjs',
-  skipLibCheck: true
-};
+  module: 'Node12',
+  skipLibCheck: true,
+  typescript
+}, ['moduleResolution']);
 
 const tsESMBuildConfig = {
   ...tsconfig.compilerOptions,
-  skipLibCheck: true
+  skipLibCheck: true,
+  typescript
 };
 
 /* 修改文件的内容 */
@@ -47,7 +52,7 @@ function createProject(name, out, cfg) {
 
   return function() {
     const result = gulp.src([src, `!${ ignoreEsm }`])
-      .pipe(typescript(cfg));
+      .pipe(gulpTypescript(cfg));
 
     if (out === 'esm') {
       return result.js
@@ -65,7 +70,7 @@ function createESMProject(name, out, cfg) {
 
   return function() {
     const result = gulp.src(src)
-      .pipe(typescript(cfg));
+      .pipe(gulpTypescript(cfg));
 
     return result.js
       .pipe(modifier(addJsExt))
