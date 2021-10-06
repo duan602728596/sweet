@@ -1,16 +1,12 @@
 /* gulp配置文件，编译packages下的所有文件 */
-import util from 'node:util';
 import path from 'node:path';
 import fs from 'node:fs';
 import gulp from 'gulp';
 import typescript from 'gulp-typescript';
 import modifier from 'gulp-modifier';
 import rename from 'gulp-rename';
-import glob from 'glob';
 import tsconfig from '../tsconfig.json';
 import { dir, packageNames } from './config.mjs';
-
-const globPromise = util.promisify(glob);
 
 const tsBuildConfig = {
   ...tsconfig.compilerOptions,
