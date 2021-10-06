@@ -90,8 +90,8 @@
     "cross-env": "*",
     "mocha": "*",
     "nunjucks": "^3.2.3",
-    "vite": "^2.6.1",
-    "webpack": "^5.55.1"
+    "vite": "^2.6.3",
+    "webpack": "^5.57.1"
   },
   "peerDependencies": {
     "@sweet-milktea/milktea": ">=3",
