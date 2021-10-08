@@ -6,6 +6,7 @@
 import PropTypes from 'prop-types';
 import { useLocation, Link } from 'react-router-dom';
 import { Layout, Menu } from 'antd';
+import NoSSR from 'react-no-ssr';
 import style from './index.sass';
 import ErrorBoundary from '../ErrorBoundary/index';
 
@@ -71,13 +72,11 @@ function Sider(props) {
   return (
     <ErrorBoundary>
       <Layout.Sider className={ style.sider }>
-        {
-          typeof window === 'object' && (
-            <Menu theme="light" mode="inline" defaultSelectedKeys={ getSelectKey(options) } style={{ borderRight: 'none' }}>
-              { menu(options) }
-            </Menu>
-          )
-        }
+        <NoSSR>
+          <Menu theme="light" mode="inline" defaultSelectedKeys={ getSelectKey(options) } style={{ borderRight: 'none' }}>
+            { menu(options) }
+          </Menu>
+        </NoSSR>
       </Layout.Sider>
     </ErrorBoundary>
   );

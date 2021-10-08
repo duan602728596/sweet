@@ -22,7 +22,8 @@ export default function(info) {
       'react-router',
       'react-router-dom',
       'history',
-      'react-helmet'
+      'react-helmet',
+      'react-no-ssr'
     ],
     entry: {
       index: [path.join(__dirname, 'src/index.js')],
