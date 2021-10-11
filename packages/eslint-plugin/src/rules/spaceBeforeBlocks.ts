@@ -12,14 +12,15 @@ export default createRule<Options, MessageIds>({
   meta: {
     docs: {
       description: 'enforce consistent spacing before blocks',
-      category: 'Stylistic Issues',
+      category: 'Stylistic Issues', // eslint@<8
       recommended: 'error'
     },
     fixable: null,
     messages: {
       TSInterfaceSpaceBeforeBlocks: 'Missing space before opening brace.'
     },
-    schema: []
+    schema: [],
+    hasSuggestions: true // eslint@8
   },
   defaultOptions: [],
   create(context: Rule.RuleContext): Rule.RuleListener {

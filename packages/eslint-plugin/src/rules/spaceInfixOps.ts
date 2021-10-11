@@ -12,14 +12,15 @@ export default createRule<Options, MessageIds>({
   meta: {
     docs: {
       description: 'This rule is aimed at ensuring there are spaces around infix operators in typescript.',
-      category: 'Stylistic Issues',
+      category: 'Stylistic Issues', // eslint@<8
       recommended: 'error'
     },
     fixable: null,
     messages: {
       TSSpaceInFixOps: "Operator '{{type}}' must be spaced."
     },
-    schema: []
+    schema: [],
+    hasSuggestions: true // eslint@8
   },
   defaultOptions: [],
   create(context: Rule.RuleContext, [options]: Options): Rule.RuleListener {
