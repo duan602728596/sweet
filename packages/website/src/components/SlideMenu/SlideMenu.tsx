@@ -1,4 +1,6 @@
+import { useMemo, useCallback, ReactElement, ReactNodeArray } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+import type { Location } from 'history';
 import { Menu } from 'antd';
 import {
   FireOutlined as IconFireOutlined,
@@ -7,10 +9,18 @@ import {
 } from '@ant-design/icons';
 import style from './slideMenu.sass';
 
-const { Item: MenuItem, SubMenu } = Menu;
+const { Item: MenuItem, SubMenu }: typeof Menu = Menu;
 
 /* 路由配置 */
-const navs = [
+interface NavItem {
+  id: string;
+  url: string;
+  name: string;
+  icon?: ReactElement;
+  children?: Array<NavItem>;
+}
+
+const navs: Array<NavItem> = [
   {
     id: 'sweet',
     url: '/Sweet',
@@ -79,30 +89,27 @@ const navs = [
     ]
   }
 ];
-const openKeys = navs.map((o) => o.id);
+const openKeys: Array<string> = navs.map((o: NavItem): string => o.id);
 
 /* 网站菜单 */
-function SlideMenu(props) {
-  const location = useLocation();
-  const selectedKey = location.pathname.toLocaleLowerCase().replace(/^\//, '');
+function SlideMenu(props: {}): ReactElement {
+  const location: Location = useLocation();
+  const selectedKey: string = useMemo(
+    (): string => location.pathname.toLocaleLowerCase().replace(/^\//, ''),
+    [location.pathname]);
 
   // 渲染菜单
-  function navRender(navsList) {
-    const element = [];
+  const navRender: (n: NavItem[]) => ReactNodeArray = useCallback(function(navsList: Array<NavItem>): ReactNodeArray {
+    const element: ReactNodeArray = [];
 
     for (const item of navsList) {
-      const { id, url, name, icon, children } = item;
+      const { id, url, name, icon, children }: NavItem = item;
 
       if (children?.length) {
-        const childrenElement = navRender(children);
+        const childrenElement: ReactNodeArray = navRender(children);
 
         element.push(
-          <SubMenu key={ id } title={
-            <span>
-              { icon }
-              { name }
-            </span>
-          }>
+          <SubMenu key={ id } title={ <span>{ icon }{ name }</span> }>
             { childrenElement }
           </SubMenu>
         );
@@ -119,7 +126,7 @@ function SlideMenu(props) {
     }
 
     return element;
-  }
+  }, []);
 
   return (
     <Menu className={ style.menu } mode="inline" defaultOpenKeys={ openKeys } selectedKeys={ [selectedKey] }>

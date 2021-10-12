@@ -1,3 +1,4 @@
+import type { ReactElement } from 'react';
 import { useRoutes } from 'react-router-dom';
 import Element from '../../components/Element/Element';
 import MarkDown from '../../components/MarkDown/MarkDown';
@@ -10,8 +11,8 @@ import utilTools from '../../../../util-tools/README.md';
 import babelPresetSweet from '../../../../babel-preset-sweet/README.md';
 
 /* /Packages 路由 */
-function Index(props) {
-  const routes = useRoutes([
+function Index(props: {}): ReactElement | null {
+  const routes: ReactElement | null = useRoutes([
     {
       path: 'Milktea',
       element: (

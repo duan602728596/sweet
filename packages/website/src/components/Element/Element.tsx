@@ -1,10 +1,15 @@
-import { Fragment } from 'react';
+import { Fragment, ReactElement, ReactNode } from 'react';
 import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
 
+interface ElementProps {
+  title: string;
+  children: ReactNode;
+}
+
 /* 渲染组件和标题 */
-function Element(props) {
-  const { title, children } = props;
+function Element(props: ElementProps): ReactElement {
+  const { title, children }: ElementProps = props;
 
   return (
     <Fragment>

@@ -1,9 +1,14 @@
+import type { ReactElement, ReactNode } from 'react';
 import PropTypes from 'prop-types';
 import style from './layouts.sass';
 import SlideMenu from '../SlideMenu/SlideMenu';
 
+interface LayoutsProps {
+  children: ReactNode;
+}
+
 /* 网站布局 */
-function Layouts(props) {
+function Layouts(props: LayoutsProps): ReactElement {
   return (
     <div className={ style.main }>
       <div className={ style.slide }>

@@ -1,3 +1,4 @@
+import type { ReactElement } from 'react';
 import { useRoutes } from 'react-router-dom';
 import { Select } from 'antd';
 import style from './index.sass';
@@ -7,15 +8,15 @@ import introduction from '../../../../../README.md';
 import quickStart from './quick-start.md';
 import lernaJson from '../../../../../lerna.json';
 
-const introductionText = introduction
+const introductionText: string = introduction
   .replace('statics/logo.svg', 'https://raw.githubusercontent.com/duan602728596/sweet/master/statics/logo.svg')
   .replace('statics/tsl.jpg', 'https://raw.githubusercontent.com/duan602728596/sweet/master/statics/tsl.jpg')
   .replace(/<!--[\n\s]*(.|\n)*[\n\s]*-->/, '');
 
 /* /Sweet 路由 */
-function Index(props) {
+function Index(props: {}): ReactElement | null {
   // 打开v1地址
-  function handleOpenOldWebSite(value) {
+  function handleOpenOldWebSite(value: string): void {
     if (value === 'v1') {
       window.open('https://duan602728596.github.io/sweet/v1/#/Sweet/Introduction');
     }
@@ -25,7 +26,7 @@ function Index(props) {
     }
   }
 
-  const routes = useRoutes([
+  const routes: ReactElement | null = useRoutes([
     {
       path: 'Introduction',
       element: (

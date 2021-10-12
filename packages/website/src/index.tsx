@@ -1,3 +1,5 @@
+import type { ReactNode } from 'react';
+// @ts-ignore react@18
 import { createRoot } from 'react-dom';
 import { HashRouter } from 'react-router-dom';
 import { ConfigProvider } from 'antd';
@@ -6,7 +8,11 @@ import './global.sass';
 import Layouts from './components/Layouts/Layouts';
 import Routers from './router/Routers';
 
-const root = createRoot(document.getElementById('app'));
+interface Root {
+  render(element: ReactNode): void;
+}
+
+const root: Root = createRoot(document.getElementById('app'));
 
 root.render(
   <ConfigProvider locale={ zhCN }>
@@ -15,9 +21,10 @@ root.render(
         <Routers />
       </Layouts>
     </HashRouter>
-  </ConfigProvider>,
-  document.getElementById('app')
+  </ConfigProvider>
 );
+
+declare const module: any;
 
 if (module.hot) {
   module.hot.accept();
