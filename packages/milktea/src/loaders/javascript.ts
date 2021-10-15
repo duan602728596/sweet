@@ -97,10 +97,10 @@ export default async function(sweetConfig: SweetConfig, sweetOptions: SweetOptio
       return _.mergeWith(options, { presets: babelPresets, plugins: babelPlugins }, customizer);
     });
 
-  // 排除dll文件，dll文件使用asset-modules加载
   config
     .module
     .rule(RULE_NAME)
     .exclude
-    .add(/\.sweet[\\/]dll[\\/]dll\.js/);
+    .add(/\.sweet[\\/]dll[\\/]dll\.js/) // 排除dll文件，dll文件使用asset-modules加载
+    .add(/\.ignore\.(m|c)?jsx?/); // new Worker(new URL('./worker.js', import.meta.url))会被babel破坏导致无法解析，添加忽略的文件
 }
