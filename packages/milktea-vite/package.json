@@ -50,7 +50,7 @@
     "cosmiconfig": "^7.0.1",
     "less": "^4.1.2",
     "lodash": "^4.17.21",
-    "sass": "^1.42.1",
+    "sass": "^1.43.2",
     "vite": "^2.6.7",
     "vite-plugin-checker": "^0.3.4"
   },

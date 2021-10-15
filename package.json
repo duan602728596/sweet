@@ -51,7 +51,7 @@
     "commitizen": "^4.2.4",
     "cross-env": "^7.0.3",
     "cz-conventional-changelog": "^3.3.0",
-    "eslint": "^8.0.0",
+    "eslint": "^8.0.1",
     "eslint-import-resolver-node": "^0.3.6",
     "eslint-import-resolver-typescript": "^2.5.0",
     "eslint-plugin-import": "^2.25.2",
@@ -59,7 +59,7 @@
     "husky": "^7.0.2",
     "lint-staged": "^11.2.3",
     "lodash": "^4.17.21",
-    "mocha": "^9.1.2"
+    "mocha": "^9.1.3"
   },
   "optionalDependencies": {
     "imagemin-gif2webp": ">=3",
