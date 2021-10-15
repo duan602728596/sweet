@@ -100,7 +100,7 @@ function SlideMenu(props: {}): ReactElement {
 
   // 渲染菜单
   const navRender: (n: NavItem[]) => ReactNodeArray = useCallback(function(navsList: Array<NavItem>): ReactNodeArray {
-    const element: ReactNodeArray = [];
+    const element: Array<ReactElement> = [];
 
     for (const item of navsList) {
       const { id, url, name, icon, children }: NavItem = item;
