@@ -131,6 +131,11 @@ info是当前环境的信息。
 
 * info.environment：当前环境，可能的值为`dll`、`client`、`server`。分别为编译dll文件、编译浏览器端代码、编译node端代码。
 
+## javascript
+
+以`.ignore.js`结尾的文件不会被babel编译。   
+这是由于`new Worker(new URL('./worker.js', import.meta.url))`语法会被babel编译，导致webpack无法解析文件入口，所以添加了忽略的文件类型。
+
 ## 引入svg
 
 在react或vue项目中，如果svg文件匹配`*.component.svg`，则文件作为组件引入，否则作为图片地址引入。

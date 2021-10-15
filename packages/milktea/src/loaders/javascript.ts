@@ -102,5 +102,5 @@ export default async function(sweetConfig: SweetConfig, sweetOptions: SweetOptio
     .rule(RULE_NAME)
     .exclude
     .add(/\.sweet[\\/]dll[\\/]dll\.js/) // 排除dll文件，dll文件使用asset-modules加载
-    .add(/\.ignore\.(m|c)?jsx?/); // new Worker(new URL('./worker.js', import.meta.url))会被babel破坏导致无法解析，添加忽略的文件
+    .add(/\.ignore\.(m|c)?jsx?/); // new Worker(new URL('./worker.js', import.meta.url))会被babel编译导致无法解析，添加忽略的文件
 }
