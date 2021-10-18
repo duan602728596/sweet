@@ -59,11 +59,3 @@ declare module '*.md' {
 
   export default text;
 }
-
-declare module 'worker-loader!*' {
-  class WorkerLoader extends Worker {
-    constructor();
-  }
-
-  export default WorkerLoader;
-}

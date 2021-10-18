@@ -1,7 +1,7 @@
 import type { ReactElement } from 'react';
 import PropTypes from 'prop-types';
 import MarkdownView from 'react-showdown';
-import 'github-markdown-css/github-markdown.css';
+import 'github-markdown-css/github-markdown-light.css';
 
 interface MarkDownProps {
   markdown: string;
