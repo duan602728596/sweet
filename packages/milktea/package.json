@@ -55,7 +55,7 @@
     "css-loader": "^6.4.0",
     "css-minimizer-webpack-plugin": "^3.1.1",
     "fork-ts-checker-webpack-plugin": "^6.3.4",
-    "html-webpack-plugin": "^5.3.2",
+    "html-webpack-plugin": "^5.4.0",
     "less": "^4.1.2",
     "less-loader": "^10.1.0",
     "lodash": "^4.17.21",
@@ -74,7 +74,7 @@
     "webpackbar": "^5.0.0-3"
   },
   "devDependencies": {
-    "@vue/babel-plugin-jsx": "^1.1.0",
+    "@vue/babel-plugin-jsx": "^1.1.1",
     "cross-env": "*",
     "mocha": "*",
     "ts-loader": "^9.2.6",
