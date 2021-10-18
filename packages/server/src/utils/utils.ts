@@ -4,7 +4,7 @@ import * as Stream from 'stream';
 import * as net from 'net';
 import type { Server as NetServer } from 'net';
 import glob from 'glob';
-import internalIp from 'internal-ip';
+import type { internalIpV4 as InternalIpV4 } from 'internal-ip';
 import chalk from 'chalk';
 import type { ViteDevServer } from 'vite';
 import { requireCommonjsModule, requireModule } from '@sweet-milktea/utils';
@@ -85,7 +85,8 @@ export function formatPath(sweetOptions: SweetOptions, file: string): string {
 
 /* 启动日志 */
 export async function runningAtLog(sweetOptions: SweetOptions, displayHttps: boolean): Promise<void> {
-  const ip: string = await internalIp.v4() ?? '127.0.0.1';
+  const { internalIpV4 }: { internalIpV4: typeof InternalIpV4 } = await import('internal-ip');
+  const ip: string = await internalIpV4() ?? '127.0.0.1';
   const logs: string[] = [
     ' Running at:',
     ` - Local:   http://127.0.0.1:${ sweetOptions.httpPort }`,
