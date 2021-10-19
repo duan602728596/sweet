@@ -32,7 +32,7 @@ function Welcome(props) {
       <Typography.Paragraph>
         如果你喜欢，你可以点个赞。
       </Typography.Paragraph>
-      <div>
+      <div className={ style.box }>
         <IconLikeFilled className={ style.zan } role="button" onClick={ handleZanClick } />
         <span className={ style.len }>{ likeLen }</span>
       </div>
