@@ -16,7 +16,6 @@ function MarkDown(props: MarkDownProps): ReactElement {
   );
 }
 
-
 MarkDown.propTypes = {
   markdown: PropTypes.string
 };
