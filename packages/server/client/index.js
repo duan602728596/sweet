@@ -3,7 +3,7 @@ import webpackHotLog from "webpack/hot/log.js";
 import stripAnsi from "./modules/strip-ansi/index.js";
 import parseURL from "./utils/parseURL.js";
 import socket from "./socket.js";
-import { show, hide } from "./overlay.js";
+import { formatProblem, show, hide } from "./overlay.js";
 import { log, setLogLevel } from "./utils/log.js";
 import sendMessage from "./utils/sendMessage.js";
 import reloadApp from "./utils/reloadApp.js";
@@ -13,8 +13,7 @@ var status = {
   // TODO Workaround for webpack v4, `__webpack_hash__` is not replaced without HotModuleReplacement
   // eslint-disable-next-line camelcase
   currentHash: typeof __webpack_hash__ !== "undefined" ? __webpack_hash__ : ""
-}; // console.log(__webpack_hash__);
-
+};
 var options = {
   hot: false,
   liveReload: false,
@@ -35,6 +34,10 @@ if (parsedResourceQuery["live-reload"] === "true") {
 
 if (parsedResourceQuery.logging) {
   options.logging = parsedResourceQuery.logging;
+}
+
+if (typeof parsedResourceQuery.reconnect !== "undefined") {
+  options.reconnect = Number(parsedResourceQuery.reconnect);
 }
 
 function setAllLogLevel(level) {
@@ -88,6 +91,13 @@ var onSocketMessage = {
 
     options.overlay = value;
   },
+  reconnect: function reconnect(value) {
+    if (parsedResourceQuery.reconnect === "false") {
+      return;
+    }
+
+    options.reconnect = value;
+  },
   progress: function progress(_progress) {
     options.progress = _progress;
   },
@@ -128,20 +138,24 @@ var onSocketMessage = {
   warnings: function warnings(_warnings) {
     log.warn("Warnings while compiling.");
 
-    var strippedWarnings = _warnings.map(function (warning) {
-      return stripAnsi(warning.message ? warning.message : warning);
+    var printableWarnings = _warnings.map(function (error) {
+      var _formatProblem = formatProblem("warning", error),
+          header = _formatProblem.header,
+          body = _formatProblem.body;
+
+      return "".concat(header, "\n").concat(stripAnsi(body));
     });
 
-    sendMessage("Warnings", strippedWarnings);
+    sendMessage("Warnings", printableWarnings);
 
-    for (var i = 0; i < strippedWarnings.length; i++) {
-      log.warn(strippedWarnings[i]);
+    for (var i = 0; i < printableWarnings.length; i++) {
+      log.warn(printableWarnings[i]);
     }
 
     var needShowOverlayForWarnings = typeof options.overlay === "boolean" ? options.overlay : options.overlay && options.overlay.warnings;
 
     if (needShowOverlayForWarnings) {
-      show(_warnings, "warnings");
+      show("warning", _warnings);
     }
 
     reloadApp(options, status);
@@ -149,20 +163,24 @@ var onSocketMessage = {
   errors: function errors(_errors) {
     log.error("Errors while compiling. Reload prevented.");
 
-    var strippedErrors = _errors.map(function (error) {
-      return stripAnsi(error.message ? error.message : error);
+    var printableErrors = _errors.map(function (error) {
+      var _formatProblem2 = formatProblem("error", error),
+          header = _formatProblem2.header,
+          body = _formatProblem2.body;
+
+      return "".concat(header, "\n").concat(stripAnsi(body));
     });
 
-    sendMessage("Errors", strippedErrors);
+    sendMessage("Errors", printableErrors);
 
-    for (var i = 0; i < strippedErrors.length; i++) {
-      log.error(strippedErrors[i]);
+    for (var i = 0; i < printableErrors.length; i++) {
+      log.error(printableErrors[i]);
     }
 
     var needShowOverlayForErrors = typeof options.overlay === "boolean" ? options.overlay : options.overlay && options.overlay.errors;
 
     if (needShowOverlayForErrors) {
-      show(_errors, "errors");
+      show("error", _errors);
     }
   },
   error: function error(_error) {
@@ -179,4 +197,4 @@ var onSocketMessage = {
   }
 };
 var socketURL = createSocketURL(parsedResourceQuery);
-socket(socketURL, onSocketMessage);
+socket(socketURL, onSocketMessage, options.reconnect);
