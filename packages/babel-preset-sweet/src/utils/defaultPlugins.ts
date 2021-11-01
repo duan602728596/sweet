@@ -4,7 +4,6 @@ import type { PluginItem } from '@babel/core';
 const defaultPlugins: Array<PluginItem> = [
   '@babel/plugin-proposal-async-do-expressions',  // async do {} 语法
   ['@babel/plugin-proposal-decorators', { decoratorsBeforeExport: true }], // 修饰器
-  '@babel/plugin-proposal-class-static-block',    // class static块
   '@babel/plugin-proposal-class-properties',      // class 相关
   '@babel/plugin-proposal-do-expressions',        // do {} 语法
   '@babel/plugin-proposal-export-default-from',   // export module from 语法
