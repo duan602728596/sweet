@@ -42,7 +42,7 @@
     "test": "cross-env NODE_ENV=test mocha ./test/test.mjs --timeout 180000"
   },
   "dependencies": {
-    "@babel/core": "^7.15.8",
+    "@babel/core": "^7.16.0",
     "@babel/register": "^7.15.3",
     "@sweet-milktea/babel-preset-sweet": "^3.1.1",
     "@sweet-milktea/utils": "^3.0.2",
@@ -50,12 +50,12 @@
     "cosmiconfig": "^7.0.1",
     "less": "^4.1.2",
     "lodash": "^4.17.21",
-    "sass": "^1.43.3",
-    "vite": "^2.6.11",
+    "sass": "^1.43.4",
+    "vite": "^2.6.13",
     "vite-plugin-checker": "^0.3.4"
   },
   "devDependencies": {
-    "@vitejs/plugin-vue": "^1.9.3",
+    "@vitejs/plugin-vue": "^1.9.4",
     "@vitejs/plugin-vue-jsx": "^1.2.0",
     "cross-env": "*",
     "mocha": "*"
