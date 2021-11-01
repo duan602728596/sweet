@@ -21,7 +21,7 @@ function addMiddleware(app: Koa, proxyConfig: ProxyConfig, isDevelopment: boolea
         changeOrigin: true,
         logLevel,
         ...config
-      })
+      }) as any
     ));
   }
 }

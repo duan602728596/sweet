@@ -58,7 +58,8 @@
     "@vitejs/plugin-vue": "^1.9.4",
     "@vitejs/plugin-vue-jsx": "^1.2.0",
     "cross-env": "*",
-    "mocha": "*"
+    "mocha": "*",
+    "rollup": "^2.58.3"
   },
   "peerDependencies": {
     "@vitejs/plugin-vue": ">=1",
