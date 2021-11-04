@@ -1,19 +1,19 @@
 import type { ReactElement } from 'react';
-import { useRoutes, Navigate } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import Sweet from '../pages/Sweet/index';
 import Demo from '../pages/Demo/index';
 import Packages from '../pages/Packages/index';
 
 /* 路由 */
-function Routers(props: {}): ReactElement | null {
-  const routes: ReactElement | null = useRoutes([
-    { path: '/', element: <Navigate to="Sweet/Introduction" replace={ true } /> },
-    { path: 'Sweet/*', element: <Sweet /> },
-    { path: 'Demo', element: <Demo /> },
-    { path: 'Packages/*', element: <Packages /> }
-  ]);
-
-  return routes;
+function Routers(props: {}): ReactElement {
+  return (
+    <Routes>
+      <Route path="/" element={ <Navigate to="Sweet/Introduction" replace={ true } /> } />
+      <Route path="Sweet/*" element={ <Sweet /> } />
+      <Route path="Demo" element={ <Demo /> } />
+      <Route path="Packages/*" element={ <Packages /> } />
+    </Routes>
+  );
 }
 
 export default Routers;
