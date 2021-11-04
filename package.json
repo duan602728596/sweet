@@ -11,9 +11,9 @@
     "update-version": "milktea-esm update",
     "prepare": "husky install"
   },
-  "packageManager": "yarn@3.0.2",
+  "packageManager": "yarn@3.1.0",
   "engines": {
-    "pm": "yarn@^3.0.2"
+    "pm": "yarn@^3.1.0"
   },
   "dependencies": {
     "@ant-design/icons": "^4.7.0",
