@@ -21,8 +21,8 @@
     "react": "next",
     "react-dom": "next",
     "react-helmet": "^6.1.0",
-    "react-router": "^6.0.0",
-    "react-router-dom": "^6.0.0",
+    "react-router": "^6.0.1",
+    "react-router-dom": "^6.0.1",
     "react-showdown": "^2.3.1",
     "tslib": "^2.3.1"
   },
@@ -37,6 +37,6 @@
     "cross-env": "*",
     "rimraf": "*",
     "ts-loader": "^9.2.6",
-    "typescript": "beta"
+    "typescript": "^4.5.1-rc"
   }
 }

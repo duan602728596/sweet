@@ -59,7 +59,7 @@
     "less": "^4.1.2",
     "less-loader": "^10.2.0",
     "lodash": "^4.17.21",
-    "mini-css-extract-plugin": "^2.4.3",
+    "mini-css-extract-plugin": "^2.4.4",
     "pug": "^3.0.2",
     "pug-loader": "^2.4.0",
     "react-refresh": "^0.10.0",
@@ -68,17 +68,17 @@
     "style-loader": "^3.3.1",
     "terser": "^5.9.0",
     "terser-webpack-plugin": "^5.2.4",
-    "webpack": "^5.61.0",
+    "webpack": "^5.62.1",
     "webpack-chain": "^6.5.1",
     "webpack-merge": "^5.8.0",
-    "webpackbar": "^5.0.0-3"
+    "webpackbar": "^5.0.2"
   },
   "devDependencies": {
     "@vue/babel-plugin-jsx": "^1.1.1",
     "cross-env": "*",
     "mocha": "*",
     "ts-loader": "^9.2.6",
-    "vue-loader": "^16.8.2",
+    "vue-loader": "^16.8.3",
     "vue-svg-loader": "^0.17.0-beta.2"
   },
   "peerDependencies": {

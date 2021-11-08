@@ -37,7 +37,7 @@
     "gulp-typescript": "^6.0.0-alpha.1",
     "lerna": "^4.0.0",
     "rimraf": "^3.0.2",
-    "typescript": "beta"
+    "typescript": "^4.5.1-rc"
   },
   "devDependencies": {
     "@babel/core": "^7.16.0",
@@ -51,7 +51,7 @@
     "commitizen": "^4.2.4",
     "cross-env": "^7.0.3",
     "cz-conventional-changelog": "^3.3.0",
-    "eslint": "^8.1.0",
+    "eslint": "^8.2.0",
     "eslint-import-resolver-node": "^0.3.6",
     "eslint-import-resolver-typescript": "^2.5.0",
     "eslint-plugin-import": "^2.25.2",
