@@ -54,7 +54,7 @@ function space(length: number = 1): string {
 const packageHost: string[] = [
   'registry.npmjs.org',       // npm
   'registry.yarnpkg.com',     // yarn
-  'r.cnpmjs.org',             // cnpm
+  'registry.npmmirror.com',   // cnpm
   'mirrors.cloud.tencent.com' // 腾讯npm镜像
 ];
 
