@@ -7,6 +7,7 @@ import glob from 'glob';
 import chalk from 'chalk';
 import type { ViteDevServer } from 'vite';
 import { requireCommonjsModule, requireModule } from '@sweet-milktea/utils';
+import importESM from '@sweet-milktea/utils/importESM';
 import type { SweetOptions } from './types';
 
 export const globPromise: (arg1: string, arg2?: glob.IOptions) => Promise<string[]> = util.promisify(glob);
@@ -84,7 +85,7 @@ export function formatPath(sweetOptions: SweetOptions, file: string): string {
 
 /* 启动日志 */
 export async function runningAtLog(sweetOptions: SweetOptions, displayHttps: boolean): Promise<void> {
-  const { internalIpV4 }: { internalIpV4(): Promise<string | undefined> } = await import('internal-ip');
+  const { internalIpV4 }: { internalIpV4(): Promise<string | undefined> } = await importESM('internal-ip');
   const ip: string = await internalIpV4() ?? '127.0.0.1';
   const logs: string[] = [
     ' Running at:',

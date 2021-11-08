@@ -13,7 +13,7 @@ import { dir, packageNames } from './config.mjs';
 /* typescript编译配置 */
 const tsBuildConfig = _.omit({
   ...tsconfig.compilerOptions,
-  module: 'Node12',
+  // module: 'Node12', TODO: The official version is temporarily removed
   skipLibCheck: true,
   typescript
 }, ['moduleResolution']);
