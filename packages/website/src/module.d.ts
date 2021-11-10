@@ -40,6 +40,12 @@ declare module '*.webp' {
   export default url;
 }
 
+declare module '*.avif' {
+  const url: string;
+
+  export default url;
+}
+
 declare module '*.component.svg' {
   import type { FunctionComponent } from 'react';
 
