@@ -32,7 +32,7 @@ export default async function(sweetConfig: SweetConfig, sweetOptions: SweetOptio
     webpackLog = 'progress',
     filesMap,
     typescript,
-    js,
+    javascript,
     socket
   }: SweetConfig = sweetConfig;
   const isDevelopment: boolean = mode === 'development';
@@ -62,7 +62,7 @@ export default async function(sweetConfig: SweetConfig, sweetOptions: SweetOptio
   // fork-ts-checker-webpack-plugin
   if (sweetOptions.forkTsCheckerWebpackPlugin) {
     const typescriptOptions: TypeScriptReporterOptions = {
-      mode: js?.typescript ? 'write-references' : 'write-tsbuildinfo',
+      mode: javascript?.typescript ? 'write-references' : 'write-tsbuildinfo',
       extensions: {
         vue: {
           enabled: frame === 'vue',
