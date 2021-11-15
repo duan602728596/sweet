@@ -32,8 +32,7 @@ function Index(props: {}): ReactElement | null {
       element: (
         <Element title="介绍">
           <div className={ style.version }>
-            <Select
-              className={ style.versionSelect }
+            <Select className={ style.versionSelect }
               size="small"
               defaultValue={ lernaJson.version }
               onSelect={ handleOpenOldWebSite }
