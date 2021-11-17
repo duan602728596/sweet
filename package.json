@@ -44,7 +44,7 @@
     "@babel/eslint-parser": "^7.16.3",
     "@sweet-milktea/eslint-plugin": "*",
     "@sweet-milktea/milktea-cli": "^3.1.1",
-    "@sweet-milktea/util-tools": "^3.1.1",
+    "@sweet-milktea/util-tools": "^3.1.6",
     "@typescript-eslint/eslint-plugin": "^5.4.0",
     "@typescript-eslint/parser": "^5.4.0",
     "chai": "^4.3.4",
