@@ -2,7 +2,7 @@ import * as path from 'path';
 import _ from 'lodash';
 import type { InlineConfig } from 'vite';
 import { basicConfig } from './config/basicConfig';
-import { esbuildReact, vueVitePlugin } from './config/jsx';
+import addJsxPlugins from './config/addJsxPlugins';
 import { addTsChecker } from './utils/tsChecker';
 import { changeSweetConfig } from './utils/utils';
 import type { SweetConfig, SweetOptions } from './utils/types';
@@ -28,17 +28,8 @@ export default async function(sweetConfig: SweetConfig, sweetOptions: SweetOptio
     }
   });
 
-  if (frame === 'react') {
-    // 添加react配置
-    Object.assign(viteConfig, {
-      esbuild: esbuildReact
-    });
-  } else if (frame === 'vue') {
-    // 添加vue配置
-    Object.assign(viteConfig, {
-      plugins: await vueVitePlugin()
-    });
-  }
+  // 添加jsx插件
+  await addJsxPlugins(viteConfig, frame);
 
   // 添加typescript的检查插件
   await addTsChecker(sweetOptions, viteConfig, frame, ts);
