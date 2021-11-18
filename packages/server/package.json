@@ -79,13 +79,13 @@
     "sockjs": "^0.3.21",
     "sockjs-client": "^1.5.2",
     "url": "^0.11.0",
-    "webpack-dev-middleware": "^5.2.1",
+    "webpack-dev-middleware": "^5.2.2",
     "webpack-log": "^3.0.2",
     "ws": "^8.2.3"
   },
   "devDependencies": {
     "@sweet-milktea/milktea": "^3.1.6",
-    "@sweet-milktea/milktea-vite": "^3.1.6",
+    "@sweet-milktea/milktea-vite": "^3.1.7",
     "@sweet-milktea/server-log": "^3.0.0",
     "cross-env": "*",
     "mocha": "*",
