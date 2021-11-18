@@ -6,7 +6,7 @@ import configFile, { ConfigFile } from './utils/configFile';
 import viteConfig from './config';
 import viteClientBuild from './build';
 import viteSSRBuild from './server';
-import type { SweetConfig, SweetOptions, Environment, Info, SweetConfigArgs, FuncArgs } from './utils/types';
+import type { SweetConfig, SweetOptions, Environment, SweetConfigArgs, FuncArgs } from './utils/types';
 
 /* 基础配置 */
 const sweetOptions: SweetOptions = {
