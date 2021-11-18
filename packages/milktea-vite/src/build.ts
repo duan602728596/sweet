@@ -4,7 +4,7 @@ import type { InlineConfig } from 'vite';
 import { basicConfig } from './config/basicConfig';
 import addJsxPlugins from './config/addJsxPlugins';
 import { addTsChecker } from './utils/tsChecker';
-import { changeSweetConfig } from './utils/utils';
+import { changeSweetConfig, customizer } from './utils/utils';
 import type { SweetConfig, SweetOptions } from './utils/types';
 
 /**
@@ -38,5 +38,5 @@ export default async function(sweetConfig: SweetConfig, sweetOptions: SweetOptio
     await chainVite(viteConfig);
   }
 
-  return _.merge(viteConfig, vite);
+  return _.mergeWith(viteConfig, vite, customizer);
 }

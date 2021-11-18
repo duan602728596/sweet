@@ -12,3 +12,10 @@ export function changeSweetConfig(sweetConfig: SweetConfig): void {
     }
   }
 }
+
+/* lodash.mergeWith合并函数 */
+export function customizer(objValue: unknown, srcValue: unknown): Array<unknown> | undefined {
+  if (Array.isArray(objValue)) {
+    return objValue.concat(srcValue);
+  }
+}
