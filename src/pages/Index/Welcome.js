@@ -12,7 +12,10 @@ export default defineComponent({
     function handleZanClick(event) {
       const likeLen = store.getters['index/getLikeLen']();
 
-      store.dispatch('index/setLikeLen', likeLen + 1);
+      store.dispatch({
+        type: 'index/setLikeLen',
+        payload: likeLen + 1
+      });
       stateLen.value++;
     }
 

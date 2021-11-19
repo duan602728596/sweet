@@ -13,7 +13,10 @@ const module = {
   },
   actions: {
     setLikeLen(context, payload) {
-      context.commit('setLikeLen', payload);
+      context.commit({
+        type: 'setLikeLen',
+        payload
+      });
     }
   }
 };
