@@ -30,10 +30,10 @@ export default defineComponent({
         <Form class={ style.loginForm } model={ this.form } onFinish={ this.handleLoginSubmit }>
           <h1 class={ style.title }>系统登陆</h1>
           <Form.Item class={ style.formInput } name="username" rules={ [{ required: true, message: '请输入用户名' }] }>
-            <Input v-model={ [this.form.username, 'value'] } addonBefore={ <IconUserOutlined /> } />
+            <Input v-model={ [this.form.username, 'modelValue'] } addonBefore={ <IconUserOutlined /> } />
           </Form.Item>
           <Form.Item class={ style.formInput } name="password" rules={ [{ required: true, message: '请输入密码' }] }>
-            <Input type="password" v-model={ [this.form.password, 'value'] } addonBefore={ <IconLockOutlined /> } />
+            <Input type="password" v-model={ [this.form.password, 'modelValue'] } addonBefore={ <IconLockOutlined /> } />
           </Form.Item>
           <div class={ style.btnBox }>
             <Button type="primary" htmlType="submit" size="large" block={ true }>登陆</Button>
