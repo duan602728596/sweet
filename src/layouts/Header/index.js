@@ -29,7 +29,9 @@ export default defineComponent({
     };
   },
 
-  render() {
+  render(a) {
+    const { toolsOverlayRender } = a;
+
     return (
       <Layout.Header class={ style.header }>
         {/* logo */}
@@ -53,7 +55,7 @@ export default defineComponent({
         </nav>
         {/* 工具 */}
         <div class={ style.tools }>
-          <Dropdown overlay={ this.toolsOverlayRender() }>
+          <Dropdown overlay={ toolsOverlayRender() }>
             <span class={ style.toolsMenu }>
               <Avatar class={ style.avatar }>D</Avatar>
               <span class={ style.username }>用户名</span>

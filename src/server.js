@@ -10,6 +10,12 @@ import { router } from './router/routers';
 import { storeFactory } from './store/store';
 import './global.sass';
 
+if (typeof requestAnimationFrame !== 'function') {
+  globalThis.requestAnimationFrame = function(fn) {
+    return setTimeout(fn, 0);
+  };
+}
+
 const head = createHead();
 
 async function server(url, context = {}, initialState = {}) {

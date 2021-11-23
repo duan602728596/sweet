@@ -9,10 +9,12 @@ import style from './style.sass';
  * 默认padding为8px
  */
 export default defineComponent({
-  render() {
+  render(a) {
+    const { $slots } = a;
+
     return (
       <Layout.Content class={ style.content }>
-        { this.$slots.default() }
+        { $slots.default() }
       </Layout.Content>
     );
   }

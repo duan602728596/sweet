@@ -26,7 +26,9 @@ export default defineComponent({
     };
   },
 
-  render() {
+  render(a) {
+    const { stateLen, likeLen, handleZanClick } = a;
+
     return (
       <article>
         <h1>
@@ -35,8 +37,8 @@ export default defineComponent({
         </h1>
         <p>如果你喜欢，你可以点个赞。</p>
         <div>
-          <IconLikeOutlined class={ style.zan } role="button" aria-label="点赞" onClick={ this.handleZanClick } />
-          <span class={ style.len }>{ this.likeLen } & { this.stateLen }</span>
+          <IconLikeOutlined class={ style.zan } role="button" aria-label="点赞" onClick={ handleZanClick } />
+          <span class={ style.len }>{ likeLen } & { stateLen }</span>
         </div>
         <img class={ style.img } src={ require('./images/1R5031O0-17.jpg') } />
       </article>

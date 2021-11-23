@@ -8,10 +8,12 @@ import style from './index.sass';
  * 包含左侧的菜单Sider和右侧的内容Content
  */
 export default defineComponent({
-  render() {
+  render(a) {
+    const { $slots } = a;
+
     return (
       <Layout class={ style.main }>
-        { this.$slots.default() }
+        { $slots.default() }
       </Layout>
     );
   }
