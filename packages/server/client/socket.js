@@ -34,7 +34,7 @@ var socket = function initSocket(url, handlers, reconnect) {
       retries += 1;
       log.info("Trying to reconnect...");
       setTimeout(function () {
-        socket(url, handlers);
+        socket(url, handlers, reconnect);
       }, retryInMs);
     }
   });

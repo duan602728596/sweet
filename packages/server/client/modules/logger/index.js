@@ -314,6 +314,7 @@ var WebpackLogger = /*#__PURE__*/function () {
       if (this[TIMERS_AGGREGATES_SYMBOL] === undefined) return;
       var time = this[TIMERS_AGGREGATES_SYMBOL].get(label);
       if (time === undefined) return;
+      this[TIMERS_AGGREGATES_SYMBOL].delete(label);
       this[LOG_SYMBOL](LogType.time, [label].concat(_toConsumableArray(time)));
     }
   }]);

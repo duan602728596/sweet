@@ -1692,7 +1692,7 @@ module.exports = function (SockJS, availableTransports) {
 "use strict";
 
 
-var EventEmitter = __webpack_require__(/*! events */ "./node_modules/sockjs-client/lib/event/emitter.js").EventEmitter,
+var EventEmitter = (__webpack_require__(/*! events */ "./node_modules/sockjs-client/lib/event/emitter.js").EventEmitter),
     inherits = __webpack_require__(/*! inherits */ "./node_modules/inherits/inherits_browser.js"),
     JSON3 = __webpack_require__(/*! json3 */ "./node_modules/json3/lib/json3.js"),
     objectUtils = __webpack_require__(/*! ./utils/object */ "./node_modules/sockjs-client/lib/utils/object.js");
@@ -1753,7 +1753,7 @@ module.exports = InfoAjax;
 
 
 var inherits = __webpack_require__(/*! inherits */ "./node_modules/inherits/inherits_browser.js"),
-    EventEmitter = __webpack_require__(/*! events */ "./node_modules/sockjs-client/lib/event/emitter.js").EventEmitter,
+    EventEmitter = (__webpack_require__(/*! events */ "./node_modules/sockjs-client/lib/event/emitter.js").EventEmitter),
     JSON3 = __webpack_require__(/*! json3 */ "./node_modules/json3/lib/json3.js"),
     XHRLocalObject = __webpack_require__(/*! ./transport/sender/xhr-local */ "./node_modules/sockjs-client/lib/transport/sender/xhr-local.js"),
     InfoAjax = __webpack_require__(/*! ./info-ajax */ "./node_modules/sockjs-client/lib/info-ajax.js");
@@ -1793,7 +1793,7 @@ module.exports = InfoReceiverIframe;
 "use strict";
 
 
-var EventEmitter = __webpack_require__(/*! events */ "./node_modules/sockjs-client/lib/event/emitter.js").EventEmitter,
+var EventEmitter = (__webpack_require__(/*! events */ "./node_modules/sockjs-client/lib/event/emitter.js").EventEmitter),
     inherits = __webpack_require__(/*! inherits */ "./node_modules/inherits/inherits_browser.js"),
     JSON3 = __webpack_require__(/*! json3 */ "./node_modules/json3/lib/json3.js"),
     utils = __webpack_require__(/*! ./utils/event */ "./node_modules/sockjs-client/lib/utils/event.js"),
@@ -1874,7 +1874,7 @@ module.exports = InfoIframe;
 "use strict";
 
 
-var EventEmitter = __webpack_require__(/*! events */ "./node_modules/sockjs-client/lib/event/emitter.js").EventEmitter,
+var EventEmitter = (__webpack_require__(/*! events */ "./node_modules/sockjs-client/lib/event/emitter.js").EventEmitter),
     inherits = __webpack_require__(/*! inherits */ "./node_modules/inherits/inherits_browser.js"),
     urlUtils = __webpack_require__(/*! ./utils/url */ "./node_modules/sockjs-client/lib/utils/url.js"),
     XDR = __webpack_require__(/*! ./transport/sender/xdr */ "./node_modules/sockjs-client/lib/transport/sender/xdr.js"),
@@ -2898,7 +2898,7 @@ __webpack_require__(/*! ./transport/websocket */ "./node_modules/sockjs-client/l
 "use strict";
 
 
-var EventEmitter = __webpack_require__(/*! events */ "./node_modules/sockjs-client/lib/event/emitter.js").EventEmitter,
+var EventEmitter = (__webpack_require__(/*! events */ "./node_modules/sockjs-client/lib/event/emitter.js").EventEmitter),
     inherits = __webpack_require__(/*! inherits */ "./node_modules/inherits/inherits_browser.js"),
     utils = __webpack_require__(/*! ../../utils/event */ "./node_modules/sockjs-client/lib/utils/event.js"),
     urlUtils = __webpack_require__(/*! ../../utils/url */ "./node_modules/sockjs-client/lib/utils/url.js"),
@@ -3227,7 +3227,7 @@ module.exports = HtmlFileTransport;
 
 var inherits = __webpack_require__(/*! inherits */ "./node_modules/inherits/inherits_browser.js"),
     JSON3 = __webpack_require__(/*! json3 */ "./node_modules/json3/lib/json3.js"),
-    EventEmitter = __webpack_require__(/*! events */ "./node_modules/sockjs-client/lib/event/emitter.js").EventEmitter,
+    EventEmitter = (__webpack_require__(/*! events */ "./node_modules/sockjs-client/lib/event/emitter.js").EventEmitter),
     version = __webpack_require__(/*! ../version */ "./node_modules/sockjs-client/lib/version.js"),
     urlUtils = __webpack_require__(/*! ../utils/url */ "./node_modules/sockjs-client/lib/utils/url.js"),
     iframeUtils = __webpack_require__(/*! ../utils/iframe */ "./node_modules/sockjs-client/lib/utils/iframe.js"),
@@ -3471,7 +3471,7 @@ module.exports = AjaxBasedTransport;
 
 
 var inherits = __webpack_require__(/*! inherits */ "./node_modules/inherits/inherits_browser.js"),
-    EventEmitter = __webpack_require__(/*! events */ "./node_modules/sockjs-client/lib/event/emitter.js").EventEmitter;
+    EventEmitter = (__webpack_require__(/*! events */ "./node_modules/sockjs-client/lib/event/emitter.js").EventEmitter);
 
 var debug = function debug() {};
 
@@ -3615,7 +3615,7 @@ module.exports = function (transport) {
 
 
 var inherits = __webpack_require__(/*! inherits */ "./node_modules/inherits/inherits_browser.js"),
-    EventEmitter = __webpack_require__(/*! events */ "./node_modules/sockjs-client/lib/event/emitter.js").EventEmitter;
+    EventEmitter = (__webpack_require__(/*! events */ "./node_modules/sockjs-client/lib/event/emitter.js").EventEmitter);
 
 var debug = function debug() {};
 
@@ -3737,7 +3737,7 @@ module.exports = SenderReceiver;
 
 
 var inherits = __webpack_require__(/*! inherits */ "./node_modules/inherits/inherits_browser.js"),
-    EventEmitter = __webpack_require__(/*! events */ "./node_modules/sockjs-client/lib/event/emitter.js").EventEmitter,
+    EventEmitter = (__webpack_require__(/*! events */ "./node_modules/sockjs-client/lib/event/emitter.js").EventEmitter),
     EventSourceDriver = __webpack_require__(/*! eventsource */ "./node_modules/sockjs-client/lib/transport/browser/eventsource.js");
 
 var debug = function debug() {};
@@ -3818,7 +3818,7 @@ module.exports = EventSourceReceiver;
 var inherits = __webpack_require__(/*! inherits */ "./node_modules/inherits/inherits_browser.js"),
     iframeUtils = __webpack_require__(/*! ../../utils/iframe */ "./node_modules/sockjs-client/lib/utils/iframe.js"),
     urlUtils = __webpack_require__(/*! ../../utils/url */ "./node_modules/sockjs-client/lib/utils/url.js"),
-    EventEmitter = __webpack_require__(/*! events */ "./node_modules/sockjs-client/lib/event/emitter.js").EventEmitter,
+    EventEmitter = (__webpack_require__(/*! events */ "./node_modules/sockjs-client/lib/event/emitter.js").EventEmitter),
     random = __webpack_require__(/*! ../../utils/random */ "./node_modules/sockjs-client/lib/utils/random.js");
 
 var debug = function debug() {};
@@ -3919,7 +3919,7 @@ var utils = __webpack_require__(/*! ../../utils/iframe */ "./node_modules/sockjs
     browser = __webpack_require__(/*! ../../utils/browser */ "./node_modules/sockjs-client/lib/utils/browser.js"),
     urlUtils = __webpack_require__(/*! ../../utils/url */ "./node_modules/sockjs-client/lib/utils/url.js"),
     inherits = __webpack_require__(/*! inherits */ "./node_modules/inherits/inherits_browser.js"),
-    EventEmitter = __webpack_require__(/*! events */ "./node_modules/sockjs-client/lib/event/emitter.js").EventEmitter;
+    EventEmitter = (__webpack_require__(/*! events */ "./node_modules/sockjs-client/lib/event/emitter.js").EventEmitter);
 
 var debug = function debug() {};
 
@@ -4123,7 +4123,7 @@ module.exports = JsonpReceiver;
 
 
 var inherits = __webpack_require__(/*! inherits */ "./node_modules/inherits/inherits_browser.js"),
-    EventEmitter = __webpack_require__(/*! events */ "./node_modules/sockjs-client/lib/event/emitter.js").EventEmitter;
+    EventEmitter = (__webpack_require__(/*! events */ "./node_modules/sockjs-client/lib/event/emitter.js").EventEmitter);
 
 var debug = function debug() {};
 
@@ -4325,7 +4325,7 @@ module.exports = function (url, payload, callback) {
 "use strict";
 
 
-var EventEmitter = __webpack_require__(/*! events */ "./node_modules/sockjs-client/lib/event/emitter.js").EventEmitter,
+var EventEmitter = (__webpack_require__(/*! events */ "./node_modules/sockjs-client/lib/event/emitter.js").EventEmitter),
     inherits = __webpack_require__(/*! inherits */ "./node_modules/inherits/inherits_browser.js"),
     eventUtils = __webpack_require__(/*! ../../utils/event */ "./node_modules/sockjs-client/lib/utils/event.js"),
     browser = __webpack_require__(/*! ../../utils/browser */ "./node_modules/sockjs-client/lib/utils/browser.js"),
@@ -4471,7 +4471,7 @@ module.exports = XHRCorsObject;
 "use strict";
 
 
-var EventEmitter = __webpack_require__(/*! events */ "./node_modules/sockjs-client/lib/event/emitter.js").EventEmitter,
+var EventEmitter = (__webpack_require__(/*! events */ "./node_modules/sockjs-client/lib/event/emitter.js").EventEmitter),
     inherits = __webpack_require__(/*! inherits */ "./node_modules/inherits/inherits_browser.js");
 
 function XHRFake() {
@@ -4531,7 +4531,7 @@ module.exports = XHRLocalObject;
 var utils = __webpack_require__(/*! ../utils/event */ "./node_modules/sockjs-client/lib/utils/event.js"),
     urlUtils = __webpack_require__(/*! ../utils/url */ "./node_modules/sockjs-client/lib/utils/url.js"),
     inherits = __webpack_require__(/*! inherits */ "./node_modules/inherits/inherits_browser.js"),
-    EventEmitter = __webpack_require__(/*! events */ "./node_modules/sockjs-client/lib/event/emitter.js").EventEmitter,
+    EventEmitter = (__webpack_require__(/*! events */ "./node_modules/sockjs-client/lib/event/emitter.js").EventEmitter),
     WebsocketDriver = __webpack_require__(/*! ./driver/websocket */ "./node_modules/sockjs-client/lib/transport/browser/websocket.js");
 
 var debug = function debug() {};
