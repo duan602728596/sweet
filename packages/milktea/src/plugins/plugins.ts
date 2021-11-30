@@ -8,7 +8,7 @@ import FilesMapWebpackPlugin from '@bbkkbkk/files-map-webpack-plugin';
 import WebpackBar from 'webpackbar';
 import _ from 'lodash';
 import { requireModule } from '@sweet-milktea/utils';
-import Config, { PluginClass } from 'webpack-chain';
+import Config, { type PluginClass } from 'webpack-chain';
 import type {
   TypeScriptReporterOptions
 } from 'fork-ts-checker-webpack-plugin/lib/typescript-reporter/TypeScriptReporterOptions';

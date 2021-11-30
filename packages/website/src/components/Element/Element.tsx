@@ -1,4 +1,4 @@
-import { Fragment, ReactElement, ReactNode } from 'react';
+import { Fragment, type ReactElement, type ReactNode } from 'react';
 import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
 

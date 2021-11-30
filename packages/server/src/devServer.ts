@@ -17,7 +17,7 @@ import createProxy from './utils/createProxy';
 import createRedirectToHttpsMiddleware from './utils/redirectToHttps';
 import createSweetOptionsMiddleware from './utils/createOptions';
 import createMock from './utils/createMock';
-import createHttpsCertificate, { HttpsCertificate } from './utils/createHttpsCertificate';
+import createHttpsCertificate, { type HttpsCertificate } from './utils/createHttpsCertificate';
 import koaHmr from './devServer/hmr/hmr';
 import useRegister from './utils/babelRegister';
 import { formatPath, runningAtLog } from './utils/utils';

@@ -1,6 +1,6 @@
 import * as fs from 'fs';
 import fse from 'fs-extra';
-import { Icns, IcnsImage, OSType } from '@fiahfy/icns';
+import { Icns, IcnsImage, type OSType } from '@fiahfy/icns';
 
 /* 解析osType */
 const oneK: { [key: string]: OSType } = {

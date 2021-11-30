@@ -1,4 +1,4 @@
-import { useMemo, useCallback, ReactElement, ReactNodeArray } from 'react';
+import { useMemo, useCallback, ReactElement, ReactNode } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import type { Location } from 'history';
 import { Menu } from 'antd';
@@ -99,14 +99,14 @@ function SlideMenu(props: {}): ReactElement {
     [location.pathname]);
 
   // 渲染菜单
-  const navRender: (n: NavItem[]) => ReactNodeArray = useCallback(function(navsList: Array<NavItem>): ReactNodeArray {
+  const navRender: (n: NavItem[]) => Array<ReactNode> = useCallback(function(navsList: Array<NavItem>): Array<ReactNode> {
     const element: Array<ReactElement> = [];
 
     for (const item of navsList) {
       const { id, url, name, icon, children }: NavItem = item;
 
       if (children?.length) {
-        const childrenElement: ReactNodeArray = navRender(children);
+        const childrenElement: Array<ReactNode> = navRender(children);
 
         element.push(
           <SubMenu key={ id } title={ <span>{ icon }{ name }</span> }>

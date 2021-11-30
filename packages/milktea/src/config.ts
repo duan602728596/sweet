@@ -1,8 +1,7 @@
 import * as path from 'path';
 import _ from 'lodash';
 import type { Configuration } from 'webpack';
-import Config from 'webpack-chain';
-import type{ Output } from 'webpack-chain';
+import Config, { type Output } from 'webpack-chain';
 import { merge } from 'webpack-merge';
 import { moduleExists } from '@sweet-milktea/utils';
 import loaders from './loaders/loaders';

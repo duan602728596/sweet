@@ -4,7 +4,7 @@ import type { Configuration, Stats } from 'webpack';
 import webpackConfig from './config';
 import webpackServerRenderConfig from './server';
 import webpackDllConfig from './dll';
-import configFile, { ConfigFile } from './utils/configFile';
+import configFile, { type ConfigFile } from './utils/configFile';
 import type { SweetConfig, SweetOptions, Environment, SweetConfigArgs, FuncArgs } from './utils/types';
 
 /* 基础配置 */

@@ -7,7 +7,6 @@ import type { Context, Next } from 'koa';
 import type Router from '@koa/router';
 import type { ViteDevServer } from 'vite';
 import preRenderInit from './preDevRender';
-
 import type { SweetOptions } from '../utils/types';
 
 async function createRouters(router: Router, sweetOptions: SweetOptions): Promise<void> {

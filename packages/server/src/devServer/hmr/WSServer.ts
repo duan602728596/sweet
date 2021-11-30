@@ -4,7 +4,7 @@ import type { Socket } from 'net';
 import WebSocket from 'ws';
 import type { Compiler } from 'webpack';
 import { WebSocketServer } from './ws';
-import BasicServer, { ServerItem, ServerConnection, ClientLogLevel } from './BasicServer';
+import BasicServer, { type ServerItem, type ServerConnection, type ClientLogLevel } from './BasicServer';
 
 const noop: Function = (): void => { /* noop */ };
 

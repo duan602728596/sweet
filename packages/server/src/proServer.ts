@@ -15,7 +15,7 @@ import createProxy from './utils/createProxy';
 import createMock from './utils/createMock';
 import createRedirectToHttpsMiddleware from './utils/redirectToHttps';
 import createSweetOptionsMiddleware from './utils/createOptions';
-import createHttpsCertificate, { HttpsCertificate } from './utils/createHttpsCertificate';
+import createHttpsCertificate, { type HttpsCertificate } from './utils/createHttpsCertificate';
 import useRegister from './utils/babelRegister';
 import { formatPath, runningAtLog } from './utils/utils';
 import type { SweetOptions, ProServerArgs } from './utils/types';
