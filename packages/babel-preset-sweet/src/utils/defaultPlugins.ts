@@ -10,6 +10,7 @@ const defaultPlugins: Array<PluginItem> = [
   '@babel/plugin-proposal-function-bind',         // obj::func(val) 语法
   ['@babel/plugin-proposal-pipeline-operator', { proposal: 'minimal' }], // 管道函数
   '@babel/plugin-proposal-throw-expressions',     // var e = throw new Error(err) 语法
+  '@babel/plugin-syntax-import-assertions',       // import json from './foo.json' assert { type: 'json' }
   '@babel/plugin-syntax-module-string-names'      // import { 'unicode' as bar } and export { foo as 'unicode' }
 ];
 

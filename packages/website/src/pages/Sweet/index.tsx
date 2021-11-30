@@ -6,7 +6,7 @@ import Element from '../../components/Element/Element';
 import MarkDown from '../../components/MarkDown/MarkDown';
 import introduction from '../../../../../README.md';
 import quickStart from './quick-start.md';
-import lernaJson from '../../../../../lerna.json';
+import lernaJson from '../../../../../lerna.json' assert { type: 'json' };
 
 const introductionText: string = introduction
   .replace('statics/logo.svg', 'https://raw.githubusercontent.com/duan602728596/sweet/master/statics/logo.svg')
