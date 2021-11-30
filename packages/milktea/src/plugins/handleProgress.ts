@@ -1,4 +1,14 @@
-import chalk from 'chalk';
+import importESM from '@sweet-milktea/utils/importESM';
+import type Chalk from 'chalk';
+
+/**
+ * chalk
+ */
+async function getChalk(): Promise<typeof Chalk> {
+  const chalkModule: { default: typeof Chalk } = await importESM('chalk');
+
+  return chalkModule.default;
+}
 
 /**
  * 计算进度百分比
@@ -12,16 +22,22 @@ function calculateProgress(percentage: number): string {
 }
 
 /* 格式化dll的输出 */
-export function handleDllProgress(percentage: number, message: string, ...args: Array<string>): void {
+export async function handleDllProgress(percentage: number, message: string, ...args: Array<string>): Promise<void> {
+  const chalk: typeof Chalk = await getChalk();
+
   console.info(chalk.white.bgGreen(`Dll: ${ calculateProgress(percentage) }%`), message, ...args);
 }
 
 /* 格式化输出 */
-export function handleDefaultProgress(percentage: number, message: string, ...args: Array<string>): void {
+export async function handleDefaultProgress(percentage: number, message: string, ...args: Array<string>): Promise<void> {
+  const chalk: typeof Chalk = await getChalk();
+
   console.info(chalk.white.bgGreen(`Client: ${ calculateProgress(percentage) }%`), message, ...args);
 }
 
 /* 服务端渲染的格式化输出 */
-export function handleServerRenderProgress(percentage: number, message: string, ...args: Array<string>): void {
+export async function handleServerRenderProgress(percentage: number, message: string, ...args: Array<string>): Promise<void> {
+  const chalk: typeof Chalk = await getChalk();
+
   console.info(chalk.white.bgBlue(`Server: ${ calculateProgress(percentage) }%`), message, ...args);
 }

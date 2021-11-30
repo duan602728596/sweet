@@ -4,8 +4,9 @@ import type { RequestOptions } from 'https';
 import type { ClientRequest, IncomingMessage } from 'http';
 import * as path from 'path';
 import semver from 'semver';
-import chalk from 'chalk';
 import { requireJson } from '@sweet-milktea/utils';
+import type Chalk from 'chalk';
+import { getChalk } from './utils/utils';
 
 interface DistTags {
   latest?: string;
@@ -188,7 +189,8 @@ async function getVersionFromNpm(packageArray: Array<PackageItem>, registry: num
  * 输出console.log文本
  * @param { Array<PackageItem> } packageArray
  */
-function consoleLogText(packageArray: Array<PackageItem>): string {
+async function consoleLogText(packageArray: Array<PackageItem>): Promise<string> {
+  const chalk: typeof Chalk = await getChalk();
   let consoleText: string = '';
 
   for (const item of packageArray) {
@@ -269,17 +271,17 @@ async function start(folder: string, registry: number, findPeerDependencies: boo
 
     if (dependencies) {
       consoleText += '  dependencies:\n';
-      consoleText += consoleLogText(dependencies);
+      consoleText += await consoleLogText(dependencies);
     }
 
     if (devDependencies) {
       consoleText += '  devDependencies:\n';
-      consoleText += consoleLogText(devDependencies);
+      consoleText += await consoleLogText(devDependencies);
     }
 
     if (peerDependencies && findPeerDependencies) {
       consoleText += '  peerDependencies:\n';
-      consoleText += consoleLogText(peerDependencies);
+      consoleText += await consoleLogText(peerDependencies);
     }
 
     if (!test) {

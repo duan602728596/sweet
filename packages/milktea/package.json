@@ -50,7 +50,7 @@
     "@sweet-milktea/babel-preset-sweet": "^3.1.1",
     "@sweet-milktea/utils": "^3.0.2",
     "babel-loader": "^8.2.3",
-    "chalk": "^4.1.2",
+    "chalk": "^5.0.0",
     "cosmiconfig": "^7.0.1",
     "css-loader": "^6.5.1",
     "css-minimizer-webpack-plugin": "^3.2.0",

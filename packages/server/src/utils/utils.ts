@@ -4,13 +4,22 @@ import * as Stream from 'stream';
 import * as net from 'net';
 import type { Server as NetServer } from 'net';
 import glob from 'glob';
-import chalk from 'chalk';
-import type { ViteDevServer } from 'vite';
 import { requireCommonjsModule, requireModule } from '@sweet-milktea/utils';
 import importESM from '@sweet-milktea/utils/importESM';
+import type { ViteDevServer } from 'vite';
+import type Chalk from 'chalk';
 import type { SweetOptions } from './types';
 
 export const globPromise: (arg1: string, arg2?: glob.IOptions) => Promise<string[]> = util.promisify(glob);
+
+/**
+ * chalk
+ */
+export async function getChalk(): Promise<typeof Chalk> {
+  const chalkModule: { default: typeof Chalk } = await importESM('chalk');
+
+  return chalkModule.default;
+}
 
 /* 格式化数据 */
 export function formatTemplateData(data: { [key: string]: unknown }): object {
@@ -97,6 +106,8 @@ export async function runningAtLog(sweetOptions: SweetOptions, displayHttps: boo
     logs.splice(2, 0, `${ ' '.repeat(12) }https://127.0.0.1:${ sweetOptions.httpsPort }`);
     logs.push(`${ ' '.repeat(12) }https://${ ip }:${ sweetOptions.httpsPort }`);
   }
+
+  const chalk: typeof Chalk = await getChalk();
 
   console.log(`\n${ chalk.blue(logs.join('\n')) }\n`);
 }
