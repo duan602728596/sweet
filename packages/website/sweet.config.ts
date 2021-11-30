@@ -5,7 +5,10 @@ import type { PluginItem } from '@babel/core';
 const isDev: boolean = process.env.NODE_ENV === 'development';
 
 export default function(info: object): object {
-  const plugins: Array<PluginItem> = [['import', { libraryName: 'antd', libraryDirectory: 'es', style: true }]];
+  const plugins: Array<PluginItem> = [
+    ['@babel/plugin-syntax-import-assertions', undefined, 'import-assertions'],
+    ['import', { libraryName: 'antd', libraryDirectory: 'es', style: true }]
+  ];
 
   if (!isDev) {
     plugins.unshift(['transform-react-remove-prop-types', { mode: 'remove', removeImport: true }]);
