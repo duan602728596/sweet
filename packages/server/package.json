@@ -81,7 +81,7 @@
     "url": "^0.11.0",
     "webpack-dev-middleware": "^5.2.2",
     "webpack-log": "^3.0.2",
-    "ws": "^8.2.3"
+    "ws": "^8.3.0"
   },
   "devDependencies": {
     "@sweet-milktea/milktea": "^3.1.7",
@@ -91,7 +91,7 @@
     "mocha": "*",
     "nunjucks": "^3.2.3",
     "vite": "^2.6.14",
-    "webpack": "^5.64.2"
+    "webpack": "^5.64.4"
   },
   "peerDependencies": {
     "@sweet-milktea/milktea": ">=3",

@@ -33,7 +33,7 @@
     "cross-env": "*",
     "mocha": "*",
     "vite": "^2.6.14",
-    "webpack": "^5.64.2"
+    "webpack": "^5.64.4"
   },
   "peerDependencies": {
     "@sweet-milktea/milktea": ">=3",
