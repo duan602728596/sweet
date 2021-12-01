@@ -22,7 +22,7 @@
   "dependencies": {
     "@sweet-milktea/utils": "^3.0.2",
     "lodash": "^4.17.21",
-    "yargs": "^17.2.1"
+    "yargs": "^17.3.0"
   },
   "devDependencies": {
     "@sweet-milktea/milktea": "^3.1.7",
