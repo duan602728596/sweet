@@ -15,14 +15,12 @@
   "dependencies": {
     "@ant-design/icons": "^4.7.0",
     "antd": "^4.17.2",
-    "github-markdown-css": "^5.0.0",
-    "history": "^5.1.0",
+    "github-markdown-css": "^5.1.0",
     "prop-types": "^15.7.2",
-    "react": "beta",
-    "react-dom": "beta",
+    "react": "rc",
+    "react-dom": "rc",
     "react-helmet": "^6.1.0",
-    "react-router": "^6.0.2",
-    "react-router-dom": "^6.0.2",
+    "react-router-dom": "^6.1.1",
     "react-showdown": "^2.3.1",
     "tslib": "^2.3.1"
   },
@@ -37,6 +35,6 @@
     "cross-env": "*",
     "rimraf": "*",
     "ts-loader": "^9.2.6",
-    "typescript": "^4.5.2"
+    "typescript": "^4.5.3"
   }
 }

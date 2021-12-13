@@ -76,7 +76,7 @@
     "mime-types": "^2.1.34",
     "module-alias": "^2.2.2",
     "path-to-regexp": "^6.2.0",
-    "sockjs": "^0.3.21",
+    "sockjs": "^0.3.24",
     "sockjs-client": "^1.5.2",
     "url": "^0.11.0",
     "webpack-dev-middleware": "^5.2.2",
@@ -90,8 +90,8 @@
     "cross-env": "*",
     "mocha": "*",
     "nunjucks": "^3.2.3",
-    "vite": "^2.6.14",
-    "webpack": "^5.64.4"
+    "vite": "^2.7.1",
+    "webpack": "^5.65.0"
   },
   "peerDependencies": {
     "@sweet-milktea/milktea": ">=3",
