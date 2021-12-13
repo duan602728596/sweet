@@ -19,9 +19,7 @@ export default function(info) {
       '@reduxjs/toolkit',
       'react-redux',
       'reselect',
-      'react-router',
       'react-router-dom',
-      'history',
       'react-helmet',
       'react-no-ssr'
     ],
