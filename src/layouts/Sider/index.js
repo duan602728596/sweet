@@ -44,8 +44,7 @@ function Sider(props) {
       if (item.children && item.children.length > 0) {
         // 当有children时，返回Menu.SubMenu，里面包裹Menu.Item
         return (
-          <Menu.SubMenu
-            key={ item.id }
+          <Menu.SubMenu key={ item.id }
             title={
               <span>
                 { item.icon }
