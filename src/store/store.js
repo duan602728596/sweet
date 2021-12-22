@@ -21,7 +21,7 @@ function createStore(initialState) {
 export function storeFactory(initialState = {}) {
   // 避免热替换导致redux的状态丢失
   if (!store) {
-    createStore();
+    createStore(initialState);
   }
 
   return store;
