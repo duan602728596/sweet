@@ -8,7 +8,7 @@ const reducer = combineReducers(reducersMapObject);
 /* store */
 export let store;
 
-function createStore(initialState) {
+function createStore(initialState = {}) {
   store = configureStore({
     reducer,
     preloadedState: initialState,
