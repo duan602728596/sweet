@@ -11,12 +11,20 @@ var Client = process.env.SWEET_SOCKET === 'ws' ? WebSocketClient : SockJSClient;
 var retries = 0;
 var maxRetries = 10;
 var client = null;
+/**
+ * @param {string} url
+ * @param {{ [handler: string]: (data?: any, params?: any) => any }} handlers
+ * @param {number} [reconnect]
+ */
 
 var socket = function initSocket(url, handlers, reconnect) {
   client = new Client(url);
   client.onOpen(function () {
     retries = 0;
-    maxRetries = reconnect;
+
+    if (typeof reconnect !== "undefined") {
+      maxRetries = reconnect;
+    }
   });
   client.onClose(function () {
     if (retries === 0) {
@@ -29,7 +37,7 @@ var socket = function initSocket(url, handlers, reconnect) {
     if (retries < maxRetries) {
       // Exponentially increase timeout to reconnect.
       // Respectfully copied from the package `got`.
-      // eslint-disable-next-line no-mixed-operators, no-restricted-properties
+      // eslint-disable-next-line no-restricted-properties
       var retryInMs = 1000 * Math.pow(2, retries) + Math.random() * 100;
       retries += 1;
       log.info("Trying to reconnect...");
@@ -38,11 +46,15 @@ var socket = function initSocket(url, handlers, reconnect) {
       }, retryInMs);
     }
   });
-  client.onMessage(function (data) {
+  client.onMessage(
+  /**
+   * @param {any} data
+   */
+  function (data) {
     var message = JSON.parse(data);
 
     if (handlers[message.type]) {
-      handlers[message.type](message.data);
+      handlers[message.type](message.data, message.params);
     }
   });
 };

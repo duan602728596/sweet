@@ -2770,7 +2770,8 @@ if ('ab'.split(/(?:ab)*/).length !== 2 || '.'.split(/(.?)(.?)/).length !== 4 || 
       }
 
       var output = [],
-          flags = (separator.ignoreCase ? 'i' : '') + (separator.multiline ? 'm' : '') + (separator.extended ? 'x' : '') + (separator.sticky ? 'y' : ''),
+          flags = (separator.ignoreCase ? 'i' : '') + (separator.multiline ? 'm' : '') + (separator.extended ? 'x' : '') + ( // Proposed for ES6
+      separator.sticky ? 'y' : ''),
           // Firefox 3+
       lastLastIndex = 0,
           // Make `global` and avoid `lastIndex` issues by working with a copy
@@ -4474,7 +4475,9 @@ module.exports = XHRCorsObject;
 var EventEmitter = (__webpack_require__(/*! events */ "./node_modules/sockjs-client/lib/event/emitter.js").EventEmitter),
     inherits = __webpack_require__(/*! inherits */ "./node_modules/inherits/inherits_browser.js");
 
-function XHRFake() {
+function
+  /* method, url, payload, opts */
+XHRFake() {
   var self = this;
   EventEmitter.call(this);
   this.to = setTimeout(function () {
@@ -6456,7 +6459,7 @@ function Url(address, location, parser) {
 
   if (url.auth) {
     instruction = url.auth.split(':');
-    url.username = instruction[0] || '';
+    url.username = instruction[0];
     url.password = instruction[1] || '';
   }
 
@@ -6541,8 +6544,15 @@ function set(part, value, fn) {
 
       break;
 
-    default:
-      url[part] = value;
+    case 'username':
+    case 'password':
+      url[part] = encodeURIComponent(value);
+      break;
+
+    case 'auth':
+      var splits = value.split(':');
+      url.username = splits[0];
+      url.password = splits.length === 2 ? splits[1] : '';
   }
 
   for (var i = 0; i < rules.length; i++) {
@@ -6550,6 +6560,7 @@ function set(part, value, fn) {
     if (ins[4]) url[ins[1]] = url[ins[1]].toLowerCase();
   }
 
+  url.auth = url.password ? url.username + ':' + url.password : url.username;
   url.origin = url.protocol !== 'file:' && isSpecial(url.protocol) && url.host ? url.protocol + '//' + url.host : 'null';
   url.href = url.toString();
   return url;
@@ -6569,11 +6580,14 @@ function toString(stringify) {
       url = this,
       protocol = url.protocol;
   if (protocol && protocol.charAt(protocol.length - 1) !== ':') protocol += ':';
-  var result = protocol + (url.slashes || isSpecial(url.protocol) ? '//' : '');
+  var result = protocol + (url.protocol && url.slashes || isSpecial(url.protocol) ? '//' : '');
 
   if (url.username) {
     result += url.username;
     if (url.password) result += ':' + url.password;
+    result += '@';
+  } else if (url.password) {
+    result += ':' + url.password;
     result += '@';
   }
 

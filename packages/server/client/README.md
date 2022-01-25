@@ -2,7 +2,7 @@
 
 源代码请参考[https://github.com/webpack/webpack-dev-server/tree/master/client-src](https://github.com/webpack/webpack-dev-server/tree/master/client-src)。   
 
-依赖了ansi-html-community、html-entities、sockjs、sockjs-client、url。   
+依赖了ansi-html-community、html-entities、sockjs、sockjs-client。   
 
 ### webpack-dev-server LICENSE
 
