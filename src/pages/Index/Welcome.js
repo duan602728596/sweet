@@ -1,33 +1,29 @@
-import { defineComponent, ref, computed } from 'vue';
-import { useStore } from 'vuex';
+import { defineComponent, ref } from 'vue';
 import { LikeOutlined as IconLikeOutlined } from '@ant-design/icons-vue';
+import useIndexStore from './modules/useIndexStore';
 import style from './welcome.sass';
 import WelcomeSvgComponent from './images/welcome.component.svg';
 
 export default defineComponent({
   setup() {
-    const store = useStore();
+    const indexStore = useIndexStore();
     const stateLen = ref(0);
 
     function handleZanClick(event) {
-      const likeLen = store.getters['index/getLikeLen']();
+      const likeLen = indexStore.likeLen;
 
-      store.dispatch({
-        type: 'index/setLikeLen',
-        payload: likeLen + 1
-      });
-      stateLen.value++;
+      indexStore.setLikeLen(likeLen + 1);
     }
 
     return {
       stateLen,
-      likeLen: computed(store.getters['index/getLikeLen']),
+      indexStore,
       handleZanClick
     };
   },
 
   render(a) {
-    const { stateLen, likeLen, handleZanClick } = a;
+    const { stateLen, indexStore, handleZanClick } = a;
 
     return (
       <article>
@@ -38,7 +34,7 @@ export default defineComponent({
         <p>如果你喜欢，你可以点个赞。</p>
         <div>
           <IconLikeOutlined class={ style.zan } role="button" aria-label="点赞" onClick={ handleZanClick } />
-          <span class={ style.len }>{ likeLen } & { stateLen }</span>
+          <span class={ style.len }>{ indexStore.getLikeLen } & { stateLen }</span>
         </div>
         <img class={ style.img } src={ require('./images/1R5031O0-17.jpg') } />
       </article>

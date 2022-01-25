@@ -4,13 +4,13 @@ export default function(info) {
   return {
     frame: 'vue',
     dll: [
+      'pinia',
       'vue',
       'vue-router',
-      'vuex',
       '@vueuse/head'
     ],
     entry: {
-      index: [path.join(__dirname, 'src/index.js')],
+      index: [path.join(__dirname, 'src/useIndexStore.js')],
       other: [path.join(__dirname, 'src/other.js')]
     },
     output: {
@@ -22,7 +22,7 @@ export default function(info) {
     },
     serverExternals: [
       function({ context, request }, callback) {
-        if (/^vue(-router|x)?$/.test(request) || /^@vue\//.test(request)) {
+        if (/^vue(-router|x)?$/.test(request) || /^@vue\//.test(request) || /^pinia$/.test(request)) {
           callback(null, 'commonjs ' + request);
         } else {
           callback();

@@ -3,7 +3,7 @@ import { ConfigProvider } from 'ant-design-vue';
 import zhCN from 'ant-design-vue/es/locale/zh_CN';
 import { createHead } from '@vueuse/head';
 import { router } from './router/routers';
-import { storeFactory } from './store/store';
+import { piniaFactory } from './store/pinia';
 import './global.sass';
 
 const head = createHead();
@@ -17,7 +17,7 @@ const app = createApp(() => (
   </div>
 ));
 
-app.use(storeFactory());
+app.use(piniaFactory(window.__INITIAL_STATE__));
 app.use(router);
 app.use(head);
 

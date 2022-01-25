@@ -5,9 +5,8 @@ import { renderToNodeStream } from '@vue/server-renderer';
 import { ConfigProvider } from 'ant-design-vue';
 import zhCN from 'ant-design-vue/es/locale/zh_CN';
 import { createHead } from '@vueuse/head';
-import { cloneDeep } from 'lodash-es';
 import { router } from './router/routers';
-import { storeFactory } from './store/store';
+import { piniaFactory } from './store/pinia';
 import './global.sass';
 
 if (typeof requestAnimationFrame !== 'function') {
@@ -19,8 +18,6 @@ if (typeof requestAnimationFrame !== 'function') {
 const head = createHead();
 
 async function server(url, context = {}, initialState = {}) {
-  const cloneData = cloneDeep(initialState);
-
   /* app */
   const app = createSSRApp(() => (
     <div class="app" id="app">
@@ -32,7 +29,7 @@ async function server(url, context = {}, initialState = {}) {
     </div>
   ));
 
-  app.use(storeFactory(cloneData));
+  app.use(piniaFactory(initialState));
   app.use(router);
   app.use(head);
 

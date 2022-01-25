@@ -3,7 +3,11 @@ export default {
   handler(ctx, sweetOptions) {
     return {
       title: 'Webpack App',
-      initialState: {}
+      initialState: {
+        index: {
+          likeLen: 3
+        }
+      }
     };
   }
 };
