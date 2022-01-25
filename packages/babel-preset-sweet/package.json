@@ -25,8 +25,8 @@
     "@babel/plugin-proposal-throw-expressions": "^7.16.7",
     "@babel/plugin-syntax-import-assertions": "^7.16.7",
     "@babel/plugin-syntax-module-string-names": "^7.12.13",
-    "@babel/plugin-transform-runtime": "^7.16.8",
-    "@babel/preset-env": "^7.16.8",
+    "@babel/plugin-transform-runtime": "^7.16.10",
+    "@babel/preset-env": "^7.16.11",
     "@babel/preset-react": "^7.16.7",
     "@babel/preset-typescript": "^7.16.7",
     "@babel/runtime-corejs3": "^7.16.8",
@@ -36,7 +36,7 @@
     "core-js": "^3.20.3"
   },
   "devDependencies": {
-    "@babel/core": "^7.16.7",
+    "@babel/core": "^7.16.12",
     "cross-env": "*",
     "mocha": "*"
   }

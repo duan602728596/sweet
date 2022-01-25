@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "@ant-design/icons": "^4.7.0",
-    "antd": "^4.18.3",
+    "antd": "^4.18.5",
     "github-markdown-css": "^5.1.0",
     "prop-types": "^15.8.1",
     "react": "rc",
@@ -35,6 +35,6 @@
     "cross-env": "*",
     "rimraf": "*",
     "ts-loader": "^9.2.6",
-    "typescript": "^4.5.4"
+    "typescript": "^4.5.5"
   }
 }
