@@ -1,7 +1,8 @@
 import * as util from 'util';
 import glob from 'glob';
-import importESM from '@sweet-milktea/utils/importESM';
-import type ImageMin from 'imagemin';
+// @ts-ignore Node12
+import type imageMin from 'imagemin';
+// @ts-ignore Node12
 import type Chalk from 'chalk';
 
 const globPromise: (arg1: string, arg2?: glob.IOptions) => Promise<string[]> = util.promisify(glob);
@@ -24,8 +25,8 @@ export function getFiles(cwd: string, file: string): Promise<string[]> {
 /**
  * imagemin
  */
-export async function getImageMin(): Promise<typeof ImageMin> {
-  const imageMinModule: { default: typeof ImageMin } = await importESM('imagemin');
+export async function getImageMin(): Promise<typeof imageMin> {
+  const imageMinModule: { default: typeof imageMin } = await import('imagemin');
 
   return imageMinModule.default;
 }
@@ -33,8 +34,8 @@ export async function getImageMin(): Promise<typeof ImageMin> {
 /**
  * chalk
  */
-export async function getChalk(): Promise<typeof Chalk> {
-  const chalkModule: { default: typeof Chalk } = await importESM('chalk');
+export async function getChalk(): Promise<typeof Chalk > {
+  const chalkModule: { default: typeof Chalk } = await import('chalk');
 
   return chalkModule.default;
 }

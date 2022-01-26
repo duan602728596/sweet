@@ -1,3 +1,4 @@
+// @ts-ignore Node12
 import type Chalk from 'chalk';
 import { getChalk, detectPort } from '../utils/utils';
 

@@ -12,7 +12,8 @@ import { dir, packageNames } from './config.mjs';
 /* typescript编译配置 */
 const tsBuildConfig = {
   ...tsconfig.compilerOptions,
-  module: 'commonjs',
+  moduleResolution: 'Node12',
+  module: 'Node12',
   skipLibCheck: true,
   typescript
 };
