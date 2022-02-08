@@ -17,7 +17,7 @@
   },
   "dependencies": {
     "@babel/plugin-proposal-async-do-expressions": "^7.16.7",
-    "@babel/plugin-proposal-decorators": "^7.16.7",
+    "@babel/plugin-proposal-decorators": "^7.17.0",
     "@babel/plugin-proposal-do-expressions": "^7.16.7",
     "@babel/plugin-proposal-export-default-from": "^7.16.7",
     "@babel/plugin-proposal-function-bind": "^7.16.7",
@@ -25,18 +25,18 @@
     "@babel/plugin-proposal-throw-expressions": "^7.16.7",
     "@babel/plugin-syntax-import-assertions": "^7.16.7",
     "@babel/plugin-syntax-module-string-names": "^7.12.13",
-    "@babel/plugin-transform-runtime": "^7.16.10",
+    "@babel/plugin-transform-runtime": "^7.17.0",
     "@babel/preset-env": "^7.16.11",
     "@babel/preset-react": "^7.16.7",
     "@babel/preset-typescript": "^7.16.7",
-    "@babel/runtime-corejs3": "^7.16.8",
+    "@babel/runtime-corejs3": "^7.17.0",
     "@sweet-milktea/utils": "^3.0.2",
-    "babel-plugin-polyfill-corejs3": "^0.5.1",
+    "babel-plugin-polyfill-corejs3": "^0.5.2",
     "babel-plugin-polyfill-es-shims": "^0.6.1",
-    "core-js": "^3.20.3"
+    "core-js": "^3.21.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.16.12",
+    "@babel/core": "^7.17.0",
     "cross-env": "*",
     "mocha": "*"
   }
