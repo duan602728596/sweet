@@ -9,9 +9,7 @@ import WebpackBar from 'webpackbar';
 import _ from 'lodash';
 import { requireModule } from '@sweet-milktea/utils';
 import Config, { type PluginClass } from 'webpack-chain';
-import type {
-  TypeScriptReporterOptions
-} from 'fork-ts-checker-webpack-plugin/lib/typescript-reporter/TypeScriptReporterOptions';
+import type { TypeScriptWorkerOptions } from 'fork-ts-checker-webpack-plugin/lib/typescript/type-script-worker-options';
 import devPlugins from './devPlugins';
 import proPlugins from './proPlugins';
 import type { SweetConfig, SweetOptions } from '../utils/types';
@@ -60,7 +58,7 @@ export default async function(sweetConfig: SweetConfig, sweetOptions: SweetOptio
 
   // fork-ts-checker-webpack-plugin
   if (sweetOptions.forkTsCheckerWebpackPlugin) {
-    const typescriptOptions: TypeScriptReporterOptions = {
+    const typescriptOptions: TypeScriptWorkerOptions = {
       mode: javascript?.typescript ? 'write-references' : 'write-tsbuildinfo',
       extensions: {
         vue: {
