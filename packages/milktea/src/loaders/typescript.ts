@@ -25,7 +25,7 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
       module: {
         rule: {
           [RULE_NAME]: {
-            test: /^.*\.tsx?$/i,
+            test: /^.*\.(m|c)tsx?$/i,
             use: {
               'babel-loader': {
                 loader: 'babel-loader',
