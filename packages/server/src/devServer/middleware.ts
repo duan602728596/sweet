@@ -4,6 +4,7 @@ import type { Compiler } from 'webpack';
 import type { ViteDevServer } from 'vite';
 import type Koa from 'koa';
 import type Router from '@koa/router';
+// @ts-ignore
 import requireKoaDevMiddleware from './requireKoaDevMiddleware';
 import type { SweetOptions } from '../utils/types';
 

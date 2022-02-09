@@ -35,7 +35,7 @@ module.exports = {
         project: 'tsconfig.json'
       },
       node: {
-        extensions: ['.js', '.jsx', '.cjs', '.mjs', '.ts', '.tsx']
+        extensions: ['.js', '.jsx', '.cjs', '.mjs', '.ts', '.tsx', '.mts', '.cts']
       }
     }
   },
@@ -45,7 +45,7 @@ module.exports = {
   },
   overrides: [
     {
-      files: ['*.ts', '*.tsx'],
+      files: ['*.ts', '*.tsx', '*.mts', '*.cts'],
       parser: '@typescript-eslint/parser',
       parserOptions: {
         project: 'tsconfig.json',

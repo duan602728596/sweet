@@ -45,39 +45,32 @@ function addJsExt(contents, p) {
   return contentsArr.join('\n');
 }
 
-function createProject(name, out, cfg) {
-  const src = path.join(dir, name, 'src/**/*.ts');
-  const ignoreEsm = path.join(dir, name, 'src/**/*.esm.ts');
-  const dist = path.join(dir, name, out);
-
-  return function() {
-    const result = gulp.src([src, `!${ ignoreEsm }`])
-      .pipe(gulpTypescript(cfg));
-
-    if (out === 'esm') {
-      return result.js
-        .pipe(modifier(addJsExt))
-        .pipe(gulp.dest(dist));
-    } else {
-      return result.js.pipe(gulp.dest(dist));
-    }
-  };
+/* rename */
+function renameCallback(p) {
+  if (p.extname === '.mjs' || p.extname === '.cjs') {
+    p.extname = '.js';
+  }
 }
 
-function createESMProject(name, out, cfg) {
-  const src = path.join(dir, name, 'src/**/*.esm.ts');
+function createProject(name, out, cfg) {
+  const isEsm = out === 'esm';
+  const src = path.join(dir, name, isEsm ? 'src/**/*.{ts,mts}' : 'src/**/*.{ts,cts}');
   const dist = path.join(dir, name, out);
 
   return function() {
     const result = gulp.src(src)
       .pipe(gulpTypescript(cfg));
 
-    return result.js
-      .pipe(modifier(addJsExt))
-      .pipe(rename(function(p) {
-        p.basename = p.basename.replace(/\.esm$/, '');
-      }))
-      .pipe(gulp.dest(dist));
+    if (isEsm) {
+      return result.js
+        .pipe(modifier(addJsExt))
+        .pipe(rename(renameCallback))
+        .pipe(gulp.dest(dist));
+    } else {
+      return result.js
+        .pipe(rename(renameCallback))
+        .pipe(gulp.dest(dist));
+    }
   };
 }
 
@@ -113,6 +106,5 @@ export default gulp.series(
     ...createQueue('commonjs', createProject, 'lib', tsBuildConfig),
     ...createQueue('esm'.padEnd(8), createProject, 'esm', tsESMBuildConfig)
   ),
-  gulp.parallel(...createQueue('esm file', createESMProject, 'esm', tsESMBuildConfig)),
   writeTypeModulePackageJsonFile
 );
