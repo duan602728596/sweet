@@ -70,7 +70,7 @@
     "sharp": ">=0"
   },
   "lint-staged": {
-    "**/*.{js,jsx,mjs,cjs,ts,tsx}": "eslint"
+    "**/*.{js,jsx,mjs,cjs,ts,tsx,mts,cts}": "eslint"
   },
   "config": {
     "commitizen": {
