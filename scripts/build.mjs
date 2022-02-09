@@ -3,11 +3,45 @@ import path from 'node:path';
 import fs from 'node:fs';
 import gulp from 'gulp';
 import gulpTypescript from 'gulp-typescript';
+import { ProjectCompiler as GulpTypescriptProjectCompiler } from 'gulp-typescript/release/compiler.js';
+import gulpTypescriptUtils from 'gulp-typescript/release/utils.js';
 import modifier from 'gulp-modifier';
 import rename from 'gulp-rename';
 import typescript from 'typescript';
 import tsconfig from '../tsconfig.json';
 import { dir, packageNames } from './config.mjs';
+
+/**
+ * fix: 重写 ProjectCompiler 的 attachContentToFile 方法
+ *      用于支持mts和cts文件的编译
+ */
+GulpTypescriptProjectCompiler.prototype.attachContentToFile = function(file, fileName, content) {
+  const [, extension] = gulpTypescriptUtils.splitExtension(fileName, ['d.ts', 'd.ts.map']);
+
+  switch (extension) {
+    case 'js':
+    case 'jsx':
+    case 'mjs':
+    case 'cjs':
+      file.jsFileName = fileName;
+      file.jsContent = content;
+      break;
+
+    case 'd.ts.map':
+      file.dtsMapFileName = fileName;
+      file.dtsMapContent = content;
+      break;
+
+    case 'd.ts':
+      file.dtsFileName = fileName;
+      file.dtsContent = content;
+      break;
+
+    case 'map':
+      file.jsMapContent = content;
+      break;
+  }
+};
 
 /* typescript编译配置 */
 const tsBuildConfig = {
