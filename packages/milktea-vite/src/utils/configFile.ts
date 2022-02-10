@@ -22,7 +22,7 @@ function createJsRegisterLoader(): Loader {
       ]],
       cache: true,
       ignore: [/node_modules/],
-      extensions: ['.ts', '.tsx', '.js', '.mjs', 'cjs', '.jsx', '.es6', '.es']
+      extensions: ['.ts', '.tsx', '.js', '.mjs', '.cjs', '.mts', '.cts', '.jsx', '.es6', '.es']
     });
 
     let modules: Config | null;
