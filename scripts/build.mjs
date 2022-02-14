@@ -8,7 +8,7 @@ import gulpTypescriptUtils from 'gulp-typescript/release/utils.js';
 import modifier from 'gulp-modifier';
 import rename from 'gulp-rename';
 import typescript from 'typescript';
-import tsconfig from '../tsconfig.json';
+import tsconfig from '../tsconfig.json' assert { type: 'json' };
 import { dir, packageNames } from './config.mjs';
 
 /**
