@@ -50,6 +50,7 @@ export async function requireControllers(
       : requireCommonjsModule
     )(controllersInfo.isAbsolute ? file : path.join(sweetOptions.basicPath, file));
 
+    // @ts-ignore
     if (typeof modules === 'object' && modules.url && modules.handler) {
       if (modules.url === '(.*)' || modules.url === '/(.*)') {
         defaultResult.push(modules);

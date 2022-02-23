@@ -14,9 +14,7 @@ import type { SweetOptions } from './types';
 
 export const globPromise: (arg1: string, arg2?: glob.IOptions) => Promise<string[]> = util.promisify(glob);
 
-/**
- * chalk
- */
+/* chalk */
 export async function getChalk(): Promise<typeof Chalk> {
   const chalkModule: { default: typeof Chalk } = await import('chalk');
 
