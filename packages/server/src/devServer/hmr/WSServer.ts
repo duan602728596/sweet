@@ -3,7 +3,8 @@ import type { Http2SecureServer } from 'http2';
 import type { Socket } from 'net';
 import WebSocket from 'ws';
 import type { Compiler } from 'webpack';
-import { WebSocketServer } from './ws';
+// @ts-ignore mjs and cjs
+import { WebSocketServer } from './wsModule';
 import BasicServer, { type ServerItem, type ServerConnection, type ClientLogLevel } from './BasicServer';
 
 const noop: Function = (): void => { /* noop */ };
