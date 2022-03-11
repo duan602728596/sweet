@@ -32,8 +32,8 @@
     "@sweet-milktea/util-tools": "^3.1.6",
     "cross-env": "*",
     "mocha": "*",
-    "vite": "^2.8.4",
-    "webpack": "^5.69.1"
+    "vite": "^2.8.6",
+    "webpack": "^5.70.0"
   },
   "peerDependencies": {
     "@sweet-milktea/milktea": ">=3",

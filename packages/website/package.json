@@ -14,13 +14,13 @@
   },
   "dependencies": {
     "@ant-design/icons": "^4.7.0",
-    "antd": "^4.18.9",
+    "antd": "^4.19.1",
     "github-markdown-css": "^5.1.0",
     "prop-types": "^15.8.1",
     "react": "rc",
     "react-dom": "rc",
     "react-helmet": "^6.1.0",
-    "react-router-dom": "^6.2.1",
+    "react-router-dom": "^6.2.2",
     "react-showdown": "^2.3.1",
     "tslib": "^2.3.1"
   },
@@ -34,7 +34,7 @@
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
     "cross-env": "*",
     "rimraf": "*",
-    "ts-loader": "^9.2.6",
+    "ts-loader": "^9.2.8",
     "typescript": "next"
   }
 }
