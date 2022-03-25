@@ -1,4 +1,3 @@
-import * as url from 'url';
 import type Koa from 'koa';
 import type { Context } from 'koa';
 import type { SweetOptions } from './types';
@@ -6,7 +5,7 @@ import type { SweetOptions } from './types';
 /* 307重定向到https */
 function createRedirectToHttpsMiddleware(app: Koa, sweetOptions: SweetOptions): void {
   app.use(async function(ctx: Context, next: Function): Promise<void> {
-    const urlResult: url.URL = new url.URL(ctx.request.href);
+    const urlResult: URL = new URL(ctx.request.href);
 
     if (urlResult.protocol === 'http:') {
       // 修改协议为https
