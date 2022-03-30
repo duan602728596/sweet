@@ -20,7 +20,7 @@ function Welcome(props) {
 
   // 点赞
   function handleZanClick(event) {
-    (likeLen + 1) |> setLikeLen |> dispatch;
+    (likeLen + 1) |> setLikeLen(#) |> dispatch(#);
   }
 
   return (
