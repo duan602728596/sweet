@@ -22,18 +22,27 @@ async function preRenderInit(sweetOptions: SweetOptions): Promise<Function> {
       });
       const data: any = index >= 0 ? await controllersModules[index].handler(ctx, sweetOptions) : {};
 
+      // 挂载自定义的渲染方法
+      ctx.renderHtml = function(r: string): string {
+        return renderEngine(html.toString(), formatTemplateData({
+          render: r,
+          ...data
+        }));
+      };
+
       // ssr渲染
       const server: Function = __fixModuleImportDefaultDefault(await requireModule(serverRenderEntry));
-      const result: Stream | string = await server(ctxPath, ctx, data.initialState);
-      const render: string = isReadStream(result) ? (await readStream(result)).toString() : result;
+      const result: Stream | string | undefined = await server(ctxPath, ctx, data.initialState);
 
-      // response body TODO: 为将来的pipeToNodeWritable做准备
-      const responseBody: string = renderEngine(html.toString(), formatTemplateData({
-        render,
-        ...data
-      }));
+      if (result) {
+        const render: string = isReadStream(result) ? (await readStream(result)).toString() : result;
+        const responseBody: string = renderEngine(html.toString(), formatTemplateData({
+          render,
+          ...data
+        }));
 
-      ctx.body = responseBody;
+        ctx.body = responseBody;
+      }
     } catch (err) {
       console.error(err);
 
