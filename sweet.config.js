@@ -10,7 +10,7 @@ export default function(info) {
       '@vueuse/head'
     ],
     entry: {
-      index: [path.join(__dirname, 'src/useIndexStore.js')],
+      index: [path.join(__dirname, 'src/index.js')],
       other: [path.join(__dirname, 'src/other.js')]
     },
     output: {
