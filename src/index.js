@@ -7,10 +7,6 @@ import { storeFactory } from './store/store';
 import './global.sass';
 import AppRouters from './router/AppRouters';
 
-/**
- * app
- * https://github.com/reactwg/react-18/discussions/5
- */
 const root = createRoot(document.getElementById('app'));
 
 root.render(
