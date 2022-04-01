@@ -1,4 +1,4 @@
-import { hydrateRoot } from 'react-dom/client';
+import { createRoot } from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import { ConfigProvider } from 'antd';
@@ -11,8 +11,9 @@ import AppRouters from './router/AppRouters';
  * app
  * https://github.com/reactwg/react-18/discussions/5
  */
-const root = hydrateRoot(
-  document.getElementById('app'),
+const root = createRoot(document.getElementById('app'));
+
+root.render(
   <Provider store={ storeFactory(window.__INITIAL_STATE__ || {}) }>
     <ConfigProvider locale={ zhCN }>
       <BrowserRouter>
