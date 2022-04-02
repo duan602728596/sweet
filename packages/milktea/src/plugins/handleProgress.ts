@@ -1,3 +1,4 @@
+import importESM from '@sweet-milktea/utils/importESM';
 // @ts-ignore Node12
 import type Chalk from 'chalk';
 
@@ -5,7 +6,7 @@ import type Chalk from 'chalk';
  * chalk
  */
 async function getChalk(): Promise<typeof Chalk> {
-  const chalkModule: { default: typeof Chalk } = await import('chalk');
+  const chalkModule: { default: typeof Chalk } = await importESM('chalk');
 
   return chalkModule.default;
 }
