@@ -46,17 +46,17 @@
     "@babel/register": "^7.17.7",
     "@sweet-milktea/babel-preset-sweet": "^3.1.9",
     "@sweet-milktea/utils": "^3.0.2",
-    "@vitejs/plugin-react": "^1.2.0",
+    "@vitejs/plugin-react": "^1.3.0",
     "cosmiconfig": "^7.0.1",
     "less": "^4.1.2",
     "lodash": "^4.17.21",
-    "sass": "^1.49.9",
-    "vite": "^2.8.6",
+    "sass": "^1.49.11",
+    "vite": "^2.9.1",
     "vite-plugin-checker": "^0.4.4"
   },
   "devDependencies": {
-    "@vitejs/plugin-vue": "^2.2.4",
-    "@vitejs/plugin-vue-jsx": "^1.3.8",
+    "@vitejs/plugin-vue": "^2.3.1",
+    "@vitejs/plugin-vue-jsx": "^1.3.9",
     "cross-env": "*",
     "mocha": "*",
     "rollup": "^2.70.1"
