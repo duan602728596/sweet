@@ -8,8 +8,8 @@ import gulpTypescriptUtils from 'gulp-typescript/release/utils.js';
 import modifier from 'gulp-modifier';
 import rename from 'gulp-rename';
 import typescript from 'typescript';
-import tsconfig from '../tsconfig.json' assert { type: 'json' };
 import { dir, packageNames } from './config.mjs';
+import tsconfig from '../tsconfig.json' assert { type: 'json' };
 
 /**
  * fix: 重写 ProjectCompiler 的 attachContentToFile 方法
@@ -46,8 +46,9 @@ GulpTypescriptProjectCompiler.prototype.attachContentToFile = function(file, fil
 /* typescript编译配置 */
 const tsBuildConfig = {
   ...tsconfig.compilerOptions,
-  moduleResolution: 'Node12',
-  module: 'Node12',
+  // moduleResolution: 'Node12',
+  // module: 'Node12',
+  module: 'commonjs',
   skipLibCheck: true,
   typescript
 };
