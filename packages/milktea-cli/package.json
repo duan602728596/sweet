@@ -27,7 +27,7 @@
   "devDependencies": {
     "@sweet-milktea/milktea": "^3.1.10",
     "@sweet-milktea/milktea-vite": "^3.1.8",
-    "@sweet-milktea/server": "^3.1.10",
+    "@sweet-milktea/server": "^3.1.11",
     "@sweet-milktea/server-log": "^3.0.0",
     "@sweet-milktea/util-tools": "^3.1.6",
     "cross-env": "*",
