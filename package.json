@@ -24,7 +24,6 @@
     "@vueuse/head": "^0.7.5",
     "ant-design-vue": "^3.1.0-rc.5",
     "classnames": "^2.3.1",
-    "indexof": "^0.0.1",
     "lodash-es": "^4.17.21",
     "pinia": "^2.0.13",
     "source-map-support": "^0.5.21",
