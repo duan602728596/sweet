@@ -22,7 +22,7 @@
     "@sweet-milktea/server-log": "^3.0.0",
     "@vue/server-renderer": "^3.2.31",
     "@vueuse/head": "^0.7.5",
-    "ant-design-vue": "^3.1.0-rc.5",
+    "ant-design-vue": "^3.1.0",
     "classnames": "^2.3.1",
     "lodash-es": "^4.17.21",
     "pinia": "^2.0.13",
