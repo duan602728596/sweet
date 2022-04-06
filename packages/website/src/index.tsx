@@ -1,6 +1,5 @@
-/* eslint-disable spaced-comment */
+// eslint-disable-next-line spaced-comment
 /// <reference types="react/next" />
-/* eslint-enable spaced-comment */
 
 import { createRoot, type Root } from 'react-dom/client';
 import { HashRouter } from 'react-router-dom';
