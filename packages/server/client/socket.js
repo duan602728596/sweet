@@ -9,8 +9,11 @@ var Client = process.env.SWEET_SOCKET === 'ws' ? WebSocketClient : SockJSClient;
 /* eslint-enable camelcase */
 
 var retries = 0;
-var maxRetries = 10;
-var client = null;
+var maxRetries = 10; // Initialized client is exported so external consumers can utilize the same instance
+// It is mutable to enforce singleton
+// eslint-disable-next-line import/no-mutable-exports
+
+export var client = null;
 /**
  * @param {string} url
  * @param {{ [handler: string]: (data?: any, params?: any) => any }} handlers
