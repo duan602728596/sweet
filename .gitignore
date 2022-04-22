@@ -24,10 +24,6 @@ packages/**/esm/**/*.js
 packages/**/esm/**/*.mjs
 packages/**/esm/package.json
 packages/**/node_modules
-packages/**/npm-debug.log
-packages/**/package-lock.json
-packages/**/yarn.lock
-packages/**/yarn-error.log
 packages/**/build
 packages/**/dist
 packages/**/dist-server
@@ -36,6 +32,3 @@ packages/**/.sweet
 # util-tools
 packages/util-tools/test/**/*.webp
 packages/util-tools/test/**/output
-
-# docs
-storybook-static/*
