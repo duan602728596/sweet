@@ -7,10 +7,11 @@ import { storeFactory } from './store/store';
 import './global.sass';
 import AppRouters from './router/AppRouters';
 
+const initialState = window.__INITIAL_STATE__ || {};
 const root = createRoot(document.getElementById('app'));
 
 root.render(
-  <Provider store={ storeFactory(window.__INITIAL_STATE__ || {}) }>
+  <Provider store={ storeFactory(initialState) } serverState={ initialState }>
     <ConfigProvider locale={ zhCN }>
       <BrowserRouter>
         <AppRouters />
