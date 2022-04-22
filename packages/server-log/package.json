@@ -18,7 +18,7 @@
   "dependencies": {
     "@bbkkbkk/koa-log4": "^2.3.4",
     "@log4js-node/logfaces-http": "^1.0.0",
-    "log4js": "^6.4.4"
+    "log4js": "^6.4.5"
   },
   "devDependencies": {
     "cross-env": "*",
