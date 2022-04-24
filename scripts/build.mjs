@@ -114,6 +114,10 @@ function createQueue(prefix, func, out, cfg) {
   const queueFn = [];
 
   for (const name of packageNames) {
+    if (out === 'esm' && name === 'eslint-plugin') {
+      continue;
+    }
+
     const fn = func(name, out, cfg);
 
     Object.defineProperty(fn, 'name', {
@@ -129,10 +133,12 @@ function createQueue(prefix, func, out, cfg) {
 /* 写入package.js文件 */
 async function writeTypeModulePackageJsonFile() {
   for (const name of packageNames) {
-    await fs.promises.writeFile(
-      path.join(dir, name, 'esm/package.json'),
-      JSON.stringify({ type: 'module' }, null, 2) + '\n'
-    );
+    if (name !== 'eslint-plugin') {
+      await fs.promises.writeFile(
+        path.join(dir, name, 'esm/package.json'),
+        JSON.stringify({ type: 'module' }, null, 2) + '\n'
+      );
+    }
   }
 }
 
