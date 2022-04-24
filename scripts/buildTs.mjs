@@ -43,7 +43,6 @@ async function buildTs(packageName, packageDir) {
     packageName !== 'eslint-plugin' && $`npx tsc --outDir ${ esmDir } --skipLibCheck`
   ].filter(Boolean));
 
-
   await Promise.all([
     // 移除lib文件夹中的mjs文件和esm中的cjs文件
     (async () => {
