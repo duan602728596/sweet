@@ -4,6 +4,7 @@
 import * as process from 'process';
 import yargs from 'yargs';
 import { hideBin } from 'yargs/helpers';
+// @ts-ignore Node12
 import command from './command';
 
 command(yargs(hideBin(process.argv)));
