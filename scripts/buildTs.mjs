@@ -1,5 +1,5 @@
 /* global path, fs, globby, cd */
-import os from 'os';
+import os from 'node:os';
 import { dir, packageNames } from './config.mjs';
 
 /* 修复window下bash的错误 */
