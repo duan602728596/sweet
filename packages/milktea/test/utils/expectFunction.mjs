@@ -27,7 +27,7 @@ export function expectDevPlugins(config) {
     expect(config.plugins[2] instanceof webpack.HotModuleReplacementPlugin).to.be.true;
     expect(config.plugins[3] instanceof ReactRefreshWebpackPlugin).to.be.true;
     expect(config.plugins[4] instanceof HtmlWebpackPlugin).to.be.true;
-    expect(config.plugins[5] instanceof WebpackBar).to.be.true;
+    expect(config.plugins[5] instanceof WebpackBar || config.plugins[5] instanceof webpack.ProgressPlugin).to.be.true;
   };
 }
 
@@ -38,7 +38,7 @@ export function expectDevServerPlugins(config) {
     expect(config.plugins).to.have.lengthOf(3);
     expect(config.plugins[0] instanceof webpack.IgnorePlugin).to.be.true;
     expect(config.plugins[1] instanceof webpack.DefinePlugin).to.be.true;
-    expect(config.plugins[2] instanceof WebpackBar).to.be.true;
+    expect(config.plugins[2] instanceof WebpackBar || config.plugins[2] instanceof webpack.ProgressPlugin).to.be.true;
   };
 }
 
@@ -52,7 +52,7 @@ export function expectProPlugins(config) {
     expect(config.plugins[2] instanceof MiniCssExtractPlugin).to.be.true;
     expect(config.plugins[3] instanceof HtmlWebpackPlugin).to.be.true;
     expect(config.plugins[4] instanceof VueLoaderPlugin.default).to.be.true;
-    expect(config.plugins[5] instanceof WebpackBar).to.be.true;
+    expect(config.plugins[5] instanceof WebpackBar || config.plugins[5] instanceof webpack.ProgressPlugin).to.be.true;
   };
 }
 
@@ -65,7 +65,7 @@ export function expectProServerPlugins(config) {
     expect(config.plugins[1] instanceof webpack.DefinePlugin).to.be.true;
     expect(config.plugins[2] instanceof MiniCssExtractPlugin).to.be.true;
     expect(config.plugins[3] instanceof VueLoaderPlugin.default).to.be.true;
-    expect(config.plugins[4] instanceof WebpackBar).to.be.true;
+    expect(config.plugins[4] instanceof WebpackBar || config.plugins[4] instanceof webpack.ProgressPlugin).to.be.true;
   };
 }
 

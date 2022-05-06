@@ -3,7 +3,10 @@ import webpackConfig from '../lib/config.js';
 import { expectModule, expectDevPlugins, expectProPlugins, expectOptimization } from './utils/expectFunction.mjs';
 
 const sweetOptions = {
-  basicPath: process.cwd()
+  basicPath: process.cwd(),
+  typescript: {
+    forkTsCheckerWebpackPlugin: false
+  }
 };
 
 describe('config', function() {
@@ -11,7 +14,8 @@ describe('config', function() {
     const config = await webpackConfig.default({
       frame: 'react',
       mode: 'development',
-      html: [{ template: 'index.tsx.pug' }],
+      typescript: { forkTsCheckerWebpackPlugin: false },
+      html: [{ template: 'index.pug' }],
       hot: true
     }, sweetOptions);
 
@@ -26,7 +30,8 @@ describe('config', function() {
     const config = await webpackConfig.default({
       frame: 'vue',
       mode: 'production',
-      html: [{ template: 'index.tsx.pug' }],
+      typescript: { forkTsCheckerWebpackPlugin: false },
+      html: [{ template: 'index.pug' }],
       hot: true
     }, sweetOptions);
 
