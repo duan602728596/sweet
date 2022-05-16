@@ -39,7 +39,7 @@ async function buildTs(packageName, packageDir) {
 
   cd(packageDir);
   await Promise.all([
-    $`npx tsc --outDir ${ libDir } --module Node12 --moduleResolution Node12 --skipLibCheck`,
+    $`npx tsc --outDir ${ libDir } --module Node16 --moduleResolution Node16 --skipLibCheck`,
     packageName !== 'eslint-plugin' && $`npx tsc --outDir ${ esmDir } --skipLibCheck`
   ].filter(Boolean));
 
