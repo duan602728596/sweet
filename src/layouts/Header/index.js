@@ -5,8 +5,25 @@ import {
   HomeOutlined as IconHomeOutlined,
   BarsOutlined as IconBarsOutlined
 } from '@ant-design/icons';
-import NoSSR from 'react-no-ssr';
 import style from './index.sass';
+
+const navItems = [
+  {
+    key: 'index',
+    label: <Link to="/Index">首页</Link>,
+    icon: <IconHomeOutlined />
+  },
+  {
+    key: 'second',
+    label: <Link to="/Second">二级页</Link>,
+    icon: <IconBarsOutlined />
+  },
+  {
+    key: 'list',
+    label: <Link to="/List">列表</Link>,
+    icon: <IconBarsOutlined />
+  }
+];
 
 /* header */
 function Header(props) {
@@ -43,28 +60,12 @@ function Header(props) {
       <div className={ style.logo }>平台LOGO</div>
       {/* 导航 */}
       <nav className={ style.nav }>
-        <NoSSR>
-          <Menu className={ style.menu } mode="horizontal" theme="dark" selectedKeys={ [selectKeys()] }>
-            <Menu.Item key="index">
-              <Link to="/Index">
-                <IconHomeOutlined />
-                首页
-              </Link>
-            </Menu.Item>
-            <Menu.Item key="second">
-              <Link to="/Second">
-                <IconBarsOutlined />
-                二级页
-              </Link>
-            </Menu.Item>
-            <Menu.Item key="list">
-              <Link to="/List">
-                <IconBarsOutlined />
-                列表
-              </Link>
-            </Menu.Item>
-          </Menu>
-        </NoSSR>
+        <Menu className={ style.menu }
+          mode="horizontal"
+          theme="dark"
+          items={ navItems }
+          selectedKeys={ [selectKeys()] }
+        />
       </nav>
       {/* 工具 */}
       <div className={ style.tools }>

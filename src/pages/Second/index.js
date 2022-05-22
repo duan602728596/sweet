@@ -1,7 +1,7 @@
 import { Fragment } from 'react';
 import { useRoutes } from 'react-router-dom';
 import { Helmet } from 'react-helmet';
-import { FolderOpenOutlined as IconFolderOpenOutlined } from '@ant-design/icons';
+import { FolderOpenOutlined as IconFolderOpenOutlined, PieChartOutlined as IconPieChartOutlined } from '@ant-design/icons';
 import Main from '../../layouts/Main';
 import Content from '../../layouts/Content';
 import Sider from '../../layouts/Sider/index';
@@ -11,6 +11,7 @@ const options = [
   {
     id: 'page-0',
     name: '导航菜单-0',
+    icon: <IconPieChartOutlined />,
     url: '/Second'
   },
   {

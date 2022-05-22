@@ -6,7 +6,6 @@
 import PropTypes from 'prop-types';
 import { useLocation, Link } from 'react-router-dom';
 import { Layout, Menu } from 'antd';
-import NoSSR from 'react-no-ssr';
 import style from './index.sass';
 import ErrorBoundary from '../ErrorBoundary/index';
 
@@ -43,28 +42,20 @@ function Sider(props) {
     return arr.map((item, index) => {
       if (item.children && item.children.length > 0) {
         // 当有children时，返回Menu.SubMenu，里面包裹Menu.Item
-        return (
-          <Menu.SubMenu key={ item.id }
-            title={
-              <span>
-                { item.icon }
-                <span>{ item.name }</span>
-              </span>
-            }
-          >
-            { menu(item.children) }
-          </Menu.SubMenu>
-        );
+        return {
+          key: item.id,
+          label: item.name,
+          icon: item.icon,
+          children: menu(item.children)
+        };
       } else {
         // 当没有children时，返回Menu.Item
-        return (
-          <Menu.Item key={ item.id }>
-            <Link to={ item.url }>
-              { item.icon }
-              <span>{ item.name }</span>
-            </Link>
-          </Menu.Item>
-        );
+        return {
+          key: item.id,
+          label: <Link to={ item.url }>{ item.name }</Link>,
+          icon: item.icon,
+          url: item.url
+        };
       }
     });
   }
@@ -72,11 +63,12 @@ function Sider(props) {
   return (
     <ErrorBoundary>
       <Layout.Sider className={ style.sider }>
-        <NoSSR>
-          <Menu theme="light" mode="inline" defaultSelectedKeys={ getSelectKey(options) } style={{ borderRight: 'none' }}>
-            { menu(options) }
-          </Menu>
-        </NoSSR>
+        <Menu style={{ borderRight: 'none' }}
+          theme="light"
+          mode="inline"
+          items={ menu(options) }
+          defaultSelectedKeys={ getSelectKey(options) }
+        />
       </Layout.Sider>
     </ErrorBoundary>
   );
