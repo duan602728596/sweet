@@ -24,6 +24,7 @@ export default async function(sweetConfig: SweetConfig, sweetOptions: SweetOptio
   const sweetConfigModified: SweetConfig = _.omit(sweetConfig, ['hot']);
   const {
     mode,
+    context,
     serverEntry,
     serverOutput,
     serverExternals,
@@ -90,6 +91,7 @@ export default async function(sweetConfig: SweetConfig, sweetOptions: SweetOptio
   }
 
   const mergeConfiguration: Configuration = {
+    context,
     entry: serverEntry,
     output: serverOutput,
     externals: serverExternals,

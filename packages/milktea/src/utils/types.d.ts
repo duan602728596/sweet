@@ -69,6 +69,7 @@ export interface SweetConfig {
   mode?: Mode;
   webpackLog?: WebpackLog;
   dll?: [string, ...string[]];
+  context?: string;
   entry?: Entry;
   output?: any;
   externals?: { [key: string]: string };

@@ -31,6 +31,7 @@ export default async function(sweetConfig: SweetConfig, sweetOptions: SweetOptio
   ]);
   const {
     mode,
+    context,
     entry,
     output,
     externals,
@@ -117,6 +118,7 @@ export default async function(sweetConfig: SweetConfig, sweetOptions: SweetOptio
   }
 
   const mergeConfiguration: Configuration = {
+    context,
     entry,
     output,
     externals,

@@ -30,6 +30,7 @@ export default async function(sweetConfig: SweetConfig, sweetOptions: SweetOptio
   ]);
   const {
     dll,
+    context,
     externals,
     resolve,
     chainWebpack,
@@ -97,6 +98,7 @@ export default async function(sweetConfig: SweetConfig, sweetOptions: SweetOptio
   }
 
   const mergeConfiguration: Configuration = {
+    context,
     entry: dll?.length ? { dll } : undefined,
     externals,
     resolve,
