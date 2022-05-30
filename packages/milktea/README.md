@@ -63,6 +63,7 @@ module.exports = function(info) {
 
 * mode `{ string }` : 开发模式还是生产模式
 * dll `{ Array<string> }` : 配置需要编译的dll模块
+* context `{ string }` : 基础目录，绝对路径
 * entry `{ any }` : 文件入口（参考webpack）
 * output `{ any }` : 文件出口（参考webpack）
 * alias `{ object }` : 模块别名（参考webpack）
