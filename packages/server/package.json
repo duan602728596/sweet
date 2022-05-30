@@ -54,7 +54,7 @@
     "test": "cross-env NODE_ENV=test mocha ./test/test.mjs --timeout 180000"
   },
   "dependencies": {
-    "@babel/core": "^7.17.10",
+    "@babel/core": "^7.18.2",
     "@babel/register": "^7.17.7",
     "@bbkkbkk/http-proxy": "^1.17.0",
     "@koa/router": "^10.1.1",
@@ -77,11 +77,11 @@
     "module-alias": "^2.2.2",
     "path-to-regexp": "^6.2.1",
     "sockjs": "^0.3.24",
-    "sockjs-client": "^1.6.0",
+    "sockjs-client": "^1.6.1",
     "url": "^0.11.0",
-    "webpack-dev-middleware": "^5.3.1",
+    "webpack-dev-middleware": "^5.3.3",
     "webpack-log": "^3.0.2",
-    "ws": "^8.6.0"
+    "ws": "^8.7.0"
   },
   "devDependencies": {
     "@sweet-milktea/milktea": "^3.1.10",
