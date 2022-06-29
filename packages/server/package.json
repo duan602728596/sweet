@@ -54,8 +54,8 @@
     "test": "cross-env NODE_ENV=test mocha ./test/test.mjs --timeout 180000"
   },
   "dependencies": {
-    "@babel/core": "^7.18.5",
-    "@babel/register": "^7.17.7",
+    "@babel/core": "^7.18.6",
+    "@babel/register": "^7.18.6",
     "@bbkkbkk/http-proxy": "^1.17.0",
     "@koa/router": "^10.1.1",
     "@sweet-milktea/babel-preset-sweet": "^3.1.9",
@@ -90,7 +90,7 @@
     "cross-env": "*",
     "mocha": "*",
     "nunjucks": "^3.2.3",
-    "vite": "^2.9.12",
+    "vite": "^2.9.13",
     "webpack": "^5.73.0"
   },
   "peerDependencies": {
