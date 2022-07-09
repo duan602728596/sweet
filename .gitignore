@@ -32,3 +32,5 @@ packages/**/.sweet
 # util-tools
 packages/util-tools/test/**/*.webp
 packages/util-tools/test/**/output
+
+.website-ci
