@@ -6,7 +6,7 @@ import { dir, packageNames } from './config.mjs';
 
 const rimrafPromise = util.promisify(rimraf);
 
-async function main() {
+async function clean() {
   const queue = [];
 
   for (const packageName of packageNames) {
@@ -22,4 +22,4 @@ async function main() {
   await Promise.all(queue);
 }
 
-main();
+clean();
