@@ -34,7 +34,7 @@ export default function(info: object): object {
     },
     typescript: {
       configFile: isDev ? 'tsconfig.json' : 'tsconfig.prod.json',
-      plugins,
+      plugins: plugins.concat(['@babel/plugin-syntax-import-assertions', undefined, 'import-assertions']),
       exclude: jsExclude
     },
     sass: {
