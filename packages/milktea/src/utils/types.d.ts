@@ -85,7 +85,9 @@ export interface SweetConfig {
   ts?: TSOptions;
   typescript?: TSOptions;
   sass?: SassOptions;
+  /* @deprecated */
   css?: LessOptions;
+  less?: LessOptions;
   html?: Array<HtmlWebpackPluginOptions>;
   frame?: Frame;
   chainWebpack?: (config: Config) => Promise<void>;

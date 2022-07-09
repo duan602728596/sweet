@@ -29,7 +29,8 @@ export const extensions: Array<string> = ['.ts', '.tsx', '.js', '.mjs', '.cjs', 
 export function changeSweetConfig(sweetConfig: SweetConfig): void {
   const rename: Array<[string, string]> = [
     ['javascript', 'js'],
-    ['typescript', 'ts']
+    ['typescript', 'ts'],
+    ['less', 'css']
   ];
 
   for (const [newName, oldName] of rename) {

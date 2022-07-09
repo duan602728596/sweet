@@ -7,14 +7,14 @@ const RULE_NAME: string = 'less';
 
 /* less & css 配置 */
 export default function(sweetConfig: SweetConfig, config: Config): void {
-  const { mode, css = {}, frame, serverRender }: SweetConfig = sweetConfig;
+  const { mode, less = {}, frame, serverRender }: SweetConfig = sweetConfig;
   const {
     modules = true,
     exclude,
     include,
     modifyVars,
     additionalData
-  }: LessOptions = css;
+  }: LessOptions = less;
   const isDevelopment: boolean = mode === 'development';
 
   config
