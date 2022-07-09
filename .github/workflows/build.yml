@@ -24,7 +24,7 @@ jobs:
       - run: npm run build:ci
         working-directory: packages/website
       - name: Deploy
-        uses: JamesIves/github-pages-deploy-action@4
+        uses: JamesIves/github-pages-deploy-action@4.3.4
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           branch: gh-pages
