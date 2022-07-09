@@ -24,12 +24,28 @@ async function copy(src, dest) {
 
   const dirs = await fsP.readdir(src);
 
-  for (const childDir of dirs) {
-    await copy(path.join(src, childDir), path.join(dest, childDir));
-  }
+  await Promise.all(
+    dirs.map((childDir) => copy(path.join(src, childDir), path.join(dest, childDir)))
+  );
 }
 
-await copy(
-  path.join(dir, 'website'),
-  path.join(__dirname, '../.website')
-);
+/**
+ * 修改tsconfig文件
+ * @param { string } config
+ */
+async function tsconfigEdit(config) {
+  const configString = await fsP.readFile(config, 'utf8');
+  const configJson = JSON.parse(configString);
+
+  configJson.extends = '../tsconfig.json';
+  await fsP.writeFile(config, JSON.stringify(configJson, null, 2));
+}
+
+// 拷贝文件夹
+await copy(path.join(dir, 'website'), path.join(__dirname, '../.website'));
+
+// 修改tsconfig.json文件
+await Promise.all([
+  tsconfigEdit(path.join(__dirname, '../.website/tsconfig.json')),
+  tsconfigEdit(path.join(__dirname, '../.website/tsconfig.prod.json'))
+]);
