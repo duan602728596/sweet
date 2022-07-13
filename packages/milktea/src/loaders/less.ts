@@ -1,6 +1,7 @@
 import type Config from 'webpack-chain';
 import type { Rule, LoaderOptions } from 'webpack-chain';
-import { createStyleLoader, createCssOptions, createLessOptions } from '../config/cssConfig';
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import { createCssOptions, createLessOptions } from '../config/cssConfig';
 import type { SweetConfig, LessOptions } from '../utils/types';
 
 const RULE_NAME: string = 'less';
@@ -49,11 +50,9 @@ export default function(sweetConfig: SweetConfig, config: Config): void {
 
         // vue style
         if (!serverRender) {
-          const vueStyleLoader: string | any = createStyleLoader(isDevelopment);
-
           lessRuleOneOf
-            .use('style-loader')
-            .loader(vueStyleLoader);
+            .use('mini-css-extract-plugin/loader')
+            .loader(MiniCssExtractPlugin.loader);
         }
 
         lessRuleOneOf
@@ -75,8 +74,8 @@ export default function(sweetConfig: SweetConfig, config: Config): void {
   // style
   if (!serverRender) {
     oneOf
-      .use('style-loader')
-      .loader(createStyleLoader(isDevelopment));
+      .use('mini-css-extract-plugin/loader')
+      .loader(MiniCssExtractPlugin.loader);
   }
 
   oneOf

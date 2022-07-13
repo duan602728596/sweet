@@ -1,6 +1,7 @@
 import type Config from 'webpack-chain';
 import type { Rule, LoaderOptions } from 'webpack-chain';
-import { createStyleLoader, createCssOptions, createSassOptions } from '../config/cssConfig';
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import { createCssOptions, createSassOptions } from '../config/cssConfig';
 import type { SweetConfig, SassOptions } from '../utils/types';
 
 const RULE_NAME: string = 'sass';
@@ -48,11 +49,9 @@ export default function(sweetConfig: SweetConfig, config: Config): void {
 
         // vue style
         if (!serverRender) {
-          const vueStyleLoader: string | any = createStyleLoader(isDevelopment);
-
           sassRuleOneOf
-            .use('style-loader')
-            .loader(vueStyleLoader);
+            .use('mini-css-extract-plugin/loader')
+            .loader(MiniCssExtractPlugin.loader);
         }
 
         sassRuleOneOf
@@ -74,8 +73,8 @@ export default function(sweetConfig: SweetConfig, config: Config): void {
   // style
   if (!serverRender) {
     oneOf
-      .use('style-loader')
-      .loader(createStyleLoader(isDevelopment));
+      .use('mini-css-extract-plugin/loader')
+      .loader(MiniCssExtractPlugin.loader);
   }
 
   oneOf

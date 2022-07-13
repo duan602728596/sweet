@@ -2,6 +2,7 @@
 import * as path from 'path';
 import type { ParsedPath } from 'path';
 import webpack from 'webpack';
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import type { Options as HtmlWebpackPluginOptions } from 'html-webpack-plugin';
 import FilesMapWebpackPlugin from '@bbkkbkk/files-map-webpack-plugin';
@@ -33,6 +34,15 @@ export default async function(sweetConfig: SweetConfig, sweetOptions: SweetOptio
     socket
   }: SweetConfig = sweetConfig;
   const isDevelopment: boolean = mode === 'development';
+
+  config
+    // mini-css-extract-plugin
+    .plugin('mini-css-extract-plugin')
+    .use(MiniCssExtractPlugin, [{
+      filename: isDevelopment ? '[name].css' : '[name]_[chunkhash:15].css',
+      chunkFilename: isDevelopment ? '[name].css' : '[name]_[chunkhash:15].css',
+      ignoreOrder: true
+    }]);
 
   config
     // moment

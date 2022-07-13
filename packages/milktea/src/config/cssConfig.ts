@@ -1,5 +1,4 @@
 import sass from 'sass';
-import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import type { LoaderOptions } from 'webpack-chain';
 
 // css-loader的mode
@@ -14,14 +13,6 @@ function cssLoaderModeFunc(resourcePath: string): 'local' | 'global' | 'pure' {
   }
 
   return 'local';
-}
-
-/**
- * style-loader
- * @param { boolean } isDevelopment: 是否为开发环境
- */
-export function createStyleLoader(isDevelopment: boolean): string | any {
-  return isDevelopment ? 'style-loader' : MiniCssExtractPlugin.loader;
 }
 
 /**
