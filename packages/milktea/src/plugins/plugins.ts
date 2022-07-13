@@ -35,14 +35,16 @@ export default async function(sweetConfig: SweetConfig, sweetOptions: SweetOptio
   }: SweetConfig = sweetConfig;
   const isDevelopment: boolean = mode === 'development';
 
-  config
-    // mini-css-extract-plugin
-    .plugin('mini-css-extract-plugin')
-    .use(MiniCssExtractPlugin, [{
-      filename: isDevelopment ? '[name].css' : '[name]_[chunkhash:15].css',
-      chunkFilename: isDevelopment ? '[name].css' : '[name]_[chunkhash:15].css',
-      ignoreOrder: true
-    }]);
+  // mini-css-extract-plugin
+  config.when(!serverRender, (chainConfig: Config): void => {
+    chainConfig
+      .plugin('mini-css-extract-plugin')
+      .use(MiniCssExtractPlugin, [{
+        filename: isDevelopment ? '[name].css' : '[name]_[chunkhash:15].css',
+        chunkFilename: isDevelopment ? '[name].css' : '[name]_[chunkhash:15].css',
+        ignoreOrder: true
+      }]);
+  });
 
   config
     // moment
