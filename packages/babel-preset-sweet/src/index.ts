@@ -1,16 +1,16 @@
 import * as process from 'process';
 import { moduleExists } from '@sweet-milktea/utils';
 import type { PluginItem } from '@babel/core';
-import defaultPlugins from './utils/defaultPlugins';
-import presetEnv from './utils/presetEnv';
-import transformRuntime from './utils/transformRuntime';
+import defaultPlugins from './utils/defaultPlugins.js';
+import presetEnv from './utils/presetEnv.js';
+import transformRuntime from './utils/transformRuntime.js';
 import type {
   BabelPresetSweetOptions as Options,
   BabelPresetSweet,
   EnvOptions,
   ReactOptions,
   TypescriptOptions
-} from './types';
+} from './types.js';
 
 const isDevelopment: boolean = process.env.NODE_ENV === 'development';
 
