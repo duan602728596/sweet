@@ -78,15 +78,9 @@ export interface SweetConfig {
   rules?: Array<RuleSetRule>;
   noParse?: string | Function | RegExp | (string | Function | RegExp)[];
   plugins?: WebpackPluginInstance[];
-  /* @deprecated */
-  js?: JSOptions;
   javascript?: JSOptions;
-  /* @deprecated */
-  ts?: TSOptions;
   typescript?: TSOptions;
   sass?: SassOptions;
-  /* @deprecated */
-  css?: LessOptions;
   less?: LessOptions;
   html?: Array<HtmlWebpackPluginOptions>;
   frame?: Frame;

@@ -7,7 +7,7 @@ import { moduleExists } from '@sweet-milktea/utils';
 import loaders from './loaders/loaders.js';
 import basicPlugins from './plugins/plugins.js';
 import optimization from './optimization/optimization.js';
-import { extensions, isTsconfigJsonExists, changeSweetConfig } from './utils/utils.js';
+import { extensions, isTsconfigJsonExists } from './utils/utils.js';
 import CacheConfig from './config/cacheConfig.js';
 import createFileName from './config/fileNameConfig.js';
 import type { SweetConfig, SweetOptions } from './utils/types.js';
@@ -18,8 +18,6 @@ import type { SweetConfig, SweetOptions } from './utils/types.js';
  * @param { SweetOptions } sweetOptions: 内部挂载的一些配置
  */
 export default async function(sweetConfig: SweetConfig, sweetOptions: SweetOptions): Promise<Configuration> {
-  changeSweetConfig(sweetConfig);
-
   const config: Config = new Config();
   const sweetConfigModified: SweetConfig = _.omit(sweetConfig, [
     'serverRender',

@@ -94,7 +94,7 @@ module.exports = function(info) {
     * exclude `{ RegExp }` : exclude规则
     * include `{ RegExp }` : include规则
     * additionalData `{ string | Function }` : 注入sass变量（参考sass-loader）
-* less(css) `{ object }` : less配置
+* less `{ object }` : less配置
     * modules `{ boolean }` : 开启css-in-modules
     * exclude `{ RegExp }` : exclude规则
     * include `{ RegExp }` : include规则

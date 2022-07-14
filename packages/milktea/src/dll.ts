@@ -7,7 +7,7 @@ import { merge } from 'webpack-merge';
 import WebpackBar from 'webpackbar';
 import { handleDllProgress } from './plugins/handleProgress.js';
 import CacheConfig from './config/cacheConfig.js';
-import { extensions, changeSweetConfig } from './utils/utils.js';
+import { extensions } from './utils/utils.js';
 import type { SweetConfig, SweetOptions } from './utils/types.js';
 
 /**
@@ -16,8 +16,6 @@ import type { SweetConfig, SweetOptions } from './utils/types.js';
  * @param { SweetOptions } sweetOptions: 内部挂载的一些配置
  */
 export default async function(sweetConfig: SweetConfig, sweetOptions: SweetOptions): Promise<Configuration> {
-  changeSweetConfig(sweetConfig);
-
   const config: Config = new Config();
   const sweetConfigModified: SweetConfig = _.omit(sweetConfig, [
     'serverRender',
