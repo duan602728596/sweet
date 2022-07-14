@@ -1,7 +1,7 @@
 import webpack from 'webpack';
 import type Config from 'webpack-chain';
-import { handleDefaultProgress, handleServerRenderProgress } from './handleProgress';
-import type { SweetConfig, SweetOptions } from '../utils/types';
+import { handleDefaultProgress, handleServerRenderProgress } from './handleProgress.js';
+import type { SweetConfig, SweetOptions } from '../utils/types.js';
 
 /* 生产环境插件 */
 export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, config: Config): void {

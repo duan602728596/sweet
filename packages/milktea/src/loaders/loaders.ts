@@ -1,14 +1,14 @@
 import type Config from 'webpack-chain';
-import jsLoader from './javascript';
-import tsLoader from './typescript';
-import sassLoader from './sass';
-import lessLoader from './less';
-import faviconLoader from './favicon';
-import fontFileLoader from './fontFile';
-import htmlLoader from './html';
-import imageLoader from './image';
-import svgLoader from './svg';
-import type { SweetConfig, SweetOptions } from '../utils/types';
+import jsLoader from './javascript.js';
+import tsLoader from './typescript.js';
+import sassLoader from './sass.js';
+import lessLoader from './less.js';
+import faviconLoader from './favicon.js';
+import fontFileLoader from './fontFile.js';
+import htmlLoader from './html.js';
+import imageLoader from './image.js';
+import svgLoader from './svg.js';
+import type { SweetConfig, SweetOptions } from '../utils/types.js';
 
 /**
  * 添加loaders

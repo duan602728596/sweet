@@ -3,8 +3,8 @@ import webpack from 'webpack';
 import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin';
 import type Config from 'webpack-chain';
 import { moduleExists, requireJson } from '@sweet-milktea/utils';
-import CacheConfig from '../config/cacheConfig';
-import type { SweetConfig, SweetOptions } from '../utils/types';
+import CacheConfig from '../config/cacheConfig.js';
+import type { SweetConfig, SweetOptions } from '../utils/types.js';
 
 /* 开发环境插件 */
 export default async function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, config: Config): Promise<void> {

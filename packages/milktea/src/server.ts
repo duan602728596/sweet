@@ -4,13 +4,13 @@ import type { Configuration } from 'webpack';
 import Config from 'webpack-chain';
 import { merge } from 'webpack-merge';
 import { moduleExists } from '@sweet-milktea/utils';
-import loaders from './loaders/loaders';
-import basicPlugins from './plugins/plugins';
-import optimization from './optimization/optimization';
-import { extensions, isTsconfigJsonExists, changeSweetConfig } from './utils/utils';
-import CacheConfig from './config/cacheConfig';
-import createFileName from './config/fileNameConfig';
-import type { SweetConfig, SweetOptions } from './utils/types';
+import loaders from './loaders/loaders.js';
+import basicPlugins from './plugins/plugins.js';
+import optimization from './optimization/optimization.js';
+import { extensions, isTsconfigJsonExists, changeSweetConfig } from './utils/utils.js';
+import CacheConfig from './config/cacheConfig.js';
+import createFileName from './config/fileNameConfig.js';
+import type { SweetConfig, SweetOptions } from './utils/types.js';
 
 /**
  * webpack 服务器端渲染配置

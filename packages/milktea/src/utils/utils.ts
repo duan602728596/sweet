@@ -1,6 +1,6 @@
 import * as path from 'node:path';
 import { isFileExists } from '@sweet-milktea/utils';
-import type { SweetConfig, SweetOptions, TSOptions } from './types';
+import type { SweetConfig, SweetOptions, TSOptions } from './types.js';
 
 /**
  * 判断tsconfig.json文件是否存在

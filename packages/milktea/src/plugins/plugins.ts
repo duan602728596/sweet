@@ -11,9 +11,9 @@ import _ from 'lodash';
 import { requireModule } from '@sweet-milktea/utils';
 import Config, { type PluginClass } from 'webpack-chain';
 import type { TypeScriptWorkerOptions } from 'fork-ts-checker-webpack-plugin/lib/typescript/type-script-worker-options';
-import devPlugins from './devPlugins';
-import proPlugins from './proPlugins';
-import type { SweetConfig, SweetOptions } from '../utils/types';
+import devPlugins from './devPlugins.js';
+import proPlugins from './proPlugins.js';
+import type { SweetConfig, SweetOptions } from '../utils/types.js';
 
 /**
  * 添加插件

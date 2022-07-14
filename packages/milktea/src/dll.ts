@@ -5,10 +5,10 @@ import type { Configuration } from 'webpack';
 import Config, { type Output } from 'webpack-chain';
 import { merge } from 'webpack-merge';
 import WebpackBar from 'webpackbar';
-import { handleDllProgress } from './plugins/handleProgress';
-import CacheConfig from './config/cacheConfig';
-import { extensions, changeSweetConfig } from './utils/utils';
-import type { SweetConfig, SweetOptions } from './utils/types';
+import { handleDllProgress } from './plugins/handleProgress.js';
+import CacheConfig from './config/cacheConfig.js';
+import { extensions, changeSweetConfig } from './utils/utils.js';
+import type { SweetConfig, SweetOptions } from './utils/types.js';
 
 /**
  * webpack dll扩展配置

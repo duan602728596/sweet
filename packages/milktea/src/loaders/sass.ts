@@ -1,8 +1,8 @@
 import type Config from 'webpack-chain';
 import type { Rule, LoaderOptions } from 'webpack-chain';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
-import { createCssOptions, createSassOptions } from '../config/cssConfig';
-import type { SweetConfig, SassOptions } from '../utils/types';
+import { createCssOptions, createSassOptions } from '../config/cssConfig.js';
+import type { SweetConfig, SassOptions } from '../utils/types.js';
 
 const RULE_NAME: string = 'sass';
 

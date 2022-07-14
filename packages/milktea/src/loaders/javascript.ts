@@ -3,9 +3,9 @@ import { requireModule } from '@sweet-milktea/utils';
 import type Config from 'webpack-chain';
 import type { LoaderOptions } from 'webpack-chain';
 import type { PluginItem, PluginTarget } from '@babel/core';
-import { createBabelOptions } from '../config/babelConfig';
-import { customizer } from '../utils/utils';
-import type { SweetConfig, SweetOptions, JSOptions } from '../utils/types';
+import { createBabelOptions } from '../config/babelConfig.js';
+import { customizer } from '../utils/utils.js';
+import type { SweetConfig, SweetOptions, JSOptions } from '../utils/types.js';
 
 const RULE_NAME: string = 'javascript';
 

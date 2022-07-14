@@ -2,9 +2,9 @@ import _ from 'lodash';
 import type Config from 'webpack-chain';
 import type { LoaderOptions } from 'webpack-chain';
 import type { PluginItem } from '@babel/core';
-import { customizer } from '../utils/utils';
-import { createBabelOptions, createTypescriptOptions } from '../config/babelConfig';
-import type { SweetConfig, SweetOptions, TSOptions } from '../utils/types';
+import { customizer } from '../utils/utils.js';
+import { createBabelOptions, createTypescriptOptions } from '../config/babelConfig.js';
+import type { SweetConfig, SweetOptions, TSOptions } from '../utils/types.js';
 
 const RULE_NAME: string = 'typescript';
 

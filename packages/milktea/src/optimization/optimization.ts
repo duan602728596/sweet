@@ -1,7 +1,7 @@
 import TerserPlugin from 'terser-webpack-plugin';
 import CssMinimizerPlugin from 'css-minimizer-webpack-plugin';
 import type Config from 'webpack-chain';
-import type { SweetConfig, SweetOptions } from '../utils/types';
+import type { SweetConfig, SweetOptions } from '../utils/types.js';
 
 interface TerserOptions {
   ecma: number;

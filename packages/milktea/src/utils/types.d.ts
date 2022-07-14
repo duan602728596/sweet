@@ -1,7 +1,7 @@
 import type { RuleSetRule, Entry, ResolveOptions, WebpackPluginInstance, Configuration, Stats } from 'webpack';
 import type Config from 'webpack-chain';
 import type { PluginItem } from '@babel/core';
-import type { CosmiconfigResult } from 'cosmiconfig/dist/types';
+import type { CosmiconfigResult } from 'cosmiconfig/dist/types.js';
 import type { Options as HtmlWebpackPluginOptions } from 'html-webpack-plugin';
 
 /* 当前的编译环境 */
