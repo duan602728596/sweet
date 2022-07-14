@@ -1,5 +1,5 @@
-import * as path from 'path';
-import type { ParsedPath } from 'path';
+import * as path from 'node:path';
+import type { ParsedPath } from 'node:path';
 import type { Context, Middleware, Next } from 'koa';
 
 /**

@@ -1,5 +1,5 @@
-import type { Server } from 'http';
-import type { Http2SecureServer } from 'http2';
+import type { Server } from 'node:http';
+import type { Http2SecureServer } from 'node:http2';
 import type { Middleware, Context, Next } from 'koa';
 import type { Compiler } from 'webpack';
 import type { ClientLogLevel } from './BasicServer';

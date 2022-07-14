@@ -1,4 +1,4 @@
-import * as path from 'path';
+import * as path from 'node:path';
 import { requireModule, metaHelper } from '@sweet-milktea/utils';
 
 const { __dirname }: { __filename: string; __dirname: string } = metaHelper(import.meta.url);

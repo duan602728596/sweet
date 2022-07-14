@@ -1,8 +1,8 @@
-import * as util from 'util';
-import * as path from 'path';
-import * as Stream from 'stream';
-import * as net from 'net';
-import type { Server as NetServer } from 'net';
+import * as util from 'node:util';
+import * as path from 'node:path';
+import * as Stream from 'node:stream';
+import * as net from 'node:net';
+import type { Server as NetServer } from 'node:net';
 import glob from 'glob';
 import { requireCommonjsModule, requireModule } from '@sweet-milktea/utils';
 // @ts-ignore Node16

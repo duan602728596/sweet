@@ -1,4 +1,4 @@
-import type { IncomingMessage, ServerResponse } from 'http';
+import type { IncomingMessage, ServerResponse } from 'node:http';
 import webpackDevMiddleware from 'webpack-dev-middleware';
 import type { Context, Middleware, Next } from 'koa';
 import type { Compiler } from 'webpack';

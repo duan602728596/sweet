@@ -1,5 +1,5 @@
-import type { Server } from 'http';
-import type { Http2SecureServer } from 'http2';
+import type { Server } from 'node:http';
+import type { Http2SecureServer } from 'node:http2';
 import type { Compiler, Stats, StatsCompilation } from 'webpack';
 import type WebSocket from 'ws';
 import type { Connection as SockjsConnection } from 'sockjs';

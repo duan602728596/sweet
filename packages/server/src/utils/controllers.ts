@@ -1,4 +1,4 @@
-import * as path from 'path';
+import * as path from 'node:path';
 import type { IOptions } from 'glob';
 import _ from 'lodash';
 import { requireCommonjsModule, requireModuleWithoutCache } from '@sweet-milktea/utils';

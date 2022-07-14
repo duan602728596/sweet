@@ -1,6 +1,6 @@
-import * as path from 'path';
-import type { ParsedPath } from 'path';
-import * as fs from 'fs';
+import * as path from 'node:path';
+import type { ParsedPath } from 'node:path';
+import * as fs from 'node:fs';
 import _ from 'lodash';
 import { isFileExists } from '@sweet-milktea/utils';
 import type { Context, Next } from 'koa';

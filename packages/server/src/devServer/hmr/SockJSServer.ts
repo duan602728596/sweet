@@ -1,5 +1,5 @@
-import type { IncomingMessage, Server } from 'http';
-import type { Http2SecureServer } from 'http2';
+import type { IncomingMessage, Server } from 'node:http';
+import type { Http2SecureServer } from 'node:http2';
 import sockjs from 'sockjs';
 import type { Server as SockjsServer, Connection as SockjsConnection } from 'sockjs';
 import { Session as SockjsSession } from 'sockjs/lib/transport';

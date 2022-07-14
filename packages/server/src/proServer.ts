@@ -1,10 +1,10 @@
 /* 生产环境 服务器 */
 import './alias';
-import * as http from 'http';
-import * as http2 from 'http2';
-import type { SecureServerOptions } from 'http2';
-import * as process from 'process';
-import * as path from 'path';
+import * as http from 'node:http';
+import * as http2 from 'node:http2';
+import type { SecureServerOptions } from 'node:http2';
+import * as process from 'node:process';
+import * as path from 'node:path';
 import Koa from 'koa';
 import Router from '@koa/router';
 import middleware from './proServer/middleware';

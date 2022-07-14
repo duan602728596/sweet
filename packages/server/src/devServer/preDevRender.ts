@@ -1,4 +1,4 @@
-import type * as Stream from 'stream';
+import type * as Stream from 'node:stream';
 import { pathToRegexp } from 'path-to-regexp';
 import { requireModuleWithoutCache } from '@sweet-milktea/utils';
 import type { Context } from 'koa';

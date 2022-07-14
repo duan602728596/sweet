@@ -1,4 +1,4 @@
-import * as path from 'path';
+import * as path from 'node:path';
 import { requireModule } from '@sweet-milktea/utils';
 
 /* 加载插件 */
