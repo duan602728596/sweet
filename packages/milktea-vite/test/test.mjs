@@ -1,8 +1,8 @@
 import process from 'node:process';
 
 /* test */
-import './config.mjs';
-import './build.mjs';
+await import('./config.mjs');
+await import('./build.mjs');
 
 setTimeout(() => {
   process.exit();
