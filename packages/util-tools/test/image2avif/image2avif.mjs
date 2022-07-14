@@ -1,7 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { expect } from 'chai';
-import { metaHelper } from '@sweet-milktea/utils/index.cjs';
+import { metaHelper } from '@sweet-milktea/utils';
 import image2avif from '../../esm/image2avif.js';
 
 const { __dirname } = metaHelper(import.meta.url);

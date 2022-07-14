@@ -22,7 +22,7 @@ function createJsRegisterLoader(): Loader {
       ]],
       cache: true,
       ignore: [/node_modules/],
-      extensions: ['.ts', '.tsx', '.js', '.mjs', '.cjs', '.mts', '.cts', '.jsx', '.es6', '.es']
+      extensions: ['.ts', '.tsx', '.mts', '.cts', '.js', '.mjs', 'cjs', '.jsx', '.es6', '.es']
     });
 
     let modules: Config | null;
@@ -51,8 +51,14 @@ async function getConfigFile(sweetOptions: SweetOptions, configFile?: string): P
   const explorer: Explorer = cosmiconfig(MODULE_NAME, {
     searchPlaces: [
       `${ MODULE_NAME }.config.ts`,
-      `${ MODULE_NAME }.config.tsx`,
       `.${ MODULE_NAME }rc.ts`,
+      `${ MODULE_NAME }.config.mts`,
+      `.${ MODULE_NAME }rc.mts`,
+      `${ MODULE_NAME }.config.ts`,
+      `.${ MODULE_NAME }rc.ts`,
+      `${ MODULE_NAME }.config.cts`,
+      `.${ MODULE_NAME }rc.cts`,
+      `${ MODULE_NAME }.config.tsx`,
       `.${ MODULE_NAME }rc.tsx`,
       `${ MODULE_NAME }.config.mjs`,
       `.${ MODULE_NAME }rc.mjs`,
@@ -69,7 +75,9 @@ async function getConfigFile(sweetOptions: SweetOptions, configFile?: string): P
       '.cjs': jsRegisterLoader,
       '.jsx': jsRegisterLoader,
       '.ts': jsRegisterLoader,
-      '.tsx': jsRegisterLoader
+      '.tsx': jsRegisterLoader,
+      '.mts': jsRegisterLoader,
+      '.cts': jsRegisterLoader
     },
     stopDir: sweetOptions.basicPath
   });

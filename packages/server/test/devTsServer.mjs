@@ -1,7 +1,7 @@
 import path from 'node:path';
 import { setTimeout as setTimeoutPromise } from 'node:timers/promises';
 import { expect } from 'chai';
-import { metaHelper } from '@sweet-milktea/utils/index.cjs';
+import { metaHelper } from '@sweet-milktea/utils';
 import devServer from '../esm/devServer.js';
 import createCompiler from './utils/compiler.mjs';
 import { get, post } from './utils/reqData.mjs';
