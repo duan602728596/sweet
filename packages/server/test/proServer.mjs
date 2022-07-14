@@ -2,7 +2,7 @@ import path from 'node:path';
 import { setTimeout as setTimeoutPromise } from 'node:timers/promises';
 import { expect } from 'chai';
 import { metaHelper } from '@sweet-milktea/utils';
-import proServer from '../proServer.js';
+import proServer from '../esm/proServer.js';
 import createCompiler from './utils/compiler.mjs';
 import { get, post } from './utils/reqData.mjs';
 import toJson from './utils/toJson.mjs';

@@ -3,7 +3,7 @@ import { setTimeout as setTimeoutPromise } from 'node:timers/promises';
 import { expect } from 'chai';
 import milkteaVite from '@sweet-milktea/milktea-vite';
 import { metaHelper } from '@sweet-milktea/utils';
-import devServer from '../devServer.js';
+import devServer from '../esm/devServer.js';
 import { get } from './utils/reqData.mjs';
 
 const { __dirname } = metaHelper(import.meta.url);

@@ -1,13 +1,13 @@
 import process from 'node:process';
 
 /* 测试服务 */
-import './testServer.mjs';
+await import('./testServer.mjs');
 
 /* test */
-import './devServer.mjs';
-import './devTsServer.mjs';
-import './devViteServer.mjs';
-import './proServer.mjs';
+await import('./devServer.mjs');
+await import('./devTsServer.mjs');
+await import('./devViteServer.mjs');
+await import('./proServer.mjs');
 
 setTimeout(() => {
   process.exit();

@@ -7,35 +7,30 @@
     "type": "git",
     "url": "git@github.com:duan602728596/sweet.git"
   },
-  "main": "cjs.js",
+  "type": "module",
+  "main": "./esm/server.js",
+  "module": "./esm/server.js",
   "exports": {
     ".": {
-      "import": "./esm/server.js",
-      "default": "./lib/cjs.js"
+      "import": "./esm/server.js"
     },
     "./devServer": {
-      "import": "./esm/devServer.js",
-      "default": "./devServer.js"
+      "import": "./esm/devServer.js"
     },
     "./devServer.js": {
-      "import": "./esm/devServer.js",
-      "default": "./devServer.js"
+      "import": "./esm/devServer.js"
     },
     "./proServer": {
-      "import": "./esm/proServer.js",
-      "default": "./proServer.js"
+      "import": "./esm/proServer.js"
     },
     "./proServer.js": {
-      "import": "./esm/proServer.js",
-      "default": "./proServer.js"
+      "import": "./esm/proServer.js"
     },
     "./hotClientEntry": {
-      "import": "./esm/hotClientEntry.js",
-      "default": "./hotClientEntry.js"
+      "import": "./esm/hotClientEntry.js"
     },
     "./hotClientEntry.js": {
-      "import": "./esm/hotClientEntry.js",
-      "default": "./hotClientEntry.js"
+      "import": "./esm/hotClientEntry.js"
     },
     "./esm/server.js": {
       "import": "./esm/server.js"

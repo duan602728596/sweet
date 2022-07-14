@@ -2,7 +2,7 @@ import path from 'node:path';
 import webpack from 'webpack';
 import { config as webpackConfig } from '@sweet-milktea/milktea';
 import { metaHelper } from '@sweet-milktea/utils';
-import hotClientEntry from '../../hotClientEntry.js';
+import hotClientEntry from '../../esm/hotClientEntry.js';
 
 const { __dirname } = metaHelper(import.meta.url);
 

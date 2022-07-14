@@ -1,5 +1,5 @@
 /* 开发环境 服务器 */
-import './alias';
+import './alias.js';
 import * as http from 'node:http';
 import type { Server } from 'node:http';
 import * as http2 from 'node:http2';
