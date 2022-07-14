@@ -1,4 +1,4 @@
-import type { WebpackLog } from '@sweet-milktea/milktea/src/utils/types';
+import type { WebpackLog } from '@sweet-milktea/milktea/src/utils/types.js';
 
 export interface Argv {
   config: string;

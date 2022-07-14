@@ -1,8 +1,8 @@
 import { requireModule } from '@sweet-milktea/utils';
 import type Webpack from 'webpack';
 import type { Compiler } from 'webpack';
-import type { Milktea } from '../../../milktea/src/utils/types';
-import type { Argv } from '../utils/types';
+import type { Milktea } from '@sweet-milktea/milktea/src/utils/types.js';
+import type { Argv } from '../utils/types.js';
 
 /* dll 命令 */
 async function argvDll(argv: Argv): Promise<void> {

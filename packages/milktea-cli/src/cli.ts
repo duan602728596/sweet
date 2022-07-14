@@ -3,8 +3,7 @@
 /* 命令行工具 */
 import * as process from 'node:process';
 import yargs from 'yargs';
-import { hideBin } from 'yargs/helpers';
-// @ts-ignore Node16
-import command from './command';
+import { hideBin } from 'yargs/helpers.js';
+import command from './command.js';
 
 command(yargs(hideBin(process.argv)));

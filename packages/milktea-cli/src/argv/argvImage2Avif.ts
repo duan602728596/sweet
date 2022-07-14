@@ -1,7 +1,7 @@
 import * as process from 'node:process';
 import * as path from 'node:path';
 import { requireModule } from '@sweet-milktea/utils';
-import type { Argv } from '../utils/types';
+import type { Argv } from '../utils/types.js';
 
 /* image2avif命令 */
 async function argvImage2Avif(argv: Argv): Promise<void> {

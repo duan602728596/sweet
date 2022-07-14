@@ -53,8 +53,8 @@
     "@babel/register": "^7.18.6",
     "@bbkkbkk/http-proxy": "^1.17.0",
     "@koa/router": "^11.0.1",
-    "@sweet-milktea/babel-preset-sweet": "^3.1.9",
-    "@sweet-milktea/utils": "^3.0.2",
+    "@sweet-milktea/babel-preset-sweet": "^4.0.0",
+    "@sweet-milktea/utils": "^4.0.0",
     "ansi-html-community": "^0.0.8",
     "chalk": "^5.0.1",
     "ejs": "^3.1.8",
@@ -79,9 +79,9 @@
     "ws": "^8.8.0"
   },
   "devDependencies": {
-    "@sweet-milktea/milktea": "^3.1.13",
-    "@sweet-milktea/milktea-vite": "^3.1.8",
-    "@sweet-milktea/server-log": "^3.0.0",
+    "@sweet-milktea/milktea": "^4.0.0",
+    "@sweet-milktea/milktea-vite": "^4.0.0",
+    "@sweet-milktea/server-log": "^4.0.0",
     "cross-env": "*",
     "mocha": "*",
     "nunjucks": "^3.2.3",
@@ -89,9 +89,9 @@
     "webpack": "^5.73.0"
   },
   "peerDependencies": {
-    "@sweet-milktea/milktea": ">=3",
-    "@sweet-milktea/milktea-vite": ">=3",
-    "@sweet-milktea/server-log": ">=3",
+    "@sweet-milktea/milktea": ">=4",
+    "@sweet-milktea/milktea-vite": ">=4",
+    "@sweet-milktea/server-log": ">=4",
     "nunjucks": ">=3"
   },
   "engines": {

@@ -52,7 +52,7 @@
   },
   "dependencies": {
     "@fiahfy/icns": "^0.0.7",
-    "@sweet-milktea/utils": "^3.0.2",
+    "@sweet-milktea/utils": "^4.0.0",
     "chalk": "^5.0.1",
     "fluent-ffmpeg": "^2.1.2",
     "fs-extra": "^10.1.0",

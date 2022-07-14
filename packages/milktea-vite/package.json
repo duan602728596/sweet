@@ -45,8 +45,8 @@
   "dependencies": {
     "@babel/core": "^7.18.6",
     "@babel/register": "^7.18.6",
-    "@sweet-milktea/babel-preset-sweet": "^3.1.9",
-    "@sweet-milktea/utils": "^3.0.2",
+    "@sweet-milktea/babel-preset-sweet": "^4.0.0",
+    "@sweet-milktea/utils": "^4.0.0",
     "@vitejs/plugin-react": "^2.0.0",
     "cosmiconfig": "^7.0.1",
     "less": "^4.1.3",

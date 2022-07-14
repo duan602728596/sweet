@@ -1,15 +1,15 @@
-import argvDll from './argv/argvDll';
-import argvStart from './argv/argvStart';
-import argvViteStart from './argv/argvViteStart';
-import argvBuild from './argv/argvBuild';
-import argvViteBuild from './argv/argvViteBuild';
-import argvServer from './argv/argvServer';
-import argvUpdate from './argv/argvUpdate';
-import argvImage2WebP from './argv/argvImage2WebP';
-import argvImage2Avif from './argv/argvImage2Avif';
-import argvImageCompress from './argv/argvImageCompress';
-import argvImage2Icns from './argv/argvImage2Icns';
-import argvMedia2WebP from './argv/argvMedia2WebP';
+import argvDll from './argv/argvDll.js';
+import argvStart from './argv/argvStart.js';
+import argvViteStart from './argv/argvViteStart.js';
+import argvBuild from './argv/argvBuild.js';
+import argvViteBuild from './argv/argvViteBuild.js';
+import argvServer from './argv/argvServer.js';
+import argvUpdate from './argv/argvUpdate.js';
+import argvImage2WebP from './argv/argvImage2WebP.js';
+import argvImage2Avif from './argv/argvImage2Avif.js';
+import argvImageCompress from './argv/argvImageCompress.js';
+import argvImage2Icns from './argv/argvImage2Icns.js';
+import argvMedia2WebP from './argv/argvMedia2WebP.js';
 
 function command(yargs: any): any {
   /* 获取参数 */

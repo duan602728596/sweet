@@ -2,9 +2,9 @@ import type Webpack from 'webpack';
 import type { Compiler, Configuration } from 'webpack';
 import _ from 'lodash';
 import { requireModule } from '@sweet-milktea/utils';
-import type { Milktea } from '../../../milktea/src/utils/types';
-import type { DevServer } from '../../../server/src/utils/types';
-import type { Argv } from '../utils/types';
+import type { Milktea } from '../../../milktea/src/utils/types.js';
+import type { DevServer } from '../../../server/src/utils/types.js';
+import type { Argv } from '../utils/types.js';
 
 /* start 命令 */
 async function argvStart(argv: Argv): Promise<void> {
