@@ -1,4 +1,4 @@
-import * as path from 'path';
+import * as path from 'node:path';
 import _ from 'lodash';
 // @ts-ignore Node16
 import type { InlineConfig } from 'vite';

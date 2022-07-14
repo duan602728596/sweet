@@ -1,4 +1,4 @@
-import * as path from 'path';
+import * as path from 'node:path';
 import { requireModule } from '@sweet-milktea/utils';
 import type ImageMin from 'imagemin';
 import { formatPath, getImageMin } from './utils/utils';

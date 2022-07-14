@@ -1,4 +1,4 @@
-import * as path from 'path';
+import * as path from 'node:path';
 import webpack from 'webpack';
 import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin';
 import type Config from 'webpack-chain';

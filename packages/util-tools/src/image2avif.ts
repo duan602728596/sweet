@@ -1,6 +1,6 @@
-import * as path from 'path';
-import type { ParsedPath } from 'path';
-import { spawn, ChildProcessWithoutNullStreams } from 'child_process';
+import * as path from 'node:path';
+import type { ParsedPath } from 'node:path';
+import { spawn, ChildProcessWithoutNullStreams } from 'node:child_process';
 import fse from 'fs-extra';
 import { requireModule, moduleExists } from '@sweet-milktea/utils';
 import type Sharp from 'sharp';

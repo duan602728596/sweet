@@ -1,4 +1,4 @@
-import * as path from 'path';
+import * as path from 'node:path';
 import { isFileExists, moduleExists, requireModule } from '@sweet-milktea/utils';
 // @ts-ignore Node16
 import type { InlineConfig } from 'vite';

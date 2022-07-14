@@ -1,4 +1,4 @@
-import * as process from 'process';
+import * as process from 'node:process';
 // @ts-ignore Node16
 import type { createServer as CreateServer, build as ViteBuild, ViteDevServer } from 'vite';
 import _ from 'lodash';

@@ -1,4 +1,4 @@
-import * as path from 'path';
+import * as path from 'node:path';
 import _ from 'lodash';
 import webpack from 'webpack';
 import type { Configuration } from 'webpack';

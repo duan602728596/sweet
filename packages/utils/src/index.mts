@@ -1,7 +1,7 @@
-import * as fs from 'fs';
-import * as path from 'path';
-import { fileURLToPath, pathToFileURL } from 'url';
-import { createRequire } from 'module';
+import * as fs from 'node:fs';
+import * as path from 'node:path';
+import { fileURLToPath, pathToFileURL } from 'node:url';
+import { createRequire } from 'node:module';
 
 const require: NodeRequire = createRequire(import.meta.url); // esm需要创建require
 

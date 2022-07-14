@@ -43,6 +43,6 @@
     "@sweet-milktea/util-tools": ">=3"
   },
   "engines": {
-    "node": ">=12"
+    "node": ">=16"
   }
 }

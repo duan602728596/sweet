@@ -1,4 +1,4 @@
-import * as path from 'path';
+import * as path from 'node:path';
 import type { LoaderOptions } from 'webpack-chain';
 import CacheConfig from './cacheConfig';
 import type { SweetOptions } from '../utils/types';

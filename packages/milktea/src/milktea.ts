@@ -1,4 +1,4 @@
-import * as process from 'process';
+import * as process from 'node:process';
 import _ from 'lodash';
 import type { Configuration, Stats } from 'webpack';
 import webpackConfig from './config';

@@ -1,4 +1,4 @@
-import * as path from 'path';
+import * as path from 'node:path';
 import { cosmiconfig, Loader } from 'cosmiconfig';
 import type { CosmiconfigResult, Config } from 'cosmiconfig/dist/types';
 import { requireModule, requireCommonjsModule, isFileExists } from '@sweet-milktea/utils';

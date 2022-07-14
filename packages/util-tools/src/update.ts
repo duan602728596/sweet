@@ -1,8 +1,8 @@
 /* 查看升级 */
-import * as https from 'https';
-import type { RequestOptions } from 'https';
-import type { ClientRequest, IncomingMessage } from 'http';
-import * as path from 'path';
+import * as https from 'node:https';
+import type { RequestOptions } from 'node:https';
+import type { ClientRequest, IncomingMessage } from 'node:http';
+import * as path from 'node:path';
 import semver from 'semver';
 import { requireJson } from '@sweet-milktea/utils';
 // @ts-ignore Node16

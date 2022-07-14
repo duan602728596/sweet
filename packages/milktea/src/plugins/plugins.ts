@@ -1,6 +1,6 @@
 /* 插件配置 */
-import * as path from 'path';
-import type { ParsedPath } from 'path';
+import * as path from 'node:path';
+import type { ParsedPath } from 'node:path';
 import webpack from 'webpack';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
