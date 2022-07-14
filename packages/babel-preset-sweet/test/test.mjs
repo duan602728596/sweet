@@ -1,2 +1,2 @@
 /* test */
-import './babelPresetSweet.mjs';
+await import('./babelPresetSweet.mjs');

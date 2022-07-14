@@ -1,2 +1,2 @@
-import './rules/spaceBeforeBlocks.mjs';
-import './rules/spaceInfixOps.mjs';
+await import('./rules/spaceBeforeBlocks.mjs');
+await import('./rules/spaceInfixOps.mjs');

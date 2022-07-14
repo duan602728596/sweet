@@ -1,4 +1,4 @@
 /* test */
-import './dll.mjs';
-import './build.mjs';
-import './start.mjs';
+await import('./dll.mjs');
+await import('./build.mjs');
+await import('./start.mjs');
