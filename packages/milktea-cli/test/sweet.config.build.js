@@ -1,6 +1,9 @@
 import * as path from 'node:path';
+import { metaHelper } from '@sweet-milktea/utils';
 
-export default function(info: object): object {
+const { __dirname } = metaHelper(import.meta.url);
+
+export default function(info) {
   return {
     frame: 'react',
     dll: ['react'],

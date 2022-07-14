@@ -2,12 +2,12 @@ import childProcess from 'node:child_process';
 import fs from 'node:fs';
 import path from 'node:path';
 import { expect } from 'chai';
-import { metaHelper } from '@sweet-milktea/utils/index.cjs';
+import { metaHelper } from '@sweet-milktea/utils';
 
 const { __dirname } = metaHelper(import.meta.url);
 
 function run() {
-  const cli = path.join(__dirname, '../lib/cli');
+  const cli = path.join(__dirname, '../esm/cli.js');
   const config = path.join(__dirname, './sweet.config.js');
 
   return new Promise((resolve, reject) => {
@@ -19,8 +19,8 @@ function run() {
       resolve();
     });
 
-    child.stdout.on('data', () => undefined);
-    child.stderr.on('data', () => undefined);
+    child.stdout.on('data', (d) => console.log(d.toString()));
+    child.stderr.on('data', (d) => console.log(d.toString()));
     child.on('error', (err) => reject(err));
   }).catch((err) => {
     console.error(err);
