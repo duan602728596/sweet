@@ -5,7 +5,6 @@ import mime from 'mime-types';
 import { isFileExists } from '@sweet-milktea/utils';
 import type { Context, Next } from 'koa';
 import type Router from '@koa/router';
-// @ts-ignore Node16
 import type { ViteDevServer } from 'vite';
 import preRenderInit from './preDevRender.js';
 import type { SweetOptions } from '../utils/types.js';
