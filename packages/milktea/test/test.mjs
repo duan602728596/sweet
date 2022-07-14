@@ -1,4 +1,4 @@
 /* test */
-import './dll.mjs';
-import './config.mjs';
-import './server.mjs';
+await import('./dll.mjs');
+await import('./config.mjs');
+await import('./server.mjs');
