@@ -2,7 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { expect } from 'chai';
 import { metaHelper } from '@sweet-milktea/utils';
-import imageCompression from '../../imageCompress.js';
+import imageCompression from '../../esm/imageCompress.js';
 
 const { __dirname } = metaHelper(import.meta.url);
 

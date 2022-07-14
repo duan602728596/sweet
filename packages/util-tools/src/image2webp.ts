@@ -28,8 +28,8 @@ async function image2webp(entry: string, output: string, options: Options = {}):
   await imagemin([imgFile], {
     destination: output,
     plugins: [
-      requireModule('imagemin-webp')(imgOptions),
-      requireModule('imagemin-gif2webp')(gifOptions)
+      (await requireModule('imagemin-webp'))(imgOptions),
+      (await requireModule('imagemin-gif2webp'))(gifOptions)
     ]
   });
 }

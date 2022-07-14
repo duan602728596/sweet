@@ -48,8 +48,7 @@
     }
   },
   "scripts": {
-    "test": "cross-env NODE_ENV=test mocha test/test.mjs --timeout 180000",
-    "update-version": "milktea-esm update"
+    "test": "cross-env NODE_ENV=test mocha test/test.mjs --timeout 180000"
   },
   "dependencies": {
     "@fiahfy/icns": "^0.0.7",
@@ -60,6 +59,10 @@
     "glob": "^8.0.3",
     "imagemin": "^8.0.1",
     "semver": "^7.3.7"
+  },
+  "devDependencies": {
+    "cross-env": "*",
+    "mocha": "*"
   },
   "peerDependencies": {
     "imagemin-gif2webp": ">=3",

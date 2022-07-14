@@ -1,7 +1,7 @@
 import path from 'node:path';
 import { expect } from 'chai';
 import { metaHelper } from '@sweet-milktea/utils';
-import update from '../../update.js';
+import update from '../../esm/update.js';
 
 const { __dirname } = metaHelper(import.meta.url);
 

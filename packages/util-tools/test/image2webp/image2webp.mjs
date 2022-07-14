@@ -2,7 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { expect } from 'chai';
 import { metaHelper } from '@sweet-milktea/utils';
-import image2webp from '../../image2webp.js';
+import image2webp from '../../esm/image2webp.js';
 
 const { __dirname } = metaHelper(import.meta.url);
 
