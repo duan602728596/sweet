@@ -1,13 +1,12 @@
 import * as process from 'node:process';
-// @ts-ignore Node16
-import type { createServer as CreateServer, build as ViteBuild, ViteDevServer } from 'vite';
+import { createServer, build as viteBuild, type ViteDevServer } from 'vite';
 import _ from 'lodash';
 import type { RollupOutput, RollupWatcher } from 'rollup';
-import configFile, { type ConfigFile } from './utils/configFile';
-import viteConfig from './config';
-import viteClientBuild from './build';
-import viteSSRBuild from './server';
-import type { SweetConfig, SweetOptions, Environment, SweetConfigArgs, FuncArgs } from './utils/types';
+import configFile, { type ConfigFile } from './utils/configFile.js';
+import viteConfig from './config.js';
+import viteClientBuild from './build.js';
+import viteSSRBuild from './server.js';
+import type { SweetConfig, SweetOptions, Environment, SweetConfigArgs, FuncArgs } from './utils/types.js';
 
 /* 基础配置 */
 const sweetOptions: SweetOptions = {
@@ -38,7 +37,6 @@ async function getConfig(environment: Environment, sweetConfig: SweetConfigArgs)
  * @param { SweetConfig | string | null | undefined } args.sweetConfig: vite配置，覆盖文件，优先级最高
  */
 export async function config(args: FuncArgs = {}): Promise<ViteDevServer> {
-  const { createServer }: { createServer: typeof CreateServer } = await import('vite');
   const { sweetConfig, mode }: FuncArgs = args;
   const cfg: SweetConfig = await getConfig('client', sweetConfig);
 
@@ -56,7 +54,6 @@ export async function config(args: FuncArgs = {}): Promise<ViteDevServer> {
  * @param { SweetConfig | string | null | undefined } args.sweetConfig: vite配置，覆盖文件，优先级最高
  */
 export async function build(args: FuncArgs = {}): Promise<RollupOutput | RollupOutput[] | RollupWatcher> {
-  const { build: viteBuild }: { build: typeof ViteBuild } = await import('vite');
   const { sweetConfig, mode }: FuncArgs = args;
   const cfg: SweetConfig = await getConfig('client', sweetConfig);
 
@@ -76,7 +73,6 @@ export async function build(args: FuncArgs = {}): Promise<RollupOutput | RollupO
  * @param { SweetConfig | string | null | undefined } args.sweetConfig: vite配置，覆盖文件，优先级最高
  */
 export async function serverRenderBuild(args: FuncArgs = {}): Promise<RollupOutput | RollupOutput[] | RollupWatcher> {
-  const { build: viteBuild }: { build: typeof ViteBuild } = await import('vite');
   const { sweetConfig, mode }: FuncArgs = args;
   const cfg: SweetConfig = await getConfig('server', sweetConfig);
 

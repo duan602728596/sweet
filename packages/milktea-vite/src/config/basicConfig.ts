@@ -1,7 +1,6 @@
 import * as path from 'node:path';
-// @ts-ignore Node16
 import type { InlineConfig } from 'vite';
-import type { SweetOptions } from '../utils/types';
+import type { SweetOptions } from '../utils/types.js';
 
 /**
  * 基础配置

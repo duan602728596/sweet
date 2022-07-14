@@ -1,8 +1,8 @@
 import * as path from 'node:path';
 import { cosmiconfig, Loader } from 'cosmiconfig';
-import type { CosmiconfigResult, Config } from 'cosmiconfig/dist/types';
+import type { CosmiconfigResult, Config } from 'cosmiconfig/dist/types.js';
 import { requireModule, requireCommonjsModule, isFileExists } from '@sweet-milktea/utils';
-import type { SweetConfig, SweetOptions, Explorer, Info } from './types';
+import type { SweetConfig, SweetOptions, Explorer, Info } from './types.js';
 
 /* 创建cosmiconfig的js加载器 */
 function createJsRegisterLoader(): Loader {

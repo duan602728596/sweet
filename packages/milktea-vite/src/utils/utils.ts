@@ -1,4 +1,4 @@
-import type { SweetConfig } from './types';
+import type { SweetConfig } from './types.js';
 
 /* 重新赋值 */
 export function changeSweetConfig(sweetConfig: SweetConfig): void {

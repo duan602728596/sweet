@@ -1,7 +1,6 @@
 import { requireModule, moduleExists } from '@sweet-milktea/utils';
-// @ts-ignore Node16
 import type { InlineConfig } from 'vite';
-import type { Frame } from '../utils/types';
+import type { Frame } from '../utils/types.js';
 
 /**
  * 添加jsx插件

@@ -1,12 +1,11 @@
 import * as path from 'node:path';
 import _ from 'lodash';
-// @ts-ignore Node16
 import type { InlineConfig } from 'vite';
-import { basicConfig } from './config/basicConfig';
-import addJsxPlugins from './config/addJsxPlugins';
-import { addTsChecker } from './utils/tsChecker';
-import { changeSweetConfig, customizer } from './utils/utils';
-import type { SweetConfig, SweetOptions } from './utils/types';
+import { basicConfig } from './config/basicConfig.js';
+import addJsxPlugins from './config/addJsxPlugins.js';
+import { addTsChecker } from './utils/tsChecker.js';
+import { changeSweetConfig, customizer } from './utils/utils.js';
+import type { SweetConfig, SweetOptions } from './utils/types.js';
 
 /**
  * vite 生产环境SSR编译配置

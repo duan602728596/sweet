@@ -7,11 +7,12 @@
     "type": "git",
     "url": "git@github.com:duan602728596/sweet.git"
   },
-  "main": "lib/milktea-vite.js",
+  "type": "module",
+  "main": "./esm/milktea-vite.js",
+  "module": "./esm/milktea-vite.js",
   "exports": {
     ".": {
-      "import": "./esm/milktea-vite.js",
-      "default": "./lib/milktea-vite.js"
+      "import": "./esm/milktea-vite.js"
     },
     "./esm/milktea-vite": {
       "import": "./esm/milktea-vite.js"
