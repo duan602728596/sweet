@@ -1,8 +1,8 @@
 import * as path from 'node:path';
 import { requireModule } from '@sweet-milktea/utils';
-import type ImageMin from 'imagemin';
+import imagemin from 'imagemin';
 import type { Options as PngOptions } from 'imagemin-pngquant';
-import { formatPath, getImageMin } from './utils/utils';
+import { formatPath } from './utils/utils.js';
 
 interface CompressOptions {
   png?: PngOptions;
@@ -30,9 +30,7 @@ async function imageCompress(entry: string, output: string, compressOptions: Com
   const gifOptions: object = Object.assign({}, gifCompressOptions);
 
   // 压缩
-  const imageMin: typeof ImageMin = await getImageMin();
-
-  await imageMin([imgFile], {
+  await imagemin([imgFile], {
     destination: output,
     plugins: [
       (await requireModule('imagemin-pngquant'))(pngOptions),

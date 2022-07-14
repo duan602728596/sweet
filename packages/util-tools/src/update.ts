@@ -4,10 +4,8 @@ import type { RequestOptions } from 'node:https';
 import type { ClientRequest, IncomingMessage } from 'node:http';
 import * as path from 'node:path';
 import semver from 'semver';
+import chalk from 'chalk';
 import { requireJson } from '@sweet-milktea/utils';
-// @ts-ignore Node16
-import type Chalk from 'chalk';
-import { getChalk } from './utils/utils';
 
 interface DistTags {
   latest?: string;
@@ -190,8 +188,7 @@ async function getVersionFromNpm(packageArray: Array<PackageItem>, registry: num
  * 输出console.log文本
  * @param { Array<PackageItem> } packageArray
  */
-async function consoleLogText(packageArray: Array<PackageItem>): Promise<string> {
-  const chalk: typeof Chalk = await getChalk();
+function consoleLogText(packageArray: Array<PackageItem>): string {
   let consoleText: string = '';
 
   for (const item of packageArray) {
@@ -272,17 +269,17 @@ async function start(folder: string, registry: number, findPeerDependencies: boo
 
     if (dependencies) {
       consoleText += '  dependencies:\n';
-      consoleText += await consoleLogText(dependencies);
+      consoleText += consoleLogText(dependencies);
     }
 
     if (devDependencies) {
       consoleText += '  devDependencies:\n';
-      consoleText += await consoleLogText(devDependencies);
+      consoleText += consoleLogText(devDependencies);
     }
 
     if (peerDependencies && findPeerDependencies) {
       consoleText += '  peerDependencies:\n';
-      consoleText += await consoleLogText(peerDependencies);
+      consoleText += consoleLogText(peerDependencies);
     }
 
     if (!test) {
@@ -299,7 +296,12 @@ async function start(folder: string, registry: number, findPeerDependencies: boo
  * @param { boolean } findPeerDependencies: 是否查找peerDependencies内的包
  * @param { boolean } test: 是否为测试环境
  */
-export default async function(folders: Array<string>, registry: number, findPeerDependencies: boolean, test: boolean): Promise<void> {
+export default async function(
+  folders: Array<string>,
+  registry: number,
+  findPeerDependencies: boolean,
+  test: boolean
+): Promise<void> {
   for (const folder of folders) {
     await start(folder, registry, findPeerDependencies, test);
   }

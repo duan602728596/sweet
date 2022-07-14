@@ -1,7 +1,7 @@
 import * as path from 'node:path';
 import { requireModule } from '@sweet-milktea/utils';
-import type ImageMin from 'imagemin';
-import { formatPath, getImageMin } from './utils/utils';
+import imagemin from 'imagemin';
+import { formatPath } from './utils/utils.js';
 
 interface Options {
   img?: object;
@@ -25,9 +25,7 @@ async function image2webp(entry: string, output: string, options: Options = {}):
   const imgFile: string = formatPath(path.join(entry, '**/*.{jpg,jpeg,png,gif}'));
 
   // 转换
-  const imageMin: typeof ImageMin = await getImageMin();
-
-  await imageMin([imgFile], {
+  await imagemin([imgFile], {
     destination: output,
     plugins: [
       requireModule('imagemin-webp')(imgOptions),

@@ -4,7 +4,7 @@ import { spawn, ChildProcessWithoutNullStreams } from 'node:child_process';
 import fse from 'fs-extra';
 import { requireModule, moduleExists } from '@sweet-milktea/utils';
 import type Sharp from 'sharp';
-import { formatPath, getFiles } from './utils/utils';
+import { formatPath, getFiles } from './utils/utils.js';
 
 /**
  * 转换成avif：https://reachlightspeed.com/blog/using-the-new-high-performance-avif-image-format-on-the-web-today/

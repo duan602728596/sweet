@@ -2,7 +2,7 @@ import * as path from 'node:path';
 import type { ParsedPath } from 'node:path';
 import fse from 'fs-extra';
 import ffmpeg from 'fluent-ffmpeg';
-import { formatPath, getFiles } from './utils/utils';
+import { formatPath, getFiles } from './utils/utils.js';
 
 const defaultExt: string[] = ['gif', 'png', 'jpg', 'jpeg'];
 const videoExt: string[] = ['mp4', 'flv', 'ts', 'mov', 'avi', 'mpg', 'mpeg'];
@@ -14,20 +14,16 @@ const videoExt: string[] = ['mp4', 'flv', 'ts', 'mov', 'avi', 'mpg', 'mpeg'];
  */
 function file2webp(input: string, output: string): Promise<void> {
   return new Promise((resolve: Function, reject: Function): void => {
-    const handleFFmpegEnd: Function = (): void => {
-      resolve();
-    };
-
-    const handleFFmpegError: Function = (err: Error, stdout: string, stderr: string): void => {
-      reject(err);
-    };
-
     ffmpeg()
       .input(input)
       .outputOptions('-loop 0')
       .output(output)
-      .on('error', handleFFmpegError)
-      .on('end', handleFFmpegEnd)
+      .on('error', (): void => {
+        resolve();
+      })
+      .on('end', (err: Error, stdout: string, stderr: string): void => {
+        reject(err);
+      })
       .run();
   });
 }

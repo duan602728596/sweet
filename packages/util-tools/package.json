@@ -1,60 +1,50 @@
 {
   "name": "@sweet-milktea/util-tools",
-  "version": "3.1.6",
+  "version": "4.0.0",
   "description": "通用工具函数",
   "homepage": "https://github.com/duan602728596/sweet",
   "repository": {
     "type": "git",
     "url": "git@github.com:duan602728596/sweet.git"
   },
+  "type": "module",
   "exports": {
     "./image2avif": {
-      "import": "./esm/image2avif.js",
-      "default": "./image2avif.js"
+      "import": "./esm/image2avif.js"
     },
     "./image2avif.js": {
-      "import": "./esm/image2avif.js",
-      "default": "./image2avif.js"
+      "import": "./esm/image2avif.js"
     },
     "./image2icns": {
-      "import": "./esm/image2icns.js",
-      "default": "./image2icns.js"
+      "import": "./esm/image2icns.js"
     },
     "./image2icns.js": {
-      "import": "./esm/image2icns.js",
-      "default": "./image2icns.js"
+      "import": "./esm/image2icns.js"
     },
     "./image2webp": {
-      "import": "./esm/image2webp.js",
-      "default": "./image2webp.js"
+      "import": "./esm/image2webp.js"
     },
     "./image2webp.js": {
-      "import": "./esm/image2webp.js",
-      "default": "./image2webp.js"
+      "import": "./esm/image2webp.js"
     },
     "./imageCompress": {
-      "import": "./esm/imageCompress.js",
-      "default": "./imageCompress.js"
+      "import": "./esm/imageCompress.js"
     },
     "./imageCompress.js": {
-      "import": "./esm/imageCompress.js",
-      "default": "./imageCompress.js"
+      "import": "./esm/imageCompress.js"
     },
     "./media2webp": {
       "import": "./esm/media2webp.js",
       "default": "./media2webp.js"
     },
     "./media2webp.js": {
-      "import": "./esm/media2webp.js",
-      "default": "./media2webp.js"
+      "import": "./esm/media2webp.js"
     },
     "./update": {
-      "import": "./esm/update.js",
-      "default": "./update.js"
+      "import": "./esm/update.js"
     },
     "./update.js": {
-      "import": "./esm/update.js",
-      "default": "./update.js"
+      "import": "./esm/update.js"
     }
   },
   "scripts": {
