@@ -1,7 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { expect } from 'chai';
-import { metaHelper } from '@sweet-milktea/utils';
+import { metaHelper } from '@sweet-milktea/utils/index.cjs';
 import media2webp from '../../esm/media2webp.js';
 import afterTest from '../afterTest.mjs';
 

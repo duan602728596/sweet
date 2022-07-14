@@ -86,11 +86,6 @@ export function requireModuleWithoutCache(id: string, exportAll?: boolean): unkn
 }
 
 /**
- * @deprecated
- */
-export const deleteCacheAndRequireModule: typeof requireModuleWithoutCache = requireModuleWithoutCache;
-
-/**
  * 判断模块是否存在
  * @param { string } id: 模块名称
  */
@@ -132,7 +127,6 @@ export default {
   requireCommonjsModule,
   requireJson,
   cleanRequireCache,
-  deleteCacheAndRequireModule,
   requireModuleWithoutCache,
   moduleExists,
   isFileExists,

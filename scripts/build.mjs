@@ -1,61 +1,86 @@
-/* gulp配置文件，编译packages下的所有文件 */
-import path from 'node:path';
-import fs from 'node:fs';
-import gulp from 'gulp';
-import modifier from 'gulp-modifier';
+/* global path, fs, globby, cd */
+import os from 'node:os';
 import { dir, packageNames } from './config.mjs';
 
-/* 修改文件的内容 */
-function addJsExt(contents, p) {
-  const contentsArr = contents.split(/\n/);
-
-  contentsArr.forEach(function(value, index) {
-    if (
-      (/^import /.test(value) || /^export {/.test(value))
-      && (
-        /from '\./.test(value)
-        || /import '\./.test(value)
-        || /from 'sockjs\/lib/.test(value) // sockjs
-        || /from '@typescript-eslint\/eslint-plugin\/dist/.test(value) // typescript-eslint
-      )
-      && !/\.(m|c)?js['"];?$/.test(value)
-    ) {
-      contentsArr[index] = value.replace(/';$/, ".js';");
+/* 修复window下bash的错误 */
+if (os.platform() === 'win32') {
+  $.quote = function(arg) {
+    if (/^[a-z\d/_.-]+$/i.test(arg) || arg === '') {
+      return arg;
     }
-  });
 
-  return contentsArr.join('\n');
-}
-
-function createProject(name) {
-  const src = path.join(dir, name, 'esm');
-
-  return function() {
-    return gulp.src(path.join(src, '**/*.js'))
-      .pipe(modifier(addJsExt))
-      .pipe(gulp.dest(src));
+    return arg.replace(/\\/g, '\\\\')
+      .replace(/'/g, '\\\'')
+      .replace(/\f/g, '\\f')
+      .replace(/\n/g, '\\n')
+      .replace(/\r/g, '\\r')
+      .replace(/\t/g, '\\t')
+      .replace(/\v/g, '\\v')
+      .replace(/\0/g, '\\0');
   };
 }
 
-/* 创建队列函数 */
-function createQueue(prefix, func) {
-  const queueFn = [];
+/**
+ * 格式化路径
+ * @param { string } p: 原始路径
+ */
+function formatPath(p) {
+  return p.replace(/\\/g, '/');
+}
 
-  for (const name of packageNames) {
-    if (name === 'eslint-plugin') {
-      continue;
-    }
+/**
+ * typescript文件编译
+ * @param { string } packageName: 编译名称
+ * @param { string } packageDir: 入口文件
+ */
+async function build(packageName, packageDir) {
+  const libDir = path.join(packageDir, 'lib');
+  const esmDir = path.join(packageDir, 'esm');
 
-    const fn = func(name);
+  cd(packageDir);
+  await Promise.all([
+    [
+      'eslint-plugin',
+      'babel-preset-sweet',
+      'utils'
+    ].includes(packageName)
+      && $`npx tsc --outDir ${ libDir } --module Node16 --moduleResolution Node16 --skipLibCheck`,
+    !['eslint-plugin'].includes(packageName)
+      && $`npx tsc --outDir ${ esmDir } --skipLibCheck`
+  ].filter(Boolean));
 
-    Object.defineProperty(fn, 'name', {
-      value: `${ prefix } | ${ name }`
-    });
+  await Promise.all([
+    // 移除lib文件夹中的mjs文件和esm中的cjs文件
+    (async () => {
+      const deleteFiles = await globby([
+        formatPath(path.join(libDir, '**/*.mjs')),
+        formatPath(path.join(esmDir, '**/*.cjs'))
+      ]);
 
-    queueFn.push(fn);
-  }
+      await Promise.all(deleteFiles.map((file) => fs.promises.rm(file)));
+    })(),
 
-  return queueFn;
+    // 将mjs和cjs文件修改为js文件
+    (async () => {
+      const renameFiles = await globby([
+        formatPath(path.join(libDir, '**/*.cjs')),
+        formatPath(path.join(esmDir, '**/*.mjs'))
+      ]);
+
+      await Promise.all(
+        renameFiles.map((file) => {
+          const parseResult = path.parse(file);
+
+          return fs.promises.rename(file, `${ parseResult.dir }/${ parseResult.name }.js`);
+        })
+      );
+    })()
+  ]);
+}
+
+/* 编译 */
+for (const packageName of packageNames) {
+  await build(packageName, path.join(dir, packageName));
 }
 
 /* 写入package.js文件 */
@@ -70,7 +95,4 @@ async function writeTypeModulePackageJsonFile() {
   }
 }
 
-export default gulp.series(
-  gulp.parallel(...createQueue('esm', createProject)),
-  writeTypeModulePackageJsonFile
-);
+await writeTypeModulePackageJsonFile();

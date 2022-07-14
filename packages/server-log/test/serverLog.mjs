@@ -2,7 +2,7 @@ import process from 'node:process';
 import path from 'node:path';
 import fs from 'node:fs';
 import { expect } from 'chai';
-import { metaHelper } from '@sweet-milktea/utils';
+import { metaHelper } from '@sweet-milktea/utils/index.cjs';
 import serverLog from '../esm/index.js';
 import afterTest from './afterTest.mjs';
 

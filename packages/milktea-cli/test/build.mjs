@@ -2,7 +2,7 @@ import childProcess from 'node:child_process';
 import fs from 'node:fs';
 import path from 'node:path';
 import { expect } from 'chai';
-import { metaHelper } from '@sweet-milktea/utils';
+import { metaHelper } from '@sweet-milktea/utils/index.cjs';
 
 const { __dirname } = metaHelper(import.meta.url);
 

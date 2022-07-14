@@ -3,7 +3,7 @@ import fs from 'node:fs';
 import util from 'node:util';
 import { expect } from 'chai';
 import rimraf from 'rimraf';
-import { metaHelper, requireCommonjsModule } from '@sweet-milktea/utils';
+import { metaHelper, requireCommonjsModule } from '@sweet-milktea/utils/index.cjs';
 import { build, serverRenderBuild } from '../esm/milktea-vite.js';
 
 const rimrafPromise = util.promisify(rimraf);

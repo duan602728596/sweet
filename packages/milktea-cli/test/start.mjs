@@ -3,7 +3,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import { expect } from 'chai';
 import afterTest from './afterTest.mjs';
-import { metaHelper } from '@sweet-milktea/utils';
+import { metaHelper } from '@sweet-milktea/utils/index.cjs';
 
 const { __dirname } = metaHelper(import.meta.url);
 const index = path.join(__dirname, 'dist/index.js');

@@ -1,19 +1,19 @@
 {
   "name": "@sweet-milktea/utils",
-  "version": "3.1.1",
+  "version": "4.0.0",
   "homepage": "https://github.com/duan602728596/sweet",
   "repository": {
     "type": "git",
     "url": "git@github.com:duan602728596/sweet.git"
   },
-  "main": "cjs.js",
+  "main": "./index.cjs",
   "exports": {
     ".": {
       "import": "./esm/index.js",
-      "default": "./cjs.js"
+      "default": "./index.cjs"
     },
-    "./importESM": "./importESM.js",
-    "./importESM.js": "./importESM.js"
+    "./importESM": "./importESM.cjs",
+    "./importESM.cjs": "./importESM.cjs"
   },
   "scripts": {
     "test": "cross-env NODE_ENV=test mocha test/test.mjs --timeout 180000"

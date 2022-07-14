@@ -2,7 +2,7 @@ import path from 'node:path';
 import { setTimeout as setTimeoutPromise } from 'node:timers/promises';
 import { expect } from 'chai';
 import milkteaVite from '@sweet-milktea/milktea-vite';
-import { metaHelper } from '@sweet-milktea/utils';
+import { metaHelper } from '@sweet-milktea/utils/index.cjs';
 import devServer from '../esm/devServer.js';
 import { get } from './utils/reqData.mjs';
 

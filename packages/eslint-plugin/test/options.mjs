@@ -1,5 +1,5 @@
 import path from 'node:path';
-import { metaHelper } from '@sweet-milktea/utils';
+import { metaHelper } from '@sweet-milktea/utils/index.cjs';
 
 const { __dirname } = metaHelper(import.meta.url);
 
