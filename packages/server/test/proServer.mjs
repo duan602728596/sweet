@@ -1,4 +1,5 @@
 import path from 'node:path';
+import { setTimeout as setTimeoutPromise } from 'node:timers/promises';
 import { expect } from 'chai';
 import { metaHelper } from '@sweet-milktea/utils';
 import proServer from '../proServer.js';
@@ -15,12 +16,7 @@ async function runBuild() {
   const compiler = await createCompiler('../src/index.js', 'production');
 
   compiler.run(() => undefined);
-
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      resolve();
-    }, 15000);
-  });
+  await setTimeoutPromise(15_000);
 }
 
 // 运行生产环境服务

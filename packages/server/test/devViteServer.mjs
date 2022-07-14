@@ -1,4 +1,5 @@
 import path from 'node:path';
+import { setTimeout as setTimeoutPromise } from 'node:timers/promises';
 import { expect } from 'chai';
 import milkteaVite from '@sweet-milktea/milktea-vite';
 import { metaHelper } from '@sweet-milktea/utils';
@@ -8,19 +9,14 @@ import { get } from './utils/reqData.mjs';
 const { __dirname } = metaHelper(import.meta.url);
 
 // 运行开发环境的vite服务
-function runServer(compiler) {
+async function runServer(compiler) {
   devServer({
     compiler,
     env: 'test',
     httpPort: 5053,
     vite: true
   });
-
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      resolve();
-    }, 7000);
-  });
+  await setTimeoutPromise(15_000);
 }
 
 describe('development server use vite', function() {

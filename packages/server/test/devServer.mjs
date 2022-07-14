@@ -1,4 +1,5 @@
 import path from 'node:path';
+import { setTimeout as setTimeoutPromise } from 'node:timers/promises';
 import { expect } from 'chai';
 import { metaHelper } from '@sweet-milktea/utils';
 import devServer from '../devServer.js';
@@ -20,12 +21,7 @@ async function runServer() {
     proxyFile: path.join(__dirname, 'proxy/proxy.js'),
     mockFile: path.join(__dirname, 'mock/mock.js')
   });
-
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      resolve();
-    }, 7000);
-  });
+  await setTimeoutPromise(15_000);
 }
 
 describe('development server', function() {
