@@ -2,9 +2,9 @@ import * as path from 'node:path';
 import type { IOptions } from 'glob';
 import _ from 'lodash';
 import { requireCommonjsModule, requireModuleWithoutCache } from '@sweet-milktea/utils';
-import { globPromise } from './utils';
-import useRegister from './babelRegister';
-import type { SweetOptions, ControllersModule } from './types';
+import { globPromise } from './utils.js';
+import useRegister from './babelRegister.js';
+import type { SweetOptions, ControllersModule } from './types.js';
 
 const DEFAULT_CONTROLLERS: string = 'controllers'; // 默认的controllers名
 

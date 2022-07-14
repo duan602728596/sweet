@@ -2,9 +2,9 @@ import type { IncomingMessage, Server } from 'node:http';
 import type { Http2SecureServer } from 'node:http2';
 import sockjs from 'sockjs';
 import type { Server as SockjsServer, Connection as SockjsConnection } from 'sockjs';
-import { Session as SockjsSession } from 'sockjs/lib/transport';
+import { Session as SockjsSession } from 'sockjs/lib/transport.js';
 import type { Compiler } from 'webpack';
-import BasicServer, { type ServerItem, type ServerConnection, type ClientLogLevel } from './BasicServer';
+import BasicServer, { type ServerItem, type ServerConnection, type ClientLogLevel } from './BasicServer.js';
 
 // Workaround for sockjs@~0.3.19
 // sockjs will remove Origin header, however Origin header is required for checking host.

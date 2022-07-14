@@ -1,6 +1,6 @@
 import type Koa from 'koa';
 import type { Context } from 'koa';
-import type { SweetOptions } from './types';
+import type { SweetOptions } from './types.js';
 
 /* 307重定向到https */
 function createRedirectToHttpsMiddleware(app: Koa, sweetOptions: SweetOptions): void {

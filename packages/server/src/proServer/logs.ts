@@ -1,6 +1,6 @@
 import type Koa from 'koa';
 import { requireModule } from '@sweet-milktea/utils';
-import type { Log, SweetOptions } from '../utils/types';
+import type { Log, SweetOptions } from '../utils/types.js';
 
 /* 添加日志中间件 */
 async function logs(app: Koa, log: Log, sweetOptions: SweetOptions): Promise<void> {

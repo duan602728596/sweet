@@ -1,6 +1,6 @@
-import devServer from './devServer';
-import proServer from './proServer';
-import hotClientEntry from './hotClientEntry';
+import devServer from './devServer.js';
+import proServer from './proServer.js';
+import hotClientEntry from './hotClientEntry.js';
 
 export default {
   devServer,

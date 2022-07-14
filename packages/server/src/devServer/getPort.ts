@@ -1,6 +1,5 @@
-// @ts-ignore Node16
-import type Chalk from 'chalk';
-import { getChalk, detectPort } from '../utils/utils';
+import chalk from 'chalk';
+import { detectPort } from '../utils/utils.js';
 
 /**
  * 判断端口是否被占用，并且返回新的可用的端口
@@ -10,7 +9,6 @@ import { getChalk, detectPort } from '../utils/utils';
  * @param { number } httpPort: 直接跳过http端口
  */
 async function getPort(port: number, warn?: boolean, type?: 'http' | 'https', httpPort?: number): Promise<number> {
-  const chalk: typeof Chalk = await getChalk();
   const usePort: number = await detectPort(port, httpPort ? [httpPort] : undefined);
 
   if ((port !== usePort) && warn && type) {

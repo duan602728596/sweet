@@ -1,13 +1,19 @@
+import * as path from 'node:path';
 import body from 'koa-body';
 import connect from 'koa-connect';
 import type { Compiler } from 'webpack';
-// @ts-ignore Node16
 import type { ViteDevServer } from 'vite';
 import type Koa from 'koa';
 import type Router from '@koa/router';
-// @ts-ignore mjs and cjs
-import requireKoaDevMiddleware from './requireKoaDevMiddleware';
-import type { SweetOptions } from '../utils/types';
+import { requireModule, metaHelper } from '@sweet-milktea/utils';
+import type { SweetOptions } from '../utils/types.js';
+
+const { __dirname }: { __filename: string; __dirname: string } = metaHelper(import.meta.url);
+
+/* 加载插件 */
+function requireKoaDevMiddleware<T = unknown>(id: string): Promise<T> {
+  return requireModule(path.join(__dirname, id));
+}
 
 /**
  * 创建中间件

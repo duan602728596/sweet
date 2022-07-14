@@ -3,8 +3,8 @@ import connect from 'koa-connect';
 import type Koa from 'koa';
 import { createProxyMiddleware, Options } from 'http-proxy-middleware';
 import { isFileExists } from '@sweet-milktea/utils';
-import { defaultProxyPath, __require } from './utils';
-import type { SweetOptions, LogLevel } from './types';
+import { defaultProxyPath, __require } from './utils.js';
+import type { SweetOptions, LogLevel } from './types.js';
 
 type ProxyConfig = { [key: string]: Options };
 type ProxyConfigModule = ProxyConfig | ((sweetOptions: SweetOptions, app: Koa) => Promise<ProxyConfig>);

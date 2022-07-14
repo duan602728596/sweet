@@ -1,7 +1,7 @@
 import * as path from 'node:path';
 import * as fs from 'node:fs';
 import { isFileExists } from '@sweet-milktea/utils';
-import type { SweetOptions } from './types';
+import type { SweetOptions } from './types.js';
 
 export type HttpsCertificate = [boolean, Buffer | undefined, Buffer | undefined];
 

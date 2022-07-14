@@ -1,8 +1,8 @@
 import { isFileExists } from '@sweet-milktea/utils';
 import type Koa from 'koa';
 import type Router from '@koa/router';
-import { defaultApiPath, __require } from './utils';
-import type { SweetOptions } from './types';
+import { defaultApiPath, __require } from './utils.js';
+import type { SweetOptions } from './types.js';
 
 /**
  * 本地api

@@ -5,22 +5,12 @@ import * as net from 'node:net';
 import type { Server as NetServer } from 'node:net';
 import glob from 'glob';
 import { requireCommonjsModule, requireModule } from '@sweet-milktea/utils';
-// @ts-ignore Node16
+import chalk from 'chalk';
+import { internalIpV4 } from 'internal-ip';
 import type { ViteDevServer } from 'vite';
-// @ts-ignore Node16
-import type Chalk from 'chalk';
-// @ts-ignore Node16
-import type { internalIpV4 as InternalIpV4 } from 'internal-ip';
-import type { SweetOptions } from './types';
+import type { SweetOptions } from './types.js';
 
 export const globPromise: (arg1: string, arg2?: glob.IOptions) => Promise<string[]> = util.promisify(glob);
-
-/* chalk */
-export async function getChalk(): Promise<typeof Chalk> {
-  const chalkModule: { default: typeof Chalk } = await import('chalk');
-
-  return chalkModule.default;
-}
 
 /* 格式化数据 */
 export function formatTemplateData(data: { [key: string]: unknown }): object {
@@ -95,7 +85,6 @@ export function formatPath(sweetOptions: SweetOptions, file: string): string {
 
 /* 启动日志 */
 export async function runningAtLog(sweetOptions: SweetOptions, displayHttps: boolean): Promise<void> {
-  const { internalIpV4 }: { internalIpV4: typeof InternalIpV4 } = await import('internal-ip');
   const ip: string = await internalIpV4() ?? '127.0.0.1';
   const logs: string[] = [
     ' Running at:',
@@ -107,8 +96,6 @@ export async function runningAtLog(sweetOptions: SweetOptions, displayHttps: boo
     logs.splice(2, 0, `${ ' '.repeat(12) }https://127.0.0.1:${ sweetOptions.httpsPort }`);
     logs.push(`${ ' '.repeat(12) }https://${ ip }:${ sweetOptions.httpsPort }`);
   }
-
-  const chalk: typeof Chalk = await getChalk();
 
   console.log(`\n${ chalk.blue(logs.join('\n')) }\n`);
 }

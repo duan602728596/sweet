@@ -1,6 +1,5 @@
-// @ts-ignore Node16
-import type Chalk from 'chalk';
-import { getChalk, portIsOccupied } from '../utils/utils';
+import chalk from 'chalk';
+import { portIsOccupied } from '../utils/utils.js';
 
 /**
  * 判断端口是否被占用
@@ -8,7 +7,6 @@ import { getChalk, portIsOccupied } from '../utils/utils';
  * @param { 'http' | 'https' } type: 警告的类型
  */
 async function portUse(port: number, type: 'http' | 'https'): Promise<number> {
-  const chalk: typeof Chalk = await getChalk();
   const isOccupied: boolean = await portIsOccupied(port);
 
   if (isOccupied) {

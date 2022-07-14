@@ -1,11 +1,9 @@
 import type { Server, IncomingMessage } from 'node:http';
 import type { Http2SecureServer } from 'node:http2';
 import type { Socket } from 'node:net';
-import WebSocket from 'ws';
+import WebSocket, { WebSocketServer } from 'ws';
 import type { Compiler } from 'webpack';
-// @ts-ignore mjs and cjs
-import { WebSocketServer } from './wsModule';
-import BasicServer, { type ServerItem, type ServerConnection, type ClientLogLevel } from './BasicServer';
+import BasicServer, { type ServerItem, type ServerConnection, type ClientLogLevel } from './BasicServer.js';
 
 const noop: Function = (): void => { /* noop */ };
 

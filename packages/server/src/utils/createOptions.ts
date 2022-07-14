@@ -1,6 +1,6 @@
 import type Koa from 'koa';
 import type { Context } from 'koa';
-import type { SweetOptions } from './types';
+import type { SweetOptions } from './types.js';
 
 /* 注入ctx.state.sweetOptions */
 function createSweetOptionsMiddleware(app: Koa, sweetOptions: SweetOptions): void {

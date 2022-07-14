@@ -2,10 +2,16 @@ import type * as Stream from 'node:stream';
 import { pathToRegexp } from 'path-to-regexp';
 import { requireModuleWithoutCache } from '@sweet-milktea/utils';
 import type { Context } from 'koa';
-import { formatTemplateData, requireViteModule, isReadStream, readStream, __fixModuleImportDefaultDefault } from '../utils/utils';
-import { getControllersFiles } from '../utils/controllers';
-import createRenderEngine from '../utils/createRenderEngine';
-import type { SweetOptions, ControllersModule } from '../utils/types';
+import {
+  formatTemplateData,
+  requireViteModule,
+  isReadStream,
+  readStream,
+  __fixModuleImportDefaultDefault
+} from '../utils/utils.js';
+import { getControllersFiles } from '../utils/controllers.js';
+import createRenderEngine from '../utils/createRenderEngine.js';
+import type { SweetOptions, ControllersModule } from '../utils/types.js';
 
 // 渲染新的html
 async function preRenderInit(sweetOptions: SweetOptions): Promise<Function> {

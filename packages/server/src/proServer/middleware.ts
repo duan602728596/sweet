@@ -3,9 +3,9 @@ import compress from 'koa-compress';
 import serve from 'koa-static';
 import type Koa from 'koa';
 import type Router from '@koa/router';
-import logs from './logs';
-import createRewriteMime from './createRewriteMime';
-import type { SweetOptions } from '../utils/types';
+import logs from './logs.js';
+import createRewriteMime from './createRewriteMime.js';
+import type { SweetOptions } from '../utils/types.js';
 
 /**
  * 创建中间件

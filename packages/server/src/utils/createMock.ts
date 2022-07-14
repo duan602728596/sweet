@@ -2,8 +2,8 @@ import _ from 'lodash';
 import type { Context } from 'koa';
 import type Router from '@koa/router';
 import { isFileExists } from '@sweet-milktea/utils';
-import { defaultMockPath, __require } from './utils';
-import type { SweetOptions } from './types';
+import { defaultMockPath, __require } from './utils.js';
+import type { SweetOptions } from './types.js';
 
 type KoaFunc = (ctx: Context, next: Function) => void | Promise<void>;
 type Mock = { [key: string]: unknown | KoaFunc };

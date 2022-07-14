@@ -7,8 +7,8 @@ import type { Context, Next } from 'koa';
 import type Router from '@koa/router';
 // @ts-ignore Node16
 import type { ViteDevServer } from 'vite';
-import preRenderInit from './preDevRender';
-import type { SweetOptions } from '../utils/types';
+import preRenderInit from './preDevRender.js';
+import type { SweetOptions } from '../utils/types.js';
 
 async function createRouters(router: Router, sweetOptions: SweetOptions): Promise<void> {
   const preRender: Function = await preRenderInit(sweetOptions);

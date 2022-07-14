@@ -5,9 +5,8 @@ import _ from 'lodash';
 import { isFileExists } from '@sweet-milktea/utils';
 import type { Context, Next } from 'koa';
 import type Router from '@koa/router';
-import preRenderInit from './preProRender';
-
-import type { SweetOptions } from '../utils/types';
+import preRenderInit from './preProRender.js';
+import type { SweetOptions } from '../utils/types.js';
 
 async function createRouters(
   router: Router,

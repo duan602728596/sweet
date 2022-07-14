@@ -2,11 +2,11 @@ import type { Server } from 'node:http';
 import type { Http2SecureServer } from 'node:http2';
 import type { Middleware, Context, Next } from 'koa';
 import type { Compiler } from 'webpack';
-import type { ClientLogLevel } from './BasicServer';
-import SockJSServer from './SockJSServer';
-import WSServer from './WSServer';
-import createLogger from './createLogger';
-import type { SweetOptions } from '../../utils/types';
+import type { ClientLogLevel } from './BasicServer.js';
+import SockJSServer from './SockJSServer.js';
+import WSServer from './WSServer.js';
+import createLogger from './createLogger.js';
+import type { SweetOptions } from '../../utils/types.js';
 
 type Options = {
   compiler: Compiler;
