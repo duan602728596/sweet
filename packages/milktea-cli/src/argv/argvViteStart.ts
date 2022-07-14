@@ -1,4 +1,5 @@
 import { requireModule } from '@sweet-milktea/utils';
+// @ts-ignore Node16
 import type { ViteDevServer } from 'vite';
 import type { MilkVite } from '../../../milktea-vite/src/utils/types';
 import type { DevServer } from '../../../server/src/utils/types';

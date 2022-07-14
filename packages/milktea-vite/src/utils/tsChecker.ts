@@ -1,5 +1,6 @@
 import * as path from 'path';
 import { isFileExists, moduleExists, requireModule } from '@sweet-milktea/utils';
+// @ts-ignore Node16
 import type { InlineConfig } from 'vite';
 import type { SweetOptions, TSOptions, Frame } from './types';
 

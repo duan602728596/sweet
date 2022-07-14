@@ -1,4 +1,4 @@
-// @ts-ignore Node12
+// @ts-ignore Node16
 import type Chalk from 'chalk';
 
 /**

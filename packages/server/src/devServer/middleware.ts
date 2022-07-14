@@ -1,6 +1,7 @@
 import body from 'koa-body';
 import connect from 'koa-connect';
 import type { Compiler } from 'webpack';
+// @ts-ignore Node16
 import type { ViteDevServer } from 'vite';
 import type Koa from 'koa';
 import type Router from '@koa/router';

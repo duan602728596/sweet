@@ -5,7 +5,7 @@ import type { ClientRequest, IncomingMessage } from 'http';
 import * as path from 'path';
 import semver from 'semver';
 import { requireJson } from '@sweet-milktea/utils';
-// @ts-ignore Node12
+// @ts-ignore Node16
 import type Chalk from 'chalk';
 import { getChalk } from './utils/utils';
 

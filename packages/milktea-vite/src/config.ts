@@ -1,4 +1,5 @@
 import _ from 'lodash';
+// @ts-ignore Node16
 import type { InlineConfig } from 'vite';
 import { basicConfig } from './config/basicConfig';
 import addJsxPlugins from './config/addJsxPlugins';

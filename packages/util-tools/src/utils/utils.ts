@@ -1,8 +1,8 @@
 import * as util from 'util';
 import glob from 'glob';
-// @ts-ignore Node12
+// @ts-ignore Node16
 import type imageMin from 'imagemin';
-// @ts-ignore Node12
+// @ts-ignore Node16
 import type Chalk from 'chalk';
 
 const globPromise: (arg1: string, arg2?: glob.IOptions) => Promise<string[]> = util.promisify(glob);

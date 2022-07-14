@@ -5,10 +5,11 @@ import * as net from 'net';
 import type { Server as NetServer } from 'net';
 import glob from 'glob';
 import { requireCommonjsModule, requireModule } from '@sweet-milktea/utils';
+// @ts-ignore Node16
 import type { ViteDevServer } from 'vite';
-// @ts-ignore Node12
+// @ts-ignore Node16
 import type Chalk from 'chalk';
-// @ts-ignore Node12
+// @ts-ignore Node16
 import type { internalIpV4 as InternalIpV4 } from 'internal-ip';
 import type { SweetOptions } from './types';
 

@@ -1,4 +1,5 @@
 import * as path from 'path';
+// @ts-ignore Node16
 import type { InlineConfig } from 'vite';
 import type { SweetOptions } from '../utils/types';
 
