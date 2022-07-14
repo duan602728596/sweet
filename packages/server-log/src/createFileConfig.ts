@@ -1,5 +1,5 @@
 import * as path from 'node:path';
-import { logsCache, accessCache, applicationCache, logs } from './cacheConfig';
+import { logsCache, accessCache, applicationCache, logs } from './cacheConfig.js';
 
 /**
  * 创建本地文件日志的配置

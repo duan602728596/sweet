@@ -1,8 +1,8 @@
 import * as process from 'node:process';
 import log4js from '@bbkkbkk/koa-log4';
 import type { Context } from 'koa';
-import createFileConfig from './createFileConfig';
-import createHttpConfig from './createHttpConfig';
+import createFileConfig from './createFileConfig.js';
+import createHttpConfig from './createHttpConfig.js';
 
 /**
  * 生成log的中间件
