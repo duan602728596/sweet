@@ -1,2 +1,2 @@
 /* test */
-import './serverLog.mjs';
+await import('./serverLog.mjs');
