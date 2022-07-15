@@ -1,66 +1,109 @@
-import { promisify } from 'node:util';
-import { transform } from '@babel/core';
 import { expect } from 'chai';
-
-const transformPromise = promisify(transform);
+import { transformAsync } from '@babel/core';
 
 /* 编译代码 */
 async function transformCode(code, options) {
-  return transformPromise(code, {
+  return transformAsync(code, {
     presets: [
       [(await import('../lib/index.js')).default, options]
     ]
   });
 }
 
+async function transformCodeESM(code, options) {
+  return transformAsync(code, {
+    presets: [
+      [(await import('../esm/index.js')).default, options]
+    ]
+  });
+}
+
 describe('babel-preset-sweet', function() {
   it('build javascript', async function() {
-    const { code } = await transformCode(`const a = 5;
-    const b = <div />;
-    const c = {};
-    const d = c?.e;`);
+    const rawCode = `const a = 5;
+                     const b = <div />;
+                     const c = {};
+                     const d = c?.e;`
+    const [{ code }, { code: codeESM }] = await Promise.all([
+      transformCode(rawCode),
+      transformCodeESM(rawCode)
+    ]);
 
     expect(code.includes('var a = 5;')).to.be.true;
     expect(code.includes('jsx')).to.be.true;
     expect(code.includes('void 0') && code.includes('null')).to.be.true;
+    expect(codeESM.includes('var a = 5;')).to.be.true;
+    expect(codeESM.includes('jsx')).to.be.true;
+    expect(codeESM.includes('void 0') && code.includes('null')).to.be.true;
   });
 
   it('build ecmascript', async function() {
-    const { code } = await transformCode(`const a = 5;
-    async function func() {}`, {
+    const rawCode = `const a = 5;
+                     async function func() {}`;
+    const options = {
       env: { ecmascript: true }
-    });
+    };
+    const [{ code }, { code: codeESM }] = await Promise.all([
+      transformCode(rawCode, options),
+      transformCodeESM(rawCode, options)
+    ]);
 
     expect(code.includes('const a = 5;')).to.be.true;
     expect(code.includes('async function')).to.be.true;
+    expect(codeESM.includes('const a = 5;')).to.be.true;
+    expect(codeESM.includes('async function')).to.be.true;
   });
 
   it('build typescript', async function() {
-    const { code } = await transformCode('const a: number = 5;', {
+    const rawCode = 'const a: number = 5;';
+    const options = {
       typescript: { use: true }
-    });
+    };
+    const [{ code }, { code: codeESM }] = await Promise.all([
+      transformCode(rawCode, options),
+      transformCodeESM(rawCode, options)
+    ]);
 
     expect(code.includes('var a = 5;')).to.be.true;
+    expect(codeESM.includes('var a = 5;')).to.be.true;
   });
 
   it('build transform-runtime', async function() {
-    const c = 'const isArray = Array.isArray([]);';
-    const { code: code0 } = await transformCode(c);
-    const { code: code1 } = await transformCode(c, {
+    const rawCode = 'const isArray = Array.isArray([]);';
+    const options = {
       env: { modules: 'commonjs' }
-    });
+    };
+    const [
+      { code: code0 },
+      { code: code1 },
+      { code: code0ESM },
+      { code: code1ESM }
+    ] = await Promise.all([
+      transformCode(rawCode),
+      transformCode(rawCode, options),
+      transformCodeESM(rawCode),
+      transformCodeESM(rawCode, options)
+    ]);
 
     expect(code0.includes('import')).to.be.true;
     expect(code1.includes('require')).to.be.true;
+    expect(code0ESM.includes('import')).to.be.true;
+    expect(code1ESM.includes('require')).to.be.true;
   });
 
   it('build polyfill', async function() {
-    const c = "globalThis.a = 5; 'Hello, world.'.replaceAll(/,/, ''); ";
-    const { code: code0 } = await transformCode(c, {
+    const rawCode = "globalThis.a = 5; 'Hello, world.'.replaceAll(/,/, ''); ";
+    const options = {
       polyfill: true
-    });
+    };
+    const [{ code }, { code: codeESM }] = await Promise.all([
+      transformCode(rawCode, options),
+      transformCodeESM(rawCode, options)
+    ]);
 
-    expect(code0.includes('globalthis')).to.be.true;
-    expect(code0.includes('string.prototype.replaceall')).to.be.true;
+    expect(code.includes('globalthis')).to.be.true;
+    expect(code.includes('string.prototype.replaceall')).to.be.true;
+    expect(codeESM.includes('globalthis')).to.be.true;
+    expect(codeESM.includes('string.prototype.replaceall')).to.be.true;
   });
 });
