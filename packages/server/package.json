@@ -34,15 +34,6 @@
     },
     "./esm/server.js": {
       "import": "./esm/server.js"
-    },
-    "./client": {
-      "import": "./client/index.js"
-    },
-    "./client/index": {
-      "import": "./client/index.js"
-    },
-    "./client/index.js": {
-      "import": "./client/index.js"
     }
   },
   "scripts": {
@@ -54,12 +45,11 @@
     "@bbkkbkk/http-proxy": "^1.17.0",
     "@koa/router": "^11.0.1",
     "@sweet-milktea/babel-preset-sweet": "^4.0.0",
+    "@sweet-milktea/server-hot-client": "^4.0.0",
     "@sweet-milktea/utils": "^4.0.0",
-    "ansi-html-community": "^0.0.8",
     "chalk": "^5.0.1",
     "ejs": "^3.1.8",
     "glob": "^8.0.3",
-    "html-entities": "^2.3.3",
     "http-proxy-middleware": "^2.0.6",
     "internal-ip": "^7.0.0",
     "koa": "^2.13.4",
@@ -75,7 +65,6 @@
     "sockjs-client": "^1.6.1",
     "url": "^0.11.0",
     "webpack-dev-middleware": "^5.3.3",
-    "webpack-log": "^3.0.2",
     "ws": "^8.8.0"
   },
   "devDependencies": {

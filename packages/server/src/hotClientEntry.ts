@@ -15,7 +15,7 @@ const env: string = process.env.NODE_ENV ?? 'development';
 
 function hotEntry(name: string): Array<string> {
   return [
-    '@sweet-milktea/server/client',
+    '@sweet-milktea/server-hot-client/client',
     'webpack/hot/dev-server'
   ];
 }

@@ -1,0 +1,28 @@
+# node
+node_modules
+npm-debug.log
+package-lock.json
+
+# yarn
+yarn.lock
+yarn-error.log
+
+# ignore
+.npmignore
+
+# packages
+src
+test
+tests
+tsconfig.json
+api/*
+proxy/*
+
+# build
+build
+dist
+.sweet/*
+client-src
+client/.gitattributes
+
+.DS_Store

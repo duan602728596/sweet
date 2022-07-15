@@ -45,7 +45,7 @@ async function build(packageName, packageDir) {
       'utils'
     ].includes(packageName)
       && $`npx tsc --outDir ${ libDir } --module Node16 --moduleResolution Node16 --skipLibCheck`,
-    !['eslint-plugin'].includes(packageName)
+    !['eslint-plugin', 'server-hot-client'].includes(packageName)
       && $`npx tsc --outDir ${ esmDir } --skipLibCheck`
   ].filter(Boolean));
 

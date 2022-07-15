@@ -19,6 +19,7 @@ packages/**/test/.babelCache
 packages/**/test/.terserCache
 packages/server/client/**
 packages/server/client-src/**
+packages/server-hot-client
 packages/**/dist
 
 # docs
