@@ -31,7 +31,7 @@ async function useRegister(sweetOptions: SweetOptions): Promise<void> {
       ],
       cache: true,
       ignore: [/node_modules/],
-      extensions: ['.es6', '.es', '.jsx', '.js', '.mjs', '.cjs', '.tsx', '.ts'],
+      extensions: ['.ts', '.tsx', '.mts', '.cts', '.js', '.mjs', '.cjs', '.jsx'],
       configFile: false,
       babelrc: false
     };
