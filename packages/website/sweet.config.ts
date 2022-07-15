@@ -11,7 +11,7 @@ export default function(info: object): object {
     plugins.unshift(['transform-react-remove-prop-types', { mode: 'remove', removeImport: true }]);
   }
 
-  const jsExclude: RegExp = /node_modules|packages[\/]server/;
+  const jsExclude: RegExp = /node_modules|packages[\\/]server/;
 
   const config: object = {
     frame: 'react',
