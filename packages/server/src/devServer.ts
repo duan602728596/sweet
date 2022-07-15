@@ -20,7 +20,7 @@ import createMock from './utils/createMock.js';
 import createHttpsCertificate, { type HttpsCertificate } from './utils/createHttpsCertificate.js';
 import koaHmr from './devServer/hmr/hmr.js';
 import useRegister from './utils/babelRegister.js';
-import { formatPath, runningAtLog } from './utils/utils.js';
+import { formatPath, runningAtLog, getServerRenderEntry } from './utils/utils.js';
 import type { SweetOptions, DevServerArgs } from './utils/types.js';
 
 const app: Koa = new Koa();
@@ -107,7 +107,8 @@ async function devServer(args: DevServerArgs = {}): Promise<void> {
 
   /* 添加新的配置项 */
   if (sweetOptions.serverRenderRoot && sweetOptions.serverRenderFile) {
-    sweetOptions.serverRenderEntry = path.join(sweetOptions.serverRenderRoot, sweetOptions.serverRenderFile);
+    sweetOptions.serverRenderEntry = await getServerRenderEntry(
+      path.join(sweetOptions.serverRenderRoot, sweetOptions.serverRenderFile));
   }
 
   /* https服务 */

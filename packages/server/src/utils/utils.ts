@@ -1,10 +1,11 @@
 import * as util from 'node:util';
 import * as path from 'node:path';
+import type { ParsedPath } from 'node:path';
 import * as Stream from 'node:stream';
 import * as net from 'node:net';
 import type { Server as NetServer } from 'node:net';
 import glob from 'glob';
-import { requireCommonjsModule, requireModule } from '@sweet-milktea/utils';
+import { requireCommonjsModule, requireModule, isFileExists } from '@sweet-milktea/utils';
 import chalk from 'chalk';
 import { internalIpV4 } from 'internal-ip';
 import type { ViteDevServer } from 'vite';
@@ -146,6 +147,31 @@ export async function detectPort(port: number, ignorePort: Array<number> = []): 
   }
 
   return newNumber;
+}
+
+/**
+ * 判断文件是否存在，存在返回原文件，不存在返回同名的cjs或mjs文件
+ * @param serverRenderEntry
+ */
+export async function getServerRenderEntry(serverRenderEntry: string): Promise<string> {
+  if (await isFileExists(serverRenderEntry)) {
+    return serverRenderEntry;
+  }
+
+  const parseResult: ParsedPath = path.parse(serverRenderEntry);
+  const cjsServerRenderEntry: string = path.join(parseResult.dir, `${ parseResult.name }.cjs`);
+
+  if (await isFileExists(cjsServerRenderEntry)) {
+    return cjsServerRenderEntry;
+  }
+
+  const mjsServerRenderEntry: string = path.join(parseResult.dir, `${ parseResult.name }.mjs`);
+
+  if (await isFileExists(mjsServerRenderEntry)) {
+    return mjsServerRenderEntry;
+  }
+
+  return serverRenderEntry;
 }
 
 /**
