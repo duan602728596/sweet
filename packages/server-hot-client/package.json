@@ -6,15 +6,9 @@
     "url": "git@github.com:duan602728596/sweet.git"
   },
   "exports": {
-    "./client": {
-      "import": "./client/index.js"
-    },
-    "./client/index": {
-      "import": "./client/index.js"
-    },
-    "./client/index.js": {
-      "import": "./client/index.js"
-    }
+    "./client": "./client/index.js",
+    "./client/index": "./client/index.js",
+    "./client/index.js": "./client/index.js"
   },
   "dependencies": {
     "ansi-html-community": "^0.0.8",

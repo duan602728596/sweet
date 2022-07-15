@@ -8,13 +8,12 @@
     "url": "git@github.com:duan602728596/sweet.git"
   },
   "type": "module",
-  "main": "./esm/cli.js",
+  "main": "esm/cli.js",
+  "module": "esm/cli.js",
+  "exports": "./esm/cli.js",
   "bin": {
-    "milktea": "./esm/cli.js",
-    "milktea-esm": "./esm/cli.js"
-  },
-  "exports": {
-    "import": "./esm/cli.js"
+    "milktea": "esm/cli.js",
+    "milktea-esm": "esm/cli.js"
   },
   "scripts": {
     "test": "cross-env NODE_ENV=test mocha ./test/test.mjs --timeout 60000"

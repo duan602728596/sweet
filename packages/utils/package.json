@@ -6,7 +6,7 @@
     "type": "git",
     "url": "git@github.com:duan602728596/sweet.git"
   },
-  "main": "./index.cjs",
+  "main": "index.cjs",
   "exports": {
     ".": {
       "import": "./esm/index.js",

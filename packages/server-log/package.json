@@ -8,11 +8,9 @@
     "url": "git@github.com:duan602728596/sweet.git"
   },
   "type": "module",
-  "main": "./esm/index.js",
-  "module": "./esm/index.js",
-  "exports": {
-    "import": "./esm/index.js"
-  },
+  "main": "esm/index.js",
+  "module": "esm/index.js",
+  "exports": "./esm/index.js",
   "scripts": {
     "test": "cross-env NODE_ENV=test mocha ./test/test.mjs --timeout 180000"
   },

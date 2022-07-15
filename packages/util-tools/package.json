@@ -9,43 +9,18 @@
   },
   "type": "module",
   "exports": {
-    "./image2avif": {
-      "import": "./esm/image2avif.js"
-    },
-    "./image2avif.js": {
-      "import": "./esm/image2avif.js"
-    },
-    "./image2icns": {
-      "import": "./esm/image2icns.js"
-    },
-    "./image2icns.js": {
-      "import": "./esm/image2icns.js"
-    },
-    "./image2webp": {
-      "import": "./esm/image2webp.js"
-    },
-    "./image2webp.js": {
-      "import": "./esm/image2webp.js"
-    },
-    "./imageCompress": {
-      "import": "./esm/imageCompress.js"
-    },
-    "./imageCompress.js": {
-      "import": "./esm/imageCompress.js"
-    },
-    "./media2webp": {
-      "import": "./esm/media2webp.js",
-      "default": "./media2webp.js"
-    },
-    "./media2webp.js": {
-      "import": "./esm/media2webp.js"
-    },
-    "./update": {
-      "import": "./esm/update.js"
-    },
-    "./update.js": {
-      "import": "./esm/update.js"
-    }
+    "./image2avif": "./esm/image2avif.js",
+    "./image2avif.js": "./esm/image2avif.js",
+    "./image2icns": "./esm/image2icns.js",
+    "./image2icns.js": "./esm/image2icns.js",
+    "./image2webp": "./esm/image2webp.js",
+    "./image2webp.js": "./esm/image2webp.js",
+    "./imageCompress": "./esm/imageCompress.js",
+    "./imageCompress.js": "./esm/imageCompress.js",
+    "./media2webp": "./esm/media2webp.js",
+    "./media2webp.js": "./esm/media2webp.js",
+    "./update": "./esm/update.js",
+    "./update.js": "./esm/update.js"
   },
   "scripts": {
     "test": "cross-env NODE_ENV=test mocha test/test.mjs --timeout 180000"

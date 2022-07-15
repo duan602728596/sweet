@@ -8,36 +8,18 @@
     "url": "git@github.com:duan602728596/sweet.git"
   },
   "type": "module",
-  "main": "./esm/milktea.js",
-  "module": "./esm/milktea.js",
+  "main": "esm/milktea.js",
+  "module": "esm/milktea.js",
   "exports": {
-    ".": {
-      "import": "./esm/milktea.js"
-    },
-    "./esm/milktea": {
-      "import": "./esm/milktea.js"
-    },
-    "./esm/milktea.js": {
-      "import": "./esm/milktea.js"
-    },
-    "./esm/dll": {
-      "import": "./esm/dll.js"
-    },
-    "./esm/dll.js": {
-      "import": "./esm/dll.js"
-    },
-    "./esm/config": {
-      "import": "./esm/config.js"
-    },
-    "./esm/config.js": {
-      "import": "./esm/config.js"
-    },
-    "./esm/server": {
-      "import": "./esm/server.js"
-    },
-    "./esm/server.js": {
-      "import": "./esm/server.js"
-    }
+    ".": "./esm/milktea.js",
+    "./esm/milktea": "./esm/milktea.js",
+    "./esm/milktea.js": "./esm/milktea.js",
+    "./esm/dll": "./esm/dll.js",
+    "./esm/dll.js": "./esm/dll.js",
+    "./esm/config": "./esm/config.js",
+    "./esm/config.js": "./esm/config.js",
+    "./esm/server": "./esm/server.js",
+    "./esm/server.js": "./esm/server.js"
   },
   "scripts": {
     "test": "cross-env NODE_ENV=test mocha ./test/test.mjs --timeout 180000"

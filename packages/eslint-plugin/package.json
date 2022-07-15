@@ -6,10 +6,7 @@
     "type": "git",
     "url": "git@github.com:duan602728596/sweet.git"
   },
-  "main": "cjs.js",
-  "exports": {
-    "default": "./cjs.js"
-  },
+  "main": "index.cjs",
   "scripts": {
     "test": "cross-env NODE_ENV=test mocha ./test/test.mjs --timeout 180000"
   },
