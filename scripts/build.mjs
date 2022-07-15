@@ -86,7 +86,7 @@ for (const packageName of packageNames) {
 /* 写入package.js文件 */
 async function writeTypeModulePackageJsonFile() {
   for (const name of packageNames) {
-    if (name !== 'eslint-plugin') {
+    if (['babel-preset-sweet', 'util-tools', 'utils'].includes(name) ) {
       await fs.promises.writeFile(
         path.join(dir, name, 'esm/package.json'),
         JSON.stringify({ type: 'module' }, null, 2) + '\n'
