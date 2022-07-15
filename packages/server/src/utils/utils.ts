@@ -14,7 +14,7 @@ import type { SweetOptions } from './types.js';
 export const globPromise: (arg1: string, arg2?: glob.IOptions) => Promise<string[]> = util.promisify(glob);
 
 /* 格式化数据 */
-export function formatTemplateData(data: { [key: string]: unknown }): object {
+export function formatTemplateData(data: Record<string, unknown>): object {
   return Object.entries(data).reduce(function(result: object, [key, value]: [string, unknown]): object {
     let item: unknown = value;
 
