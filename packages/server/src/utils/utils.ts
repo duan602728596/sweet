@@ -27,21 +27,21 @@ export function formatTemplateData(data: { [key: string]: unknown }): object {
   }, {});
 }
 
-const exts: Array<string> = ['ts', 'tsx', 'mjs', 'js', 'cjs', 'jsx'];
+const extensions: Array<string> = ['ts', 'mts', 'cts', 'tsx', 'js', 'mjs', 'cjs', 'jsx'];
 
 /* 设置默认api文件的地址 */
 export function defaultApiPath(basicPath: string): Array<string> {
-  return exts.map((o: string) => path.join(basicPath, `api/api.${ o }`));
+  return extensions.map((o: string) => path.join(basicPath, `api/api.${ o }`));
 }
 
 /* 设置默认的proxy代理的地址 */
 export function defaultProxyPath(basicPath: string): Array<string> {
-  return exts.map((o: string) => path.join(basicPath, `proxy/proxy.${ o }`));
+  return extensions.map((o: string) => path.join(basicPath, `proxy/proxy.${ o }`));
 }
 
 /* 设置默认的mock的地址 */
 export function defaultMockPath(basicPath: string): Array<string> {
-  return exts.map((o: string) => path.join(basicPath, `mock/mock.${ o }`));
+  return extensions.map((o: string) => path.join(basicPath, `mock/mock.${ o }`));
 }
 
 /* vite模块导入 */
