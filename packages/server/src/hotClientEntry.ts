@@ -13,7 +13,7 @@ type Entry = {
 
 const env: string = process.env.NODE_ENV ?? 'development';
 
-function hotEntry(name: string): Array<string> {
+function hotEntry(): Array<string> {
   return [
     '@sweet-milktea/server-hot-client/client',
     'webpack/hot/dev-server'
@@ -26,12 +26,12 @@ function hotClientEntry(entry: Entry): StandardEntry | Entry {
 
   // string类型
   if (typeof entry === 'string') {
-    return { index: hotEntry('index').concat([entry]) };
+    return { index: hotEntry().concat([entry]) };
   }
 
   // 数组
   if (Array.isArray(entry)) {
-    return { index: hotEntry('index').concat([...entry]) };
+    return { index: hotEntry().concat([...entry]) };
   }
 
   // object
@@ -42,9 +42,9 @@ function hotClientEntry(entry: Entry): StandardEntry | Entry {
       const value: EntryPath = entry[key];
 
       if (Array.isArray(value)) {
-        result[key] = hotEntry(key).concat([...value]);
+        result[key] = hotEntry().concat([...value]);
       } else {
-        result[key] = hotEntry(key).concat([value]);
+        result[key] = hotEntry().concat([value]);
       }
     }
 
