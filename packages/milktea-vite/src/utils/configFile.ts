@@ -4,6 +4,8 @@ import type { CosmiconfigResult, Config } from 'cosmiconfig/dist/types.js';
 import { requireModule, requireCommonjsModule, isFileExists } from '@sweet-milktea/utils';
 import type { SweetConfig, SweetOptions, Explorer, Info } from './types.js';
 
+const configFileExtensions: Array<`.${ string }`> = ['.ts', '.tsx', '.mts', '.cts', '.js', '.mjs', '.cjs', '.jsx'];
+
 /* 创建cosmiconfig的js加载器 */
 function createJsRegisterLoader(): Loader {
   return async function jsRegisterLoader(filepath: string, content: string): Promise<Config | null> {
@@ -22,7 +24,7 @@ function createJsRegisterLoader(): Loader {
       ]],
       cache: true,
       ignore: [/node_modules/],
-      extensions: ['.ts', '.tsx', '.mts', '.cts', '.js', '.mjs', 'cjs', '.jsx', '.es6', '.es']
+      extensions: configFileExtensions
     });
 
     let modules: Config | null;
@@ -47,38 +49,19 @@ async function getConfigFile(sweetOptions: SweetOptions, configFile?: string): P
   // 配置文件加载器
   const MODULE_NAME: string = 'sweet';
   const ERROR_MSG: string = 'Please configure the .sweetrc.js or sweet.config.js file first.';
-
   const explorer: Explorer = cosmiconfig(MODULE_NAME, {
-    searchPlaces: [
-      `${ MODULE_NAME }.config.ts`,
-      `.${ MODULE_NAME }rc.ts`,
-      `${ MODULE_NAME }.config.mts`,
-      `.${ MODULE_NAME }rc.mts`,
-      `${ MODULE_NAME }.config.ts`,
-      `.${ MODULE_NAME }rc.ts`,
-      `${ MODULE_NAME }.config.cts`,
-      `.${ MODULE_NAME }rc.cts`,
-      `${ MODULE_NAME }.config.tsx`,
-      `.${ MODULE_NAME }rc.tsx`,
-      `${ MODULE_NAME }.config.mjs`,
-      `.${ MODULE_NAME }rc.mjs`,
-      `${ MODULE_NAME }.config.js`,
-      `.${ MODULE_NAME }rc.js`,
-      `${ MODULE_NAME }.config.cjs`,
-      `.${ MODULE_NAME }rc.cjs`,
-      `${ MODULE_NAME }.config.jsx`,
-      `.${ MODULE_NAME }rc.jsx`
-    ],
-    loaders: {
-      '.mjs': jsRegisterLoader,
-      '.js': jsRegisterLoader,
-      '.cjs': jsRegisterLoader,
-      '.jsx': jsRegisterLoader,
-      '.ts': jsRegisterLoader,
-      '.tsx': jsRegisterLoader,
-      '.mts': jsRegisterLoader,
-      '.cts': jsRegisterLoader
-    },
+    searchPlaces: configFileExtensions.map((ext: string): [
+      `${ string }.config.${ string }`,
+      `.${ string }rc.${ string }`,
+    ] => [
+      `${ MODULE_NAME }.config.${ ext }`,
+      `.${ MODULE_NAME }rc.${ ext }`
+    ]).flat(),
+    loaders: configFileExtensions.reduce((result: Record<`.${ string }`, Loader>, ext: `.${ string }`): Record<string, Loader> => {
+      result[ext] = jsRegisterLoader;
+
+      return result;
+    }, {}),
     stopDir: sweetOptions.basicPath
   });
 
