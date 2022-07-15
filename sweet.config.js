@@ -20,8 +20,7 @@ export default function(info) {
       'react-redux',
       'reselect',
       'react-router-dom',
-      'react-helmet',
-      'react-no-ssr'
+      'react-helmet'
     ],
     entry: {
       index: [path.join(__dirname, 'src/index.js')],
