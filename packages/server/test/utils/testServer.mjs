@@ -32,5 +32,4 @@ router.post('/post', function(ctx, next) {
   };
 });
 
-http.createServer(app.callback())
-  .listen(5054);
+http.createServer(app.callback()).listen(5054);

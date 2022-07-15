@@ -8,7 +8,7 @@ const { __dirname } = metaHelper(import.meta.url);
 
 function run() {
   const cli = path.join(__dirname, '../esm/cli.js');
-  const config = path.join(__dirname, './sweet.config.build.js');
+  const config = path.join(__dirname, './config/sweet.config.build.js');
 
   return new Promise((resolve, reject) => {
     const child = childProcess.spawn('node', [cli, 'build', '--config', config], {

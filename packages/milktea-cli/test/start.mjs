@@ -10,7 +10,7 @@ const index = path.join(__dirname, 'dist/index.js');
 
 function run() {
   const cli = path.join(__dirname, '../esm/cli.js');
-  const config = path.join(__dirname, './sweet.config.js');
+  const config = path.join(__dirname, './config/sweet.config.js');
 
   return new Promise((resolve, reject) => {
     const child = childProcess.spawn('node', [cli, 'start', '--config', config], {
@@ -38,7 +38,6 @@ function run() {
 }
 
 describe('args: start', function() {
-  // TODO: webpack5和storybook的webpack的依赖冲突会导致测试用例运行失败
   it('should index.js file is existing', async function() {
     await run();
 

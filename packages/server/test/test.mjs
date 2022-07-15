@@ -1,7 +1,7 @@
 import process from 'node:process';
 
 /* 测试服务 */
-await import('./testServer.mjs');
+await import('./utils/testServer.mjs');
 
 /* test */
 await import('./devServer.mjs');
