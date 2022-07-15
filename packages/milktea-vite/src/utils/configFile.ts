@@ -50,7 +50,7 @@ async function getConfigFile(sweetOptions: SweetOptions, configFile?: string): P
   const MODULE_NAME: string = 'sweet';
   const ERROR_MSG: string = 'Please configure the .sweetrc.js or sweet.config.js file first.';
   const explorer: Explorer = cosmiconfig(MODULE_NAME, {
-    searchPlaces: configFileExtensions.map((ext: string): [
+    searchPlaces: configFileExtensions.map((ext: `.${ string }`): [
       `${ string }.config.${ string }`,
       `.${ string }rc.${ string }`,
     ] => [
