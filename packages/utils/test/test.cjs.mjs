@@ -5,26 +5,26 @@ import {
   requireModule,
   requireCommonjsModule,
   requireJson,
-  requireModuleWithoutCache,
-  metaHelper
-} from '../esm/index.js';
+  requireModuleWithoutCache
+} from '../lib/index.js';
+import { metaHelper } from '../esm/index.js';
 
 const { __dirname } = metaHelper(import.meta.url);
-const cacheJs = path.join(__dirname, '.cache.js');
+const cacheJs = path.join(__dirname, '.cache-cjs.js');
 
-describe('esm test', function() {
-  it('requireModule test', async function() {
-    const m1 = await requireModule(path.join(__dirname, 'esmUtils/module.mjs'));
-    const m2 = await requireModule(path.join(__dirname, 'esmUtils/module.mjs'), true);
+describe('cjs test', function() {
+  it('requireModule test', function() {
+    const m1 = requireModule(path.join(__dirname, 'cjsUtils/module.js'));
+    const m2 = requireModule(path.join(__dirname, 'cjsUtils/module.js'), true);
 
-    expect(m1).to.eql('module');
-    expect(m2.default).to.eql('module');
-    expect(m2.name).to.eql('module name');
+    expect(m1).to.eql('cjs module');
+    expect(m2.default).to.eql('cjs module');
+    expect(m2.name).to.eql('cjs module name');
   });
 
-  it('requireCommonjsModule test', async function() {
-    const m1 = await requireCommonjsModule(path.join(__dirname, 'cjsUtils/module.js'));
-    const m2 = await requireCommonjsModule(path.join(__dirname, 'cjsUtils/module.js'), true);
+  it('requireCommonjsModule test', function() {
+    const m1 = requireCommonjsModule(path.join(__dirname, 'cjsUtils/module.js'));
+    const m2 = requireCommonjsModule(path.join(__dirname, 'cjsUtils/module.js'), true);
 
     expect(m1).to.eql('cjs module');
     expect(m2.default).to.eql('cjs module');
@@ -32,11 +32,11 @@ describe('esm test', function() {
   });
 
   it('requireJson test', async function() {
-    const m = await requireJson(path.join(__dirname, 'esmUtils/json.json'));
+    const m = await requireJson(path.join(__dirname, 'cjsUtils/json.json'));
 
     expect(m).to.eql({
-      filename: 'json',
-      data: 12
+      filename: 'cjs json',
+      data: 32
     });
   });
 
