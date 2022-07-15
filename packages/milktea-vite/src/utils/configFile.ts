@@ -51,11 +51,11 @@ async function getConfigFile(sweetOptions: SweetOptions, configFile?: string): P
   const ERROR_MSG: string = 'Please configure the .sweetrc.js or sweet.config.js file first.';
   const explorer: Explorer = cosmiconfig(MODULE_NAME, {
     searchPlaces: configFileExtensions.map((ext: `.${ string }`): [
-      `${ string }.config.${ string }`,
-      `.${ string }rc.${ string }`,
+      `${ string }.config${ string }`,
+      `.${ string }rc${ string }`,
     ] => [
-      `${ MODULE_NAME }.config.${ ext }`,
-      `.${ MODULE_NAME }rc.${ ext }`
+      `${ MODULE_NAME }.config${ ext }`,
+      `.${ MODULE_NAME }rc${ ext }`
     ]).flat(),
     loaders: configFileExtensions.reduce((result: Record<`.${ string }`, Loader>, ext: `.${ string }`): Record<string, Loader> => {
       result[ext] = jsRegisterLoader;

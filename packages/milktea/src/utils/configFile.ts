@@ -61,8 +61,8 @@ async function getConfigFile(sweetOptions: SweetOptions, configFile?: string): P
       `${ string }.config.${ string }`,
       `.${ string }rc.${ string }`,
     ] => [
-      `${ MODULE_NAME }.config.${ ext }`,
-      `.${ MODULE_NAME }rc.${ ext }`
+      `${ MODULE_NAME }.config${ ext }`,
+      `.${ MODULE_NAME }rc${ ext }`
     ]).flat(),
     loaders: configFileExtensions.reduce((result: Record<`.${ string }`, Loader>, ext: `.${ string }`): Record<string, Loader> => {
       result[ext] = jsRegisterLoader;
