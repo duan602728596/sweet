@@ -16,6 +16,8 @@
     "./importESM.cjs": "./importESM.cjs"
   },
   "scripts": {
+    "build:esm": "tsc --outDir esm --skipLibCheck",
+    "build:cjs": "tsc --outDir lib --module Node16 --moduleResolution Node16 --skipLibCheck",
     "test": "cross-env NODE_ENV=test mocha test/test.mjs --timeout 180000"
   },
   "devDependencies": {

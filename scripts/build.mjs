@@ -29,26 +29,15 @@ function formatPath(p) {
 }
 
 /**
- * typescript文件编译
+ * typescript文件处理
  * @param { string } packageName: 编译名称
  * @param { string } packageDir: 入口文件
  */
-async function build(packageName, packageDir) {
+async function clean(packageName, packageDir) {
   const libDir = path.join(packageDir, 'lib');
   const esmDir = path.join(packageDir, 'esm');
 
   cd(packageDir);
-  await Promise.all([
-    [
-      'eslint-plugin',
-      'babel-preset-sweet',
-      'utils'
-    ].includes(packageName)
-      && $`npx tsc --outDir ${ libDir } --module Node16 --moduleResolution Node16 --skipLibCheck`,
-    !['eslint-plugin', 'server-hot-client'].includes(packageName)
-      && $`npx tsc --outDir ${ esmDir } --skipLibCheck`
-  ].filter(Boolean));
-
   await Promise.all([
     // 移除lib文件夹中的mjs文件和esm中的cjs文件
     (async () => {
@@ -78,10 +67,7 @@ async function build(packageName, packageDir) {
   ]);
 }
 
-/* 编译 */
-for (const packageName of packageNames) {
-  await build(packageName, path.join(dir, packageName));
-}
+await Promise.all(packageNames.map((packageName) => clean(packageName, path.join(dir, packageName))));
 
 /* 写入package.js文件 */
 async function writeTypeModulePackageJsonFile() {

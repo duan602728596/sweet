@@ -12,6 +12,7 @@
   "module": "esm/index.js",
   "exports": "./esm/index.js",
   "scripts": {
+    "build:esm": "tsc --outDir esm --skipLibCheck",
     "test": "cross-env NODE_ENV=test mocha ./test/test.mjs --timeout 180000"
   },
   "dependencies": {
