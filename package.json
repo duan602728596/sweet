@@ -9,7 +9,7 @@
     "server": "milktea-esm server --serverRender --redirectToHttps",
     "eslint": "eslint ./ --ext .js,.jsx,.vue --fix",
     "update-version": "milktea-esm update",
-    "prepare": "husky install"
+    "postinstall": "husky install"
   },
   "packageManager": "yarn@3.2.1",
   "engines": {
