@@ -13,7 +13,7 @@
     "lerna:install": "lerna bootstrap --force-local",
     "update-version": "milktea-esm update",
     "update-version:dev": "milktea-esm update --__DEV__",
-    "prepare": "husky install"
+    "postinstall": "husky install"
   },
   "private": true,
   "workspaces": [
