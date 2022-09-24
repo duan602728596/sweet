@@ -33,7 +33,12 @@ export async function tsChecker(sweetOptions: SweetOptions, ts?: TSOptions): Pro
  * @param { Frame } frame: frame为vue时，配置vueTsc
  * @param { TSOptions } ts
  */
-export async function addTsChecker(sweetOptions: SweetOptions, viteConfig: InlineConfig, frame?: Frame, ts?: TSOptions): Promise<void> {
+export async function addTsChecker(
+  sweetOptions: SweetOptions,
+  viteConfig: InlineConfig,
+  frame?: Frame,
+  ts?: TSOptions
+): Promise<void> {
   if (await tsChecker(sweetOptions, ts)) {
     viteConfig.plugins ??= [];
     viteConfig.plugins.push(
