@@ -43,9 +43,9 @@
   "peerDependencies": {
     "imagemin-gif2webp": ">=3",
     "imagemin-gifsicle": ">=7",
-    "imagemin-jpegoptim": ">=7",
+    "imagemin-jpegoptim": ">=8",
     "imagemin-pngquant": ">=9",
-    "imagemin-webp": ">=6",
+    "imagemin-webp": ">=7",
     "sharp": ">=0"
   },
   "engines": {
