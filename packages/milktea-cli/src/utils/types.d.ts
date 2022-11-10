@@ -30,7 +30,6 @@ export interface Argv {
   ext: string;
   size: number;
   retina: number;
-  peerDependencies: boolean;
   __DEV__: boolean;
   __PACKAGES__: string;
 }

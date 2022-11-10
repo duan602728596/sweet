@@ -8,7 +8,7 @@ import type { Argv } from '../utils/types.js';
 async function argvUpdate(argv: Argv): Promise<void> {
   const update: Function = await requireModule('@sweet-milktea/util-tools/update');
 
-  const { __DEV__, registry: argvRegistry, peerDependencies, __PACKAGES__ }: Argv = argv;
+  const { __DEV__, registry: argvRegistry, __PACKAGES__ }: Argv = argv;
   const folders: Array<string> = []; // 目录列表
 
   if (_.isNil(__DEV__)) {
@@ -28,7 +28,7 @@ async function argvUpdate(argv: Argv): Promise<void> {
 
   const registry: number = _.isNil(argvRegistry) ? 0 : argvRegistry;
 
-  await update(folders, registry, peerDependencies ?? false);
+  await update(folders, registry);
 }
 
 export default argvUpdate;
