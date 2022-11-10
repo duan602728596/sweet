@@ -10,7 +10,7 @@ describe('update', function() {
     let isErr = false;
 
     try {
-      await update([path.join(__dirname, '../..')], 2, false, true);
+      await update([path.join(__dirname, '../..')], 2, true);
     } catch (err) {
       isErr = true;
     }

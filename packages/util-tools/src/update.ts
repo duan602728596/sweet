@@ -28,15 +28,11 @@ interface PackageItem {
   error?: boolean;
 }
 
-interface Dictionary<T> {
-  [key: string]: T;
-}
-
 /**
  * 对象转数组
  * @param { object } obj: 对象
  */
-function objectToArray(obj: Dictionary<string>): Array<PackageItem> {
+function objectToArray(obj: Record<string, string>): Array<PackageItem> {
   return Object.keys(obj).map(function(key: string, index: number): PackageItem {
     return {
       name: key,        // 包的名称
@@ -232,54 +228,39 @@ function consoleLogText(packageArray: Array<PackageItem>): string {
   return consoleText;
 }
 
-async function start(folder: string, registry: number, findPeerDependencies: boolean, test: boolean): Promise<void> {
+async function start(folder: string, registry: number, test: boolean): Promise<void> {
+  const packageJsonDepNames: Array<string> = [
+    'dependencies',
+    'devDependencies',
+    'peerDependencies',
+    'optionalDependencies'
+  ];
+
   try {
     // 依赖
-    const packageJson: {
-      dependencies: Dictionary<string>;
-      devDependencies: Dictionary<string>;
-      peerDependencies: Dictionary<string>;
-    } = await requireJson(path.join(folder, 'package.json'));
-    const dependencies: Array<PackageItem> | null = 'dependencies' in packageJson
-      ? objectToArray(packageJson.dependencies) : null;
-    const devDependencies: Array<PackageItem> | null = 'devDependencies' in packageJson
-      ? objectToArray(packageJson.devDependencies) : null;
-    const peerDependencies: Array<PackageItem> | null = 'peerDependencies' in packageJson
-      ? objectToArray(packageJson.peerDependencies) : null;
+    const packageJson: Record<string, Record<string, string>> = await requireJson(path.join(folder, 'package.json'));
 
     // 获取dep和dev的最新版本号
-    const task: Array<Promise<void>> = [];
+    const tasks: Array<Promise<void>> = [];
+    const dependenciesArray: Array<[string, Array<PackageItem>]> = [];
 
-    if (dependencies) {
-      task.push(getVersionFromNpm(dependencies, registry));
+    for (const depName of packageJsonDepNames) {
+      const dependencies: Array<PackageItem> | null = (depName in packageJson) ? objectToArray(packageJson[depName]) : null;
+
+      if (dependencies) {
+        dependenciesArray.push([depName, dependencies]);
+        tasks.push(getVersionFromNpm(dependencies, registry));
+      }
     }
 
-    if (devDependencies) {
-      task.push(getVersionFromNpm(devDependencies, registry));
-    }
-
-    if (peerDependencies && findPeerDependencies) {
-      task.push(getVersionFromNpm(peerDependencies, registry));
-    }
-
-    await Promise.all(task);
+    await Promise.all(tasks);
 
     // 输出
     let consoleText: string = `${ folder }:\n`;
 
-    if (dependencies) {
-      consoleText += '  dependencies:\n';
+    for (const [depName, dependencies] of dependenciesArray) {
+      consoleText += `  ${ depName }:\n`;
       consoleText += consoleLogText(dependencies);
-    }
-
-    if (devDependencies) {
-      consoleText += '  devDependencies:\n';
-      consoleText += consoleLogText(devDependencies);
-    }
-
-    if (peerDependencies && findPeerDependencies) {
-      consoleText += '  peerDependencies:\n';
-      consoleText += consoleLogText(peerDependencies);
     }
 
     if (!test) {
@@ -293,16 +274,10 @@ async function start(folder: string, registry: number, findPeerDependencies: boo
 /**
  * @param { Array<string> } folders: 目录的数组
  * @param { number } registry: Npm包信息地址。0：Npm，1：Yarn，2：CNpm，3：腾讯npm镜像
- * @param { boolean } findPeerDependencies: 是否查找peerDependencies内的包
  * @param { boolean } test: 是否为测试环境
  */
-export default async function(
-  folders: Array<string>,
-  registry: number,
-  findPeerDependencies: boolean,
-  test: boolean
-): Promise<void> {
+export default async function(folders: Array<string>, registry: number, test: boolean): Promise<void> {
   for (const folder of folders) {
-    await start(folder, registry, findPeerDependencies, test);
+    await start(folder, registry, test);
   }
 }
