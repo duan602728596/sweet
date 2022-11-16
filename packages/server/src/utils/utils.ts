@@ -179,7 +179,7 @@ export async function getServerRenderEntry(serverRenderEntry: string): Promise<s
  *       加载时会出现module.default.default的情况
  */
 export function __fixModuleImportDefaultDefault<T = any>(data: T | { default: T }): T {
-  return 'default' in data ? data['default'] : data;
+  return (typeof data === 'object' && data !== null && 'default' in data) ? data.default : data;
 }
 
 /**

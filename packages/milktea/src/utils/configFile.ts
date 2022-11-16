@@ -47,9 +47,10 @@ function createJsRegisterLoader(): Loader {
 }
 
 export type ConfigFile = SweetConfig | ((info: Info) => SweetConfig);
+export type GetConfigFileReturn = ConfigFile | { default: ConfigFile };
 
 /* 获取配置文件 */
-async function getConfigFile(sweetOptions: SweetOptions, configFile?: string): Promise<ConfigFile> {
+async function getConfigFile(sweetOptions: SweetOptions, configFile?: string): Promise<GetConfigFileReturn> {
   // @babel/register
   const jsRegisterLoader: Loader = createJsRegisterLoader();
 

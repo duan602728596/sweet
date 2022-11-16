@@ -4,7 +4,7 @@ import type { Configuration, Stats } from 'webpack';
 import webpackConfig from './config.js';
 import webpackServerRenderConfig from './server.js';
 import webpackDllConfig from './dll.js';
-import configFile, { type ConfigFile } from './utils/configFile.js';
+import configFile, { type ConfigFile, type GetConfigFileReturn } from './utils/configFile.js';
 import type { SweetConfig, SweetOptions, Environment, SweetConfigArgs, FuncArgs } from './utils/types.js';
 
 /* 基础配置 */
@@ -17,8 +17,8 @@ const sweetOptions: SweetOptions = {
 async function getConfig(environment: Environment, sweetConfig: SweetConfigArgs): Promise<SweetConfig> {
   if (typeof sweetConfig === 'string') {
     // 自定义配置文件路径
-    const cfg: ConfigFile = await configFile(sweetOptions, sweetConfig);
-    const modules: ConfigFile = 'default' in cfg ? cfg['default'] : cfg;
+    const cfg: GetConfigFileReturn = await configFile(sweetOptions, sweetConfig);
+    const modules: ConfigFile = ('default' in cfg) ? cfg.default : cfg;
 
     return typeof modules === 'function' ? await modules({ environment }) : modules;
   } else if (_.isPlainObject(sweetConfig)) {
@@ -26,8 +26,8 @@ async function getConfig(environment: Environment, sweetConfig: SweetConfigArgs)
     return sweetConfig as SweetConfig;
   } else {
     // 默认的配置文件
-    const cfg: ConfigFile = await configFile(sweetOptions);
-    const modules: ConfigFile = 'default' in cfg ? cfg['default'] : cfg;
+    const cfg: GetConfigFileReturn = await configFile(sweetOptions);
+    const modules: ConfigFile = ('default' in cfg) ? cfg.default : cfg;
 
     return typeof modules === 'function' ? await modules({ environment }) : modules;
   }
