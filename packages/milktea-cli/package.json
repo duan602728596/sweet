@@ -1,6 +1,6 @@
 {
   "name": "@sweet-milktea/milktea-cli",
-  "version": "4.0.0",
+  "version": "4.1.0",
   "description": "sweet cli工具",
   "homepage": "https://github.com/duan602728596/sweet",
   "repository": {
@@ -29,7 +29,7 @@
     "@sweet-milktea/milktea-vite": "^4.0.0",
     "@sweet-milktea/server": "^4.0.0",
     "@sweet-milktea/server-log": "^4.0.0",
-    "@sweet-milktea/util-tools": "^4.0.0",
+    "@sweet-milktea/util-tools": "^4.1.0",
     "cross-env": "*",
     "mocha": "*",
     "ts-node": "^10.9.1",
