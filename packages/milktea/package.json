@@ -35,8 +35,8 @@
     "@sweet-milktea/utils": "^4.0.0",
     "babel-loader": "^9.1.0",
     "chalk": "^5.1.2",
-    "cosmiconfig": "^7.0.1",
-    "css-loader": "^6.7.1",
+    "cosmiconfig": "^7.1.0",
+    "css-loader": "^6.7.2",
     "css-minimizer-webpack-plugin": "^4.2.2",
     "fork-ts-checker-webpack-plugin": "^7.2.13",
     "html-webpack-plugin": "^5.5.0",
@@ -70,7 +70,7 @@
     "ts-loader": ">=9",
     "ts-node": ">=10",
     "typescript": ">=4",
-    "vue-loader": ">=16",
+    "vue-loader": ">=17",
     "vue-svg-loader": "^0.17.0-beta.2"
   },
   "engines": {
