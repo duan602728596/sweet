@@ -39,7 +39,7 @@
     "core-js": "^3.26.0"
   },
   "devDependencies": {
-    "@babel/core": "^7.20.3",
+    "@babel/core": "^7.20.2",
     "cross-env": "*",
     "mocha": "*"
   }
