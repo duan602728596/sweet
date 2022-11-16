@@ -72,7 +72,7 @@ await Promise.all(packageNames.map((packageName) => clean(packageName, path.join
 /* 写入package.js文件 */
 async function writeTypeModulePackageJsonFile() {
   for (const name of packageNames) {
-    if (['babel-preset-sweet', 'util-tools', 'utils'].includes(name) ) {
+    if (['babel-preset-sweet', 'utils'].includes(name) ) {
       await fs.promises.writeFile(
         path.join(dir, name, 'esm/package.json'),
         JSON.stringify({ type: 'module' }, null, 2) + '\n'
