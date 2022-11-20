@@ -5,7 +5,8 @@ import { StaticRouter } from 'react-router-dom/server';
 import { Provider } from 'react-redux';
 import { Helmet } from 'react-helmet';
 import { ConfigProvider } from 'antd';
-import zhCN from 'antd/es/locale-provider/zh_CN';
+import zhCN from 'antd/locale/zh_CN';
+import { red } from '@ant-design/colors';
 import { storeFactory } from './store/store';
 import './global.sass';
 import AppRouters from './router/AppRouters';
@@ -23,7 +24,7 @@ function server(url, context = {}, initialState = {}) {
 
     const { pipe, abort } = renderToPipeableStream(
       <Provider store={ store }>
-        <ConfigProvider locale={ zhCN }>
+        <ConfigProvider theme={{ token: { colorPrimary: red.primary } }} locale={ zhCN }>
           <StaticRouter location={ url } context={ context }>
             <AppRouters />
           </StaticRouter>

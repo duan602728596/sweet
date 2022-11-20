@@ -69,7 +69,7 @@ function Header(props) {
       </nav>
       {/* 工具 */}
       <div className={ style.tools }>
-        <Dropdown overlay={ toolsOverlayRender() }>
+        <Dropdown menu={ toolsOverlayRender() }>
           <span className={ style.toolsMenu }>
             <Avatar className={ style.avatar }>D</Avatar>
             <span className={ style.username }>用户名</span>
