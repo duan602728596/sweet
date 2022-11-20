@@ -11,10 +11,7 @@
     "update-version": "milktea-esm update",
     "postinstall": "husky install"
   },
-  "packageManager": "yarn@3.2.1",
-  "engines": {
-    "pm": "yarn@^3.2.1"
-  },
+  "packageManager": "yarn@3.2.4",
   "dependencies": {
     "@ant-design/icons-vue": "^6.1.0",
     "@sweet-milktea/milktea-cli": "^4.1.0",
