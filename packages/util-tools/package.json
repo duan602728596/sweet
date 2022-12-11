@@ -29,9 +29,9 @@
   "dependencies": {
     "@fiahfy/icns": "^0.0.7",
     "@sweet-milktea/utils": "^4.0.0",
-    "chalk": "^5.1.2",
+    "chalk": "^5.2.0",
     "fluent-ffmpeg": "^2.1.2",
-    "fs-extra": "^10.1.0",
+    "fs-extra": "^11.1.0",
     "glob": "^8.0.3",
     "imagemin": "^8.0.1",
     "semver": "^7.3.8"
