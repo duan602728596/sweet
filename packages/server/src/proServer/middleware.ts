@@ -1,4 +1,4 @@
-import body from 'koa-body';
+import { koaBody } from 'koa-body';
 import compress from 'koa-compress';
 import serve from 'koa-static';
 import type Koa from 'koa';
@@ -20,7 +20,7 @@ async function middleware(app: Koa, router: Router, sweetOptions: SweetOptions):
   }
 
   /* post body */
-  app.use(body());
+  app.use(koaBody());
 
   /* 文件压缩 */
   app.use(compress());

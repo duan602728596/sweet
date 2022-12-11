@@ -1,5 +1,5 @@
 import * as path from 'node:path';
-import body from 'koa-body';
+import { koaBody } from 'koa-body';
 import connect from 'koa-connect';
 import type { Compiler } from 'webpack';
 import type { ViteDevServer } from 'vite';
@@ -29,7 +29,7 @@ async function middleware(
   compiler: Compiler | ViteDevServer | undefined
 ): Promise<void> {
   /* post body */
-  app.use(body());
+  app.use(koaBody());
 
   /* router */
   app.use(router.routes())
