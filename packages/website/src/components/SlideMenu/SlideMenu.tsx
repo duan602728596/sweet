@@ -1,6 +1,6 @@
 import { useMemo, useCallback, ReactElement, ReactNode } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import type { Location } from 'history';
+import type { Location } from '@remix-run/router';
 import { Menu } from 'antd';
 import {
   FireOutlined as IconFireOutlined,

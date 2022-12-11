@@ -5,7 +5,7 @@ import type { PluginItem } from '@babel/core';
 const isDev: boolean = process.env.NODE_ENV === 'development';
 
 export default function(info: object): object {
-  const plugins: Array<PluginItem> = [['import', { libraryName: 'antd', libraryDirectory: 'es', style: true }]];
+  const plugins: Array<PluginItem> = [];
 
   if (!isDev) {
     plugins.unshift(['transform-react-remove-prop-types', { mode: 'remove', removeImport: true }]);
@@ -20,9 +20,7 @@ export default function(info: object): object {
       'react-dom',
       'prop-types',
       'react-helmet',
-      'react-router',
-      'react-router-dom',
-      'history'
+      'react-router-dom'
     ],
     entry: {
       index: [path.join(__dirname, 'src/index.tsx')]
