@@ -1,5 +1,5 @@
 import path from 'node:path';
-import fse from 'fs-extra';
+import fse from 'fs-extra/esm';
 import { dir, packageNames, __dirname } from './config.mjs';
 
 const websiteCI = path.join(__dirname, '../.website-ci');
