@@ -1,10 +1,7 @@
 /* 清除已编译的代码 */
-import util from 'node:util';
 import path from 'node:path';
-import rimraf from 'rimraf';
+import { rimraf } from 'rimraf';
 import { dir, packageNames } from './config.mjs';
-
-const rimrafPromise = util.promisify(rimraf);
 
 async function clean() {
   const queue = [];
@@ -14,8 +11,8 @@ async function clean() {
     const packageESMDir = path.join(dir, packageName, 'esm');
 
     queue.push(
-      rimrafPromise(packageDir),
-      rimrafPromise(packageESMDir)
+      rimraf(packageDir),
+      rimraf(packageESMDir)
     );
   }
 
