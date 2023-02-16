@@ -129,8 +129,7 @@ export default async function(sweetConfig: SweetConfig, sweetOptions: SweetOptio
     // 添加自定义的plugins
     plugins,
     experiments: {
-      topLevelAwait: true,
-      outputModule: true
+      topLevelAwait: true
     }
   };
 

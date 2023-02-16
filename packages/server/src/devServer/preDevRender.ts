@@ -1,13 +1,12 @@
 import type * as Stream from 'node:stream';
 import { pathToRegexp } from 'path-to-regexp';
-import { requireModuleWithoutCache } from '@sweet-milktea/utils';
 import type { Context } from 'koa';
 import {
   formatTemplateData,
   requireViteModule,
+  importESM,
   isReadStream,
-  readStream,
-  __fixModuleImportDefaultDefault
+  readStream
 } from '../utils/utils.js';
 import { getControllersFiles } from '../utils/controllers.js';
 import createRenderEngine from '../utils/createRenderEngine.js';
@@ -18,7 +17,7 @@ async function preRenderInit(sweetOptions: SweetOptions): Promise<Function> {
   const renderEngine: Function = await createRenderEngine(sweetOptions.renderType); // 获取渲染器
   const getSSRDataFunc: Function = sweetOptions.vite
     ? requireViteModule(sweetOptions)
-    : requireModuleWithoutCache;
+    : importESM;
 
   /**
    * @param { string } ctxPath: 相对路径
@@ -47,7 +46,7 @@ async function preRenderInit(sweetOptions: SweetOptions): Promise<Function> {
     };
 
     // ssr渲染
-    const server: Function = __fixModuleImportDefaultDefault(await getSSRDataFunc(serverRenderEntry));
+    const server: Function = await getSSRDataFunc(`${ serverRenderEntry }${ sweetOptions.vite ? '' : `?t=${ new Date().getTime() }` }`);
     const result: Stream | string | undefined = await server(ctxPath, ctx, data.initialState);
 
     if (result) {

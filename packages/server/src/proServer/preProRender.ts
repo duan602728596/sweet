@@ -1,8 +1,7 @@
 import type * as Stream from 'node:stream';
 import { pathToRegexp } from 'path-to-regexp';
-import { requireModule } from '@sweet-milktea/utils';
 import type { Context } from 'koa';
-import { formatTemplateData, isReadStream, readStream, __fixModuleImportDefaultDefault } from '../utils/utils.js';
+import { formatTemplateData, isReadStream, readStream, importESM } from '../utils/utils.js';
 import { getControllersFiles } from '../utils/controllers.js';
 import createRenderEngine from '../utils/createRenderEngine.js';
 import type { SweetOptions, ControllersModule } from '../utils/types.js';
@@ -31,7 +30,7 @@ async function preRenderInit(sweetOptions: SweetOptions): Promise<Function> {
       };
 
       // ssr渲染
-      const server: Function = __fixModuleImportDefaultDefault(await requireModule(serverRenderEntry));
+      const server: Function = await importESM(serverRenderEntry);
       const result: Stream | string | undefined = await server(ctxPath, ctx, data.initialState);
 
       if (result) {
