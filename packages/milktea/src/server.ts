@@ -42,7 +42,7 @@ export default async function(sweetConfig: SweetConfig, sweetOptions: SweetOptio
       mode,
       devtool: serverDevtool ?? (isDevelopment ? 'eval-source-map' : 'source-map'),
       resolve: { extensions },
-      target: ['node', 'node10'],
+      target: ['node', 'node16'],
       performance: { hints: false },
       node: {
         __filename: true,
