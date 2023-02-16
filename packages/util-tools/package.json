@@ -45,7 +45,7 @@
     "imagemin-gifsicle": ">=7",
     "imagemin-jpegoptim": ">=8",
     "imagemin-pngquant": ">=9",
-    "imagemin-webp": ">=7",
+    "imagemin-webp": ">=8",
     "sharp": ">=0"
   },
   "engines": {

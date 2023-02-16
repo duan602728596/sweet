@@ -36,7 +36,7 @@
     "@sweet-milktea/utils": "^4.0.0",
     "babel-plugin-polyfill-corejs3": "^0.6.0",
     "babel-plugin-polyfill-es-shims": "^0.7.1",
-    "core-js": "^3.27.2"
+    "core-js": "^3.28.0"
   },
   "devDependencies": {
     "@babel/core": "^7.20.12",

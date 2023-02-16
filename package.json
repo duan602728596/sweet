@@ -19,7 +19,7 @@
   "workspaces": [
     "packages/*"
   ],
-  "packageManager": "yarn@3.3.1",
+  "packageManager": "yarn@3.4.1",
   "dependencies": {
     "@types/babel__core": "^7",
     "@types/eslint": "^8",
@@ -29,7 +29,7 @@
     "@types/node": "^18",
     "@types/sockjs": "^0",
     "@types/yargs": "^17",
-    "lerna": "^6.4.1",
+    "lerna": "^6.5.1",
     "rimraf": "^4.1.2",
     "typescript": "5.0.0-beta",
     "zx": "^7.1.1"
@@ -40,20 +40,20 @@
     "@sweet-milktea/eslint-plugin": "*",
     "@sweet-milktea/milktea-cli": "*",
     "@sweet-milktea/util-tools": "*",
-    "@typescript-eslint/eslint-plugin": "^5.50.0",
-    "@typescript-eslint/parser": "^5.50.0",
+    "@typescript-eslint/eslint-plugin": "^5.52.0",
+    "@typescript-eslint/parser": "^5.52.0",
     "chai": "^4.3.7",
     "commitizen": "^4.3.0",
     "cross-env": "^7.0.3",
     "cz-conventional-changelog": "^3.3.0",
-    "eslint": "^8.33.0",
+    "eslint": "^8.34.0",
     "eslint-import-resolver-node": "^0.3.7",
     "eslint-import-resolver-typescript": "^3.5.3",
     "eslint-plugin-import": "^2.27.5",
     "eslint-plugin-react": "^7.32.2",
     "fs-extra": "^11.1.0",
     "husky": "^8.0.3",
-    "lint-staged": "^13.1.0",
+    "lint-staged": "^13.1.2",
     "lodash": "^4.17.21",
     "mocha": "^10.2.0"
   },
@@ -62,7 +62,7 @@
     "imagemin-gifsicle": ">=7",
     "imagemin-jpegoptim": ">=8",
     "imagemin-pngquant": ">=9",
-    "imagemin-webp": ">=7",
+    "imagemin-webp": ">=8",
     "sharp": ">=0"
   },
   "lint-staged": {

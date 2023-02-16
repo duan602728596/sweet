@@ -50,7 +50,7 @@
     "sockjs-client": "^1.6.1",
     "url": "^0.11.0",
     "webpack-dev-middleware": "^6.0.1",
-    "ws": "^8.12.0"
+    "ws": "^8.12.1"
   },
   "devDependencies": {
     "@sweet-milktea/milktea": "^4.0.0",
@@ -59,7 +59,7 @@
     "cross-env": "*",
     "mocha": "*",
     "nunjucks": "^3.2.3",
-    "vite": "^4.0.4",
+    "vite": "^4.1.1",
     "webpack": "^5.75.0"
   },
   "peerDependencies": {
