@@ -30,7 +30,7 @@ export default async function(sweetConfig: SweetConfig, sweetOptions: SweetOptio
       sourcemap: true
     },
     ssr: {
-      format: 'cjs'
+      format: 'esm'
     }
   });
 

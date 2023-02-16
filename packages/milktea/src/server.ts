@@ -42,7 +42,7 @@ export default async function(sweetConfig: SweetConfig, sweetOptions: SweetOptio
       mode,
       devtool: serverDevtool ?? (isDevelopment ? 'eval-source-map' : 'source-map'),
       resolve: { extensions },
-      target: ['node', 'node10'],
+      target: ['node', 'node16'],
       performance: { hints: false },
       node: {
         __filename: true,
@@ -61,9 +61,9 @@ export default async function(sweetConfig: SweetConfig, sweetOptions: SweetOptio
     .output
     .path(path.join(sweetOptions.basicPath, 'dist-server'))
     .publicPath('')
-    .filename('[name].js')
+    .filename('[name].mjs')
     .library({
-      type: 'commonjs'
+      type: 'module'
     } as any)
     .globalObject('globalThis')
     .merge({ assetModuleFilename: createFileName(isDevelopment) });
@@ -102,7 +102,8 @@ export default async function(sweetConfig: SweetConfig, sweetOptions: SweetOptio
     // 添加自定义的plugins
     plugins,
     experiments: {
-      topLevelAwait: true
+      topLevelAwait: true,
+      outputModule: true
     }
   };
 
