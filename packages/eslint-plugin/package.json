@@ -12,13 +12,13 @@
     "test": "cross-env NODE_ENV=test mocha ./test/test.mjs --timeout 180000"
   },
   "dependencies": {
-    "@typescript-eslint/eslint-plugin": "^5.52.0",
-    "@typescript-eslint/types": "^5.52.0",
-    "@typescript-eslint/typescript-estree": "^5.52.0"
+    "@typescript-eslint/eslint-plugin": "^5.55.0",
+    "@typescript-eslint/types": "^5.55.0",
+    "@typescript-eslint/typescript-estree": "^5.55.0"
   },
   "devDependencies": {
     "cross-env": "*",
-    "eslint": "^8.34.0",
+    "eslint": "^8.36.0",
     "mocha": "*"
   }
 }
