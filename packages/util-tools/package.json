@@ -32,7 +32,7 @@
     "chalk": "^5.2.0",
     "fluent-ffmpeg": "^2.1.2",
     "fs-extra": "^11.1.0",
-    "glob": "^8.1.0",
+    "glob": "^9.3.0",
     "imagemin": "^8.0.1",
     "semver": "^7.3.8"
   },
