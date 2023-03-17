@@ -71,13 +71,7 @@ export default async function(sweetConfig: SweetConfig, sweetOptions: SweetOptio
   // fork-ts-checker-webpack-plugin
   if (sweetOptions.forkTsCheckerWebpackPlugin) {
     const typescriptOptions: TypeScriptWorkerOptions = {
-      mode: javascript?.typescript ? 'write-references' : 'write-tsbuildinfo',
-      extensions: {
-        vue: {
-          enabled: frame === 'vue',
-          compiler: '@vue/compiler-sfc'
-        }
-      }
+      mode: javascript?.typescript ? 'write-references' : 'write-tsbuildinfo'
     };
 
     if (typescript?.configFile) {
