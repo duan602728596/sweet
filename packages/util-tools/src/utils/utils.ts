@@ -1,7 +1,16 @@
 import * as util from 'node:util';
-import glob from 'glob';
+import glob, {
+  type GlobOptionsWithFileTypesUnset,
+  type GlobOptionsWithFileTypesTrue,
+  type GlobOptionsWithFileTypesFalse,
+  type GlobOptions
+} from 'glob';
 
-const globPromise: (arg1: string, arg2?: glob.IOptions) => Promise<string[]> = util.promisify(glob);
+const globPromise: (arg1: string, arg2?: GlobOptionsWithFileTypesUnset
+  | GlobOptionsWithFileTypesTrue
+  | GlobOptionsWithFileTypesFalse
+  | GlobOptions
+) => Promise<string[]> = util.promisify(glob);
 
 /**
  * 格式化路径
