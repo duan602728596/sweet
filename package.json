@@ -19,7 +19,7 @@
   "workspaces": [
     "packages/*"
   ],
-  "packageManager": "yarn@3.4.1",
+  "packageManager": "yarn@3.5.0",
   "dependencies": {
     "@types/babel__core": "^7",
     "@types/eslint": "^8",
