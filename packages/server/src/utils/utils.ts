@@ -4,14 +4,11 @@ import type { ParsedPath } from 'node:path';
 import * as Stream from 'node:stream';
 import * as net from 'node:net';
 import type { Server as NetServer } from 'node:net';
-import glob from 'glob';
 import { requireCommonjsModule, requireModule, isFileExists } from '@sweet-milktea/utils';
 import chalk from 'chalk';
 import { internalIpV4 } from 'internal-ip';
 import type { ViteDevServer } from 'vite';
 import type { SweetOptions } from './types.js';
-
-export const globPromise: (arg1: string, arg2?: glob.IOptions) => Promise<string[]> = util.promisify(glob);
 
 /* 格式化数据 */
 export function formatTemplateData(data: Record<string, unknown>): object {

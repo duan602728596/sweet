@@ -1,7 +1,4 @@
-import * as util from 'node:util';
-import glob from 'glob';
-
-const globPromise: (arg1: string, arg2?: glob.IOptions) => Promise<string[]> = util.promisify(glob);
+import { glob } from 'glob';
 
 /**
  * 格式化路径
@@ -15,5 +12,5 @@ export function formatPath(p: string): string {
  * 获取所有文件
  */
 export function getFiles(cwd: string, file: string): Promise<string[]> {
-  return globPromise(file, { cwd });
+  return glob(file, { cwd });
 }

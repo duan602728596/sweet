@@ -1,8 +1,7 @@
 import * as path from 'node:path';
-import type { IOptions } from 'glob';
+import { glob, type GlobOptionsWithFileTypesFalse } from 'glob';
 import _ from 'lodash';
 import { requireCommonjsModule, requireModuleWithoutCache } from '@sweet-milktea/utils';
-import { globPromise } from './utils.js';
 import useRegister from './babelRegister.js';
 import type { SweetOptions, ControllersModule } from './types.js';
 
@@ -70,14 +69,14 @@ export async function requireControllers(
  */
 export async function getControllersFiles(sweetOptions: SweetOptions, clearRequireModule?: boolean): Promise<Array<ControllersModule>> {
   const controllersInfo: ControllersInfo = getControllers(sweetOptions.controllersDir);
-  let options: IOptions = { cwd: sweetOptions.basicPath };
+  let options: GlobOptionsWithFileTypesFalse = { cwd: sweetOptions.basicPath };
 
   // 绝对路径时移除cwd
   if (controllersInfo.isAbsolute) {
     options = _.omit(options, ['cwd']);
   }
 
-  const files: Array<string> = await globPromise(controllersInfo.controllers, options);
+  const files: Array<string> = await glob(controllersInfo.controllers, options);
 
   return requireControllers(files, sweetOptions, controllersInfo, clearRequireModule);
 }
