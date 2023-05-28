@@ -36,13 +36,13 @@
     "zx": "^7.2.2"
   },
   "devDependencies": {
-    "@babel/core": "^7.21.8",
+    "@babel/core": "^7.22.1",
     "@babel/eslint-parser": "^7.21.8",
     "@sweet-milktea/eslint-plugin": "*",
     "@sweet-milktea/milktea-cli": "*",
     "@sweet-milktea/util-tools": "*",
-    "@typescript-eslint/eslint-plugin": "^5.59.6",
-    "@typescript-eslint/parser": "^5.59.6",
+    "@typescript-eslint/eslint-plugin": "^5.59.7",
+    "@typescript-eslint/parser": "^5.59.7",
     "chai": "^4.3.7",
     "commitizen": "^4.3.0",
     "cross-env": "^7.0.3",
