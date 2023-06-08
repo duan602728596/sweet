@@ -1,5 +1,8 @@
-import sass from 'sass';
+import type Sass from 'sass';
+import { requireCommonjsModule } from '@sweet-milktea/utils';
 import type { LoaderOptions } from 'webpack-chain';
+
+const sass: typeof Sass = requireCommonjsModule('sass');
 
 // css-loader的mode
 // Callback must return "local", "global", or "pure" values
