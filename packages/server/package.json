@@ -53,7 +53,7 @@
     "ws": "^8.13.0"
   },
   "devDependencies": {
-    "@sweet-milktea/milktea": "^4.0.0",
+    "@sweet-milktea/milktea": "^4.1.0",
     "@sweet-milktea/milktea-vite": "^4.0.0",
     "@sweet-milktea/server-log": "^4.0.0",
     "cross-env": "*",
