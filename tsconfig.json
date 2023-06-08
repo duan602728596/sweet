@@ -2,7 +2,6 @@
   "compilerOptions": {
     "alwaysStrict": true,
     "moduleResolution": "node",
-    "locale": "zh-CN",
     "module": "ESNext",
     "target": "ES2020",
     "newLine": "LF",
