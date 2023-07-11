@@ -51,7 +51,7 @@ module.exports = {
         project: 'tsconfig.json',
         createDefaultProgram: true
       },
-      plugins: ['@typescript-eslint', '@sweet-milktea'],
+      plugins: ['@typescript-eslint'],
       rules: {
         // Supported Rules
         '@typescript-eslint/explicit-function-return-type': 'error', // 函数必须返回值
@@ -94,10 +94,7 @@ module.exports = {
           { hoist: 'all' }
         ],
         'no-use-before-define': 'off',
-        '@typescript-eslint/no-use-before-define': 'error', // 禁止定义前使用
-        // @sweet-milktea/eslint-plugin
-        '@sweet-milktea/space-before-blocks': 'error',
-        '@sweet-milktea/space-infix-ops': 'error'
+        '@typescript-eslint/no-use-before-define': 'error' // 禁止定义前使用
       }
     },
     {
