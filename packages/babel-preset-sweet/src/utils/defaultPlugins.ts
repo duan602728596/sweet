@@ -3,7 +3,7 @@ import type { PluginItem } from '@babel/core';
 /* 默认加载的插件 */
 const defaultPlugins: Array<PluginItem> = [
   '@babel/plugin-proposal-async-do-expressions',  // async do {} 语法
-  ['@babel/plugin-proposal-decorators', { decoratorsBeforeExport: false }], // 修饰器
+  ['@babel/plugin-proposal-decorators', { version: '2023-05' }], // 修饰器
   '@babel/plugin-proposal-destructuring-private', // var { #y: y } = this 语法
   '@babel/plugin-proposal-do-expressions',        // do {} 语法
   '@babel/plugin-proposal-explicit-resource-management', // using handlerSync = openSync()
