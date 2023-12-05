@@ -4,6 +4,8 @@ import type { PluginItem } from '@babel/core';
 const defaultPlugins: Array<PluginItem> = [
   // async do {} 语法
   '@babel/plugin-proposal-async-do-expressions',
+  // class语法
+  '@babel/plugin-transform-class-properties',
   // 修饰器
   ['@babel/plugin-proposal-decorators', { version: '2023-05' }],
   // var { #y: y } = this 语法
