@@ -26,21 +26,21 @@
     "test": "cross-env NODE_ENV=test mocha ./test/test.mjs --timeout 180000"
   },
   "dependencies": {
-    "@babel/core": "^7.23.2",
+    "@babel/core": "^7.23.5",
     "@babel/register": "^7.22.15",
     "@sweet-milktea/babel-preset-sweet": "^4.1.0",
     "@sweet-milktea/utils": "^4.0.0",
-    "@vitejs/plugin-react": "^4.1.0",
-    "cosmiconfig": "^8.3.0",
+    "@vitejs/plugin-react": "^4.2.1",
+    "cosmiconfig": "^9.0.0",
     "less": "^4.2.0",
     "lodash": "^4.17.21",
-    "sass": "^1.63.6",
-    "vite": "^4.5.0",
+    "sass": "^1.69.5",
+    "vite": "^5.0.5",
     "vite-plugin-checker": "^0.6.2"
   },
   "devDependencies": {
-    "@vitejs/plugin-vue": "^4.4.0",
-    "@vitejs/plugin-vue-jsx": "^3.0.2",
+    "@vitejs/plugin-vue": "^4.5.1",
+    "@vitejs/plugin-vue-jsx": "^3.1.0",
     "cross-env": "*",
     "mocha": "*"
   },
