@@ -13,7 +13,7 @@ const noop: Function = (): void => { /* noop */ };
  */
 class WSServer extends BasicServer {
   public wsServer: WebSocketServer; // websocket服务
-  public pingTimer: NodeJS.Timer;
+  public pingTimer: NodeJS.Timeout;
 
   /**
    * @param { Function } log: 日志方法
