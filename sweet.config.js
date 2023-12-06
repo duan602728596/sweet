@@ -30,7 +30,7 @@ export default function(info) {
     },
     serverExternals: [
       function({ context, request }, callback) {
-        if (/^react(-dom(\/server)?|-router(-dom(\/server)?)?)?|prop-types|@reduxjs\/toolkit|react-redux|reselect$/.test(request)) {
+        if (/^react(-dom(\/server)?|-router(-dom(\/server)?)?)?|prop-types|react-redux|reselect$/.test(request)) {
           callback(null, 'commonjs ' + request);
         } else {
           callback();

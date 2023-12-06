@@ -26,10 +26,10 @@ const { actions, reducer } = createSlice({
     dataList: []
   },
   reducers: {},
-  extraReducers: {
-    [requestList.fulfilled](state, action) {
+  extraReducers(builder) {
+    builder.addCase(requestList.fulfilled, function(state, action) {
       state.dataList = action.payload;
-    }
+    });
   }
 });
 
