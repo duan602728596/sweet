@@ -1,6 +1,6 @@
 {
   "name": "@sweet-milktea/server",
-  "version": "4.0.0",
+  "version": "4.2.0",
   "description": "webpack服务和web服务",
   "homepage": "https://github.com/duan602728596/sweet",
   "repository": {
@@ -53,8 +53,8 @@
     "ws": "^8.14.2"
   },
   "devDependencies": {
-    "@sweet-milktea/milktea": "^4.1.0",
-    "@sweet-milktea/milktea-vite": "^4.0.0",
+    "@sweet-milktea/milktea": "^4.2.0",
+    "@sweet-milktea/milktea-vite": "^4.2.0",
     "@sweet-milktea/server-log": "^4.0.0",
     "cross-env": "*",
     "mocha": "*",
