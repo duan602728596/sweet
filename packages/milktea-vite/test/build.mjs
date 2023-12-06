@@ -52,10 +52,10 @@ describe('build and server', function() {
     expect(fs.existsSync(path.join(__dirname, 'dist'))).to.be.true;
   });
 
-  after(async function() {
-    await Promise.all([
-      rimraf(dist),
-      rimraf(distServer)
-    ]);
-  });
+  // after(async function() {
+  //   await Promise.all([
+  //     rimraf(dist),
+  //     rimraf(distServer)
+  //   ]);
+  // });
 });

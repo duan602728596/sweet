@@ -28,9 +28,6 @@ export default async function(sweetConfig: SweetConfig, sweetOptions: SweetOptio
       ssr: serverEntry,
       minify: true,
       sourcemap: true
-    },
-    ssr: {
-      format: 'cjs'
     }
   });
 
