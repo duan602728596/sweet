@@ -43,11 +43,11 @@ async function createProxy(sweetOptions: SweetOptions, app: Koa, isDevelopment: 
         const proxyModule: ProxyConfigModule = await __require<ProxyConfigModule>(findFile);
 
         if (_.isPlainObject(proxyModule)) {
-          await addMiddleware(app, proxyModule as ProxyConfig, isDevelopment, env);
+          addMiddleware(app, proxyModule as ProxyConfig, isDevelopment, env);
         } else if (typeof proxyModule === 'function') {
           const proxyConfig: ProxyConfig = await proxyModule(sweetOptions, app);
 
-          await addMiddleware(app, proxyConfig, isDevelopment, env);
+          addMiddleware(app, proxyConfig, isDevelopment, env);
         }
 
         break;

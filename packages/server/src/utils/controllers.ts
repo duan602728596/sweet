@@ -20,7 +20,7 @@ interface ControllersInfo {
 export function getControllers(controllersDir?: string): ControllersInfo {
   const isAbsolute: boolean = controllersDir ? path.isAbsolute(controllersDir) : false;
   const dir: string = controllersDir ?? DEFAULT_CONTROLLERS;
-  const controllers: string = path.join(dir, '**/*.{ts,mts,cts,tsx,js,mjs,cjs,jsx}');
+  const controllers: string = path.join(dir, '**/*.{ts,mts,cts,tsx,js,mjs,cjs,jsx}').replace(/\\/g, '/');
 
   return { isAbsolute, dir, controllers };
 }
