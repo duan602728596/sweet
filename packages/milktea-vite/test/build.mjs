@@ -1,12 +1,10 @@
 import path from 'node:path';
 import fs from 'node:fs';
-import util from 'node:util';
 import { expect } from 'chai';
-import rimraf from 'rimraf';
+import { rimraf } from 'rimraf';
 import { metaHelper, requireCommonjsModule } from '@sweet-milktea/utils';
 import { build, serverRenderBuild } from '../esm/milktea-vite.js';
 
-const rimrafPromise = util.promisify(rimraf);
 const { __dirname } = metaHelper(import.meta.url);
 
 const root = path.join(__dirname, 'root');
@@ -56,8 +54,8 @@ describe('build and server', function() {
 
   after(async function() {
     await Promise.all([
-      rimrafPromise(dist),
-      rimrafPromise(distServer)
+      rimraf(dist),
+      rimraf(distServer)
     ]);
   });
 });
