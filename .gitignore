@@ -33,6 +33,7 @@ packages/**/.sweet
 # util-tools
 packages/util-tools/test/**/*.webp
 packages/util-tools/test/**/output
+packages/util-tools/test/**/output-sharp
 
 .website-ci
 lerna-debug.log
