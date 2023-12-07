@@ -1,13 +1,13 @@
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { createSelector, createStructuredSelector } from 'reselect';
+import { createStructuredSelector } from 'reselect';
 import { Button, Table, message } from 'antd';
 import { requestList } from './reducers/reducers';
 import style from './list.sass';
 
 /* redux selector */
 const selector = createStructuredSelector({
-  dataList: createSelector(({ list }) => list.dataList, (data) => data)
+  dataList: ({ list }) => list.dataList
 });
 
 function List(props) {
