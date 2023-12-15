@@ -8,6 +8,15 @@ export type ServerItem = Server | Http2SecureServer;
 export type ServerConnection = WebSocket | SockjsConnection;
 export type ClientLogLevel = 'silent' | 'trace' | 'debug' | 'info' | 'warn' | 'error';
 
+export interface ServerConstructorArgs {
+  log: Record<string, Function>;
+  clientLogLevel: ClientLogLevel;
+  server: Array<ServerItem>;
+  compiler: Compiler;
+}
+
+export type HandleSocketConnection = (client: ServerConnection) => void;
+
 /* 为sockjs服务和ws定义通用的方法 */
 abstract class BasicServer {
   static DEFAULT_STATS: any = {
@@ -128,7 +137,7 @@ abstract class BasicServer {
   }
 
   // 连接
-  handleSocketConnection: Function = (client: ServerConnection, headers: { [key: string]: string }): void => {
+  handleSocketConnection: HandleSocketConnection = (client: ServerConnection): void => {
     this.clients.add(client);
 
     this.onConnectionClose(client, (): void => {

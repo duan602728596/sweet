@@ -1,9 +1,7 @@
-import type { Server, IncomingMessage } from 'node:http';
-import type { Http2SecureServer } from 'node:http2';
+import type { IncomingMessage } from 'node:http';
 import type { Socket } from 'node:net';
 import WebSocket, { WebSocketServer } from 'ws';
-import type { Compiler } from 'webpack';
-import BasicServer, { type ServerItem, type ServerConnection, type ClientLogLevel } from './BasicServer.js';
+import BasicServer, { type ServerConnection, type ServerConstructorArgs, type HandleSocketConnection } from './BasicServer.js';
 
 const noop: Function = (): void => { /* noop */ };
 
@@ -21,12 +19,7 @@ class WSServer extends BasicServer {
    * @param { Array<Server | Http2SecureServer> } server: http服务
    * @param { Compiler } compiler: webpack compiler
    */
-  constructor({ log, clientLogLevel, server, compiler }: {
-    log: { [key: string]: Function };
-    clientLogLevel: ClientLogLevel;
-    server: Array<ServerItem>;
-    compiler: Compiler;
-  }) {
+  constructor({ log, clientLogLevel, server, compiler }: ServerConstructorArgs) {
     super();
 
     // 日志
@@ -57,11 +50,11 @@ class WSServer extends BasicServer {
 
     this.pingTimer = setInterval((): void => {
       this.wsServer.clients.forEach((socket: WebSocket): void => {
-        if (socket.isAlive === false) {
+        if (socket['isAlive'] === false) {
           return socket.terminate();
         }
 
-        socket.isAlive = false;
+        socket['isAlive'] = false;
         socket.ping(noop);
       });
     }, 30_000);
@@ -81,7 +74,7 @@ class WSServer extends BasicServer {
   }
 
   // 关闭
-  handleServerClose: Function = (): void => {
+  handleServerClose: () => void = (): void => {
     clearInterval(this.pingTimer);
     this.clients.clear();
   };
@@ -95,14 +88,14 @@ class WSServer extends BasicServer {
     client.send(message);
   }
 
-  onConnection(f: Function): void {
+  onConnection(f: HandleSocketConnection): void {
     this.wsServer.on('connection', (client: WebSocket, req: IncomingMessage): void => {
-      client.isAlive = true;
+      client['isAlive'] = true;
       client.on('pong', (): void => {
-        client.isAlive = true;
+        client['isAlive'] = true;
       });
 
-      f(client, req.headers);
+      f(client);
     });
   }
 }
