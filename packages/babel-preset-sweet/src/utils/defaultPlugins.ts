@@ -23,7 +23,7 @@ const defaultPlugins: Array<PluginItem> = [
   // var e = throw new Error(err) 语法
   '@babel/plugin-proposal-throw-expressions',
   // import json from './foo.json' with { type: 'json' }
-  ['@babel/plugin-syntax-import-assertions', { deprecatedAssertSyntax: true }]
+  ['@babel/plugin-syntax-import-attributes', { deprecatedAssertSyntax: true }]
 ];
 
 export default defaultPlugins;
