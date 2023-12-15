@@ -1,5 +1,6 @@
 import { createApp } from 'vue';
 import { ConfigProvider } from 'ant-design-vue';
+import 'ant-design-vue/dist/reset.css';
 import zhCN from 'ant-design-vue/es/locale/zh_CN';
 import { createHead } from '@vueuse/head';
 import { router } from './router/routers';
