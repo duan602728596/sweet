@@ -11,14 +11,18 @@ export default function(info) {
   const config = {
     frame: 'react',
     dll: [
-      'react',
-      'react-dom/client',
-      'prop-types',
+      '@ant-design/icons',
       '@reduxjs/toolkit',
+      'antd',
+      'classnames',
+      'prop-types',
+      'react',
+      'react/jsx-dev-runtime',
+      'react-dom/client',
+      'react-helmet',
       'react-redux',
-      'reselect',
       'react-router-dom',
-      'react-helmet'
+      'reselect'
     ],
     entry: {
       index: [path.join(__dirname, 'src/index.js')],
