@@ -29,11 +29,11 @@ function babelPresetSweet(api: any, options: Options = {}, dirname: string): Bab
   } else {
     if (ecmascript) {
       babelBuildTargets = {
-        browsers: nodeEnv ? ['node 14'] : ['last 5 Chrome versions']
+        browsers: nodeEnv ? ['node 20'] : ['last 5 Chrome versions']
       };
     } else {
       babelBuildTargets = {
-        browsers: nodeEnv ? ['node 10'] : [
+        browsers: nodeEnv ? ['node 18'] : [
           'last 10 versions',
           'last 2 year',
           'Edge 16'
