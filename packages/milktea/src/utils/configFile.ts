@@ -39,6 +39,7 @@ function createJsRegisterLoader(): Loader {
     try {
       modules = requireCommonjsModule(filepath);
     } catch (err) {
+      console.error(err);
       modules = requireModule(filepath);
     }
 
