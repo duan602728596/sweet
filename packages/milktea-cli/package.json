@@ -32,9 +32,9 @@
     "@sweet-milktea/util-tools": "^4.1.0",
     "cross-env": "*",
     "mocha": "*",
-    "ts-node": "^10.9.1",
-    "vite": "^5.0.5",
-    "webpack": "^5.89.0"
+    "ts-node": "^10.9.2",
+    "vite": "^5.2.10",
+    "webpack": "^5.91.0"
   },
   "peerDependencies": {
     "@sweet-milktea/milktea": ">=4",
