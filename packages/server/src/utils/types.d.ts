@@ -9,7 +9,7 @@ export interface Log {
   url?: string;
 }
 
-export type LogLevel = 'debug' | 'info' | 'warn' | 'error' | 'silent';
+export type LogLevel = 'info' | 'warn' | 'error';
 
 export interface ServerArgs {
   httpPort?: number;
@@ -56,3 +56,5 @@ export interface ControllersModule {
 // 导出函数类型
 export type DevServer = (args: DevServerArgs) => Promise<void>;
 export type ProServer = (args: ProServerArgs) => Promise<void>;
+
+export type KoaFunc = (ctx: Context, next: Function) => void | Promise<void>;

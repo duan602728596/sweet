@@ -38,7 +38,7 @@ export default function(sweetConfig: SweetConfig, config: Config): void {
 
   // less-loader
   const lessRule: Rule = config.module.rule(RULE_NAME);
-  const lessLoaderOptions: LoaderOptions = createLessOptions(modifyVars, additionalData, isDevelopment);
+  const lessLoaderOptions: LoaderOptions = createLessOptions(modifyVars, additionalData);
 
   // vue
   config

@@ -30,7 +30,8 @@ export function createCssOptions(modules: boolean, isDevelopment: boolean, serve
   if (modules) {
     Object.assign(modulesOptions, {
       mode: cssLoaderModeFunc,
-      localIdentName: isDevelopment ? '[path][name]__[local]___[hash:base64:6]' : '_[hash:base64:6]'
+      localIdentName: isDevelopment ? '[path][name]__[local]___[hash:base64:6]' : '_[hash:base64:6]',
+      namedExport: false
     });
   }
 
@@ -41,13 +42,8 @@ export function createCssOptions(modules: boolean, isDevelopment: boolean, serve
  * less-loader options
  * @param { object } modifyVars - less变量
  * @param { string | Function } additionalData
- * @param { boolean } isDevelopment - 是否为开发环境
  */
-export function createLessOptions(
-  modifyVars: object | undefined,
-  additionalData: string | Function | undefined,
-  isDevelopment: boolean
-): LoaderOptions {
+export function createLessOptions(modifyVars: object | undefined, additionalData: string | Function | undefined): LoaderOptions {
   return {
     lessOptions: {
       javascriptEnabled: true,
@@ -63,9 +59,7 @@ export function createLessOptions(
  */
 export function createSassOptions(additionalData: string | Function | undefined): LoaderOptions {
   return {
-    sassOptions: {
-      fiber: false
-    },
+    sassOptions: {},
     additionalData,
     implementation: sass
   };

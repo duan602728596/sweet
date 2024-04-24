@@ -136,7 +136,7 @@ async function devServer(args: DevServerArgs = {}): Promise<void> {
   }
 
   /* 添加其他的中间件*/
-  await middleware(sweetOptions, app, router, compiler);
+  middleware(sweetOptions, app, router, compiler);
 
   /* 本地mock */
   await createMock(sweetOptions, router, true);
