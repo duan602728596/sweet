@@ -14,10 +14,10 @@ class WSServer extends BasicServer {
   public pingTimer: NodeJS.Timeout;
 
   /**
-   * @param { Function } log: 日志方法
-   * @param { ClientLogLevel } clientLogLevel: 日志等级
-   * @param { Array<Server | Http2SecureServer> } server: http服务
-   * @param { Compiler } compiler: webpack compiler
+   * @param { Function } log - 日志方法
+   * @param { ClientLogLevel } clientLogLevel - 日志等级
+   * @param { Array<Server | Http2SecureServer> } server - http服务
+   * @param { import('webpack').Compiler } compiler - webpack compiler
    */
   constructor({ log, clientLogLevel, server, compiler }: ServerConstructorArgs) {
     super();

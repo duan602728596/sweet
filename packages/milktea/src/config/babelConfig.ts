@@ -19,8 +19,8 @@ export function createBabelOptions(sweetOptions: SweetOptions): LoaderOptions {
 
 /**
  * ts-loader options
- * @param { string | undefined } configFile
- * @param { boolean } forkTsCheckerWebpackPlugin: sweetOptions.forkTsCheckerWebpackPlugin
+ * @param { string | undefined } [configFile]
+ * @param { boolean } [forkTsCheckerWebpackPlugin] - sweetOptions.forkTsCheckerWebpackPlugin
  */
 export function createTypescriptOptions(configFile?: string, forkTsCheckerWebpackPlugin?: boolean): LoaderOptions {
   const options: LoaderOptions = {

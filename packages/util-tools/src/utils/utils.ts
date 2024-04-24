@@ -2,7 +2,7 @@ import { glob } from 'glob';
 
 /**
  * 格式化路径
- * @param { string } p: 原始路径
+ * @param { string } p - 原始路径
  */
 export function formatPath(p: string): string {
   return p.replace(/\\/g, '/');

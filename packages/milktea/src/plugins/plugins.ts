@@ -17,9 +17,9 @@ import type { SweetConfig, SweetOptions } from '../utils/types.js';
 
 /**
  * 添加插件
- * @param { SweetConfig } sweetConfig: 获取到的外部配置
- * @param { SweetOptions } sweetOptions: 内部挂载的一些配置
- * @param { Config } config: webpack-chain config
+ * @param { SweetConfig } sweetConfig - 获取到的外部配置
+ * @param { SweetOptions } sweetOptions - 内部挂载的一些配置
+ * @param { Config } config - webpack-chain config
  */
 export default async function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, config: Config): Promise<void> {
   const {

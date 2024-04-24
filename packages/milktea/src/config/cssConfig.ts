@@ -20,9 +20,9 @@ function cssLoaderModeFunc(resourcePath: string): 'local' | 'global' | 'pure' {
 
 /**
  * css-loader options
- * @param { boolean } modules: 是否开启css-modules
- * @param { boolean } isDevelopment: 是否为开发环境
- * @param { boolean } serverRender: 是否为服务器端渲染
+ * @param { boolean } modules - 是否开启css-modules
+ * @param { boolean } isDevelopment - 是否为开发环境
+ * @param { boolean } serverRender - 是否为服务器端渲染
  */
 export function createCssOptions(modules: boolean, isDevelopment: boolean, serverRender: boolean): LoaderOptions {
   const modulesOptions: LoaderOptions = { exportOnlyLocals: serverRender };
@@ -39,9 +39,9 @@ export function createCssOptions(modules: boolean, isDevelopment: boolean, serve
 
 /**
  * less-loader options
- * @param { object } modifyVars: less变量
+ * @param { object } modifyVars - less变量
  * @param { string | Function } additionalData
- * @param { boolean } isDevelopment: 是否为开发环境
+ * @param { boolean } isDevelopment - 是否为开发环境
  */
 export function createLessOptions(
   modifyVars: object | undefined,
@@ -59,10 +59,9 @@ export function createLessOptions(
 
 /**
  * sass-loader options
- * @param { string | Function } additionalData: sass变量
- * @param { boolean } isDevelopment: 是否为开发环境
+ * @param { string | Function } additionalData - sass变量
  */
-export function createSassOptions(additionalData: string | Function | undefined, isDevelopment: boolean): LoaderOptions {
+export function createSassOptions(additionalData: string | Function | undefined): LoaderOptions {
   return {
     sassOptions: {
       fiber: false

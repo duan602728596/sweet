@@ -10,9 +10,9 @@ interface Options {
 
 /**
  * 将图片批量转换成webp格式
- * @param { string } entry: 入口文件夹
- * @param { string } output: 输出文件夹
- * @param { Options } options: 图片转换的质量或配置
+ * @param { string } entry - 入口文件夹
+ * @param { string } output - 输出文件夹
+ * @param { Options } [options = {}] - 图片转换的质量或配置
  */
 async function image2webp(entry: string, output: string, options: Options = {}): Promise<void> {
   const imgOptions: object = { quality: 70 }; // 图片转换配置

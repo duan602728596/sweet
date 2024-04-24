@@ -18,9 +18,9 @@ function requireKoaDevMiddleware<T = unknown>(id: string): Promise<T> {
 /**
  * 创建中间件
  * @param { SweetOptions } sweetOptions
- * @param { Koa } app: koa实例
- * @param { Router } router: @koa/router实例
- * @param { Compiler } compiler: webpack compiler
+ * @param { Koa } app - koa实例
+ * @param { Router } router - @koa/router实例
+ * @param { Compiler } compiler - webpack compiler
  */
 async function middleware(
   sweetOptions: SweetOptions,

@@ -3,8 +3,8 @@ import { portIsOccupied } from '../utils/utils.js';
 
 /**
  * 判断端口是否被占用
- * @param { number } port: 端口号
- * @param { 'http' | 'https' } type: 警告的类型
+ * @param { number } port - 端口号
+ * @param { 'http' | 'https' } type - 警告的类型
  */
 async function portUse(port: number, type: 'http' | 'https'): Promise<number> {
   const isOccupied: boolean = await portIsOccupied(port);

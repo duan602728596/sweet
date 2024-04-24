@@ -6,7 +6,7 @@ import type { SweetOptions, TSOptions, Frame } from './types.js';
 /**
  * 判断tsconfig.json文件是否存在
  * @param { SweetOptions } sweetOptions
- * @param { TSOptions } ts
+ * @param { TSOptions } [ts]
  */
 export function isTsconfigJsonExists(sweetOptions: SweetOptions, ts?: TSOptions): Promise<boolean> {
   const tsconfigJson: string = ts?.configFile ? (
@@ -30,8 +30,8 @@ export async function tsChecker(sweetOptions: SweetOptions, ts?: TSOptions): Pro
  * 添加插件
  * @param { SweetOptions } sweetOptions
  * @param { InlineConfig } viteConfig
- * @param { Frame } frame: frame为vue时，配置vueTsc
- * @param { TSOptions } ts
+ * @param { Frame } [frame] - frame为vue时，配置vueTsc
+ * @param { TSOptions } [ts]
  */
 export async function addTsChecker(
   sweetOptions: SweetOptions,

@@ -37,7 +37,7 @@ export default function(sweetConfig: SweetConfig, config: Config): void {
 
   // sass-loader
   const sassRule: Rule = config.module.rule(RULE_NAME);
-  const sassLoaderOptions: LoaderOptions = createSassOptions(additionalData, isDevelopment);
+  const sassLoaderOptions: LoaderOptions = createSassOptions(additionalData);
 
   // vue
   config

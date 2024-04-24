@@ -100,7 +100,7 @@ export async function runningAtLog(sweetOptions: SweetOptions, displayHttps: boo
 
 /**
  * 检查端口占用情况
- * @param { number } port: 检查的端口
+ * @param { number } port - 检查的端口
  */
 export function portIsOccupied(port: number): Promise<boolean> {
   return new Promise(function(resolve: Function, reject: Function): void {
@@ -120,8 +120,8 @@ export function portIsOccupied(port: number): Promise<boolean> {
 
 /**
  * 判断端口是否被占用，并返回新的端口
- * @param { number } port: 检查的端口
- * @param { Array<number> } ignorePort: 忽略的端口
+ * @param { number } port - 检查的端口
+ * @param { Array<number> } [ignorePort = []] - 忽略的端口
  */
 export async function detectPort(port: number, ignorePort: Array<number> = []): Promise<number> {
   let maxPort: number = port + 10; // 最大端口

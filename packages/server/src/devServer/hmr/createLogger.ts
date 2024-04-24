@@ -2,7 +2,7 @@ import webpackLog from 'webpack-log';
 
 /**
  * 创建日志
- * @param { object } options
+ * @param { object } [options = {}]
  */
 function createLogger(options: { [key: string]: any } = {}): { [key: string]: Function } {
   let level: string = options.logLevel ?? 'info';

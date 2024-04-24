@@ -14,8 +14,8 @@ function isModule(module: ModuleExport | unknown): module is ModuleExport {
 
 /**
  * 模块导入
- * @param { string } id: 模块名称
- * @param { boolean } exportAll: 导出所有模块
+ * @param { string } id - 模块名称
+ * @param { boolean } [exportAll] - 导出所有模块
  */
 export function requireModule(id: string, exportAll?: boolean): unknown {
   const module: ModuleExport | unknown = require(id);
@@ -32,7 +32,7 @@ export const requireCommonjsModule: typeof requireModule = requireModule;
 
 /**
  * 加载json文件
- * @param { string } id: 模块名称
+ * @param { string } id - 模块名称
  */
 export function requireJson(id: string): unknown {
   return requireModule(id);
@@ -40,7 +40,7 @@ export function requireJson(id: string): unknown {
 
 /**
  * 清除模块缓存
- * @param { string } id: 模块名称
+ * @param { string } id - 模块名称
  */
 export function cleanRequireCache(id: string): void {
   const modulePath: string = require.resolve(id);
@@ -54,8 +54,8 @@ export function cleanRequireCache(id: string): void {
 
 /**
  * 清除缓存并且模块导入
- * @param { string } id: 模块名称
- * @param { boolean } exportAll: 导出所有模块
+ * @param { string } id - 模块名称
+ * @param { boolean } [exportAll] - 导出所有模块
  */
 export function requireModuleWithoutCache(id: string, exportAll?: boolean): unknown {
   cleanRequireCache(id);
@@ -65,7 +65,7 @@ export function requireModuleWithoutCache(id: string, exportAll?: boolean): unkn
 
 /**
  * 判断模块是否存在
- * @param { string } id: 模块名称
+ * @param { string } id - 模块名称
  */
 export function moduleExists(id: string): string | false {
   try {
@@ -77,7 +77,7 @@ export function moduleExists(id: string): string | false {
 
 /**
  * 判断文件是否存在
- * @param { string } file: 文件路径
+ * @param { string } file - 文件路径
  */
 export async function isFileExists(file: string): Promise<boolean> {
   try {

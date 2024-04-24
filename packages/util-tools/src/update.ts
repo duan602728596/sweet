@@ -30,7 +30,7 @@ interface PackageItem {
 
 /**
  * 对象转数组
- * @param { object } obj: 对象
+ * @param { Record<string, string> } obj - 对象
  */
 function objectToArray(obj: Record<string, string>): Array<PackageItem> {
   return Object.keys(obj).map(function(key: string, index: number): PackageItem {
@@ -56,8 +56,8 @@ const packageHost: string[] = [
 
 /**
  * 查找包
- * @param { string } packageName: npm包名
- * @param { number } registry
+ * @param { string } packageName - npm包名
+ * @param { number } [registry = 0]
  */
 function requestPackageInfo(packageName: string, registry: number = 0): Promise<PackageInformation> {
   const registryIndex: number = registry >= packageHost.length ? 0 : registry;
@@ -109,8 +109,8 @@ function requestPackageInfo(packageName: string, registry: number = 0): Promise<
 
 /**
  * 判断依赖是否是最新的，最新的就返回true
- * @param { string } oldVersion: 旧版本
- * @param { string } newVersion: 新版本
+ * @param { string } oldVersion - 旧版本
+ * @param { string } newVersion - 新版本
  */
 function versionEqual(oldVersion: string, newVersion: string | undefined): boolean {
   if (!newVersion) {
@@ -126,8 +126,8 @@ function versionEqual(oldVersion: string, newVersion: string | undefined): boole
 
 /**
  * 格式化输出的版本号
- * @param { string } oldVersion: 旧版本
- * @param { string } newVersion: 新版本
+ * @param { string } oldVersion - 旧版本
+ * @param { string } newVersion - 新版本
  */
 function formatVersion(oldVersion: string, newVersion: string): string {
   const iText: Array<string> | null = oldVersion.match(/^(>=?|<=?|~|\^)/);
@@ -272,9 +272,9 @@ async function start(folder: string, registry: number, test: boolean): Promise<v
 }
 
 /**
- * @param { Array<string> } folders: 目录的数组
- * @param { number } registry: Npm包信息地址。0：Npm，1：Yarn，2：CNpm，3：腾讯npm镜像
- * @param { boolean } test: 是否为测试环境
+ * @param { Array<string> } folders - 目录的数组
+ * @param { number } registry - Npm包信息地址。0：Npm，1：Yarn，2：CNpm，3：腾讯npm镜像
+ * @param { boolean } test - 是否为测试环境
  */
 export default async function(folders: Array<string>, registry: number, test: boolean): Promise<void> {
   for (const folder of folders) {

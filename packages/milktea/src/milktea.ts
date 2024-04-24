@@ -64,11 +64,11 @@ export function callback(err: Error, stats: Stats): void {
 
 /**
  * webpack配置
- * @param { SweetConfig | string | null | undefined } args.sweetConfig: webpack配置，覆盖文件，优先级最高
- * @param { string } args.mode: 开发环境，覆盖配置的开发环境
- * @param { string } args.webpackLog: 覆盖日志的显示
- * @param { boolean } args.hot: 添加webpack.HotModuleReplacementPlugin插件，开启热更新功能
- * @param { 'sockjs' | 'ws' } args.socket: socket类型
+ * @param { SweetConfig | string | null | undefined } args.sweetConfig - webpack配置，覆盖文件，优先级最高
+ * @param { string } args.mode - 开发环境，覆盖配置的开发环境
+ * @param { string } args.webpackLog - 覆盖日志的显示
+ * @param { boolean } args.hot - 添加webpack.HotModuleReplacementPlugin插件，开启热更新功能
+ * @param { 'sockjs' | 'ws' } args.socket - socket类型
  */
 export async function config(args: FuncArgs = {}): Promise<Configuration> {
   const { sweetConfig, mode, webpackLog, hot, socket }: FuncArgs = args;
@@ -86,9 +86,9 @@ export async function config(args: FuncArgs = {}): Promise<Configuration> {
 
 /**
  * 服务器端渲染的webpack配置
- * @param { SweetConfig | string | null | undefined } args.sweetConfig: webpack配置，覆盖文件，优先级最高
- * @param { string } args.mode: 开发环境，覆盖配置的开发环境
- * @param { string } args.webpackLog: 覆盖日志的显示
+ * @param { SweetConfig | string | null | undefined } args.sweetConfig - webpack配置，覆盖文件，优先级最高
+ * @param { string } args.mode - 开发环境，覆盖配置的开发环境
+ * @param { string } args.webpackLog - 覆盖日志的显示
  */
 export async function serverRenderConfig(args: FuncArgs = {}): Promise<Configuration> {
   const { sweetConfig, mode, webpackLog }: FuncArgs = args;
@@ -106,8 +106,8 @@ export async function serverRenderConfig(args: FuncArgs = {}): Promise<Configura
 
 /**
  * webpack的dll文件配置
- * @param { SweetConfig | string | null | undefined } args.sweetConfig: webpack配置，覆盖文件，优先级最高
- * @param { string } args.webpackLog: 覆盖日志的显示
+ * @param { SweetConfig | string | null | undefined } args.sweetConfig - webpack配置，覆盖文件，优先级最高
+ * @param { string } args.webpackLog - 覆盖日志的显示
  */
 export async function dllConfig(args: FuncArgs = {}): Promise<Configuration> {
   const { sweetConfig, webpackLog }: FuncArgs = args;

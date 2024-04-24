@@ -3,8 +3,8 @@ import { logsCache, accessCache, applicationCache, logs } from './cacheConfig.js
 
 /**
  * 创建本地文件日志的配置
- * @param { string } basicPath: 基础路径
- * @param { boolean } pm2: 是否启动pm2
+ * @param { string } basicPath - 基础路径
+ * @param { boolean } pm2 - 是否启动pm2
  */
 function createFileConfig(basicPath: string, pm2: boolean): object {
   const dir: string = path.join(basicPath, logsCache);

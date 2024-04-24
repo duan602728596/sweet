@@ -19,8 +19,8 @@ function isModule(module: ModuleExport | unknown): module is ModuleExport {
 
 /**
  * 模块导入
- * @param { string } id: 模块名称
- * @param { boolean } exportAll: 导出所有模块
+ * @param { string } id - 模块名称
+ * @param { boolean } [exportAll] - 导出所有模块
  */
 export async function requireModule(id: string, exportAll?: boolean): Promise<unknown> {
   const fileUrl: string = (!id.includes('file://') && path.isAbsolute(id)) ? pathToFileURL(id).href : id;
@@ -35,8 +35,8 @@ export async function requireModule(id: string, exportAll?: boolean): Promise<un
 
 /**
  * 模块导入
- * @param { string } id: 模块名称
- * @param { boolean } exportAll: 导出所有模块
+ * @param { string } id - 模块名称
+ * @param { boolean } [exportAll] - 导出所有模块
  */
 export function requireCommonjsModule(id: string, exportAll?: boolean): unknown {
   const module: ModuleExport | unknown = require(id);
@@ -50,7 +50,7 @@ export function requireCommonjsModule(id: string, exportAll?: boolean): unknown 
 
 /**
  * 加载json
- * @param { string } id: 模块名称
+ * @param { string } id - 模块名称
  */
 export async function requireJson(id: string): Promise<unknown> {
   const data: string = await fs.promises.readFile(id, {
@@ -62,7 +62,7 @@ export async function requireJson(id: string): Promise<unknown> {
 
 /**
  * 清除模块缓存
- * @param { string } id: 模块名称
+ * @param { string } id - 模块名称
  */
 export function cleanRequireCache(id: string): void {
   const modulePath: string = require.resolve(id);
@@ -76,8 +76,8 @@ export function cleanRequireCache(id: string): void {
 
 /**
  * 清除缓存并且模块导入
- * @param { string } id: 模块名称
- * @param { boolean } exportAll: 导出所有模块
+ * @param { string } id - 模块名称
+ * @param { boolean } [exportAll] - 导出所有模块
  */
 export function requireModuleWithoutCache(id: string, exportAll?: boolean): unknown {
   cleanRequireCache(id);
@@ -87,7 +87,7 @@ export function requireModuleWithoutCache(id: string, exportAll?: boolean): unkn
 
 /**
  * 判断模块是否存在
- * @param { string } id: 模块名称
+ * @param { string } id - 模块名称
  */
 export function moduleExists(id: string): string | false {
   try {
@@ -99,7 +99,7 @@ export function moduleExists(id: string): string | false {
 
 /**
  * 判断文件是否存在
- * @param { string } file: 文件路径
+ * @param { string } file - 文件路径
  */
 export async function isFileExists(file: string): Promise<boolean> {
   try {

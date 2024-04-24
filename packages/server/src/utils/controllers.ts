@@ -15,7 +15,7 @@ interface ControllersInfo {
 
 /**
  * 获取controllers信息
- * @param { string } controllersDir: controllers的文件夹名
+ * @param { string } controllersDir - controllers的文件夹名
  */
 export function getControllers(controllersDir?: string): ControllersInfo {
   const isAbsolute: boolean = controllersDir ? path.isAbsolute(controllersDir) : false;
@@ -27,10 +27,10 @@ export function getControllers(controllersDir?: string): ControllersInfo {
 
 /**
  * 加载controllers目录下的模块
- * @param { Array<string> } files: 文件名
+ * @param { Array<string> } files - 文件名
  * @param { SweetOptions } sweetOptions
  * @param { ControllersInfo } controllersInfo
- * @param { boolean } clearRequireModule: 是否清除缓存
+ * @param { boolean } [clearRequireModule] - 是否清除缓存
  */
 export async function requireControllers(
   files: Array<string>,
@@ -65,7 +65,7 @@ export async function requireControllers(
 /**
  * 获取controllers目录下的所有模块
  * @param { SweetOptions } sweetOptions
- * @param { boolean } clearRequireModule: 是否清除缓存
+ * @param { boolean } [clearRequireModule] - 是否清除缓存
  */
 export async function getControllersFiles(sweetOptions: SweetOptions, clearRequireModule?: boolean): Promise<Array<ControllersModule>> {
   const controllersInfo: ControllersInfo = getControllers(sweetOptions.controllersDir);

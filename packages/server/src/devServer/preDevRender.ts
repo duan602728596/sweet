@@ -21,9 +21,9 @@ async function preRenderInit(sweetOptions: SweetOptions): Promise<Function> {
     : requireModuleWithoutCache;
 
   /**
-   * @param { string } ctxPath: 相对路径
-   * @param { Context } ctx: koa ctx
-   * @param { string } serverRenderEntry: ssr文件入口
+   * @param { string } ctxPath - 相对路径
+   * @param { Context } ctx - koa ctx
+   * @param { string } serverRenderEntry - ssr文件入口
    */
   return async function preRender(ctxPath: string, ctx: Context, serverRenderEntry: string): Promise<void> {
     // 获取所有的controllers模块

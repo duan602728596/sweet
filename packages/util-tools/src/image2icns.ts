@@ -39,9 +39,9 @@ interface Options {
 
 /**
  * 生成icns图标
- * @param { string } entry: 图片文件
- * @param { string } output: 输出文件
- * @param { Options } options: 配置
+ * @param { string } entry - 图片文件
+ * @param { string } output - 输出文件
+ * @param { Options } [options = {}] - 配置
  */
 async function image2icns(entry: string, output: string, options: Options = {}): Promise<void> {
   const {
