@@ -16,11 +16,14 @@ export default function(info: object): object {
   const config: object = {
     frame: 'react',
     dll: [
+      '@ant-design/icons',
+      'antd',
+      'prop-types',
       'react',
       'react-dom',
-      'prop-types',
       'react-helmet',
-      'react-router-dom'
+      'react-router-dom',
+      'react-showdown'
     ],
     entry: {
       index: [path.join(__dirname, 'src/index.tsx')]
