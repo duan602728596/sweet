@@ -26,8 +26,8 @@
     "test": "cross-env NODE_ENV=test mocha ./test/test.mjs --timeout 180000"
   },
   "dependencies": {
-    "@babel/core": "^7.23.5",
-    "@babel/register": "^7.22.15",
+    "@babel/core": "^7.24.4",
+    "@babel/register": "^7.23.7",
     "@bbkkbkk/files-map-webpack-plugin": "^2.0.0",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.11",
     "@svgr/webpack": "^8.1.0",

@@ -78,9 +78,7 @@ function babelPresetSweet(api: any, options: Options = {}, dirname: string): Bab
     presets.push([
       '@babel/preset-typescript',
       {
-        isTSX: true,
         jsxPragma: isReact ? 'React' : 'Preserve',
-        allExtensions: true,
         allowNamespaces: true
       }
     ]);

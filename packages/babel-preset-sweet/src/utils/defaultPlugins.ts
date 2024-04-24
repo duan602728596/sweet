@@ -7,7 +7,7 @@ const defaultPlugins: Array<PluginItem> = [
   // class语法
   '@babel/plugin-transform-class-properties',
   // 修饰器
-  ['@babel/plugin-proposal-decorators', { version: '2023-05' }],
+  ['@babel/plugin-proposal-decorators', { version: '2023-11' }],
   // var { #y: y } = this 语法
   '@babel/plugin-proposal-destructuring-private',
   // do {} 语法
