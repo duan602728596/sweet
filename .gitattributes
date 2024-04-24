@@ -3,4 +3,4 @@ packages/server-hot-client/**/*.js linguist-detectable=false
 .eslintrc.cjs                      linguist-detectable=false
 eslint.config.mjs                  linguist-detectable=false
 eslint.config.cjs                  linguist-detectable=false
-eslint.config.js                  linguist-detectable=false
+eslint.config.js                   linguist-detectable=false
