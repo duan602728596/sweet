@@ -40,7 +40,7 @@ async function createRouters(router: Router, sweetOptions: SweetOptions): Promis
         if (fs.existsSync(htmlFilepath)) {
           const html: string = await fs.promises.readFile(htmlFilepath, { encoding: 'utf8' });
 
-          ctx.type === 'text/html';
+          ctx.type = 'text/html';
           ctx.body = await compiler.transformIndexHtml(ctxPath, html);
         }
       }

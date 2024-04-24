@@ -2,6 +2,7 @@ import _ from 'lodash';
 import connect from 'koa-connect';
 import type Koa from 'koa';
 import { createProxyMiddleware, type Options } from 'http-proxy-middleware';
+import log4js, { type Logger } from 'log4js';
 import { isFileExists } from '@sweet-milktea/utils';
 import { defaultProxyPath, __require } from './utils.js';
 import type { SweetOptions, LogLevel } from './types.js';
@@ -12,6 +13,9 @@ type ProxyConfigModule = ProxyConfig | ((sweetOptions: SweetOptions, app: Koa) =
 /* 添加代理中间件 */
 function addMiddleware(app: Koa, proxyConfig: ProxyConfig, isDevelopment: boolean, env?: string): void {
   const logLevel: LogLevel = env === 'test' ? 'error' : (isDevelopment ? 'info' : 'error');
+  const logger: Logger = log4js.getLogger();
+
+  logger.level = logLevel;
 
   for (const key in proxyConfig) {
     const config: Options = proxyConfig[key];
@@ -20,7 +24,7 @@ function addMiddleware(app: Koa, proxyConfig: ProxyConfig, isDevelopment: boolea
       createProxyMiddleware({
         pathFilter: key,
         changeOrigin: true,
-        logger: console[logLevel],
+        logger,
         ...config
       })
     ));
