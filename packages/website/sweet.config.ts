@@ -5,12 +5,6 @@ import type { PluginItem } from '@babel/core';
 const isDev: boolean = process.env.NODE_ENV === 'development';
 
 export default function(info: object): object {
-  const plugins: Array<PluginItem> = [];
-
-  if (!isDev) {
-    plugins.unshift(['transform-react-remove-prop-types', { mode: 'remove', removeImport: true }]);
-  }
-
   const jsExclude: RegExp = /node_modules|packages[\\/](server|hot-client)/;
 
   const config: object = {
@@ -18,7 +12,6 @@ export default function(info: object): object {
     dll: [
       '@ant-design/icons',
       'antd',
-      'prop-types',
       'react',
       'react-dom',
       'react-helmet',
@@ -30,15 +23,11 @@ export default function(info: object): object {
     },
     html: [{ template: path.join(__dirname, 'src/index.pug') }],
     javascript: {
-      plugins,
       exclude: jsExclude
     },
     typescript: {
       configFile: isDev ? 'tsconfig.json' : 'tsconfig.prod.json',
-      plugins: [
-        ['@babel/plugin-syntax-import-assertions', undefined, 'import-assertions'],
-        ...plugins
-      ],
+      plugins: [['@babel/plugin-syntax-import-assertions', undefined, 'import-assertions']],
       exclude: jsExclude
     },
     sass: {
