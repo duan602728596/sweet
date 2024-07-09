@@ -110,7 +110,7 @@ function babelPresetSweet(api: any, options: Options = {}, dirname: string): Bab
     const version: number = Number(reactPackageJson.version.split('.')[0]);
 
     if (version >= 19) {
-      plugins.push(['babel-plugin-react-compile', {}]);
+      plugins.push(['babel-plugin-react-compile', typeof reactCompiler === 'object' ? reactCompiler : {}]);
     }
   }
 
