@@ -16,4 +16,5 @@
     * use `{ boolean }` : 是否开启react转换，默认开启
     * runtime `{ string }` : 是否使用react/jsx-runtime，默认根据react版本判断
     * development `{ boolean }`: 是否为开发环境
+    * reactCompiler `{ boolean }`: 是否开启reactCompiler
 * polyfill `{ boolean }` : 使用babel-plugin-polyfill-{name}相关插件

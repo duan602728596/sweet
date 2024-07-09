@@ -1,5 +1,5 @@
 import * as process from 'process';
-import { moduleExists } from '@sweet-milktea/utils';
+import { moduleExists, requireJson } from '@sweet-milktea/utils';
 import type { PluginItem } from '@babel/core';
 import defaultPlugins from './utils/defaultPlugins.js';
 import presetEnv from './utils/presetEnv.js';
@@ -18,7 +18,7 @@ function babelPresetSweet(api: any, options: Options = {}, dirname: string): Bab
   const { env, typescript, react, polyfill }: Options = options;
   const { nodeEnv, ecmascript, targets: customTargets, debug, modules, useBuiltIns }: EnvOptions = env ?? {},
     { use: useTypescript, isReact = true }: TypescriptOptions = typescript ?? {},
-    { use: useReact = true, runtime, development }: ReactOptions = react ?? {};
+    { use: useReact = true, runtime, development, reactCompiler }: ReactOptions = react ?? {};
   const envModules: string | boolean = modules ?? false; // @babel/preset-env的模块类型
 
   // 编译目标
@@ -102,6 +102,16 @@ function babelPresetSweet(api: any, options: Options = {}, dirname: string): Bab
         }
       ]
     );
+  }
+
+  // 添加babel-plugin-react-compile
+  if (useReact && reactCompiler && moduleExists('react')) {
+    const reactPackageJson: { version: string } = requireJson('react/package.json');
+    const version: number = Number(reactPackageJson.version.split('.')[0]);
+
+    if (version >= 19) {
+      plugins.push(['babel-plugin-react-compile', {}]);
+    }
   }
 
   return { presets, plugins };

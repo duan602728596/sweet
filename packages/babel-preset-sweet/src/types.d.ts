@@ -21,6 +21,7 @@ export interface ReactOptions {
   use?: boolean;         // 是否添加@babel/preset-react
   runtime?: string;      // 是否使用react/jsx-runtime
   development?: boolean; // 是否为开发环境
+  reactCompiler?: boolean;
 }
 
 // babel配置

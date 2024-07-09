@@ -1,24 +1,34 @@
+import test from 'node:test';
 import { expect } from 'chai';
 import { transformAsync } from '@babel/core';
+import { requireCommonjsModule } from '@sweet-milktea/utils';
 
 /* 编译代码 */
-async function transformCode(code, options) {
+async function transformCode(code, options, transformOptions = {}) {
   return transformAsync(code, {
     presets: [
       [(await import('../lib/index.js')).default, options]
-    ]
+    ],
+    filename: transformOptions.isTs ? 'a.ts' : 'a.js'
   });
 }
 
-async function transformCodeESM(code, options) {
+async function transformCodeESM(code, options, transformOptions = {}) {
   return transformAsync(code, {
     presets: [
       [(await import('../esm/index.js')).default, options]
-    ]
+    ],
+    filename: transformOptions.isTs ? 'b.ts' : 'b.js'
   });
 }
 
 describe('babel-preset-sweet', function() {
+  before(function () {
+    const sweetMilkteaUtils = requireCommonjsModule('@sweet-milktea/utils');
+
+    test.mock.method(sweetMilkteaUtils, 'requireJson', () => ({ version: '19.0.0' }));
+  });
+
   it('build javascript', async function() {
     const rawCode = `const a = 5;
                      const b = <div />;
@@ -60,8 +70,8 @@ describe('babel-preset-sweet', function() {
       typescript: { use: true }
     };
     const [{ code }, { code: codeESM }] = await Promise.all([
-      transformCode(rawCode, options),
-      transformCodeESM(rawCode, options)
+      transformCode(rawCode, options, { isTs: true }),
+      transformCodeESM(rawCode, options, { isTs: true })
     ]);
 
     expect(code.includes('var a = 5;')).to.be.true;
@@ -105,5 +115,18 @@ describe('babel-preset-sweet', function() {
     expect(code.includes('string.prototype.replaceall')).to.be.true;
     expect(codeESM.includes('globalthis')).to.be.true;
     expect(codeESM.includes('string.prototype.replaceall')).to.be.true;
+  });
+
+  it('add babel-plugin-react-compile', async function() {
+    const plugin = (await import('../lib/index.js')).default.default;
+    const pluginOptions = {
+      react: {
+        use: true,
+        reactCompiler: true
+      }
+    };
+    const pluginResult = plugin({}, pluginOptions);
+
+    expect(pluginResult.plugins.at(-1)[0]).to.be.equal('babel-plugin-react-compile');
   });
 });
