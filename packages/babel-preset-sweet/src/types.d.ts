@@ -17,16 +17,10 @@ export interface TypescriptOptions {
 }
 
 // @babel/preset-react的配置
-interface ReactCompilerConfig {
-  sources?(filename: string): boolean;
-  compilationMode?: 'annotation';
-}
-
 export interface ReactOptions {
   use?: boolean;         // 是否添加@babel/preset-react
   runtime?: string;      // 是否使用react/jsx-runtime
   development?: boolean; // 是否为开发环境
-  reactCompiler?: boolean | ReactCompilerConfig;
 }
 
 // babel配置

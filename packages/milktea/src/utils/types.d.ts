@@ -25,9 +25,15 @@ interface ConfigRule {
   include?: RegExp | Array<RegExp>;
 }
 
+interface ReactCompilerConfig {
+  sources?(filename: string): boolean;
+  compilationMode?: 'annotation';
+}
+
 interface ScriptRule extends ConfigRule {
   presets?: Array<PluginItem>;
   plugins?: Array<PluginItem>;
+  reactCompiler?: boolean | ReactCompilerConfig;
 }
 
 /* js配置 */
@@ -109,12 +115,8 @@ export interface Explorer {
 /* Milktea导出的文件 */
 export type SweetConfigArgs = SweetConfig | string | null | undefined;
 
-export interface FuncArgs {
+export interface FuncArgs extends Pick<SweetConfig, 'mode' | 'webpackLog' | 'hot' | 'socket'> {
   sweetConfig?: SweetConfigArgs;
-  mode?: Mode;
-  webpackLog?: WebpackLog;
-  hot?: boolean;
-  socket?: 'sockjs' | 'ws';
 }
 
 export interface Milktea {

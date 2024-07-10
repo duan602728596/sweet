@@ -20,7 +20,8 @@ export default async function(sweetConfig: SweetConfig, sweetOptions: SweetOptio
     plugins: extraPlugins,
     exclude,
     include,
-    targets: customTargets
+    targets: customTargets,
+    reactCompiler
   }: JSOptions = javascript;
   const { environment }: SweetOptions = sweetOptions;
   const isDevelopment: boolean = mode === 'development';
@@ -92,6 +93,10 @@ export default async function(sweetConfig: SweetConfig, sweetOptions: SweetOptio
         isDevelopment && babelPlugins.push('react-refresh/babel');
       } else if (isVue) {
         babelPlugins.push('@vue/babel-plugin-jsx'); // 判断是否加载vue相关插件
+      }
+
+      if (isReact && reactCompiler) {
+        babelPlugins.push(['babel-plugin-react-compile', typeof reactCompiler === 'object' ? reactCompiler : {}]);
       }
 
       return _.mergeWith(options, { presets: babelPresets, plugins: babelPlugins }, customizer);

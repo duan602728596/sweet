@@ -1,7 +1,5 @@
-import test from 'node:test';
 import { expect } from 'chai';
 import { transformAsync } from '@babel/core';
-import { requireCommonjsModule } from '@sweet-milktea/utils';
 
 /* 编译代码 */
 async function transformCode(code, options, transformOptions = {}) {
@@ -23,12 +21,6 @@ async function transformCodeESM(code, options, transformOptions = {}) {
 }
 
 describe('babel-preset-sweet', function() {
-  before(function () {
-    const sweetMilkteaUtils = requireCommonjsModule('@sweet-milktea/utils');
-
-    test.mock.method(sweetMilkteaUtils, 'requireJson', () => ({ version: '19.0.0' }));
-  });
-
   it('build javascript', async function() {
     const rawCode = `const a = 5;
                      const b = <div />;
@@ -115,18 +107,5 @@ describe('babel-preset-sweet', function() {
     expect(code.includes('string.prototype.replaceall')).to.be.true;
     expect(codeESM.includes('globalthis')).to.be.true;
     expect(codeESM.includes('string.prototype.replaceall')).to.be.true;
-  });
-
-  it('add babel-plugin-react-compile', async function() {
-    const plugin = (await import('../lib/index.js')).default.default;
-    const pluginOptions = {
-      react: {
-        use: true,
-        reactCompiler: true
-      }
-    };
-    const pluginResult = plugin({}, pluginOptions);
-
-    expect(pluginResult.plugins.at(-1)[0]).to.be.equal('babel-plugin-react-compile');
   });
 });
