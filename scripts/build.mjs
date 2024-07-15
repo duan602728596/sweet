@@ -1,4 +1,4 @@
-/* global path, fs, globby, cd */
+/* global path, fs, globby, cd, $ */
 import os from 'node:os';
 import { dir, packageNames } from './config.mjs';
 

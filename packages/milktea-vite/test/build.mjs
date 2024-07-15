@@ -39,7 +39,7 @@ describe('build and server', function() {
       mode: 'production'
     });
 
-    // eslint-disable-next-line import/no-unresolved
+    // eslint import/no-unresolved: 0
     const server = await requireModule(path.join(__dirname, './dist-server/entry-server.js'));
 
     expect(server()).to.be.a('string');
