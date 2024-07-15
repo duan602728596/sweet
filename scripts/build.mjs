@@ -22,7 +22,7 @@ if (os.platform() === 'win32') {
 
 /**
  * 格式化路径
- * @param { string } p: 原始路径
+ * @param { string } p - 原始路径
  */
 function formatPath(p) {
   return p.replace(/\\/g, '/');
@@ -30,8 +30,8 @@ function formatPath(p) {
 
 /**
  * typescript文件处理
- * @param { string } packageName: 编译名称
- * @param { string } packageDir: 入口文件
+ * @param { string } packageName - 编译名称
+ * @param { string } packageDir - 入口文件
  */
 async function clean(packageName, packageDir) {
   const libDir = path.join(packageDir, 'lib');
