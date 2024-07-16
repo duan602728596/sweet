@@ -1,5 +1,4 @@
 import { Fragment, type ReactElement, type ReactNode } from 'react';
-import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
 
 interface ElementProps {
@@ -20,10 +19,5 @@ function Element(props: ElementProps): ReactElement {
     </Fragment>
   );
 }
-
-Element.propTypes = {
-  title: PropTypes.string,
-  children: PropTypes.node
-};
 
 export default Element;

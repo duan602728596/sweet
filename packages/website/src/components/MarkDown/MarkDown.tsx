@@ -1,5 +1,4 @@
 import type { ReactElement } from 'react';
-import PropTypes from 'prop-types';
 import MarkdownView from 'react-showdown';
 import 'github-markdown-css/github-markdown-light.css';
 
@@ -15,9 +14,5 @@ function MarkDown(props: MarkDownProps): ReactElement {
     </div>
   );
 }
-
-MarkDown.propTypes = {
-  markdown: PropTypes.string
-};
 
 export default MarkDown;
