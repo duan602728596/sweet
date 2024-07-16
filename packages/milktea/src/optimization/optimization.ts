@@ -37,4 +37,6 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
       ]
     });
   }
+
+  config.optimization = webpackOptimization;
 }
