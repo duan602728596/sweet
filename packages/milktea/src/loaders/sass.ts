@@ -33,8 +33,8 @@ export default function(sweetConfig: SweetConfig, config: Configuration): void {
 
   configRulePush(config, {
     test: /^.*\.s(a|c)ss$/i,
-    exclude: exclude ? (Array.isArray(exclude) ? exclude : [exclude]) : [],
-    include: include ? (Array.isArray(include) ? include : [include]) : [],
+    exclude: exclude ? (Array.isArray(exclude) ? exclude : [exclude]) : undefined,
+    include: include ? (Array.isArray(include) ? include : [include]) : undefined,
     oneOf: [
       vueSassRule,
       {

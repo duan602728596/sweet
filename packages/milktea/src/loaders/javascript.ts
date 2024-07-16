@@ -86,6 +86,6 @@ export default async function(sweetConfig: SweetConfig, sweetOptions: SweetOptio
       /\.ignore\.(m|c)?jsx?/,        // new Worker(new URL('./worker.js', import.meta.url))会被babel编译导致无法解析，添加忽略的文件
       ...(exclude ? (Array.isArray(exclude) ? exclude : [exclude]) : [])
     ],
-    include: include ? (Array.isArray(include) ? include : [include]) : []
+    include: include ? (Array.isArray(include) ? include : [include]) : undefined
   });
 }

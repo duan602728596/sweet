@@ -1,6 +1,5 @@
 import process from 'node:process';
 import path from 'node:path';
-import type { PluginItem } from '@babel/core';
 
 const isDev: boolean = process.env.NODE_ENV === 'development';
 

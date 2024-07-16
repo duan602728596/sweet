@@ -54,7 +54,7 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
         options: createTypescriptOptions(configFile, sweetOptions.forkTsCheckerWebpackPlugin)
       }
     ],
-    exclude: exclude ? (Array.isArray(exclude) ? exclude : [exclude]) : [],
-    include: include ? (Array.isArray(include) ? include : [include]) : []
+    exclude: exclude ? (Array.isArray(exclude) ? exclude : [exclude]) : undefined,
+    include: include ? (Array.isArray(include) ? include : [include]) : undefined
   });
 }
