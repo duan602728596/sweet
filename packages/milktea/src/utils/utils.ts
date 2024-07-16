@@ -1,6 +1,7 @@
 import * as path from 'node:path';
 import { isFileExists } from '@sweet-milktea/utils';
-import type { SweetConfig, SweetOptions, TSOptions } from './types.js';
+import type { Configuration, RuleSetRule, WebpackPluginInstance } from 'webpack';
+import type { SweetOptions, TSOptions } from './types.js';
 
 /**
  * 判断tsconfig.json文件是否存在
@@ -36,3 +37,24 @@ export const extensions: Array<string> = [
   '.json',
   '.wasm'
 ];
+
+/**
+ * 添加一个rule
+ * @param { Configuration } config
+ * @param { RuleSetRule } rule
+ */
+export function configRulePush(config: Configuration, rule: RuleSetRule): void {
+  config.module ??= {};
+  config.module.rules ??= [];
+  config.module.rules.push(rule);
+}
+
+/**
+ * 添加一个plugin
+ * @param { Configuration } config
+ * @param plugin
+ */
+export function configPluginPush(config: Configuration, plugin: WebpackPluginInstance): void {
+  config.plugins ??= [];
+  config.plugins.push(plugin);
+}

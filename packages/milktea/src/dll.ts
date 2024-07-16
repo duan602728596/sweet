@@ -2,7 +2,6 @@ import * as path from 'node:path';
 import _ from 'lodash';
 import webpack from 'webpack';
 import type { Configuration } from 'webpack';
-import Config, { type Output } from 'webpack-chain';
 import { merge } from 'webpack-merge';
 import WebpackBar from 'webpackbar';
 import { handleDllProgress } from './plugins/handleProgress.js';
@@ -16,7 +15,6 @@ import type { SweetConfig, SweetOptions } from './utils/types.js';
  * @param { SweetOptions } sweetOptions - 内部挂载的一些配置
  */
 export default async function(sweetConfig: SweetConfig, sweetOptions: SweetOptions): Promise<Configuration> {
-  const config: Config = new Config();
   const sweetConfigModified: SweetConfig = _.omit(sweetConfig, [
     'serverRender',
     'serverEntry',
@@ -37,73 +35,67 @@ export default async function(sweetConfig: SweetConfig, sweetOptions: SweetOptio
   }: SweetConfig = sweetConfigModified;
   const ecmascript: boolean = !!javascript?.ecmascript;
 
-  // 合并配置
-  config
-    .merge({
-      mode: 'development',
-      devtool: 'inline-source-map',
-      resolve: { extensions },
-      target: ['web', ecmascript ? 'es2020' : 'es5'],
-      performance: { hints: false }
-    });
-
-  // 设置文件输出
-  config
-    .output
-    .path(path.join(sweetOptions.basicPath, CacheConfig.Dll))
-    .filename('[name].js')
-    .library({
+  /* 设置文件输出 */
+  const webpackOutput: Configuration['output'] = {
+    path: path.join(sweetOptions.basicPath, CacheConfig.Dll),
+    filename: '[name].js',
+    library: {
       name: '[name]_[hash:5]',
       type: 'var'
-    } as any)
-    .when(ecmascript, (output: Output): void => {
-      output.globalObject('globalThis');
-    });
+    }
+  };
 
-  // plugin
-  config
-    // dll
-    .plugin('webpack.DllPlugin')
-    .use(webpack.DllPlugin, [{
+  if (ecmascript) {
+    webpackOutput.globalObject = 'globalThis';
+  }
+
+  /* webpack插件 */
+  const webpackPlugins: Configuration['plugins'] = [
+    new webpack.DllPlugin({
       path: path.join(sweetOptions.basicPath, CacheConfig.Dll, 'manifest.json'),
       name: '[name]_[hash:5]'
-    }])
-    .end()
-    // moment
-    .plugin('webpack.IgnorePlugin')
-    .use(webpack.IgnorePlugin, [{
+    }),
+    new webpack.IgnorePlugin({
       resourceRegExp: /^\.\/locale$/,
       contextRegExp: /moment$/
-    }]);
+    })
+  ];
 
   // 进度条
   if (!webpackLog || webpackLog === 'progress') {
-    config
-      .plugin('webpackbar')
-      .use(WebpackBar, [{
-        name: 'dll',
-        color: 'green'
-      }]);
+    webpackPlugins.push(new WebpackBar({
+      name: 'dll',
+      color: 'green'
+    }));
   } else {
-    config
-      .plugin('webpack.ProgressPlugin')
-      .use(webpack.ProgressPlugin, [handleDllProgress]);
+    webpackPlugins.push(new webpack.ProgressPlugin(handleDllProgress));
   }
 
-  /* chainWebpack: 通过webpack-chain的API扩展或修改webpack配置 */
+  /* webpack配置 */
+  const webpackConfig: Configuration = {
+    mode: 'development',
+    devtool: 'inline-source-map',
+    resolve: { extensions },
+    target: ['web', ecmascript ? 'es2020' : 'es5'],
+    performance: { hints: false },
+    output: webpackOutput,
+    plugins: webpackPlugins,
+    experiments: {
+      topLevelAwait: true
+    }
+  };
+
+  /* chainWebpack: 扩展或修改webpack配置 */
   if (chainWebpack) {
-    await chainWebpack(config);
+    await chainWebpack(webpackConfig);
   }
 
   const mergeConfiguration: Configuration = {
     context,
     entry: dll?.length ? { dll } : undefined,
     externals,
-    resolve,
-    experiments: {
-      topLevelAwait: true
-    }
+    resolve
   };
 
-  return merge(config.toConfig(), mergeConfiguration);
+  return merge(webpackConfig, mergeConfiguration);
 }

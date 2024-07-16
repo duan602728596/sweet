@@ -1,13 +1,11 @@
-import type Config from 'webpack-chain';
-import type { Rule, LoaderOptions } from 'webpack-chain';
+import type { Configuration, RuleSetRule } from 'webpack';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import { createCssOptions, createSassOptions } from '../config/cssConfig.js';
+import { configRulePush } from '../utils/utils.js';
 import type { SweetConfig, SassOptions } from '../utils/types.js';
 
-const RULE_NAME: string = 'sass';
-
 /* sass 配置 */
-export default function(sweetConfig: SweetConfig, config: Config): void {
+export default function(sweetConfig: SweetConfig, config: Configuration): void {
   const { mode, sass = {}, frame, serverRender }: SweetConfig = sweetConfig;
   const {
     modules = true,
@@ -16,75 +14,36 @@ export default function(sweetConfig: SweetConfig, config: Config): void {
     additionalData
   }: SassOptions = sass;
   const isDevelopment: boolean = mode === 'development';
+  const ssr: boolean = !!serverRender; // css-loader ssr
+  const sassLoaderOptions: Record<string, any> = createSassOptions(additionalData); // sass-loader
 
-  config
-    .merge({
-      module: {
-        rule: {
-          [RULE_NAME]: {
-            test: /^.*\.s(a|c)ss$/i,
-            exclude: exclude ? (Array.isArray(exclude) ? exclude : [exclude]) : [],
-            include: include ? (Array.isArray(include) ? include : [include]) : []
-          }
-        }
-      }
-    });
+  // oneOf
+  let vueSassRule: RuleSetRule | undefined = undefined;
 
-  // css-loader
-  const ssr: boolean = !!serverRender;
-  const cssLoaderOptions: LoaderOptions = createCssOptions(modules, isDevelopment, ssr);
-  const ScopedCssLoaderOptions: LoaderOptions = createCssOptions(false, isDevelopment, ssr);
-
-  // sass-loader
-  const sassRule: Rule = config.module.rule(RULE_NAME);
-  const sassLoaderOptions: LoaderOptions = createSassOptions(additionalData);
-
-  // vue
-  config
-    .when(frame === 'vue',
-      (chainConfig: Config): void => {
-        const sassRuleOneOf: Rule<Rule> = sassRule
-          .oneOf('vue')
-          .resourceQuery(/scoped/);
-
-        // vue style
-        if (!serverRender) {
-          sassRuleOneOf
-            .use('mini-css-extract-plugin/loader')
-            .loader(MiniCssExtractPlugin.loader);
-        }
-
-        sassRuleOneOf
-          // css
-          .use('css-loader')
-          .loader('css-loader')
-          .options(ScopedCssLoaderOptions)
-          .end()
-          // sass
-          .use('sass-loader')
-          .loader('sass-loader')
-          .options(sassLoaderOptions);
-      }
-    );
-
-  // basic
-  const oneOf: Rule<Rule> = sassRule.oneOf('basic');
-
-  // style
-  if (!serverRender) {
-    oneOf
-      .use('mini-css-extract-plugin/loader')
-      .loader(MiniCssExtractPlugin.loader);
+  if (frame === 'vue') {
+    vueSassRule = {
+      resourceQuery: /scoped/,
+      use: [
+        !serverRender ? { loader: MiniCssExtractPlugin.loader } : undefined,
+        { loader: 'css-loader', options: createCssOptions(false, isDevelopment, ssr) },
+        { loader: 'sass-loader', options: sassLoaderOptions }
+      ].filter(Boolean)
+    };
   }
 
-  oneOf
-    // css
-    .use('css-loader')
-    .loader('css-loader')
-    .options(cssLoaderOptions)
-    .end()
-    // sass
-    .use('sass-loader')
-    .loader('sass-loader')
-    .options(sassLoaderOptions);
+  configRulePush(config, {
+    test: /^.*\.s(a|c)ss$/i,
+    exclude: exclude ? (Array.isArray(exclude) ? exclude : [exclude]) : [],
+    include: include ? (Array.isArray(include) ? include : [include]) : [],
+    oneOf: [
+      vueSassRule,
+      {
+        use: [
+          !serverRender ? { loader: MiniCssExtractPlugin.loader } : undefined,
+          { loader: 'css-loader', options: createCssOptions(modules, isDevelopment, ssr) },
+          { loader: 'sass-loader', options: sassLoaderOptions }
+        ].filter(Boolean)
+      }
+    ].filter(Boolean)
+  });
 }

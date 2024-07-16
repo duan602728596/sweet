@@ -1,50 +1,38 @@
-import type Config from 'webpack-chain';
+import type { Configuration } from 'webpack';
+import { configRulePush } from '../utils/utils.js';
 import type { SweetConfig } from '../utils/types.js';
 
 /* svg文件配置 */
-export default function(sweetConfig: SweetConfig, config: Config): void {
+export default function(sweetConfig: SweetConfig, config: Configuration): void {
   const { frame }: SweetConfig = sweetConfig;
+  const svgIssuer: RegExp = /^.*\.(jsx?|tsx?|vue)$/i;
 
-  config
-    .when(frame === 'react',
-      (chainConfig: Config): void => {
-        chainConfig
-          .module
-          .rule('svg')
-          .test(/component\.svgz?$/i)
-          .use('@svgr/webpack')
-          .loader('@svgr/webpack');
-      }
-    );
+  // react
+  if (frame === 'react') {
+    configRulePush(config, {
+      test: /component\.svgz?$/i,
+      use: [
+        {
+          loader: '@svgr/webpack'
+        }
+      ],
+      issuer: svgIssuer
+    });
+  }
 
-  // 当环境是vue时
-  config
-    .when(frame === 'vue',
-      (chainConfig: Config): void => {
-        chainConfig
-          .module
-          .rule('svg')
-          .test(/component\.svgz?$/i)
-          .use('vue-loader')
-          .loader('vue-loader')
-          .end()
-          .use('vue-svg-loader')
-          .loader('vue-svg-loader');
-      }
-    );
-
-  // issuer
-  config
-    .when(frame === 'react' || frame === 'vue',
-      (chainConfig: Config): void => {
-        chainConfig
-          .merge({
-            module: {
-              rule: {
-                svg: { issuer: /^.*\.(jsx?|tsx?|vue)$/i }
-              }
-            }
-          });
-      }
-    );
+  // vue
+  if (frame === 'vue') {
+    configRulePush(config, {
+      test: /component\.svgz?$/i,
+      use: [
+        {
+          loader: 'vue-loader'
+        },
+        {
+          loader: 'vue-svg-loader'
+        }
+      ],
+      issuer: svgIssuer
+    });
+  }
 }

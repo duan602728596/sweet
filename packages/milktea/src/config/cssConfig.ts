@@ -1,6 +1,5 @@
 import type Sass from 'sass';
 import { requireCommonjsModule } from '@sweet-milktea/utils';
-import type { LoaderOptions } from 'webpack-chain';
 
 const sass: typeof Sass = requireCommonjsModule('sass');
 
@@ -24,8 +23,8 @@ function cssLoaderModeFunc(resourcePath: string): 'local' | 'global' | 'pure' {
  * @param { boolean } isDevelopment - 是否为开发环境
  * @param { boolean } serverRender - 是否为服务器端渲染
  */
-export function createCssOptions(modules: boolean, isDevelopment: boolean, serverRender: boolean): LoaderOptions {
-  const modulesOptions: LoaderOptions = { exportOnlyLocals: serverRender };
+export function createCssOptions(modules: boolean, isDevelopment: boolean, serverRender: boolean): Record<string, any> {
+  const modulesOptions: Record<string, any> = { exportOnlyLocals: serverRender };
 
   if (modules) {
     Object.assign(modulesOptions, {
@@ -43,7 +42,7 @@ export function createCssOptions(modules: boolean, isDevelopment: boolean, serve
  * @param { object } modifyVars - less变量
  * @param { string | Function } additionalData
  */
-export function createLessOptions(modifyVars: object | undefined, additionalData: string | Function | undefined): LoaderOptions {
+export function createLessOptions(modifyVars: object | undefined, additionalData: string | Function | undefined): Record<string, any> {
   return {
     lessOptions: {
       javascriptEnabled: true,
@@ -57,7 +56,7 @@ export function createLessOptions(modifyVars: object | undefined, additionalData
  * sass-loader options
  * @param { string | Function } additionalData - sass变量
  */
-export function createSassOptions(additionalData: string | Function | undefined): LoaderOptions {
+export function createSassOptions(additionalData: string | Function | undefined): Record<string, any> {
   return {
     sassOptions: {},
     additionalData,

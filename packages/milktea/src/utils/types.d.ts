@@ -1,5 +1,4 @@
 import type { RuleSetRule, Entry, ResolveOptions, WebpackPluginInstance, Configuration, Stats } from 'webpack';
-import type Config from 'webpack-chain';
 import type { PluginItem } from '@babel/core';
 import type { CosmiconfigResult } from 'cosmiconfig/dist/types.js';
 import type { Options as HtmlWebpackPluginOptions } from 'html-webpack-plugin';
@@ -90,7 +89,7 @@ export interface SweetConfig {
   less?: LessOptions;
   html?: Array<HtmlWebpackPluginOptions>;
   frame?: Frame;
-  chainWebpack?: (config: Config) => Promise<void>;
+  chainWebpack?: (config: Configuration) => Promise<void>;
   filesMap?: boolean | { [key: string]: string };
   hot?: boolean;
   socket?: 'sockjs' | 'ws';
@@ -100,7 +99,7 @@ export interface SweetConfig {
   serverOutput?: any;
   serverExternals?: { [key: string]: string };
   serverDevtool?: string;
-  serverChainWebpack?: (config: Config) => Promise<void>;
+  serverChainWebpack?: (config: Configuration) => Promise<void>;
 }
 
 /* 获取配置文件 */
