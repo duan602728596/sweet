@@ -20,7 +20,7 @@
   "workspaces": [
     "packages/*"
   ],
-  "packageManager": "yarn@4.1.1",
+  "packageManager": "yarn@4.3.1",
   "dependencies": {
     "@types/babel__core": "^7",
     "@types/eslint": "^8",
@@ -29,22 +29,22 @@
     "@types/lodash": "^4",
     "@types/node": "^20",
     "@types/sockjs": "^0",
-    "@types/ws": "^8.5.10",
+    "@types/ws": "^8",
     "@types/yargs": "^17",
-    "lerna": "^8.1.2",
-    "rimraf": "^5.0.5",
-    "typescript": "^5.4.5",
-    "zx": "^8.0.2"
+    "lerna": "^8.1.6",
+    "rimraf": "^6.0.1",
+    "typescript": "^5.5.3",
+    "zx": "^8.1.4"
   },
   "devDependencies": {
-    "@babel/core": "^7.24.4",
-    "@babel/eslint-parser": "^7.24.1",
+    "@babel/core": "^7.24.9",
+    "@babel/eslint-parser": "^7.24.8",
     "@eslint/compat": "^1.1.1",
     "@sweet-milktea/milktea-cli": "*",
     "@sweet-milktea/util-tools": "*",
-    "@typescript-eslint/eslint-plugin": "^7.16.0",
-    "@typescript-eslint/parser": "^7.16.0",
-    "chai": "^5.1.0",
+    "@typescript-eslint/eslint-plugin": "^7.16.1",
+    "@typescript-eslint/parser": "^7.16.1",
+    "chai": "^5.1.1",
     "commitizen": "^4.3.0",
     "cross-env": "^7.0.3",
     "cz-conventional-changelog": "^3.3.0",
@@ -56,15 +56,15 @@
     "fs-extra": "^11.2.0",
     "globals": "^15.8.0",
     "husky": "^9.0.11",
-    "lint-staged": "^15.2.2",
+    "lint-staged": "^15.2.7",
     "lodash": "^4.17.21",
-    "mocha": "^10.4.0"
+    "mocha": "^10.6.0"
   },
   "optionalDependencies": {
     "imagemin-gif2webp": ">=3",
     "imagemin-gifsicle": ">=7",
     "imagemin-jpegoptim": ">=8",
-    "imagemin-pngquant": ">=9",
+    "imagemin-pngquant": ">=10",
     "imagemin-webp": ">=8",
     "sharp": ">=0"
   },
