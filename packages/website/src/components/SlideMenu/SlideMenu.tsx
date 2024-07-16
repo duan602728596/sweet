@@ -1,15 +1,13 @@
-import { useMemo, useCallback, ReactElement, ReactNode } from 'react';
-import { Link, useLocation } from 'react-router-dom';
-import type { Location } from '@remix-run/router';
+import { useMemo, type ReactElement } from 'react';
+import { Link, useLocation, type Location } from 'react-router-dom';
 import { Menu } from 'antd';
+import type { MenuItemType, SubMenuType } from 'rc-menu/es/interface';
 import {
   FireOutlined as IconFireOutlined,
   DeploymentUnitOutlined as IconDeploymentUnitOutlined,
   PartitionOutlined as IconPartitionOutlined
 } from '@ant-design/icons';
 import style from './slideMenu.sass';
-
-const { Item: MenuItem, SubMenu }: typeof Menu = Menu;
 
 /* 路由配置 */
 interface NavItem {
@@ -91,6 +89,38 @@ const navs: Array<NavItem> = [
 ];
 const openKeys: Array<string> = navs.map((o: NavItem): string => o.id);
 
+function navItemsRender(items: Array<NavItem>): Array<MenuItemType | SubMenuType> {
+  const menuItems: Array<MenuItemType | SubMenuType> = [];
+
+  for (const item of items) {
+    const { id, url, name, icon, children }: NavItem = item;
+
+    if (children?.length) {
+      const childrenMenuItems: Array<MenuItemType | SubMenuType> = navItemsRender(children);
+
+      menuItems.push({
+        type: 'submenu',
+        label: <span>{ icon }{ name }</span>,
+        children: childrenMenuItems,
+        key: id
+      });
+    } else {
+      menuItems.push({
+        type: 'item',
+        label: (
+          <Link to={ url }>
+            { icon }
+            { name }
+          </Link>
+        ),
+        key: id
+      });
+    }
+  }
+
+  return menuItems;
+}
+
 /* 网站菜单 */
 function SlideMenu(props: {}): ReactElement {
   const location: Location = useLocation();
@@ -98,40 +128,13 @@ function SlideMenu(props: {}): ReactElement {
     (): string => location.pathname.toLocaleLowerCase().replace(/^\//, ''),
     [location.pathname]);
 
-  // 渲染菜单
-  const navRender: (n: NavItem[]) => Array<ReactNode> = useCallback(function(navsList: Array<NavItem>): Array<ReactNode> {
-    const element: Array<ReactElement> = [];
-
-    for (const item of navsList) {
-      const { id, url, name, icon, children }: NavItem = item;
-
-      if (children?.length) {
-        const childrenElement: Array<ReactNode> = navRender(children);
-
-        element.push(
-          <SubMenu key={ id } title={ <span>{ icon }{ name }</span> }>
-            { childrenElement }
-          </SubMenu>
-        );
-      } else {
-        element.push(
-          <MenuItem key={ id }>
-            <Link to={ url }>
-              { icon }
-              { name }
-            </Link>
-          </MenuItem>
-        );
-      }
-    }
-
-    return element;
-  }, []);
-
   return (
-    <Menu className={ style.menu } mode="inline" defaultOpenKeys={ openKeys } selectedKeys={ [selectedKey] }>
-      { navRender(navs) }
-    </Menu>
+    <Menu className={ style.menu }
+      mode="inline"
+      items={ navItemsRender(navs) }
+      defaultOpenKeys={ openKeys }
+      selectedKeys={ [selectedKey] }
+    />
   );
 }
 
