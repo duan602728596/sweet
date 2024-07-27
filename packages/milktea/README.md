@@ -107,6 +107,7 @@ module.exports = function(info) {
 * chainWebpack `{ Function }` : 扩展或修改webpack配置
 * filesMap `{ boolean | object }` : 输出`filesMap.json`文件，记录了文件的映射
 * hot `{ boolean }` : 添加**webpack.HotModuleReplacementPlugin**插件，开启热更新功能
+* reactCompiler `{ boolean | object }` : 是否开启react-compiler
 
 下面的配置是关于服务器端渲染的
 
