@@ -82,6 +82,7 @@ module.exports = function(info) {
     * plugins `{ Array<any> }` : 自定义plugins
     * exclude `{ RegExp }` : exclude规则
     * include `{ RegExp }` : include规则
+    * reactCompiler `{ boolean | object }` : 是否开启react-compiler
 * typescript `{ object }` : typescript配置
     * configFile `{ string }` : typescript的配置文件
     * presets `{ Array<any> }` : 自定义babel的presets
@@ -89,6 +90,7 @@ module.exports = function(info) {
     * exclude `{ RegExp }` : exclude规则
     * include `{ RegExp }` : include规则
     * forkTsCheckerWebpackPlugin `{ boolean }` : 设置为false时，关闭fork-ts-checker-webpack-plugin插件注入
+    * reactCompiler `{ boolean | object }` : 是否开启react-compiler
 * sass `{ object }` : sass配置
     * modules `{ boolean }` : 开启css-in-modules
     * exclude `{ RegExp }` : exclude规则
@@ -107,7 +109,6 @@ module.exports = function(info) {
 * chainWebpack `{ Function }` : 扩展或修改webpack配置
 * filesMap `{ boolean | object }` : 输出`filesMap.json`文件，记录了文件的映射
 * hot `{ boolean }` : 添加**webpack.HotModuleReplacementPlugin**插件，开启热更新功能
-* reactCompiler `{ boolean | object }` : 是否开启react-compiler
 
 下面的配置是关于服务器端渲染的
 
