@@ -49,8 +49,8 @@
     "path-to-regexp": "^7.1.0",
     "sockjs": "^0.3.24",
     "sockjs-client": "^1.6.1",
-    "url": "^0.11.3",
-    "webpack-dev-middleware": "^7.2.1",
+    "url": "^0.11.4",
+    "webpack-dev-middleware": "^7.3.0",
     "ws": "^8.18.0"
   },
   "devDependencies": {
@@ -60,7 +60,7 @@
     "cross-env": "*",
     "mocha": "*",
     "nunjucks": "^3.2.4",
-    "vite": "^5.3.3",
+    "vite": "^5.3.5",
     "webpack": "^5.93.0"
   },
   "peerDependencies": {
