@@ -8,8 +8,8 @@
     "build": "npm run clean && npm run build:packages && zx scripts/build.mjs",
     "build:packages": "lerna run build:esm --concurrency 4 && lerna run build:cjs --concurrency 4",
     "clean": "node ./scripts/clean.mjs",
-    "eslint": "eslint ./ --fix",
-    "eslint:no-fix": "eslint ./",
+    "eslint": "cross-env COMMITLINT=1 eslint ./ --fix --cache --cache-location .eslintcache",
+    "eslint:no-fix": "cross-env COMMITLINT=1 eslint ./ --cache --cache-location .eslintcache",
     "lerna:install": "lerna bootstrap --force-local",
     "update-version": "milktea-esm update",
     "update-version:dev": "milktea-esm update --__DEV__",
@@ -69,7 +69,7 @@
     "sharp": ">=0"
   },
   "lint-staged": {
-    "**/*.{js,jsx,mjs,cjs,ts,tsx,mts,cts}": "eslint"
+    "**/*.{js,jsx,mjs,cjs,ts,tsx,mts,cts}": "npm run eslint:no-fix"
   },
   "config": {
     "commitizen": {
