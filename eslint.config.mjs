@@ -305,9 +305,11 @@ export default [
     languageOptions: {
       parser: typescriptEslintParser,
       parserOptions: {
+        allowAutomaticSingleRunInference: true,
         project: 'tsconfig.json',
         createDefaultProgram: true,
-        sourceType: 'module'
+        sourceType: 'module',
+        EXPERIMENTAL_useProjectService: true
       },
       globals: languageGlobalsOptions
     },

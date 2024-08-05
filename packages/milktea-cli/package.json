@@ -25,15 +25,15 @@
     "yargs": "^17.7.2"
   },
   "devDependencies": {
-    "@sweet-milktea/milktea": "^4.2.0",
-    "@sweet-milktea/milktea-vite": "^4.2.0",
-    "@sweet-milktea/server": "^4.2.0",
+    "@sweet-milktea/milktea": "^4.3.0",
+    "@sweet-milktea/milktea-vite": "^4.3.0",
+    "@sweet-milktea/server": "^4.3.0",
     "@sweet-milktea/server-log": "^4.0.0",
     "@sweet-milktea/util-tools": "^4.1.0",
     "cross-env": "*",
     "mocha": "*",
     "ts-node": "^10.9.2",
-    "vite": "^5.3.3",
+    "vite": "^5.3.5",
     "webpack": "^5.93.0"
   },
   "peerDependencies": {

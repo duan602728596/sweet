@@ -82,6 +82,7 @@ module.exports = function(info) {
     * plugins `{ Array<any> }` : 自定义plugins
     * exclude `{ RegExp }` : exclude规则
     * include `{ RegExp }` : include规则
+    * reactCompiler `{ boolean | object }` : 是否开启react-compiler
 * typescript `{ object }` : typescript配置
     * configFile `{ string }` : typescript的配置文件
     * presets `{ Array<any> }` : 自定义babel的presets
@@ -89,6 +90,7 @@ module.exports = function(info) {
     * exclude `{ RegExp }` : exclude规则
     * include `{ RegExp }` : include规则
     * forkTsCheckerWebpackPlugin `{ boolean }` : 设置为false时，关闭fork-ts-checker-webpack-plugin插件注入
+    * reactCompiler `{ boolean | object }` : 是否开启react-compiler
 * sass `{ object }` : sass配置
     * modules `{ boolean }` : 开启css-in-modules
     * exclude `{ RegExp }` : exclude规则
