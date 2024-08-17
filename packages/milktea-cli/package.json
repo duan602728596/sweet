@@ -33,7 +33,7 @@
     "cross-env": "*",
     "mocha": "*",
     "ts-node": "^10.9.2",
-    "vite": "^5.3.5",
+    "vite": "^5.4.1",
     "webpack": "^5.93.0"
   },
   "peerDependencies": {
