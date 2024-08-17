@@ -1,6 +1,7 @@
 import process from 'node:process';
 import { fixupPluginRules } from '@eslint/compat';
 import babelEslintParser from '@babel/eslint-parser';
+import vueEslintParser from 'vue-eslint-parser';
 import eslintPluginReact from 'eslint-plugin-react';
 import eslintPluginImport from 'eslint-plugin-import';
 import eslintPluginVue from 'eslint-plugin-vue';
@@ -262,20 +263,23 @@ export default [
   },
   {
     files: ['**/*.vue'],
-    parser: 'vue-eslint-parser',
-    parserOptions: {
-      parser: babelEslintParser,
-      requireConfigFile: false,
-      babelOptions: {
-        presets: [[
-          '@sweet-milktea/babel-preset-sweet',
-          { env: { ecmascript: true }, react: { use: false } }
-        ]]
+    languageOptions: {
+      parser: vueEslintParser,
+      parserOptions: {
+        parser: babelEslintParser,
+        requireConfigFile: false,
+        babelOptions: {
+          presets: [[
+            '@sweet-milktea/babel-preset-sweet',
+            { env: { ecmascript: true }, react: { use: false } }
+          ]]
+        }
       }
     },
     plugins: {
+      ...plugins,
       vue: fixupPluginRules(eslintPluginVue)
     },
     rules: { ...eslintRules, ...eslintVueRules }
-  },
+  }
 ];
