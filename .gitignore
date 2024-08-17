@@ -15,6 +15,7 @@ yarn-error.log
 
 # webstorm
 .idea
+.DS_Store
 
 # build
 build
@@ -25,9 +26,8 @@ Dockerfile-sss
 
 # cache
 .sweet/*
+.eslintcache
 
 # https
 *.crt
 *.key
-
-.DS_Store
