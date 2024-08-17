@@ -36,7 +36,7 @@ async function preRenderInit(sweetOptions: SweetOptions): Promise<Function> {
       return regexp.exec(ctxPath) !== null && regexp.exec(ctxPath) !== undefined;
     });
     const data: any = index >= 0 ? await controllersModules[index].handler(ctx, sweetOptions) : {};
-    const html: Buffer = ctx.body as Buffer;
+    const html: Buffer = isReadStream(ctx.body as Stream) ? (await readStream(ctx.body as Stream)) : ctx.body as Buffer;
 
     // 挂载自定义的渲染方法
     ctx.renderHtml = function(r: string): string {
