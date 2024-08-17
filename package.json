@@ -7,7 +7,8 @@
     "clean": "rimraf ./dist",
     "clean:server": "rimraf ./dist-server",
     "server": "milktea-esm server --serverRender --redirectToHttps",
-    "eslint": "eslint ./ --ext .js,.jsx,.vue --fix",
+    "eslint": "cross-env COMMITLINT=1 eslint ./ --fix --cache --cache-location .eslintcache --no-warn-ignored",
+    "eslint:no-fix": "cross-env COMMITLINT=1 eslint ./ --cache --cache-location .eslintcache --no-warn-ignored",
     "update-version": "milktea-esm update",
     "postinstall": "husky install"
   },
@@ -50,7 +51,7 @@
     "vue-svg-loader": "^0.17.0-beta.2"
   },
   "lint-staged": {
-    "**/*.{js,jsx}": "eslint"
+    "**/*.{js,jsx,mjs,cjs,vue}": "cross-env COMMITLINT=1 eslint --cache --cache-location .eslintcache --no-warn-ignored"
   },
   "config": {
     "commitizen": {
