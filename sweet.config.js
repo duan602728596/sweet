@@ -11,12 +11,16 @@ export default function(info) {
   const config = {
     frame: 'react',
     dll: [
+      '@ant-design/icons',
       '@reduxjs/toolkit',
+      'antd',
+      'classnames',
       'react',
+      'react/jsx-dev-runtime',
       'react-dom/client',
+      'react-helmet',
       'react-redux',
       'react-router-dom',
-      'react-helmet',
       'reselect'
     ],
     entry: {
