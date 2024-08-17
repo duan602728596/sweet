@@ -3,15 +3,10 @@
  * 当模块报错时，显示错误
  */
 import { Component } from 'react';
-import PropTypes from 'prop-types';
 import style from './index.sass';
 import Content from '../Content/index';
 
 class ErrorBoundary extends Component {
-  static propTypes = {
-    children: PropTypes.node
-  };
-
   state = {
     hasError: false,
     error: undefined,

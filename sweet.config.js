@@ -11,14 +11,13 @@ export default function(info) {
   const config = {
     frame: 'react',
     dll: [
+      '@reduxjs/toolkit',
       'react',
       'react-dom/client',
-      'prop-types',
-      '@reduxjs/toolkit',
       'react-redux',
-      'reselect',
       'react-router-dom',
-      'react-helmet'
+      'react-helmet',
+      'reselect'
     ],
     entry: {
       index: [path.join(__dirname, 'src/index.js')],
@@ -30,7 +29,7 @@ export default function(info) {
     },
     serverExternals: [
       function({ context, request }, callback) {
-        if (/^react(-dom(\/server)?|-router(-dom(\/server)?)?)?|prop-types|react-redux|reselect$/.test(request)) {
+        if (/^react(-dom(\/server)?|-router(-dom(\/server)?)?)?|react-redux|reselect$/.test(request)) {
           callback(null, 'commonjs ' + request);
         } else {
           callback();

@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from 'react-redux';
-import { createSelector, createStructuredSelector } from 'reselect';
+import { createStructuredSelector } from 'reselect';
 import { Typography } from 'antd';
 import { LikeFilled as IconLikeFilled } from '@ant-design/icons';
 import style from './welcome.sass';
@@ -8,10 +8,7 @@ import WelcomeSvgComponent from './images/welcome.component.svg';
 
 /* redux selector */
 const selector = createStructuredSelector({
-  likeLen: createSelector(
-    ({ index }) => index.likeLen,
-    (data) => data
-  )
+  likeLen: ({ index }) => index.likeLen
 });
 
 function Welcome(props) {

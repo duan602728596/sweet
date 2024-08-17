@@ -3,7 +3,6 @@
  * 页面内容
  * 组件用于展示页面的内容
  */
-import PropTypes from 'prop-types';
 import { Layout } from 'antd';
 import style from './index.sass';
 import ErrorBoundary from '../ErrorBoundary/index';
@@ -17,9 +16,5 @@ function Content(props) {
     </ErrorBoundary>
   );
 }
-
-Content.propTypes = {
-  children: PropTypes.node
-};
 
 export default Content;

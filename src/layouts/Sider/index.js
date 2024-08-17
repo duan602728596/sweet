@@ -3,7 +3,6 @@
  * 页面左侧菜单
  * 渲染二级和三级菜单
  */
-import PropTypes from 'prop-types';
 import { useLocation, Link } from 'react-router-dom';
 import { Layout, Menu } from 'antd';
 import style from './index.sass';
@@ -73,9 +72,5 @@ function Sider(props) {
     </ErrorBoundary>
   );
 }
-
-Sider.propTypes = {
-  options: PropTypes.array
-};
 
 export default Sider;
