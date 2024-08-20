@@ -1,10 +1,10 @@
 import process from 'node:process';
-import { fixupPluginRules } from '@eslint/compat';
 import babelEslintParser from '@babel/eslint-parser';
 import typescriptEslintParser from '@typescript-eslint/parser';
 import typescriptEslintPlugin from '@typescript-eslint/eslint-plugin';
 import eslintPluginReact from 'eslint-plugin-react';
 import eslintPluginImport from 'eslint-plugin-import';
+import eslintPluginReactCompiler from 'eslint-plugin-react-compiler';
 import globals from 'globals';
 
 const commitLint = process.env.COMMITLINT === '1';
@@ -26,6 +26,7 @@ const ignores = [
   'packages/server-hot-client/**',
   'packages/**/.sweet/dll/**',
   'packages/**/dist/**',
+  'packages/**/dist-server/**',
   'storybook-static/**'
 ];
 
@@ -48,8 +49,9 @@ const languageGlobalsOptions = {
 };
 
 const plugins = {
-  react: fixupPluginRules(eslintPluginReact),
-  import: fixupPluginRules(eslintPluginImport)
+  react: eslintPluginReact,
+  import: eslintPluginImport,
+  'react-compiler': eslintPluginReactCompiler
 };
 
 const settings = {
@@ -250,7 +252,9 @@ const eslintRules = {
   'import/no-unresolved': [ // 确保导入的模块可以解析为本地文件系统上的模块
     commitLint ? 'error' : 'off',
     { commonjs: true }
-  ]
+  ],
+  // react-compiler
+  'react-compiler/react-compiler': commitLint ? 'warn' : 'off'
 };
 
 const eslintTypescriptRules = {

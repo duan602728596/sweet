@@ -38,7 +38,6 @@
   "devDependencies": {
     "@babel/core": "^7.25.2",
     "@babel/eslint-parser": "^7.25.1",
-    "@eslint/compat": "^1.1.1",
     "@sweet-milktea/milktea-cli": "*",
     "@sweet-milktea/util-tools": "*",
     "@typescript-eslint/eslint-plugin": "^8.1.0",
@@ -52,6 +51,7 @@
     "eslint-import-resolver-typescript": "^3.6.1",
     "eslint-plugin-import": "^2.29.1",
     "eslint-plugin-react": "^7.35.0",
+    "eslint-plugin-react-compiler": "latest",
     "fs-extra": "^11.2.0",
     "globals": "^15.9.0",
     "husky": "^9.1.4",
