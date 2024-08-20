@@ -39,7 +39,7 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
   }
 
   if (isReact && reactCompiler) {
-    babelPlugins.push(['babel-plugin-react-compile', typeof reactCompiler === 'object' ? reactCompiler : {}]);
+    babelPlugins.push(['babel-plugin-react-compiler', typeof reactCompiler === 'object' ? reactCompiler : {}]);
   }
 
   configRulePush(config, {
