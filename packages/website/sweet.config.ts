@@ -5,7 +5,7 @@ const isDev: boolean = process.env.NODE_ENV === 'development';
 
 const reactCompiler: { sources(p: string): boolean } = {
   sources(p: string): boolean {
-    return /packages[\\/]websites[\\/].+\.tsx/.test(p);
+    return /website[\\/]src[\\/].+\.tsx/.test(p);
   }
 };
 
