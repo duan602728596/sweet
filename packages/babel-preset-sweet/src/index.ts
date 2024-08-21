@@ -60,6 +60,7 @@ function babelPresetSweet(api: any, options: Options = {}, dirname: string): Bab
   plugins.push([
     'babel-plugin-polyfill-corejs3',
     {
+      targets: babelBuildTargets,
       method: 'usage-pure',
       proposals: true
     }
