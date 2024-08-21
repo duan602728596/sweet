@@ -20,6 +20,7 @@ export interface ReactOptions {
 export interface BabelPresetSweetOptions {
   env?: EnvOptions;
   react?: ReactOptions;
+  typescript?: boolean;
 }
 
 export interface BabelPresetSweet {
