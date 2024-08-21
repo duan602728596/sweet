@@ -9,7 +9,7 @@ import type { BabelPresetSweetOptions as Options, BabelPresetSweet, EnvOptions, 
 const isDevelopment: boolean = process.env.NODE_ENV === 'development';
 
 function babelPresetSweet(api: any, options: Options = {}, dirname: string): BabelPresetSweet {
-  const { env, react, typescript }: Options = options;
+  const { env, react, typescript, polyfill = true }: Options = options;
   const { nodeEnv, ecmascript, targets: customTargets, debug, modules }: EnvOptions = env ?? {},
     { use: useTypescript }: TypescriptOptions = typescript ?? {},
     { use: useReact = true, runtime, development }: ReactOptions = react ?? {};
@@ -63,15 +63,20 @@ function babelPresetSweet(api: any, options: Options = {}, dirname: string): Bab
     ]);
   }
 
-  // 添加babel-plugin-polyfill-{name}相关插件
-  plugins.push([
-    'babel-plugin-polyfill-corejs3',
-    {
-      targets: babelBuildTargets,
-      method: 'usage-pure',
-      proposals: true
-    }
-  ]);
+  // 添加polyfill相关插件
+  if (polyfill) {
+    plugins.push(
+      '@babel/plugin-transform-runtime',
+      [
+        'babel-plugin-polyfill-corejs3',
+        {
+          targets: babelBuildTargets,
+          method: 'usage-pure',
+          proposals: true
+        }
+      ]
+    );
+  }
 
   return { presets, plugins };
 }
