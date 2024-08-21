@@ -20,8 +20,7 @@ function createJsRegisterLoader(): Loader {
           },
           typescript: {
             use: true
-          },
-          polyfill: false
+          }
         }
       ]],
       cache: true,

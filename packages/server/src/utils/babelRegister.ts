@@ -26,8 +26,7 @@ async function useRegister(sweetOptions: SweetOptions): Promise<void> {
             },
             typescript: {
               use: true
-            },
-            polyfill: false
+            }
           }
         ]
       ],
