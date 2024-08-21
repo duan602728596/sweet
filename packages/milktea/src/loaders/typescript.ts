@@ -1,4 +1,5 @@
 import _ from 'lodash';
+import { moduleExists } from '@sweet-milktea/utils';
 import type { Configuration } from 'webpack';
 import type { PluginItem } from '@babel/core';
 import { customizer, configRulePush } from '../utils/utils.js';
@@ -23,6 +24,17 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
     isVue: boolean = frame === 'vue';
   const babelPresets: Array<PluginItem> = [],
     babelPlugins: Array<PluginItem> = [];
+
+  // TODO: 如果开启了react-compiler，必须保证jsx是原始输入，需要后续使用babel来编译jsx
+  if (isReact && reactCompiler) {
+    babelPresets.push([
+      '@babel/preset-react',
+      {
+        runtime: (moduleExists('react/jsx-runtime') ? 'automatic' : 'classic'),
+        development: isDevelopment
+      }
+    ]);
+  }
 
   if (Array.isArray(extraPresets)) {
     babelPresets.push(...extraPresets);
