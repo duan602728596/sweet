@@ -77,7 +77,6 @@ module.exports = function(info) {
     * targets `{ object }` : 配置@babel/preset-env的编译目标
     * ecmascript `{ boolean }` : 是否编译到ecmascript的最新语法（即不使用@babel/preset-env，通常适用于node、nwjs和electron）
     * polyfill `{ boolean }` : 使用babel-plugin-polyfill-{name}相关插件
-    * typescript `{ boolean }` : 是否使用typescript编译（即使用@babel/preset-typescript）
     * presets `{ Array<any> }` : 自定义presets
     * plugins `{ Array<any> }` : 自定义plugins
     * exclude `{ RegExp }` : exclude规则

@@ -12,7 +12,6 @@ export default async function(sweetConfig: SweetConfig, sweetOptions: SweetOptio
   const {
     ecmascript,
     polyfill,
-    typescript,
     presets: extraPresets,
     plugins: extraPlugins,
     exclude,
@@ -24,7 +23,6 @@ export default async function(sweetConfig: SweetConfig, sweetOptions: SweetOptio
   const isDevelopment: boolean = mode === 'development';
   const isEnvServerSideRender: boolean = environment === 'server';
   const debug: boolean = frame === 'test' ? false : isDevelopment;
-  const useTypescript: boolean = !!typescript;
 
   // 添加额外的插件
   const isReact: boolean = frame === 'react',
@@ -52,10 +50,6 @@ export default async function(sweetConfig: SweetConfig, sweetOptions: SweetOptio
         targets: customTargets,
         debug: (!webpackLog || webpackLog !== 'progress') && debug
       },
-      typescript: {
-        use: useTypescript,
-        isReact: !isVue
-      },
       react: {
         use: isReact
       },
@@ -74,7 +68,7 @@ export default async function(sweetConfig: SweetConfig, sweetOptions: SweetOptio
   }
 
   configRulePush(config, {
-    test: useTypescript ? /^.*\.(m|c)?(j|t)sx?$/i : /^.*\.(m|c)?jsx?$/i,
+    test: /^.*\.(m|c)?jsx?$/i,
     use: [
       {
         loader: 'babel-loader',

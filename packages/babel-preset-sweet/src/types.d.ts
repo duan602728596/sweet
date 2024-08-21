@@ -10,12 +10,6 @@ export interface EnvOptions {
   useBuiltIns?: boolean | string; // useBuiltIns
 }
 
-// @babel/preset-typescript的配置
-export interface TypescriptOptions {
-  use?: boolean;     // 是否添加@babel/preset-typescript
-  isReact?: boolean; // 是否开启react jsx的转换
-}
-
 // @babel/preset-react的配置
 export interface ReactOptions {
   use?: boolean;         // 是否添加@babel/preset-react
@@ -26,7 +20,6 @@ export interface ReactOptions {
 // babel配置
 export interface BabelPresetSweetOptions {
   env?: EnvOptions;
-  typescript?: TypescriptOptions;
   react?: ReactOptions;
   polyfill?: boolean;
 }

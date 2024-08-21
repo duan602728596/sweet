@@ -4,20 +4,13 @@ import type { PluginItem } from '@babel/core';
 import defaultPlugins from './utils/defaultPlugins.js';
 import presetEnv from './utils/presetEnv.js';
 import transformRuntime from './utils/transformRuntime.js';
-import type {
-  BabelPresetSweetOptions as Options,
-  BabelPresetSweet,
-  EnvOptions,
-  ReactOptions,
-  TypescriptOptions
-} from './types.js';
+import type { BabelPresetSweetOptions as Options, BabelPresetSweet, EnvOptions, ReactOptions } from './types.js';
 
 const isDevelopment: boolean = process.env.NODE_ENV === 'development';
 
 function babelPresetSweet(api: any, options: Options = {}, dirname: string): BabelPresetSweet {
-  const { env, typescript, react, polyfill }: Options = options;
+  const { env, react, polyfill }: Options = options;
   const { nodeEnv, ecmascript, targets: customTargets, debug, modules, useBuiltIns }: EnvOptions = env ?? {},
-    { use: useTypescript, isReact = true }: TypescriptOptions = typescript ?? {},
     { use: useReact = true, runtime, development }: ReactOptions = react ?? {};
   const envModules: string | boolean = modules ?? false; // @babel/preset-env的模块类型
 
@@ -69,17 +62,6 @@ function babelPresetSweet(api: any, options: Options = {}, dirname: string): Bab
       {
         runtime: runtime ?? (moduleExists('react/jsx-runtime') ? 'automatic' : 'classic'),
         development: development ?? isDevelopment
-      }
-    ]);
-  }
-
-  // 添加@babel/preset-typescript
-  if (useTypescript) {
-    presets.push([
-      '@babel/preset-typescript',
-      {
-        jsxPragma: isReact ? 'React' : 'Preserve',
-        allowNamespaces: true
       }
     ]);
   }

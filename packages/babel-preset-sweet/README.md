@@ -9,9 +9,6 @@
     * debug `{ boolean }` : 开启debug信息
     * modules `{ boolean | string }` : 模块加载方式
     * useBuiltIns `{ boolean | string }` : useBuiltIns
-* typescript
-    * use `{ boolean }` : 是否开启typescript转换
-    * isReact `{ boolean }` : 是否开启typescript-jsx转换，默认开启
 * react
     * use `{ boolean }` : 是否开启react转换，默认开启
     * runtime `{ string }` : 是否使用react/jsx-runtime，默认根据react版本判断
