@@ -3,6 +3,12 @@ import path from 'node:path';
 
 const isDev: boolean = process.env.NODE_ENV === 'development';
 
+const reactCompiler: { sources(p: string): boolean } = {
+  sources(p: string): boolean {
+    return /packages[\\/]websites[\\/].+\.tsx/.test(p);
+  }
+};
+
 export default function(info: object): object {
   const jsExclude: RegExp = /node_modules|packages[\\/](server|hot-client)/;
 
@@ -12,7 +18,10 @@ export default function(info: object): object {
       '@ant-design/icons',
       'antd',
       'react',
+      'react/compiler-runtime',
+      'react/jsx-dev-runtime',
       'react-dom',
+      'react-dom/client',
       'react-helmet',
       'react-router-dom',
       'react-showdown'
@@ -27,7 +36,8 @@ export default function(info: object): object {
     typescript: {
       configFile: isDev ? 'tsconfig.json' : 'tsconfig.prod.json',
       plugins: [['@babel/plugin-syntax-import-assertions', undefined, 'import-assertions']],
-      exclude: jsExclude
+      exclude: jsExclude,
+      reactCompiler
     },
     sass: {
       include: /src/
