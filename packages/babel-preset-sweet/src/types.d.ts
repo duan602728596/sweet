@@ -16,11 +16,16 @@ export interface ReactOptions {
   development?: boolean; // 是否为开发环境
 }
 
+// @babel/preset-typescript的配置
+export interface TypescriptOptions {
+  use?: boolean; // 是否添加@babel/preset-typescript
+}
+
 // babel配置
 export interface BabelPresetSweetOptions {
   env?: EnvOptions;
   react?: ReactOptions;
-  typescript?: boolean;
+  typescript?: TypescriptOptions;
 }
 
 export interface BabelPresetSweet {
