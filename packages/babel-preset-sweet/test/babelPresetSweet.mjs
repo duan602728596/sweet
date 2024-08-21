@@ -79,6 +79,28 @@ describe('babel-preset-sweet', function() {
     expect(codeESM.includes('async function')).to.be.true;
   });
 
+  it('build typescript', async function() {
+    const rawCode = `import { type ReactElement } from 'react';
+
+const a: number = 5;
+
+ function App(props: {}): ReactElement {
+   return <div>{ a }</div>;
+ }`;
+    const options = {
+      typescript: { use: true }
+    };
+    const [{ code }, { code: codeESM }] = await Promise.all([
+      transformCode(rawCode, options, { isTs: true }),
+      transformCodeESM(rawCode, options, { isTs: true })
+    ]);
+
+    expect(code.includes('var a = 5;')).to.be.true;
+    expect(codeESM.includes('var a = 5;')).to.be.true;
+    expect(code.includes('_jsx("div"')).to.be.true;
+    expect(codeESM.includes('_jsx("div"')).to.be.true;
+  });
+
   it('build transform-runtime', async function() {
     const rawCode = 'const isArray = Array.isArray([]);';
     const options = {
