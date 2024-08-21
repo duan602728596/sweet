@@ -1,6 +1,6 @@
 {
   "name": "@sweet-milktea/milktea",
-  "version": "4.3.1",
+  "version": "4.4.0",
   "description": "webpack配置函数",
   "homepage": "https://github.com/duan602728596/sweet",
   "repository": {
@@ -31,7 +31,7 @@
     "@bbkkbkk/files-map-webpack-plugin": "^2.0.0",
     "@pmmmwh/react-refresh-webpack-plugin": "^0.5.15",
     "@svgr/webpack": "^8.1.0",
-    "@sweet-milktea/babel-preset-sweet": "^4.3.0",
+    "@sweet-milktea/babel-preset-sweet": "^4.4.0",
     "@sweet-milktea/utils": "^4.0.0",
     "babel-loader": "^9.1.3",
     "babel-plugin-react-compiler": "latest",

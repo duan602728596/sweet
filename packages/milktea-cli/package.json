@@ -25,9 +25,9 @@
     "yargs": "^17.7.2"
   },
   "devDependencies": {
-    "@sweet-milktea/milktea": "^4.3.1",
-    "@sweet-milktea/milktea-vite": "^4.3.0",
-    "@sweet-milktea/server": "^4.3.1",
+    "@sweet-milktea/milktea": "^4.4.0",
+    "@sweet-milktea/milktea-vite": "^4.4.0",
+    "@sweet-milktea/server": "^4.4.0",
     "@sweet-milktea/server-log": "^4.0.0",
     "@sweet-milktea/util-tools": "^4.1.0",
     "cross-env": "*",
