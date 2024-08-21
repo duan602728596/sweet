@@ -21,11 +21,13 @@ async function useRegister(sweetOptions: SweetOptions): Promise<void> {
           {
             env: {
               nodeEnv: true,
+              ecmascript: true,
               modules: 'commonjs'
             },
             typescript: {
               use: true
-            }
+            },
+            polyfill: false
           }
         ]
       ],
