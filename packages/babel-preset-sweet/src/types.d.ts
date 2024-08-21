@@ -25,5 +25,4 @@ export interface BabelPresetSweetOptions {
 export interface BabelPresetSweet {
   presets: Array<PluginItem>;
   plugins: Array<PluginItem>;
-  babelBuildTargets: object;
 }

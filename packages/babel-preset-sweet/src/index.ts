@@ -65,7 +65,7 @@ function babelPresetSweet(api: any, options: Options = {}, dirname: string): Bab
     }
   ]);
 
-  return { presets, plugins, babelBuildTargets };
+  return { presets, plugins };
 }
 
 export default babelPresetSweet;
