@@ -7,7 +7,6 @@ export interface EnvOptions {
   targets?: object;               // 自定义babel的编译版本
   debug?: boolean;                // 开启debug信息
   modules?: boolean | string;     // modules
-  useBuiltIns?: boolean | string; // useBuiltIns
 }
 
 // @babel/preset-react的配置
@@ -21,10 +20,10 @@ export interface ReactOptions {
 export interface BabelPresetSweetOptions {
   env?: EnvOptions;
   react?: ReactOptions;
-  polyfill?: boolean;
 }
 
 export interface BabelPresetSweet {
   presets: Array<PluginItem>;
   plugins: Array<PluginItem>;
+  babelBuildTargets: object;
 }

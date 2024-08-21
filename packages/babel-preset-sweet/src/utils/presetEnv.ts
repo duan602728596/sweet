@@ -2,34 +2,21 @@ import type { PluginItem } from '@babel/core';
 
 interface PresetEnvOptionsArgs {
   babelBuildTargets: object;
-  useBuiltIns?: boolean | string;
   debug?: boolean;
   envModules: string | boolean;
-  polyfill?: boolean;
 }
 
 /* @babel/preset-env */
 function presetEnv(options: PresetEnvOptionsArgs): PluginItem {
-  const { babelBuildTargets, useBuiltIns, debug, envModules, polyfill }: PresetEnvOptionsArgs = options;
-  const useBuiltInsValue: string | boolean = useBuiltIns ?? 'usage';
+  const { babelBuildTargets, debug, envModules }: PresetEnvOptionsArgs = options;
 
   // @babel/preset-env的配置
-  const presetEnvOptions: { [key: string]: any } = {
+  const presetEnvOptions: Record<string, any> = {
     targets: babelBuildTargets,
     debug,
     modules: envModules,
     bugfixes: true
   };
-
-  if (!polyfill) {
-    Object.assign(presetEnvOptions, {
-      useBuiltIns: useBuiltInsValue
-    });
-
-    if (useBuiltInsValue) {
-      presetEnvOptions.corejs = 3;
-    }
-  }
 
   return ['@babel/preset-env', presetEnvOptions];
 }

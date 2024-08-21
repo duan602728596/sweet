@@ -32,10 +32,9 @@
     "@babel/plugin-transform-runtime": "^7.24.7",
     "@babel/preset-env": "^7.25.3",
     "@babel/preset-react": "^7.24.7",
-    "@babel/runtime-corejs3": "^7.25.0",
+    "@babel/runtime": "^7.25.0",
     "@sweet-milktea/utils": "^4.0.0",
     "babel-plugin-polyfill-corejs3": "^0.10.6",
-    "babel-plugin-polyfill-es-shims": "^0.10.5",
     "core-js": "^3.38.0"
   },
   "devDependencies": {

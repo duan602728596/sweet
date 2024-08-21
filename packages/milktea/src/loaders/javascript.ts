@@ -40,6 +40,12 @@ export default async function(sweetConfig: SweetConfig, sweetOptions: SweetOptio
 
   // babel-preset-sweet
   const babelPresetSweet: PluginTarget = await requireModule('@sweet-milktea/babel-preset-sweet');
+  const babelBuildTargets: object = {
+    browsers: ecmascript ? ['last 5 Chrome versions'] : [
+      'last 10 versions',
+      'last 2 year'
+    ]
+  };
 
   babelPresets.push([
     babelPresetSweet,
@@ -47,7 +53,7 @@ export default async function(sweetConfig: SweetConfig, sweetOptions: SweetOptio
       env: {
         nodeEnv: isEnvServerSideRender,
         ecmascript,
-        targets: customTargets,
+        targets: customTargets ?? babelBuildTargets,
         debug: (!webpackLog || webpackLog !== 'progress') && debug
       },
       react: {
@@ -72,7 +78,11 @@ export default async function(sweetConfig: SweetConfig, sweetOptions: SweetOptio
     use: [
       {
         loader: 'babel-loader',
-        options: _.mergeWith(createBabelOptions(sweetOptions), { presets: babelPresets, plugins: babelPlugins }, customizer)
+        options: _.mergeWith(createBabelOptions(sweetOptions), {
+          targets: babelBuildTargets,
+          presets: babelPresets,
+          plugins: babelPlugins
+        }, customizer)
       }
     ],
     exclude: [
