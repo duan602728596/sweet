@@ -18,16 +18,14 @@ import type { SweetConfig, SweetOptions } from '../utils/types.js';
  * @param { Configuration } config - webpack config
  */
 export default async function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, config: Configuration): Promise<void> {
-  const { frame, mode, javascript }: SweetConfig = sweetConfig;
+  const { frame, mode }: SweetConfig = sweetConfig;
   const isDevelopment: boolean = mode === 'development';
 
   // javascript
   await jsLoader(sweetConfig, sweetOptions, config);
 
-  // typescript（如果babel配置了typescript属性，则使用babel，而不使用typescript来编译）
-  if (!javascript?.typescript) {
-    tsLoader(sweetConfig, sweetOptions, config);
-  }
+  // typescript
+  tsLoader(sweetConfig, sweetOptions, config);
 
   // sass
   sassLoader(sweetConfig, config);
