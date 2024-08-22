@@ -2,6 +2,7 @@ import type * as Stream from 'node:stream';
 import { pathToRegexp } from 'path-to-regexp';
 import { requireModuleWithoutCache } from '@sweet-milktea/utils';
 import type { Context } from 'koa';
+import type { ViteDevServer } from 'vite';
 import {
   formatTemplateData,
   requireViteModule,
@@ -57,7 +58,11 @@ async function preRenderInit(sweetOptions: SweetOptions): Promise<Function> {
         ...data
       }));
 
-      ctx.body = responseBody;
+      if (sweetOptions.vite) {
+        ctx.body = await (sweetOptions.compiler as ViteDevServer).transformIndexHtml(ctxPath, responseBody);
+      } else {
+        ctx.body = responseBody;
+      }
     }
   };
 }
