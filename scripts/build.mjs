@@ -75,7 +75,7 @@ async function writeTypeModulePackageJsonFile() {
     if (['babel-preset-sweet', 'utils'].includes(name) ) {
       await fs.promises.writeFile(
         path.join(dir, name, 'esm/package.json'),
-        JSON.stringify({ type: 'module' }, null, 2) + '\n'
+        JSON.stringify({ type: 'module' }) + '\n'
       );
     }
   }
