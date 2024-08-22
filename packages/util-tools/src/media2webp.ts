@@ -18,10 +18,10 @@ function file2webp(input: string, output: string): Promise<void> {
       .input(input)
       .outputOptions('-loop 0')
       .output(output)
-      .on('error', (): void => {
+      .on('end', (): void => {
         resolve();
       })
-      .on('end', (err: Error, stdout: string, stderr: string): void => {
+      .on('error', (err: Error, stdout: string, stderr: string): void => {
         reject(err);
       })
       .run();
