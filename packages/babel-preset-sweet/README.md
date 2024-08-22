@@ -14,3 +14,5 @@
     * runtime `{ string }` : 是否使用react/jsx-runtime，默认根据react版本判断
     * development `{ boolean }`: 是否为开发环境
     * reactCompiler `{ boolean }`: 是否开启reactCompiler
+* typescript
+    * use `{ boolean }` : 是否开启typescript转换
