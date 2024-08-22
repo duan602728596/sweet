@@ -34,7 +34,7 @@ export interface SweetConfig {
   ts?: TSOptions;
   typescript?: TSOptions;
   // ssr
-  serverEntry?: boolean;
+  serverEntry?: string | boolean;
   chainVite?: (config: InlineConfig) => Promise<void>;
 }
 
