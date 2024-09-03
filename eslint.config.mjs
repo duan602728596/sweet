@@ -288,7 +288,11 @@ export default [
     languageOptions: {
       parser: typescriptEslintParser,
       parserOptions: {
-        projectService: 'tsconfig.json',
+        disallowAutomaticSingleRunInference: false,
+        cacheLifetime: {
+          glob: 'Infinity'
+        },
+        project: 'tsconfig.json',
         sourceType: 'module'
       },
       globals: languageGlobalsOptions
