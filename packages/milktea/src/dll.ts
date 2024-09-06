@@ -6,8 +6,8 @@ import { merge } from 'webpack-merge';
 import WebpackBar from 'webpackbar';
 import { handleDllProgress } from './plugins/handleProgress.js';
 import CacheConfig from './config/cacheConfig.js';
-import { extensions } from './utils/utils.js';
-import type { SweetConfig, SweetOptions } from './utils/types.js';
+import { webpackMergeObject, extensions } from './utils/utils.js';
+import type { SweetConfig, SweetOptions, ModifyWebpackConfigReturn } from './utils/types.js';
 
 /**
  * webpack dll扩展配置
@@ -29,9 +29,9 @@ export default async function(sweetConfig: SweetConfig, sweetOptions: SweetOptio
     context,
     externals,
     resolve,
-    chainWebpack,
     javascript,
-    webpackLog = 'progress'
+    webpackLog = 'progress',
+    modifyWebpackConfig
   }: SweetConfig = sweetConfigModified;
   const ecmascript: boolean = !!javascript?.ecmascript;
 
@@ -85,17 +85,21 @@ export default async function(sweetConfig: SweetConfig, sweetOptions: SweetOptio
     }
   };
 
-  /* chainWebpack: 扩展或修改webpack配置 */
-  if (chainWebpack) {
-    await chainWebpack(webpackConfig);
-  }
-
-  const mergeConfiguration: Configuration = {
+  const webpackLoadedConfig: Configuration = {
     context,
     entry: dll?.length ? { dll } : undefined,
     externals,
     resolve
   };
 
-  return merge(webpackConfig, mergeConfiguration);
+  const webpackDllConfig: Configuration = merge(webpackConfig, webpackLoadedConfig);
+
+  /* 扩展或修改webpack配置 */
+  if (modifyWebpackConfig) {
+    const modifiedConfig: ModifyWebpackConfigReturn = await modifyWebpackConfig(webpackDllConfig, webpackMergeObject);
+
+    if (modifiedConfig) return modifiedConfig;
+  }
+
+  return webpackDllConfig;
 }

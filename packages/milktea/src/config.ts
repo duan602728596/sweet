@@ -6,10 +6,10 @@ import { moduleExists } from '@sweet-milktea/utils';
 import loaders from './loaders/loaders.js';
 import basicPlugins from './plugins/plugins.js';
 import optimization from './optimization/optimization.js';
-import { extensions, isTsconfigJsonExists } from './utils/utils.js';
+import { webpackMergeObject, extensions, isTsconfigJsonExists } from './utils/utils.js';
 import CacheConfig from './config/cacheConfig.js';
 import createFileName from './config/fileNameConfig.js';
-import type { SweetConfig, SweetOptions } from './utils/types.js';
+import type { SweetConfig, SweetOptions, ModifyWebpackConfigReturn } from './utils/types.js';
 
 /**
  * webpack 配置
@@ -36,10 +36,10 @@ export default async function(sweetConfig: SweetConfig, sweetOptions: SweetOptio
     noParse,
     plugins,
     devtool,
-    chainWebpack,
     javascript,
     typescript,
-    webpackLog = 'progress'
+    webpackLog = 'progress',
+    modifyWebpackConfig
   }: SweetConfig = sweetConfigModified;
   const ecmascript: boolean = !!javascript?.ecmascript;
   const isDevelopment: boolean = mode === 'development';
@@ -111,12 +111,7 @@ export default async function(sweetConfig: SweetConfig, sweetOptions: SweetOptio
   // optimization
   optimization(sweetConfigModified, sweetOptions, webpackConfig, false);
 
-  /* chainWebpack: 扩展或修改webpack配置 */
-  if (chainWebpack) {
-    await chainWebpack(webpackConfig);
-  }
-
-  const mergeConfiguration: Configuration = {
+  const webpackLoadedConfig: Configuration = {
     context,
     entry,
     output,
@@ -131,5 +126,14 @@ export default async function(sweetConfig: SweetConfig, sweetOptions: SweetOptio
     plugins
   };
 
-  return merge(webpackConfig, mergeConfiguration);
+  const webpackClientConfig: Configuration = merge(webpackConfig, webpackLoadedConfig);
+
+  /* 扩展或修改webpack配置 */
+  if (modifyWebpackConfig) {
+    const modifiedConfig: ModifyWebpackConfigReturn = await modifyWebpackConfig(webpackClientConfig, webpackMergeObject);
+
+    if (modifiedConfig) return modifiedConfig;
+  }
+
+  return webpackClientConfig;
 }

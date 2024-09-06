@@ -1,7 +1,10 @@
 import * as path from 'node:path';
+import { merge, mergeWithCustomize, mergeWithRules, unique } from 'webpack-merge';
 import { isFileExists } from '@sweet-milktea/utils';
 import type { Configuration, RuleSetRule, WebpackPluginInstance } from 'webpack';
-import type { SweetOptions, TSOptions } from './types.js';
+import type { SweetOptions, TSOptions, WebpackMergeObject } from './types.js';
+
+export const webpackMergeObject: WebpackMergeObject = { merge, mergeWithCustomize, mergeWithRules, unique };
 
 /**
  * 判断tsconfig.json文件是否存在

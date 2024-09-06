@@ -6,10 +6,10 @@ import { moduleExists } from '@sweet-milktea/utils';
 import loaders from './loaders/loaders.js';
 import basicPlugins from './plugins/plugins.js';
 import optimization from './optimization/optimization.js';
-import { extensions, isTsconfigJsonExists } from './utils/utils.js';
+import { webpackMergeObject, extensions, isTsconfigJsonExists } from './utils/utils.js';
 import CacheConfig from './config/cacheConfig.js';
 import createFileName from './config/fileNameConfig.js';
-import type { SweetConfig, SweetOptions } from './utils/types.js';
+import type { SweetConfig, SweetOptions, ModifyWebpackConfigReturn } from './utils/types.js';
 
 /**
  * webpack 服务器端渲染配置
@@ -29,8 +29,8 @@ export default async function(sweetConfig: SweetConfig, sweetOptions: SweetOptio
     noParse,
     plugins,
     serverDevtool,
-    serverChainWebpack,
-    typescript
+    typescript,
+    modifyWebpackServerConfig
   }: SweetConfig = sweetConfigModified;
   const isDevelopment: boolean = mode === 'development';
 
@@ -80,12 +80,7 @@ export default async function(sweetConfig: SweetConfig, sweetOptions: SweetOptio
   // optimization
   optimization(sweetConfigModified, sweetOptions, webpackConfig, true);
 
-  /* serverChainWebpack: 扩展或修改webpack配置 */
-  if (serverChainWebpack) {
-    await serverChainWebpack(webpackConfig);
-  }
-
-  const mergeConfiguration: Configuration = {
+  const webpackLoadedConfig: Configuration = {
     context,
     entry: serverEntry,
     output: serverOutput,
@@ -100,5 +95,14 @@ export default async function(sweetConfig: SweetConfig, sweetOptions: SweetOptio
     plugins
   };
 
-  return merge(webpackConfig, mergeConfiguration);
+  const webpackServerConfig: Configuration = merge(webpackConfig, webpackLoadedConfig);
+
+  /* 扩展或修改webpack配置 */
+  if (modifyWebpackServerConfig) {
+    const modifiedConfig: ModifyWebpackConfigReturn = await modifyWebpackServerConfig(webpackServerConfig, webpackMergeObject);
+
+    if (modifiedConfig) return modifiedConfig;
+  }
+
+  return webpackServerConfig;
 }
