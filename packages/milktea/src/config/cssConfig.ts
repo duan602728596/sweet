@@ -24,6 +24,8 @@ function cssLoaderModeFunc(resourcePath: string): 'local' | 'global' | 'pure' {
  * @param { boolean } serverRender - 是否为服务器端渲染
  */
 export function createCssOptions(modules: boolean, isDevelopment: boolean, serverRender: boolean): Record<string, any> {
+  if (!modules) return { modules: false };
+
   const modulesOptions: Record<string, any> = { exportOnlyLocals: serverRender };
 
   if (modules) {
