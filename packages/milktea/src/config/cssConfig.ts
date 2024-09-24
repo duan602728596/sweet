@@ -3,18 +3,44 @@ import { requireCommonjsModule } from '@sweet-milktea/utils';
 
 const sass: typeof Sass = requireCommonjsModule('sass');
 
-// css-loader的mode
-// Callback must return "local", "global", or "pure" values
-function cssLoaderModeFunc(resourcePath: string): 'local' | 'global' | 'pure' {
+const enum CssLoaderMode {
+  Local = 'local',
+  Global = 'global',
+  Pure = 'pure'
+}
+
+/**
+ * css-loader css module mode
+ * @param { string } resourcePath
+ * @return { CssLoaderMode }
+ */
+function cssLoaderModuleModeFunc(resourcePath: string): CssLoaderMode {
   if (/(pure\.(css|less|sass|scss|styl(us)?))/i.test(resourcePath)) {
-    return 'pure';
+    return CssLoaderMode.Pure;
   }
 
   if (/(node_modules|global\.(css|less|sass|scss|styl(us)?))/i.test(resourcePath)) {
-    return 'global';
+    return CssLoaderMode.Global;
   }
 
-  return 'local';
+  return CssLoaderMode.Local;
+}
+
+/**
+ * css-loader css global mode
+ * @param { string } resourcePath
+ * @return { CssLoaderMode }
+ */
+function cssLoaderGlobalModeFunc(resourcePath: string): CssLoaderMode {
+  if (/(pure\.(css|less|sass|scss|styl(us)?))/i.test(resourcePath)) {
+    return CssLoaderMode.Pure;
+  }
+
+  if (/(module\.(css|less|sass|scss|styl(us)?))/i.test(resourcePath)) {
+    return CssLoaderMode.Local;
+  }
+
+  return CssLoaderMode.Global;
 }
 
 /**
@@ -24,17 +50,12 @@ function cssLoaderModeFunc(resourcePath: string): 'local' | 'global' | 'pure' {
  * @param { boolean } serverRender - 是否为服务器端渲染
  */
 export function createCssOptions(modules: boolean, isDevelopment: boolean, serverRender: boolean): Record<string, any> {
-  if (!modules) return { modules: false };
-
-  const modulesOptions: Record<string, any> = { exportOnlyLocals: serverRender };
-
-  if (modules) {
-    Object.assign(modulesOptions, {
-      mode: cssLoaderModeFunc,
-      localIdentName: isDevelopment ? '[path][name]__[local]___[hash:base64:6]' : '_[hash:base64:6]',
-      namedExport: false
-    });
-  }
+  const modulesOptions: Record<string, any> = {
+    exportOnlyLocals: serverRender,
+    localIdentName: isDevelopment ? '[path][name]__[local]___[hash:base64:6]' : '_[hash:base64:6]',
+    namedExport: false,
+    mode: modules ? cssLoaderModuleModeFunc : cssLoaderGlobalModeFunc
+  };
 
   return { modules: modulesOptions };
 }
