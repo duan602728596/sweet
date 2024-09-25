@@ -1,7 +1,4 @@
-import type Sass from 'sass';
-import { requireCommonjsModule } from '@sweet-milktea/utils';
-
-const sass: typeof Sass = requireCommonjsModule('sass');
+import * as sass from 'sass';
 
 const enum CssLoaderMode {
   Local = 'local',
