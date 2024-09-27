@@ -7,37 +7,30 @@ const enum CssLoaderMode {
 }
 
 /**
- * css-loader css module mode
- * @param { string } resourcePath
- * @return { CssLoaderMode }
+ * css-loader global mode
+ * @param { CssLoaderMode } defaultMode
+ * @return { (resourcePath: string) => CssLoaderMode }
  */
-function cssLoaderModuleModeFunc(resourcePath: string): CssLoaderMode {
-  if (/(pure\.(css|less|sass|scss|styl(us)?))/i.test(resourcePath)) {
-    return CssLoaderMode.Pure;
-  }
+function createCssLoaderModeFunc(defaultMode: CssLoaderMode): (resourcePath: string) => CssLoaderMode {
+  /**
+   * @param { string } resourcePath
+   * @return { CssLoaderMode }
+   */
+  return function(resourcePath: string): CssLoaderMode {
+    if (/(pure\.(css|less|sass|scss|styl(us)?))/i.test(resourcePath)) {
+      return CssLoaderMode.Pure;
+    }
 
-  if (/(node_modules|global\.(css|less|sass|scss|styl(us)?))/i.test(resourcePath)) {
-    return CssLoaderMode.Global;
-  }
+    if (/(module\.(css|less|sass|scss|styl(us)?))/i.test(resourcePath)) {
+      return CssLoaderMode.Local;
+    }
 
-  return CssLoaderMode.Local;
-}
+    if (/(node_modules|global\.(css|less|sass|scss|styl(us)?))/i.test(resourcePath)) {
+      return CssLoaderMode.Global;
+    }
 
-/**
- * css-loader css global mode
- * @param { string } resourcePath
- * @return { CssLoaderMode }
- */
-function cssLoaderGlobalModeFunc(resourcePath: string): CssLoaderMode {
-  if (/(pure\.(css|less|sass|scss|styl(us)?))/i.test(resourcePath)) {
-    return CssLoaderMode.Pure;
-  }
-
-  if (/(module\.(css|less|sass|scss|styl(us)?))/i.test(resourcePath)) {
-    return CssLoaderMode.Local;
-  }
-
-  return CssLoaderMode.Global;
+    return defaultMode;
+  };
 }
 
 /**
@@ -52,7 +45,7 @@ export function createCssOptions(modules: boolean, isDevelopment: boolean, serve
       exportOnlyLocals: serverRender,
       localIdentName: isDevelopment ? '[path][name]__[local]___[hash:base64:6]' : '_[hash:base64:6]',
       namedExport: false,
-      mode: modules ? cssLoaderModuleModeFunc : cssLoaderGlobalModeFunc
+      mode: createCssLoaderModeFunc(modules ? CssLoaderMode.Local : CssLoaderMode.Global)
     }
   };
 }
