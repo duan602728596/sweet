@@ -47,14 +47,14 @@ function cssLoaderGlobalModeFunc(resourcePath: string): CssLoaderMode {
  * @param { boolean } serverRender - 是否为服务器端渲染
  */
 export function createCssOptions(modules: boolean, isDevelopment: boolean, serverRender: boolean): Record<string, any> {
-  const modulesOptions: Record<string, any> = {
-    exportOnlyLocals: serverRender,
-    localIdentName: isDevelopment ? '[path][name]__[local]___[hash:base64:6]' : '_[hash:base64:6]',
-    namedExport: false,
-    mode: modules ? cssLoaderModuleModeFunc : cssLoaderGlobalModeFunc
+  return {
+    modules: {
+      exportOnlyLocals: serverRender,
+      localIdentName: isDevelopment ? '[path][name]__[local]___[hash:base64:6]' : '_[hash:base64:6]',
+      namedExport: false,
+      mode: modules ? cssLoaderModuleModeFunc : cssLoaderGlobalModeFunc
+    }
   };
-
-  return { modules: modulesOptions };
 }
 
 /**
