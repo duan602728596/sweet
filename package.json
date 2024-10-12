@@ -13,8 +13,8 @@
     "lerna:install": "lerna bootstrap --force-local",
     "update-version": "milktea-esm update",
     "update-version:dev": "milktea-esm update --__DEV__",
-    "postinstall": "husky install",
-    "install:cn": "npm_config_sharp_libvips_binary_host=https://github.abskoop.workers.dev/https://github.com/lovell/sharp-libvips/releases/download yarn install"
+    "install:cn": "npm_config_sharp_libvips_binary_host=https://github.abskoop.workers.dev/https://github.com/lovell/sharp-libvips/releases/download yarn install",
+    "prepare": "husky"
   },
   "private": true,
   "workspaces": [
