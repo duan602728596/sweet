@@ -6,7 +6,7 @@ export let pinia;
 export function piniaFactory(initialState = {}) {
   if (!pinia) {
     pinia = createPinia();
-    pinia.state.value = initialState;
+    pinia.state.value = structuredClone(initialState);
   }
 
   return pinia;

@@ -1,5 +1,5 @@
 <template>
-  <ant-layout-footer :class="$style.footer">
+  <ant-layout-footer class="footer">
     Copy Right
   </ant-layout-footer>
 </template>
@@ -15,7 +15,7 @@
   });
 </script>
 
-<style lang="scss" module>
+<style lang="scss" scoped>
   .footer {
     padding: 0 !important;
     height: 30px;
