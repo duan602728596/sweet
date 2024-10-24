@@ -234,11 +234,6 @@ const eslintRules = {
   ]
 };
 
-const eslintVueRules = {
-  indent: 'off',
-  'vue/script-indent': ['error', 2, { baseIndent: 1, switchCase: 1 }]
-};
-
 export default [
   { ignores },
   {
@@ -280,6 +275,6 @@ export default [
       ...plugins,
       vue: fixupPluginRules(eslintPluginVue)
     },
-    rules: { ...eslintRules, ...eslintVueRules }
+    rules: eslintRules
   }
 ];

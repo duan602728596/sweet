@@ -1,26 +1,19 @@
 <template>
-  <ant-layout-footer class="footer">
+  <Layout.Footer class="footer">
     Copy Right
-  </ant-layout-footer>
+  </Layout.Footer>
 </template>
 
-<script>
-  import { defineComponent } from 'vue';
-  import { Layout } from 'ant-design-vue';
-
-  export default defineComponent({
-    components: {
-      'ant-layout-footer': Layout.Footer
-    }
-  });
+<script setup>
+import { Layout } from 'ant-design-vue';
 </script>
 
 <style lang="scss" scoped>
-  .footer {
-    padding: 0 !important;
-    height: 30px;
-    line-height: 30px;
-    background-color: #ddd;
-    text-align: center;
-  }
+.footer {
+  padding: 0 !important;
+  height: 30px;
+  line-height: 30px;
+  background-color: #ddd;
+  text-align: center;
+}
 </style>
