@@ -30,7 +30,6 @@
   },
   "devDependencies": {
     "@babel/eslint-parser": "^7.25.1",
-    "@eslint/compat": "^1.1.1",
     "@sweet-milktea/milktea": "^4.3.0",
     "@sweet-milktea/util-tools": "^4.1.0",
     "@vue/babel-plugin-jsx": "^1.2.2",

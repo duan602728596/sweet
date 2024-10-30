@@ -1,5 +1,4 @@
 import process from 'node:process';
-import { fixupPluginRules } from '@eslint/compat';
 import babelEslintParser from '@babel/eslint-parser';
 import vueEslintParser from 'vue-eslint-parser';
 import eslintPluginReact from 'eslint-plugin-react';
@@ -27,7 +26,7 @@ function globalsSettings(keys) {
 
   keys.forEach((key) => Object.assign(globalsObject, globals[key]));
 
-  for (let i = 15; i <= 25; i++ ) {
+  for (let i = 15; i <= 25; i++) {
     Object.assign(globalsObject, globals[`es20${ i }`]);
   }
 
@@ -41,8 +40,8 @@ const languageGlobalsOptions = {
 };
 
 const plugins = {
-  react: fixupPluginRules(eslintPluginReact),
-  import: fixupPluginRules(eslintPluginImport)
+  react: eslintPluginReact,
+  import: eslintPluginImport
 };
 
 const settings = {
@@ -273,7 +272,7 @@ export default [
     },
     plugins: {
       ...plugins,
-      vue: fixupPluginRules(eslintPluginVue)
+      vue: eslintPluginVue
     },
     rules: eslintRules
   }
