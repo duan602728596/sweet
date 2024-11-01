@@ -59,6 +59,15 @@
     "mocha": "^10.7.3"
   },
   "optionalDependencies": {
+    "@sweet-milktea/babel-preset-sweet": "workspace:*",
+    "@sweet-milktea/milktea": "workspace:*",
+    "@sweet-milktea/milktea-cli": "workspace:*",
+    "@sweet-milktea/milktea-vite": "workspace:*",
+    "@sweet-milktea/server": "workspace:*",
+    "@sweet-milktea/server-hot-client": "workspace:*",
+    "@sweet-milktea/server-log": "workspace:*",
+    "@sweet-milktea/util-tools": "workspace:*",
+    "@sweet-milktea/utils": "workspace:*",
     "imagemin-gif2webp": ">=3",
     "imagemin-gifsicle": ">=7",
     "imagemin-jpegoptim": ">=8",
