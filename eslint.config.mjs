@@ -271,6 +271,7 @@ export default [
       },
       globals: languageGlobalsOptions
     },
+    settings,
     plugins: {
       ...plugins,
       vue: eslintPluginVue
