@@ -268,7 +268,8 @@ export default [
             { env: { ecmascript: true }, react: { use: false } }
           ]]
         }
-      }
+      },
+      globals: languageGlobalsOptions
     },
     plugins: {
       ...plugins,
