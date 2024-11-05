@@ -1,12 +1,12 @@
+<script setup>
+import { Layout } from 'ant-design-vue';
+</script>
+
 <template>
   <Layout.Footer class="footer">
     Copy Right
   </Layout.Footer>
 </template>
-
-<script setup>
-import { Layout } from 'ant-design-vue';
-</script>
 
 <style lang="scss" scoped>
 .footer {
