@@ -34,6 +34,7 @@
     "@sweet-milktea/util-tools": "^4.1.0",
     "@vue/babel-plugin-jsx": "^1.2.2",
     "@vue/compiler-sfc": "^3.4.38",
+    "@vue/language-server": "^2.1.10",
     "commitizen": "^4.3.0",
     "cross-env": "^7.0.3",
     "cz-conventional-changelog": "^3.3.0",
