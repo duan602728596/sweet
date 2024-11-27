@@ -1,5 +1,5 @@
 import { useMemo, type ReactElement } from 'react';
-import { Link, useLocation, type Location } from 'react-router-dom';
+import { Link, useLocation, type Location } from 'react-router';
 import { Menu } from 'antd';
 import type { MenuItemType, SubMenuType } from 'rc-menu/es/interface';
 import {

@@ -23,7 +23,7 @@ export default function(info: object): object {
       'react-dom',
       'react-dom/client',
       'react-helmet',
-      'react-router-dom',
+      'react-router',
       'react-showdown'
     ],
     entry: {

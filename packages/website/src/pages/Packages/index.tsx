@@ -1,5 +1,5 @@
 import type { ReactElement } from 'react';
-import { useRoutes } from 'react-router-dom';
+import { useRoutes } from 'react-router';
 import Element from '../../components/Element/Element';
 import MarkDown from '../../components/MarkDown/MarkDown';
 import milktea from '../../../../milktea/README.md';

@@ -1,5 +1,5 @@
 import type { ReactElement } from 'react';
-import { useRoutes } from 'react-router-dom';
+import { useRoutes } from 'react-router';
 import { Select } from 'antd';
 import style from './index.sass';
 import Element from '../../components/Element/Element';
