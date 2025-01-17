@@ -1,10 +1,13 @@
 import process from 'node:process';
+import { createRequire } from 'node:module';
 import babelEslintParser from '@babel/eslint-parser';
 import typescriptEslintParser from '@typescript-eslint/parser';
 import typescriptEslintPlugin from '@typescript-eslint/eslint-plugin';
 import eslintPluginReact from 'eslint-plugin-react';
 import eslintPluginImport from 'eslint-plugin-import';
 import globals from 'globals';
+
+const require = createRequire(import.meta.url);
 
 const commitLint = process.env.COMMITLINT === '1';
 
@@ -312,7 +315,7 @@ export default [
         requireConfigFile: false,
         babelOptions: {
           presets: [[
-            '@sweet-milktea/babel-preset-sweet',
+            require.resolve('@sweet-milktea/babel-preset-sweet'),
             { env: { ecmascript: true } }
           ]]
         },
