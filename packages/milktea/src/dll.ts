@@ -6,7 +6,7 @@ import { merge } from 'webpack-merge';
 import WebpackBar from 'webpackbar';
 import { handleDllProgress } from './plugins/handleProgress.js';
 import CacheConfig from './config/cacheConfig.js';
-import { webpackMergeObject, extensions } from './utils/utils.js';
+import { webpackMergeObject, extensions, extensionAlias } from './utils/utils.js';
 import type { SweetConfig, SweetOptions, ModifyWebpackConfigReturn } from './utils/types.js';
 
 /**
@@ -75,7 +75,7 @@ export default async function(sweetConfig: SweetConfig, sweetOptions: SweetOptio
   const webpackConfig: Configuration = {
     mode: 'development',
     devtool: 'inline-source-map',
-    resolve: { extensions },
+    resolve: { extensions, extensionAlias },
     target: ['web', ecmascript ? 'es2020' : 'es5'],
     performance: { hints: false },
     output: webpackOutput,

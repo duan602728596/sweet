@@ -41,6 +41,12 @@ export const extensions: Array<string> = [
   '.wasm'
 ];
 
+export const extensionAlias: Record<string, Array<string>> = {
+  '.js': ['.ts', '.js'],
+  '.mjs': ['.mts', '.mjs'],
+  '.cjs': ['.cts', '.cjs']
+};
+
 /**
  * 添加一个rule
  * @param { Configuration } config

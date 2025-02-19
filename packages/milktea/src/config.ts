@@ -6,7 +6,7 @@ import { moduleExists } from '@sweet-milktea/utils';
 import loaders from './loaders/loaders.js';
 import basicPlugins from './plugins/plugins.js';
 import optimization from './optimization/optimization.js';
-import { webpackMergeObject, extensions, isTsconfigJsonExists } from './utils/utils.js';
+import { webpackMergeObject, extensions, extensionAlias, isTsconfigJsonExists } from './utils/utils.js';
 import CacheConfig from './config/cacheConfig.js';
 import createFileName from './config/fileNameConfig.js';
 import type { SweetConfig, SweetOptions, ModifyWebpackConfigReturn } from './utils/types.js';
@@ -60,7 +60,7 @@ export default async function(sweetConfig: SweetConfig, sweetOptions: SweetOptio
   const webpackConfig: Configuration = {
     mode,
     devtool: devtool ?? (isDevelopment ? 'eval-source-map' : false),
-    resolve: { extensions },
+    resolve: { extensions, extensionAlias },
     target: ['web', ecmascript ? 'es2020' : 'es5'],
     performance: { hints: false },
     experiments: {
