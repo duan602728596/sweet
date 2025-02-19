@@ -13,13 +13,13 @@
     "build:ci": "NODE_ENV=production milktea-esm build"
   },
   "dependencies": {
-    "@ant-design/icons": "^5.5.1",
-    "antd": "^5.22.2",
-    "github-markdown-css": "^5.8.0",
+    "@ant-design/icons": "^5.5.2",
+    "antd": "^5.22.7",
+    "github-markdown-css": "^5.8.1",
     "react": "rc",
     "react-dom": "rc",
     "react-helmet": "^6.1.0",
-    "react-router": "^7.0.1",
+    "react-router": "^7.1.1",
     "react-showdown": "^2.3.1",
     "tslib": "^2.8.1"
   },
