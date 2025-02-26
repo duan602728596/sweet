@@ -31,10 +31,10 @@
     "@sweet-milktea/utils": "^4.0.0",
     "chalk": "^5.4.1",
     "fluent-ffmpeg": "^2.1.3",
-    "fs-extra": "^11.2.0",
-    "glob": "^11.0.0",
+    "fs-extra": "^11.3.0",
+    "glob": "^11.0.1",
     "imagemin": "^9.0.0",
-    "semver": "^7.6.3"
+    "semver": "^7.7.1"
   },
   "devDependencies": {
     "cross-env": "*",
