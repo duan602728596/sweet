@@ -10,7 +10,7 @@ const reactCompiler: { sources(p: string): boolean } = {
 };
 
 export default function(info: object): object {
-  const jsExclude: RegExp = /node_modules|packages[\\/](server|hot-client)/;
+  const jsExclude: RegExp = /node_modules|src[\\/]imports\.js|packages[\\/](server|hot-client)/;
 
   const config: object = {
     frame: 'react',
