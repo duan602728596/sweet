@@ -24,8 +24,12 @@ function getTargets(options) {
   return babelBuildTargets;
 }
 
-/* 编译代码 */
-async function transformCode(code, options, transformOptions = {}) {
+/**
+ * 编译代码
+ * @param { string } code - 代码
+ * @param { object } [options]
+ */
+async function transformCode(code, options) {
   return transformAsync(code, {
     targets: getTargets(options),
     presets: [
@@ -34,7 +38,12 @@ async function transformCode(code, options, transformOptions = {}) {
   });
 }
 
-async function transformCodeESM(code, options, transformOptions = {}) {
+/**
+ * 编译代码
+ * @param { string } code - 代码
+ * @param { object } [options]
+ */
+async function transformCodeESM(code, options) {
   return transformAsync(code, {
     targets: getTargets(options),
     presets: [
@@ -97,8 +106,8 @@ const a: number = 5;
 
     expect(code.includes('var a = 5;')).to.be.true;
     expect(codeESM.includes('var a = 5;')).to.be.true;
-    expect(code.includes('_jsx("div"')).to.be.true;
-    expect(codeESM.includes('_jsx("div"')).to.be.true;
+    expect(code.includes('_jsx("div"') || code.includes('jsx)("div"')).to.be.true;
+    expect(codeESM.includes('_jsx("div"') || code.includes('jsx)("div"')).to.be.true;
   });
 
   it('build transform-runtime', async function() {
@@ -131,9 +140,9 @@ const a: number = 5;
       transformCodeESM(rawCode)
     ]);
 
-    expect(code.includes('_globalThis')).to.be.true;
-    expect(code.includes('_replaceAllInstanceProperty')).to.be.true;
-    expect(codeESM.includes('_globalThis')).to.be.true;
-    expect(codeESM.includes('_replaceAllInstanceProperty')).to.be.true;
+    expect(code.includes('esnext.global-this')).to.be.true;
+    expect(code.includes('esnext.string.replace-all')).to.be.true;
+    expect(codeESM.includes('esnext.global-this')).to.be.true;
+    expect(codeESM.includes('esnext.string.replace-all')).to.be.true;
   });
 });

@@ -14,8 +14,8 @@ function presetEnv(options: PresetEnvOptionsArgs): PluginItem {
   const presetEnvOptions: Record<string, any> = {
     targets: babelBuildTargets,
     debug,
-    modules: envModules,
-    bugfixes: true
+    bugfixes: true,
+    modules: envModules
   };
 
   return ['@babel/preset-env', presetEnvOptions];

@@ -1,21 +1,17 @@
 import type { PluginItem } from '@babel/core';
-
-interface TransformRuntimeOptionsArgs {
-  ecmascript?: boolean;
-  nodeEnv?: boolean;
-}
+import { requireCommonjsModule } from '@sweet-milktea/utils';
 
 /* @babel/plugin-transform-runtime */
-function transformRuntime(options: TransformRuntimeOptionsArgs): PluginItem {
-  const { ecmascript, nodeEnv }: TransformRuntimeOptionsArgs = options;
-
+function transformRuntime(): Array<PluginItem> {
   return [
     '@babel/plugin-transform-runtime',
-    {
-      corejs: { version: 3, proposals: true },
-      helpers: true,
-      regenerator: !(nodeEnv || ecmascript)
-    }
+    [
+      'babel-plugin-polyfill-corejs3',
+      {
+        method: 'usage-global',
+        version: requireCommonjsModule('core-js').version
+      }
+    ]
   ];
 }
 
