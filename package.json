@@ -14,7 +14,7 @@
     "update-version": "milktea-esm update",
     "update-version:dev": "milktea-esm update --__DEV__",
     "install:cn": "npm_config_sharp_libvips_binary_host=https://github.abskoop.workers.dev/https://github.com/lovell/sharp-libvips/releases/download yarn install",
-    "prepare": "husky"
+    "postinstall": "husky init"
   },
   "private": true,
   "workspaces": [
