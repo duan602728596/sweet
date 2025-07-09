@@ -15,7 +15,9 @@ function presetEnv(options: PresetEnvOptionsArgs): PluginItem {
     targets: babelBuildTargets,
     debug,
     bugfixes: true,
-    modules: envModules
+    modules: envModules,
+    useBuiltIns: 'usage',
+    corejs: 3
   };
 
   return ['@babel/preset-env', presetEnvOptions];
