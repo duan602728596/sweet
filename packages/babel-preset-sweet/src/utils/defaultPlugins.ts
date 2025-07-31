@@ -13,7 +13,7 @@ const defaultPlugins: Array<PluginItem> = [
   // do {} 语法
   '@babel/plugin-proposal-do-expressions',
   // using handlerSync = openSync()
-  '@babel/plugin-proposal-explicit-resource-management',
+  '@babel/plugin-transform-explicit-resource-management',
   // export module from 语法
   '@babel/plugin-proposal-export-default-from',
   // obj::func(val) 语法
