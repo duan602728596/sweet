@@ -1,7 +1,5 @@
-import type { PluginItem } from '@babel/core';
-
 /* @babel/preset-typescript */
-function presetTypescript(): PluginItem {
+function presetTypescript(): [string, any] {
   return ['@babel/preset-typescript', {
     isTSX: true,
     allExtensions: true,

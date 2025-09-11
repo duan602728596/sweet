@@ -26,8 +26,8 @@
     "test": "cross-env NODE_ENV=test mocha ./test/test.mjs --timeout 180000"
   },
   "dependencies": {
-    "@babel/core": "^7.28.4",
-    "@babel/register": "^7.28.3",
+    "@babel/core": "^8.0.0-beta.2",
+    "@babel/register": "^8.0.0-beta.2",
     "@sweet-milktea/babel-preset-sweet": "^4.6.0",
     "@sweet-milktea/utils": "^4.0.0",
     "@vitejs/plugin-react": "^5.0.2",

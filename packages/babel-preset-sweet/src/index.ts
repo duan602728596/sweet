@@ -1,6 +1,5 @@
 import * as process from 'process';
 import { moduleExists } from '@sweet-milktea/utils';
-import type { PluginItem } from '@babel/core';
 import defaultPlugins from './utils/defaultPlugins.js';
 import presetEnv from './utils/presetEnv.js';
 import presetTypescript from './utils/presetTypescript.js';
@@ -24,11 +23,11 @@ function babelPresetSweet(api: any, options: Options = {}, dirname: string): Bab
   } else {
     if (ecmascript) {
       babelBuildTargets = {
-        browsers: nodeEnv ? ['node 20'] : ['last 5 Chrome versions']
+        browsers: nodeEnv ? ['node 24'] : ['last 5 Chrome versions']
       };
     } else {
       babelBuildTargets = {
-        browsers: nodeEnv ? ['node 18'] : [
+        browsers: nodeEnv ? ['node 20'] : [
           'last 10 versions',
           'last 2 year'
         ]
@@ -36,8 +35,8 @@ function babelPresetSweet(api: any, options: Options = {}, dirname: string): Bab
     }
   }
 
-  const presets: Array<PluginItem> = [];
-  const plugins: Array<PluginItem> = defaultPlugins.concat(transformRuntime());
+  const presets: Array<[string, any?] | string> = [];
+  const plugins: Array<[string, any?] | string> = defaultPlugins.concat(transformRuntime());
 
   // 添加@babel/preset-env
   presets.push(

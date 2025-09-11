@@ -22,8 +22,6 @@
   ],
   "packageManager": "yarn@4.9.4",
   "dependencies": {
-    "@types/babel__core": "^7",
-    "@types/estree": "^1",
     "@types/koa": "^3",
     "@types/lodash": "^4",
     "@types/node": "^24",
@@ -36,8 +34,8 @@
     "zx": "^8.8.1"
   },
   "devDependencies": {
-    "@babel/core": "^7.28.4",
-    "@babel/eslint-parser": "^7.28.4",
+    "@babel/core": "^8.0.0-beta.2",
+    "@babel/eslint-parser": "^8.0.0-beta.2",
     "@sweet-milktea/milktea-cli": "*",
     "@sweet-milktea/util-tools": "*",
     "@typescript-eslint/eslint-plugin": "^8.43.0",

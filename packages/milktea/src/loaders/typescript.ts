@@ -1,7 +1,6 @@
 import _ from 'lodash';
 import { moduleExists } from '@sweet-milktea/utils';
 import type { Configuration } from 'webpack';
-import type { PluginItem } from '@babel/core';
 import { customizer, configRulePush } from '../utils/utils.js';
 import { createBabelOptions, createTypescriptOptions } from '../config/babelConfig.js';
 import type { SweetConfig, SweetOptions, TSOptions } from '../utils/types.js';
@@ -22,8 +21,8 @@ export default function(sweetConfig: SweetConfig, sweetOptions: SweetOptions, co
   // 添加额外的插件
   const isReact: boolean = frame === 'react',
     isVue: boolean = frame === 'vue';
-  const babelPresets: Array<PluginItem> = [],
-    babelPlugins: Array<PluginItem> = [];
+  const babelPresets: Array<[string, any?] | string> = [],
+    babelPlugins: Array<[string, any?] | string> = [];
 
   // TODO: 如果开启了react-compiler，必须保证jsx是原始输入，需要后续使用babel来编译jsx
   if (isReact && reactCompiler) {
