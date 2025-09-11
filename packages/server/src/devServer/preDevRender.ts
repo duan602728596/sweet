@@ -1,13 +1,14 @@
 import type * as Stream from 'node:stream';
-import { pathToRegexp } from 'path-to-regexp';
+import { pathToRegexp, type Keys } from 'path-to-regexp';
+import { requireModuleWithoutCache } from '@sweet-milktea/utils';
 import type { Context } from 'koa';
 import type { ViteDevServer } from 'vite';
 import {
   formatTemplateData,
   requireViteModule,
-  importESM,
   isReadStream,
-  readStream
+  readStream,
+  __fixModuleImportDefaultDefault
 } from '../utils/utils.js';
 import { getControllersFiles } from '../utils/controllers.js';
 import createRenderEngine from '../utils/createRenderEngine.js';
@@ -18,7 +19,7 @@ async function preRenderInit(sweetOptions: SweetOptions): Promise<Function> {
   const renderEngine: Function = await createRenderEngine(sweetOptions.renderType); // 获取渲染器
   const getSSRDataFunc: Function = sweetOptions.vite
     ? requireViteModule(sweetOptions)
-    : importESM;
+    : requireModuleWithoutCache;
 
   /**
    * @param { string } ctxPath - 相对路径
@@ -31,7 +32,7 @@ async function preRenderInit(sweetOptions: SweetOptions): Promise<Function> {
 
     // 获取数据
     const index: number = controllersModules.findIndex(function(o: ControllersModule): boolean {
-      const regexp: RegExp = pathToRegexp(o.url);
+      const { regexp }: { regexp: RegExp; keys: Keys } = pathToRegexp(o.url);
 
       return regexp.exec(ctxPath) !== null && regexp.exec(ctxPath) !== undefined;
     });
@@ -47,7 +48,7 @@ async function preRenderInit(sweetOptions: SweetOptions): Promise<Function> {
     };
 
     // ssr渲染
-    const server: Function = await getSSRDataFunc(`${ serverRenderEntry }${ sweetOptions.vite ? '' : `?t=${ new Date().getTime() }` }`);
+    const server: Function = __fixModuleImportDefaultDefault(await getSSRDataFunc(serverRenderEntry));
     const result: Stream | string | undefined = await server(ctxPath, ctx, data.initialState);
 
     if (result) {

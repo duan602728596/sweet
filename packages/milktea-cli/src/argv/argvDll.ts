@@ -10,14 +10,14 @@ async function argvDll(argv: Argv): Promise<void> {
   const milktea: Milktea = await requireModule('@sweet-milktea/milktea');
 
   const { config, webpackLog }: Argv = argv;
-  const compiler: Compiler = webpack(
+  const compiler: Compiler | null = webpack(
     await milktea.dllConfig({
       sweetConfig: config,
       webpackLog
     })
   );
 
-  compiler.run(!webpackLog || webpackLog === 'progress' ? milktea.callbackOnlyError : milktea.callback);
+  compiler?.run(!webpackLog || webpackLog === 'progress' ? milktea.callbackOnlyError : milktea.callback);
 }
 
 export default argvDll;

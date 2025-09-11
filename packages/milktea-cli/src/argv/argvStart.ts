@@ -43,12 +43,12 @@ async function argvStart(argv: Argv): Promise<void> {
     webpackConfig.entry = hotClientEntry(webpackConfig.entry);
   }
 
-  const compiler: Compiler = webpack(webpackConfig);
+  const compiler: Compiler | null = webpack(webpackConfig);
   let serverRenderCompiler: Compiler | null = null,
     serverRenderWatching: any | null = null;
 
   if (!_.isNil(serverRender)) {
-    compiler.hooks.done.tap('sweet-milktea-build', async function(): Promise<void> {
+    compiler?.hooks.done.tap('sweet-milktea-build', async function(): Promise<void> {
       // ssr的钩子只执行一次
       if (serverRenderCompiler !== null && serverRenderWatching !== null) return;
 
@@ -59,7 +59,7 @@ async function argvStart(argv: Argv): Promise<void> {
       });
 
       serverRenderCompiler = webpack(serverSideRenderConfig);
-      serverRenderWatching = serverRenderCompiler.watch({
+      serverRenderWatching = serverRenderCompiler?.watch({
         aggregateTimeout: 500
       }, !webpackLog || webpackLog === 'progress' ? milktea.callbackOnlyError : milktea.callback);
     });
@@ -83,7 +83,7 @@ async function argvStart(argv: Argv): Promise<void> {
       socket
     });
   } else {
-    const watching: any = compiler.watch({
+    const watching: any = compiler?.watch({
       aggregateTimeout: 500
     }, !webpackLog || webpackLog === 'progress' ? milktea.callbackOnlyError : milktea.callback);
   }

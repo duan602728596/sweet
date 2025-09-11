@@ -11,7 +11,7 @@ async function argvBuild(argv: Argv): Promise<void> {
   const milktea: Milktea = await requireModule('@sweet-milktea/milktea');
 
   const { config, webpackLog, serverRender }: Argv = argv;
-  const compiler: Compiler = webpack(
+  const compiler: Compiler | null = webpack(
     await milktea.config({
       sweetConfig: config,
       mode: 'production',
@@ -21,8 +21,8 @@ async function argvBuild(argv: Argv): Promise<void> {
 
   if (!_.isNil(serverRender)) {
     // 正常编译完毕后，编译ssr需要的文件
-    compiler.hooks.done.tap('sweet-milktea-build', async function(): Promise<void> {
-      const serverRenderCompiler: Compiler = webpack(
+    compiler?.hooks.done.tap('sweet-milktea-build', async function(): Promise<void> {
+      const serverRenderCompiler: Compiler | null = webpack(
         await milktea.serverRenderConfig({
           sweetConfig: config,
           mode: 'production',
@@ -31,13 +31,13 @@ async function argvBuild(argv: Argv): Promise<void> {
       );
 
       // 避免输出的log打断进度条
-      serverRenderCompiler.run(!webpackLog || webpackLog === 'progress'
+      serverRenderCompiler?.run(!webpackLog || webpackLog === 'progress'
         ? milktea.callbackOnlyError
         : milktea.callback);
     });
   }
 
-  compiler.run(!webpackLog || webpackLog === 'progress' ? milktea.callbackOnlyError : milktea.callback);
+  compiler?.run(!webpackLog || webpackLog === 'progress' ? milktea.callbackOnlyError : milktea.callback);
 }
 
 export default argvBuild;
