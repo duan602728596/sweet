@@ -1,4 +1,13 @@
-import type { RuleSetRule, Entry, ResolveOptions, WebpackPluginInstance, Configuration, Stats } from 'webpack';
+import type {
+  RuleSetRule,
+  Entry,
+  ResolveOptions,
+  WebpackPluginInstance,
+  Configuration,
+  Stats,
+  ModuleOptions,
+  WebpackOptionsNormalized
+} from 'webpack';
 import type { merge, mergeWithCustomize, mergeWithRules, unique } from 'webpack-merge';
 import type { PluginItem } from '@babel/core';
 import type { CosmiconfigResult } from 'cosmiconfig/dist/types.js';
@@ -88,11 +97,11 @@ export interface SweetConfig {
   context?: string;
   entry?: Entry;
   output?: any;
-  externals?: { [key: string]: string };
+  externals?: WebpackOptionsNormalized['externals'];
   resolve?: ResolveOptions;
   devtool?: string;
   rules?: Array<RuleSetRule>;
-  noParse?: string | Function | RegExp | (string | Function | RegExp)[];
+  noParse?: ModuleOptions['noParse'];
   plugins?: WebpackPluginInstance[];
   javascript?: JSOptions;
   typescript?: TSOptions;

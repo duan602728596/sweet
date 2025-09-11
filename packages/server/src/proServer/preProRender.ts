@@ -1,5 +1,5 @@
 import type * as Stream from 'node:stream';
-import { pathToRegexp } from 'path-to-regexp';
+import { pathToRegexp, type Keys } from 'path-to-regexp';
 import { requireModule } from '@sweet-milktea/utils';
 import type { Context } from 'koa';
 import { formatTemplateData, isReadStream, readStream, __fixModuleImportDefaultDefault } from '../utils/utils.js';
@@ -16,7 +16,7 @@ async function preRenderInit(sweetOptions: SweetOptions): Promise<Function> {
     try {
       // 获取数据
       const index: number = controllersModules.findIndex(function(o: ControllersModule): boolean {
-        const regexp: RegExp = pathToRegexp(o.url);
+        const { regexp }: { regexp: RegExp; keys: Keys } = pathToRegexp(o.url);
 
         return regexp.exec(ctxPath) !== null && regexp.exec(ctxPath) !== undefined;
       });
