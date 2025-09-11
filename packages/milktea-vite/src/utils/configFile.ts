@@ -15,6 +15,7 @@ function createJsRegisterLoader(): Loader {
         {
           env: {
             nodeEnv: true,
+            ecmascript: true,
             modules: 'commonjs'
           },
           typescript: {

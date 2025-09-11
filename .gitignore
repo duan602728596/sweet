@@ -22,6 +22,7 @@ package.json.lerna_backup
 packages/**/lib
 packages/**/esm/**/*.js
 packages/**/esm/**/*.mjs
+packages/**/esm/**/*.cjs
 packages/**/esm/package.json
 packages/**/node_modules
 packages/**/build
@@ -32,5 +33,8 @@ packages/**/.sweet
 # util-tools
 packages/util-tools/test/**/*.webp
 packages/util-tools/test/**/output
+packages/util-tools/test/**/output-sharp
 
 .website-ci
+lerna-debug.log
+.eslintcache

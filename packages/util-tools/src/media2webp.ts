@@ -18,10 +18,10 @@ function file2webp(input: string, output: string): Promise<void> {
       .input(input)
       .outputOptions('-loop 0')
       .output(output)
-      .on('error', (): void => {
+      .on('end', (): void => {
         resolve();
       })
-      .on('end', (err: Error, stdout: string, stderr: string): void => {
+      .on('error', (err: Error, stdout: string, stderr: string): void => {
         reject(err);
       })
       .run();
@@ -30,10 +30,10 @@ function file2webp(input: string, output: string): Promise<void> {
 
 /**
  * 将媒体批量转换成webp格式
- * @param { string } entry: 入口文件夹
- * @param { string } output: 输出文件夹
- * @param { boolean } video: 是否转换视频
- * @param { string[] } ext: 扩展名
+ * @param { string } entry - 入口文件夹
+ * @param { string } output - 输出文件夹
+ * @param { boolean } [video = true] - 是否转换视频
+ * @param { string[] } ext - 扩展名
  */
 async function media2webp(entry: string, output: string, video: boolean = true, ext?: string[]): Promise<void> {
   // 获取所有文件

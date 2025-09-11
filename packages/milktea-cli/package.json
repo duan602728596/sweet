@@ -22,19 +22,19 @@
   "dependencies": {
     "@sweet-milktea/utils": "^4.0.0",
     "lodash": "^4.17.21",
-    "yargs": "^17.7.1"
+    "yargs": "^17.7.2"
   },
   "devDependencies": {
-    "@sweet-milktea/milktea": "^4.0.0",
-    "@sweet-milktea/milktea-vite": "^4.0.0",
-    "@sweet-milktea/server": "^4.0.0",
+    "@sweet-milktea/milktea": "^4.6.0",
+    "@sweet-milktea/milktea-vite": "^4.4.0",
+    "@sweet-milktea/server": "^4.4.0",
     "@sweet-milktea/server-log": "^4.0.0",
-    "@sweet-milktea/util-tools": "^4.1.0",
+    "@sweet-milktea/util-tools": "^4.4.0",
     "cross-env": "*",
     "mocha": "*",
-    "ts-node": "^10.9.1",
-    "vite": "^4.2.0",
-    "webpack": "^5.76.2"
+    "ts-node": "^10.9.2",
+    "vite": "^6.2.0",
+    "webpack": "^5.98.0"
   },
   "peerDependencies": {
     "@sweet-milktea/milktea": ">=4",

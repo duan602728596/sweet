@@ -13,9 +13,9 @@ import { formatPath, getFiles } from './utils/utils.js';
  * Also, if you're a macOS user with Homebrew, you can quickly install a pre-built version using brew install joedrago/repo/avifenc,
  * and avifenc --help for syntax and options.
  *
- * @param { string } inputFile: 输入的图片文件
- * @param { string } outputFile: 输出的图片文件
- * @param { boolean } hiddenLog: 隐藏日志
+ * @param { string } inputFile - 输入的图片文件
+ * @param { string } outputFile - 输出的图片文件
+ * @param { boolean } [hiddenLog] - 隐藏日志
  */
 function toAvif(inputFile: string, outputFile: string, hiddenLog?: boolean): Promise<void> {
   return new Promise((resolve: Function, reject: Function): void => {
@@ -45,8 +45,8 @@ function toAvif(inputFile: string, outputFile: string, hiddenLog?: boolean): Pro
 
 /**
  * 转换成avif，使用sharp
- * @param { string } inputFile: 输入的图片文件
- * @param { string } outputFile: 输出的图片文件
+ * @param { string } inputFile - 输入的图片文件
+ * @param { string } outputFile - 输出的图片文件
  */
 export async function toAvifUseSharp(inputFile: string, outputFile: string): Promise<void> {
   const sharp: typeof Sharp = await requireModule('sharp');
@@ -56,10 +56,10 @@ export async function toAvifUseSharp(inputFile: string, outputFile: string): Pro
 
 /**
  * 图片批量转换成avif格式
- * @param { string } entry: 入口文件夹
- * @param { string } output: 输出文件夹
- * @param { 'avifenc' | 'sharp' } type: 转换的底层依赖
- * @param { boolean } hiddenLog: 隐藏日志
+ * @param { string } entry - 入口文件夹
+ * @param { string } output - 输出文件夹
+ * @param { 'avifenc' | 'sharp' } [type] - 转换的底层依赖
+ * @param { boolean } [hiddenLog] - 隐藏日志
  */
 async function image2avif(entry: string, output: string, type?: 'avifenc' | 'sharp', hiddenLog?: boolean): Promise<void> {
   const files: string[] = await getFiles(entry, '**/*.{jpg,jpeg,png,y4m}');

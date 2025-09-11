@@ -1,12 +1,10 @@
 import path from 'node:path';
 import fs from 'node:fs';
-import util from 'node:util';
 import { expect } from 'chai';
-import rimraf from 'rimraf';
-import { metaHelper, requireCommonjsModule } from '@sweet-milktea/utils';
+import { rimraf } from 'rimraf';
+import { metaHelper, requireModule } from '@sweet-milktea/utils';
 import { build, serverRenderBuild } from '../esm/milktea-vite.js';
 
-const rimrafPromise = util.promisify(rimraf);
 const { __dirname } = metaHelper(import.meta.url);
 
 const root = path.join(__dirname, 'root');
@@ -41,14 +39,7 @@ describe('build and server', function() {
       mode: 'production'
     });
 
-    // eslint-disable-next-line import/no-unresolved
-    let server;
-
-    try {
-      server = requireCommonjsModule(path.join(__dirname, './dist-server/entry-server.cjs'));
-    } catch {
-      server = requireCommonjsModule(path.join(__dirname, './dist-server/entry-server.js'));
-    }
+    const server = await requireModule(path.join(__dirname, './dist-server/entry-server.js'));
 
     expect(server()).to.be.a('string');
     expect(fs.existsSync(path.join(__dirname, 'dist'))).to.be.true;
@@ -56,8 +47,8 @@ describe('build and server', function() {
 
   after(async function() {
     await Promise.all([
-      rimrafPromise(dist),
-      rimrafPromise(distServer)
+      rimraf(dist),
+      rimraf(distServer)
     ]);
   });
 });

@@ -15,6 +15,5 @@ export const packageNames = [
   'server-log',
   'util-tools',
   'utils',
-  'eslint-plugin',
   'babel-preset-sweet'
 ];

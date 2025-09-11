@@ -4,7 +4,7 @@ import type { Context, Middleware, Next } from 'koa';
 
 /**
  * 重写mime types
- * @param { object } mime: 重写的mime
+ * @param { object } [mime = {}] - 重写的mime
  */
 function createRewriteMime(mime: { [key: string]: string } = {}): Middleware {
   return async function(ctx: Context, next: Next): Promise<void> {

@@ -34,7 +34,7 @@ async function getConfig(environment: Environment, sweetConfig: SweetConfigArgs)
 
 /**
  * vite返回devServer
- * @param { SweetConfig | string | null | undefined } args.sweetConfig: vite配置，覆盖文件，优先级最高
+ * @param { SweetConfig | string | null | undefined } args.sweetConfig - vite配置，覆盖文件，优先级最高
  */
 export async function config(args: FuncArgs = {}): Promise<ViteDevServer> {
   const { sweetConfig, mode }: FuncArgs = args;
@@ -51,7 +51,7 @@ export async function config(args: FuncArgs = {}): Promise<ViteDevServer> {
 
 /**
  * vite生产环境编译配置
- * @param { SweetConfig | string | null | undefined } args.sweetConfig: vite配置，覆盖文件，优先级最高
+ * @param { SweetConfig | string | null | undefined } args.sweetConfig - vite配置，覆盖文件，优先级最高
  */
 export async function build(args: FuncArgs = {}): Promise<RollupOutput | RollupOutput[] | RollupWatcher> {
   const { sweetConfig, mode }: FuncArgs = args;
@@ -70,7 +70,7 @@ export async function build(args: FuncArgs = {}): Promise<RollupOutput | RollupO
 
 /**
  * vite生产环境SSR编译配置
- * @param { SweetConfig | string | null | undefined } args.sweetConfig: vite配置，覆盖文件，优先级最高
+ * @param { SweetConfig | string | null | undefined } args.sweetConfig - vite配置，覆盖文件，优先级最高
  */
 export async function serverRenderBuild(args: FuncArgs = {}): Promise<RollupOutput | RollupOutput[] | RollupWatcher> {
   const { sweetConfig, mode }: FuncArgs = args;

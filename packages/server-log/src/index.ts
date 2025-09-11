@@ -4,11 +4,6 @@ import type { Context } from 'koa';
 import createFileConfig from './createFileConfig.js';
 import createHttpConfig from './createHttpConfig.js';
 
-/**
- * 生成log的中间件
- * @param { 'file' | 'http' } type: 类型
- * @param { { pm2: boolean, url: string, basicPath: string } } options: 配置
- */
 interface Options {
   pm2: boolean;
   url: string;
@@ -20,6 +15,11 @@ interface ServerLog {
   logger: object;
 }
 
+/**
+ * 生成log的中间件
+ * @param { 'file' | 'http' } type - 类型
+ * @param { Options } [options = { pm2: false, url: '', basicPath: process.cwd() }] - 配置
+ */
 function serverLog(type: 'file' | 'http', options: Options = { pm2: false, url: '', basicPath: process.cwd() }): ServerLog {
   const config: object = type === 'http'
     ? createHttpConfig(options.url, options.pm2)

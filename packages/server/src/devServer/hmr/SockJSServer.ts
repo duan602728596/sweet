@@ -1,10 +1,8 @@
 import type { IncomingMessage, Server } from 'node:http';
-import type { Http2SecureServer } from 'node:http2';
 import sockjs from 'sockjs';
 import type { Server as SockjsServer, Connection as SockjsConnection } from 'sockjs';
 import { Session as SockjsSession } from 'sockjs/lib/transport.js';
-import type { Compiler } from 'webpack';
-import BasicServer, { type ServerItem, type ServerConnection, type ClientLogLevel } from './BasicServer.js';
+import BasicServer, { type ServerConnection, type ServerConstructorArgs, type HandleSocketConnection } from './BasicServer.js';
 
 // Workaround for sockjs@~0.3.19
 // sockjs will remove Origin header, however Origin header is required for checking host.
@@ -28,17 +26,12 @@ class SockJSServer extends BasicServer {
   public sockjsServer: SockjsServer; // sockjs服务
 
   /**
-   * @param { Function } log: 日志方法
-   * @param { ClientLogLevel } clientLogLevel: 日志等级
-   * @param { Array<Server | Http2SecureServer> } server: http服务
-   * @param { Compiler } compiler: webpack compiler
+   * @param { Function } log - 日志方法
+   * @param { ClientLogLevel } clientLogLevel - 日志等级
+   * @param { Array<Server | Http2SecureServer> } server - http服务
+   * @param { import('webpack').Compiler } compiler - webpack compiler
    */
-  constructor({ log, clientLogLevel, server, compiler }: {
-    log: { [key: string]: Function };
-    clientLogLevel: ClientLogLevel;
-    server: Array<ServerItem>;
-    compiler: Compiler;
-  }) {
+  constructor({ log, clientLogLevel, server, compiler }: ServerConstructorArgs) {
     super();
 
     // 日志
@@ -80,7 +73,7 @@ class SockJSServer extends BasicServer {
 
   // 关闭
   handleServerClose: Function = (): void => {
-    this.clients.forEach((o: ServerConnection): void => o.close());
+    this.clients.forEach((o: ServerConnection): boolean | void => o.close());
     this.clients.clear();
   };
 
@@ -95,12 +88,12 @@ class SockJSServer extends BasicServer {
   }
 
   // f should be passed the resulting connection and the connection headers
-  onConnection(f: Function): void {
+  onConnection(f: HandleSocketConnection): void {
     this.sockjsServer.on('connection', (client: SockjsConnection): void => {
       client['send'] = client.write;
       client['terminate'] = client.close;
 
-      f(client, client.headers);
+      f(client);
     });
   }
 }

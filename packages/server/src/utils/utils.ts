@@ -4,15 +4,11 @@ import type { ParsedPath } from 'node:path';
 import * as Stream from 'node:stream';
 import * as net from 'node:net';
 import type { Server as NetServer } from 'node:net';
-import { pathToFileURL } from 'node:url';
-import glob from 'glob';
 import { requireCommonjsModule, requireModule, isFileExists } from '@sweet-milktea/utils';
 import chalk from 'chalk';
 import { internalIpV4 } from 'internal-ip';
 import type { ViteDevServer } from 'vite';
 import type { SweetOptions } from './types.js';
-
-export const globPromise: (arg1: string, arg2?: glob.IOptions) => Promise<string[]> = util.promisify(glob);
 
 /* 格式化数据 */
 export function formatTemplateData(data: Record<string, unknown>): object {
@@ -55,19 +51,6 @@ export function requireViteModule(sweetOptions: SweetOptions): (id: string) => P
 
     return 'default' in modules ? modules.default : modules;
   };
-}
-
-/**
- * 异步加载ESM模块
- * 关于使用ESM模块的讨论：https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c
- * @param { string } id: 模块id
- * @return { Promise<any> }
- */
-export async function importESM(id: string): Promise<any> {
-  const fileUrl: string = (!id.includes('file://') && path.isAbsolute(id)) ? pathToFileURL(id).href : id;
-  const modules: any = await import(fileUrl);
-
-  return 'default' in modules ? modules.default : modules;
 }
 
 /* 判断是否为readStream */
@@ -117,7 +100,7 @@ export async function runningAtLog(sweetOptions: SweetOptions, displayHttps: boo
 
 /**
  * 检查端口占用情况
- * @param { number } port: 检查的端口
+ * @param { number } port - 检查的端口
  */
 export function portIsOccupied(port: number): Promise<boolean> {
   return new Promise(function(resolve: Function, reject: Function): void {
@@ -137,8 +120,8 @@ export function portIsOccupied(port: number): Promise<boolean> {
 
 /**
  * 判断端口是否被占用，并返回新的端口
- * @param { number } port: 检查的端口
- * @param { Array<number> } ignorePort: 忽略的端口
+ * @param { number } port - 检查的端口
+ * @param { Array<number> } [ignorePort = []] - 忽略的端口
  */
 export async function detectPort(port: number, ignorePort: Array<number> = []): Promise<number> {
   let maxPort: number = port + 10; // 最大端口
@@ -186,6 +169,14 @@ export async function getServerRenderEntry(serverRenderEntry: string): Promise<s
   }
 
   return serverRenderEntry;
+}
+
+/**
+ * TODO: @babel/register会将es6模块编译出exports.default，
+ *       加载时会出现module.default.default的情况
+ */
+export function __fixModuleImportDefaultDefault<T = any>(data: T | { default: T }): T {
+  return (typeof data === 'object' && data !== null && ('default' in data)) ? data.default : data;
 }
 
 /**

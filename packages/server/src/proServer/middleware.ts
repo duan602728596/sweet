@@ -9,9 +9,9 @@ import type { SweetOptions } from '../utils/types.js';
 
 /**
  * 创建中间件
- * @param { Koa } app: koa实例
- * @param { Router } router: @koa/router实例
- * @param { SweetOptions } sweetOptions: 配置
+ * @param { Koa } app - koa实例
+ * @param { Router } router - @koa/router实例
+ * @param { SweetOptions } sweetOptions - 配置
  */
 async function middleware(app: Koa, router: Router, sweetOptions: SweetOptions): Promise<void> {
   /* 日志 */

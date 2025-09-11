@@ -1,5 +1,5 @@
 import type { RuleSetRule, Entry, ResolveOptions, WebpackPluginInstance, Configuration, Stats } from 'webpack';
-import type Config from 'webpack-chain';
+import type { merge, mergeWithCustomize, mergeWithRules, unique } from 'webpack-merge';
 import type { PluginItem } from '@babel/core';
 import type { CosmiconfigResult } from 'cosmiconfig/dist/types.js';
 import type { Options as HtmlWebpackPluginOptions } from 'html-webpack-plugin';
@@ -25,9 +25,15 @@ interface ConfigRule {
   include?: RegExp | Array<RegExp>;
 }
 
+interface ReactCompilerConfig {
+  sources?(filename: string): boolean;
+  compilationMode?: 'annotation';
+}
+
 interface ScriptRule extends ConfigRule {
   presets?: Array<PluginItem>;
   plugins?: Array<PluginItem>;
+  reactCompiler?: boolean | ReactCompilerConfig;
 }
 
 /* js配置 */
@@ -35,7 +41,6 @@ export interface JSOptions extends ScriptRule {
   targets?: object;
   ecmascript?: boolean;
   polyfill?: boolean;
-  typescript?: boolean;
 }
 
 /* typescript配置 */
@@ -59,6 +64,17 @@ export interface LessOptions extends CSSOptions {
 export interface SassOptions extends CSSOptions {
   additionalData?: string | Function;
 }
+
+/* 修改webpack config */
+export interface WebpackMergeObject {
+  merge: typeof merge;
+  mergeWithCustomize: typeof mergeWithCustomize;
+  mergeWithRules: typeof mergeWithRules;
+  unique: typeof unique;
+}
+
+export type ModifyWebpackConfigReturn = Promise<Configuration> | Configuration | undefined | null;
+type ModifyWebpackConfig = (config: Configuration, webpackMerge: WebpackMergeObject) => ModifyWebpackConfigReturn;
 
 export type Mode = 'development' | 'production' | 'none';
 export type Frame = 'react' | 'vue' | 'test';  // 当前使用的组件
@@ -84,7 +100,6 @@ export interface SweetConfig {
   less?: LessOptions;
   html?: Array<HtmlWebpackPluginOptions>;
   frame?: Frame;
-  chainWebpack?: (config: Config) => Promise<void>;
   filesMap?: boolean | { [key: string]: string };
   hot?: boolean;
   socket?: 'sockjs' | 'ws';
@@ -94,7 +109,9 @@ export interface SweetConfig {
   serverOutput?: any;
   serverExternals?: { [key: string]: string };
   serverDevtool?: string;
-  serverChainWebpack?: (config: Config) => Promise<void>;
+  // 允许修改webpack配置
+  modifyWebpackConfig?: ModifyWebpackConfig;
+  modifyWebpackServerConfig?: ModifyWebpackConfig;
 }
 
 /* 获取配置文件 */
@@ -109,12 +126,8 @@ export interface Explorer {
 /* Milktea导出的文件 */
 export type SweetConfigArgs = SweetConfig | string | null | undefined;
 
-export interface FuncArgs {
+export interface FuncArgs extends Pick<SweetConfig, 'mode' | 'webpackLog' | 'hot' | 'socket'> {
   sweetConfig?: SweetConfigArgs;
-  mode?: Mode;
-  webpackLog?: WebpackLog;
-  hot?: boolean;
-  socket?: 'sockjs' | 'ws';
 }
 
 export interface Milktea {

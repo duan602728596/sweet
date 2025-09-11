@@ -4,8 +4,8 @@ import type { Frame } from '../utils/types.js';
 
 /**
  * 添加jsx插件
- * @param { InlineConfig } viteConfig: vite配置
- * @param { Frame } frame: 当前模式
+ * @param { InlineConfig } viteConfig - vite配置
+ * @param { Frame } frame - 当前模式
  */
 async function addJsxPlugins(viteConfig: InlineConfig, frame: Frame | undefined): Promise<void> {
   if (frame === 'react') {

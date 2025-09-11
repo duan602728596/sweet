@@ -2,13 +2,13 @@
   "compilerOptions": {
     "alwaysStrict": true,
     "moduleResolution": "node",
-    "locale": "zh-CN",
     "module": "ESNext",
     "target": "ES2020",
     "newLine": "LF",
     "strictNullChecks": true,
     "allowSyntheticDefaultImports": true,
-    "esModuleInterop": true
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true
   },
   "exclude": [
     "node_modules"

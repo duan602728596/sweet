@@ -12,9 +12,9 @@ interface CompressOptions {
 
 /**
  * 批量压缩图片
- * @param { string } entry: 入口文件夹
- * @param { string } output: 输出文件夹
- * @param { CompressOptions } compressOptions: 压缩选项
+ * @param { string } entry - 入口文件夹
+ * @param { string } output - 输出文件夹
+ * @param { CompressOptions } [compressOptions = {}] - 压缩选项
  */
 async function imageCompress(entry: string, output: string, compressOptions: CompressOptions = {}): Promise<void> {
   const imgFile: string = formatPath(path.join(entry, '**/*.{jpg,jpeg,png,gif}'));

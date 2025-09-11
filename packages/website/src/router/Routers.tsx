@@ -1,5 +1,5 @@
 import type { ReactElement } from 'react';
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router';
 import Sweet from '../pages/Sweet/index';
 import Demo from '../pages/Demo/index';
 import Packages from '../pages/Packages/index';

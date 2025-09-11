@@ -1,4 +1,5 @@
 // styles are inspired by `react-error-overlay`
+
 var msgStyles = {
   error: {
     backgroundColor: "rgba(206, 17, 38, 0.1)",

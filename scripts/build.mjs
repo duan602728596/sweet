@@ -1,4 +1,4 @@
-/* global path, fs, globby, cd */
+/* global path, fs, globby, cd, $ */
 import os from 'node:os';
 import { dir, packageNames } from './config.mjs';
 
@@ -22,7 +22,7 @@ if (os.platform() === 'win32') {
 
 /**
  * 格式化路径
- * @param { string } p: 原始路径
+ * @param { string } p - 原始路径
  */
 function formatPath(p) {
   return p.replace(/\\/g, '/');
@@ -30,8 +30,8 @@ function formatPath(p) {
 
 /**
  * typescript文件处理
- * @param { string } packageName: 编译名称
- * @param { string } packageDir: 入口文件
+ * @param { string } packageName - 编译名称
+ * @param { string } packageDir - 入口文件
  */
 async function clean(packageName, packageDir) {
   const libDir = path.join(packageDir, 'lib');
@@ -75,7 +75,7 @@ async function writeTypeModulePackageJsonFile() {
     if (['babel-preset-sweet', 'utils'].includes(name) ) {
       await fs.promises.writeFile(
         path.join(dir, name, 'esm/package.json'),
-        JSON.stringify({ type: 'module' }, null, 2) + '\n'
+        JSON.stringify({ type: 'module' })
       );
     }
   }

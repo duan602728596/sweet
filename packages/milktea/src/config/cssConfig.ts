@@ -1,50 +1,61 @@
-import sass from 'sass';
-import type { LoaderOptions } from 'webpack-chain';
+import * as sass from 'sass';
 
-// css-loader的mode
-// Callback must return "local", "global", or "pure" values
-function cssLoaderModeFunc(resourcePath: string): 'local' | 'global' | 'pure' {
-  if (/(pure\.(css|less|sass|scss|styl(us)?))/i.test(resourcePath)) {
-    return 'pure';
-  }
+const enum CssLoaderMode {
+  Local = 'local',
+  Global = 'global',
+  Pure = 'pure'
+}
 
-  if (/(node_modules|global\.(css|less|sass|scss|styl(us)?))/i.test(resourcePath)) {
-    return 'global';
-  }
+/**
+ * css-loader global mode
+ * @param { CssLoaderMode } defaultMode
+ * @return { (resourcePath: string) => CssLoaderMode }
+ */
+function createCssLoaderModeFunc(defaultMode: CssLoaderMode): (resourcePath: string) => CssLoaderMode {
+  /**
+   * @param { string } resourcePath
+   * @return { CssLoaderMode }
+   */
+  return function(resourcePath: string): CssLoaderMode {
+    if (/(pure\.(css|less|sass|scss|styl(us)?))/i.test(resourcePath)) {
+      return CssLoaderMode.Pure;
+    }
 
-  return 'local';
+    if (/(module\.(css|less|sass|scss|styl(us)?))/i.test(resourcePath)) {
+      return CssLoaderMode.Local;
+    }
+
+    if (/(node_modules|global\.(css|less|sass|scss|styl(us)?))/i.test(resourcePath)) {
+      return CssLoaderMode.Global;
+    }
+
+    return defaultMode;
+  };
 }
 
 /**
  * css-loader options
- * @param { boolean } modules: 是否开启css-modules
- * @param { boolean } isDevelopment: 是否为开发环境
- * @param { boolean } serverRender: 是否为服务器端渲染
+ * @param { boolean } modules - 是否开启css-modules
+ * @param { boolean } isDevelopment - 是否为开发环境
+ * @param { boolean } serverRender - 是否为服务器端渲染
  */
-export function createCssOptions(modules: boolean, isDevelopment: boolean, serverRender: boolean): LoaderOptions {
-  const modulesOptions: LoaderOptions = { exportOnlyLocals: serverRender };
-
-  if (modules) {
-    Object.assign(modulesOptions, {
-      mode: cssLoaderModeFunc,
-      localIdentName: isDevelopment ? '[path][name]__[local]___[hash:base64:6]' : '_[hash:base64:6]'
-    });
-  }
-
-  return { modules: modulesOptions };
+export function createCssOptions(modules: boolean, isDevelopment: boolean, serverRender: boolean): Record<string, any> {
+  return {
+    modules: {
+      exportOnlyLocals: serverRender,
+      localIdentName: isDevelopment ? '[path][name]__[local]___[hash:base64:6]' : '_[hash:base64:6]',
+      namedExport: false,
+      mode: createCssLoaderModeFunc(modules ? CssLoaderMode.Local : CssLoaderMode.Global)
+    }
+  };
 }
 
 /**
  * less-loader options
- * @param { object } modifyVars: less变量
+ * @param { object } modifyVars - less变量
  * @param { string | Function } additionalData
- * @param { boolean } isDevelopment: 是否为开发环境
  */
-export function createLessOptions(
-  modifyVars: object | undefined,
-  additionalData: string | Function | undefined,
-  isDevelopment: boolean
-): LoaderOptions {
+export function createLessOptions(modifyVars: object | undefined, additionalData: string | Function | undefined): Record<string, any> {
   return {
     lessOptions: {
       javascriptEnabled: true,
@@ -56,14 +67,11 @@ export function createLessOptions(
 
 /**
  * sass-loader options
- * @param { string | Function } additionalData: sass变量
- * @param { boolean } isDevelopment: 是否为开发环境
+ * @param { string | Function } additionalData - sass变量
  */
-export function createSassOptions(additionalData: string | Function | undefined, isDevelopment: boolean): LoaderOptions {
+export function createSassOptions(additionalData: string | Function | undefined): Record<string, any> {
   return {
-    sassOptions: {
-      fiber: false
-    },
+    sassOptions: {},
     additionalData,
     implementation: sass
   };

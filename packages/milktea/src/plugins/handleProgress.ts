@@ -2,7 +2,7 @@ import chalk from 'chalk';
 
 /**
  * 计算进度百分比
- * @param { number } percentage: 进度
+ * @param { number } percentage - 进度
  */
 function calculateProgress(percentage: number): string {
   const schedule: number = Number(percentage.toFixed(2)) * 100;

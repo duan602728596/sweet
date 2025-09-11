@@ -77,11 +77,11 @@ module.exports = function(info) {
     * targets `{ object }` : 配置@babel/preset-env的编译目标
     * ecmascript `{ boolean }` : 是否编译到ecmascript的最新语法（即不使用@babel/preset-env，通常适用于node、nwjs和electron）
     * polyfill `{ boolean }` : 使用babel-plugin-polyfill-{name}相关插件
-    * typescript `{ boolean }` : 是否使用typescript编译（即使用@babel/preset-typescript）
     * presets `{ Array<any> }` : 自定义presets
     * plugins `{ Array<any> }` : 自定义plugins
     * exclude `{ RegExp }` : exclude规则
     * include `{ RegExp }` : include规则
+    * reactCompiler `{ boolean | object }` : 是否开启react-compiler
 * typescript `{ object }` : typescript配置
     * configFile `{ string }` : typescript的配置文件
     * presets `{ Array<any> }` : 自定义babel的presets
@@ -89,6 +89,7 @@ module.exports = function(info) {
     * exclude `{ RegExp }` : exclude规则
     * include `{ RegExp }` : include规则
     * forkTsCheckerWebpackPlugin `{ boolean }` : 设置为false时，关闭fork-ts-checker-webpack-plugin插件注入
+    * reactCompiler `{ boolean | object }` : 是否开启react-compiler
 * sass `{ object }` : sass配置
     * modules `{ boolean }` : 开启css-in-modules
     * exclude `{ RegExp }` : exclude规则
@@ -104,9 +105,9 @@ module.exports = function(info) {
     * template `{ string }` : html模板文件地址
     * 其他`html-webpack-plugin`的配置
 * frame `{ string }` : 值为`react`或`vue`，是否为react或vue模式，并自动注入loaders和plugins
-* chainWebpack `{ Function }` : 通过`webpack-chain`的API扩展或修改webpack配置
 * filesMap `{ boolean | object }` : 输出`filesMap.json`文件，记录了文件的映射
 * hot `{ boolean }` : 添加**webpack.HotModuleReplacementPlugin**插件，开启热更新功能
+* modifyWebpackConfig `{ (config: Configuration, webpackMerge: WebpackMergeObject) => (Promise<Configuration> | Configuration | undefined | null) }` : 扩展或修改webpack的配置
 
 下面的配置是关于服务器端渲染的
 
@@ -115,7 +116,7 @@ module.exports = function(info) {
 * serverOutput `{ any }` : 服务器端文件出口（参考webpack）
 * serverExternals `{ object }` : 服务器端的外部扩展（参考webpack）
 * serverDevtool `{ string }` : 服务器端的SourceMap的类型（参考webpack）
-* serverChainWebpack`{ Function }` : 通过`webpack-chain`的API扩展或修改SSR的webpack配置
+* modifyWebpackServerConfig `{ (config: Configuration, webpackMerge: WebpackMergeObject) => (Promise<Configuration> | Configuration | undefined | null) }` : 扩展或修改webpack的server的配置
 
 ### 关于vue
 

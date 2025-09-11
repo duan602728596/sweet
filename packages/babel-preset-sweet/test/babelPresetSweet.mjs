@@ -1,17 +1,51 @@
 import { expect } from 'chai';
 import { transformAsync } from '@babel/core';
 
-/* 编译代码 */
+function getTargets(options) {
+  let babelBuildTargets;
+
+  if (options?.targets) {
+    babelBuildTargets = options.targets;
+  } else {
+    if (options?.ecmascript) {
+      babelBuildTargets = {
+        browsers: options?.nodeEnv ? ['node 20'] : ['last 5 Chrome versions']
+      };
+    } else {
+      babelBuildTargets = {
+        browsers: options?.nodeEnv ? ['node 18'] : [
+          'last 10 versions',
+          'last 2 year'
+        ]
+      };
+    }
+  }
+
+  return babelBuildTargets;
+}
+
+/**
+ * 编译代码
+ * @param { string } code - 代码
+ * @param { object } [options]
+ */
 async function transformCode(code, options) {
   return transformAsync(code, {
+    targets: getTargets(options),
     presets: [
       [(await import('../lib/index.js')).default, options]
     ]
   });
 }
 
+/**
+ * 编译代码
+ * @param { string } code - 代码
+ * @param { object } [options]
+ */
 async function transformCodeESM(code, options) {
   return transformAsync(code, {
+    targets: getTargets(options),
     presets: [
       [(await import('../esm/index.js')).default, options]
     ]
@@ -55,17 +89,25 @@ describe('babel-preset-sweet', function() {
   });
 
   it('build typescript', async function() {
-    const rawCode = 'const a: number = 5;';
+    const rawCode = `import { type ReactElement } from 'react';
+
+const a: number = 5;
+
+ function App(props: {}): ReactElement {
+   return <div>{ a }</div>;
+ }`;
     const options = {
       typescript: { use: true }
     };
     const [{ code }, { code: codeESM }] = await Promise.all([
-      transformCode(rawCode, options),
-      transformCodeESM(rawCode, options)
+      transformCode(rawCode, options, { isTs: true }),
+      transformCodeESM(rawCode, options, { isTs: true })
     ]);
 
     expect(code.includes('var a = 5;')).to.be.true;
     expect(codeESM.includes('var a = 5;')).to.be.true;
+    expect(code.includes('_jsx("div"') || code.includes('jsx)("div"')).to.be.true;
+    expect(codeESM.includes('_jsx("div"') || code.includes('jsx)("div"')).to.be.true;
   });
 
   it('build transform-runtime', async function() {
@@ -93,17 +135,14 @@ describe('babel-preset-sweet', function() {
 
   it('build polyfill', async function() {
     const rawCode = "globalThis.a = 5; 'Hello, world.'.replaceAll(/,/, ''); ";
-    const options = {
-      polyfill: true
-    };
     const [{ code }, { code: codeESM }] = await Promise.all([
-      transformCode(rawCode, options),
-      transformCodeESM(rawCode, options)
+      transformCode(rawCode),
+      transformCodeESM(rawCode)
     ]);
 
-    expect(code.includes('globalthis')).to.be.true;
-    expect(code.includes('string.prototype.replaceall')).to.be.true;
-    expect(codeESM.includes('globalthis')).to.be.true;
-    expect(codeESM.includes('string.prototype.replaceall')).to.be.true;
+    expect(code.includes('esnext.global-this')).to.be.true;
+    expect(code.includes('esnext.string.replace-all')).to.be.true;
+    expect(codeESM.includes('esnext.global-this')).to.be.true;
+    expect(codeESM.includes('esnext.string.replace-all')).to.be.true;
   });
 });

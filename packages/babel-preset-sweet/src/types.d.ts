@@ -7,13 +7,6 @@ export interface EnvOptions {
   targets?: object;               // 自定义babel的编译版本
   debug?: boolean;                // 开启debug信息
   modules?: boolean | string;     // modules
-  useBuiltIns?: boolean | string; // useBuiltIns
-}
-
-// @babel/preset-typescript的配置
-export interface TypescriptOptions {
-  use?: boolean;     // 是否添加@babel/preset-typescript
-  isReact?: boolean; // 是否开启react jsx的转换
 }
 
 // @babel/preset-react的配置
@@ -23,12 +16,16 @@ export interface ReactOptions {
   development?: boolean; // 是否为开发环境
 }
 
+// @babel/preset-typescript的配置
+export interface TypescriptOptions {
+  use?: boolean; // 是否添加@babel/preset-typescript
+}
+
 // babel配置
 export interface BabelPresetSweetOptions {
   env?: EnvOptions;
-  typescript?: TypescriptOptions;
   react?: ReactOptions;
-  polyfill?: boolean;
+  typescript?: TypescriptOptions;
 }
 
 export interface BabelPresetSweet {

@@ -1,24 +1,22 @@
 import * as path from 'node:path';
 import _ from 'lodash';
 import type { Configuration } from 'webpack';
-import Config from 'webpack-chain';
 import { merge } from 'webpack-merge';
 import { moduleExists } from '@sweet-milktea/utils';
 import loaders from './loaders/loaders.js';
 import basicPlugins from './plugins/plugins.js';
 import optimization from './optimization/optimization.js';
-import { extensions, isTsconfigJsonExists } from './utils/utils.js';
+import { webpackMergeObject, extensions, extensionAlias, isTsconfigJsonExists } from './utils/utils.js';
 import CacheConfig from './config/cacheConfig.js';
 import createFileName from './config/fileNameConfig.js';
-import type { SweetConfig, SweetOptions } from './utils/types.js';
+import type { SweetConfig, SweetOptions, ModifyWebpackConfigReturn } from './utils/types.js';
 
 /**
  * webpack 服务器端渲染配置
- * @param { SweetConfig } sweetConfig: 获取到的外部配置
- * @param { SweetOptions } sweetOptions: 内部挂载的一些配置
+ * @param { SweetConfig } sweetConfig - 获取到的外部配置
+ * @param { SweetOptions } sweetOptions - 内部挂载的一些配置
  */
 export default async function(sweetConfig: SweetConfig, sweetOptions: SweetOptions): Promise<Configuration> {
-  const config: Config = new Config();
   const sweetConfigModified: SweetConfig = _.omit(sweetConfig, ['hot']);
   const {
     mode,
@@ -31,42 +29,41 @@ export default async function(sweetConfig: SweetConfig, sweetOptions: SweetOptio
     noParse,
     plugins,
     serverDevtool,
-    serverChainWebpack,
-    typescript
+    typescript,
+    modifyWebpackServerConfig
   }: SweetConfig = sweetConfigModified;
   const isDevelopment: boolean = mode === 'development';
 
-  // 合并配置
-  config
-    .merge({
-      mode,
-      devtool: serverDevtool ?? (isDevelopment ? 'eval-source-map' : 'source-map'),
-      resolve: { extensions },
-      target: ['node', 'node16'],
-      performance: { hints: false },
-      node: {
-        __filename: true,
-        __dirname: true
-      },
+  /* 设置文件输出 */
+  const webpackOutput: Configuration['output'] = {
+    path: path.join(sweetOptions.basicPath, 'dist-server'),
+    publicPath: '',
+    filename: '[name].js',
+    library: { type: 'commonjs' },
+    globalObject: 'globalThis',
+    assetModuleFilename: createFileName(isDevelopment)
+  };
 
-      // 文件缓存
-      cache: isDevelopment ? {
-        type: 'filesystem',
-        cacheDirectory: path.join(sweetOptions.basicPath, CacheConfig.WebpackServer)
-      } : false
-    });
-
-  // 设置文件输出
-  config
-    .output
-    .path(path.join(sweetOptions.basicPath, 'dist-server'))
-    .publicPath('')
-    .filename('[name].mjs')
-    .library({
-      type: 'module'
-    } as any)
-    .globalObject('globalThis')
-    .merge({ assetModuleFilename: createFileName(isDevelopment) });
+  /* webpack配置 */
+  const webpackConfig: Configuration = {
+    mode,
+    devtool: serverDevtool ?? (isDevelopment ? 'eval-source-map' : 'source-map'),
+    resolve: { extensions, extensionAlias },
+    target: ['node', 'node16'],
+    performance: { hints: false },
+    node: {
+      __filename: true,
+      __dirname: true
+    },
+    cache: isDevelopment ? {
+      type: 'filesystem',
+      cacheDirectory: path.join(sweetOptions.basicPath, CacheConfig.WebpackServer)
+    } : false,
+    output: webpackOutput,
+    experiments: {
+      topLevelAwait: true
+    }
+  };
 
   // forkTsCheckerWebpackPlugin配置
   sweetOptions.forkTsCheckerWebpackPlugin = !!(
@@ -75,20 +72,15 @@ export default async function(sweetConfig: SweetConfig, sweetOptions: SweetOptio
     && (await isTsconfigJsonExists(sweetOptions, typescript)));
 
   // loaders
-  await loaders(sweetConfigModified, sweetOptions, config);
+  await loaders(sweetConfigModified, sweetOptions, webpackConfig);
 
   // plugins
-  await basicPlugins(sweetConfigModified, sweetOptions, config);
+  await basicPlugins(sweetConfigModified, sweetOptions, webpackConfig);
 
   // optimization
-  optimization(sweetConfigModified, sweetOptions, config, true);
+  optimization(sweetConfigModified, sweetOptions, webpackConfig, true);
 
-  /* serverChainWebpack: 通过webpack-chain的API扩展或修改webpack配置 */
-  if (serverChainWebpack) {
-    await serverChainWebpack(config);
-  }
-
-  const mergeConfiguration: Configuration = {
+  const webpackLoadedConfig: Configuration = {
     context,
     entry: serverEntry,
     output: serverOutput,
@@ -100,12 +92,17 @@ export default async function(sweetConfig: SweetConfig, sweetOptions: SweetOptio
       rules
     },
     // 添加自定义的plugins
-    plugins,
-    experiments: {
-      topLevelAwait: true,
-      outputModule: true
-    }
+    plugins
   };
 
-  return merge(config.toConfig(), mergeConfiguration);
+  const webpackServerConfig: Configuration = merge(webpackConfig, webpackLoadedConfig);
+
+  /* 扩展或修改webpack配置 */
+  if (modifyWebpackServerConfig) {
+    const modifiedConfig: ModifyWebpackConfigReturn = await modifyWebpackServerConfig(webpackServerConfig, webpackMergeObject);
+
+    if (modifiedConfig) return modifiedConfig;
+  }
+
+  return webpackServerConfig;
 }

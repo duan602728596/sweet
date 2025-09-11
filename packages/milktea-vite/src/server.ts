@@ -9,8 +9,8 @@ import type { SweetConfig, SweetOptions } from './utils/types.js';
 
 /**
  * vite 生产环境SSR编译配置
- * @param { SweetConfig } sweetConfig: 获取到的外部配置
- * @param { SweetOptions } sweetOptions: 内部挂载的一些配置
+ * @param { SweetConfig } sweetConfig - 获取到的外部配置
+ * @param { SweetOptions } sweetOptions - 内部挂载的一些配置
  */
 export default async function(sweetConfig: SweetConfig, sweetOptions: SweetOptions): Promise<InlineConfig> {
   changeSweetConfig(sweetConfig);
@@ -28,9 +28,6 @@ export default async function(sweetConfig: SweetConfig, sweetOptions: SweetOptio
       ssr: serverEntry,
       minify: true,
       sourcemap: true
-    },
-    ssr: {
-      format: 'esm'
     }
   });
 

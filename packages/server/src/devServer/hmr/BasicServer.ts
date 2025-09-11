@@ -1,6 +1,6 @@
 import type { Server } from 'node:http';
 import type { Http2SecureServer } from 'node:http2';
-import type { Compiler, Stats, StatsCompilation } from 'webpack';
+import type { Compiler, Stats, StatsCompilation, StatsOptions } from 'webpack';
 import type WebSocket from 'ws';
 import type { Connection as SockjsConnection } from 'sockjs';
 
@@ -8,9 +8,18 @@ export type ServerItem = Server | Http2SecureServer;
 export type ServerConnection = WebSocket | SockjsConnection;
 export type ClientLogLevel = 'silent' | 'trace' | 'debug' | 'info' | 'warn' | 'error';
 
+export interface ServerConstructorArgs {
+  log: Record<string, Function>;
+  clientLogLevel: ClientLogLevel;
+  server: Array<ServerItem>;
+  compiler: Compiler;
+}
+
+export type HandleSocketConnection = (client: ServerConnection) => void;
+
 /* 为sockjs服务和ws定义通用的方法 */
 abstract class BasicServer {
-  static DEFAULT_STATS: any = {
+  static DEFAULT_STATS: StatsOptions = {
     all: false,
     hash: true,
     assets: true,
@@ -30,7 +39,7 @@ abstract class BasicServer {
 
   // 获取stats
   getStats(statsObj: Stats): StatsCompilation {
-    const stats: any = BasicServer.DEFAULT_STATS;
+    const stats: StatsOptions = BasicServer.DEFAULT_STATS;
 
     return statsObj.toJson(stats);
   }
@@ -128,7 +137,7 @@ abstract class BasicServer {
   }
 
   // 连接
-  handleSocketConnection: Function = (client: ServerConnection, headers: { [key: string]: string }): void => {
+  handleSocketConnection: HandleSocketConnection = (client: ServerConnection): void => {
     this.clients.add(client);
 
     this.onConnectionClose(client, (): void => {

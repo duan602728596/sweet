@@ -1,8 +1,7 @@
 import * as path from 'node:path';
-import type { IOptions } from 'glob';
+import { glob, type GlobOptionsWithFileTypesFalse } from 'glob';
 import _ from 'lodash';
 import { requireCommonjsModule, requireModuleWithoutCache } from '@sweet-milktea/utils';
-import { globPromise } from './utils.js';
 import useRegister from './babelRegister.js';
 import type { SweetOptions, ControllersModule } from './types.js';
 
@@ -16,22 +15,22 @@ interface ControllersInfo {
 
 /**
  * 获取controllers信息
- * @param { string } controllersDir: controllers的文件夹名
+ * @param { string } controllersDir - controllers的文件夹名
  */
 export function getControllers(controllersDir?: string): ControllersInfo {
   const isAbsolute: boolean = controllersDir ? path.isAbsolute(controllersDir) : false;
   const dir: string = controllersDir ?? DEFAULT_CONTROLLERS;
-  const controllers: string = path.join(dir, '**/*.{ts,mts,cts,tsx,js,mjs,cjs,jsx}');
+  const controllers: string = path.join(dir, '**/*.{ts,mts,cts,tsx,js,mjs,cjs,jsx}').replace(/\\/g, '/');
 
   return { isAbsolute, dir, controllers };
 }
 
 /**
  * 加载controllers目录下的模块
- * @param { Array<string> } files: 文件名
+ * @param { Array<string> } files - 文件名
  * @param { SweetOptions } sweetOptions
  * @param { ControllersInfo } controllersInfo
- * @param { boolean } clearRequireModule: 是否清除缓存
+ * @param { boolean } [clearRequireModule] - 是否清除缓存
  */
 export async function requireControllers(
   files: Array<string>,
@@ -66,18 +65,18 @@ export async function requireControllers(
 /**
  * 获取controllers目录下的所有模块
  * @param { SweetOptions } sweetOptions
- * @param { boolean } clearRequireModule: 是否清除缓存
+ * @param { boolean } [clearRequireModule] - 是否清除缓存
  */
 export async function getControllersFiles(sweetOptions: SweetOptions, clearRequireModule?: boolean): Promise<Array<ControllersModule>> {
   const controllersInfo: ControllersInfo = getControllers(sweetOptions.controllersDir);
-  let options: IOptions = { cwd: sweetOptions.basicPath };
+  let options: GlobOptionsWithFileTypesFalse = { cwd: sweetOptions.basicPath };
 
   // 绝对路径时移除cwd
   if (controllersInfo.isAbsolute) {
     options = _.omit(options, ['cwd']);
   }
 
-  const files: Array<string> = await globPromise(controllersInfo.controllers, options);
+  const files: Array<string> = await glob(controllersInfo.controllers, options);
 
   return requireControllers(files, sweetOptions, controllersInfo, clearRequireModule);
 }
