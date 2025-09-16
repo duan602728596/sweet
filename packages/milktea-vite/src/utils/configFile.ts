@@ -11,7 +11,7 @@ function createJsRegisterLoader(): Loader {
   return async function jsRegisterLoader(filepath: string, content: string): Promise<Config | null> {
     (await requireModule('@babel/register'))({
       presets: [[
-        await requireModule('@sweet-milktea/babel-preset-sweet'),
+        '@sweet-milktea/babel-preset-sweet',
         {
           env: {
             nodeEnv: true,

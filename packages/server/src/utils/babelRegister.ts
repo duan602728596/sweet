@@ -16,7 +16,7 @@ async function useRegister(sweetOptions: SweetOptions): Promise<void> {
     const config: RegisterConfig = {
       presets: [
         [
-          await requireModule('@sweet-milktea/babel-preset-sweet'),
+          '@sweet-milktea/babel-preset-sweet',
           {
             env: {
               nodeEnv: true,
