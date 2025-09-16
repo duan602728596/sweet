@@ -1,6 +1,8 @@
 import process from 'node:process';
 import path from 'node:path';
+import { metaHelper } from '@sweet-milktea/utils';
 
+const { __dirname }: { __dirname: string } = metaHelper(import.meta.url);
 const isDev: boolean = process.env.NODE_ENV === 'development';
 
 const reactCompiler: { sources(p: string): boolean } = {
