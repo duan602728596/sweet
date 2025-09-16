@@ -2,7 +2,7 @@
 function transformRuntime(): Array<[string, any?] | string> {
   return [
     '@babel/plugin-transform-runtime',
-    ['polyfill-corejs3', { method: 'usage-global' }]
+    ['babel-plugin-polyfill-corejs3', { method: 'usage-global' }]
   ];
 }
 

@@ -12,8 +12,7 @@ function presetEnv(options: PresetEnvOptionsArgs): [string, any] {
   const presetEnvOptions: Record<string, any> = {
     targets: babelBuildTargets,
     debug,
-    modules: envModules,
-    corejs: 3
+    modules: envModules
   };
 
   return ['@babel/preset-env', presetEnvOptions];
