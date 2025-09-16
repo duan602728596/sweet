@@ -26,7 +26,7 @@ export default async function(sweetConfig: SweetConfig, sweetOptions: SweetOptio
   if (hot && frame === 'react') {
     configPluginPush(config, new ReactRefreshWebpackPlugin({
       overlay: {
-        sockIntegration: ''
+        sockIntegration: false
       }
     }));
   }
