@@ -8,7 +8,9 @@
   "exports": {
     "./client": "./client/index.js",
     "./client/index": "./client/index.js",
-    "./client/index.js": "./client/index.js"
+    "./client/index.js": "./client/index.js",
+    "./socket/WDSSocket": "./socket/WDSSocket.js",
+    "./socket/WDSSocket.js": "./socket/WDSSocket.js"
   },
   "dependencies": {
     "ansi-html-community": "^0.0.8",

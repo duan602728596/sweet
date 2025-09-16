@@ -1,7 +1,7 @@
 import * as path from 'node:path';
 import webpack, { type Configuration } from 'webpack';
 import ReactRefreshWebpackPlugin from '@pmmmwh/react-refresh-webpack-plugin';
-import { moduleExists, requireJson } from '@sweet-milktea/utils';
+import { requireJson } from '@sweet-milktea/utils';
 import CacheConfig from '../config/cacheConfig.js';
 import { configPluginPush } from '../utils/utils.js';
 import type { SweetConfig, SweetOptions } from '../utils/types.js';
@@ -26,7 +26,7 @@ export default async function(sweetConfig: SweetConfig, sweetOptions: SweetOptio
   if (hot && frame === 'react') {
     configPluginPush(config, new ReactRefreshWebpackPlugin({
       overlay: {
-        sockIntegration: false
+        sockIntegration: '@sweet-milktea/server-hot-client/socket/WDSSocket.js'
       }
     }));
   }
