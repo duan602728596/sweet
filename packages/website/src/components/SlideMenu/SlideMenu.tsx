@@ -1,7 +1,7 @@
 import { useMemo, type ReactElement } from 'react';
 import { Link, useLocation, type Location } from 'react-router';
 import { Menu } from 'antd';
-import type { MenuItemType, SubMenuType } from 'rc-menu/es/interface';
+import type { ItemType } from 'antd/es/menu/interface';
 import {
   FireOutlined as IconFireOutlined,
   DeploymentUnitOutlined as IconDeploymentUnitOutlined,
@@ -89,14 +89,14 @@ const navs: Array<NavItem> = [
 ];
 const openKeys: Array<string> = navs.map((o: NavItem): string => o.id);
 
-function navItemsRender(items: Array<NavItem>): Array<MenuItemType | SubMenuType> {
-  const menuItems: Array<MenuItemType | SubMenuType> = [];
+function navItemsRender(items: Array<NavItem>): Array<ItemType> {
+  const menuItems: Array<ItemType> = [];
 
   for (const item of items) {
     const { id, url, name, icon, children }: NavItem = item;
 
     if (children?.length) {
-      const childrenMenuItems: Array<MenuItemType | SubMenuType> = navItemsRender(children);
+      const childrenMenuItems: Array<ItemType> = navItemsRender(children);
 
       menuItems.push({
         type: 'submenu',
