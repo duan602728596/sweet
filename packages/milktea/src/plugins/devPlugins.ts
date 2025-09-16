@@ -26,8 +26,8 @@ export default async function(sweetConfig: SweetConfig, sweetOptions: SweetOptio
   if (hot && frame === 'react') {
     configPluginPush(config, new ReactRefreshWebpackPlugin({
       overlay: {
-        entry: moduleExists('@pmmmwh/react-refresh-webpack-plugin/client/ErrorOverlayEntry'),
-        module: moduleExists('@pmmmwh/react-refresh-webpack-plugin/overlay')
+        entry: moduleExists('@pmmmwh/react-refresh-webpack-plugin/client/ErrorOverlayEntry.js'),
+        module: moduleExists('@pmmmwh/react-refresh-webpack-plugin/overlay/index.js')
       }
     }));
   }
