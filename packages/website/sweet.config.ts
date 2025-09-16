@@ -37,7 +37,7 @@ export default function(info: object): object {
     },
     typescript: {
       configFile: isDev ? 'tsconfig.json' : 'tsconfig.prod.json',
-      plugins: [['@babel/plugin-syntax-import-assertions', undefined, 'import-assertions']],
+      plugins: [['@babel/plugin-syntax-import-attributes', undefined, 'sweet-milktea/website/import-attributes']],
       exclude: jsExclude,
       reactCompiler
     },
