@@ -9,31 +9,12 @@ const configFileExtensions: Array<`.${ string }`> = ['.ts', '.tsx', '.mts', '.ct
 /* 创建cosmiconfig的js加载器 */
 function createJsRegisterLoader(): Loader {
   return async function jsRegisterLoader(filepath: string, content: string): Promise<Config | null> {
-    (await requireModule('@babel/register'))({
-      presets: [[
-        '@sweet-milktea/babel-preset-sweet',
-        {
-          env: {
-            nodeEnv: true,
-            ecmascript: true,
-            modules: 'commonjs'
-          },
-          typescript: {
-            use: true
-          }
-        }
-      ]],
-      cache: true,
-      ignore: [/node_modules/],
-      extensions: configFileExtensions
-    });
-
     let modules: Config | null;
 
     try {
-      modules = requireCommonjsModule(filepath);
+      modules = await requireModule(filepath);
     } catch (err) {
-      modules = requireModule(filepath);
+      modules = requireCommonjsModule(filepath);
     }
 
     return modules;

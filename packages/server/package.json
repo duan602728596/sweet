@@ -26,7 +26,6 @@
   },
   "dependencies": {
     "@babel/core": "^8.0.0-beta.3",
-    "@babel/register": "^8.0.0-beta.3",
     "@bbkkbkk/http-proxy": "^1.17.0",
     "@koa/router": "^14.0.0",
     "@sweet-milktea/babel-preset-sweet": "^4.6.0",

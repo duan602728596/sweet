@@ -19,7 +19,6 @@ import createSweetOptionsMiddleware from './utils/createOptions.js';
 import createMock from './utils/createMock.js';
 import createHttpsCertificate, { type HttpsCertificate } from './utils/createHttpsCertificate.js';
 import koaHmr from './devServer/hmr/hmr.js';
-import useRegister from './utils/babelRegister.js';
 import { formatPath, runningAtLog, getServerRenderEntry } from './utils/utils.js';
 import type { SweetOptions, DevServerArgs } from './utils/types.js';
 
@@ -101,9 +100,6 @@ async function devServer(args: DevServerArgs = {}): Promise<void> {
     httpPort: _httpPort,
     httpsPort: _httpsPort
   });
-
-  /* @babel/register */
-  await useRegister(sweetOptions);
 
   /* 添加新的配置项 */
   if (sweetOptions.serverRenderRoot && sweetOptions.serverRenderFile) {

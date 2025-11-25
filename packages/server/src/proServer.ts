@@ -16,7 +16,6 @@ import createMock from './utils/createMock.js';
 import createRedirectToHttpsMiddleware from './utils/redirectToHttps.js';
 import createSweetOptionsMiddleware from './utils/createOptions.js';
 import createHttpsCertificate, { type HttpsCertificate } from './utils/createHttpsCertificate.js';
-import useRegister from './utils/babelRegister.js';
 import { formatPath, runningAtLog, getServerRenderEntry } from './utils/utils.js';
 import type { SweetOptions, ProServerArgs } from './utils/types.js';
 
@@ -105,9 +104,6 @@ async function proServer(args: ProServerArgs = {}): Promise<void> {
     sweetOptions.serverRenderEntry = await getServerRenderEntry(
       path.join(sweetOptions.serverRenderRoot, sweetOptions.serverRenderFile));
   }
-
-  /* @babel/register */
-  await useRegister(sweetOptions);
 
   /* https服务 */
   const [useHttps, keyFile, certFile]: HttpsCertificate = await createHttpsCertificate(sweetOptions, httpsKey, httpsCert);

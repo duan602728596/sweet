@@ -9,39 +9,12 @@ const configFileExtensions: Array<`.${ string }`> = ['.ts', '.tsx', '.mts', '.ct
 /* 创建cosmiconfig的js加载器 */
 function createJsRegisterLoader(): Loader {
   return async function jsRegisterLoader(filepath: string, content: string): Promise<Config | null> {
-    (await requireModule('@babel/register'))({
-      presets: [[
-        '@sweet-milktea/babel-preset-sweet',
-        {
-          env: {
-            nodeEnv: true,
-            ecmascript: true,
-            modules: 'commonjs'
-          },
-          typescript: {
-            use: true
-          }
-        }
-      ]],
-      cache: true,
-      ignore: [/node_modules/],
-      extensions: configFileExtensions
-    });
-
-    /**
-     * TODO:
-     *   加载配置文件仍然使用commonjs的方法，无论是否在esm环境下启动。
-     *   如果在esm模式下加载typescript，你需要安装ts-node，然后使用如下方式启动：
-     *   `TS_NODE_PROJECT=tsconfig.ts-node.json NODE_OPTIONS="--loader ts-node/esm" milktea-esm start`
-     *   具体原因参考ts-node的[issues]：https://github.com/TypeStrong/ts-node/issues/1007
-     */
     let modules: Config | null;
 
     try {
-      modules = requireCommonjsModule(filepath);
+      modules = await requireModule(filepath);
     } catch (err) {
-      console.error(err);
-      modules = requireModule(filepath);
+      modules = requireCommonjsModule(filepath);
     }
 
     return modules;

@@ -2,7 +2,6 @@ import * as path from 'node:path';
 import { glob, type GlobOptionsWithFileTypesFalse } from 'glob';
 import _ from 'lodash';
 import { requireCommonjsModule, requireModuleWithoutCache } from '@sweet-milktea/utils';
-import useRegister from './babelRegister.js';
 import type { SweetOptions, ControllersModule } from './types.js';
 
 const DEFAULT_CONTROLLERS: string = 'controllers'; // 默认的controllers名
@@ -42,8 +41,6 @@ export async function requireControllers(
     defaultResult: Array<ControllersModule> = [];
 
   for (const file of files) {
-    await useRegister(sweetOptions);
-
     const modules: ControllersModule | undefined = await (clearRequireModule
       ? requireModuleWithoutCache
       : requireCommonjsModule
