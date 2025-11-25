@@ -1,6 +1,7 @@
 import _ from 'lodash';
 import { requireModule } from '@sweet-milktea/utils';
 import type { Configuration } from 'webpack';
+import type { PluginItem } from '@babel/core';
 import { createBabelOptions } from '../config/babelConfig.js';
 import { customizer, configRulePush } from '../utils/utils.js';
 import type { SweetConfig, SweetOptions, JSOptions } from '../utils/types.js';
@@ -26,8 +27,8 @@ export default async function(sweetConfig: SweetConfig, sweetOptions: SweetOptio
   // 添加额外的插件
   const isReact: boolean = frame === 'react',
     isVue: boolean = frame === 'vue';
-  const babelPresets: Array<[string, any?] | string> = [],
-    babelPlugins: Array<[string, any?] | string> = [];
+  const babelPresets: Array<PluginItem> = [],
+    babelPlugins: Array<PluginItem> = [];
 
   if (Array.isArray(extraPresets)) {
     babelPresets.push(...extraPresets);

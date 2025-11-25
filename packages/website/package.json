@@ -13,18 +13,18 @@
     "build:ci": "NODE_ENV=production milktea-esm build"
   },
   "dependencies": {
-    "@ant-design/icons": "^6.0.1",
-    "antd": "^5.27.3",
+    "@ant-design/icons": "^6.1.0",
+    "antd": "^6.0.0",
     "github-markdown-css": "^5.8.1",
-    "react": "^19.1.1",
-    "react-dom": "^19.1.1",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
     "react-helmet": "^6.1.0",
-    "react-router": "^7.8.2",
+    "react-router": "^7.9.6",
     "react-showdown": "^2.3.1",
     "tslib": "^2.8.1"
   },
   "devDependencies": {
-    "@babel/plugin-syntax-import-attributes": "^8.0.0-beta.2",
+    "@babel/plugin-syntax-import-attributes": "^8.0.0-beta.3",
     "@sweet-milktea/milktea": "*",
     "@sweet-milktea/milktea-cli": "*",
     "@sweet-milktea/server": "*",
@@ -33,6 +33,6 @@
     "cross-env": "*",
     "rimraf": "*",
     "ts-loader": "^9.5.4",
-    "typescript": "^5.9.2"
+    "typescript": "^5.9.3"
   }
 }

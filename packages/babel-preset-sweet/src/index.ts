@@ -4,6 +4,7 @@ import defaultPlugins from './utils/defaultPlugins.js';
 import presetEnv from './utils/presetEnv.js';
 import presetTypescript from './utils/presetTypescript.js';
 import transformRuntime from './utils/transformRuntime.js';
+import type { PluginItem } from '@babel/core' with { 'resolution-mode': 'import' };
 import type { BabelPresetSweetOptions as Options, BabelPresetSweet, EnvOptions, ReactOptions, TypescriptOptions } from './types.js';
 
 const isDevelopment: boolean = process.env.NODE_ENV === 'development';
@@ -35,8 +36,8 @@ function babelPresetSweet(api: any, options: Options = {}, dirname: string): Bab
     }
   }
 
-  const presets: Array<[string, any?] | string> = [];
-  const plugins: Array<[string, any?] | string> = defaultPlugins.concat(...transformRuntime());
+  const presets: Array<PluginItem> = [];
+  const plugins: Array<PluginItem> = defaultPlugins.concat(...transformRuntime());
 
   // 添加@babel/preset-env
   presets.push(

@@ -1,5 +1,7 @@
+import type { PluginItem } from '@babel/core' with { 'resolution-mode': 'import' };
+
 /* 默认加载的插件 */
-const defaultPlugins: Array<[string, any] | string> = [
+const defaultPlugins: Array<PluginItem> = [
   // async do {} 语法
   '@babel/plugin-proposal-async-do-expressions',
   // class语法

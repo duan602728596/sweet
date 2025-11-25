@@ -1,3 +1,5 @@
+import type { PluginItem } from '@babel/core' with { 'resolution-mode': 'import' };
+
 interface PresetEnvOptionsArgs {
   babelBuildTargets: object;
   debug?: boolean;
@@ -5,7 +7,7 @@ interface PresetEnvOptionsArgs {
 }
 
 /* @babel/preset-env */
-function presetEnv(options: PresetEnvOptionsArgs): [string, any] {
+function presetEnv(options: PresetEnvOptionsArgs): PluginItem {
   const { babelBuildTargets, debug, envModules }: PresetEnvOptionsArgs = options;
 
   // @babel/preset-env的配置
