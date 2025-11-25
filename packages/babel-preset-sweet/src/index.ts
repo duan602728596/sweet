@@ -37,7 +37,7 @@ function babelPresetSweet(api: any, options: Options = {}, dirname: string): Bab
   }
 
   const presets: Array<PluginItem> = [];
-  const plugins: Array<PluginItem> = defaultPlugins.concat(...transformRuntime());
+  const plugins: Array<PluginItem> = defaultPlugins.concat(transformRuntime());
 
   // 添加@babel/preset-env
   presets.push(
