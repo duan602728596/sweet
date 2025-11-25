@@ -84,7 +84,7 @@ async function devServer(args: DevServerArgs = {}): Promise<void> {
     compiler,
     serverRender,
     serverRenderRoot: formatPath(sweetOptions, serverRenderRoot),
-    serverRenderFile: serverRenderFile ?? (vite ? 'entry-server.mjs' : 'server.js'),
+    serverRenderFile: serverRenderFile ?? (vite ? 'entry-server.mjs' : 'server.mjs'),
     env,
     renderType,
     serverChain,

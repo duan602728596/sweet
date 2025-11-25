@@ -81,7 +81,7 @@ async function proServer(args: ProServerArgs = {}): Promise<void> {
     serverRoot: formatPath(sweetOptions, serverRoot),
     serverRender,
     serverRenderRoot: formatPath(sweetOptions, serverRenderRoot),
-    serverRenderFile: serverRenderFile ?? (vite ? 'entry-server.mjs' : 'server.js'),
+    serverRenderFile: serverRenderFile ?? (vite ? 'entry-server.mjs' : 'server.mjs'),
     env,
     template,
     renderType,

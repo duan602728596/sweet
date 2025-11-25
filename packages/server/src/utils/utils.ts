@@ -156,16 +156,16 @@ export async function getServerRenderEntry(serverRenderEntry: string): Promise<s
   }
 
   const parseResult: ParsedPath = path.parse(serverRenderEntry);
+  const jsServerRenderEntry: string = path.join(parseResult.dir, `${ parseResult.name }.js`);
+
+  if (await isFileExists(jsServerRenderEntry)) {
+    return jsServerRenderEntry;
+  }
+
   const cjsServerRenderEntry: string = path.join(parseResult.dir, `${ parseResult.name }.cjs`);
 
   if (await isFileExists(cjsServerRenderEntry)) {
     return cjsServerRenderEntry;
-  }
-
-  const mjsServerRenderEntry: string = path.join(parseResult.dir, `${ parseResult.name }.mjs`);
-
-  if (await isFileExists(mjsServerRenderEntry)) {
-    return mjsServerRenderEntry;
   }
 
   return serverRenderEntry;
