@@ -24,7 +24,7 @@ describe('sever-render config', function() {
 
     it('[sever-render config - react & development] config.target and config.node Configuration is correct',
       function() {
-        expect(config.target).to.eql(['node', 'node16']);
+        expect(config.target).to.eql(['node', 'node22']);
         expect(config.node).to.eql({ __filename: true, __dirname: true });
       });
 
@@ -47,7 +47,7 @@ describe('sever-render config', function() {
 
     it('[sever-render config - vue & production] config.target and config.node Configuration is correct',
       function() {
-        expect(config.target).to.eql(['node', 'node16']);
+        expect(config.target).to.eql(['node', 'node22']);
         expect(config.node).to.eql({ __filename: true, __dirname: true });
       });
 
