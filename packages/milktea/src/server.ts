@@ -38,8 +38,8 @@ export default async function(sweetConfig: SweetConfig, sweetOptions: SweetOptio
   const webpackOutput: Configuration['output'] = {
     path: path.join(sweetOptions.basicPath, 'dist-server'),
     publicPath: '',
-    filename: '[name].js',
-    library: { type: 'commonjs' },
+    filename: '[name].mjs',
+    library: { type: 'module' },
     globalObject: 'globalThis',
     assetModuleFilename: createFileName(isDevelopment)
   };
@@ -49,7 +49,7 @@ export default async function(sweetConfig: SweetConfig, sweetOptions: SweetOptio
     mode,
     devtool: serverDevtool ?? (isDevelopment ? 'eval-source-map' : 'source-map'),
     resolve: { extensions, extensionAlias },
-    target: ['node', 'node16'],
+    target: ['node', 'node22'],
     performance: { hints: false },
     node: {
       __filename: true,
@@ -61,7 +61,8 @@ export default async function(sweetConfig: SweetConfig, sweetOptions: SweetOptio
     } : false,
     output: webpackOutput,
     experiments: {
-      topLevelAwait: true
+      topLevelAwait: true,
+      outputModule: true
     }
   };
 
