@@ -295,7 +295,7 @@ export default [
         cacheLifetime: {
           glob: 'Infinity'
         },
-        project: 'tsconfig.json',
+        projectService: true,
         sourceType: 'module'
       },
       globals: languageGlobalsOptions
