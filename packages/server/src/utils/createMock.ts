@@ -42,6 +42,7 @@ function addMockRouter(router: Router, mock: Mock): void {
       ? value
       : (ctx: Context, next: Function): void => ctx.body = value;
 
+    // @ts-expect-error
     router[method](uri, routerFunc);
   }
 }

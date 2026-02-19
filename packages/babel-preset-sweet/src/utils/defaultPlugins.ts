@@ -21,9 +21,7 @@ const defaultPlugins: Array<PluginItem> = [
   // 管道函数
   ['@babel/plugin-proposal-pipeline-operator', { proposal: 'hack', topicToken: '#' }],
   // var e = throw new Error(err) 语法
-  '@babel/plugin-proposal-throw-expressions',
-  // import json from './foo.json' with { type: 'json' }
-  ['@babel/plugin-syntax-import-attributes', { deprecatedAssertSyntax: true }]
+  '@babel/plugin-proposal-throw-expressions'
 ];
 
 export default defaultPlugins;
