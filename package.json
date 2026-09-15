@@ -20,7 +20,7 @@
   "workspaces": [
     "packages/*"
   ],
-  "packageManager": "yarn@4.9.4",
+  "packageManager": "yarn@4.18.0",
   "dependencies": {
     "@types/koa": "^3",
     "@types/lodash": "^4",
