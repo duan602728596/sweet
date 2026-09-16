@@ -1,15 +1,24 @@
 import * as fs from 'node:fs';
 
-interface ModuleExport {
-  readonly default: unknown;
+interface ModuleExport<T = unknown> {
+  readonly default: T;
 }
 
 /**
  * 判断为module
  * @param { ModuleExport | unknown } module
  */
-function isModule(module: ModuleExport | unknown): module is ModuleExport {
-  return typeof module === 'object';
+function isModule<T = unknown>(module: ModuleExport<T> | T): module is ModuleExport<T> {
+  return typeof module === 'object' && module && ('default' in module);
+}
+
+/**
+ * 判断为exportAll
+ * @param { ModuleExport | unknown } module
+ * @param { boolean } [exportAll]
+ */
+function isExportAllModule<T = unknown>(module: ModuleExport<T> | T, exportAll?: boolean): module is T {
+  return !!exportAll;
 }
 
 /**
@@ -17,14 +26,14 @@ function isModule(module: ModuleExport | unknown): module is ModuleExport {
  * @param { string } id - 模块名称
  * @param { boolean } [exportAll] - 导出所有模块
  */
-export function requireModule(id: string, exportAll?: boolean): unknown {
-  const module: ModuleExport | unknown = require(id);
+export function requireModule<T = unknown>(id: string, exportAll?: boolean): T {
+  const module: ModuleExport<T> | T = require(id);
 
-  if (exportAll) {
+  if (isExportAllModule(module, exportAll)) {
     return module;
   }
 
-  return (isModule(module) && 'default' in module) ? module.default : module;
+  return isModule<T>(module) ? module.default : module;
 }
 
 /* 导入commonjs模块，cjs下和requireModule的行为相同 */
@@ -34,8 +43,8 @@ export const requireCommonjsModule: typeof requireModule = requireModule;
  * 加载json文件
  * @param { string } id - 模块名称
  */
-export function requireJson(id: string): unknown {
-  return requireModule(id);
+export function requireJson<T = unknown>(id: string): T {
+  return requireModule<T>(id);
 }
 
 /**
@@ -57,10 +66,10 @@ export function cleanRequireCache(id: string): void {
  * @param { string } id - 模块名称
  * @param { boolean } [exportAll] - 导出所有模块
  */
-export function requireModuleWithoutCache(id: string, exportAll?: boolean): unknown {
+export function requireModuleWithoutCache<T = unknown>(id: string, exportAll?: boolean): T {
   cleanRequireCache(id);
 
-  return requireModule(id, exportAll);
+  return requireModule<T>(id, exportAll);
 }
 
 /**

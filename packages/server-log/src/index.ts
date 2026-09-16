@@ -1,4 +1,5 @@
 import * as process from 'node:process';
+// @ts-expect-error
 import log4js from '@bbkkbkk/koa-log4';
 import type { Context } from 'koa';
 import createFileConfig from './createFileConfig.js';

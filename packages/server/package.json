@@ -18,7 +18,8 @@
     "./proServer.js": "./esm/proServer.js",
     "./hotClientEntry": "./esm/hotClientEntry.js",
     "./hotClientEntry.js": "./esm/hotClientEntry.js",
-    "./esm/server.js": "./esm/server.js"
+    "./esm/server.js": "./esm/server.js",
+    "./types": "./esm/utils/types.d.ts"
   },
   "scripts": {
     "build:esm": "tsc --outDir esm --skipLibCheck",
@@ -57,9 +58,17 @@
     "@sweet-milktea/milktea": "^4.6.0",
     "@sweet-milktea/milktea-vite": "^4.4.0",
     "@sweet-milktea/server-log": "^4.0.0",
+    "@types/ejs": "^3",
+    "@types/koa": "^3",
+    "@types/koa-static": "^4",
+    "@types/mime-types": "^3",
+    "@types/sockjs": "^0",
+    "@types/webpack-log": "^3",
+    "@types/ws": "^8",
     "cross-env": "*",
     "mocha": "*",
     "nunjucks": "^3.2.4",
+    "typescript": "^7.0.2",
     "vite": "^7.3.1",
     "webpack": "^5.105.2"
   },

@@ -5,10 +5,12 @@ import webpack, { type Configuration, type WebpackPluginInstance } from 'webpack
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import type { Options as HtmlWebpackPluginOptions } from 'html-webpack-plugin';
+// @ts-expect-error
 import FilesMapWebpackPlugin from '@bbkkbkk/files-map-webpack-plugin';
 import WebpackBar from 'webpackbar';
 import _ from 'lodash';
 import { requireModule } from '@sweet-milktea/utils';
+// @ts-expect-error
 import type { TypeScriptWorkerOptions } from 'fork-ts-checker-webpack-plugin/lib/typescript/type-script-worker-options';
 import devPlugins from './devPlugins.js';
 import proPlugins from './proPlugins.js';
@@ -73,7 +75,7 @@ export default async function(sweetConfig: SweetConfig, sweetOptions: SweetOptio
       typescriptOptions.configFile = typescript.configFile;
     }
 
-    configPluginPush(config, new (await requireModule('fork-ts-checker-webpack-plugin'))({
+    configPluginPush(config, new (await requireModule<any>('fork-ts-checker-webpack-plugin'))({
       async: false,
       typescript: typescriptOptions
     }));

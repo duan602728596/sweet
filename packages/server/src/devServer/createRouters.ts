@@ -59,7 +59,7 @@ async function createRouters(router: Router, sweetOptions: SweetOptions): Promis
 
       await serverRenderCallback(ctx, sweetOptions, ctxPath, preRender);
     } catch (err) {
-      errorCallback(ctx, err);
+      errorCallback(ctx, Error.isError(err) ? err : new Error());
     }
   }
 
@@ -92,7 +92,7 @@ async function createRouters(router: Router, sweetOptions: SweetOptions): Promis
       }
       await next();
     } catch (err) {
-      errorCallback(ctx, err);
+      errorCallback(ctx, Error.isError(err) ? err : new Error());
     }
   }
 

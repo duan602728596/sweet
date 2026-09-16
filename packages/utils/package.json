@@ -9,20 +9,29 @@
   "main": "index.cjs",
   "exports": {
     ".": {
-      "import": "./esm/index.js",
-      "default": "./index.cjs"
-    },
-    "./importESM": "./importESM.cjs",
-    "./importESM.cjs": "./importESM.cjs"
+      "import": {
+        "types": [
+          "./esm/index.d.mts"
+        ],
+        "default": "./esm/index.mjs"
+      },
+      "require": {
+        "types": [
+          "./cjs/index.d.cts"
+        ],
+        "default": "./cjs/index.cjs"
+      }
+    }
   },
   "scripts": {
     "build:esm": "tsc --outDir esm --skipLibCheck",
-    "build:cjs": "tsc --outDir lib --module Node16 --moduleResolution Node16 --skipLibCheck",
+    "build:cjs": "tsc --outDir cjs --module Node16 --moduleResolution Node16 --project tsconfig.cjs.json --skipLibCheck",
     "test": "cross-env NODE_ENV=test mocha test/test.mjs --timeout 180000"
   },
   "devDependencies": {
     "cross-env": "*",
-    "mocha": "*"
+    "mocha": "*",
+    "typescript": "^7.0.2"
   },
   "engines": {
     "node": ">=16"

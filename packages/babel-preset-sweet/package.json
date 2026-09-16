@@ -41,6 +41,7 @@
   "devDependencies": {
     "@babel/core": "^8.0.0-rc.2",
     "cross-env": "*",
-    "mocha": "*"
+    "mocha": "*",
+    "typescript": "^7.0.2"
   }
 }

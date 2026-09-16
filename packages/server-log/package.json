@@ -22,7 +22,8 @@
   },
   "devDependencies": {
     "cross-env": "*",
-    "mocha": "*"
+    "mocha": "*",
+    "typescript": "^7.0.2"
   },
   "engines": {
     "node": ">=16"

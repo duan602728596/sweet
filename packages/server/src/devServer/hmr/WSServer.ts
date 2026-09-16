@@ -5,6 +5,12 @@ import BasicServer, { type ServerConnection, type ServerConstructorArgs, type Ha
 
 const noop: Function = (): void => { /* noop */ };
 
+declare module 'ws' {
+  interface WebSocket {
+    isAlive?: boolean
+  }
+}
+
 /**
  * webpack-dev-middleware的koa实现，使用ws
  * https://github.com/webpack/webpack-dev-server/blob/master/lib/servers/WebsocketServer.js
@@ -45,7 +51,7 @@ class WSServer extends BasicServer {
     }
 
     this.wsServer.on('error', (err: Error): void => {
-      this.log.error(err.message);
+      this.log?.error(err.message);
     });
 
     this.pingTimer = setInterval((): void => {
@@ -76,7 +82,7 @@ class WSServer extends BasicServer {
   // 关闭
   handleServerClose: () => void = (): void => {
     clearInterval(this.pingTimer);
-    this.clients.clear();
+    this.clients?.clear();
   };
 
   // 发送数据

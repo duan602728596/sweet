@@ -8,12 +8,12 @@ export const __dirname = path.dirname(__filename);
 export const dir = path.join(__dirname, '../packages');
 
 export const packageNames = [
+  'util-tools',
   'milktea',
   'milktea-cli',
   'milktea-vite',
   'server',
   'server-log',
-  'util-tools',
   'utils',
   'babel-preset-sweet'
 ];

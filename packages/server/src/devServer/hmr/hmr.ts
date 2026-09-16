@@ -2,6 +2,7 @@ import type { Server } from 'node:http';
 import type { Http2SecureServer } from 'node:http2';
 import type { Middleware, Context, Next } from 'koa';
 import type { Compiler } from 'webpack';
+import type { WebpackLogger } from 'webpack-log';
 import type { ClientLogLevel } from './BasicServer.js';
 import SockJSServer from './SockJSServer.js';
 import WSServer from './WSServer.js';
@@ -20,7 +21,7 @@ type Options = {
  * @param { SweetOptions } sweetOptions
  */
 function koaHmr(options: Options, sweetOptions: SweetOptions): Middleware {
-  const log: { [key: string]: Function } = createLogger();
+  const log: WebpackLogger = createLogger();
   const sock: SockJSServer | WSServer = new (sweetOptions.socket === 'ws' ? WSServer : SockJSServer)({
     compiler: options.compiler,
     server: options.server,

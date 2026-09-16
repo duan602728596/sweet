@@ -143,6 +143,6 @@ export interface Milktea {
   config(args: FuncArgs): Promise<Configuration>;
   serverRenderConfig(args: FuncArgs): Promise<Configuration>;
   dllConfig(args: FuncArgs): Promise<Configuration>;
-  callback(err: Error, stats: Stats): void;
-  callbackOnlyError(err: Error, stats: Stats): void;
+  callback(err: Error | null, stats: Stats | undefined): void;
+  callbackOnlyError(err: Error | null, stats: Stats | undefined): void;
 }

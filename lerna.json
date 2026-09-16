@@ -3,5 +3,10 @@
     "packages/*"
   ],
   "version": "4.6.0",
-  "npmClient": "npm"
+  "npmClient": "npm",
+  "command": {
+    "run": {
+      "sort": true
+    }
+  }
 }

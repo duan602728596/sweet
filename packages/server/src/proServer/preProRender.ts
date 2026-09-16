@@ -47,7 +47,10 @@ async function preRenderInit(sweetOptions: SweetOptions): Promise<Function> {
       console.error(err);
 
       ctx.status = 500;
-      ctx.body = `<pre style="font-size: 14px; white-space: pre-wrap;">${ err.stack.toString() }</pre>`;
+
+      if (Error.isError(err) && err.stack) {
+        ctx.body = `<pre style="font-size: 14px; white-space: pre-wrap;">${ err.stack.toString() }</pre>`;
+      }
     }
   };
 }

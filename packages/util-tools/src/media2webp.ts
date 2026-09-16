@@ -21,6 +21,7 @@ function file2webp(input: string, output: string): Promise<void> {
       .on('end', (): void => {
         resolve();
       })
+      // @ts-expect-error
       .on('error', (err: Error, stdout: string, stderr: string): void => {
         reject(err);
       })

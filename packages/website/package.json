@@ -30,9 +30,10 @@
     "@sweet-milktea/server": "*",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "@types/react-helmet": "^6",
     "cross-env": "*",
     "rimraf": "*",
     "ts-loader": "^9.5.4",
-    "typescript": "^5.9.3"
+    "typescript": "^6.0.3"
   }
 }

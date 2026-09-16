@@ -6,7 +6,7 @@ import {
   requireCommonjsModule,
   requireJson,
   requireModuleWithoutCache
-} from '../lib/index.js';
+} from '../cjs/index.cjs';
 import { metaHelper } from '../esm/index.js';
 
 const { __dirname } = metaHelper(import.meta.url);

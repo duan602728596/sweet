@@ -2,6 +2,8 @@
   "extends": "../../tsconfig.json",
   "compilerOptions": {
     "target": "ES6",
+    "module": "ESNext",
+    "moduleResolution": "bundler",
     "importHelpers": true,
     "jsx": "react-jsxdev",
     "resolveJsonModule": true

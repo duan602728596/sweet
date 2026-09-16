@@ -28,7 +28,7 @@ function middleware(sweetOptions: SweetOptions, app: Koa, router: Router, compil
       app.use(connect((compiler as ViteDevServer).middlewares));
     } else {
       // 异步加载webpack热替换服务
-      app.use(requireCommonjsModule('webpack-dev-middleware').koaWrapper(compiler as Compiler, {
+      app.use(requireCommonjsModule<any>('webpack-dev-middleware').koaWrapper(compiler as Compiler, {
         serverSideRender: true,
         mimeTypes: {
           avifs: 'image/avif-sequence'

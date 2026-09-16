@@ -1,0 +1,14 @@
+{
+  "name": "@sweet-milktea/eslint",
+  "version": "0.0.0",
+  "description": "安装eslint插件，并固定typescript版本",
+  "type": "module",
+  "exports": {
+    ".": "./index.mjs"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^8.56.0",
+    "@typescript-eslint/parser": "^8.56.0",
+    "typescript": "^6.0.3"
+  }
+}

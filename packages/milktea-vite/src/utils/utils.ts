@@ -2,7 +2,7 @@ import type { SweetConfig } from './types.js';
 
 /* 重新赋值 */
 export function changeSweetConfig(sweetConfig: SweetConfig): void {
-  const rename: Array<[string, string]> = [
+  const rename: [['typescript', 'ts']] = [
     ['typescript', 'ts']
   ];
 

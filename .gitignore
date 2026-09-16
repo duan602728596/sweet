@@ -20,9 +20,13 @@ package.json.lerna_backup
 
 # packages
 packages/**/lib
+packages/**/cjs
 packages/**/esm/**/*.js
 packages/**/esm/**/*.mjs
 packages/**/esm/**/*.cjs
+packages/**/esm/**/*.ts
+packages/**/esm/**/*.mts
+packages/**/esm/**/*.cts
 packages/**/esm/package.json
 packages/**/node_modules
 packages/**/build

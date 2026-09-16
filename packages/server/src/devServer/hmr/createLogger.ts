@@ -1,11 +1,11 @@
-import webpackLog from 'webpack-log';
+import webpackLog, { type WebpackLogOptions, type WebpackLogger } from 'webpack-log';
 
 /**
  * 创建日志
  * @param { object } [options = {}]
  */
-function createLogger(options: { [key: string]: any } = {}): { [key: string]: Function } {
-  let level: string = options.logLevel ?? 'info';
+function createLogger(options: { [key: string]: any } = {}): WebpackLogger {
+  let level: WebpackLogOptions['level'] = options.logLevel ?? 'info';
 
   if (options.noInfo === true) {
     level = 'warn';

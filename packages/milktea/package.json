@@ -19,7 +19,8 @@
     "./esm/config": "./esm/config.js",
     "./esm/config.js": "./esm/config.js",
     "./esm/server": "./esm/server.js",
-    "./esm/server.js": "./esm/server.js"
+    "./esm/server.js": "./esm/server.js",
+    "./types": "./esm/utils/types.d.ts"
   },
   "scripts": {
     "build:esm": "tsc --outDir esm --skipLibCheck",
@@ -60,6 +61,7 @@
     "cross-env": "*",
     "mocha": "*",
     "ts-loader": "^9.5.4",
+    "typescript": "^7.0.2",
     "vue-loader": "^17.4.2",
     "vue-svg-loader": "^0.17.0-beta.2"
   },

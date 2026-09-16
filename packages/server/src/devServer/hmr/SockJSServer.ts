@@ -1,8 +1,16 @@
 import type { IncomingMessage, Server } from 'node:http';
 import sockjs from 'sockjs';
 import type { Server as SockjsServer, Connection as SockjsConnection } from 'sockjs';
+// @ts-expect-error
 import { Session as SockjsSession } from 'sockjs/lib/transport.js';
 import BasicServer, { type ServerConnection, type ServerConstructorArgs, type HandleSocketConnection } from './BasicServer.js';
+
+declare module 'sockjs' {
+  interface Connection {
+    send: Function
+    terminate: Function
+  }
+}
 
 // Workaround for sockjs@~0.3.19
 // sockjs will remove Origin header, however Origin header is required for checking host.
@@ -43,9 +51,9 @@ class SockJSServer extends BasicServer {
       sockjs_url: '/__webpack_dev_server__/sockjs.bundle.js',
       log: (severity: string, line: any): void => {
         if (severity === 'error') {
-          this.log.error(line);
+          this.log?.error(line);
         } else {
-          this.log.debug(line);
+          this.log?.debug(line);
         }
       }
     });
@@ -73,8 +81,8 @@ class SockJSServer extends BasicServer {
 
   // 关闭
   handleServerClose: Function = (): void => {
-    this.clients.forEach((o: ServerConnection): boolean | void => o.close());
-    this.clients.clear();
+    this.clients?.forEach((o: ServerConnection): boolean | void => o.close());
+    this.clients?.clear();
   };
 
   // 发送数据

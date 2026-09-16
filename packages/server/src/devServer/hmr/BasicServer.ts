@@ -3,13 +3,14 @@ import type { Http2SecureServer } from 'node:http2';
 import type { Compiler, Stats, StatsCompilation, StatsOptions } from 'webpack';
 import type WebSocket from 'ws';
 import type { Connection as SockjsConnection } from 'sockjs';
+import type { WebpackLogger } from 'webpack-log';
 
 export type ServerItem = Server | Http2SecureServer;
 export type ServerConnection = WebSocket | SockjsConnection;
 export type ClientLogLevel = 'silent' | 'trace' | 'debug' | 'info' | 'warn' | 'error';
 
 export interface ServerConstructorArgs {
-  log: Record<string, Function>;
+  log: WebpackLogger;
   clientLogLevel: ClientLogLevel;
   server: Array<ServerItem>;
   compiler: Compiler;
@@ -29,11 +30,11 @@ abstract class BasicServer {
   };
   static NAME: string = 'koa-hmr'; // name
 
-  public log: { [key: string]: Function }; // 日志
-  public clientLogLevel: ClientLogLevel;   // 日志等级
-  public compiler: Compiler;               // webpack compiler
-  public clients: Set<ServerConnection>;   // 当前的socket链接
-  public stats: any;                       // webpack stats
+  public log: WebpackLogger | undefined;             // 日志
+  public clientLogLevel: ClientLogLevel | undefined; // 日志等级
+  public compiler: Compiler | undefined;             // webpack compiler
+  public clients: Set<ServerConnection> | undefined; // 当前的socket链接
+  public stats: any;                                 // webpack stats
 
   abstract send(client: any, message: string): void;
 
@@ -87,7 +88,7 @@ abstract class BasicServer {
   }
 
   sockWrite(type: string, data?: any): void {
-    this.clients.forEach((client: ServerConnection): void => {
+    this.clients?.forEach((client: ServerConnection): void => {
       this.send(client, JSON.stringify({ type, data }));
     });
   }
@@ -138,10 +139,10 @@ abstract class BasicServer {
 
   // 连接
   handleSocketConnection: HandleSocketConnection = (client: ServerConnection): void => {
-    this.clients.add(client);
+    this.clients?.add(client);
 
     this.onConnectionClose(client, (): void => {
-      this.clients.delete(client);
+      this.clients?.delete(client);
     });
 
     this.sockWriteConnection(client, 'logging', this.clientLogLevel);

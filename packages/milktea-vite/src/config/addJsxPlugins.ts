@@ -12,6 +12,7 @@ async function addJsxPlugins(viteConfig: InlineConfig, frame: Frame | undefined)
     // 添加react配置
     Object.assign(viteConfig, {
       plugins: [
+        // @ts-expect-error
         (await requireModule('@vitejs/plugin-react'))({
           jsxRuntime: moduleExists('react/jsx-runtime') ? 'automatic' : 'classic'
         })
@@ -21,8 +22,8 @@ async function addJsxPlugins(viteConfig: InlineConfig, frame: Frame | undefined)
     // 添加vue配置
     Object.assign(viteConfig, {
       plugins: [
-        (await requireModule('@vitejs/plugin-vue'))(),
-        (await requireModule('@vitejs/plugin-vue-jsx'))()
+        (await requireModule<any>('@vitejs/plugin-vue'))(),
+        (await requireModule<any>('@vitejs/plugin-vue-jsx'))()
       ]
     });
   }

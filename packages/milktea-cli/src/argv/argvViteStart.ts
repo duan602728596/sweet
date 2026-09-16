@@ -1,7 +1,7 @@
 import { requireModule } from '@sweet-milktea/utils';
 import type { ViteDevServer } from 'vite';
-import type { MilkVite } from '@sweet-milktea/milktea-vite/src/utils/types.js';
-import type { DevServer } from '@sweet-milktea/server/src/utils/types.js';
+import type { MilkVite } from '@sweet-milktea/milktea-vite/types';
+import type { DevServer } from '@sweet-milktea/server/types';
 import type { Argv } from '../utils/types.js';
 
 /* vite-start 命令 */

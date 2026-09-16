@@ -31,7 +31,7 @@ async function middleware(app: Koa, router: Router, sweetOptions: SweetOptions):
   }));
 
   /* 静态资源 */
-  app.use(serve(sweetOptions.serverRoot, {
+  app.use(serve(sweetOptions.serverRoot!, {
     maxage: (60 ** 2) * 24 * 365 * 1_000,
     index: false
   }));

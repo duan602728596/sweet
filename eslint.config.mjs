@@ -1,8 +1,7 @@
 import process from 'node:process';
 import { createRequire } from 'node:module';
 import babelEslintParser from '@babel/eslint-parser';
-import typescriptEslintParser from '@typescript-eslint/parser';
-import typescriptEslintPlugin from '@typescript-eslint/eslint-plugin';
+import { typescriptEslintPlugin, typescriptEslintParser } from '@sweet-milktea/eslint';
 import eslintPluginReact from 'eslint-plugin-react';
 import eslintPluginImport from 'eslint-plugin-import';
 import globals from 'globals';
@@ -17,6 +16,7 @@ const ignores = [
   '.husky/**',
   '.pnp.js',
   '.pnp.cjs',
+  'packages/**/cjs/**',
   'packages/**/lib/**',
   'packages/**/esm/**',
   'packages/**/node_modules/**',

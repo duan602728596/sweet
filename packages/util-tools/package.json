@@ -37,8 +37,13 @@
     "semver": "^7.7.4"
   },
   "devDependencies": {
+    "@types/fluent-ffmpeg": "^2",
+    "@types/fs-extra": "^11",
+    "@types/imagemin": "^9",
+    "@types/semver": "^7",
     "cross-env": "*",
-    "mocha": "*"
+    "mocha": "*",
+    "typescript": "^7.0.2"
   },
   "peerDependencies": {
     "imagemin-gif2webp": ">=3",

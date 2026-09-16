@@ -34,10 +34,10 @@ async function getConfig(environment: Environment, sweetConfig: SweetConfigArgs)
 }
 
 /* webpack的回调函数，只显示错误 */
-export function callbackOnlyError(err: Error, stats: Stats): void {
+export function callbackOnlyError(err: Error | null, stats: Stats | undefined): void {
   if (err) {
     console.error(err);
-  } else {
+  } else if (stats) {
     console.log(stats.toString({
       colors: true,
       assets: false,
@@ -52,10 +52,10 @@ export function callbackOnlyError(err: Error, stats: Stats): void {
 }
 
 /* webpack的回调函数 */
-export function callback(err: Error, stats: Stats): void {
+export function callback(err: Error | null, stats: Stats | undefined): void {
   if (err) {
     console.error(err);
-  } else {
+  } else if (stats) {
     console.log(stats.toString({
       colors: true
     }));

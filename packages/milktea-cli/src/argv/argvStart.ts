@@ -2,8 +2,8 @@ import type Webpack from 'webpack';
 import type { Compiler, Configuration } from 'webpack';
 import _ from 'lodash';
 import { requireModule } from '@sweet-milktea/utils';
-import type { Milktea } from '../../../milktea/src/utils/types.js';
-import type { DevServer } from '../../../server/src/utils/types.js';
+import type { Milktea } from '@sweet-milktea/milktea/types';
+import type { DevServer } from '@sweet-milktea/server/types';
 import type { Argv } from '../utils/types.js';
 
 /* start 命令 */

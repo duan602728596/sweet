@@ -2,8 +2,8 @@ import _ from 'lodash';
 import { requireModule } from '@sweet-milktea/utils';
 import type Webpack from 'webpack';
 import type { Compiler } from 'webpack';
-import type { Milktea } from '@sweet-milktea/milktea/src/utils/types.js';
-import type { Argv } from '../utils/types';
+import type { Milktea } from '@sweet-milktea/milktea/types';
+import type { Argv } from '../utils/types.js';
 
 /* build 命令 */
 async function argvBuild(argv: Argv): Promise<void> {

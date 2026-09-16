@@ -19,7 +19,8 @@
     "./esm/config": "./esm/config.js",
     "./esm/config.js": "./esm/config.js",
     "./esm/server": "./esm/server.js",
-    "./esm/server.js": "./esm/server.js"
+    "./esm/server.js": "./esm/server.js",
+    "./types": "./esm/utils/types.d.ts"
   },
   "scripts": {
     "build:esm": "tsc --outDir esm --skipLibCheck",
@@ -40,7 +41,8 @@
     "@vitejs/plugin-vue": "^6.0.4",
     "@vitejs/plugin-vue-jsx": "^5.1.4",
     "cross-env": "*",
-    "mocha": "*"
+    "mocha": "*",
+    "typescript": "^7.0.2"
   },
   "peerDependencies": {
     "@vitejs/plugin-vue": ">=6",

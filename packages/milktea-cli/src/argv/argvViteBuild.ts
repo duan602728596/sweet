@@ -1,6 +1,6 @@
 import _ from 'lodash';
 import { requireModule } from '@sweet-milktea/utils';
-import type { MilkVite } from '@sweet-milktea/milktea-vite/src/utils/types.js';
+import type { MilkVite } from '@sweet-milktea/milktea-vite/types';
 import type { Argv } from '../utils/types.js';
 
 /* vite-build 命令 */

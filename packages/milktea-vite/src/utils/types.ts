@@ -1,6 +1,6 @@
 import type { ViteDevServer, InlineConfig } from 'vite';
 import type { RollupOutput } from 'rollup';
-import type { CosmiconfigResult } from 'cosmiconfig/dist/types';
+import type { CosmiconfigResult } from 'cosmiconfig';
 
 /* 当前的编译环境 */
 export type Environment = 'client' | 'server';
@@ -20,7 +20,7 @@ export interface Info {
 export type Mode = 'development' | 'production';
 export type Frame = 'react' | 'vue' | 'test'; // 当前使用的组件
 
-interface TSOptions {
+export interface TSOptions {
   configFile?: string;
   tsChecker?: boolean;
 }

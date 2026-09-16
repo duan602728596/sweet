@@ -33,9 +33,9 @@ async function imageCompress(entry: string, output: string, compressOptions: Com
   await imagemin([imgFile], {
     destination: output,
     plugins: [
-      (await requireModule('imagemin-pngquant'))(pngOptions),
-      (await requireModule('imagemin-jpegoptim'))(jpgOptions),
-      (await requireModule('imagemin-gifsicle'))(gifOptions)
+      (await requireModule<any>('imagemin-pngquant'))(pngOptions),
+      (await requireModule<any>('imagemin-jpegoptim'))(jpgOptions),
+      (await requireModule<any>('imagemin-gifsicle'))(gifOptions)
     ]
   });
 }
