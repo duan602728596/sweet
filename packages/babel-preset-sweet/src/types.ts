@@ -1,4 +1,4 @@
-import type { PluginItem } from '@babel/core';
+import type { PluginItem } from '@babel/core' with { 'resolution-mode': 'import' };
 
 // @babel/preset-env的配置
 export interface EnvOptions {
