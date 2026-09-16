@@ -9,8 +9,18 @@
   },
   "exports": {
     ".": {
-      "import": "./esm/index.js",
-      "default": "./cjs/index.js"
+      "import": {
+        "types": [
+          "./esm/index.d.ts"
+        ],
+        "default": "./esm/index.js"
+      },
+      "require": {
+        "types": [
+          "./esm/index.d.ts"
+        ],
+        "default": "./cjs/index.js"
+      }
     }
   },
   "scripts": {
