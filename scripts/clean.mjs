@@ -8,11 +8,13 @@ async function clean() {
 
   for (const packageName of packageNames) {
     const packageDir = path.join(dir, packageName, 'lib');
-    const packageESMDir = path.join(dir, packageName, 'esm');
+    const packageEsmDir = path.join(dir, packageName, 'esm');
+    const packageCjsDir = path.join(dir, packageName, 'cjs');
 
     queue.push(
       rimraf(packageDir),
-      rimraf(packageESMDir)
+      rimraf(packageEsmDir),
+      rimraf(packageCjsDir)
     );
   }
 

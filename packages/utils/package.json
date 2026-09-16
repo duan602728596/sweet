@@ -24,8 +24,9 @@
     }
   },
   "scripts": {
-    "build:esm": "tsc --outDir esm --skipLibCheck",
-    "build:cjs": "tsc --outDir cjs --module Node16 --moduleResolution Node16 --project tsconfig.cjs.json --skipLibCheck",
+    "build:esm:0": "tsc --outDir esm --skipLibCheck",
+    "build:cjs:0": "tsc --outDir cjs --project tsconfig.cjs.json --skipLibCheck",
+    "build:all": "node --run build:esm:0 && node --run build:cjs:0",
     "test": "cross-env NODE_ENV=test mocha test/test.mjs --timeout 180000"
   },
   "devDependencies": {
