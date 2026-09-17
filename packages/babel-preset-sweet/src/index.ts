@@ -1,7 +1,7 @@
 import * as process from 'process';
-import type { PluginItem, PresetAPI } from '@babel/core' with { 'resolution-mode': 'import' };
+import { declarePreset } from '@babel/helper-plugin-utils';
+import type { PluginItem, PresetItem, PresetAPI } from '@babel/core';
 import type { Options as BabelPresetEnvOptions } from '@babel/preset-env';
-import { moduleExists } from '@sweet-milktea/utils';
 import defaultPlugins from './defaultPlugins.js';
 import presetEnv from './presetEnv.js';
 import presetTypescript from './presetTypescript.js';
@@ -16,8 +16,18 @@ import type {
 
 const isDevelopment: boolean = process.env.NODE_ENV === 'development';
 
-function babelPresetSweet(api: PresetAPI, options: IBabelPresetSweetOptions = {}, dirname: string): IBabelPresetSweet {
-  const { env, react, typescript }: IBabelPresetSweetOptions = options;
+function hasJsxRuntime(): boolean {
+  try {
+    import.meta.resolve('react/jsx-runtime');
+
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+function babelPresetSweet(api: PresetAPI, options: IBabelPresetSweetOptions | undefined, dirname: string): IBabelPresetSweet {
+  const { env, react, typescript }: IBabelPresetSweetOptions = options ?? {};
   const { nodeEnv, ecmascript, targets: customTargets, debug, modules }: IEnvOptions = env ?? {},
     { use: useTypescript }: ITypescriptOptions = typescript ?? {},
     { use: useReact = true, runtime, development }: IReactOptions = react ?? {};
@@ -43,8 +53,8 @@ function babelPresetSweet(api: PresetAPI, options: IBabelPresetSweetOptions = {}
     }
   }
 
-  const presets: Array<PluginItem> = [];
-  const plugins: Array<PluginItem> = defaultPlugins.concat(transformRuntime());
+  const presets: Array<PresetItem> = [];
+  const plugins: Array<PluginItem> = defaultPlugins.concat(transformRuntime(babelBuildTargets));
 
   // 添加@babel/preset-env
   presets.push(
@@ -65,7 +75,7 @@ function babelPresetSweet(api: PresetAPI, options: IBabelPresetSweetOptions = {}
     presets.push([
       '@babel/preset-react',
       {
-        runtime: runtime ?? (moduleExists('react/jsx-runtime') ? 'automatic' : 'classic'),
+        runtime: runtime ?? (hasJsxRuntime() ? 'automatic' : 'classic'),
         development: development ?? isDevelopment
       }
     ]);
@@ -74,4 +84,4 @@ function babelPresetSweet(api: PresetAPI, options: IBabelPresetSweetOptions = {}
   return { presets, plugins };
 }
 
-export default babelPresetSweet;
+export default declarePreset(babelPresetSweet);

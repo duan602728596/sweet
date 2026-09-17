@@ -9,7 +9,6 @@
     "forceConsistentCasingInFileNames": true,
     "allowJs": true,
     "newLine": "LF",
-    "declaration": true,
     "types": [
       "node"
     ]
